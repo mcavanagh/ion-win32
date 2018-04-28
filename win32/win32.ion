@@ -1,31 +1,99 @@
 #foreign(header = "windows.h")
+#foreign(header = "shlwapi.h")
 
-@foreign typedef INT 		= int;
-@foreign typedef UINT 		= uint;
-@foreign typedef PUINT		= uint*;
-@foreign typedef WPARAM		= UINT_PTR;
-@foreign typedef LPARAM		= LONG_PTR;
-@foreign typedef LRESULT	= LONG_PTR;
-@foreign typedef HANDLE 	= void*;
-@foreign typedef DWORD 		= ulong;
-@foreign typedef BOOL 		= int;
-@foreign typedef BYTE 		= uchar;
-@foreign typedef WORD 		= ushort;
-@foreign typedef FLOAT 		= float;
-@foreign typedef PFLOAT 	= FLOAT*;
-@foreign typedef PBOOL 		= BOOL*;
-@foreign typedef LPBOOL 	= BOOL*;
-@foreign typedef PBYTE 		= BYTE*;
-@foreign typedef LPBYTE 	= BYTE*;
-@foreign typedef PINT 		= int*;
-@foreign typedef LPINT 		= int*;
-@foreign typedef PWORD 		= WORD*;
-@foreign typedef LPWORD 	= WORD*;
-@foreign typedef LPLONG 	= long*;
-@foreign typedef PDWORD 	= DWORD*;
-@foreign typedef LPDWORD 	= DWORD*;
-@foreign typedef LPVOID 	= void*;
-@foreign typedef LPCVOID 	= void const*;
+import libc { va_list }
+
+@foreign typedef CHAR       = char;
+@foreign typedef SHORT      = short;
+@foreign typedef LONG       = long;
+@foreign typedef INT        = int;
+@foreign typedef UINT       = uint;
+@foreign typedef PUINT      = uint*;
+@foreign typedef WPARAM     = UINT_PTR;
+@foreign typedef LPARAM     = LONG_PTR;
+@foreign typedef LRESULT    = LONG_PTR;
+@foreign typedef HANDLE     = void*;
+@foreign typedef DWORD      = ulong;
+@foreign typedef BOOL       = int;
+@foreign typedef BYTE       = uchar;
+@foreign typedef WORD       = ushort;
+@foreign typedef FLOAT      = float;
+@foreign typedef PFLOAT     = FLOAT*;
+@foreign typedef PBOOL      = BOOL*;
+@foreign typedef LPBOOL     = BOOL*;
+@foreign typedef PBYTE      = BYTE*;
+@foreign typedef LPBYTE     = BYTE*;
+@foreign typedef PINT       = int*;
+@foreign typedef LPINT      = int*;
+@foreign typedef PWORD      = WORD*;
+@foreign typedef LPWORD     = WORD*;
+@foreign typedef LPLONG     = long*;
+@foreign typedef PDWORD     = DWORD*;
+@foreign typedef LPDWORD    = DWORD*;
+@foreign typedef LPVOID     = void*;
+@foreign typedef LPCVOID    = void const*;
+
+//
+// ANSI (Multi-byte Character) types
+//
+@foreign typedef PCHAR      = CHAR*;
+@foreign typedef LPCH       = CHAR*;
+@foreign typedef PCH        = CHAR*;
+@foreign typedef LPCCH      = CHAR const*;
+@foreign typedef PCCH       = CHAR const*;
+@foreign typedef NPSTR      = CHAR*;
+@foreign typedef LPSTR      = CHAR*;
+@foreign typedef PSTR       = CHAR*;
+@foreign typedef PZPSTR     = PSTR*;
+@foreign typedef PCZPSTR    = PSTR const*;
+@foreign typedef LPCSTR     = CHAR const*;
+@foreign typedef PCSTR      = CHAR const*;
+@foreign typedef PZPCSTR    = PCSTR*;
+@foreign typedef PCZPCSTR   = PCSTR const*;
+@foreign typedef PZZSTR     = CHAR*;
+@foreign typedef PCZZSTR    = CHAR const*;
+@foreign typedef PNZCH      = CHAR*;
+@foreign typedef PCNZCH     = CHAR const*;
+
+@foreign typedef TCHAR      = char;
+@foreign typedef PTCHAR     = char*;
+@foreign typedef TBYTE      = uchar;
+@foreign typedef PTBYTE     = uchar*;
+
+@foreign typedef LPTCH      = LPCH;
+@foreign typedef PTCH       = LPCH;
+@foreign typedef LPCTCH     = LPCCH;
+@foreign typedef PCTCH      = LPCCH;
+@foreign typedef PTSTR      = LPSTR;
+@foreign typedef LPTSTR     = LPSTR;
+@foreign typedef PUTSTR     = LPSTR;
+@foreign typedef LPUTSTR    = LPSTR;
+@foreign typedef PCTSTR     = LPCSTR;
+@foreign typedef LPCTSTR    = LPCSTR;
+@foreign typedef PCUTSTR    = LPCSTR;
+@foreign typedef LPCUTSTR   = LPCSTR;
+@foreign typedef PZZTSTR    = PZZSTR;
+@foreign typedef PUZZTSTR   = PZZSTR;
+@foreign typedef PCZZTSTR   = PCZZSTR;
+@foreign typedef PCUZZTSTR  = PCZZSTR;
+@foreign typedef PZPTSTR    = PZPSTR;
+@foreign typedef PNZTCH     = PNZCH;
+@foreign typedef PUNZTCH    = PNZCH;
+@foreign typedef PCNZTCH    = PCNZCH;
+@foreign typedef PCUNZTCH   = PCNZCH;
+
+@foreign("FormatMessageA")
+func FormatMessage(dwFlags: DWORD, lpSource: LPCVOID, dwMessageId: DWORD,
+  dwLanguageId: DWORD, lpBuffer: LPTSTR, nSize: DWORD, Arguments: va_list*): DWORD;
+
+@foreign("StrTrimA")
+func StrTrim(psz: PSTR, pszTrimChars: PCSTR): BOOL;
+
+@foreign
+func MAKELANGID(p: WORD, s: WORD): WORD;
+
+@foreign
+func GetLastError(): DWORD;
 
 @foreign
 func GetStdHandle(nStdHandle: DWORD): HANDLE;
@@ -36,14 +104,33 @@ func GetConsoleMode(hConsoleHandle: HANDLE,  lpMode: LPDWORD): BOOL;
 @foreign
 func SetConsoleMode(hConsoleHandle: HANDLE, dwMode: DWORD): BOOL;
 
-@foreign const ENABLE_PROCESSED_OUTPUT 				= 0x0001;
-@foreign const ENABLE_WRAP_AT_EOL_OUTPUT			= 0x0002;
-@foreign const ENABLE_VIRTUAL_TERMINAL_PROCESSING	= 0x0004;
-@foreign const DISABLE_NEWLINE_AUTO_RETURN			= 0x0008;
-@foreign const ENABLE_LVB_GRID_WORLDWIDE			= 0x0010;
 
-@foreign const STD_INPUT_HANDLE 	= DWORD(-10);
-@foreign const STD_OUTPUT_HANDLE 	= DWORD(-11);
-@foreign const STD_ERROR_HANDLE  	= DWORD(-12);
+@foreign const INVALID_HANDLE_VALUE = HANDLE(LONG_PTR(-1));
 
+@foreign const ENABLE_PROCESSED_OUTPUT              = 0x0001;
+@foreign const ENABLE_WRAP_AT_EOL_OUTPUT            = 0x0002;
+@foreign const ENABLE_VIRTUAL_TERMINAL_PROCESSING   = 0x0004;
+@foreign const DISABLE_NEWLINE_AUTO_RETURN          = 0x0008;
+@foreign const ENABLE_LVB_GRID_WORLDWIDE            = 0x0010;
 
+@foreign const STD_INPUT_HANDLE     = DWORD(-10);
+@foreign const STD_OUTPUT_HANDLE    = DWORD(-11);
+@foreign const STD_ERROR_HANDLE     = DWORD(-12);
+
+@foreign const FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x00000100;
+@foreign const FORMAT_MESSAGE_IGNORE_INSERTS  = 0x00000200;
+@foreign const FORMAT_MESSAGE_FROM_STRING     = 0x00000400;
+@foreign const FORMAT_MESSAGE_FROM_HMODULE    = 0x00000800;
+@foreign const FORMAT_MESSAGE_FROM_SYSTEM     = 0x00001000;
+@foreign const FORMAT_MESSAGE_ARGUMENT_ARRAY  = 0x00002000;
+@foreign const FORMAT_MESSAGE_MAX_WIDTH_MASK  = 0x000000FF;
+
+@foreign const LANG_NEUTRAL   = 0x00;
+@foreign const LANG_INVARIANT = 0x7f;
+
+@foreign const SUBLANG_NEUTRAL            = 0x00;
+@foreign const SUBLANG_DEFAULT            = 0x01;
+@foreign const SUBLANG_SYS_DEFAULT        = 0x02;
+@foreign const SUBLANG_CUSTOM_DEFAULT     = 0x03;
+@foreign const SUBLANG_CUSTOM_UNSPECIFIED = 0x04;
+@foreign const SUBLANG_UI_CUSTOM_DEFAULT  = 0x05;
