@@ -1,0 +1,8 @@
+@foreign typedef INT_PTR 	= int;
+@foreign typedef PINT_PTR 	= int*;
+@foreign typedef UINT_PTR 	= uint;
+@foreign typedef UPINT_PTR 	= uint*;
+@foreign typedef LONG_PTR 	= long;
+@foreign typedef PLONG_PTR 	= long*;
+@foreign typedef ULONG_PTR 	= ulong;
+@foreign typedef PULONG_PTR	= ulong*;

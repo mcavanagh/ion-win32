@@ -1,0 +1,49 @@
+#foreign(header = "windows.h")
+
+@foreign typedef INT 		= int;
+@foreign typedef UINT 		= uint;
+@foreign typedef PUINT		= uint*;
+@foreign typedef WPARAM		= UINT_PTR;
+@foreign typedef LPARAM		= LONG_PTR;
+@foreign typedef LRESULT	= LONG_PTR;
+@foreign typedef HANDLE 	= void*;
+@foreign typedef DWORD 		= ulong;
+@foreign typedef BOOL 		= int;
+@foreign typedef BYTE 		= uchar;
+@foreign typedef WORD 		= ushort;
+@foreign typedef FLOAT 		= float;
+@foreign typedef PFLOAT 	= FLOAT*;
+@foreign typedef PBOOL 		= BOOL*;
+@foreign typedef LPBOOL 	= BOOL*;
+@foreign typedef PBYTE 		= BYTE*;
+@foreign typedef LPBYTE 	= BYTE*;
+@foreign typedef PINT 		= int*;
+@foreign typedef LPINT 		= int*;
+@foreign typedef PWORD 		= WORD*;
+@foreign typedef LPWORD 	= WORD*;
+@foreign typedef LPLONG 	= long*;
+@foreign typedef PDWORD 	= DWORD*;
+@foreign typedef LPDWORD 	= DWORD*;
+@foreign typedef LPVOID 	= void*;
+@foreign typedef LPCVOID 	= void const*;
+
+@foreign
+func GetStdHandle(nStdHandle: DWORD): HANDLE;
+
+@foreign
+func GetConsoleMode(hConsoleHandle: HANDLE,  lpMode: LPDWORD): BOOL;
+
+@foreign
+func SetConsoleMode(hConsoleHandle: HANDLE, dwMode: DWORD): BOOL;
+
+@foreign const ENABLE_PROCESSED_OUTPUT 				= 0x0001;
+@foreign const ENABLE_WRAP_AT_EOL_OUTPUT			= 0x0002;
+@foreign const ENABLE_VIRTUAL_TERMINAL_PROCESSING	= 0x0004;
+@foreign const DISABLE_NEWLINE_AUTO_RETURN			= 0x0008;
+@foreign const ENABLE_LVB_GRID_WORLDWIDE			= 0x0010;
+
+@foreign const STD_INPUT_HANDLE 	= DWORD(-10);
+@foreign const STD_OUTPUT_HANDLE 	= DWORD(-11);
+@foreign const STD_ERROR_HANDLE  	= DWORD(-12);
+
+
