@@ -6,3 +6,7 @@
 @foreign typedef PLONG_PTR  = long*;
 @foreign typedef ULONG_PTR  = ulong;
 @foreign typedef PULONG_PTR = ulong*;
+
+@foreign typedef FARPROC  = func(): int;
+@foreign typedef NEARPROC = func(): int;
+@foreign typedef PROC     = func(): int;

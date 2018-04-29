@@ -6,3 +6,7 @@
 @foreign typedef PLONG_PTR  = int64*;
 @foreign typedef ULONG_PTR  = uint64;
 @foreign typedef PULONG_PTR = uint64*;
+
+@foreign typedef FARPROC  = func(): INT_PTR;
+@foreign typedef NEARPROC = func(): INT_PTR;
+@foreign typedef PROC     = func(): INT_PTR;

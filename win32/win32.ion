@@ -1,5 +1,5 @@
-#foreign(header = "windows.h")
-#foreign(header = "shlwapi.h")
+#foreign(header = "<windows.h>")
+#foreign(header = "<shlwapi.h>")
 
 import libc { va_list }
 
@@ -33,6 +33,18 @@ import libc { va_list }
 @foreign typedef LPVOID     = void*;
 @foreign typedef LPCVOID    = void const*;
 @foreign typedef WCHAR      = wchar;
+@foreign typedef SIZE_T     = ULONG_PTR;
+@foreign typedef PSIZE_T    = ULONG_PTR*;
+@foreign typedef SSIZE_T    = LONG_PTR;
+@foreign typedef PSSIZE_T   = LONG_PTR*;
+
+@foreign
+struct HINSTANCE__
+{
+    unused: int;
+}
+@foreign typedef HINSTANCE = HINSTANCE__*;
+@foreign typedef HMODULE   = HINSTANCE;
 
 //
 // ANSI (Multi-byte Character) types
@@ -187,3 +199,30 @@ struct SECURITY_ATTRIBUTES {
 @foreign const SUBLANG_CUSTOM_DEFAULT     = 0x03;
 @foreign const SUBLANG_CUSTOM_UNSPECIFIED = 0x04;
 @foreign const SUBLANG_UI_CUSTOM_DEFAULT  = 0x05;
+
+@foreign("LoadLibraryA")
+func LoadLibrary(lpLibFileName: LPCSTR): HMODULE;
+
+@foreign
+func GetProcAddress(hModule: HMODULE, lpProcName: LPCSTR): FARPROC;
+
+@foreign
+func Sleep(dwMilliseconds: DWORD);
+
+@foreign
+func CreateThread(lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE,
+    lpParameter: LPVOID, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE;
+
+@foreign
+func CloseHandle(hObject: HANDLE): BOOL;
+
+@foreign const INFINITE = 0xFFFFFFFF;
+
+@foreign
+func WaitForSingleObject(hHandle: HANDLE, dwMilliseconds: DWORD): DWORD;
+
+@foreign
+func WaitForMultipleObjects(nCount: DWORD, lpHandles: HANDLE const*, bWaitAll: BOOL, dwMilliseconds: DWORD): DWORD;
+
+@foreign typedef PTHREAD_START_ROUTINE = func(lpThreadParameter: LPVOID): DWORD;
+@foreign typedef LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE;
