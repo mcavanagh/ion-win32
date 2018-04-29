@@ -32,6 +32,7 @@ import libc { va_list }
 @foreign typedef LPDWORD    = DWORD*;
 @foreign typedef LPVOID     = void*;
 @foreign typedef LPCVOID    = void const*;
+@foreign typedef WCHAR      = wchar;
 
 //
 // ANSI (Multi-byte Character) types
@@ -99,13 +100,65 @@ func GetLastError(): DWORD;
 func GetStdHandle(nStdHandle: DWORD): HANDLE;
 
 @foreign
+func SetStdHandle(nStdHandle: DWORD,  hHandle: HANDLE): BOOL;
+
+@foreign
 func GetConsoleMode(hConsoleHandle: HANDLE,  lpMode: LPDWORD): BOOL;
 
 @foreign
 func SetConsoleMode(hConsoleHandle: HANDLE, dwMode: DWORD): BOOL;
 
+@foreign
+func CreateConsoleScreenBuffer(dwDesiredAccess: DWORD, dwShareMode: DWORD,
+    lpSecurityAttributes: SECURITY_ATTRIBUTES const*, dwFlags: DWORD, lpScreenBufferData: LPVOID): HANDLE;
+
+@foreign
+func SetConsoleActiveScreenBuffer(hConsoleOutput: HANDLE): BOOL;
+
+@foreign
+func SetConsoleCursorPosition(hConsoleOutput: HANDLE, dwCursorPosition: COORD): BOOL;
+
+@foreign("WriteConsoleOutputCharacterA")
+func WriteConsoleOutputCharacter(hConsoleOutput: HANDLE, lpCharacter: LPCTSTR,
+    nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+struct SMALL_RECT {
+    Left: SHORT;
+    Top: SHORT;
+    Right: SHORT;
+    Bottom: SHORT;
+}
+@foreign typedef PSMALL_RECT = SMALL_RECT*;
+
+@foreign
+struct COORD {
+    X: SHORT;
+    Y: SHORT;
+}
+@foreign typedef PCOORD = COORD*;
+
+@foreign
+struct SECURITY_ATTRIBUTES {
+    nLength: DWORD;
+    lpSecurityDescriptor: LPVOID;
+    bInheritHandle: BOOL;
+}
+
+@foreign typedef PSECURITY_ATTRIBUTES  = SECURITY_ATTRIBUTES*;
+@foreign typedef LPSECURITY_ATTRIBUTES = SECURITY_ATTRIBUTES*;
+
+@foreign const FILE_SHARE_READ   = 0x00000001;
+@foreign const FILE_SHARE_WRITE  = 0x00000002;
+@foreign const FILE_SHARE_DELETE = 0x00000004;
+
+@foreign const GENERIC_READ    = long(0x80000000);
+@foreign const GENERIC_WRITE   = long(0x40000000);
+@foreign const GENERIC_EXECUTE = long(0x20000000);
+@foreign const GENERIC_ALL     = long(0x10000000);
 
 @foreign const INVALID_HANDLE_VALUE = HANDLE(LONG_PTR(-1));
+@foreign const CONSOLE_TEXTMODE_BUFFER = 1;
 
 @foreign const ENABLE_PROCESSED_OUTPUT              = 0x0001;
 @foreign const ENABLE_WRAP_AT_EOL_OUTPUT            = 0x0002;
