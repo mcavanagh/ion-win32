@@ -99,6 +99,19 @@
 @foreign const FILE_SUPPORTS_GHOSTING 				= 0x40000000;
 @foreign const FILE_INVALID_FILE_ID 				= LONGLONG(-1);
 
+@foreign const FILE_FLAG_WRITE_THROUGH       = 0x80000000;
+@foreign const FILE_FLAG_OVERLAPPED          = 0x40000000;
+@foreign const FILE_FLAG_NO_BUFFERING        = 0x20000000;
+@foreign const FILE_FLAG_RANDOM_ACCESS       = 0x10000000;
+@foreign const FILE_FLAG_SEQUENTIAL_SCAN     = 0x08000000;
+@foreign const FILE_FLAG_DELETE_ON_CLOSE     = 0x04000000;
+@foreign const FILE_FLAG_BACKUP_SEMANTICS    = 0x02000000;
+@foreign const FILE_FLAG_POSIX_SEMANTICS     = 0x01000000;
+@foreign const FILE_FLAG_SESSION_AWARE       = 0x00800000;
+@foreign const FILE_FLAG_OPEN_REPARSE_POINT  = 0x00200000;
+@foreign const FILE_FLAG_OPEN_NO_RECALL      = 0x00100000;
+@foreign const FILE_FLAG_FIRST_PIPE_INSTANCE = 0x00080000;
+
 @foreign const CREATE_NEW        = 1;
 @foreign const CREATE_ALWAYS     = 2;
 @foreign const OPEN_EXISTING     = 3;
@@ -134,6 +147,12 @@ func CreateFile(lpFileName: LPCTSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD,
 
 @foreign("FindFirstChangeNotificationA")
 func FindFirstChangeNotification(lpPathName: LPCSTR, bWatchSubtree: BOOL, dwNotifyFilter:DWORD): HANDLE;
+
+@foreign
+func FindNextChangeNotification(hChangeHandle: HANDLE): BOOL;
+
+@foreign
+func FindCloseChangeNotification(hChangeHandle: HANDLE): BOOL;
 
 // There is no 'ReadDirectoryChangesA'
 @foreign

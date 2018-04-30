@@ -29,6 +29,7 @@ import libc { va_list }
 @foreign typedef LPLONG     = long*;
 @foreign typedef PDWORD     = DWORD*;
 @foreign typedef LPDWORD    = DWORD*;
+@foreign typedef PVOID      = void*;
 @foreign typedef LPVOID     = void*;
 @foreign typedef LPCVOID    = void const*;
 @foreign typedef WCHAR      = wchar;
@@ -200,6 +201,9 @@ func GetProcAddress(hModule: HMODULE, lpProcName: LPCSTR): FARPROC;
 @foreign
 func Sleep(dwMilliseconds: DWORD);
 
+@foreign typedef PTHREAD_START_ROUTINE  = func(lpThreadParameter: LPVOID): DWORD;
+@foreign typedef LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE;
+
 @foreign
 func CreateThread(lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE,
     lpParameter: LPVOID, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE;
@@ -212,5 +216,32 @@ func WaitForSingleObject(hHandle: HANDLE, dwMilliseconds: DWORD): DWORD;
 @foreign
 func WaitForMultipleObjects(nCount: DWORD, lpHandles: HANDLE const*, bWaitAll: BOOL, dwMilliseconds: DWORD): DWORD;
 
-@foreign typedef PTHREAD_START_ROUTINE  = func(lpThreadParameter: LPVOID): DWORD;
-@foreign typedef LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE;
+@foreign
+func InterlockedCompareExchangePointer(Destination: PVOID*, Exchange: PVOID, Comparand: PVOID): PVOID;
+
+@foreign
+func InterlockedCompareExchange(Destination: LONG*, Exchange: LONG, Comparand: LONG): LONG;
+
+@foreign
+func InterlockedCompareExchange64(Destination: LONGLONG*, Exchange: LONGLONG, Comparand: LONGLONG): LONGLONG;
+
+@foreign
+func InterlockedExchangePointer(Target: PVOID*, Value: PVOID): PVOID;
+
+@foreign
+func InterlockedExchange(Target: LONG*, Value: LONG): LONG;
+
+@foreign
+func InterlockedExchange64(Target: LONGLONG*, Value: LONGLONG): LONGLONG;
+
+@foreign
+func InterlockedIncrement(Addend: LONG*): LONG;
+
+@foreign
+func InterlockedIncrement64(Addend: LONGLONG*): LONGLONG;
+
+@foreign
+func InterlockedDecrement(Addend: LONG*): LONG;
+
+@foreign
+func InterlockedDecrement64(Addend: LONGLONG*): LONGLONG;
