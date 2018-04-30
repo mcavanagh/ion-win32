@@ -1,5 +1,4 @@
 #foreign(header = "<windows.h>")
-#foreign(header = "<shlwapi.h>")
 
 import libc { va_list }
 
@@ -37,6 +36,8 @@ import libc { va_list }
 @foreign typedef PSIZE_T    = ULONG_PTR*;
 @foreign typedef SSIZE_T    = LONG_PTR;
 @foreign typedef PSSIZE_T   = LONG_PTR*;
+@foreign typedef LONGLONG   = int64;
+@foreign typedef ULONGLONG  = uint64;
 
 @foreign
 struct HINSTANCE__
@@ -45,6 +46,7 @@ struct HINSTANCE__
 }
 @foreign typedef HINSTANCE = HINSTANCE__*;
 @foreign typedef HMODULE   = HINSTANCE;
+@foreign typedef HRESULT   = long;
 
 //
 // ANSI (Multi-byte Character) types
@@ -99,9 +101,6 @@ struct HINSTANCE__
 func FormatMessage(dwFlags: DWORD, lpSource: LPCVOID, dwMessageId: DWORD,
   dwLanguageId: DWORD, lpBuffer: LPTSTR, nSize: DWORD, Arguments: va_list*): DWORD;
 
-@foreign("StrTrimA")
-func StrTrim(psz: PSTR, pszTrimChars: PCSTR): BOOL;
-
 @foreign
 func MAKELANGID(p: WORD, s: WORD): WORD;
 
@@ -115,42 +114,6 @@ func GetStdHandle(nStdHandle: DWORD): HANDLE;
 func SetStdHandle(nStdHandle: DWORD,  hHandle: HANDLE): BOOL;
 
 @foreign
-func GetConsoleMode(hConsoleHandle: HANDLE,  lpMode: LPDWORD): BOOL;
-
-@foreign
-func SetConsoleMode(hConsoleHandle: HANDLE, dwMode: DWORD): BOOL;
-
-@foreign
-func CreateConsoleScreenBuffer(dwDesiredAccess: DWORD, dwShareMode: DWORD,
-    lpSecurityAttributes: SECURITY_ATTRIBUTES const*, dwFlags: DWORD, lpScreenBufferData: LPVOID): HANDLE;
-
-@foreign
-func SetConsoleActiveScreenBuffer(hConsoleOutput: HANDLE): BOOL;
-
-@foreign
-func SetConsoleCursorPosition(hConsoleOutput: HANDLE, dwCursorPosition: COORD): BOOL;
-
-@foreign("WriteConsoleOutputCharacterA")
-func WriteConsoleOutputCharacter(hConsoleOutput: HANDLE, lpCharacter: LPCTSTR,
-    nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
-
-@foreign
-struct SMALL_RECT {
-    Left: SHORT;
-    Top: SHORT;
-    Right: SHORT;
-    Bottom: SHORT;
-}
-@foreign typedef PSMALL_RECT = SMALL_RECT*;
-
-@foreign
-struct COORD {
-    X: SHORT;
-    Y: SHORT;
-}
-@foreign typedef PCOORD = COORD*;
-
-@foreign
 struct SECURITY_ATTRIBUTES {
     nLength: DWORD;
     lpSecurityDescriptor: LPVOID;
@@ -160,16 +123,23 @@ struct SECURITY_ATTRIBUTES {
 @foreign typedef PSECURITY_ATTRIBUTES  = SECURITY_ATTRIBUTES*;
 @foreign typedef LPSECURITY_ATTRIBUTES = SECURITY_ATTRIBUTES*;
 
-@foreign const FILE_SHARE_READ   = 0x00000001;
-@foreign const FILE_SHARE_WRITE  = 0x00000002;
-@foreign const FILE_SHARE_DELETE = 0x00000004;
+@foreign const DELETE                   = 0x00010000L;
+@foreign const READ_CONTROL             = 0x00020000L;
+@foreign const WRITE_DAC                = 0x00040000L;
+@foreign const WRITE_OWNER              = 0x00080000L;
+@foreign const SYNCHRONIZE              = 0x00100000L;
+@foreign const STANDARD_RIGHTS_REQUIRED = 0x000F0000L;
+@foreign const STANDARD_RIGHTS_READ     = READ_CONTROL;
+@foreign const STANDARD_RIGHTS_WRITE    = READ_CONTROL;
+@foreign const STANDARD_RIGHTS_EXECUTE  = READ_CONTROL;
+@foreign const STANDARD_RIGHTS_ALL      = 0x001F0000L;
+@foreign const SPECIFIC_RIGHTS_ALL      = 0x0000FFFFL;
 
 @foreign const GENERIC_READ    = long(0x80000000);
 @foreign const GENERIC_WRITE   = long(0x40000000);
 @foreign const GENERIC_EXECUTE = long(0x20000000);
 @foreign const GENERIC_ALL     = long(0x10000000);
 
-@foreign const INVALID_HANDLE_VALUE = HANDLE(LONG_PTR(-1));
 @foreign const CONSOLE_TEXTMODE_BUFFER = 1;
 
 @foreign const ENABLE_PROCESSED_OUTPUT              = 0x0001;
@@ -200,6 +170,27 @@ struct SECURITY_ATTRIBUTES {
 @foreign const SUBLANG_CUSTOM_UNSPECIFIED = 0x04;
 @foreign const SUBLANG_UI_CUSTOM_DEFAULT  = 0x05;
 
+@foreign
+struct OVERLAPPED_INNER2 {
+    Offset: DWORD;
+    OffsetHigh: DWORD;
+}
+
+@foreign
+union OVERLAPPED_INNER1 {
+    dummy: OVERLAPPED_INNER2;
+    Pointer: PVOID;
+}
+
+@foreign
+struct OVERLAPPED {
+    Internal: ULONG_PTR;
+    InternalHigh: ULONG_PTR;
+    dummy: OVERLAPPED_INNER1;
+    hEvent: HANDLE;
+}
+@foreign typedef LPOVERLAPPED = OVERLAPPED*;
+
 @foreign("LoadLibraryA")
 func LoadLibrary(lpLibFileName: LPCSTR): HMODULE;
 
@@ -213,9 +204,6 @@ func Sleep(dwMilliseconds: DWORD);
 func CreateThread(lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE,
     lpParameter: LPVOID, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE;
 
-@foreign
-func CloseHandle(hObject: HANDLE): BOOL;
-
 @foreign const INFINITE = 0xFFFFFFFF;
 
 @foreign
@@ -224,5 +212,5 @@ func WaitForSingleObject(hHandle: HANDLE, dwMilliseconds: DWORD): DWORD;
 @foreign
 func WaitForMultipleObjects(nCount: DWORD, lpHandles: HANDLE const*, bWaitAll: BOOL, dwMilliseconds: DWORD): DWORD;
 
-@foreign typedef PTHREAD_START_ROUTINE = func(lpThreadParameter: LPVOID): DWORD;
+@foreign typedef PTHREAD_START_ROUTINE  = func(lpThreadParameter: LPVOID): DWORD;
 @foreign typedef LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE;

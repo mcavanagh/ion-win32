@@ -1,0 +1,19 @@
+@foreign const INVALID_HANDLE_VALUE = HANDLE(LONG_PTR(-1));
+
+@foreign typedef LPHANDLE = HANDLE*;
+
+@foreign
+func CloseHandle(hObject: HANDLE): BOOL;
+
+@foreign
+func DuplicateHandle(hSourceProcessHandle: HANDLE, hSourceHandle: HANDLE, hTargetProcessHandle: HANDLE,
+    lpTargetHandle: LPHANDLE, dwDesiredAccess: DWORD, bInheritHandle: BOOL, dwOptions: DWORD): BOOL;
+
+@foreign
+func CompareObjectHandles(hFirstObjectHandle: HANDLE, hSecondObjectHandle: HANDLE): BOOL;
+
+@foreign
+func GetHandleInformation(hObject: HANDLE, lpdwFlags: LPDWORD): BOOL;
+
+@foreign
+func SetHandleInformation(hObject: HANDLE, dwMask: DWORD, dwFlags: DWORD): BOOL;

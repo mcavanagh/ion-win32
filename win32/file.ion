@@ -1,0 +1,142 @@
+
+@foreign const FILE_READ_DATA 				= 0x0001;
+@foreign const FILE_LIST_DIRECTORY 			= 0x0001;
+@foreign const FILE_WRITE_DATA 				= 0x0002;
+@foreign const FILE_ADD_FILE 				= 0x0002;
+@foreign const FILE_APPEND_DATA 			= 0x0004;
+@foreign const FILE_ADD_SUBDIRECTORY 		= 0x0004;
+@foreign const FILE_CREATE_PIPE_INSTANCE 	= 0x0004;
+
+@foreign const FILE_READ_EA 			= 0x0008;
+@foreign const FILE_WRITE_EA 			= 0x0010;
+@foreign const FILE_EXECUTE 			= 0x0020;
+@foreign const FILE_TRAVERSE 			= 0x0020;
+@foreign const FILE_DELETE_CHILD 		= 0x0040;
+@foreign const FILE_READ_ATTRIBUTES 	= 0x0080;
+@foreign const FILE_WRITE_ATTRIBUTES 	= 0x0100;
+@foreign const FILE_ALL_ACCESS 			= STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x1FF;
+@foreign const FILE_GENERIC_READ 		= STANDARD_RIGHTS_READ | FILE_READ_DATA | FILE_READ_ATTRIBUTES | FILE_READ_EA | SYNCHRONIZE;
+@foreign const FILE_GENERIC_WRITE 		= STANDARD_RIGHTS_WRITE | FILE_WRITE_DATA | FILE_WRITE_ATTRIBUTES | FILE_WRITE_EA | FILE_APPEND_DATA | SYNCHRONIZE;
+@foreign const FILE_GENERIC_EXECUTE 	= STANDARD_RIGHTS_EXECUTE | FILE_READ_ATTRIBUTES | FILE_EXECUTE | SYNCHRONIZE;
+
+@foreign const FILE_SHARE_READ 		= 0x00000001;
+@foreign const FILE_SHARE_WRITE 	= 0x00000002;
+@foreign const FILE_SHARE_DELETE 	= 0x00000004;
+
+@foreign const FILE_ATTRIBUTE_READONLY 				= 0x00000001;
+@foreign const FILE_ATTRIBUTE_HIDDEN 				= 0x00000002;
+@foreign const FILE_ATTRIBUTE_SYSTEM 				= 0x00000004;
+@foreign const FILE_ATTRIBUTE_DIRECTORY 			= 0x00000010;
+@foreign const FILE_ATTRIBUTE_ARCHIVE 				= 0x00000020;
+@foreign const FILE_ATTRIBUTE_DEVICE 				= 0x00000040;
+@foreign const FILE_ATTRIBUTE_NORMAL 				= 0x00000080;
+@foreign const FILE_ATTRIBUTE_TEMPORARY 			= 0x00000100;
+@foreign const FILE_ATTRIBUTE_SPARSE_FILE 			= 0x00000200;
+@foreign const FILE_ATTRIBUTE_REPARSE_POINT 		= 0x00000400;
+@foreign const FILE_ATTRIBUTE_COMPRESSED 			= 0x00000800;
+@foreign const FILE_ATTRIBUTE_OFFLINE 				= 0x00001000;
+@foreign const FILE_ATTRIBUTE_NOT_CONTENT_INDEXED 	= 0x00002000;
+@foreign const FILE_ATTRIBUTE_ENCRYPTED 			= 0x00004000;
+@foreign const FILE_ATTRIBUTE_INTEGRITY_STREAM 		= 0x00008000;
+@foreign const FILE_ATTRIBUTE_VIRTUAL 				= 0x00010000;
+@foreign const FILE_ATTRIBUTE_NO_SCRUB_DATA 		= 0x00020000;
+@foreign const FILE_ATTRIBUTE_EA 					= 0x00040000;
+@foreign const FILE_ATTRIBUTE_PINNED 				= 0x00080000;
+@foreign const FILE_ATTRIBUTE_UNPINNED 				= 0x00100000;
+@foreign const FILE_ATTRIBUTE_RECALL_ON_OPEN 		= 0x00040000;
+@foreign const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 0x00400000;
+@foreign const FILE_ATTRIBUTE_STRICTLY_SEQUENTIAL 	= 0x20000000;
+
+@foreign const TREE_CONNECT_ATTRIBUTE_PRIVACY 	= 0x00004000;
+@foreign const TREE_CONNECT_ATTRIBUTE_INTEGRITY = 0x00008000;
+@foreign const TREE_CONNECT_ATTRIBUTE_GLOBAL 	= 0x00000004;
+
+@foreign const FILE_NOTIFY_CHANGE_FILE_NAME 	= 0x00000001;
+@foreign const FILE_NOTIFY_CHANGE_DIR_NAME 		= 0x00000002;
+@foreign const FILE_NOTIFY_CHANGE_ATTRIBUTES 	= 0x00000004;
+@foreign const FILE_NOTIFY_CHANGE_SIZE 			= 0x00000008;
+@foreign const FILE_NOTIFY_CHANGE_LAST_WRITE 	= 0x00000010;
+@foreign const FILE_NOTIFY_CHANGE_LAST_ACCESS 	= 0x00000020;
+@foreign const FILE_NOTIFY_CHANGE_CREATION 		= 0x00000040;
+@foreign const FILE_NOTIFY_CHANGE_SECURITY 		= 0x00000100;
+
+@foreign const FILE_ACTION_ADDED 			= 0x00000001;
+@foreign const FILE_ACTION_REMOVED 			= 0x00000002;
+@foreign const FILE_ACTION_MODIFIED 		= 0x00000003;
+@foreign const FILE_ACTION_RENAMED_OLD_NAME = 0x00000004;
+@foreign const FILE_ACTION_RENAMED_NEW_NAME = 0x00000005;
+
+@foreign const MAILSLOT_NO_MESSAGE 		= DWORD(-1);
+@foreign const MAILSLOT_WAIT_FOREVER 	= DWORD(-1);
+
+@foreign const FILE_CASE_SENSITIVE_SEARCH 			= 0x00000001;
+@foreign const FILE_CASE_PRESERVED_NAMES 			= 0x00000002;
+@foreign const FILE_UNICODE_ON_DISK 				= 0x00000004;
+@foreign const FILE_PERSISTENT_ACLS 				= 0x00000008;
+@foreign const FILE_FILE_COMPRESSION 				= 0x00000010;
+@foreign const FILE_VOLUME_QUOTAS 					= 0x00000020;
+@foreign const FILE_SUPPORTS_SPARSE_FILES 			= 0x00000040;
+@foreign const FILE_SUPPORTS_REPARSE_POINTS 		= 0x00000080;
+@foreign const FILE_SUPPORTS_REMOTE_STORAGE 		= 0x00000100;
+@foreign const FILE_RETURNS_CLEANUP_RESULT_INFO 	= 0x00000200;
+@foreign const FILE_SUPPORTS_POSIX_UNLINK_RENAME 	= 0x00000400;
+
+@foreign const FILE_VOLUME_IS_COMPRESSED 			= 0x00008000;
+@foreign const FILE_SUPPORTS_OBJECT_IDS 			= 0x00010000;
+@foreign const FILE_SUPPORTS_ENCRYPTION 			= 0x00020000;
+@foreign const FILE_NAMED_STREAMS 					= 0x00040000;
+@foreign const FILE_READ_ONLY_VOLUME 				= 0x00080000;
+@foreign const FILE_SEQUENTIAL_WRITE_ONCE 			= 0x00100000;
+@foreign const FILE_SUPPORTS_TRANSACTIONS 			= 0x00200000;
+@foreign const FILE_SUPPORTS_HARD_LINKS 			= 0x00400000;
+@foreign const FILE_SUPPORTS_EXTENDED_ATTRIBUTES 	= 0x00800000;
+@foreign const FILE_SUPPORTS_OPEN_BY_FILE_ID 		= 0x01000000;
+@foreign const FILE_SUPPORTS_USN_JOURNAL 			= 0x02000000;
+@foreign const FILE_SUPPORTS_INTEGRITY_STREAMS 		= 0x04000000;
+@foreign const FILE_SUPPORTS_BLOCK_REFCOUNTING 		= 0x08000000;
+@foreign const FILE_SUPPORTS_SPARSE_VDL 			= 0x10000000;
+@foreign const FILE_DAX_VOLUME 						= 0x20000000;
+@foreign const FILE_SUPPORTS_GHOSTING 				= 0x40000000;
+@foreign const FILE_INVALID_FILE_ID 				= LONGLONG(-1);
+
+@foreign const CREATE_NEW        = 1;
+@foreign const CREATE_ALWAYS     = 2;
+@foreign const OPEN_EXISTING     = 3;
+@foreign const OPEN_ALWAYS       = 4;
+@foreign const TRUNCATE_EXISTING = 5;
+
+@foreign const INVALID_FILE_SIZE 		= DWORD(0xFFFFFFFF);
+@foreign const INVALID_SET_FILE_POINTER = DWORD(-1);
+@foreign const INVALID_FILE_ATTRIBUTES 	= DWORD(-1);
+
+@foreign const STATUS_WAIT_0           = DWORD(0x00000000);
+@foreign const STATUS_ABANDONED_WAIT_0 = DWORD(0x00000080);
+@foreign const WAIT_FAILED 			   = DWORD(0xFFFFFFFF);
+@foreign const WAIT_OBJECT_0       	   = STATUS_WAIT_0 + 0 ;
+@foreign const WAIT_ABANDONED          = STATUS_ABANDONED_WAIT_0 + 0;
+@foreign const WAIT_ABANDONED_0        = STATUS_ABANDONED_WAIT_0 + 0;
+
+@foreign typedef LPOVERLAPPED_COMPLETION_ROUTINE = func(dwErrorCode: DWORD, dwNumberOfBytesTransfered: DWORD, lpOverlapped: LPOVERLAPPED);
+
+@foreign
+struct FILE_NOTIFY_INFORMATION {
+    NextEntryOffset: DWORD;
+    Action: DWORD;
+    FileNameLength: DWORD;
+    FileName: WCHAR[1];
+}
+@foreign typedef PFILE_NOTIFY_INFORMATION = FILE_NOTIFY_INFORMATION*;
+
+@foreign
+func CreateFile(lpFileName: LPCTSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD,
+	lpSecurityAttributes: LPSECURITY_ATTRIBUTES,dwCreationDisposition: DWORD,
+	dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE): HANDLE;
+
+@foreign("FindFirstChangeNotificationA")
+func FindFirstChangeNotification(lpPathName: LPCSTR, bWatchSubtree: BOOL, dwNotifyFilter:DWORD): HANDLE;
+
+// There is no 'ReadDirectoryChangesA'
+@foreign
+func ReadDirectoryChangesW(hDirectory: HANDLE, lpBuffer: LPVOID, nBufferLength: DWORD, bWatchSubtree: BOOL,
+	dwNotifyFilter: DWORD, lpBytesReturned: LPDWORD, lpOverlapped: LPOVERLAPPED,
+	lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE): BOOL;

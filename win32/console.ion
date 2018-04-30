@@ -1,0 +1,35 @@
+@foreign
+struct SMALL_RECT {
+    Left: SHORT;
+    Top: SHORT;
+    Right: SHORT;
+    Bottom: SHORT;
+}
+@foreign typedef PSMALL_RECT = SMALL_RECT*;
+
+@foreign
+struct COORD {
+    X: SHORT;
+    Y: SHORT;
+}
+@foreign typedef PCOORD = COORD*;
+
+@foreign
+func GetConsoleMode(hConsoleHandle: HANDLE,  lpMode: LPDWORD): BOOL;
+
+@foreign
+func SetConsoleMode(hConsoleHandle: HANDLE, dwMode: DWORD): BOOL;
+
+@foreign
+func CreateConsoleScreenBuffer(dwDesiredAccess: DWORD, dwShareMode: DWORD,
+    lpSecurityAttributes: SECURITY_ATTRIBUTES const*, dwFlags: DWORD, lpScreenBufferData: LPVOID): HANDLE;
+
+@foreign
+func SetConsoleActiveScreenBuffer(hConsoleOutput: HANDLE): BOOL;
+
+@foreign
+func SetConsoleCursorPosition(hConsoleOutput: HANDLE, dwCursorPosition: COORD): BOOL;
+
+@foreign("WriteConsoleOutputCharacterA")
+func WriteConsoleOutputCharacter(hConsoleOutput: HANDLE, lpCharacter: LPCTSTR,
+    nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
