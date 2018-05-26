@@ -1,0 +1,1269 @@
+#foreign(header = "<msxml.h>")
+
+@foreign
+struct _xml_error {
+    _nLine: uint;
+    _pchBuf: BSTR;
+    _cchBuf: uint;
+    _ich: uint;
+    _pszFound: BSTR;
+    _pszExpected: BSTR;
+    _reserved1: DWORD;
+    _reserved2: DWORD;
+}
+
+@foreign
+typedef XML_ERROR = _xml_error;
+
+@foreign
+enum tagDOMNodeType {
+    NODE_INVALID = 0,
+    NODE_ELEMENT = 1,
+    NODE_ATTRIBUTE = 2,
+    NODE_TEXT = 3,
+    NODE_CDATA_SECTION = 4,
+    NODE_ENTITY_REFERENCE = 5,
+    NODE_ENTITY = 6,
+    NODE_PROCESSING_INSTRUCTION = 7,
+    NODE_COMMENT = 8,
+    NODE_DOCUMENT = 9,
+    NODE_DOCUMENT_TYPE = 10,
+    NODE_DOCUMENT_FRAGMENT = 11,
+    NODE_NOTATION = 12,
+}
+
+@foreign
+typedef DOMNodeType = tagDOMNodeType;
+
+@foreign
+enum tagXMLEMEM_TYPE {
+    XMLELEMTYPE_ELEMENT = 0,
+    XMLELEMTYPE_TEXT = 1,
+    XMLELEMTYPE_COMMENT = 2,
+    XMLELEMTYPE_DOCUMENT = 3,
+    XMLELEMTYPE_DTD = 4,
+    XMLELEMTYPE_PI = 5,
+    XMLELEMTYPE_OTHER = 6,
+}
+
+@foreign
+typedef XMLELEM_TYPE = tagXMLEMEM_TYPE;
+
+@foreign
+struct IXMLDOMImplementationVtbl {
+    QueryInterface: func(This: IXMLDOMImplementation*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMImplementation*): ULONG;
+    Release: func(This: IXMLDOMImplementation*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMImplementation*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMImplementation*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMImplementation*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMImplementation*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    hasFeature: func(This: IXMLDOMImplementation*, feature: BSTR, version: BSTR, hasFeature: VARIANT_BOOL*): HRESULT;
+}
+
+@foreign
+struct IXMLDOMImplementation {
+    lpVtbl: IXMLDOMImplementationVtbl*;
+}
+
+@foreign
+struct IXMLDOMNodeVtbl {
+    QueryInterface: func(This: IXMLDOMNode*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMNode*): ULONG;
+    Release: func(This: IXMLDOMNode*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMNode*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMNode*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMNode*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMNode*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMNode*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMNode*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMNode*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMNode*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMNode*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMNode*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMNode*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMNode*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMNode*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMNode*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMNode*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMNode*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMNode*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMNode*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMNode*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMNode*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMNode*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMNode*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMNode*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMNode*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMNode*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMNode*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMNode*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMNode*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMNode*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMNode*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMNode*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMNode*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMNode*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMNode*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMNode*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMNode*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMNode*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMNode*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMNode*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+}
+
+@foreign
+struct IXMLDOMNode {
+    lpVtbl: IXMLDOMNodeVtbl*;
+}
+
+@foreign
+struct IXMLDOMDocumentFragmentVtbl {
+    QueryInterface: func(This: IXMLDOMDocumentFragment*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMDocumentFragment*): ULONG;
+    Release: func(This: IXMLDOMDocumentFragment*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMDocumentFragment*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMDocumentFragment*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMDocumentFragment*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMDocumentFragment*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMDocumentFragment*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMDocumentFragment*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMDocumentFragment*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMDocumentFragment*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMDocumentFragment*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMDocumentFragment*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMDocumentFragment*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMDocumentFragment*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMDocumentFragment*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMDocumentFragment*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMDocumentFragment*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMDocumentFragment*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMDocumentFragment*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMDocumentFragment*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMDocumentFragment*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMDocumentFragment*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMDocumentFragment*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMDocumentFragment*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMDocumentFragment*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMDocumentFragment*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMDocumentFragment*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMDocumentFragment*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMDocumentFragment*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMDocumentFragment*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMDocumentFragment*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMDocumentFragment*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMDocumentFragment*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMDocumentFragment*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMDocumentFragment*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMDocumentFragment*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMDocumentFragment*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMDocumentFragment*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMDocumentFragment*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMDocumentFragment*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMDocumentFragment*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMDocumentFragment*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+}
+
+@foreign
+struct IXMLDOMDocumentFragment {
+    lpVtbl: IXMLDOMDocumentFragmentVtbl*;
+}
+
+@foreign
+struct IXMLDOMDocumentVtbl {
+    QueryInterface: func(This: IXMLDOMDocument*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMDocument*): ULONG;
+    Release: func(This: IXMLDOMDocument*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMDocument*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMDocument*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMDocument*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMDocument*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMDocument*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMDocument*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMDocument*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMDocument*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMDocument*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMDocument*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMDocument*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMDocument*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMDocument*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMDocument*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMDocument*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMDocument*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMDocument*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMDocument*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMDocument*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMDocument*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMDocument*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMDocument*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMDocument*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMDocument*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMDocument*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMDocument*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMDocument*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMDocument*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMDocument*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMDocument*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMDocument*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMDocument*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMDocument*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMDocument*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMDocument*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMDocument*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMDocument*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMDocument*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMDocument*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMDocument*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_doctype: func(This: IXMLDOMDocument*, documentType: IXMLDOMDocumentType**): HRESULT;
+    get_implementation: func(This: IXMLDOMDocument*, impl: IXMLDOMImplementation**): HRESULT;
+    get_documentElement: func(This: IXMLDOMDocument*, DOMElement: IXMLDOMElement**): HRESULT;
+    putref_documentElement: func(This: IXMLDOMDocument*, DOMElement: IXMLDOMElement*): HRESULT;
+    createElement: func(This: IXMLDOMDocument*, tagName: BSTR, element: IXMLDOMElement**): HRESULT;
+    createDocumentFragment: func(This: IXMLDOMDocument*, docFrag: IXMLDOMDocumentFragment**): HRESULT;
+    createTextNode: func(This: IXMLDOMDocument*, data: BSTR, text: IXMLDOMText**): HRESULT;
+    createComment: func(This: IXMLDOMDocument*, data: BSTR, comment: IXMLDOMComment**): HRESULT;
+    createCDATASection: func(This: IXMLDOMDocument*, data: BSTR, cdata: IXMLDOMCDATASection**): HRESULT;
+    createProcessingInstruction: func(This: IXMLDOMDocument*, target: BSTR, data: BSTR, pi: IXMLDOMProcessingInstruction**): HRESULT;
+    createAttribute: func(This: IXMLDOMDocument*, name: BSTR, attribute: IXMLDOMAttribute**): HRESULT;
+    createEntityReference: func(This: IXMLDOMDocument*, name: BSTR, entityRef: IXMLDOMEntityReference**): HRESULT;
+    getElementsByTagName: func(This: IXMLDOMDocument*, tagName: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    createNode: func(This: IXMLDOMDocument*, Type: VARIANT, name: BSTR, namespaceURI: BSTR, node: IXMLDOMNode**): HRESULT;
+    nodeFromID: func(This: IXMLDOMDocument*, idString: BSTR, node: IXMLDOMNode**): HRESULT;
+    load: func(This: IXMLDOMDocument*, xmlSource: VARIANT, isSuccessful: VARIANT_BOOL*): HRESULT;
+    get_readyState: func(This: IXMLDOMDocument*, value: long*): HRESULT;
+    get_parseError: func(This: IXMLDOMDocument*, errorObj: IXMLDOMParseError**): HRESULT;
+    get_url: func(This: IXMLDOMDocument*, urlString: BSTR*): HRESULT;
+    get_async: func(This: IXMLDOMDocument*, isAsync: VARIANT_BOOL*): HRESULT;
+    put_async: func(This: IXMLDOMDocument*, isAsync: VARIANT_BOOL): HRESULT;
+    abort: func(This: IXMLDOMDocument*): HRESULT;
+    loadXML: func(This: IXMLDOMDocument*, bstrXML: BSTR, isSuccessful: VARIANT_BOOL*): HRESULT;
+    save: func(This: IXMLDOMDocument*, destination: VARIANT): HRESULT;
+    get_validateOnParse: func(This: IXMLDOMDocument*, isValidating: VARIANT_BOOL*): HRESULT;
+    put_validateOnParse: func(This: IXMLDOMDocument*, isValidating: VARIANT_BOOL): HRESULT;
+    get_resolveExternals: func(This: IXMLDOMDocument*, isResolving: VARIANT_BOOL*): HRESULT;
+    put_resolveExternals: func(This: IXMLDOMDocument*, isResolving: VARIANT_BOOL): HRESULT;
+    get_preserveWhiteSpace: func(This: IXMLDOMDocument*, isPreserving: VARIANT_BOOL*): HRESULT;
+    put_preserveWhiteSpace: func(This: IXMLDOMDocument*, isPreserving: VARIANT_BOOL): HRESULT;
+    put_onreadystatechange: func(This: IXMLDOMDocument*, readystatechangeSink: VARIANT): HRESULT;
+    put_ondataavailable: func(This: IXMLDOMDocument*, ondataavailableSink: VARIANT): HRESULT;
+    put_ontransformnode: func(This: IXMLDOMDocument*, ontransformnodeSink: VARIANT): HRESULT;
+}
+
+@foreign
+struct IXMLDOMDocument {
+    lpVtbl: IXMLDOMDocumentVtbl*;
+}
+
+@foreign
+struct IXMLDOMNodeListVtbl {
+    QueryInterface: func(This: IXMLDOMNodeList*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMNodeList*): ULONG;
+    Release: func(This: IXMLDOMNodeList*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMNodeList*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMNodeList*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMNodeList*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMNodeList*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_item: func(This: IXMLDOMNodeList*, index: long, listItem: IXMLDOMNode**): HRESULT;
+    get_length: func(This: IXMLDOMNodeList*, listLength: long*): HRESULT;
+    nextNode: func(This: IXMLDOMNodeList*, nextItem: IXMLDOMNode**): HRESULT;
+    reset: func(This: IXMLDOMNodeList*): HRESULT;
+    get__newEnum: func(This: IXMLDOMNodeList*, ppUnk: IUnknown**): HRESULT;
+}
+
+@foreign
+struct IXMLDOMNodeList {
+    lpVtbl: IXMLDOMNodeListVtbl*;
+}
+
+@foreign
+struct IXMLDOMNamedNodeMapVtbl {
+    QueryInterface: func(This: IXMLDOMNamedNodeMap*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMNamedNodeMap*): ULONG;
+    Release: func(This: IXMLDOMNamedNodeMap*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMNamedNodeMap*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMNamedNodeMap*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMNamedNodeMap*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMNamedNodeMap*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    getNamedItem: func(This: IXMLDOMNamedNodeMap*, name: BSTR, namedItem: IXMLDOMNode**): HRESULT;
+    setNamedItem: func(This: IXMLDOMNamedNodeMap*, newItem: IXMLDOMNode*, nameItem: IXMLDOMNode**): HRESULT;
+    removeNamedItem: func(This: IXMLDOMNamedNodeMap*, name: BSTR, namedItem: IXMLDOMNode**): HRESULT;
+    get_item: func(This: IXMLDOMNamedNodeMap*, index: long, listItem: IXMLDOMNode**): HRESULT;
+    get_length: func(This: IXMLDOMNamedNodeMap*, listLength: long*): HRESULT;
+    getQualifiedItem: func(This: IXMLDOMNamedNodeMap*, baseName: BSTR, namespaceURI: BSTR, qualifiedItem: IXMLDOMNode**): HRESULT;
+    removeQualifiedItem: func(This: IXMLDOMNamedNodeMap*, baseName: BSTR, namespaceURI: BSTR, qualifiedItem: IXMLDOMNode**): HRESULT;
+    nextNode: func(This: IXMLDOMNamedNodeMap*, nextItem: IXMLDOMNode**): HRESULT;
+    reset: func(This: IXMLDOMNamedNodeMap*): HRESULT;
+    get__newEnum: func(This: IXMLDOMNamedNodeMap*, ppUnk: IUnknown**): HRESULT;
+}
+
+@foreign
+struct IXMLDOMNamedNodeMap {
+    lpVtbl: IXMLDOMNamedNodeMapVtbl*;
+}
+
+@foreign
+struct IXMLDOMCharacterDataVtbl {
+    QueryInterface: func(This: IXMLDOMCharacterData*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMCharacterData*): ULONG;
+    Release: func(This: IXMLDOMCharacterData*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMCharacterData*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMCharacterData*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMCharacterData*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMCharacterData*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMCharacterData*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMCharacterData*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMCharacterData*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMCharacterData*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMCharacterData*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMCharacterData*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMCharacterData*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMCharacterData*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMCharacterData*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMCharacterData*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMCharacterData*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMCharacterData*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMCharacterData*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMCharacterData*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMCharacterData*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMCharacterData*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMCharacterData*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMCharacterData*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMCharacterData*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMCharacterData*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMCharacterData*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMCharacterData*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMCharacterData*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMCharacterData*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMCharacterData*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMCharacterData*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMCharacterData*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMCharacterData*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMCharacterData*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMCharacterData*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMCharacterData*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMCharacterData*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMCharacterData*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMCharacterData*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMCharacterData*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMCharacterData*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_data: func(This: IXMLDOMCharacterData*, data: BSTR*): HRESULT;
+    put_data: func(This: IXMLDOMCharacterData*, data: BSTR): HRESULT;
+    get_length: func(This: IXMLDOMCharacterData*, dataLength: long*): HRESULT;
+    substringData: func(This: IXMLDOMCharacterData*, offset: long, count: long, data: BSTR*): HRESULT;
+    appendData: func(This: IXMLDOMCharacterData*, data: BSTR): HRESULT;
+    insertData: func(This: IXMLDOMCharacterData*, offset: long, data: BSTR): HRESULT;
+    deleteData: func(This: IXMLDOMCharacterData*, offset: long, count: long): HRESULT;
+    replaceData: func(This: IXMLDOMCharacterData*, offset: long, count: long, data: BSTR): HRESULT;
+}
+
+@foreign
+struct IXMLDOMCharacterData {
+    lpVtbl: IXMLDOMCharacterDataVtbl*;
+}
+
+@foreign
+struct IXMLDOMAttributeVtbl {
+    QueryInterface: func(This: IXMLDOMAttribute*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMAttribute*): ULONG;
+    Release: func(This: IXMLDOMAttribute*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMAttribute*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMAttribute*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMAttribute*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMAttribute*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMAttribute*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMAttribute*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMAttribute*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMAttribute*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMAttribute*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMAttribute*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMAttribute*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMAttribute*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMAttribute*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMAttribute*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMAttribute*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMAttribute*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMAttribute*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMAttribute*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMAttribute*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMAttribute*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMAttribute*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMAttribute*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMAttribute*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMAttribute*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMAttribute*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMAttribute*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMAttribute*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMAttribute*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMAttribute*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMAttribute*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMAttribute*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMAttribute*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMAttribute*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMAttribute*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMAttribute*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMAttribute*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMAttribute*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMAttribute*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMAttribute*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMAttribute*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_name: func(This: IXMLDOMAttribute*, attributeName: BSTR*): HRESULT;
+    get_value: func(This: IXMLDOMAttribute*, attributeValue: VARIANT*): HRESULT;
+    put_value: func(This: IXMLDOMAttribute*, attributeValue: VARIANT): HRESULT;
+}
+
+@foreign
+struct IXMLDOMAttribute {
+    lpVtbl: IXMLDOMAttributeVtbl*;
+}
+
+@foreign
+struct IXMLDOMElementVtbl {
+    QueryInterface: func(This: IXMLDOMElement*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMElement*): ULONG;
+    Release: func(This: IXMLDOMElement*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMElement*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMElement*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMElement*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMElement*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMElement*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMElement*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMElement*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMElement*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMElement*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMElement*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMElement*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMElement*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMElement*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMElement*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMElement*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMElement*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMElement*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMElement*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMElement*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMElement*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMElement*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMElement*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMElement*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMElement*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMElement*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMElement*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMElement*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMElement*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMElement*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMElement*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMElement*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMElement*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMElement*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMElement*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMElement*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMElement*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMElement*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMElement*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMElement*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMElement*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_tagName: func(This: IXMLDOMElement*, tagName: BSTR*): HRESULT;
+    getAttribute: func(This: IXMLDOMElement*, name: BSTR, value: VARIANT*): HRESULT;
+    setAttribute: func(This: IXMLDOMElement*, name: BSTR, value: VARIANT): HRESULT;
+    removeAttribute: func(This: IXMLDOMElement*, name: BSTR): HRESULT;
+    getAttributeNode: func(This: IXMLDOMElement*, name: BSTR, attributeNode: IXMLDOMAttribute**): HRESULT;
+    setAttributeNode: func(This: IXMLDOMElement*, DOMAttribute: IXMLDOMAttribute*, attributeNode: IXMLDOMAttribute**): HRESULT;
+    removeAttributeNode: func(This: IXMLDOMElement*, DOMAttribute: IXMLDOMAttribute*, attributeNode: IXMLDOMAttribute**): HRESULT;
+    getElementsByTagName: func(This: IXMLDOMElement*, tagName: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    normalize: func(This: IXMLDOMElement*): HRESULT;
+}
+
+@foreign
+struct IXMLDOMElement {
+    lpVtbl: IXMLDOMElementVtbl*;
+}
+
+@foreign
+struct IXMLDOMTextVtbl {
+    QueryInterface: func(This: IXMLDOMText*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMText*): ULONG;
+    Release: func(This: IXMLDOMText*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMText*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMText*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMText*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMText*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMText*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMText*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMText*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMText*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMText*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMText*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMText*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMText*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMText*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMText*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMText*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMText*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMText*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMText*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMText*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMText*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMText*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMText*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMText*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMText*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMText*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMText*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMText*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMText*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMText*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMText*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMText*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMText*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMText*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMText*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMText*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMText*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMText*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMText*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMText*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMText*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_data: func(This: IXMLDOMText*, data: BSTR*): HRESULT;
+    put_data: func(This: IXMLDOMText*, data: BSTR): HRESULT;
+    get_length: func(This: IXMLDOMText*, dataLength: long*): HRESULT;
+    substringData: func(This: IXMLDOMText*, offset: long, count: long, data: BSTR*): HRESULT;
+    appendData: func(This: IXMLDOMText*, data: BSTR): HRESULT;
+    insertData: func(This: IXMLDOMText*, offset: long, data: BSTR): HRESULT;
+    deleteData: func(This: IXMLDOMText*, offset: long, count: long): HRESULT;
+    replaceData: func(This: IXMLDOMText*, offset: long, count: long, data: BSTR): HRESULT;
+    splitText: func(This: IXMLDOMText*, offset: long, rightHandTextNode: IXMLDOMText**): HRESULT;
+}
+
+@foreign
+struct IXMLDOMText {
+    lpVtbl: IXMLDOMTextVtbl*;
+}
+
+@foreign
+struct IXMLDOMCommentVtbl {
+    QueryInterface: func(This: IXMLDOMComment*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMComment*): ULONG;
+    Release: func(This: IXMLDOMComment*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMComment*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMComment*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMComment*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMComment*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMComment*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMComment*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMComment*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMComment*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMComment*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMComment*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMComment*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMComment*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMComment*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMComment*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMComment*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMComment*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMComment*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMComment*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMComment*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMComment*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMComment*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMComment*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMComment*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMComment*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMComment*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMComment*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMComment*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMComment*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMComment*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMComment*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMComment*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMComment*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMComment*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMComment*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMComment*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMComment*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMComment*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMComment*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMComment*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMComment*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_data: func(This: IXMLDOMComment*, data: BSTR*): HRESULT;
+    put_data: func(This: IXMLDOMComment*, data: BSTR): HRESULT;
+    get_length: func(This: IXMLDOMComment*, dataLength: long*): HRESULT;
+    substringData: func(This: IXMLDOMComment*, offset: long, count: long, data: BSTR*): HRESULT;
+    appendData: func(This: IXMLDOMComment*, data: BSTR): HRESULT;
+    insertData: func(This: IXMLDOMComment*, offset: long, data: BSTR): HRESULT;
+    deleteData: func(This: IXMLDOMComment*, offset: long, count: long): HRESULT;
+    replaceData: func(This: IXMLDOMComment*, offset: long, count: long, data: BSTR): HRESULT;
+}
+
+@foreign
+struct IXMLDOMComment {
+    lpVtbl: IXMLDOMCommentVtbl*;
+}
+
+@foreign
+struct IXMLDOMProcessingInstructionVtbl {
+    QueryInterface: func(This: IXMLDOMProcessingInstruction*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMProcessingInstruction*): ULONG;
+    Release: func(This: IXMLDOMProcessingInstruction*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMProcessingInstruction*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMProcessingInstruction*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMProcessingInstruction*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMProcessingInstruction*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMProcessingInstruction*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMProcessingInstruction*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMProcessingInstruction*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMProcessingInstruction*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMProcessingInstruction*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMProcessingInstruction*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMProcessingInstruction*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMProcessingInstruction*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMProcessingInstruction*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMProcessingInstruction*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMProcessingInstruction*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMProcessingInstruction*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMProcessingInstruction*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMProcessingInstruction*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMProcessingInstruction*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMProcessingInstruction*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMProcessingInstruction*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMProcessingInstruction*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMProcessingInstruction*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMProcessingInstruction*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMProcessingInstruction*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMProcessingInstruction*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMProcessingInstruction*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMProcessingInstruction*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMProcessingInstruction*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMProcessingInstruction*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMProcessingInstruction*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMProcessingInstruction*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMProcessingInstruction*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMProcessingInstruction*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMProcessingInstruction*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMProcessingInstruction*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMProcessingInstruction*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMProcessingInstruction*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMProcessingInstruction*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMProcessingInstruction*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_target: func(This: IXMLDOMProcessingInstruction*, name: BSTR*): HRESULT;
+    get_data: func(This: IXMLDOMProcessingInstruction*, value: BSTR*): HRESULT;
+    put_data: func(This: IXMLDOMProcessingInstruction*, value: BSTR): HRESULT;
+}
+
+@foreign
+struct IXMLDOMProcessingInstruction {
+    lpVtbl: IXMLDOMProcessingInstructionVtbl*;
+}
+
+@foreign
+struct IXMLDOMCDATASectionVtbl {
+    QueryInterface: func(This: IXMLDOMCDATASection*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMCDATASection*): ULONG;
+    Release: func(This: IXMLDOMCDATASection*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMCDATASection*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMCDATASection*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMCDATASection*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMCDATASection*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMCDATASection*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMCDATASection*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMCDATASection*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMCDATASection*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMCDATASection*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMCDATASection*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMCDATASection*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMCDATASection*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMCDATASection*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMCDATASection*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMCDATASection*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMCDATASection*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMCDATASection*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMCDATASection*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMCDATASection*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMCDATASection*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMCDATASection*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMCDATASection*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMCDATASection*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMCDATASection*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMCDATASection*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMCDATASection*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMCDATASection*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMCDATASection*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMCDATASection*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMCDATASection*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMCDATASection*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMCDATASection*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMCDATASection*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMCDATASection*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMCDATASection*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMCDATASection*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMCDATASection*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMCDATASection*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMCDATASection*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMCDATASection*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_data: func(This: IXMLDOMCDATASection*, data: BSTR*): HRESULT;
+    put_data: func(This: IXMLDOMCDATASection*, data: BSTR): HRESULT;
+    get_length: func(This: IXMLDOMCDATASection*, dataLength: long*): HRESULT;
+    substringData: func(This: IXMLDOMCDATASection*, offset: long, count: long, data: BSTR*): HRESULT;
+    appendData: func(This: IXMLDOMCDATASection*, data: BSTR): HRESULT;
+    insertData: func(This: IXMLDOMCDATASection*, offset: long, data: BSTR): HRESULT;
+    deleteData: func(This: IXMLDOMCDATASection*, offset: long, count: long): HRESULT;
+    replaceData: func(This: IXMLDOMCDATASection*, offset: long, count: long, data: BSTR): HRESULT;
+    splitText: func(This: IXMLDOMCDATASection*, offset: long, rightHandTextNode: IXMLDOMText**): HRESULT;
+}
+
+@foreign
+struct IXMLDOMCDATASection {
+    lpVtbl: IXMLDOMCDATASectionVtbl*;
+}
+
+@foreign
+struct IXMLDOMDocumentTypeVtbl {
+    QueryInterface: func(This: IXMLDOMDocumentType*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMDocumentType*): ULONG;
+    Release: func(This: IXMLDOMDocumentType*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMDocumentType*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMDocumentType*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMDocumentType*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMDocumentType*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMDocumentType*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMDocumentType*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMDocumentType*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMDocumentType*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMDocumentType*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMDocumentType*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMDocumentType*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMDocumentType*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMDocumentType*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMDocumentType*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMDocumentType*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMDocumentType*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMDocumentType*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMDocumentType*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMDocumentType*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMDocumentType*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMDocumentType*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMDocumentType*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMDocumentType*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMDocumentType*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMDocumentType*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMDocumentType*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMDocumentType*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMDocumentType*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMDocumentType*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMDocumentType*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMDocumentType*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMDocumentType*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMDocumentType*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMDocumentType*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMDocumentType*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMDocumentType*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMDocumentType*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMDocumentType*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMDocumentType*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMDocumentType*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_name: func(This: IXMLDOMDocumentType*, rootName: BSTR*): HRESULT;
+    get_entities: func(This: IXMLDOMDocumentType*, entityMap: IXMLDOMNamedNodeMap**): HRESULT;
+    get_notations: func(This: IXMLDOMDocumentType*, notationMap: IXMLDOMNamedNodeMap**): HRESULT;
+}
+
+@foreign
+struct IXMLDOMDocumentType {
+    lpVtbl: IXMLDOMDocumentTypeVtbl*;
+}
+
+@foreign
+struct IXMLDOMNotationVtbl {
+    QueryInterface: func(This: IXMLDOMNotation*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMNotation*): ULONG;
+    Release: func(This: IXMLDOMNotation*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMNotation*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMNotation*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMNotation*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMNotation*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMNotation*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMNotation*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMNotation*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMNotation*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMNotation*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMNotation*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMNotation*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMNotation*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMNotation*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMNotation*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMNotation*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMNotation*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMNotation*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMNotation*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMNotation*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMNotation*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMNotation*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMNotation*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMNotation*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMNotation*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMNotation*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMNotation*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMNotation*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMNotation*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMNotation*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMNotation*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMNotation*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMNotation*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMNotation*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMNotation*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMNotation*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMNotation*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMNotation*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMNotation*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMNotation*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMNotation*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_publicId: func(This: IXMLDOMNotation*, publicID: VARIANT*): HRESULT;
+    get_systemId: func(This: IXMLDOMNotation*, systemID: VARIANT*): HRESULT;
+}
+
+@foreign
+struct IXMLDOMNotation {
+    lpVtbl: IXMLDOMNotationVtbl*;
+}
+
+@foreign
+struct IXMLDOMEntityVtbl {
+    QueryInterface: func(This: IXMLDOMEntity*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMEntity*): ULONG;
+    Release: func(This: IXMLDOMEntity*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMEntity*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMEntity*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMEntity*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMEntity*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMEntity*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMEntity*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMEntity*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMEntity*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMEntity*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMEntity*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMEntity*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMEntity*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMEntity*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMEntity*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMEntity*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMEntity*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMEntity*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMEntity*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMEntity*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMEntity*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMEntity*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMEntity*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMEntity*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMEntity*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMEntity*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMEntity*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMEntity*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMEntity*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMEntity*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMEntity*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMEntity*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMEntity*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMEntity*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMEntity*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMEntity*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMEntity*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMEntity*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMEntity*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMEntity*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMEntity*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    get_publicId: func(This: IXMLDOMEntity*, publicID: VARIANT*): HRESULT;
+    get_systemId: func(This: IXMLDOMEntity*, systemID: VARIANT*): HRESULT;
+    get_notationName: func(This: IXMLDOMEntity*, name: BSTR*): HRESULT;
+}
+
+@foreign
+struct IXMLDOMEntity {
+    lpVtbl: IXMLDOMEntityVtbl*;
+}
+
+@foreign
+struct IXMLDOMEntityReferenceVtbl {
+    QueryInterface: func(This: IXMLDOMEntityReference*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMEntityReference*): ULONG;
+    Release: func(This: IXMLDOMEntityReference*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMEntityReference*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMEntityReference*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMEntityReference*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMEntityReference*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXMLDOMEntityReference*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXMLDOMEntityReference*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXMLDOMEntityReference*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXMLDOMEntityReference*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXMLDOMEntityReference*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXMLDOMEntityReference*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXMLDOMEntityReference*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXMLDOMEntityReference*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXMLDOMEntityReference*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXMLDOMEntityReference*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXMLDOMEntityReference*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXMLDOMEntityReference*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXMLDOMEntityReference*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXMLDOMEntityReference*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXMLDOMEntityReference*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXMLDOMEntityReference*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXMLDOMEntityReference*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXMLDOMEntityReference*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXMLDOMEntityReference*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXMLDOMEntityReference*, text: BSTR*): HRESULT;
+    put_text: func(This: IXMLDOMEntityReference*, text: BSTR): HRESULT;
+    get_specified: func(This: IXMLDOMEntityReference*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXMLDOMEntityReference*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXMLDOMEntityReference*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXMLDOMEntityReference*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXMLDOMEntityReference*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXMLDOMEntityReference*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXMLDOMEntityReference*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXMLDOMEntityReference*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXMLDOMEntityReference*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXMLDOMEntityReference*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXMLDOMEntityReference*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXMLDOMEntityReference*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXMLDOMEntityReference*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXMLDOMEntityReference*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXMLDOMEntityReference*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+}
+
+@foreign
+struct IXMLDOMEntityReference {
+    lpVtbl: IXMLDOMEntityReferenceVtbl*;
+}
+
+@foreign
+struct IXMLDOMParseErrorVtbl {
+    QueryInterface: func(This: IXMLDOMParseError*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDOMParseError*): ULONG;
+    Release: func(This: IXMLDOMParseError*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDOMParseError*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDOMParseError*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDOMParseError*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDOMParseError*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_errorCode: func(This: IXMLDOMParseError*, errorCode: long*): HRESULT;
+    get_url: func(This: IXMLDOMParseError*, urlString: BSTR*): HRESULT;
+    get_reason: func(This: IXMLDOMParseError*, reasonString: BSTR*): HRESULT;
+    get_srcText: func(This: IXMLDOMParseError*, sourceString: BSTR*): HRESULT;
+    get_line: func(This: IXMLDOMParseError*, lineNumber: long*): HRESULT;
+    get_linepos: func(This: IXMLDOMParseError*, linePosition: long*): HRESULT;
+    get_filepos: func(This: IXMLDOMParseError*, filePosition: long*): HRESULT;
+}
+
+@foreign
+struct IXMLDOMParseError {
+    lpVtbl: IXMLDOMParseErrorVtbl*;
+}
+
+@foreign
+struct IXTLRuntimeVtbl {
+    QueryInterface: func(This: IXTLRuntime*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXTLRuntime*): ULONG;
+    Release: func(This: IXTLRuntime*): ULONG;
+    GetTypeInfoCount: func(This: IXTLRuntime*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXTLRuntime*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXTLRuntime*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXTLRuntime*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_nodeName: func(This: IXTLRuntime*, name: BSTR*): HRESULT;
+    get_nodeValue: func(This: IXTLRuntime*, value: VARIANT*): HRESULT;
+    put_nodeValue: func(This: IXTLRuntime*, value: VARIANT): HRESULT;
+    get_nodeType: func(This: IXTLRuntime*, type: DOMNodeType*): HRESULT;
+    get_parentNode: func(This: IXTLRuntime*, parent: IXMLDOMNode**): HRESULT;
+    get_childNodes: func(This: IXTLRuntime*, childList: IXMLDOMNodeList**): HRESULT;
+    get_firstChild: func(This: IXTLRuntime*, firstChild: IXMLDOMNode**): HRESULT;
+    get_lastChild: func(This: IXTLRuntime*, lastChild: IXMLDOMNode**): HRESULT;
+    get_previousSibling: func(This: IXTLRuntime*, previousSibling: IXMLDOMNode**): HRESULT;
+    get_nextSibling: func(This: IXTLRuntime*, nextSibling: IXMLDOMNode**): HRESULT;
+    get_attributes: func(This: IXTLRuntime*, attributeMap: IXMLDOMNamedNodeMap**): HRESULT;
+    insertBefore: func(This: IXTLRuntime*, newChild: IXMLDOMNode*, refChild: VARIANT, outNewChild: IXMLDOMNode**): HRESULT;
+    replaceChild: func(This: IXTLRuntime*, newChild: IXMLDOMNode*, oldChild: IXMLDOMNode*, outOldChild: IXMLDOMNode**): HRESULT;
+    removeChild: func(This: IXTLRuntime*, childNode: IXMLDOMNode*, oldChild: IXMLDOMNode**): HRESULT;
+    appendChild: func(This: IXTLRuntime*, newChild: IXMLDOMNode*, outNewChild: IXMLDOMNode**): HRESULT;
+    hasChildNodes: func(This: IXTLRuntime*, hasChild: VARIANT_BOOL*): HRESULT;
+    get_ownerDocument: func(This: IXTLRuntime*, XMLDOMDocument: IXMLDOMDocument**): HRESULT;
+    cloneNode: func(This: IXTLRuntime*, deep: VARIANT_BOOL, cloneRoot: IXMLDOMNode**): HRESULT;
+    get_nodeTypeString: func(This: IXTLRuntime*, nodeType: BSTR*): HRESULT;
+    get_text: func(This: IXTLRuntime*, text: BSTR*): HRESULT;
+    put_text: func(This: IXTLRuntime*, text: BSTR): HRESULT;
+    get_specified: func(This: IXTLRuntime*, isSpecified: VARIANT_BOOL*): HRESULT;
+    get_definition: func(This: IXTLRuntime*, definitionNode: IXMLDOMNode**): HRESULT;
+    get_nodeTypedValue: func(This: IXTLRuntime*, typedValue: VARIANT*): HRESULT;
+    put_nodeTypedValue: func(This: IXTLRuntime*, typedValue: VARIANT): HRESULT;
+    get_dataType: func(This: IXTLRuntime*, dataTypeName: VARIANT*): HRESULT;
+    put_dataType: func(This: IXTLRuntime*, dataTypeName: BSTR): HRESULT;
+    get_xml: func(This: IXTLRuntime*, xmlString: BSTR*): HRESULT;
+    transformNode: func(This: IXTLRuntime*, stylesheet: IXMLDOMNode*, xmlString: BSTR*): HRESULT;
+    selectNodes: func(This: IXTLRuntime*, queryString: BSTR, resultList: IXMLDOMNodeList**): HRESULT;
+    selectSingleNode: func(This: IXTLRuntime*, queryString: BSTR, resultNode: IXMLDOMNode**): HRESULT;
+    get_parsed: func(This: IXTLRuntime*, isParsed: VARIANT_BOOL*): HRESULT;
+    get_namespaceURI: func(This: IXTLRuntime*, namespaceURI: BSTR*): HRESULT;
+    get_prefix: func(This: IXTLRuntime*, prefixString: BSTR*): HRESULT;
+    get_baseName: func(This: IXTLRuntime*, nameString: BSTR*): HRESULT;
+    transformNodeToObject: func(This: IXTLRuntime*, stylesheet: IXMLDOMNode*, outputObject: VARIANT): HRESULT;
+    uniqueID: func(This: IXTLRuntime*, pNode: IXMLDOMNode*, pID: long*): HRESULT;
+    depth: func(This: IXTLRuntime*, pNode: IXMLDOMNode*, pDepth: long*): HRESULT;
+    childNumber: func(This: IXTLRuntime*, pNode: IXMLDOMNode*, pNumber: long*): HRESULT;
+    ancestorChildNumber: func(This: IXTLRuntime*, bstrNodeName: BSTR, pNode: IXMLDOMNode*, pNumber: long*): HRESULT;
+    absoluteChildNumber: func(This: IXTLRuntime*, pNode: IXMLDOMNode*, pNumber: long*): HRESULT;
+    formatIndex: func(This: IXTLRuntime*, lIndex: long, bstrFormat: BSTR, pbstrFormattedString: BSTR*): HRESULT;
+    formatNumber: func(This: IXTLRuntime*, dblNumber: double, bstrFormat: BSTR, pbstrFormattedString: BSTR*): HRESULT;
+    formatDate: func(This: IXTLRuntime*, varDate: VARIANT, bstrFormat: BSTR, varDestLocale: VARIANT, pbstrFormattedString: BSTR*): HRESULT;
+    formatTime: func(This: IXTLRuntime*, varTime: VARIANT, bstrFormat: BSTR, varDestLocale: VARIANT, pbstrFormattedString: BSTR*): HRESULT;
+}
+
+@foreign
+struct IXTLRuntime {
+    lpVtbl: IXTLRuntimeVtbl*;
+}
+
+@foreign
+struct XMLDOMDocumentEventsVtbl {
+    QueryInterface: func(This: XMLDOMDocumentEvents*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: XMLDOMDocumentEvents*): ULONG;
+    Release: func(This: XMLDOMDocumentEvents*): ULONG;
+    GetTypeInfoCount: func(This: XMLDOMDocumentEvents*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: XMLDOMDocumentEvents*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: XMLDOMDocumentEvents*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: XMLDOMDocumentEvents*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+}
+
+@foreign
+struct XMLDOMDocumentEvents {
+    lpVtbl: XMLDOMDocumentEventsVtbl*;
+}
+
+@foreign
+struct IXMLHttpRequestVtbl {
+    QueryInterface: func(This: IXMLHttpRequest*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLHttpRequest*): ULONG;
+    Release: func(This: IXMLHttpRequest*): ULONG;
+    GetTypeInfoCount: func(This: IXMLHttpRequest*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLHttpRequest*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLHttpRequest*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLHttpRequest*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    open: func(This: IXMLHttpRequest*, bstrMethod: BSTR, bstrUrl: BSTR, varAsync: VARIANT, bstrUser: VARIANT, bstrPassword: VARIANT): HRESULT;
+    setRequestHeader: func(This: IXMLHttpRequest*, bstrHeader: BSTR, bstrValue: BSTR): HRESULT;
+    getResponseHeader: func(This: IXMLHttpRequest*, bstrHeader: BSTR, pbstrValue: BSTR*): HRESULT;
+    getAllResponseHeaders: func(This: IXMLHttpRequest*, pbstrHeaders: BSTR*): HRESULT;
+    send: func(This: IXMLHttpRequest*, varBody: VARIANT): HRESULT;
+    abort: func(This: IXMLHttpRequest*): HRESULT;
+    get_status: func(This: IXMLHttpRequest*, plStatus: long*): HRESULT;
+    get_statusText: func(This: IXMLHttpRequest*, pbstrStatus: BSTR*): HRESULT;
+    get_responseXML: func(This: IXMLHttpRequest*, ppBody: IDispatch**): HRESULT;
+    get_responseText: func(This: IXMLHttpRequest*, pbstrBody: BSTR*): HRESULT;
+    get_responseBody: func(This: IXMLHttpRequest*, pvarBody: VARIANT*): HRESULT;
+    get_responseStream: func(This: IXMLHttpRequest*, pvarBody: VARIANT*): HRESULT;
+    get_readyState: func(This: IXMLHttpRequest*, plState: long*): HRESULT;
+    put_onreadystatechange: func(This: IXMLHttpRequest*, pReadyStateSink: IDispatch*): HRESULT;
+}
+
+@foreign
+struct IXMLHttpRequest {
+    lpVtbl: IXMLHttpRequestVtbl*;
+}
+
+@foreign
+struct IXMLDSOControlVtbl {
+    QueryInterface: func(This: IXMLDSOControl*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDSOControl*): ULONG;
+    Release: func(This: IXMLDSOControl*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDSOControl*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDSOControl*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDSOControl*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDSOControl*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_XMLDocument: func(This: IXMLDSOControl*, ppDoc: IXMLDOMDocument**): HRESULT;
+    put_XMLDocument: func(This: IXMLDSOControl*, ppDoc: IXMLDOMDocument*): HRESULT;
+    get_JavaDSOCompatible: func(This: IXMLDSOControl*, fJavaDSOCompatible: BOOL*): HRESULT;
+    put_JavaDSOCompatible: func(This: IXMLDSOControl*, fJavaDSOCompatible: BOOL): HRESULT;
+    get_readyState: func(This: IXMLDSOControl*, state: long*): HRESULT;
+}
+
+@foreign
+struct IXMLDSOControl {
+    lpVtbl: IXMLDSOControlVtbl*;
+}
+
+@foreign
+struct IXMLElementCollectionVtbl {
+    QueryInterface: func(This: IXMLElementCollection*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLElementCollection*): ULONG;
+    Release: func(This: IXMLElementCollection*): ULONG;
+    GetTypeInfoCount: func(This: IXMLElementCollection*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLElementCollection*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLElementCollection*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLElementCollection*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    put_length: func(This: IXMLElementCollection*, v: long): HRESULT;
+    get_length: func(This: IXMLElementCollection*, p: long*): HRESULT;
+    get__newEnum: func(This: IXMLElementCollection*, ppUnk: IUnknown**): HRESULT;
+    item: func(This: IXMLElementCollection*, var1: VARIANT, var2: VARIANT, ppDisp: IDispatch**): HRESULT;
+}
+
+@foreign
+struct IXMLElementCollection {
+    lpVtbl: IXMLElementCollectionVtbl*;
+}
+
+@foreign
+struct IXMLDocumentVtbl {
+    QueryInterface: func(This: IXMLDocument*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDocument*): ULONG;
+    Release: func(This: IXMLDocument*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDocument*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDocument*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDocument*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDocument*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_root: func(This: IXMLDocument*, p: IXMLElement**): HRESULT;
+    get_fileSize: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    get_fileModifiedDate: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    get_fileUpdatedDate: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    get_URL: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    put_URL: func(This: IXMLDocument*, p: BSTR): HRESULT;
+    get_mimeType: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    get_readyState: func(This: IXMLDocument*, pl: long*): HRESULT;
+    get_charset: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    put_charset: func(This: IXMLDocument*, p: BSTR): HRESULT;
+    get_version: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    get_doctype: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    get_dtdURL: func(This: IXMLDocument*, p: BSTR*): HRESULT;
+    createElement: func(This: IXMLDocument*, vType: VARIANT, var1: VARIANT, ppElem: IXMLElement**): HRESULT;
+}
+
+@foreign
+struct IXMLDocument {
+    lpVtbl: IXMLDocumentVtbl*;
+}
+
+@foreign
+struct IXMLDocument2Vtbl {
+    QueryInterface: func(This: IXMLDocument2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLDocument2*): ULONG;
+    Release: func(This: IXMLDocument2*): ULONG;
+    GetTypeInfoCount: func(This: IXMLDocument2*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLDocument2*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLDocument2*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLDocument2*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_root: func(This: IXMLDocument2*, p: IXMLElement2**): HRESULT;
+    get_fileSize: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    get_fileModifiedDate: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    get_fileUpdatedDate: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    get_URL: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    put_URL: func(This: IXMLDocument2*, p: BSTR): HRESULT;
+    get_mimeType: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    get_readyState: func(This: IXMLDocument2*, pl: long*): HRESULT;
+    get_charset: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    put_charset: func(This: IXMLDocument2*, p: BSTR): HRESULT;
+    get_version: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    get_doctype: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    get_dtdURL: func(This: IXMLDocument2*, p: BSTR*): HRESULT;
+    createElement: func(This: IXMLDocument2*, vType: VARIANT, var1: VARIANT, ppElem: IXMLElement2**): HRESULT;
+    get_async: func(This: IXMLDocument2*, pf: VARIANT_BOOL*): HRESULT;
+    put_async: func(This: IXMLDocument2*, f: VARIANT_BOOL): HRESULT;
+}
+
+@foreign
+struct IXMLDocument2 {
+    lpVtbl: IXMLDocument2Vtbl*;
+}
+
+@foreign
+struct IXMLElementVtbl {
+    QueryInterface: func(This: IXMLElement*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLElement*): ULONG;
+    Release: func(This: IXMLElement*): ULONG;
+    GetTypeInfoCount: func(This: IXMLElement*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLElement*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLElement*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLElement*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_tagName: func(This: IXMLElement*, p: BSTR*): HRESULT;
+    put_tagName: func(This: IXMLElement*, p: BSTR): HRESULT;
+    get_parent: func(This: IXMLElement*, ppParent: IXMLElement**): HRESULT;
+    setAttribute: func(This: IXMLElement*, strPropertyName: BSTR, PropertyValue: VARIANT): HRESULT;
+    getAttribute: func(This: IXMLElement*, strPropertyName: BSTR, PropertyValue: VARIANT*): HRESULT;
+    removeAttribute: func(This: IXMLElement*, strPropertyName: BSTR): HRESULT;
+    get_children: func(This: IXMLElement*, pp: IXMLElementCollection**): HRESULT;
+    get_type: func(This: IXMLElement*, plType: long*): HRESULT;
+    get_text: func(This: IXMLElement*, p: BSTR*): HRESULT;
+    put_text: func(This: IXMLElement*, p: BSTR): HRESULT;
+    addChild: func(This: IXMLElement*, pChildElem: IXMLElement*, lIndex: long, lReserved: long): HRESULT;
+    removeChild: func(This: IXMLElement*, pChildElem: IXMLElement*): HRESULT;
+}
+
+@foreign
+struct IXMLElement {
+    lpVtbl: IXMLElementVtbl*;
+}
+
+@foreign
+struct IXMLElement2Vtbl {
+    QueryInterface: func(This: IXMLElement2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLElement2*): ULONG;
+    Release: func(This: IXMLElement2*): ULONG;
+    GetTypeInfoCount: func(This: IXMLElement2*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLElement2*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLElement2*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLElement2*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_tagName: func(This: IXMLElement2*, p: BSTR*): HRESULT;
+    put_tagName: func(This: IXMLElement2*, p: BSTR): HRESULT;
+    get_parent: func(This: IXMLElement2*, ppParent: IXMLElement2**): HRESULT;
+    setAttribute: func(This: IXMLElement2*, strPropertyName: BSTR, PropertyValue: VARIANT): HRESULT;
+    getAttribute: func(This: IXMLElement2*, strPropertyName: BSTR, PropertyValue: VARIANT*): HRESULT;
+    removeAttribute: func(This: IXMLElement2*, strPropertyName: BSTR): HRESULT;
+    get_children: func(This: IXMLElement2*, pp: IXMLElementCollection**): HRESULT;
+    get_type: func(This: IXMLElement2*, plType: long*): HRESULT;
+    get_text: func(This: IXMLElement2*, p: BSTR*): HRESULT;
+    put_text: func(This: IXMLElement2*, p: BSTR): HRESULT;
+    addChild: func(This: IXMLElement2*, pChildElem: IXMLElement2*, lIndex: long, lReserved: long): HRESULT;
+    removeChild: func(This: IXMLElement2*, pChildElem: IXMLElement2*): HRESULT;
+    get_attributes: func(This: IXMLElement2*, pp: IXMLElementCollection**): HRESULT;
+}
+
+@foreign
+struct IXMLElement2 {
+    lpVtbl: IXMLElement2Vtbl*;
+}
+
+@foreign
+struct IXMLAttributeVtbl {
+    QueryInterface: func(This: IXMLAttribute*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLAttribute*): ULONG;
+    Release: func(This: IXMLAttribute*): ULONG;
+    GetTypeInfoCount: func(This: IXMLAttribute*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IXMLAttribute*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IXMLAttribute*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IXMLAttribute*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    get_name: func(This: IXMLAttribute*, n: BSTR*): HRESULT;
+    get_value: func(This: IXMLAttribute*, v: BSTR*): HRESULT;
+}
+
+@foreign
+struct IXMLAttribute {
+    lpVtbl: IXMLAttributeVtbl*;
+}
+
+@foreign
+struct IXMLErrorVtbl {
+    QueryInterface: func(This: IXMLError*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IXMLError*): ULONG;
+    Release: func(This: IXMLError*): ULONG;
+    GetErrorInfo: func(This: IXMLError*, pErrorReturn: XML_ERROR*): HRESULT;
+}
+
+@foreign
+struct IXMLError {
+    lpVtbl: IXMLErrorVtbl*;
+}
+
+@foreign
+struct DOMDocument;
+
+@foreign
+struct XMLHTTPRequest;
+
+@foreign
+struct XMLDocument;
+
+@foreign
+struct XMLDSOControl;
+
+@foreign
+struct DOMFreeThreadedDocument;
+

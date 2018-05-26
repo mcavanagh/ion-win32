@@ -1,0 +1,41 @@
+#foreign(header = "<namedpipeapi.h>")
+
+@foreign
+func CreatePipe(hReadPipe: PHANDLE, hWritePipe: PHANDLE, lpPipeAttributes: LPSECURITY_ATTRIBUTES, nSize: DWORD): BOOL;
+
+@foreign
+func ConnectNamedPipe(hNamedPipe: HANDLE, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func DisconnectNamedPipe(hNamedPipe: HANDLE): BOOL;
+
+@foreign
+func SetNamedPipeHandleState(hNamedPipe: HANDLE, lpMode: LPDWORD, lpMaxCollectionCount: LPDWORD, lpCollectDataTimeout: LPDWORD): BOOL;
+
+@foreign
+func PeekNamedPipe(hNamedPipe: HANDLE, lpBuffer: LPVOID, nBufferSize: DWORD, lpBytesRead: LPDWORD, lpTotalBytesAvail: LPDWORD, lpBytesLeftThisMessage: LPDWORD): BOOL;
+
+@foreign
+func TransactNamedPipe(hNamedPipe: HANDLE, lpInBuffer: LPVOID, nInBufferSize: DWORD, lpOutBuffer: LPVOID, nOutBufferSize: DWORD, lpBytesRead: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func CreateNamedPipeW(lpName: LPCWSTR, dwOpenMode: DWORD, dwPipeMode: DWORD, nMaxInstances: DWORD, nOutBufferSize: DWORD, nInBufferSize: DWORD, nDefaultTimeOut: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): HANDLE;
+
+@foreign
+func WaitNamedPipeW(lpNamedPipeName: LPCWSTR, nTimeOut: DWORD): BOOL;
+
+@foreign
+func GetNamedPipeClientComputerNameW(Pipe: HANDLE, ClientComputerName: LPWSTR, ClientComputerNameLength: ULONG): BOOL;
+
+@foreign
+func ImpersonateNamedPipeClient(hNamedPipe: HANDLE): BOOL;
+
+@foreign
+func GetNamedPipeInfo(hNamedPipe: HANDLE, lpFlags: LPDWORD, lpOutBufferSize: LPDWORD, lpInBufferSize: LPDWORD, lpMaxInstances: LPDWORD): BOOL;
+
+@foreign
+func GetNamedPipeHandleStateW(hNamedPipe: HANDLE, lpState: LPDWORD, lpCurInstances: LPDWORD, lpMaxCollectionCount: LPDWORD, lpCollectDataTimeout: LPDWORD, lpUserName: LPWSTR, nMaxUserNameSize: DWORD): BOOL;
+
+@foreign
+func CallNamedPipeW(lpNamedPipeName: LPCWSTR, lpInBuffer: LPVOID, nInBufferSize: DWORD, lpOutBuffer: LPVOID, nOutBufferSize: DWORD, lpBytesRead: LPDWORD, nTimeOut: DWORD): BOOL;
+

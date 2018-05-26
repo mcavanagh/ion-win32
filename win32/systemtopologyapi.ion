@@ -1,0 +1,11 @@
+#foreign(header = "<systemtopologyapi.h>")
+
+@foreign
+func GetNumaHighestNodeNumber(HighestNodeNumber: PULONG): BOOL;
+
+@foreign
+func GetNumaNodeProcessorMaskEx(Node: USHORT, ProcessorMask: PGROUP_AFFINITY): BOOL;
+
+@foreign
+func GetNumaProximityNodeEx(ProximityId: ULONG, NodeNumber: PUSHORT): BOOL;
+

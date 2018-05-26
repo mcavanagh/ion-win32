@@ -1,0 +1,8238 @@
+#foreign(header = "<winnt.h>")
+
+@foreign const LANG_NEUTRAL   = 0x00;
+@foreign const LANG_INVARIANT = 0x7f;
+
+@foreign const SUBLANG_NEUTRAL            = 0x00;
+@foreign const SUBLANG_DEFAULT            = 0x01;
+@foreign const SUBLANG_SYS_DEFAULT        = 0x02;
+@foreign const SUBLANG_CUSTOM_DEFAULT     = 0x03;
+@foreign const SUBLANG_CUSTOM_UNSPECIFIED = 0x04;
+@foreign const SUBLANG_UI_CUSTOM_DEFAULT  = 0x05;
+
+@foreign
+func MAKELANGID(p: WORD, s: WORD): WORD;
+
+@foreign const GENERIC_READ    = long(0x80000000);
+@foreign const GENERIC_WRITE   = long(0x40000000);
+@foreign const GENERIC_EXECUTE = long(0x20000000);
+@foreign const GENERIC_ALL     = long(0x10000000);
+
+@foreign const FILE_READ_DATA               = 0x0001;
+@foreign const FILE_LIST_DIRECTORY          = 0x0001;
+@foreign const FILE_WRITE_DATA              = 0x0002;
+@foreign const FILE_ADD_FILE                = 0x0002;
+@foreign const FILE_APPEND_DATA             = 0x0004;
+@foreign const FILE_ADD_SUBDIRECTORY        = 0x0004;
+@foreign const FILE_CREATE_PIPE_INSTANCE    = 0x0004;
+
+@foreign const FILE_READ_EA             = 0x0008;
+@foreign const FILE_WRITE_EA            = 0x0010;
+@foreign const FILE_EXECUTE             = 0x0020;
+@foreign const FILE_TRAVERSE            = 0x0020;
+@foreign const FILE_DELETE_CHILD        = 0x0040;
+@foreign const FILE_READ_ATTRIBUTES     = 0x0080;
+@foreign const FILE_WRITE_ATTRIBUTES    = 0x0100;
+@foreign const FILE_ALL_ACCESS          = STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x1FF;
+@foreign const FILE_GENERIC_READ        = STANDARD_RIGHTS_READ | FILE_READ_DATA | FILE_READ_ATTRIBUTES | FILE_READ_EA | SYNCHRONIZE;
+@foreign const FILE_GENERIC_WRITE       = STANDARD_RIGHTS_WRITE | FILE_WRITE_DATA | FILE_WRITE_ATTRIBUTES | FILE_WRITE_EA | FILE_APPEND_DATA | SYNCHRONIZE;
+@foreign const FILE_GENERIC_EXECUTE     = STANDARD_RIGHTS_EXECUTE | FILE_READ_ATTRIBUTES | FILE_EXECUTE | SYNCHRONIZE;
+
+@foreign const FILE_SHARE_READ      = 0x00000001;
+@foreign const FILE_SHARE_WRITE     = 0x00000002;
+@foreign const FILE_SHARE_DELETE    = 0x00000004;
+
+@foreign const FILE_ATTRIBUTE_READONLY              = 0x00000001;
+@foreign const FILE_ATTRIBUTE_HIDDEN                = 0x00000002;
+@foreign const FILE_ATTRIBUTE_SYSTEM                = 0x00000004;
+@foreign const FILE_ATTRIBUTE_DIRECTORY             = 0x00000010;
+@foreign const FILE_ATTRIBUTE_ARCHIVE               = 0x00000020;
+@foreign const FILE_ATTRIBUTE_DEVICE                = 0x00000040;
+@foreign const FILE_ATTRIBUTE_NORMAL                = 0x00000080;
+@foreign const FILE_ATTRIBUTE_TEMPORARY             = 0x00000100;
+@foreign const FILE_ATTRIBUTE_SPARSE_FILE           = 0x00000200;
+@foreign const FILE_ATTRIBUTE_REPARSE_POINT         = 0x00000400;
+@foreign const FILE_ATTRIBUTE_COMPRESSED            = 0x00000800;
+@foreign const FILE_ATTRIBUTE_OFFLINE               = 0x00001000;
+@foreign const FILE_ATTRIBUTE_NOT_CONTENT_INDEXED   = 0x00002000;
+@foreign const FILE_ATTRIBUTE_ENCRYPTED             = 0x00004000;
+@foreign const FILE_ATTRIBUTE_INTEGRITY_STREAM      = 0x00008000;
+@foreign const FILE_ATTRIBUTE_VIRTUAL               = 0x00010000;
+@foreign const FILE_ATTRIBUTE_NO_SCRUB_DATA         = 0x00020000;
+@foreign const FILE_ATTRIBUTE_EA                    = 0x00040000;
+@foreign const FILE_ATTRIBUTE_PINNED                = 0x00080000;
+@foreign const FILE_ATTRIBUTE_UNPINNED              = 0x00100000;
+@foreign const FILE_ATTRIBUTE_RECALL_ON_OPEN        = 0x00040000;
+@foreign const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 0x00400000;
+@foreign const FILE_ATTRIBUTE_STRICTLY_SEQUENTIAL   = 0x20000000;
+
+
+@foreign
+typedef PVOID = void*;
+
+@foreign
+typedef PVOID64 = void*;
+
+@foreign
+typedef CHAR = char;
+
+@foreign
+typedef SHORT = short;
+
+@foreign
+typedef LONG = long;
+
+@foreign
+typedef WCHAR = wchar;
+
+@foreign
+typedef PWCHAR = WCHAR*;
+
+@foreign
+typedef LPWCH = WCHAR*;
+
+@foreign
+typedef PWCH = WCHAR*;
+
+@foreign
+typedef LPCWCH = WCHAR*;
+
+@foreign
+typedef PCWCH = WCHAR*;
+
+@foreign
+typedef NWPSTR = WCHAR*;
+
+@foreign
+typedef LPWSTR = WCHAR*;
+
+@foreign
+typedef PWSTR = WCHAR*;
+
+@foreign
+typedef PZPWSTR = PWSTR*;
+
+@foreign
+typedef PCZPWSTR = PWSTR*;
+
+@foreign
+typedef LPUWSTR = WCHAR*;
+
+@foreign
+typedef PUWSTR = WCHAR*;
+
+@foreign
+typedef LPCWSTR = WCHAR*;
+
+@foreign
+typedef PCWSTR = WCHAR*;
+
+@foreign
+typedef PZPCWSTR = PCWSTR*;
+
+@foreign
+typedef PCZPCWSTR = PCWSTR*;
+
+@foreign
+typedef LPCUWSTR = WCHAR*;
+
+@foreign
+typedef PCUWSTR = WCHAR*;
+
+@foreign
+typedef PZZWSTR = WCHAR*;
+
+@foreign
+typedef PCZZWSTR = WCHAR*;
+
+@foreign
+typedef PUZZWSTR = WCHAR*;
+
+@foreign
+typedef PCUZZWSTR = WCHAR*;
+
+@foreign
+typedef PNZWCH = WCHAR*;
+
+@foreign
+typedef PCNZWCH = WCHAR*;
+
+@foreign
+typedef PUNZWCH = WCHAR*;
+
+@foreign
+typedef PCUNZWCH = WCHAR*;
+
+@foreign
+typedef LPCWCHAR = WCHAR*;
+
+@foreign
+typedef PCWCHAR = WCHAR*;
+
+@foreign
+typedef LPCUWCHAR = WCHAR*;
+
+@foreign
+typedef PCUWCHAR = WCHAR*;
+
+@foreign
+typedef UCSCHAR = ulong;
+
+@foreign
+typedef PUCSCHAR = UCSCHAR*;
+
+@foreign
+typedef PCUCSCHAR = UCSCHAR*;
+
+@foreign
+typedef PUCSSTR = UCSCHAR*;
+
+@foreign
+typedef PUUCSSTR = UCSCHAR*;
+
+@foreign
+typedef PCUCSSTR = UCSCHAR*;
+
+@foreign
+typedef PCUUCSSTR = UCSCHAR*;
+
+@foreign
+typedef PUUCSCHAR = UCSCHAR*;
+
+@foreign
+typedef PCUUCSCHAR = UCSCHAR*;
+
+@foreign
+typedef PCHAR = CHAR*;
+
+@foreign
+typedef LPCH = CHAR*;
+
+@foreign
+typedef PCH = CHAR*;
+
+@foreign
+typedef LPCCH = CHAR*;
+
+@foreign
+typedef PCCH = CHAR*;
+
+@foreign
+typedef NPSTR = CHAR*;
+
+@foreign
+typedef LPSTR = CHAR*;
+
+@foreign
+typedef PSTR = CHAR*;
+
+@foreign
+typedef PZPSTR = PSTR*;
+
+@foreign
+typedef PCZPSTR = PSTR*;
+
+@foreign
+typedef LPCSTR = CHAR*;
+
+@foreign
+typedef PCSTR = CHAR*;
+
+@foreign
+typedef PZPCSTR = PCSTR*;
+
+@foreign
+typedef PCZPCSTR = PCSTR*;
+
+@foreign
+typedef PZZSTR = CHAR*;
+
+@foreign
+typedef PCZZSTR = CHAR*;
+
+@foreign
+typedef PNZCH = CHAR*;
+
+@foreign
+typedef PCNZCH = CHAR*;
+
+@foreign
+typedef TCHAR = char;
+
+@foreign
+typedef PTCHAR = char*;
+
+@foreign
+typedef TBYTE = uchar;
+
+@foreign
+typedef PTBYTE = uchar*;
+
+@foreign
+typedef LPTCH = LPCH;
+
+@foreign
+typedef PTCH = LPCH;
+
+@foreign
+typedef LPCTCH = LPCCH;
+
+@foreign
+typedef PCTCH = LPCCH;
+
+@foreign
+typedef PTSTR = LPSTR;
+
+@foreign
+typedef LPTSTR = LPSTR;
+
+@foreign
+typedef PUTSTR = LPSTR;
+
+@foreign
+typedef LPUTSTR = LPSTR;
+
+@foreign
+typedef PCTSTR = LPCSTR;
+
+@foreign
+typedef LPCTSTR = LPCSTR;
+
+@foreign
+typedef PCUTSTR = LPCSTR;
+
+@foreign
+typedef LPCUTSTR = LPCSTR;
+
+@foreign
+typedef PZZTSTR = PZZSTR;
+
+@foreign
+typedef PUZZTSTR = PZZSTR;
+
+@foreign
+typedef PCZZTSTR = PCZZSTR;
+
+@foreign
+typedef PCUZZTSTR = PCZZSTR;
+
+@foreign
+typedef PZPTSTR = PZPSTR;
+
+@foreign
+typedef PNZTCH = PNZCH;
+
+@foreign
+typedef PUNZTCH = PNZCH;
+
+@foreign
+typedef PCNZTCH = PCNZCH;
+
+@foreign
+typedef PCUNZTCH = PCNZCH;
+
+@foreign
+typedef PSHORT = SHORT*;
+
+@foreign
+typedef PLONG = LONG*;
+
+@foreign
+struct _PROCESSOR_NUMBER {
+    Group: WORD;
+    Number: BYTE;
+    Reserved: BYTE;
+}
+
+@foreign
+typedef PROCESSOR_NUMBER = _PROCESSOR_NUMBER;
+
+@foreign
+typedef PPROCESSOR_NUMBER = _PROCESSOR_NUMBER*;
+
+@foreign
+struct _GROUP_AFFINITY {
+    Mask: KAFFINITY;
+    Group: WORD;
+    Reserved: WORD[3];
+}
+
+@foreign
+typedef GROUP_AFFINITY = _GROUP_AFFINITY;
+
+@foreign
+typedef PGROUP_AFFINITY = _GROUP_AFFINITY*;
+
+@foreign
+typedef HANDLE = void*;
+
+@foreign
+typedef PHANDLE = HANDLE*;
+
+@foreign
+typedef FCHAR = BYTE;
+
+@foreign
+typedef FSHORT = WORD;
+
+@foreign
+typedef FLONG = DWORD;
+
+@foreign
+typedef HRESULT = long;
+
+@foreign
+typedef CCHAR = char;
+
+@foreign
+typedef LCID = DWORD;
+
+@foreign
+typedef PLCID = PDWORD;
+
+@foreign
+typedef LANGID = WORD;
+
+@foreign
+enum COMPARTMENT_ID {
+    UNSPECIFIED_COMPARTMENT_ID = 0,
+    DEFAULT_COMPARTMENT_ID,
+}
+
+@foreign
+typedef PCOMPARTMENT_ID = COMPARTMENT_ID;
+
+@foreign
+struct _FLOAT128 {
+    LowPart: llong;
+    HighPart: llong;
+}
+
+@foreign
+typedef FLOAT128 = _FLOAT128;
+
+@foreign
+typedef PFLOAT128 = FLOAT128*;
+
+@foreign
+typedef LONGLONG = llong;
+
+@foreign
+typedef ULONGLONG = ullong;
+
+@foreign
+typedef PLONGLONG = LONGLONG*;
+
+@foreign
+typedef PULONGLONG = ULONGLONG*;
+
+@foreign
+typedef USN = LONGLONG;
+
+/*
+@PROBLEM Nested struct def at line 823, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+union _LARGE_INTEGER {
+    s: (null);
+    u: (null);
+    QuadPart: LONGLONG;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 823, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_LARGE_INTEGER
+*/
+
+@foreign
+typedef PLARGE_INTEGER = LARGE_INTEGER*;
+
+/*
+@PROBLEM Nested struct def at line 843, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+union _ULARGE_INTEGER {
+    s: (null);
+    u: (null);
+    QuadPart: ULONGLONG;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 843, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_ULARGE_INTEGER
+*/
+
+@foreign
+typedef PULARGE_INTEGER = ULARGE_INTEGER*;
+
+@foreign
+typedef RTL_REFERENCE_COUNT = LONG_PTR;
+
+@foreign
+typedef PRTL_REFERENCE_COUNT = LONG_PTR*;
+
+@foreign
+typedef RTL_REFERENCE_COUNT32 = LONG;
+
+@foreign
+typedef PRTL_REFERENCE_COUNT32 = LONG*;
+
+@foreign
+struct _LUID {
+    LowPart: DWORD;
+    HighPart: LONG;
+}
+
+@foreign
+typedef LUID = _LUID;
+
+@foreign
+typedef PLUID = _LUID*;
+
+@foreign
+typedef DWORDLONG = ULONGLONG;
+
+@foreign
+typedef PDWORDLONG = DWORDLONG*;
+
+@foreign
+func _rotl8(Value: uchar, Shift: uchar): uchar;
+
+@foreign
+func _rotl16(Value: ushort, Shift: uchar): ushort;
+
+@foreign
+func _rotr8(Value: uchar, Shift: uchar): uchar;
+
+@foreign
+func _rotr16(Value: ushort, Shift: uchar): ushort;
+
+@foreign
+func _rotl(Value: uint, Shift: int): uint;
+
+@foreign
+func _rotl64(Value: ullong, Shift: int): ullong;
+
+@foreign
+func _rotr(Value: uint, Shift: int): uint;
+
+@foreign
+func _rotr64(Value: ullong, Shift: int): ullong;
+
+@foreign
+typedef BOOLEAN = BYTE;
+
+@foreign
+typedef PBOOLEAN = BOOLEAN*;
+
+@foreign
+struct _LIST_ENTRY {
+    Flink: _LIST_ENTRY*;
+    Blink: _LIST_ENTRY*;
+}
+
+@foreign
+typedef LIST_ENTRY = _LIST_ENTRY;
+
+@foreign
+typedef PLIST_ENTRY = _LIST_ENTRY*;
+
+@foreign
+typedef PRLIST_ENTRY = _LIST_ENTRY*;
+
+@foreign
+struct _SINGLE_LIST_ENTRY {
+    Next: _SINGLE_LIST_ENTRY*;
+}
+
+@foreign
+typedef SINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY;
+
+@foreign
+typedef PSINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY*;
+
+@foreign
+struct LIST_ENTRY32 {
+    Flink: DWORD;
+    Blink: DWORD;
+}
+
+@foreign
+typedef PLIST_ENTRY32 = LIST_ENTRY32*;
+
+@foreign
+struct LIST_ENTRY64 {
+    Flink: ULONGLONG;
+    Blink: ULONGLONG;
+}
+
+@foreign
+typedef PLIST_ENTRY64 = LIST_ENTRY64*;
+
+@foreign
+typedef EXCEPTION_ROUTINE = func(ExceptionRecord: _EXCEPTION_RECORD*, EstablisherFrame: PVOID, ContextRecord: _CONTEXT*, DispatcherContext: PVOID): EXCEPTION_DISPOSITION;
+
+@foreign
+typedef PEXCEPTION_ROUTINE = EXCEPTION_ROUTINE*;
+
+@foreign
+typedef KSPIN_LOCK = ULONG_PTR;
+
+@foreign
+typedef PKSPIN_LOCK = KSPIN_LOCK*;
+
+@foreign
+struct _M128A {
+    Low: ULONGLONG;
+    High: LONGLONG;
+}
+
+@foreign
+typedef M128A = _M128A;
+
+@foreign
+typedef PM128A = _M128A*;
+
+@foreign
+struct _XSAVE_FORMAT {
+    ControlWord: WORD;
+    StatusWord: WORD;
+    TagWord: BYTE;
+    Reserved1: BYTE;
+    ErrorOpcode: WORD;
+    ErrorOffset: DWORD;
+    ErrorSelector: WORD;
+    Reserved2: WORD;
+    DataOffset: DWORD;
+    DataSelector: WORD;
+    Reserved3: WORD;
+    MxCsr: DWORD;
+    MxCsr_Mask: DWORD;
+    FloatRegisters: M128A[8];
+    XmmRegisters: M128A[16];
+    Reserved4: BYTE[96];
+}
+
+@foreign
+typedef XSAVE_FORMAT = _XSAVE_FORMAT;
+
+@foreign
+typedef PXSAVE_FORMAT = _XSAVE_FORMAT*;
+
+@foreign
+struct _XSAVE_AREA_HEADER {
+    Mask: DWORD64;
+    CompactionMask: DWORD64;
+    Reserved2: DWORD64[6];
+}
+
+@foreign
+typedef XSAVE_AREA_HEADER = _XSAVE_AREA_HEADER;
+
+@foreign
+typedef PXSAVE_AREA_HEADER = _XSAVE_AREA_HEADER*;
+
+@foreign
+struct _XSAVE_AREA {
+    LegacyState: XSAVE_FORMAT;
+    Header: XSAVE_AREA_HEADER;
+}
+
+@foreign
+typedef XSAVE_AREA = _XSAVE_AREA;
+
+@foreign
+typedef PXSAVE_AREA = _XSAVE_AREA*;
+
+@foreign
+struct _XSTATE_CONTEXT {
+    Mask: DWORD64;
+    Length: DWORD;
+    Reserved1: DWORD;
+    Area: PXSAVE_AREA;
+    Buffer: PVOID;
+}
+
+@foreign
+typedef XSTATE_CONTEXT = _XSTATE_CONTEXT;
+
+@foreign
+typedef PXSTATE_CONTEXT = _XSTATE_CONTEXT*;
+
+@foreign
+struct _SCOPE_TABLE_AMD64 {
+    Count: DWORD;
+    ScopeRecord: (null)[1];
+}
+
+@foreign
+typedef SCOPE_TABLE_AMD64 = _SCOPE_TABLE_AMD64;
+
+@foreign
+typedef PSCOPE_TABLE_AMD64 = _SCOPE_TABLE_AMD64*;
+
+@foreign
+func _bittest(Base: LONG*, Offset: LONG): BOOLEAN;
+
+@foreign
+func _bittestandcomplement(Base: LONG*, Offset: LONG): BOOLEAN;
+
+@foreign
+func _bittestandset(Base: LONG*, Offset: LONG): BOOLEAN;
+
+@foreign
+func _bittestandreset(Base: LONG*, Offset: LONG): BOOLEAN;
+
+@foreign
+func _interlockedbittestandset(Base: LONG*, Offset: LONG): BOOLEAN;
+
+@foreign
+func _interlockedbittestandreset(Base: LONG*, Offset: LONG): BOOLEAN;
+
+@foreign
+func _bittest64(Base: LONG64*, Offset: LONG64): BOOLEAN;
+
+@foreign
+func _bittestandcomplement64(Base: LONG64*, Offset: LONG64): BOOLEAN;
+
+@foreign
+func _bittestandset64(Base: LONG64*, Offset: LONG64): BOOLEAN;
+
+@foreign
+func _bittestandreset64(Base: LONG64*, Offset: LONG64): BOOLEAN;
+
+@foreign
+func _interlockedbittestandset64(Base: LONG64*, Offset: LONG64): BOOLEAN;
+
+@foreign
+func _interlockedbittestandreset64(Base: LONG64*, Offset: LONG64): BOOLEAN;
+
+@foreign
+func _BitScanForward(Index: DWORD*, Mask: DWORD): BOOLEAN;
+
+@foreign
+func _BitScanReverse(Index: DWORD*, Mask: DWORD): BOOLEAN;
+
+@foreign
+func _BitScanForward64(Index: DWORD*, Mask: DWORD64): BOOLEAN;
+
+@foreign
+func _BitScanReverse64(Index: DWORD*, Mask: DWORD64): BOOLEAN;
+
+@foreign
+func _InterlockedIncrement16(Addend: SHORT*): SHORT;
+
+@foreign
+func _InterlockedDecrement16(Addend: SHORT*): SHORT;
+
+@foreign
+func _InterlockedCompareExchange16(Destination: SHORT*, ExChange: SHORT, Comperand: SHORT): SHORT;
+
+@foreign
+func _InterlockedAnd(Destination: LONG*, Value: LONG): LONG;
+
+@foreign
+func _InterlockedOr(Destination: LONG*, Value: LONG): LONG;
+
+@foreign
+func _InterlockedXor(Destination: LONG*, Value: LONG): LONG;
+
+@foreign
+func _InterlockedAnd64(Destination: LONG64*, Value: LONG64): LONG64;
+
+@foreign
+func _InterlockedOr64(Destination: LONG64*, Value: LONG64): LONG64;
+
+@foreign
+func _InterlockedXor64(Destination: LONG64*, Value: LONG64): LONG64;
+
+@foreign
+func _InterlockedIncrement(Addend: LONG*): LONG;
+
+@foreign
+func _InterlockedDecrement(Addend: LONG*): LONG;
+
+@foreign
+func _InterlockedExchange(Target: LONG*, Value: LONG): LONG;
+
+@foreign
+func _InterlockedExchangeAdd(Addend: LONG*, Value: LONG): LONG;
+
+@foreign
+func _InterlockedCompareExchange(Destination: LONG*, ExChange: LONG, Comperand: LONG): LONG;
+
+@foreign
+func _InterlockedIncrement64(Addend: LONG64*): LONG64;
+
+@foreign
+func _InterlockedDecrement64(Addend: LONG64*): LONG64;
+
+@foreign
+func _InterlockedExchange64(Target: LONG64*, Value: LONG64): LONG64;
+
+@foreign
+func _InterlockedExchangeAdd64(Addend: LONG64*, Value: LONG64): LONG64;
+
+@foreign
+func _InterlockedCompareExchange64(Destination: LONG64*, ExChange: LONG64, Comperand: LONG64): LONG64;
+
+@foreign
+func _InterlockedCompareExchange128(Destination: LONG64*, ExchangeHigh: LONG64, ExchangeLow: LONG64, ComparandResult: LONG64*): BOOLEAN;
+
+@foreign
+func _InterlockedCompareExchangePointer(Destination: PVOID*, Exchange: PVOID, Comperand: PVOID): PVOID;
+
+@foreign
+func _InterlockedExchangePointer(Target: PVOID*, Value: PVOID): PVOID;
+
+@foreign
+func _InterlockedExchange8(Target: CHAR*, Value: CHAR): CHAR;
+
+@foreign
+func _InterlockedExchange16(Destination: SHORT*, ExChange: SHORT): SHORT;
+
+@foreign
+func _InterlockedExchangeAdd8(_Addend: char*, _Value: char): char;
+
+@foreign
+func _InterlockedAnd8(Destination: char*, Value: char): char;
+
+@foreign
+func _InterlockedOr8(Destination: char*, Value: char): char;
+
+@foreign
+func _InterlockedXor8(Destination: char*, Value: char): char;
+
+@foreign
+func _InterlockedAnd16(Destination: SHORT*, Value: SHORT): SHORT;
+
+@foreign
+func _InterlockedOr16(Destination: SHORT*, Value: SHORT): SHORT;
+
+@foreign
+func _InterlockedXor16(Destination: SHORT*, Value: SHORT): SHORT;
+
+@foreign
+func __cpuidex(CPUInfo: int*, Function: int, SubLeaf: int);
+
+@foreign
+func _mm_clflush(Address: void const*);
+
+@foreign
+func _ReadWriteBarrier();
+
+@foreign
+func __faststorefence();
+
+@foreign
+func _mm_lfence();
+
+@foreign
+func _mm_mfence();
+
+@foreign
+func _mm_sfence();
+
+@foreign
+func _mm_pause();
+
+@foreign
+func _mm_prefetch(a: CHAR*, sel: int);
+
+@foreign
+func _m_prefetchw(Source: void const*);
+
+@foreign
+func _mm_getcsr(): uint;
+
+@foreign
+func _mm_setcsr(MxCsr: uint);
+
+@foreign
+func __getcallerseflags(): uint;
+
+@foreign
+func __segmentlimit(Selector: DWORD): DWORD;
+
+@foreign
+func __readpmc(Counter: DWORD): DWORD64;
+
+@foreign
+func __rdtsc(): DWORD64;
+
+@foreign
+func __movsb(Destination: PBYTE, Source: BYTE*, Count: SIZE_T);
+
+@foreign
+func __movsw(Destination: PWORD, Source: WORD*, Count: SIZE_T);
+
+@foreign
+func __movsd(Destination: PDWORD, Source: DWORD*, Count: SIZE_T);
+
+@foreign
+func __movsq(Destination: PDWORD64, Source: DWORD64*, Count: SIZE_T);
+
+@foreign
+func __stosb(Destination: PBYTE, Value: BYTE, Count: SIZE_T);
+
+@foreign
+func __stosw(Destination: PWORD, Value: WORD, Count: SIZE_T);
+
+@foreign
+func __stosd(Destination: PDWORD, Value: DWORD, Count: SIZE_T);
+
+@foreign
+func __stosq(Destination: PDWORD64, Value: DWORD64, Count: SIZE_T);
+
+@foreign
+func __mulh(Multiplier: LONG64, Multiplicand: LONG64): LONGLONG;
+
+@foreign
+func __umulh(Multiplier: DWORD64, Multiplicand: DWORD64): ULONGLONG;
+
+@foreign
+func __popcnt64(operand: DWORD64): DWORD64;
+
+@foreign
+func __shiftleft128(LowPart: DWORD64, HighPart: DWORD64, Shift: BYTE): DWORD64;
+
+@foreign
+func __shiftright128(LowPart: DWORD64, HighPart: DWORD64, Shift: BYTE): DWORD64;
+
+@foreign
+func _mul128(Multiplier: LONG64, Multiplicand: LONG64, HighProduct: LONG64*): LONG64;
+
+@foreign
+func _umul128(Multiplier: DWORD64, Multiplicand: DWORD64, HighProduct: DWORD64*): DWORD64;
+
+@foreign
+func __readgsbyte(Offset: DWORD): BYTE;
+
+@foreign
+func __readgsword(Offset: DWORD): WORD;
+
+@foreign
+func __readgsdword(Offset: DWORD): DWORD;
+
+@foreign
+func __readgsqword(Offset: DWORD): DWORD64;
+
+@foreign
+func __writegsbyte(Offset: DWORD, Data: BYTE);
+
+@foreign
+func __writegsword(Offset: DWORD, Data: WORD);
+
+@foreign
+func __writegsdword(Offset: DWORD, Data: DWORD);
+
+@foreign
+func __writegsqword(Offset: DWORD, Data: DWORD64);
+
+@foreign
+func __incgsbyte(Offset: DWORD);
+
+@foreign
+func __addgsbyte(Offset: DWORD, Value: BYTE);
+
+@foreign
+func __incgsword(Offset: DWORD);
+
+@foreign
+func __addgsword(Offset: DWORD, Value: WORD);
+
+@foreign
+func __incgsdword(Offset: DWORD);
+
+@foreign
+func __addgsdword(Offset: DWORD, Value: DWORD);
+
+@foreign
+func __incgsqword(Offset: DWORD);
+
+@foreign
+func __addgsqword(Offset: DWORD, Value: DWORD64);
+
+@foreign
+typedef XMM_SAVE_AREA32 = XSAVE_FORMAT;
+
+@foreign
+typedef PXMM_SAVE_AREA32 = XSAVE_FORMAT*;
+
+/*
+@PROBLEM Nested struct def at line 3820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _CONTEXT {
+    P1Home: DWORD64;
+    P2Home: DWORD64;
+    P3Home: DWORD64;
+    P4Home: DWORD64;
+    P5Home: DWORD64;
+    P6Home: DWORD64;
+    ContextFlags: DWORD;
+    MxCsr: DWORD;
+    SegCs: WORD;
+    SegDs: WORD;
+    SegEs: WORD;
+    SegFs: WORD;
+    SegGs: WORD;
+    SegSs: WORD;
+    EFlags: DWORD;
+    Dr0: DWORD64;
+    Dr1: DWORD64;
+    Dr2: DWORD64;
+    Dr3: DWORD64;
+    Dr6: DWORD64;
+    Dr7: DWORD64;
+    Rax: DWORD64;
+    Rcx: DWORD64;
+    Rdx: DWORD64;
+    Rbx: DWORD64;
+    Rsp: DWORD64;
+    Rbp: DWORD64;
+    Rsi: DWORD64;
+    Rdi: DWORD64;
+    R8: DWORD64;
+    R9: DWORD64;
+    R10: DWORD64;
+    R11: DWORD64;
+    R12: DWORD64;
+    R13: DWORD64;
+    R14: DWORD64;
+    R15: DWORD64;
+    Rip: DWORD64;
+    u: (null);
+    VectorRegister: M128A[26];
+    VectorControl: DWORD64;
+    DebugControl: DWORD64;
+    LastBranchToRip: DWORD64;
+    LastBranchFromRip: DWORD64;
+    LastExceptionToRip: DWORD64;
+    LastExceptionFromRip: DWORD64;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 3820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_CONTEXT
+*/
+
+@foreign
+typedef PCONTEXT = _CONTEXT*;
+
+@foreign
+typedef RUNTIME_FUNCTION = _IMAGE_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef PRUNTIME_FUNCTION = _IMAGE_RUNTIME_FUNCTION_ENTRY*;
+
+@foreign
+typedef SCOPE_TABLE = SCOPE_TABLE_AMD64;
+
+@foreign
+typedef PSCOPE_TABLE = SCOPE_TABLE_AMD64*;
+
+@foreign
+struct _UNWIND_HISTORY_TABLE_ENTRY {
+    ImageBase: DWORD64;
+    FunctionEntry: PRUNTIME_FUNCTION;
+}
+
+@foreign
+typedef UNWIND_HISTORY_TABLE_ENTRY = _UNWIND_HISTORY_TABLE_ENTRY;
+
+@foreign
+typedef PUNWIND_HISTORY_TABLE_ENTRY = _UNWIND_HISTORY_TABLE_ENTRY*;
+
+@foreign
+struct _UNWIND_HISTORY_TABLE {
+    Count: DWORD;
+    LocalHint: BYTE;
+    GlobalHint: BYTE;
+    Search: BYTE;
+    Once: BYTE;
+    LowAddress: DWORD64;
+    HighAddress: DWORD64;
+    Entry: UNWIND_HISTORY_TABLE_ENTRY[12];
+}
+
+@foreign
+typedef UNWIND_HISTORY_TABLE = _UNWIND_HISTORY_TABLE;
+
+@foreign
+typedef PUNWIND_HISTORY_TABLE = _UNWIND_HISTORY_TABLE*;
+
+@foreign
+typedef GET_RUNTIME_FUNCTION_CALLBACK = func(ControlPc: DWORD64, Context: PVOID): PRUNTIME_FUNCTION;
+
+@foreign
+typedef PGET_RUNTIME_FUNCTION_CALLBACK = GET_RUNTIME_FUNCTION_CALLBACK*;
+
+@foreign
+typedef OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = func(Process: HANDLE, TableAddress: PVOID, Entries: PDWORD, Functions: PRUNTIME_FUNCTION*): DWORD;
+
+@foreign
+typedef POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK*;
+
+@foreign
+struct _DISPATCHER_CONTEXT {
+    ControlPc: DWORD64;
+    ImageBase: DWORD64;
+    FunctionEntry: PRUNTIME_FUNCTION;
+    EstablisherFrame: DWORD64;
+    TargetIp: DWORD64;
+    ContextRecord: PCONTEXT;
+    LanguageHandler: PEXCEPTION_ROUTINE;
+    HandlerData: PVOID;
+    HistoryTable: PUNWIND_HISTORY_TABLE;
+    ScopeIndex: DWORD;
+    Fill0: DWORD;
+}
+
+@foreign
+typedef DISPATCHER_CONTEXT = _DISPATCHER_CONTEXT;
+
+@foreign
+typedef PDISPATCHER_CONTEXT = _DISPATCHER_CONTEXT*;
+
+@foreign
+typedef PEXCEPTION_FILTER = func(ExceptionPointers: _EXCEPTION_POINTERS*, EstablisherFrame: PVOID): LONG;
+
+@foreign
+typedef PTERMINATION_HANDLER = func(_abnormal_termination: BOOLEAN, EstablisherFrame: PVOID);
+
+/*
+@PROBLEM Nested struct def at line 4051, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _KNONVOLATILE_CONTEXT_POINTERS {
+    u: (null);
+    u2: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 4051, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_KNONVOLATILE_CONTEXT_POINTERS
+*/
+
+@foreign
+typedef PKNONVOLATILE_CONTEXT_POINTERS = _KNONVOLATILE_CONTEXT_POINTERS*;
+
+@foreign
+struct _SCOPE_TABLE_ARM {
+    Count: DWORD;
+    ScopeRecord: (null)[1];
+}
+
+@foreign
+typedef SCOPE_TABLE_ARM = _SCOPE_TABLE_ARM;
+
+@foreign
+typedef PSCOPE_TABLE_ARM = _SCOPE_TABLE_ARM*;
+
+@foreign
+struct _SCOPE_TABLE_ARM64 {
+    Count: DWORD;
+    ScopeRecord: (null)[1];
+}
+
+@foreign
+typedef SCOPE_TABLE_ARM64 = _SCOPE_TABLE_ARM64;
+
+@foreign
+typedef PSCOPE_TABLE_ARM64 = _SCOPE_TABLE_ARM64*;
+
+@foreign
+struct _KNONVOLATILE_CONTEXT_POINTERS_ARM64 {
+    X19: PDWORD64;
+    X20: PDWORD64;
+    X21: PDWORD64;
+    X22: PDWORD64;
+    X23: PDWORD64;
+    X24: PDWORD64;
+    X25: PDWORD64;
+    X26: PDWORD64;
+    X27: PDWORD64;
+    X28: PDWORD64;
+    Fp: PDWORD64;
+    Lr: PDWORD64;
+    D8: PDWORD64;
+    D9: PDWORD64;
+    D10: PDWORD64;
+    D11: PDWORD64;
+    D12: PDWORD64;
+    D13: PDWORD64;
+    D14: PDWORD64;
+    D15: PDWORD64;
+}
+
+@foreign
+typedef KNONVOLATILE_CONTEXT_POINTERS_ARM64 = _KNONVOLATILE_CONTEXT_POINTERS_ARM64;
+
+@foreign
+typedef PKNONVOLATILE_CONTEXT_POINTERS_ARM64 = _KNONVOLATILE_CONTEXT_POINTERS_ARM64*;
+
+@foreign
+func __int2c();
+
+/*
+@PROBLEM Nested struct def at line 7617, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _LDT_ENTRY {
+    LimitLow: WORD;
+    BaseLow: WORD;
+    HighWord: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 7617, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_LDT_ENTRY
+*/
+
+@foreign
+typedef PLDT_ENTRY = _LDT_ENTRY*;
+
+@foreign
+struct _WOW64_FLOATING_SAVE_AREA {
+    ControlWord: DWORD;
+    StatusWord: DWORD;
+    TagWord: DWORD;
+    ErrorOffset: DWORD;
+    ErrorSelector: DWORD;
+    DataOffset: DWORD;
+    DataSelector: DWORD;
+    RegisterArea: BYTE[80];
+    Cr0NpxState: DWORD;
+}
+
+@foreign
+typedef WOW64_FLOATING_SAVE_AREA = _WOW64_FLOATING_SAVE_AREA;
+
+@foreign
+typedef PWOW64_FLOATING_SAVE_AREA = WOW64_FLOATING_SAVE_AREA*;
+
+@foreign
+struct _WOW64_CONTEXT {
+    ContextFlags: DWORD;
+    Dr0: DWORD;
+    Dr1: DWORD;
+    Dr2: DWORD;
+    Dr3: DWORD;
+    Dr6: DWORD;
+    Dr7: DWORD;
+    FloatSave: WOW64_FLOATING_SAVE_AREA;
+    SegGs: DWORD;
+    SegFs: DWORD;
+    SegEs: DWORD;
+    SegDs: DWORD;
+    Edi: DWORD;
+    Esi: DWORD;
+    Ebx: DWORD;
+    Edx: DWORD;
+    Ecx: DWORD;
+    Eax: DWORD;
+    Ebp: DWORD;
+    Eip: DWORD;
+    SegCs: DWORD;
+    EFlags: DWORD;
+    Esp: DWORD;
+    SegSs: DWORD;
+    ExtendedRegisters: BYTE[512];
+}
+
+@foreign
+typedef WOW64_CONTEXT = _WOW64_CONTEXT;
+
+@foreign
+typedef PWOW64_CONTEXT = WOW64_CONTEXT*;
+
+/*
+@PROBLEM Nested struct def at line 8695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _WOW64_LDT_ENTRY {
+    LimitLow: WORD;
+    BaseLow: WORD;
+    HighWord: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 8695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_WOW64_LDT_ENTRY
+*/
+
+@foreign
+typedef PWOW64_LDT_ENTRY = _WOW64_LDT_ENTRY*;
+
+@foreign
+struct _WOW64_DESCRIPTOR_TABLE_ENTRY {
+    Selector: DWORD;
+    Descriptor: WOW64_LDT_ENTRY;
+}
+
+@foreign
+typedef WOW64_DESCRIPTOR_TABLE_ENTRY = _WOW64_DESCRIPTOR_TABLE_ENTRY;
+
+@foreign
+typedef PWOW64_DESCRIPTOR_TABLE_ENTRY = _WOW64_DESCRIPTOR_TABLE_ENTRY*;
+
+@foreign
+struct _EXCEPTION_RECORD {
+    ExceptionCode: DWORD;
+    ExceptionFlags: DWORD;
+    ExceptionRecord: _EXCEPTION_RECORD*;
+    ExceptionAddress: PVOID;
+    NumberParameters: DWORD;
+    ExceptionInformation: ULONG_PTR[15];
+}
+
+@foreign
+typedef EXCEPTION_RECORD = _EXCEPTION_RECORD;
+
+@foreign
+typedef PEXCEPTION_RECORD = EXCEPTION_RECORD*;
+
+@foreign
+struct _EXCEPTION_RECORD32 {
+    ExceptionCode: DWORD;
+    ExceptionFlags: DWORD;
+    ExceptionRecord: DWORD;
+    ExceptionAddress: DWORD;
+    NumberParameters: DWORD;
+    ExceptionInformation: DWORD[15];
+}
+
+@foreign
+typedef EXCEPTION_RECORD32 = _EXCEPTION_RECORD32;
+
+@foreign
+typedef PEXCEPTION_RECORD32 = _EXCEPTION_RECORD32*;
+
+@foreign
+struct _EXCEPTION_RECORD64 {
+    ExceptionCode: DWORD;
+    ExceptionFlags: DWORD;
+    ExceptionRecord: DWORD64;
+    ExceptionAddress: DWORD64;
+    NumberParameters: DWORD;
+    __unusedAlignment: DWORD;
+    ExceptionInformation: DWORD64[15];
+}
+
+@foreign
+typedef EXCEPTION_RECORD64 = _EXCEPTION_RECORD64;
+
+@foreign
+typedef PEXCEPTION_RECORD64 = _EXCEPTION_RECORD64*;
+
+@foreign
+struct _EXCEPTION_POINTERS {
+    ExceptionRecord: PEXCEPTION_RECORD;
+    ContextRecord: PCONTEXT;
+}
+
+@foreign
+typedef EXCEPTION_POINTERS = _EXCEPTION_POINTERS;
+
+@foreign
+typedef PEXCEPTION_POINTERS = _EXCEPTION_POINTERS*;
+
+@foreign
+typedef PACCESS_TOKEN = PVOID;
+
+@foreign
+typedef PSECURITY_DESCRIPTOR = PVOID;
+
+@foreign
+typedef PSID = PVOID;
+
+@foreign
+typedef PCLAIMS_BLOB = PVOID;
+
+@foreign
+typedef ACCESS_MASK = DWORD;
+
+@foreign
+typedef PACCESS_MASK = ACCESS_MASK*;
+
+@foreign
+struct _GENERIC_MAPPING {
+    GenericRead: ACCESS_MASK;
+    GenericWrite: ACCESS_MASK;
+    GenericExecute: ACCESS_MASK;
+    GenericAll: ACCESS_MASK;
+}
+
+@foreign
+typedef GENERIC_MAPPING = _GENERIC_MAPPING;
+
+@foreign
+typedef PGENERIC_MAPPING = GENERIC_MAPPING*;
+
+@foreign
+struct _LUID_AND_ATTRIBUTES {
+    Luid: LUID;
+    Attributes: DWORD;
+}
+
+@foreign
+typedef LUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES;
+
+@foreign
+typedef PLUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES*;
+
+@foreign
+typedef LUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES[1];
+
+@foreign
+typedef PLUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES_ARRAY*;
+
+@foreign
+struct _SID_IDENTIFIER_AUTHORITY {
+    Value: BYTE[6];
+}
+
+@foreign
+typedef SID_IDENTIFIER_AUTHORITY = _SID_IDENTIFIER_AUTHORITY;
+
+@foreign
+typedef PSID_IDENTIFIER_AUTHORITY = _SID_IDENTIFIER_AUTHORITY*;
+
+@foreign
+struct _SID {
+    Revision: BYTE;
+    SubAuthorityCount: BYTE;
+    IdentifierAuthority: SID_IDENTIFIER_AUTHORITY;
+    SubAuthority: DWORD[1];
+}
+
+@foreign
+typedef SID = _SID;
+
+@foreign
+typedef PISID = _SID*;
+
+@foreign
+union _SE_SID {
+    Sid: SID;
+    Buffer: BYTE[68];
+}
+
+@foreign
+typedef SE_SID = _SE_SID;
+
+@foreign
+typedef PSE_SID = _SE_SID*;
+
+@foreign
+enum _SID_NAME_USE {
+    SidTypeUser = 1,
+    SidTypeGroup,
+    SidTypeDomain,
+    SidTypeAlias,
+    SidTypeWellKnownGroup,
+    SidTypeDeletedAccount,
+    SidTypeInvalid,
+    SidTypeUnknown,
+    SidTypeComputer,
+    SidTypeLabel,
+    SidTypeLogonSession,
+}
+
+@foreign
+typedef SID_NAME_USE = _SID_NAME_USE;
+
+@foreign
+typedef PSID_NAME_USE = _SID_NAME_USE*;
+
+@foreign
+struct _SID_AND_ATTRIBUTES {
+    Sid: PSID;
+    Attributes: DWORD;
+}
+
+@foreign
+typedef SID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES;
+
+@foreign
+typedef PSID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES*;
+
+@foreign
+typedef SID_AND_ATTRIBUTES_ARRAY = SID_AND_ATTRIBUTES[1];
+
+@foreign
+typedef PSID_AND_ATTRIBUTES_ARRAY = SID_AND_ATTRIBUTES_ARRAY*;
+
+@foreign
+typedef SID_HASH_ENTRY = ULONG_PTR;
+
+@foreign
+typedef PSID_HASH_ENTRY = ULONG_PTR*;
+
+@foreign
+struct _SID_AND_ATTRIBUTES_HASH {
+    SidCount: DWORD;
+    SidAttr: PSID_AND_ATTRIBUTES;
+    Hash: SID_HASH_ENTRY[32];
+}
+
+@foreign
+typedef SID_AND_ATTRIBUTES_HASH = _SID_AND_ATTRIBUTES_HASH;
+
+@foreign
+typedef PSID_AND_ATTRIBUTES_HASH = _SID_AND_ATTRIBUTES_HASH*;
+
+@foreign
+enum WELL_KNOWN_SID_TYPE {
+    WinNullSid = 0,
+    WinWorldSid = 1,
+    WinLocalSid = 2,
+    WinCreatorOwnerSid = 3,
+    WinCreatorGroupSid = 4,
+    WinCreatorOwnerServerSid = 5,
+    WinCreatorGroupServerSid = 6,
+    WinNtAuthoritySid = 7,
+    WinDialupSid = 8,
+    WinNetworkSid = 9,
+    WinBatchSid = 10,
+    WinInteractiveSid = 11,
+    WinServiceSid = 12,
+    WinAnonymousSid = 13,
+    WinProxySid = 14,
+    WinEnterpriseControllersSid = 15,
+    WinSelfSid = 16,
+    WinAuthenticatedUserSid = 17,
+    WinRestrictedCodeSid = 18,
+    WinTerminalServerSid = 19,
+    WinRemoteLogonIdSid = 20,
+    WinLogonIdsSid = 21,
+    WinLocalSystemSid = 22,
+    WinLocalServiceSid = 23,
+    WinNetworkServiceSid = 24,
+    WinBuiltinDomainSid = 25,
+    WinBuiltinAdministratorsSid = 26,
+    WinBuiltinUsersSid = 27,
+    WinBuiltinGuestsSid = 28,
+    WinBuiltinPowerUsersSid = 29,
+    WinBuiltinAccountOperatorsSid = 30,
+    WinBuiltinSystemOperatorsSid = 31,
+    WinBuiltinPrintOperatorsSid = 32,
+    WinBuiltinBackupOperatorsSid = 33,
+    WinBuiltinReplicatorSid = 34,
+    WinBuiltinPreWindows2000CompatibleAccessSid = 35,
+    WinBuiltinRemoteDesktopUsersSid = 36,
+    WinBuiltinNetworkConfigurationOperatorsSid = 37,
+    WinAccountAdministratorSid = 38,
+    WinAccountGuestSid = 39,
+    WinAccountKrbtgtSid = 40,
+    WinAccountDomainAdminsSid = 41,
+    WinAccountDomainUsersSid = 42,
+    WinAccountDomainGuestsSid = 43,
+    WinAccountComputersSid = 44,
+    WinAccountControllersSid = 45,
+    WinAccountCertAdminsSid = 46,
+    WinAccountSchemaAdminsSid = 47,
+    WinAccountEnterpriseAdminsSid = 48,
+    WinAccountPolicyAdminsSid = 49,
+    WinAccountRasAndIasServersSid = 50,
+    WinNTLMAuthenticationSid = 51,
+    WinDigestAuthenticationSid = 52,
+    WinSChannelAuthenticationSid = 53,
+    WinThisOrganizationSid = 54,
+    WinOtherOrganizationSid = 55,
+    WinBuiltinIncomingForestTrustBuildersSid = 56,
+    WinBuiltinPerfMonitoringUsersSid = 57,
+    WinBuiltinPerfLoggingUsersSid = 58,
+    WinBuiltinAuthorizationAccessSid = 59,
+    WinBuiltinTerminalServerLicenseServersSid = 60,
+    WinBuiltinDCOMUsersSid = 61,
+    WinBuiltinIUsersSid = 62,
+    WinIUserSid = 63,
+    WinBuiltinCryptoOperatorsSid = 64,
+    WinUntrustedLabelSid = 65,
+    WinLowLabelSid = 66,
+    WinMediumLabelSid = 67,
+    WinHighLabelSid = 68,
+    WinSystemLabelSid = 69,
+    WinWriteRestrictedCodeSid = 70,
+    WinCreatorOwnerRightsSid = 71,
+    WinCacheablePrincipalsGroupSid = 72,
+    WinNonCacheablePrincipalsGroupSid = 73,
+    WinEnterpriseReadonlyControllersSid = 74,
+    WinAccountReadonlyControllersSid = 75,
+    WinBuiltinEventLogReadersGroup = 76,
+    WinNewEnterpriseReadonlyControllersSid = 77,
+    WinBuiltinCertSvcDComAccessGroup = 78,
+    WinMediumPlusLabelSid = 79,
+    WinLocalLogonSid = 80,
+    WinConsoleLogonSid = 81,
+    WinThisOrganizationCertificateSid = 82,
+    WinApplicationPackageAuthoritySid = 83,
+    WinBuiltinAnyPackageSid = 84,
+    WinCapabilityInternetClientSid = 85,
+    WinCapabilityInternetClientServerSid = 86,
+    WinCapabilityPrivateNetworkClientServerSid = 87,
+    WinCapabilityPicturesLibrarySid = 88,
+    WinCapabilityVideosLibrarySid = 89,
+    WinCapabilityMusicLibrarySid = 90,
+    WinCapabilityDocumentsLibrarySid = 91,
+    WinCapabilitySharedUserCertificatesSid = 92,
+    WinCapabilityEnterpriseAuthenticationSid = 93,
+    WinCapabilityRemovableStorageSid = 94,
+    WinBuiltinRDSRemoteAccessServersSid = 95,
+    WinBuiltinRDSEndpointServersSid = 96,
+    WinBuiltinRDSManagementServersSid = 97,
+    WinUserModeDriversSid = 98,
+    WinBuiltinHyperVAdminsSid = 99,
+    WinAccountCloneableControllersSid = 100,
+    WinBuiltinAccessControlAssistanceOperatorsSid = 101,
+    WinBuiltinRemoteManagementUsersSid = 102,
+    WinAuthenticationAuthorityAssertedSid = 103,
+    WinAuthenticationServiceAssertedSid = 104,
+    WinLocalAccountSid = 105,
+    WinLocalAccountAndAdministratorSid = 106,
+    WinAccountProtectedUsersSid = 107,
+    WinCapabilityAppointmentsSid = 108,
+    WinCapabilityContactsSid = 109,
+    WinAccountDefaultSystemManagedSid = 110,
+    WinBuiltinDefaultSystemManagedGroupSid = 111,
+    WinBuiltinStorageReplicaAdminsSid = 112,
+    WinAccountKeyAdminsSid = 113,
+    WinAccountEnterpriseKeyAdminsSid = 114,
+    WinAuthenticationKeyTrustSid = 115,
+    WinAuthenticationKeyPropertyMFASid = 116,
+    WinAuthenticationKeyPropertyAttestationSid = 117,
+    WinAuthenticationFreshKeyAuthSid = 118,
+}
+
+@foreign
+struct _ACL {
+    AclRevision: BYTE;
+    Sbz1: BYTE;
+    AclSize: WORD;
+    AceCount: WORD;
+    Sbz2: WORD;
+}
+
+@foreign
+typedef ACL = _ACL;
+
+@foreign
+typedef PACL = ACL*;
+
+@foreign
+struct _ACE_HEADER {
+    AceType: BYTE;
+    AceFlags: BYTE;
+    AceSize: WORD;
+}
+
+@foreign
+typedef ACE_HEADER = _ACE_HEADER;
+
+@foreign
+typedef PACE_HEADER = ACE_HEADER*;
+
+@foreign
+struct _ACCESS_ALLOWED_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_ALLOWED_ACE = _ACCESS_ALLOWED_ACE;
+
+@foreign
+typedef PACCESS_ALLOWED_ACE = ACCESS_ALLOWED_ACE*;
+
+@foreign
+struct _ACCESS_DENIED_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_DENIED_ACE = _ACCESS_DENIED_ACE;
+
+@foreign
+typedef PACCESS_DENIED_ACE = ACCESS_DENIED_ACE*;
+
+@foreign
+struct _SYSTEM_AUDIT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_AUDIT_ACE = _SYSTEM_AUDIT_ACE;
+
+@foreign
+typedef PSYSTEM_AUDIT_ACE = SYSTEM_AUDIT_ACE*;
+
+@foreign
+struct _SYSTEM_ALARM_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_ALARM_ACE = _SYSTEM_ALARM_ACE;
+
+@foreign
+typedef PSYSTEM_ALARM_ACE = SYSTEM_ALARM_ACE*;
+
+@foreign
+struct _SYSTEM_RESOURCE_ATTRIBUTE_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_RESOURCE_ATTRIBUTE_ACE = _SYSTEM_RESOURCE_ATTRIBUTE_ACE;
+
+@foreign
+typedef PSYSTEM_RESOURCE_ATTRIBUTE_ACE = _SYSTEM_RESOURCE_ATTRIBUTE_ACE*;
+
+@foreign
+struct _SYSTEM_SCOPED_POLICY_ID_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_SCOPED_POLICY_ID_ACE = _SYSTEM_SCOPED_POLICY_ID_ACE;
+
+@foreign
+typedef PSYSTEM_SCOPED_POLICY_ID_ACE = _SYSTEM_SCOPED_POLICY_ID_ACE*;
+
+@foreign
+struct _SYSTEM_MANDATORY_LABEL_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_MANDATORY_LABEL_ACE = _SYSTEM_MANDATORY_LABEL_ACE;
+
+@foreign
+typedef PSYSTEM_MANDATORY_LABEL_ACE = _SYSTEM_MANDATORY_LABEL_ACE*;
+
+@foreign
+struct _SYSTEM_PROCESS_TRUST_LABEL_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_PROCESS_TRUST_LABEL_ACE = _SYSTEM_PROCESS_TRUST_LABEL_ACE;
+
+@foreign
+typedef PSYSTEM_PROCESS_TRUST_LABEL_ACE = _SYSTEM_PROCESS_TRUST_LABEL_ACE*;
+
+@foreign
+struct _SYSTEM_ACCESS_FILTER_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_ACCESS_FILTER_ACE = _SYSTEM_ACCESS_FILTER_ACE;
+
+@foreign
+typedef PSYSTEM_ACCESS_FILTER_ACE = _SYSTEM_ACCESS_FILTER_ACE*;
+
+@foreign
+struct _ACCESS_ALLOWED_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_ALLOWED_OBJECT_ACE = _ACCESS_ALLOWED_OBJECT_ACE;
+
+@foreign
+typedef PACCESS_ALLOWED_OBJECT_ACE = _ACCESS_ALLOWED_OBJECT_ACE*;
+
+@foreign
+struct _ACCESS_DENIED_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_DENIED_OBJECT_ACE = _ACCESS_DENIED_OBJECT_ACE;
+
+@foreign
+typedef PACCESS_DENIED_OBJECT_ACE = _ACCESS_DENIED_OBJECT_ACE*;
+
+@foreign
+struct _SYSTEM_AUDIT_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_AUDIT_OBJECT_ACE = _SYSTEM_AUDIT_OBJECT_ACE;
+
+@foreign
+typedef PSYSTEM_AUDIT_OBJECT_ACE = _SYSTEM_AUDIT_OBJECT_ACE*;
+
+@foreign
+struct _SYSTEM_ALARM_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE;
+
+@foreign
+typedef PSYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE*;
+
+@foreign
+struct _ACCESS_ALLOWED_CALLBACK_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE;
+
+@foreign
+typedef PACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE*;
+
+@foreign
+struct _ACCESS_DENIED_CALLBACK_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE;
+
+@foreign
+typedef PACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE*;
+
+@foreign
+struct _SYSTEM_AUDIT_CALLBACK_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_AUDIT_CALLBACK_ACE = _SYSTEM_AUDIT_CALLBACK_ACE;
+
+@foreign
+typedef PSYSTEM_AUDIT_CALLBACK_ACE = _SYSTEM_AUDIT_CALLBACK_ACE*;
+
+@foreign
+struct _SYSTEM_ALARM_CALLBACK_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE;
+
+@foreign
+typedef PSYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE*;
+
+@foreign
+struct _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE;
+
+@foreign
+typedef PACCESS_ALLOWED_CALLBACK_OBJECT_ACE = _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE*;
+
+@foreign
+struct _ACCESS_DENIED_CALLBACK_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef ACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE;
+
+@foreign
+typedef PACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE*;
+
+@foreign
+struct _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE;
+
+@foreign
+typedef PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE = _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE*;
+
+@foreign
+struct _SYSTEM_ALARM_CALLBACK_OBJECT_ACE {
+    Header: ACE_HEADER;
+    Mask: ACCESS_MASK;
+    Flags: DWORD;
+    ObjectType: GUID;
+    InheritedObjectType: GUID;
+    SidStart: DWORD;
+}
+
+@foreign
+typedef SYSTEM_ALARM_CALLBACK_OBJECT_ACE = _SYSTEM_ALARM_CALLBACK_OBJECT_ACE;
+
+@foreign
+typedef PSYSTEM_ALARM_CALLBACK_OBJECT_ACE = _SYSTEM_ALARM_CALLBACK_OBJECT_ACE*;
+
+@foreign
+enum _ACL_INFORMATION_CLASS {
+    AclRevisionInformation = 1,
+    AclSizeInformation,
+}
+
+@foreign
+typedef ACL_INFORMATION_CLASS = _ACL_INFORMATION_CLASS;
+
+@foreign
+struct _ACL_REVISION_INFORMATION {
+    AclRevision: DWORD;
+}
+
+@foreign
+typedef ACL_REVISION_INFORMATION = _ACL_REVISION_INFORMATION;
+
+@foreign
+typedef PACL_REVISION_INFORMATION = ACL_REVISION_INFORMATION*;
+
+@foreign
+struct _ACL_SIZE_INFORMATION {
+    AceCount: DWORD;
+    AclBytesInUse: DWORD;
+    AclBytesFree: DWORD;
+}
+
+@foreign
+typedef ACL_SIZE_INFORMATION = _ACL_SIZE_INFORMATION;
+
+@foreign
+typedef PACL_SIZE_INFORMATION = ACL_SIZE_INFORMATION*;
+
+@foreign
+typedef SECURITY_DESCRIPTOR_CONTROL = WORD;
+
+@foreign
+typedef PSECURITY_DESCRIPTOR_CONTROL = WORD*;
+
+@foreign
+struct _SECURITY_DESCRIPTOR_RELATIVE {
+    Revision: BYTE;
+    Sbz1: BYTE;
+    Control: SECURITY_DESCRIPTOR_CONTROL;
+    Owner: DWORD;
+    Group: DWORD;
+    Sacl: DWORD;
+    Dacl: DWORD;
+}
+
+@foreign
+typedef SECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE;
+
+@foreign
+typedef PISECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE*;
+
+@foreign
+struct _SECURITY_DESCRIPTOR {
+    Revision: BYTE;
+    Sbz1: BYTE;
+    Control: SECURITY_DESCRIPTOR_CONTROL;
+    Owner: PSID;
+    Group: PSID;
+    Sacl: PACL;
+    Dacl: PACL;
+}
+
+@foreign
+typedef SECURITY_DESCRIPTOR = _SECURITY_DESCRIPTOR;
+
+@foreign
+typedef PISECURITY_DESCRIPTOR = _SECURITY_DESCRIPTOR*;
+
+@foreign
+struct _SECURITY_OBJECT_AI_PARAMS {
+    Size: DWORD;
+    ConstraintMask: DWORD;
+}
+
+@foreign
+typedef SECURITY_OBJECT_AI_PARAMS = _SECURITY_OBJECT_AI_PARAMS;
+
+@foreign
+typedef PSECURITY_OBJECT_AI_PARAMS = _SECURITY_OBJECT_AI_PARAMS*;
+
+@foreign
+struct _OBJECT_TYPE_LIST {
+    Level: WORD;
+    Sbz: WORD;
+    ObjectType: GUID*;
+}
+
+@foreign
+typedef OBJECT_TYPE_LIST = _OBJECT_TYPE_LIST;
+
+@foreign
+typedef POBJECT_TYPE_LIST = _OBJECT_TYPE_LIST*;
+
+@foreign
+enum _AUDIT_EVENT_TYPE {
+    AuditEventObjectAccess,
+    AuditEventDirectoryServiceAccess,
+}
+
+@foreign
+typedef AUDIT_EVENT_TYPE = _AUDIT_EVENT_TYPE;
+
+@foreign
+typedef PAUDIT_EVENT_TYPE = _AUDIT_EVENT_TYPE*;
+
+@foreign
+struct _PRIVILEGE_SET {
+    PrivilegeCount: DWORD;
+    Control: DWORD;
+    Privilege: LUID_AND_ATTRIBUTES[1];
+}
+
+@foreign
+typedef PRIVILEGE_SET = _PRIVILEGE_SET;
+
+@foreign
+typedef PPRIVILEGE_SET = _PRIVILEGE_SET*;
+
+@foreign
+enum _ACCESS_REASON_TYPE {
+    AccessReasonNone = 0,
+    AccessReasonAllowedAce = 65536,
+    AccessReasonDeniedAce = 131072,
+    AccessReasonAllowedParentAce = 196608,
+    AccessReasonDeniedParentAce = 262144,
+    AccessReasonNotGrantedByCape = 327680,
+    AccessReasonNotGrantedByParentCape = 393216,
+    AccessReasonNotGrantedToAppContainer = 458752,
+    AccessReasonMissingPrivilege = 1048576,
+    AccessReasonFromPrivilege = 2097152,
+    AccessReasonIntegrityLevel = 3145728,
+    AccessReasonOwnership = 4194304,
+    AccessReasonNullDacl = 5242880,
+    AccessReasonEmptyDacl = 6291456,
+    AccessReasonNoSD = 7340032,
+    AccessReasonNoGrant = 8388608,
+    AccessReasonTrustLabel = 9437184,
+    AccessReasonFilterAce = 10485760,
+}
+
+@foreign
+typedef ACCESS_REASON_TYPE = _ACCESS_REASON_TYPE;
+
+@foreign
+typedef ACCESS_REASON = DWORD;
+
+@foreign
+struct _ACCESS_REASONS {
+    Data: ACCESS_REASON[32];
+}
+
+@foreign
+typedef ACCESS_REASONS = _ACCESS_REASONS;
+
+@foreign
+typedef PACCESS_REASONS = _ACCESS_REASONS*;
+
+@foreign
+struct _SE_SECURITY_DESCRIPTOR {
+    Size: DWORD;
+    Flags: DWORD;
+    SecurityDescriptor: PSECURITY_DESCRIPTOR;
+}
+
+@foreign
+typedef SE_SECURITY_DESCRIPTOR = _SE_SECURITY_DESCRIPTOR;
+
+@foreign
+typedef PSE_SECURITY_DESCRIPTOR = _SE_SECURITY_DESCRIPTOR*;
+
+@foreign
+struct _SE_ACCESS_REQUEST {
+    Size: DWORD;
+    SeSecurityDescriptor: PSE_SECURITY_DESCRIPTOR;
+    DesiredAccess: ACCESS_MASK;
+    PreviouslyGrantedAccess: ACCESS_MASK;
+    PrincipalSelfSid: PSID;
+    GenericMapping: PGENERIC_MAPPING;
+    ObjectTypeListCount: DWORD;
+    ObjectTypeList: POBJECT_TYPE_LIST;
+}
+
+@foreign
+typedef SE_ACCESS_REQUEST = _SE_ACCESS_REQUEST;
+
+@foreign
+typedef PSE_ACCESS_REQUEST = _SE_ACCESS_REQUEST*;
+
+@foreign
+struct _SE_ACCESS_REPLY {
+    Size: DWORD;
+    ResultListCount: DWORD;
+    GrantedAccess: PACCESS_MASK;
+    AccessStatus: PDWORD;
+    AccessReason: PACCESS_REASONS;
+    Privileges: PPRIVILEGE_SET*;
+}
+
+@foreign
+typedef SE_ACCESS_REPLY = _SE_ACCESS_REPLY;
+
+@foreign
+typedef PSE_ACCESS_REPLY = _SE_ACCESS_REPLY*;
+
+@foreign
+enum _SECURITY_IMPERSONATION_LEVEL {
+    SecurityAnonymous,
+    SecurityIdentification,
+    SecurityImpersonation,
+    SecurityDelegation,
+}
+
+@foreign
+typedef SECURITY_IMPERSONATION_LEVEL = _SECURITY_IMPERSONATION_LEVEL;
+
+@foreign
+typedef PSECURITY_IMPERSONATION_LEVEL = _SECURITY_IMPERSONATION_LEVEL*;
+
+@foreign
+enum _TOKEN_TYPE {
+    TokenPrimary = 1,
+    TokenImpersonation,
+}
+
+@foreign
+typedef TOKEN_TYPE = _TOKEN_TYPE;
+
+@foreign
+typedef PTOKEN_TYPE = TOKEN_TYPE*;
+
+@foreign
+enum _TOKEN_ELEVATION_TYPE {
+    TokenElevationTypeDefault = 1,
+    TokenElevationTypeFull,
+    TokenElevationTypeLimited,
+}
+
+@foreign
+typedef TOKEN_ELEVATION_TYPE = _TOKEN_ELEVATION_TYPE;
+
+@foreign
+typedef PTOKEN_ELEVATION_TYPE = _TOKEN_ELEVATION_TYPE*;
+
+@foreign
+enum _TOKEN_INFORMATION_CLASS {
+    TokenUser = 1,
+    TokenGroups,
+    TokenPrivileges,
+    TokenOwner,
+    TokenPrimaryGroup,
+    TokenDefaultDacl,
+    TokenSource,
+    TokenType,
+    TokenImpersonationLevel,
+    TokenStatistics,
+    TokenRestrictedSids,
+    TokenSessionId,
+    TokenGroupsAndPrivileges,
+    TokenSessionReference,
+    TokenSandBoxInert,
+    TokenAuditPolicy,
+    TokenOrigin,
+    TokenElevationType,
+    TokenLinkedToken,
+    TokenElevation,
+    TokenHasRestrictions,
+    TokenAccessInformation,
+    TokenVirtualizationAllowed,
+    TokenVirtualizationEnabled,
+    TokenIntegrityLevel,
+    TokenUIAccess,
+    TokenMandatoryPolicy,
+    TokenLogonSid,
+    TokenIsAppContainer,
+    TokenCapabilities,
+    TokenAppContainerSid,
+    TokenAppContainerNumber,
+    TokenUserClaimAttributes,
+    TokenDeviceClaimAttributes,
+    TokenRestrictedUserClaimAttributes,
+    TokenRestrictedDeviceClaimAttributes,
+    TokenDeviceGroups,
+    TokenRestrictedDeviceGroups,
+    TokenSecurityAttributes,
+    TokenIsRestricted,
+    TokenProcessTrustLevel,
+    TokenPrivateNameSpace,
+    TokenSingletonAttributes,
+    TokenBnoIsolation,
+    TokenChildProcessFlags,
+    MaxTokenInfoClass,
+}
+
+@foreign
+typedef TOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS;
+
+@foreign
+typedef PTOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS*;
+
+@foreign
+struct _TOKEN_USER {
+    User: SID_AND_ATTRIBUTES;
+}
+
+@foreign
+typedef TOKEN_USER = _TOKEN_USER;
+
+@foreign
+typedef PTOKEN_USER = _TOKEN_USER*;
+
+/*
+@PROBLEM Nested struct def at line 10701, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _SE_TOKEN_USER {
+    u: (null);
+    u2: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 10701, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_SE_TOKEN_USER
+*/
+
+@foreign
+typedef PSE_TOKEN_USER = _SE_TOKEN_USER;
+
+@foreign
+struct _TOKEN_GROUPS {
+    GroupCount: DWORD;
+    Groups: SID_AND_ATTRIBUTES[1];
+}
+
+@foreign
+typedef TOKEN_GROUPS = _TOKEN_GROUPS;
+
+@foreign
+typedef PTOKEN_GROUPS = _TOKEN_GROUPS*;
+
+@foreign
+struct _TOKEN_PRIVILEGES {
+    PrivilegeCount: DWORD;
+    Privileges: LUID_AND_ATTRIBUTES[1];
+}
+
+@foreign
+typedef TOKEN_PRIVILEGES = _TOKEN_PRIVILEGES;
+
+@foreign
+typedef PTOKEN_PRIVILEGES = _TOKEN_PRIVILEGES*;
+
+@foreign
+struct _TOKEN_OWNER {
+    Owner: PSID;
+}
+
+@foreign
+typedef TOKEN_OWNER = _TOKEN_OWNER;
+
+@foreign
+typedef PTOKEN_OWNER = _TOKEN_OWNER*;
+
+@foreign
+struct _TOKEN_PRIMARY_GROUP {
+    PrimaryGroup: PSID;
+}
+
+@foreign
+typedef TOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP;
+
+@foreign
+typedef PTOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP*;
+
+@foreign
+struct _TOKEN_DEFAULT_DACL {
+    DefaultDacl: PACL;
+}
+
+@foreign
+typedef TOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL;
+
+@foreign
+typedef PTOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL*;
+
+@foreign
+struct _TOKEN_USER_CLAIMS {
+    UserClaims: PCLAIMS_BLOB;
+}
+
+@foreign
+typedef TOKEN_USER_CLAIMS = _TOKEN_USER_CLAIMS;
+
+@foreign
+typedef PTOKEN_USER_CLAIMS = _TOKEN_USER_CLAIMS*;
+
+@foreign
+struct _TOKEN_DEVICE_CLAIMS {
+    DeviceClaims: PCLAIMS_BLOB;
+}
+
+@foreign
+typedef TOKEN_DEVICE_CLAIMS = _TOKEN_DEVICE_CLAIMS;
+
+@foreign
+typedef PTOKEN_DEVICE_CLAIMS = _TOKEN_DEVICE_CLAIMS*;
+
+@foreign
+struct _TOKEN_GROUPS_AND_PRIVILEGES {
+    SidCount: DWORD;
+    SidLength: DWORD;
+    Sids: PSID_AND_ATTRIBUTES;
+    RestrictedSidCount: DWORD;
+    RestrictedSidLength: DWORD;
+    RestrictedSids: PSID_AND_ATTRIBUTES;
+    PrivilegeCount: DWORD;
+    PrivilegeLength: DWORD;
+    Privileges: PLUID_AND_ATTRIBUTES;
+    AuthenticationId: LUID;
+}
+
+@foreign
+typedef TOKEN_GROUPS_AND_PRIVILEGES = _TOKEN_GROUPS_AND_PRIVILEGES;
+
+@foreign
+typedef PTOKEN_GROUPS_AND_PRIVILEGES = _TOKEN_GROUPS_AND_PRIVILEGES*;
+
+@foreign
+struct _TOKEN_LINKED_TOKEN {
+    LinkedToken: HANDLE;
+}
+
+@foreign
+typedef TOKEN_LINKED_TOKEN = _TOKEN_LINKED_TOKEN;
+
+@foreign
+typedef PTOKEN_LINKED_TOKEN = _TOKEN_LINKED_TOKEN*;
+
+@foreign
+struct _TOKEN_ELEVATION {
+    TokenIsElevated: DWORD;
+}
+
+@foreign
+typedef TOKEN_ELEVATION = _TOKEN_ELEVATION;
+
+@foreign
+typedef PTOKEN_ELEVATION = _TOKEN_ELEVATION*;
+
+@foreign
+struct _TOKEN_MANDATORY_LABEL {
+    Label: SID_AND_ATTRIBUTES;
+}
+
+@foreign
+typedef TOKEN_MANDATORY_LABEL = _TOKEN_MANDATORY_LABEL;
+
+@foreign
+typedef PTOKEN_MANDATORY_LABEL = _TOKEN_MANDATORY_LABEL*;
+
+@foreign
+struct _TOKEN_MANDATORY_POLICY {
+    Policy: DWORD;
+}
+
+@foreign
+typedef TOKEN_MANDATORY_POLICY = _TOKEN_MANDATORY_POLICY;
+
+@foreign
+typedef PTOKEN_MANDATORY_POLICY = _TOKEN_MANDATORY_POLICY*;
+
+@foreign
+typedef PSECURITY_ATTRIBUTES_OPAQUE = PVOID;
+
+@foreign
+struct _TOKEN_ACCESS_INFORMATION {
+    SidHash: PSID_AND_ATTRIBUTES_HASH;
+    RestrictedSidHash: PSID_AND_ATTRIBUTES_HASH;
+    Privileges: PTOKEN_PRIVILEGES;
+    AuthenticationId: LUID;
+    TokenType: TOKEN_TYPE;
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL;
+    MandatoryPolicy: TOKEN_MANDATORY_POLICY;
+    Flags: DWORD;
+    AppContainerNumber: DWORD;
+    PackageSid: PSID;
+    CapabilitiesHash: PSID_AND_ATTRIBUTES_HASH;
+    TrustLevelSid: PSID;
+    SecurityAttributes: PSECURITY_ATTRIBUTES_OPAQUE;
+}
+
+@foreign
+typedef TOKEN_ACCESS_INFORMATION = _TOKEN_ACCESS_INFORMATION;
+
+@foreign
+typedef PTOKEN_ACCESS_INFORMATION = _TOKEN_ACCESS_INFORMATION*;
+
+@foreign
+struct _TOKEN_AUDIT_POLICY {
+    PerUserPolicy: BYTE[30];
+}
+
+@foreign
+typedef TOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY;
+
+@foreign
+typedef PTOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY*;
+
+@foreign
+struct _TOKEN_SOURCE {
+    SourceName: CHAR[8];
+    SourceIdentifier: LUID;
+}
+
+@foreign
+typedef TOKEN_SOURCE = _TOKEN_SOURCE;
+
+@foreign
+typedef PTOKEN_SOURCE = _TOKEN_SOURCE*;
+
+@foreign
+struct _TOKEN_STATISTICS {
+    TokenId: LUID;
+    AuthenticationId: LUID;
+    ExpirationTime: LARGE_INTEGER;
+    TokenType: TOKEN_TYPE;
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL;
+    DynamicCharged: DWORD;
+    DynamicAvailable: DWORD;
+    GroupCount: DWORD;
+    PrivilegeCount: DWORD;
+    ModifiedId: LUID;
+}
+
+@foreign
+typedef TOKEN_STATISTICS = _TOKEN_STATISTICS;
+
+@foreign
+typedef PTOKEN_STATISTICS = _TOKEN_STATISTICS*;
+
+@foreign
+struct _TOKEN_CONTROL {
+    TokenId: LUID;
+    AuthenticationId: LUID;
+    ModifiedId: LUID;
+    TokenSource: TOKEN_SOURCE;
+}
+
+@foreign
+typedef TOKEN_CONTROL = _TOKEN_CONTROL;
+
+@foreign
+typedef PTOKEN_CONTROL = _TOKEN_CONTROL*;
+
+@foreign
+struct _TOKEN_ORIGIN {
+    OriginatingLogonSession: LUID;
+}
+
+@foreign
+typedef TOKEN_ORIGIN = _TOKEN_ORIGIN;
+
+@foreign
+typedef PTOKEN_ORIGIN = _TOKEN_ORIGIN*;
+
+@foreign
+enum _MANDATORY_LEVEL {
+    MandatoryLevelUntrusted = 0,
+    MandatoryLevelLow,
+    MandatoryLevelMedium,
+    MandatoryLevelHigh,
+    MandatoryLevelSystem,
+    MandatoryLevelSecureProcess,
+    MandatoryLevelCount,
+}
+
+@foreign
+typedef MANDATORY_LEVEL = _MANDATORY_LEVEL;
+
+@foreign
+typedef PMANDATORY_LEVEL = _MANDATORY_LEVEL*;
+
+@foreign
+struct _TOKEN_APPCONTAINER_INFORMATION {
+    TokenAppContainer: PSID;
+}
+
+@foreign
+typedef TOKEN_APPCONTAINER_INFORMATION = _TOKEN_APPCONTAINER_INFORMATION;
+
+@foreign
+typedef PTOKEN_APPCONTAINER_INFORMATION = _TOKEN_APPCONTAINER_INFORMATION*;
+
+@foreign
+struct _TOKEN_SID_INFORMATION {
+    Sid: PSID;
+}
+
+@foreign
+typedef TOKEN_SID_INFORMATION = _TOKEN_SID_INFORMATION;
+
+@foreign
+typedef PTOKEN_SID_INFORMATION = _TOKEN_SID_INFORMATION*;
+
+@foreign
+struct _TOKEN_BNO_ISOLATION_INFORMATION {
+    IsolationPrefix: PWSTR;
+    IsolationEnabled: BOOLEAN;
+}
+
+@foreign
+typedef TOKEN_BNO_ISOLATION_INFORMATION = _TOKEN_BNO_ISOLATION_INFORMATION;
+
+@foreign
+typedef PTOKEN_BNO_ISOLATION_INFORMATION = _TOKEN_BNO_ISOLATION_INFORMATION*;
+
+@foreign
+struct _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE {
+    Version: DWORD64;
+    Name: PWSTR;
+}
+
+@foreign
+typedef CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE;
+
+@foreign
+typedef PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE*;
+
+@foreign
+struct _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE {
+    pValue: PVOID;
+    ValueLength: DWORD;
+}
+
+@foreign
+typedef CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE;
+
+@foreign
+typedef PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE*;
+
+/*
+@PROBLEM Nested struct def at line 11002, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _CLAIM_SECURITY_ATTRIBUTE_V1 {
+    Name: PWSTR;
+    ValueType: WORD;
+    Reserved: WORD;
+    Flags: DWORD;
+    ValueCount: DWORD;
+    Values: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11002, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_CLAIM_SECURITY_ATTRIBUTE_V1
+*/
+
+@foreign
+typedef PCLAIM_SECURITY_ATTRIBUTE_V1 = _CLAIM_SECURITY_ATTRIBUTE_V1*;
+
+/*
+@PROBLEM Nested struct def at line 11054, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 {
+    Name: DWORD;
+    ValueType: WORD;
+    Reserved: WORD;
+    Flags: DWORD;
+    ValueCount: DWORD;
+    Values: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11054, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1
+*/
+
+@foreign
+typedef PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1*;
+
+/*
+@PROBLEM Nested struct def at line 11121, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
+    Version: WORD;
+    Reserved: WORD;
+    AttributeCount: DWORD;
+    Attribute: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11121, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_CLAIM_SECURITY_ATTRIBUTES_INFORMATION
+*/
+
+@foreign
+typedef PCLAIM_SECURITY_ATTRIBUTES_INFORMATION = _CLAIM_SECURITY_ATTRIBUTES_INFORMATION*;
+
+@foreign
+typedef SECURITY_CONTEXT_TRACKING_MODE = BOOLEAN;
+
+@foreign
+typedef PSECURITY_CONTEXT_TRACKING_MODE = BOOLEAN*;
+
+@foreign
+struct _SECURITY_QUALITY_OF_SERVICE {
+    Length: DWORD;
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL;
+    ContextTrackingMode: SECURITY_CONTEXT_TRACKING_MODE;
+    EffectiveOnly: BOOLEAN;
+}
+
+@foreign
+typedef SECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE;
+
+@foreign
+typedef PSECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE*;
+
+@foreign
+struct _SE_IMPERSONATION_STATE {
+    Token: PACCESS_TOKEN;
+    CopyOnOpen: BOOLEAN;
+    EffectiveOnly: BOOLEAN;
+    Level: SECURITY_IMPERSONATION_LEVEL;
+}
+
+@foreign
+typedef SE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE;
+
+@foreign
+typedef PSE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE*;
+
+@foreign
+typedef SECURITY_INFORMATION = DWORD;
+
+@foreign
+typedef PSECURITY_INFORMATION = DWORD*;
+
+@foreign
+typedef SE_SIGNING_LEVEL = BYTE;
+
+@foreign
+typedef PSE_SIGNING_LEVEL = BYTE*;
+
+@foreign
+enum _SE_IMAGE_SIGNATURE_TYPE {
+    SeImageSignatureNone = 0,
+    SeImageSignatureEmbedded,
+    SeImageSignatureCache,
+    SeImageSignatureCatalogCached,
+    SeImageSignatureCatalogNotCached,
+    SeImageSignatureCatalogHint,
+    SeImageSignaturePackageCatalog,
+}
+
+@foreign
+typedef SE_IMAGE_SIGNATURE_TYPE = _SE_IMAGE_SIGNATURE_TYPE;
+
+@foreign
+typedef PSE_IMAGE_SIGNATURE_TYPE = _SE_IMAGE_SIGNATURE_TYPE*;
+
+@foreign
+enum _SE_LEARNING_MODE_DATA_TYPE {
+    SeLearningModeInvalidType = 0,
+    SeLearningModeSettings,
+    SeLearningModeMax,
+}
+
+@foreign
+typedef SE_LEARNING_MODE_DATA_TYPE = _SE_LEARNING_MODE_DATA_TYPE;
+
+@foreign
+struct _SECURITY_CAPABILITIES {
+    AppContainerSid: PSID;
+    Capabilities: PSID_AND_ATTRIBUTES;
+    CapabilityCount: DWORD;
+    Reserved: DWORD;
+}
+
+@foreign
+typedef SECURITY_CAPABILITIES = _SECURITY_CAPABILITIES;
+
+@foreign
+typedef PSECURITY_CAPABILITIES = _SECURITY_CAPABILITIES*;
+
+@foreign
+typedef LPSECURITY_CAPABILITIES = _SECURITY_CAPABILITIES*;
+
+@foreign
+struct _JOB_SET_ARRAY {
+    JobHandle: HANDLE;
+    MemberLevel: DWORD;
+    Flags: DWORD;
+}
+
+@foreign
+typedef JOB_SET_ARRAY = _JOB_SET_ARRAY;
+
+@foreign
+typedef PJOB_SET_ARRAY = _JOB_SET_ARRAY*;
+
+@foreign
+struct _EXCEPTION_REGISTRATION_RECORD {
+    Next: _EXCEPTION_REGISTRATION_RECORD*;
+    Handler: PEXCEPTION_ROUTINE;
+}
+
+@foreign
+typedef EXCEPTION_REGISTRATION_RECORD = _EXCEPTION_REGISTRATION_RECORD;
+
+@foreign
+typedef PEXCEPTION_REGISTRATION_RECORD = EXCEPTION_REGISTRATION_RECORD*;
+
+/*
+@PROBLEM Nested struct def at line 11334, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _NT_TIB {
+    ExceptionList: _EXCEPTION_REGISTRATION_RECORD*;
+    StackBase: PVOID;
+    StackLimit: PVOID;
+    SubSystemTib: PVOID;
+    (null): (null);
+    ArbitraryUserPointer: PVOID;
+    Self: _NT_TIB*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11334, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_NT_TIB
+*/
+
+@foreign
+typedef PNT_TIB = NT_TIB*;
+
+/*
+@PROBLEM Nested struct def at line 11355, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _NT_TIB32 {
+    ExceptionList: DWORD;
+    StackBase: DWORD;
+    StackLimit: DWORD;
+    SubSystemTib: DWORD;
+    (null): (null);
+    ArbitraryUserPointer: DWORD;
+    Self: DWORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11355, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_NT_TIB32
+*/
+
+@foreign
+typedef PNT_TIB32 = _NT_TIB32*;
+
+/*
+@PROBLEM Nested struct def at line 11374, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _NT_TIB64 {
+    ExceptionList: DWORD64;
+    StackBase: DWORD64;
+    StackLimit: DWORD64;
+    SubSystemTib: DWORD64;
+    (null): (null);
+    ArbitraryUserPointer: DWORD64;
+    Self: DWORD64;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11374, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_NT_TIB64
+*/
+
+@foreign
+typedef PNT_TIB64 = _NT_TIB64*;
+
+@foreign
+struct _UMS_CREATE_THREAD_ATTRIBUTES {
+    UmsVersion: DWORD;
+    UmsContext: PVOID;
+    UmsCompletionList: PVOID;
+}
+
+@foreign
+typedef UMS_CREATE_THREAD_ATTRIBUTES = _UMS_CREATE_THREAD_ATTRIBUTES;
+
+@foreign
+typedef PUMS_CREATE_THREAD_ATTRIBUTES = _UMS_CREATE_THREAD_ATTRIBUTES*;
+
+@foreign
+struct _WOW64_ARCHITECTURE_INFORMATION {
+    Machine: DWORD;
+    KernelMode: DWORD;
+    UserMode: DWORD;
+    Native: DWORD;
+    Process: DWORD;
+    ReservedZero0: DWORD;
+}
+
+@foreign
+typedef WOW64_ARCHITECTURE_INFORMATION = _WOW64_ARCHITECTURE_INFORMATION;
+
+@foreign
+struct _QUOTA_LIMITS {
+    PagedPoolLimit: SIZE_T;
+    NonPagedPoolLimit: SIZE_T;
+    MinimumWorkingSetSize: SIZE_T;
+    MaximumWorkingSetSize: SIZE_T;
+    PagefileLimit: SIZE_T;
+    TimeLimit: LARGE_INTEGER;
+}
+
+@foreign
+typedef QUOTA_LIMITS = _QUOTA_LIMITS;
+
+@foreign
+typedef PQUOTA_LIMITS = _QUOTA_LIMITS*;
+
+/*
+@PROBLEM Nested struct def at line 11446, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+union _RATE_QUOTA_LIMIT {
+    RateData: DWORD;
+    s: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11446, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_RATE_QUOTA_LIMIT
+*/
+
+@foreign
+typedef PRATE_QUOTA_LIMIT = _RATE_QUOTA_LIMIT*;
+
+@foreign
+struct _QUOTA_LIMITS_EX {
+    PagedPoolLimit: SIZE_T;
+    NonPagedPoolLimit: SIZE_T;
+    MinimumWorkingSetSize: SIZE_T;
+    MaximumWorkingSetSize: SIZE_T;
+    PagefileLimit: SIZE_T;
+    TimeLimit: LARGE_INTEGER;
+    WorkingSetLimit: SIZE_T;
+    Reserved2: SIZE_T;
+    Reserved3: SIZE_T;
+    Reserved4: SIZE_T;
+    Flags: DWORD;
+    CpuRateLimit: RATE_QUOTA_LIMIT;
+}
+
+@foreign
+typedef QUOTA_LIMITS_EX = _QUOTA_LIMITS_EX;
+
+@foreign
+typedef PQUOTA_LIMITS_EX = _QUOTA_LIMITS_EX*;
+
+@foreign
+struct _IO_COUNTERS {
+    ReadOperationCount: ULONGLONG;
+    WriteOperationCount: ULONGLONG;
+    OtherOperationCount: ULONGLONG;
+    ReadTransferCount: ULONGLONG;
+    WriteTransferCount: ULONGLONG;
+    OtherTransferCount: ULONGLONG;
+}
+
+@foreign
+typedef IO_COUNTERS = _IO_COUNTERS;
+
+@foreign
+typedef PIO_COUNTERS = IO_COUNTERS*;
+
+@foreign
+enum _HARDWARE_COUNTER_TYPE {
+    PMCCounter,
+    MaxHardwareCounterType,
+}
+
+@foreign
+typedef HARDWARE_COUNTER_TYPE = _HARDWARE_COUNTER_TYPE;
+
+@foreign
+typedef PHARDWARE_COUNTER_TYPE = _HARDWARE_COUNTER_TYPE*;
+
+@foreign
+enum _PROCESS_MITIGATION_POLICY {
+    ProcessDEPPolicy,
+    ProcessASLRPolicy,
+    ProcessDynamicCodePolicy,
+    ProcessStrictHandleCheckPolicy,
+    ProcessSystemCallDisablePolicy,
+    ProcessMitigationOptionsMask,
+    ProcessExtensionPointDisablePolicy,
+    ProcessControlFlowGuardPolicy,
+    ProcessSignaturePolicy,
+    ProcessFontDisablePolicy,
+    ProcessImageLoadPolicy,
+    ProcessSystemCallFilterPolicy,
+    ProcessPayloadRestrictionPolicy,
+    ProcessChildProcessPolicy,
+    MaxProcessMitigationPolicy,
+}
+
+@foreign
+typedef PROCESS_MITIGATION_POLICY = _PROCESS_MITIGATION_POLICY;
+
+@foreign
+typedef PPROCESS_MITIGATION_POLICY = _PROCESS_MITIGATION_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11509, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_ASLR_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11509, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_ASLR_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_ASLR_POLICY = _PROCESS_MITIGATION_ASLR_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11522, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_DEP_POLICY {
+    u: (null);
+    Permanent: BOOLEAN;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11522, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_DEP_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_DEP_POLICY = _PROCESS_MITIGATION_DEP_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11534, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11534, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11545, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11545, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11556, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11556, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11566, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11566, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_DYNAMIC_CODE_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY = _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11579, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11579, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11591, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11591, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11605, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_FONT_DISABLE_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11605, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_FONT_DISABLE_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_FONT_DISABLE_POLICY = _PROCESS_MITIGATION_FONT_DISABLE_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11616, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_IMAGE_LOAD_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11616, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_IMAGE_LOAD_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_IMAGE_LOAD_POLICY = _PROCESS_MITIGATION_IMAGE_LOAD_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11630, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11630, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11640, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11640, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 11667, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _PROCESS_MITIGATION_CHILD_PROCESS_POLICY {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11667, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_PROCESS_MITIGATION_CHILD_PROCESS_POLICY
+*/
+
+@foreign
+typedef PPROCESS_MITIGATION_CHILD_PROCESS_POLICY = _PROCESS_MITIGATION_CHILD_PROCESS_POLICY*;
+
+@foreign
+struct _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION {
+    TotalUserTime: LARGE_INTEGER;
+    TotalKernelTime: LARGE_INTEGER;
+    ThisPeriodTotalUserTime: LARGE_INTEGER;
+    ThisPeriodTotalKernelTime: LARGE_INTEGER;
+    TotalPageFaultCount: DWORD;
+    TotalProcesses: DWORD;
+    ActiveProcesses: DWORD;
+    TotalTerminatedProcesses: DWORD;
+}
+
+@foreign
+typedef JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION*;
+
+@foreign
+struct _JOBOBJECT_BASIC_LIMIT_INFORMATION {
+    PerProcessUserTimeLimit: LARGE_INTEGER;
+    PerJobUserTimeLimit: LARGE_INTEGER;
+    LimitFlags: DWORD;
+    MinimumWorkingSetSize: SIZE_T;
+    MaximumWorkingSetSize: SIZE_T;
+    ActiveProcessLimit: DWORD;
+    Affinity: ULONG_PTR;
+    PriorityClass: DWORD;
+    SchedulingClass: DWORD;
+}
+
+@foreign
+typedef JOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION*;
+
+@foreign
+struct _JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
+    BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION;
+    IoInfo: IO_COUNTERS;
+    ProcessMemoryLimit: SIZE_T;
+    JobMemoryLimit: SIZE_T;
+    PeakProcessMemoryUsed: SIZE_T;
+    PeakJobMemoryUsed: SIZE_T;
+}
+
+@foreign
+typedef JOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION*;
+
+@foreign
+struct _JOBOBJECT_BASIC_PROCESS_ID_LIST {
+    NumberOfAssignedProcesses: DWORD;
+    NumberOfProcessIdsInList: DWORD;
+    ProcessIdList: ULONG_PTR[1];
+}
+
+@foreign
+typedef JOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST;
+
+@foreign
+typedef PJOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST*;
+
+@foreign
+struct _JOBOBJECT_BASIC_UI_RESTRICTIONS {
+    UIRestrictionsClass: DWORD;
+}
+
+@foreign
+typedef JOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS;
+
+@foreign
+typedef PJOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS*;
+
+@foreign
+struct _JOBOBJECT_SECURITY_LIMIT_INFORMATION {
+    SecurityLimitFlags: DWORD;
+    JobToken: HANDLE;
+    SidsToDisable: PTOKEN_GROUPS;
+    PrivilegesToDelete: PTOKEN_PRIVILEGES;
+    RestrictedSids: PTOKEN_GROUPS;
+}
+
+@foreign
+typedef JOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION*;
+
+@foreign
+struct _JOBOBJECT_END_OF_JOB_TIME_INFORMATION {
+    EndOfJobTimeAction: DWORD;
+}
+
+@foreign
+typedef JOBOBJECT_END_OF_JOB_TIME_INFORMATION = _JOBOBJECT_END_OF_JOB_TIME_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = _JOBOBJECT_END_OF_JOB_TIME_INFORMATION*;
+
+@foreign
+struct _JOBOBJECT_ASSOCIATE_COMPLETION_PORT {
+    CompletionKey: PVOID;
+    CompletionPort: HANDLE;
+}
+
+@foreign
+typedef JOBOBJECT_ASSOCIATE_COMPLETION_PORT = _JOBOBJECT_ASSOCIATE_COMPLETION_PORT;
+
+@foreign
+typedef PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = _JOBOBJECT_ASSOCIATE_COMPLETION_PORT*;
+
+@foreign
+struct _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION {
+    BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION;
+    IoInfo: IO_COUNTERS;
+}
+
+@foreign
+typedef JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION*;
+
+@foreign
+struct _JOBOBJECT_JOBSET_INFORMATION {
+    MemberLevel: DWORD;
+}
+
+@foreign
+typedef JOBOBJECT_JOBSET_INFORMATION = _JOBOBJECT_JOBSET_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_JOBSET_INFORMATION = _JOBOBJECT_JOBSET_INFORMATION*;
+
+@foreign
+enum _JOBOBJECT_RATE_CONTROL_TOLERANCE {
+    ToleranceLow = 1,
+    ToleranceMedium,
+    ToleranceHigh,
+}
+
+@foreign
+typedef JOBOBJECT_RATE_CONTROL_TOLERANCE = _JOBOBJECT_RATE_CONTROL_TOLERANCE;
+
+@foreign
+typedef PJOBOBJECT_RATE_CONTROL_TOLERANCE = _JOBOBJECT_RATE_CONTROL_TOLERANCE*;
+
+@foreign
+enum _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL {
+    ToleranceIntervalShort = 1,
+    ToleranceIntervalMedium,
+    ToleranceIntervalLong,
+}
+
+@foreign
+typedef JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL;
+
+@foreign
+typedef PJOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL*;
+
+@foreign
+struct _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION {
+    IoReadBytesLimit: DWORD64;
+    IoWriteBytesLimit: DWORD64;
+    PerJobUserTimeLimit: LARGE_INTEGER;
+    JobMemoryLimit: DWORD64;
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    RateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL;
+    LimitFlags: DWORD;
+}
+
+@foreign
+typedef JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION*;
+
+/*
+@PROBLEM Nested struct def at line 11776, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 {
+    IoReadBytesLimit: DWORD64;
+    IoWriteBytesLimit: DWORD64;
+    PerJobUserTimeLimit: LARGE_INTEGER;
+    u: (null);
+    u2: (null);
+    u3: (null);
+    LimitFlags: DWORD;
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    JobLowMemoryLimit: DWORD64;
+    IoRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL;
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    NetRateControlToleranceInterval: JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL;
+}
+*/
+
+@foreign
+struct _JOBOBJECT_LIMIT_VIOLATION_INFORMATION {
+    LimitFlags: DWORD;
+    ViolationLimitFlags: DWORD;
+    IoReadBytes: DWORD64;
+    IoReadBytesLimit: DWORD64;
+    IoWriteBytes: DWORD64;
+    IoWriteBytesLimit: DWORD64;
+    PerJobUserTime: LARGE_INTEGER;
+    PerJobUserTimeLimit: LARGE_INTEGER;
+    JobMemory: DWORD64;
+    JobMemoryLimit: DWORD64;
+    RateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    RateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+}
+
+@foreign
+typedef JOBOBJECT_LIMIT_VIOLATION_INFORMATION = _JOBOBJECT_LIMIT_VIOLATION_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_LIMIT_VIOLATION_INFORMATION = _JOBOBJECT_LIMIT_VIOLATION_INFORMATION*;
+
+/*
+@PROBLEM Nested struct def at line 11820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 {
+    LimitFlags: DWORD;
+    ViolationLimitFlags: DWORD;
+    IoReadBytes: DWORD64;
+    IoReadBytesLimit: DWORD64;
+    IoWriteBytes: DWORD64;
+    IoWriteBytesLimit: DWORD64;
+    PerJobUserTime: LARGE_INTEGER;
+    PerJobUserTimeLimit: LARGE_INTEGER;
+    JobMemory: DWORD64;
+    u: (null);
+    u2: (null);
+    u3: (null);
+    JobLowMemoryLimit: DWORD64;
+    IoRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    IoRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    NetRateControlTolerance: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+    NetRateControlToleranceLimit: JOBOBJECT_RATE_CONTROL_TOLERANCE;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11853, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION {
+    ControlFlags: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11853, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_JOBOBJECT_CPU_RATE_CONTROL_INFORMATION
+*/
+
+@foreign
+typedef PJOBOBJECT_CPU_RATE_CONTROL_INFORMATION = _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION*;
+
+@foreign
+enum JOB_OBJECT_NET_RATE_CONTROL_FLAGS {
+    JOB_OBJECT_NET_RATE_CONTROL_ENABLE = 1,
+    JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = 2,
+    JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = 4,
+    JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = 7,
+}
+
+@foreign
+typedef __C_ASSERT__ = char[1];
+
+@foreign
+struct JOBOBJECT_NET_RATE_CONTROL_INFORMATION {
+    MaxBandwidth: DWORD64;
+    ControlFlags: JOB_OBJECT_NET_RATE_CONTROL_FLAGS;
+    DscpTag: BYTE;
+}
+
+@foreign
+enum JOB_OBJECT_IO_RATE_CONTROL_FLAGS {
+    JOB_OBJECT_IO_RATE_CONTROL_ENABLE = 1,
+    JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME = 2,
+    JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS = 3,
+}
+
+@foreign
+struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE {
+    MaxIops: LONG64;
+    MaxBandwidth: LONG64;
+    ReservationIops: LONG64;
+    VolumeName: PWSTR;
+    BaseIoSize: DWORD;
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
+    VolumeNameLength: WORD;
+}
+
+@foreign
+typedef JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V1 = JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE;
+
+@foreign
+struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V2 {
+    MaxIops: LONG64;
+    MaxBandwidth: LONG64;
+    ReservationIops: LONG64;
+    VolumeName: PWSTR;
+    BaseIoSize: DWORD;
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
+    VolumeNameLength: WORD;
+    CriticalReservationIops: LONG64;
+    ReservationBandwidth: LONG64;
+    CriticalReservationBandwidth: LONG64;
+    MaxTimePercent: LONG64;
+    ReservationTimePercent: LONG64;
+    CriticalReservationTimePercent: LONG64;
+}
+
+@foreign
+struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 {
+    MaxIops: LONG64;
+    MaxBandwidth: LONG64;
+    ReservationIops: LONG64;
+    VolumeName: PWSTR;
+    BaseIoSize: DWORD;
+    ControlFlags: JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
+    VolumeNameLength: WORD;
+    CriticalReservationIops: LONG64;
+    ReservationBandwidth: LONG64;
+    CriticalReservationBandwidth: LONG64;
+    MaxTimePercent: LONG64;
+    ReservationTimePercent: LONG64;
+    CriticalReservationTimePercent: LONG64;
+    SoftMaxIops: LONG64;
+    SoftMaxBandwidth: LONG64;
+    SoftMaxTimePercent: LONG64;
+    LimitExcessNotifyIops: LONG64;
+    LimitExcessNotifyBandwidth: LONG64;
+    LimitExcessNotifyTimePercent: LONG64;
+}
+
+@foreign
+enum JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS {
+    JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE = 1,
+    JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE = 2,
+    JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS = 3,
+}
+
+@foreign
+struct _JOBOBJECT_IO_ATTRIBUTION_STATS {
+    IoCount: ULONG_PTR;
+    TotalNonOverlappedQueueTime: ULONGLONG;
+    TotalNonOverlappedServiceTime: ULONGLONG;
+    TotalSize: ULONGLONG;
+}
+
+@foreign
+typedef JOBOBJECT_IO_ATTRIBUTION_STATS = _JOBOBJECT_IO_ATTRIBUTION_STATS;
+
+@foreign
+typedef PJOBOBJECT_IO_ATTRIBUTION_STATS = _JOBOBJECT_IO_ATTRIBUTION_STATS*;
+
+@foreign
+struct _JOBOBJECT_IO_ATTRIBUTION_INFORMATION {
+    ControlFlags: DWORD;
+    ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS;
+    WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS;
+}
+
+@foreign
+typedef JOBOBJECT_IO_ATTRIBUTION_INFORMATION = _JOBOBJECT_IO_ATTRIBUTION_INFORMATION;
+
+@foreign
+typedef PJOBOBJECT_IO_ATTRIBUTION_INFORMATION = _JOBOBJECT_IO_ATTRIBUTION_INFORMATION*;
+
+@foreign
+enum _JOBOBJECTINFOCLASS {
+    JobObjectBasicAccountingInformation = 1,
+    JobObjectBasicLimitInformation,
+    JobObjectBasicProcessIdList,
+    JobObjectBasicUIRestrictions,
+    JobObjectSecurityLimitInformation,
+    JobObjectEndOfJobTimeInformation,
+    JobObjectAssociateCompletionPortInformation,
+    JobObjectBasicAndIoAccountingInformation,
+    JobObjectExtendedLimitInformation,
+    JobObjectJobSetInformation,
+    JobObjectGroupInformation,
+    JobObjectNotificationLimitInformation,
+    JobObjectLimitViolationInformation,
+    JobObjectGroupInformationEx,
+    JobObjectCpuRateControlInformation,
+    JobObjectCompletionFilter,
+    JobObjectCompletionCounter,
+    JobObjectReserved1Information = 18,
+    JobObjectReserved2Information,
+    JobObjectReserved3Information,
+    JobObjectReserved4Information,
+    JobObjectReserved5Information,
+    JobObjectReserved6Information,
+    JobObjectReserved7Information,
+    JobObjectReserved8Information,
+    JobObjectReserved9Information,
+    JobObjectReserved10Information,
+    JobObjectReserved11Information,
+    JobObjectReserved12Information,
+    JobObjectReserved13Information,
+    JobObjectReserved14Information = 31,
+    JobObjectNetRateControlInformation,
+    JobObjectNotificationLimitInformation2,
+    JobObjectLimitViolationInformation2,
+    JobObjectCreateSilo,
+    JobObjectSiloBasicInformation,
+    JobObjectReserved15Information = 37,
+    JobObjectReserved16Information = 38,
+    JobObjectReserved17Information = 39,
+    JobObjectReserved18Information = 40,
+    JobObjectReserved19Information = 41,
+    JobObjectReserved20Information = 42,
+    JobObjectReserved21Information = 43,
+    JobObjectReserved22Information = 44,
+    JobObjectReserved23Information = 45,
+    JobObjectReserved24Information = 46,
+    JobObjectReserved25Information = 47,
+    MaxJobObjectInfoClass,
+}
+
+@foreign
+typedef JOBOBJECTINFOCLASS = _JOBOBJECTINFOCLASS;
+
+@foreign
+struct _SILOOBJECT_BASIC_INFORMATION {
+    SiloId: DWORD;
+    SiloParentId: DWORD;
+    NumberOfProcesses: DWORD;
+    IsInServerSilo: BOOLEAN;
+    Reserved: BYTE[3];
+}
+
+@foreign
+typedef SILOOBJECT_BASIC_INFORMATION = _SILOOBJECT_BASIC_INFORMATION;
+
+@foreign
+typedef PSILOOBJECT_BASIC_INFORMATION = _SILOOBJECT_BASIC_INFORMATION*;
+
+@foreign
+enum _SERVERSILO_STATE {
+    SERVERSILO_INITING = 0,
+    SERVERSILO_STARTED,
+    SERVERSILO_SHUTTING_DOWN,
+    SERVERSILO_TERMINATING,
+    SERVERSILO_TERMINATED,
+}
+
+@foreign
+typedef SERVERSILO_STATE = _SERVERSILO_STATE;
+
+@foreign
+typedef PSERVERSILO_STATE = _SERVERSILO_STATE*;
+
+@foreign
+struct _SERVERSILO_BASIC_INFORMATION {
+    ServiceSessionId: DWORD;
+    State: SERVERSILO_STATE;
+    ExitStatus: DWORD;
+}
+
+@foreign
+typedef SERVERSILO_BASIC_INFORMATION = _SERVERSILO_BASIC_INFORMATION;
+
+@foreign
+typedef PSERVERSILO_BASIC_INFORMATION = _SERVERSILO_BASIC_INFORMATION*;
+
+@foreign
+enum _FIRMWARE_TYPE {
+    FirmwareTypeUnknown,
+    FirmwareTypeBios,
+    FirmwareTypeUefi,
+    FirmwareTypeMax,
+}
+
+@foreign
+typedef FIRMWARE_TYPE = _FIRMWARE_TYPE;
+
+@foreign
+typedef PFIRMWARE_TYPE = _FIRMWARE_TYPE*;
+
+@foreign
+enum _LOGICAL_PROCESSOR_RELATIONSHIP {
+    RelationProcessorCore,
+    RelationNumaNode,
+    RelationCache,
+    RelationProcessorPackage,
+    RelationGroup,
+    RelationAll = 65535,
+}
+
+@foreign
+typedef LOGICAL_PROCESSOR_RELATIONSHIP = _LOGICAL_PROCESSOR_RELATIONSHIP;
+
+@foreign
+enum _PROCESSOR_CACHE_TYPE {
+    CacheUnified,
+    CacheInstruction,
+    CacheData,
+    CacheTrace,
+}
+
+@foreign
+typedef PROCESSOR_CACHE_TYPE = _PROCESSOR_CACHE_TYPE;
+
+@foreign
+struct _CACHE_DESCRIPTOR {
+    Level: BYTE;
+    Associativity: BYTE;
+    LineSize: WORD;
+    Size: DWORD;
+    Type: PROCESSOR_CACHE_TYPE;
+}
+
+@foreign
+typedef CACHE_DESCRIPTOR = _CACHE_DESCRIPTOR;
+
+@foreign
+typedef PCACHE_DESCRIPTOR = _CACHE_DESCRIPTOR*;
+
+/*
+@PROBLEM Nested struct def at line 12260, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
+    ProcessorMask: ULONG_PTR;
+    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 12260, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_SYSTEM_LOGICAL_PROCESSOR_INFORMATION
+*/
+
+@foreign
+typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION*;
+
+@foreign
+struct _PROCESSOR_RELATIONSHIP {
+    Flags: BYTE;
+    EfficiencyClass: BYTE;
+    Reserved: BYTE[20];
+    GroupCount: WORD;
+    GroupMask: GROUP_AFFINITY[1];
+}
+
+@foreign
+typedef PROCESSOR_RELATIONSHIP = _PROCESSOR_RELATIONSHIP;
+
+@foreign
+typedef PPROCESSOR_RELATIONSHIP = _PROCESSOR_RELATIONSHIP*;
+
+@foreign
+struct _NUMA_NODE_RELATIONSHIP {
+    NodeNumber: DWORD;
+    Reserved: BYTE[20];
+    GroupMask: GROUP_AFFINITY;
+}
+
+@foreign
+typedef NUMA_NODE_RELATIONSHIP = _NUMA_NODE_RELATIONSHIP;
+
+@foreign
+typedef PNUMA_NODE_RELATIONSHIP = _NUMA_NODE_RELATIONSHIP*;
+
+@foreign
+struct _CACHE_RELATIONSHIP {
+    Level: BYTE;
+    Associativity: BYTE;
+    LineSize: WORD;
+    CacheSize: DWORD;
+    Type: PROCESSOR_CACHE_TYPE;
+    Reserved: BYTE[20];
+    GroupMask: GROUP_AFFINITY;
+}
+
+@foreign
+typedef CACHE_RELATIONSHIP = _CACHE_RELATIONSHIP;
+
+@foreign
+typedef PCACHE_RELATIONSHIP = _CACHE_RELATIONSHIP*;
+
+@foreign
+struct _PROCESSOR_GROUP_INFO {
+    MaximumProcessorCount: BYTE;
+    ActiveProcessorCount: BYTE;
+    Reserved: BYTE[38];
+    ActiveProcessorMask: KAFFINITY;
+}
+
+@foreign
+typedef PROCESSOR_GROUP_INFO = _PROCESSOR_GROUP_INFO;
+
+@foreign
+typedef PPROCESSOR_GROUP_INFO = _PROCESSOR_GROUP_INFO*;
+
+@foreign
+struct _GROUP_RELATIONSHIP {
+    MaximumGroupCount: WORD;
+    ActiveGroupCount: WORD;
+    Reserved: BYTE[20];
+    GroupInfo: PROCESSOR_GROUP_INFO[1];
+}
+
+@foreign
+typedef GROUP_RELATIONSHIP = _GROUP_RELATIONSHIP;
+
+@foreign
+typedef PGROUP_RELATIONSHIP = _GROUP_RELATIONSHIP*;
+
+/*
+@PROBLEM Nested struct def at line 12313, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
+    Relationship: LOGICAL_PROCESSOR_RELATIONSHIP;
+    Size: DWORD;
+    u: (null);
+}
+*/
+
+@foreign
+typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
+
+@foreign
+typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX*;
+
+@foreign
+enum _CPU_SET_INFORMATION_TYPE {
+    CpuSetInformation,
+}
+
+@foreign
+typedef CPU_SET_INFORMATION_TYPE = _CPU_SET_INFORMATION_TYPE;
+
+@foreign
+typedef PCPU_SET_INFORMATION_TYPE = _CPU_SET_INFORMATION_TYPE*;
+
+/*
+@PROBLEM Nested struct def at line 12330, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _SYSTEM_CPU_SET_INFORMATION {
+    Size: DWORD;
+    Type: CPU_SET_INFORMATION_TYPE;
+    u: (null);
+}
+*/
+
+@foreign
+typedef SYSTEM_CPU_SET_INFORMATION = _SYSTEM_CPU_SET_INFORMATION;
+
+@foreign
+typedef PSYSTEM_CPU_SET_INFORMATION = _SYSTEM_CPU_SET_INFORMATION*;
+
+@foreign
+struct _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION {
+    CycleTime: DWORD64;
+}
+
+@foreign
+typedef SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION;
+
+@foreign
+typedef PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION*;
+
+@foreign
+struct _XSTATE_FEATURE {
+    Offset: DWORD;
+    Size: DWORD;
+}
+
+@foreign
+typedef XSTATE_FEATURE = _XSTATE_FEATURE;
+
+@foreign
+typedef PXSTATE_FEATURE = _XSTATE_FEATURE*;
+
+/*
+@PROBLEM Nested struct def at line 12534, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _XSTATE_CONFIGURATION {
+    EnabledFeatures: DWORD64;
+    EnabledVolatileFeatures: DWORD64;
+    Size: DWORD;
+    (null): (null);
+    Features: XSTATE_FEATURE[64];
+    EnabledSupervisorFeatures: DWORD64;
+    AlignedFeatures: DWORD64;
+    AllFeatureSize: DWORD;
+    AllFeatures: DWORD[64];
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 12534, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_XSTATE_CONFIGURATION
+*/
+
+@foreign
+typedef PXSTATE_CONFIGURATION = _XSTATE_CONFIGURATION*;
+
+@foreign
+struct _MEMORY_BASIC_INFORMATION {
+    BaseAddress: PVOID;
+    AllocationBase: PVOID;
+    AllocationProtect: DWORD;
+    RegionSize: SIZE_T;
+    State: DWORD;
+    Protect: DWORD;
+    Type: DWORD;
+}
+
+@foreign
+typedef MEMORY_BASIC_INFORMATION = _MEMORY_BASIC_INFORMATION;
+
+@foreign
+typedef PMEMORY_BASIC_INFORMATION = _MEMORY_BASIC_INFORMATION*;
+
+@foreign
+struct _MEMORY_BASIC_INFORMATION32 {
+    BaseAddress: DWORD;
+    AllocationBase: DWORD;
+    AllocationProtect: DWORD;
+    RegionSize: DWORD;
+    State: DWORD;
+    Protect: DWORD;
+    Type: DWORD;
+}
+
+@foreign
+typedef MEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32;
+
+@foreign
+typedef PMEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32*;
+
+@foreign
+struct _MEMORY_BASIC_INFORMATION64 {
+    BaseAddress: ULONGLONG;
+    AllocationBase: ULONGLONG;
+    AllocationProtect: DWORD;
+    __alignment1: DWORD;
+    RegionSize: ULONGLONG;
+    State: DWORD;
+    Protect: DWORD;
+    Type: DWORD;
+    __alignment2: DWORD;
+}
+
+@foreign
+typedef MEMORY_BASIC_INFORMATION64 = _MEMORY_BASIC_INFORMATION64;
+
+@foreign
+typedef PMEMORY_BASIC_INFORMATION64 = _MEMORY_BASIC_INFORMATION64*;
+
+@foreign
+struct _CFG_CALL_TARGET_INFO {
+    Offset: ULONG_PTR;
+    Flags: ULONG_PTR;
+}
+
+@foreign
+typedef CFG_CALL_TARGET_INFO = _CFG_CALL_TARGET_INFO;
+
+@foreign
+typedef PCFG_CALL_TARGET_INFO = _CFG_CALL_TARGET_INFO*;
+
+@foreign
+struct _ENCLAVE_CREATE_INFO_SGX {
+    Secs: BYTE[4096];
+}
+
+@foreign
+typedef ENCLAVE_CREATE_INFO_SGX = _ENCLAVE_CREATE_INFO_SGX;
+
+@foreign
+typedef PENCLAVE_CREATE_INFO_SGX = _ENCLAVE_CREATE_INFO_SGX*;
+
+@foreign
+struct _ENCLAVE_INIT_INFO_SGX {
+    SigStruct: BYTE[1808];
+    Reserved1: BYTE[240];
+    EInitToken: BYTE[304];
+    Reserved2: BYTE[1744];
+}
+
+@foreign
+typedef ENCLAVE_INIT_INFO_SGX = _ENCLAVE_INIT_INFO_SGX;
+
+@foreign
+typedef PENCLAVE_INIT_INFO_SGX = _ENCLAVE_INIT_INFO_SGX*;
+
+@foreign
+struct _ENCLAVE_CREATE_INFO_VBS {
+    Flags: DWORD;
+    OwnerID: BYTE[32];
+}
+
+@foreign
+typedef ENCLAVE_CREATE_INFO_VBS = _ENCLAVE_CREATE_INFO_VBS;
+
+@foreign
+typedef PENCLAVE_CREATE_INFO_VBS = _ENCLAVE_CREATE_INFO_VBS*;
+
+@foreign
+struct _ENCLAVE_INIT_INFO_VBS {
+    Length: DWORD;
+    ThreadCount: DWORD;
+}
+
+@foreign
+typedef ENCLAVE_INIT_INFO_VBS = _ENCLAVE_INIT_INFO_VBS;
+
+@foreign
+typedef PENCLAVE_INIT_INFO_VBS = _ENCLAVE_INIT_INFO_VBS*;
+
+@foreign
+typedef ENCLAVE_TARGET_FUNCTION = func(arg0: PVOID): PVOID;
+
+@foreign
+typedef PENCLAVE_TARGET_FUNCTION = ENCLAVE_TARGET_FUNCTION*;
+
+@foreign
+typedef LPENCLAVE_TARGET_FUNCTION = PENCLAVE_TARGET_FUNCTION;
+
+@foreign
+struct _FILE_ID_128 {
+    Identifier: BYTE[16];
+}
+
+@foreign
+typedef FILE_ID_128 = _FILE_ID_128;
+
+@foreign
+typedef PFILE_ID_128 = _FILE_ID_128*;
+
+@foreign
+struct _FILE_NOTIFY_INFORMATION {
+    NextEntryOffset: DWORD;
+    Action: DWORD;
+    FileNameLength: DWORD;
+    FileName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_NOTIFY_INFORMATION = _FILE_NOTIFY_INFORMATION;
+
+@foreign
+typedef PFILE_NOTIFY_INFORMATION = _FILE_NOTIFY_INFORMATION*;
+
+@foreign
+struct _FILE_NOTIFY_EXTENDED_INFORMATION {
+    NextEntryOffset: DWORD;
+    Action: DWORD;
+    CreationTime: LARGE_INTEGER;
+    LastModificationTime: LARGE_INTEGER;
+    LastChangeTime: LARGE_INTEGER;
+    LastAccessTime: LARGE_INTEGER;
+    AllocatedLength: LARGE_INTEGER;
+    FileSize: LARGE_INTEGER;
+    FileAttributes: DWORD;
+    ReparsePointTag: DWORD;
+    FileId: LARGE_INTEGER;
+    ParentFileId: LARGE_INTEGER;
+    FileNameLength: DWORD;
+    FileName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_NOTIFY_EXTENDED_INFORMATION = _FILE_NOTIFY_EXTENDED_INFORMATION;
+
+@foreign
+typedef PFILE_NOTIFY_EXTENDED_INFORMATION = _FILE_NOTIFY_EXTENDED_INFORMATION*;
+
+@foreign
+union _FILE_SEGMENT_ELEMENT {
+    Buffer: PVOID64;
+    Alignment: ULONGLONG;
+}
+
+@foreign
+typedef FILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT;
+
+@foreign
+typedef PFILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT*;
+
+/*
+@PROBLEM Nested struct def at line 12999, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _REPARSE_GUID_DATA_BUFFER {
+    ReparseTag: DWORD;
+    ReparseDataLength: WORD;
+    Reserved: WORD;
+    ReparseGuid: GUID;
+    GenericReparseBuffer: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 12999, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_REPARSE_GUID_DATA_BUFFER
+*/
+
+@foreign
+typedef PREPARSE_GUID_DATA_BUFFER = _REPARSE_GUID_DATA_BUFFER*;
+
+@foreign
+struct _SCRUB_DATA_INPUT {
+    Size: DWORD;
+    Flags: DWORD;
+    MaximumIos: DWORD;
+    ObjectId: DWORD[4];
+    Reserved: DWORD[13];
+    ResumeContext: BYTE[816];
+}
+
+@foreign
+typedef SCRUB_DATA_INPUT = _SCRUB_DATA_INPUT;
+
+@foreign
+typedef PSCRUB_DATA_INPUT = _SCRUB_DATA_INPUT*;
+
+@foreign
+struct _SCRUB_PARITY_EXTENT {
+    Offset: LONGLONG;
+    Length: ULONGLONG;
+}
+
+@foreign
+typedef SCRUB_PARITY_EXTENT = _SCRUB_PARITY_EXTENT;
+
+@foreign
+typedef PSCRUB_PARITY_EXTENT = _SCRUB_PARITY_EXTENT*;
+
+@foreign
+struct _SCRUB_PARITY_EXTENT_DATA {
+    Size: WORD;
+    Flags: WORD;
+    NumberOfParityExtents: WORD;
+    MaximumNumberOfParityExtents: WORD;
+    ParityExtents: SCRUB_PARITY_EXTENT[1];
+}
+
+@foreign
+typedef SCRUB_PARITY_EXTENT_DATA = _SCRUB_PARITY_EXTENT_DATA;
+
+@foreign
+typedef PSCRUB_PARITY_EXTENT_DATA = _SCRUB_PARITY_EXTENT_DATA*;
+
+@foreign
+struct _SCRUB_DATA_OUTPUT {
+    Size: DWORD;
+    Flags: DWORD;
+    Status: DWORD;
+    ErrorFileOffset: ULONGLONG;
+    ErrorLength: ULONGLONG;
+    NumberOfBytesRepaired: ULONGLONG;
+    NumberOfBytesFailed: ULONGLONG;
+    InternalFileReference: ULONGLONG;
+    ResumeContextLength: WORD;
+    ParityExtentDataOffset: WORD;
+    Reserved: DWORD[5];
+    ResumeContext: BYTE[816];
+}
+
+@foreign
+typedef SCRUB_DATA_OUTPUT = _SCRUB_DATA_OUTPUT;
+
+@foreign
+typedef PSCRUB_DATA_OUTPUT = _SCRUB_DATA_OUTPUT*;
+
+@foreign
+enum _SharedVirtualDiskSupportType {
+    SharedVirtualDisksUnsupported = 0,
+    SharedVirtualDisksSupported = 1,
+    SharedVirtualDiskSnapshotsSupported = 3,
+    SharedVirtualDiskCDPSnapshotsSupported = 7,
+}
+
+@foreign
+typedef SharedVirtualDiskSupportType = _SharedVirtualDiskSupportType;
+
+@foreign
+enum _SharedVirtualDiskHandleState {
+    SharedVirtualDiskHandleStateNone = 0,
+    SharedVirtualDiskHandleStateFileShared = 1,
+    SharedVirtualDiskHandleStateHandleShared = 3,
+}
+
+@foreign
+typedef SharedVirtualDiskHandleState = _SharedVirtualDiskHandleState;
+
+@foreign
+struct _SHARED_VIRTUAL_DISK_SUPPORT {
+    SharedVirtualDiskSupport: SharedVirtualDiskSupportType;
+    HandleState: SharedVirtualDiskHandleState;
+}
+
+@foreign
+typedef SHARED_VIRTUAL_DISK_SUPPORT = _SHARED_VIRTUAL_DISK_SUPPORT;
+
+@foreign
+typedef PSHARED_VIRTUAL_DISK_SUPPORT = _SHARED_VIRTUAL_DISK_SUPPORT*;
+
+@foreign
+struct _NETWORK_APP_INSTANCE_EA {
+    AppInstanceID: GUID;
+    CsvFlags: DWORD;
+}
+
+@foreign
+typedef NETWORK_APP_INSTANCE_EA = _NETWORK_APP_INSTANCE_EA;
+
+@foreign
+typedef PNETWORK_APP_INSTANCE_EA = _NETWORK_APP_INSTANCE_EA*;
+
+@foreign
+enum _SYSTEM_POWER_STATE {
+    PowerSystemUnspecified = 0,
+    PowerSystemWorking = 1,
+    PowerSystemSleeping1 = 2,
+    PowerSystemSleeping2 = 3,
+    PowerSystemSleeping3 = 4,
+    PowerSystemHibernate = 5,
+    PowerSystemShutdown = 6,
+    PowerSystemMaximum = 7,
+}
+
+@foreign
+typedef SYSTEM_POWER_STATE = _SYSTEM_POWER_STATE;
+
+@foreign
+typedef PSYSTEM_POWER_STATE = _SYSTEM_POWER_STATE*;
+
+@foreign
+enum POWER_ACTION {
+    PowerActionNone = 0,
+    PowerActionReserved,
+    PowerActionSleep,
+    PowerActionHibernate,
+    PowerActionShutdown,
+    PowerActionShutdownReset,
+    PowerActionShutdownOff,
+    PowerActionWarmEject,
+    PowerActionDisplayOff,
+}
+
+@foreign
+typedef PPOWER_ACTION = POWER_ACTION;
+
+@foreign
+enum _DEVICE_POWER_STATE {
+    PowerDeviceUnspecified = 0,
+    PowerDeviceD0,
+    PowerDeviceD1,
+    PowerDeviceD2,
+    PowerDeviceD3,
+    PowerDeviceMaximum,
+}
+
+@foreign
+typedef DEVICE_POWER_STATE = _DEVICE_POWER_STATE;
+
+@foreign
+typedef PDEVICE_POWER_STATE = _DEVICE_POWER_STATE*;
+
+@foreign
+enum _MONITOR_DISPLAY_STATE {
+    PowerMonitorOff = 0,
+    PowerMonitorOn,
+    PowerMonitorDim,
+}
+
+@foreign
+typedef MONITOR_DISPLAY_STATE = _MONITOR_DISPLAY_STATE;
+
+@foreign
+typedef PMONITOR_DISPLAY_STATE = _MONITOR_DISPLAY_STATE*;
+
+@foreign
+enum _USER_ACTIVITY_PRESENCE {
+    PowerUserPresent = 0,
+    PowerUserNotPresent,
+    PowerUserInactive,
+    PowerUserMaximum,
+    PowerUserInvalid = 3,
+}
+
+@foreign
+typedef USER_ACTIVITY_PRESENCE = _USER_ACTIVITY_PRESENCE;
+
+@foreign
+typedef PUSER_ACTIVITY_PRESENCE = _USER_ACTIVITY_PRESENCE*;
+
+@foreign
+typedef EXECUTION_STATE = DWORD;
+
+@foreign
+typedef PEXECUTION_STATE = DWORD*;
+
+@foreign
+enum LATENCY_TIME {
+    LT_DONT_CARE,
+    LT_LOWEST_LATENCY,
+}
+
+@foreign
+enum _POWER_REQUEST_TYPE {
+    PowerRequestDisplayRequired,
+    PowerRequestSystemRequired,
+    PowerRequestAwayModeRequired,
+    PowerRequestExecutionRequired,
+}
+
+@foreign
+typedef POWER_REQUEST_TYPE = _POWER_REQUEST_TYPE;
+
+@foreign
+typedef PPOWER_REQUEST_TYPE = _POWER_REQUEST_TYPE*;
+
+@foreign
+struct CM_Power_Data_s {
+    PD_Size: DWORD;
+    PD_MostRecentPowerState: DEVICE_POWER_STATE;
+    PD_Capabilities: DWORD;
+    PD_D1Latency: DWORD;
+    PD_D2Latency: DWORD;
+    PD_D3Latency: DWORD;
+    PD_PowerStateMapping: DEVICE_POWER_STATE[7];
+    PD_DeepestSystemWake: SYSTEM_POWER_STATE;
+}
+
+@foreign
+typedef CM_POWER_DATA = CM_Power_Data_s;
+
+@foreign
+typedef PCM_POWER_DATA = CM_Power_Data_s*;
+
+@foreign
+enum POWER_INFORMATION_LEVEL {
+    SystemPowerPolicyAc,
+    SystemPowerPolicyDc,
+    VerifySystemPolicyAc,
+    VerifySystemPolicyDc,
+    SystemPowerCapabilities,
+    SystemBatteryState,
+    SystemPowerStateHandler,
+    ProcessorStateHandler,
+    SystemPowerPolicyCurrent,
+    AdministratorPowerPolicy,
+    SystemReserveHiberFile,
+    ProcessorInformation,
+    SystemPowerInformation,
+    ProcessorStateHandler2,
+    LastWakeTime,
+    LastSleepTime,
+    SystemExecutionState,
+    SystemPowerStateNotifyHandler,
+    ProcessorPowerPolicyAc,
+    ProcessorPowerPolicyDc,
+    VerifyProcessorPowerPolicyAc,
+    VerifyProcessorPowerPolicyDc,
+    ProcessorPowerPolicyCurrent,
+    SystemPowerStateLogging,
+    SystemPowerLoggingEntry,
+    SetPowerSettingValue,
+    NotifyUserPowerSetting,
+    PowerInformationLevelUnused0,
+    SystemMonitorHiberBootPowerOff,
+    SystemVideoState,
+    TraceApplicationPowerMessage,
+    TraceApplicationPowerMessageEnd,
+    ProcessorPerfStates,
+    ProcessorIdleStates,
+    ProcessorCap,
+    SystemWakeSource,
+    SystemHiberFileInformation,
+    TraceServicePowerMessage,
+    ProcessorLoad,
+    PowerShutdownNotification,
+    MonitorCapabilities,
+    SessionPowerInit,
+    SessionDisplayState,
+    PowerRequestCreate,
+    PowerRequestAction,
+    GetPowerRequestList,
+    ProcessorInformationEx,
+    NotifyUserModeLegacyPowerEvent,
+    GroupPark,
+    ProcessorIdleDomains,
+    WakeTimerList,
+    SystemHiberFileSize,
+    ProcessorIdleStatesHv,
+    ProcessorPerfStatesHv,
+    ProcessorPerfCapHv,
+    ProcessorSetIdle,
+    LogicalProcessorIdling,
+    UserPresence,
+    PowerSettingNotificationName,
+    GetPowerSettingValue,
+    IdleResiliency,
+    SessionRITState,
+    SessionConnectNotification,
+    SessionPowerCleanup,
+    SessionLockState,
+    SystemHiberbootState,
+    PlatformInformation,
+    PdcInvocation,
+    MonitorInvocation,
+    FirmwareTableInformationRegistered,
+    SetShutdownSelectedTime,
+    SuspendResumeInvocation,
+    PlmPowerRequestCreate,
+    ScreenOff,
+    CsDeviceNotification,
+    PlatformRole,
+    LastResumePerformance,
+    DisplayBurst,
+    ExitLatencySamplingPercentage,
+    RegisterSpmPowerSettings,
+    PlatformIdleStates,
+    ProcessorIdleVeto,
+    PlatformIdleVeto,
+    SystemBatteryStatePrecise,
+    ThermalEvent,
+    PowerRequestActionInternal,
+    BatteryDeviceState,
+    PowerInformationInternal,
+    ThermalStandby,
+    SystemHiberFileType,
+    PhysicalPowerButtonPress,
+    QueryPotentialDripsConstraint,
+    EnergyTrackerCreate,
+    EnergyTrackerQuery,
+    UpdateBlackBoxRecorder,
+    PowerInformationLevelMaximum,
+}
+
+@foreign
+enum POWER_USER_PRESENCE_TYPE {
+    UserNotPresent = 0,
+    UserPresent = 1,
+    UserUnknown = 255,
+}
+
+@foreign
+typedef PPOWER_USER_PRESENCE_TYPE = POWER_USER_PRESENCE_TYPE;
+
+@foreign
+struct _POWER_USER_PRESENCE {
+    UserPresence: POWER_USER_PRESENCE_TYPE;
+}
+
+@foreign
+typedef POWER_USER_PRESENCE = _POWER_USER_PRESENCE;
+
+@foreign
+typedef PPOWER_USER_PRESENCE = _POWER_USER_PRESENCE*;
+
+@foreign
+struct _POWER_SESSION_CONNECT {
+    Connected: BOOLEAN;
+    Console: BOOLEAN;
+}
+
+@foreign
+typedef POWER_SESSION_CONNECT = _POWER_SESSION_CONNECT;
+
+@foreign
+typedef PPOWER_SESSION_CONNECT = _POWER_SESSION_CONNECT*;
+
+@foreign
+struct _POWER_SESSION_TIMEOUTS {
+    InputTimeout: DWORD;
+    DisplayTimeout: DWORD;
+}
+
+@foreign
+typedef POWER_SESSION_TIMEOUTS = _POWER_SESSION_TIMEOUTS;
+
+@foreign
+typedef PPOWER_SESSION_TIMEOUTS = _POWER_SESSION_TIMEOUTS*;
+
+@foreign
+struct _POWER_SESSION_RIT_STATE {
+    Active: BOOLEAN;
+    LastInputTime: DWORD;
+}
+
+@foreign
+typedef POWER_SESSION_RIT_STATE = _POWER_SESSION_RIT_STATE;
+
+@foreign
+typedef PPOWER_SESSION_RIT_STATE = _POWER_SESSION_RIT_STATE*;
+
+@foreign
+struct _POWER_SESSION_WINLOGON {
+    SessionId: DWORD;
+    Console: BOOLEAN;
+    Locked: BOOLEAN;
+}
+
+@foreign
+typedef POWER_SESSION_WINLOGON = _POWER_SESSION_WINLOGON;
+
+@foreign
+typedef PPOWER_SESSION_WINLOGON = _POWER_SESSION_WINLOGON*;
+
+@foreign
+struct _POWER_IDLE_RESILIENCY {
+    CoalescingTimeout: DWORD;
+    IdleResiliencyPeriod: DWORD;
+}
+
+@foreign
+typedef POWER_IDLE_RESILIENCY = _POWER_IDLE_RESILIENCY;
+
+@foreign
+typedef PPOWER_IDLE_RESILIENCY = _POWER_IDLE_RESILIENCY*;
+
+@foreign
+enum POWER_MONITOR_REQUEST_REASON {
+    MonitorRequestReasonUnknown,
+    MonitorRequestReasonPowerButton,
+    MonitorRequestReasonRemoteConnection,
+    MonitorRequestReasonScMonitorpower,
+    MonitorRequestReasonUserInput,
+    MonitorRequestReasonAcDcDisplayBurst,
+    MonitorRequestReasonUserDisplayBurst,
+    MonitorRequestReasonPoSetSystemState,
+    MonitorRequestReasonSetThreadExecutionState,
+    MonitorRequestReasonFullWake,
+    MonitorRequestReasonSessionUnlock,
+    MonitorRequestReasonScreenOffRequest,
+    MonitorRequestReasonIdleTimeout,
+    MonitorRequestReasonPolicyChange,
+    MonitorRequestReasonSleepButton,
+    MonitorRequestReasonLid,
+    MonitorRequestReasonBatteryCountChange,
+    MonitorRequestReasonGracePeriod,
+    MonitorRequestReasonPnP,
+    MonitorRequestReasonDP,
+    MonitorRequestReasonSxTransition,
+    MonitorRequestReasonSystemIdle,
+    MonitorRequestReasonNearProximity,
+    MonitorRequestReasonThermalStandby,
+    MonitorRequestReasonResumePdc,
+    MonitorRequestReasonResumeS4,
+    MonitorRequestReasonTerminal,
+    MonitorRequestReasonPdcSignal,
+    MonitorRequestReasonAcDcDisplayBurstSuppressed,
+    MonitorRequestReasonSystemStateEntered,
+    MonitorRequestReasonWinrt,
+    MonitorRequestReasonUserInputKeyboard,
+    MonitorRequestReasonUserInputMouse,
+    MonitorRequestReasonUserInputTouch,
+    MonitorRequestReasonUserInputPen,
+    MonitorRequestReasonUserInputAccelerometer,
+    MonitorRequestReasonUserInputHid,
+    MonitorRequestReasonUserInputPoUserPresent,
+    MonitorRequestReasonUserInputSessionSwitch,
+    MonitorRequestReasonUserInputInitialization,
+    MonitorRequestReasonPdcSignalWindowsMobilePwrNotif,
+    MonitorRequestReasonPdcSignalWindowsMobileShell,
+    MonitorRequestReasonPdcSignalHeyCortana,
+    MonitorRequestReasonPdcSignalHolographicShell,
+    MonitorRequestReasonMax,
+}
+
+@foreign
+enum _POWER_MONITOR_REQUEST_TYPE {
+    MonitorRequestTypeOff,
+    MonitorRequestTypeOnAndPresent,
+    MonitorRequestTypeToggleOn,
+}
+
+@foreign
+typedef POWER_MONITOR_REQUEST_TYPE = _POWER_MONITOR_REQUEST_TYPE;
+
+@foreign
+struct _POWER_MONITOR_INVOCATION {
+    Console: BOOLEAN;
+    RequestReason: POWER_MONITOR_REQUEST_REASON;
+}
+
+@foreign
+typedef POWER_MONITOR_INVOCATION = _POWER_MONITOR_INVOCATION;
+
+@foreign
+typedef PPOWER_MONITOR_INVOCATION = _POWER_MONITOR_INVOCATION*;
+
+@foreign
+struct _RESUME_PERFORMANCE {
+    PostTimeMs: DWORD;
+    TotalResumeTimeMs: ULONGLONG;
+    ResumeCompleteTimestamp: ULONGLONG;
+}
+
+@foreign
+typedef RESUME_PERFORMANCE = _RESUME_PERFORMANCE;
+
+@foreign
+typedef PRESUME_PERFORMANCE = _RESUME_PERFORMANCE*;
+
+@foreign
+enum SYSTEM_POWER_CONDITION {
+    PoAc,
+    PoDc,
+    PoHot,
+    PoConditionMaximum,
+}
+
+@foreign
+struct SET_POWER_SETTING_VALUE {
+    Version: DWORD;
+    Guid: GUID;
+    PowerCondition: SYSTEM_POWER_CONDITION;
+    DataLength: DWORD;
+    Data: BYTE[1];
+}
+
+@foreign
+typedef PSET_POWER_SETTING_VALUE = SET_POWER_SETTING_VALUE;
+
+@foreign
+struct NOTIFY_USER_POWER_SETTING {
+    Guid: GUID;
+}
+
+@foreign
+typedef PNOTIFY_USER_POWER_SETTING = NOTIFY_USER_POWER_SETTING;
+
+@foreign
+struct _APPLICATIONLAUNCH_SETTING_VALUE {
+    ActivationTime: LARGE_INTEGER;
+    Flags: DWORD;
+    ButtonInstanceID: DWORD;
+}
+
+@foreign
+typedef APPLICATIONLAUNCH_SETTING_VALUE = _APPLICATIONLAUNCH_SETTING_VALUE;
+
+@foreign
+typedef PAPPLICATIONLAUNCH_SETTING_VALUE = _APPLICATIONLAUNCH_SETTING_VALUE*;
+
+@foreign
+enum _POWER_PLATFORM_ROLE {
+    PlatformRoleUnspecified = 0,
+    PlatformRoleDesktop,
+    PlatformRoleMobile,
+    PlatformRoleWorkstation,
+    PlatformRoleEnterpriseServer,
+    PlatformRoleSOHOServer,
+    PlatformRoleAppliancePC,
+    PlatformRolePerformanceServer,
+    PlatformRoleSlate,
+    PlatformRoleMaximum,
+}
+
+@foreign
+typedef POWER_PLATFORM_ROLE = _POWER_PLATFORM_ROLE;
+
+@foreign
+typedef PPOWER_PLATFORM_ROLE = _POWER_PLATFORM_ROLE*;
+
+@foreign
+struct _POWER_PLATFORM_INFORMATION {
+    AoAc: BOOLEAN;
+}
+
+@foreign
+typedef POWER_PLATFORM_INFORMATION = _POWER_PLATFORM_INFORMATION;
+
+@foreign
+typedef PPOWER_PLATFORM_INFORMATION = _POWER_PLATFORM_INFORMATION*;
+
+@foreign
+struct BATTERY_REPORTING_SCALE {
+    Granularity: DWORD;
+    Capacity: DWORD;
+}
+
+@foreign
+typedef PBATTERY_REPORTING_SCALE = BATTERY_REPORTING_SCALE;
+
+@foreign
+struct PPM_WMI_LEGACY_PERFSTATE {
+    Frequency: DWORD;
+    Flags: DWORD;
+    PercentFrequency: DWORD;
+}
+
+@foreign
+typedef PPPM_WMI_LEGACY_PERFSTATE = PPM_WMI_LEGACY_PERFSTATE;
+
+@foreign
+struct PPM_WMI_IDLE_STATE {
+    Latency: DWORD;
+    Power: DWORD;
+    TimeCheck: DWORD;
+    PromotePercent: BYTE;
+    DemotePercent: BYTE;
+    StateType: BYTE;
+    Reserved: BYTE;
+    StateFlags: DWORD;
+    Context: DWORD;
+    IdleHandler: DWORD;
+    Reserved1: DWORD;
+}
+
+@foreign
+typedef PPPM_WMI_IDLE_STATE = PPM_WMI_IDLE_STATE;
+
+@foreign
+struct PPM_WMI_IDLE_STATES {
+    Type: DWORD;
+    Count: DWORD;
+    TargetState: DWORD;
+    OldState: DWORD;
+    TargetProcessors: DWORD64;
+    State: PPM_WMI_IDLE_STATE[1];
+}
+
+@foreign
+typedef PPPM_WMI_IDLE_STATES = PPM_WMI_IDLE_STATES;
+
+@foreign
+struct PPM_WMI_IDLE_STATES_EX {
+    Type: DWORD;
+    Count: DWORD;
+    TargetState: DWORD;
+    OldState: DWORD;
+    TargetProcessors: PVOID;
+    State: PPM_WMI_IDLE_STATE[1];
+}
+
+@foreign
+typedef PPPM_WMI_IDLE_STATES_EX = PPM_WMI_IDLE_STATES_EX;
+
+@foreign
+struct PPM_WMI_PERF_STATE {
+    Frequency: DWORD;
+    Power: DWORD;
+    PercentFrequency: BYTE;
+    IncreaseLevel: BYTE;
+    DecreaseLevel: BYTE;
+    Type: BYTE;
+    IncreaseTime: DWORD;
+    DecreaseTime: DWORD;
+    Control: DWORD64;
+    Status: DWORD64;
+    HitCount: DWORD;
+    Reserved1: DWORD;
+    Reserved2: DWORD64;
+    Reserved3: DWORD64;
+}
+
+@foreign
+typedef PPPM_WMI_PERF_STATE = PPM_WMI_PERF_STATE;
+
+@foreign
+struct PPM_WMI_PERF_STATES {
+    Count: DWORD;
+    MaxFrequency: DWORD;
+    CurrentState: DWORD;
+    MaxPerfState: DWORD;
+    MinPerfState: DWORD;
+    LowestPerfState: DWORD;
+    ThermalConstraint: DWORD;
+    BusyAdjThreshold: BYTE;
+    PolicyType: BYTE;
+    Type: BYTE;
+    Reserved: BYTE;
+    TimerInterval: DWORD;
+    TargetProcessors: DWORD64;
+    PStateHandler: DWORD;
+    PStateContext: DWORD;
+    TStateHandler: DWORD;
+    TStateContext: DWORD;
+    FeedbackHandler: DWORD;
+    Reserved1: DWORD;
+    Reserved2: DWORD64;
+    State: PPM_WMI_PERF_STATE[1];
+}
+
+@foreign
+typedef PPPM_WMI_PERF_STATES = PPM_WMI_PERF_STATES;
+
+@foreign
+struct PPM_WMI_PERF_STATES_EX {
+    Count: DWORD;
+    MaxFrequency: DWORD;
+    CurrentState: DWORD;
+    MaxPerfState: DWORD;
+    MinPerfState: DWORD;
+    LowestPerfState: DWORD;
+    ThermalConstraint: DWORD;
+    BusyAdjThreshold: BYTE;
+    PolicyType: BYTE;
+    Type: BYTE;
+    Reserved: BYTE;
+    TimerInterval: DWORD;
+    TargetProcessors: PVOID;
+    PStateHandler: DWORD;
+    PStateContext: DWORD;
+    TStateHandler: DWORD;
+    TStateContext: DWORD;
+    FeedbackHandler: DWORD;
+    Reserved1: DWORD;
+    Reserved2: DWORD64;
+    State: PPM_WMI_PERF_STATE[1];
+}
+
+@foreign
+typedef PPPM_WMI_PERF_STATES_EX = PPM_WMI_PERF_STATES_EX;
+
+@foreign
+struct PPM_IDLE_STATE_ACCOUNTING {
+    IdleTransitions: DWORD;
+    FailedTransitions: DWORD;
+    InvalidBucketIndex: DWORD;
+    TotalTime: DWORD64;
+    IdleTimeBuckets: DWORD[6];
+}
+
+@foreign
+typedef PPPM_IDLE_STATE_ACCOUNTING = PPM_IDLE_STATE_ACCOUNTING;
+
+@foreign
+struct PPM_IDLE_ACCOUNTING {
+    StateCount: DWORD;
+    TotalTransitions: DWORD;
+    ResetCount: DWORD;
+    StartTime: DWORD64;
+    State: PPM_IDLE_STATE_ACCOUNTING[1];
+}
+
+@foreign
+typedef PPPM_IDLE_ACCOUNTING = PPM_IDLE_ACCOUNTING;
+
+@foreign
+struct PPM_IDLE_STATE_BUCKET_EX {
+    TotalTimeUs: DWORD64;
+    MinTimeUs: DWORD;
+    MaxTimeUs: DWORD;
+    Count: DWORD;
+}
+
+@foreign
+typedef PPPM_IDLE_STATE_BUCKET_EX = PPM_IDLE_STATE_BUCKET_EX;
+
+@foreign
+struct PPM_IDLE_STATE_ACCOUNTING_EX {
+    TotalTime: DWORD64;
+    IdleTransitions: DWORD;
+    FailedTransitions: DWORD;
+    InvalidBucketIndex: DWORD;
+    MinTimeUs: DWORD;
+    MaxTimeUs: DWORD;
+    CancelledTransitions: DWORD;
+    IdleTimeBuckets: PPM_IDLE_STATE_BUCKET_EX[16];
+}
+
+@foreign
+typedef PPPM_IDLE_STATE_ACCOUNTING_EX = PPM_IDLE_STATE_ACCOUNTING_EX;
+
+@foreign
+struct PPM_IDLE_ACCOUNTING_EX {
+    StateCount: DWORD;
+    TotalTransitions: DWORD;
+    ResetCount: DWORD;
+    AbortCount: DWORD;
+    StartTime: DWORD64;
+    State: PPM_IDLE_STATE_ACCOUNTING_EX[1];
+}
+
+@foreign
+typedef PPPM_IDLE_ACCOUNTING_EX = PPM_IDLE_ACCOUNTING_EX;
+
+@foreign
+struct PPM_PERFSTATE_EVENT {
+    State: DWORD;
+    Status: DWORD;
+    Latency: DWORD;
+    Speed: DWORD;
+    Processor: DWORD;
+}
+
+@foreign
+typedef PPPM_PERFSTATE_EVENT = PPM_PERFSTATE_EVENT;
+
+@foreign
+struct PPM_PERFSTATE_DOMAIN_EVENT {
+    State: DWORD;
+    Latency: DWORD;
+    Speed: DWORD;
+    Processors: DWORD64;
+}
+
+@foreign
+typedef PPPM_PERFSTATE_DOMAIN_EVENT = PPM_PERFSTATE_DOMAIN_EVENT;
+
+@foreign
+struct PPM_IDLESTATE_EVENT {
+    NewState: DWORD;
+    OldState: DWORD;
+    Processors: DWORD64;
+}
+
+@foreign
+typedef PPPM_IDLESTATE_EVENT = PPM_IDLESTATE_EVENT;
+
+@foreign
+struct PPM_THERMALCHANGE_EVENT {
+    ThermalConstraint: DWORD;
+    Processors: DWORD64;
+}
+
+@foreign
+typedef PPPM_THERMALCHANGE_EVENT = PPM_THERMALCHANGE_EVENT;
+
+@foreign
+struct PPM_THERMAL_POLICY_EVENT {
+    Mode: BYTE;
+    Processors: DWORD64;
+}
+
+@foreign
+typedef PPPM_THERMAL_POLICY_EVENT = PPM_THERMAL_POLICY_EVENT;
+
+@foreign
+struct POWER_ACTION_POLICY {
+    Action: POWER_ACTION;
+    Flags: DWORD;
+    EventCode: DWORD;
+}
+
+@foreign
+typedef PPOWER_ACTION_POLICY = POWER_ACTION_POLICY;
+
+@foreign
+struct SYSTEM_POWER_LEVEL {
+    Enable: BOOLEAN;
+    Spare: BYTE[3];
+    BatteryLevel: DWORD;
+    PowerPolicy: POWER_ACTION_POLICY;
+    MinSystemState: SYSTEM_POWER_STATE;
+}
+
+@foreign
+typedef PSYSTEM_POWER_LEVEL = SYSTEM_POWER_LEVEL;
+
+@foreign
+struct _SYSTEM_POWER_POLICY {
+    Revision: DWORD;
+    PowerButton: POWER_ACTION_POLICY;
+    SleepButton: POWER_ACTION_POLICY;
+    LidClose: POWER_ACTION_POLICY;
+    LidOpenWake: SYSTEM_POWER_STATE;
+    Reserved: DWORD;
+    Idle: POWER_ACTION_POLICY;
+    IdleTimeout: DWORD;
+    IdleSensitivity: BYTE;
+    DynamicThrottle: BYTE;
+    Spare2: BYTE[2];
+    MinSleep: SYSTEM_POWER_STATE;
+    MaxSleep: SYSTEM_POWER_STATE;
+    ReducedLatencySleep: SYSTEM_POWER_STATE;
+    WinLogonFlags: DWORD;
+    Spare3: DWORD;
+    DozeS4Timeout: DWORD;
+    BroadcastCapacityResolution: DWORD;
+    DischargePolicy: SYSTEM_POWER_LEVEL[4];
+    VideoTimeout: DWORD;
+    VideoDimDisplay: BOOLEAN;
+    VideoReserved: DWORD[3];
+    SpindownTimeout: DWORD;
+    OptimizeForPower: BOOLEAN;
+    FanThrottleTolerance: BYTE;
+    ForcedThrottle: BYTE;
+    MinThrottle: BYTE;
+    OverThrottled: POWER_ACTION_POLICY;
+}
+
+@foreign
+typedef SYSTEM_POWER_POLICY = _SYSTEM_POWER_POLICY;
+
+@foreign
+typedef PSYSTEM_POWER_POLICY = _SYSTEM_POWER_POLICY*;
+
+@foreign
+struct PROCESSOR_IDLESTATE_INFO {
+    TimeCheck: DWORD;
+    DemotePercent: BYTE;
+    PromotePercent: BYTE;
+    Spare: BYTE[2];
+}
+
+@foreign
+typedef PPROCESSOR_IDLESTATE_INFO = PROCESSOR_IDLESTATE_INFO;
+
+/*
+@PROBLEM Nested struct def at line 15898, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct PROCESSOR_IDLESTATE_POLICY {
+    Revision: WORD;
+    Flags: (null);
+    PolicyCount: DWORD;
+    Policy: PROCESSOR_IDLESTATE_INFO[3];
+}
+*/
+
+@foreign
+typedef PPROCESSOR_IDLESTATE_POLICY = PROCESSOR_IDLESTATE_POLICY;
+
+@foreign
+struct _PROCESSOR_POWER_POLICY_INFO {
+    TimeCheck: DWORD;
+    DemoteLimit: DWORD;
+    PromoteLimit: DWORD;
+    DemotePercent: BYTE;
+    PromotePercent: BYTE;
+    Spare: BYTE[2];
+    AllowDemotion: DWORD;
+    AllowPromotion: DWORD;
+    Reserved: DWORD;
+}
+
+@foreign
+typedef PROCESSOR_POWER_POLICY_INFO = _PROCESSOR_POWER_POLICY_INFO;
+
+@foreign
+typedef PPROCESSOR_POWER_POLICY_INFO = _PROCESSOR_POWER_POLICY_INFO*;
+
+@foreign
+struct _PROCESSOR_POWER_POLICY {
+    Revision: DWORD;
+    DynamicThrottle: BYTE;
+    Spare: BYTE[3];
+    DisableCStates: DWORD;
+    Reserved: DWORD;
+    PolicyCount: DWORD;
+    Policy: PROCESSOR_POWER_POLICY_INFO[3];
+}
+
+@foreign
+typedef PROCESSOR_POWER_POLICY = _PROCESSOR_POWER_POLICY;
+
+@foreign
+typedef PPROCESSOR_POWER_POLICY = _PROCESSOR_POWER_POLICY*;
+
+/*
+@PROBLEM Nested struct def at line 15969, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct PROCESSOR_PERFSTATE_POLICY {
+    Revision: DWORD;
+    MaxThrottle: BYTE;
+    MinThrottle: BYTE;
+    BusyAdjThreshold: BYTE;
+    u: (null);
+    TimeCheck: DWORD;
+    IncreaseTime: DWORD;
+    DecreaseTime: DWORD;
+    IncreasePercent: DWORD;
+    DecreasePercent: DWORD;
+}
+*/
+
+@foreign
+typedef PPROCESSOR_PERFSTATE_POLICY = PROCESSOR_PERFSTATE_POLICY;
+
+@foreign
+struct _ADMINISTRATOR_POWER_POLICY {
+    MinSleep: SYSTEM_POWER_STATE;
+    MaxSleep: SYSTEM_POWER_STATE;
+    MinVideoTimeout: DWORD;
+    MaxVideoTimeout: DWORD;
+    MinSpindownTimeout: DWORD;
+    MaxSpindownTimeout: DWORD;
+}
+
+@foreign
+typedef ADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY;
+
+@foreign
+typedef PADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY*;
+
+@foreign
+enum _HIBERFILE_BUCKET_SIZE {
+    HiberFileBucket1GB = 0,
+    HiberFileBucket2GB,
+    HiberFileBucket4GB,
+    HiberFileBucket8GB,
+    HiberFileBucket16GB,
+    HiberFileBucket32GB,
+    HiberFileBucketUnlimited,
+    HiberFileBucketMax,
+}
+
+@foreign
+typedef HIBERFILE_BUCKET_SIZE = _HIBERFILE_BUCKET_SIZE;
+
+@foreign
+typedef PHIBERFILE_BUCKET_SIZE = _HIBERFILE_BUCKET_SIZE*;
+
+@foreign
+struct _HIBERFILE_BUCKET {
+    MaxPhysicalMemory: DWORD64;
+    PhysicalMemoryPercent: DWORD[3];
+}
+
+@foreign
+typedef HIBERFILE_BUCKET = _HIBERFILE_BUCKET;
+
+@foreign
+typedef PHIBERFILE_BUCKET = _HIBERFILE_BUCKET*;
+
+@foreign
+struct SYSTEM_POWER_CAPABILITIES {
+    PowerButtonPresent: BOOLEAN;
+    SleepButtonPresent: BOOLEAN;
+    LidPresent: BOOLEAN;
+    SystemS1: BOOLEAN;
+    SystemS2: BOOLEAN;
+    SystemS3: BOOLEAN;
+    SystemS4: BOOLEAN;
+    SystemS5: BOOLEAN;
+    HiberFilePresent: BOOLEAN;
+    FullWake: BOOLEAN;
+    VideoDimPresent: BOOLEAN;
+    ApmPresent: BOOLEAN;
+    UpsPresent: BOOLEAN;
+    ThermalControl: BOOLEAN;
+    ProcessorThrottle: BOOLEAN;
+    ProcessorMinThrottle: BYTE;
+    ProcessorMaxThrottle: BYTE;
+    FastSystemS4: BOOLEAN;
+    Hiberboot: BOOLEAN;
+    WakeAlarmPresent: BOOLEAN;
+    AoAc: BOOLEAN;
+    DiskSpinDown: BOOLEAN;
+    HiberFileType: BYTE;
+    AoAcConnectivitySupported: BOOLEAN;
+    spare3: BYTE[6];
+    SystemBatteriesPresent: BOOLEAN;
+    BatteriesAreShortTerm: BOOLEAN;
+    BatteryScale: BATTERY_REPORTING_SCALE[3];
+    AcOnLineWake: SYSTEM_POWER_STATE;
+    SoftLidWake: SYSTEM_POWER_STATE;
+    RtcWake: SYSTEM_POWER_STATE;
+    MinDeviceWakeState: SYSTEM_POWER_STATE;
+    DefaultLowLatencyWake: SYSTEM_POWER_STATE;
+}
+
+@foreign
+typedef PSYSTEM_POWER_CAPABILITIES = SYSTEM_POWER_CAPABILITIES;
+
+@foreign
+struct SYSTEM_BATTERY_STATE {
+    AcOnLine: BOOLEAN;
+    BatteryPresent: BOOLEAN;
+    Charging: BOOLEAN;
+    Discharging: BOOLEAN;
+    Spare1: BOOLEAN[3];
+    Tag: BYTE;
+    MaxCapacity: DWORD;
+    RemainingCapacity: DWORD;
+    Rate: DWORD;
+    EstimatedTime: DWORD;
+    DefaultAlert1: DWORD;
+    DefaultAlert2: DWORD;
+}
+
+@foreign
+typedef PSYSTEM_BATTERY_STATE = SYSTEM_BATTERY_STATE;
+
+@foreign
+struct _IMAGE_DOS_HEADER {
+    e_magic: WORD;
+    e_cblp: WORD;
+    e_cp: WORD;
+    e_crlc: WORD;
+    e_cparhdr: WORD;
+    e_minalloc: WORD;
+    e_maxalloc: WORD;
+    e_ss: WORD;
+    e_sp: WORD;
+    e_csum: WORD;
+    e_ip: WORD;
+    e_cs: WORD;
+    e_lfarlc: WORD;
+    e_ovno: WORD;
+    e_res: WORD[4];
+    e_oemid: WORD;
+    e_oeminfo: WORD;
+    e_res2: WORD[10];
+    e_lfanew: LONG;
+}
+
+@foreign
+typedef IMAGE_DOS_HEADER = _IMAGE_DOS_HEADER;
+
+@foreign
+typedef PIMAGE_DOS_HEADER = _IMAGE_DOS_HEADER*;
+
+@foreign
+struct _IMAGE_OS2_HEADER {
+    ne_magic: WORD;
+    ne_ver: CHAR;
+    ne_rev: CHAR;
+    ne_enttab: WORD;
+    ne_cbenttab: WORD;
+    ne_crc: LONG;
+    ne_flags: WORD;
+    ne_autodata: WORD;
+    ne_heap: WORD;
+    ne_stack: WORD;
+    ne_csip: LONG;
+    ne_sssp: LONG;
+    ne_cseg: WORD;
+    ne_cmod: WORD;
+    ne_cbnrestab: WORD;
+    ne_segtab: WORD;
+    ne_rsrctab: WORD;
+    ne_restab: WORD;
+    ne_modtab: WORD;
+    ne_imptab: WORD;
+    ne_nrestab: LONG;
+    ne_cmovent: WORD;
+    ne_align: WORD;
+    ne_cres: WORD;
+    ne_exetyp: BYTE;
+    ne_flagsothers: BYTE;
+    ne_pretthunks: WORD;
+    ne_psegrefbytes: WORD;
+    ne_swaparea: WORD;
+    ne_expver: WORD;
+}
+
+@foreign
+typedef IMAGE_OS2_HEADER = _IMAGE_OS2_HEADER;
+
+@foreign
+typedef PIMAGE_OS2_HEADER = _IMAGE_OS2_HEADER*;
+
+@foreign
+struct _IMAGE_VXD_HEADER {
+    e32_magic: WORD;
+    e32_border: BYTE;
+    e32_worder: BYTE;
+    e32_level: DWORD;
+    e32_cpu: WORD;
+    e32_os: WORD;
+    e32_ver: DWORD;
+    e32_mflags: DWORD;
+    e32_mpages: DWORD;
+    e32_startobj: DWORD;
+    e32_eip: DWORD;
+    e32_stackobj: DWORD;
+    e32_esp: DWORD;
+    e32_pagesize: DWORD;
+    e32_lastpagesize: DWORD;
+    e32_fixupsize: DWORD;
+    e32_fixupsum: DWORD;
+    e32_ldrsize: DWORD;
+    e32_ldrsum: DWORD;
+    e32_objtab: DWORD;
+    e32_objcnt: DWORD;
+    e32_objmap: DWORD;
+    e32_itermap: DWORD;
+    e32_rsrctab: DWORD;
+    e32_rsrccnt: DWORD;
+    e32_restab: DWORD;
+    e32_enttab: DWORD;
+    e32_dirtab: DWORD;
+    e32_dircnt: DWORD;
+    e32_fpagetab: DWORD;
+    e32_frectab: DWORD;
+    e32_impmod: DWORD;
+    e32_impmodcnt: DWORD;
+    e32_impproc: DWORD;
+    e32_pagesum: DWORD;
+    e32_datapage: DWORD;
+    e32_preload: DWORD;
+    e32_nrestab: DWORD;
+    e32_cbnrestab: DWORD;
+    e32_nressum: DWORD;
+    e32_autodata: DWORD;
+    e32_debuginfo: DWORD;
+    e32_debuglen: DWORD;
+    e32_instpreload: DWORD;
+    e32_instdemand: DWORD;
+    e32_heapsize: DWORD;
+    e32_res3: BYTE[12];
+    e32_winresoff: DWORD;
+    e32_winreslen: DWORD;
+    e32_devid: WORD;
+    e32_ddkver: WORD;
+}
+
+@foreign
+typedef IMAGE_VXD_HEADER = _IMAGE_VXD_HEADER;
+
+@foreign
+typedef PIMAGE_VXD_HEADER = _IMAGE_VXD_HEADER*;
+
+@foreign
+struct _IMAGE_FILE_HEADER {
+    Machine: WORD;
+    NumberOfSections: WORD;
+    TimeDateStamp: DWORD;
+    PointerToSymbolTable: DWORD;
+    NumberOfSymbols: DWORD;
+    SizeOfOptionalHeader: WORD;
+    Characteristics: WORD;
+}
+
+@foreign
+typedef IMAGE_FILE_HEADER = _IMAGE_FILE_HEADER;
+
+@foreign
+typedef PIMAGE_FILE_HEADER = _IMAGE_FILE_HEADER*;
+
+@foreign
+struct _IMAGE_DATA_DIRECTORY {
+    VirtualAddress: DWORD;
+    Size: DWORD;
+}
+
+@foreign
+typedef IMAGE_DATA_DIRECTORY = _IMAGE_DATA_DIRECTORY;
+
+@foreign
+typedef PIMAGE_DATA_DIRECTORY = _IMAGE_DATA_DIRECTORY*;
+
+@foreign
+struct _IMAGE_OPTIONAL_HEADER {
+    Magic: WORD;
+    MajorLinkerVersion: BYTE;
+    MinorLinkerVersion: BYTE;
+    SizeOfCode: DWORD;
+    SizeOfInitializedData: DWORD;
+    SizeOfUninitializedData: DWORD;
+    AddressOfEntryPoint: DWORD;
+    BaseOfCode: DWORD;
+    BaseOfData: DWORD;
+    ImageBase: DWORD;
+    SectionAlignment: DWORD;
+    FileAlignment: DWORD;
+    MajorOperatingSystemVersion: WORD;
+    MinorOperatingSystemVersion: WORD;
+    MajorImageVersion: WORD;
+    MinorImageVersion: WORD;
+    MajorSubsystemVersion: WORD;
+    MinorSubsystemVersion: WORD;
+    Win32VersionValue: DWORD;
+    SizeOfImage: DWORD;
+    SizeOfHeaders: DWORD;
+    CheckSum: DWORD;
+    Subsystem: WORD;
+    DllCharacteristics: WORD;
+    SizeOfStackReserve: DWORD;
+    SizeOfStackCommit: DWORD;
+    SizeOfHeapReserve: DWORD;
+    SizeOfHeapCommit: DWORD;
+    LoaderFlags: DWORD;
+    NumberOfRvaAndSizes: DWORD;
+    DataDirectory: IMAGE_DATA_DIRECTORY[16];
+}
+
+@foreign
+typedef IMAGE_OPTIONAL_HEADER32 = _IMAGE_OPTIONAL_HEADER;
+
+@foreign
+typedef PIMAGE_OPTIONAL_HEADER32 = _IMAGE_OPTIONAL_HEADER*;
+
+@foreign
+struct _IMAGE_ROM_OPTIONAL_HEADER {
+    Magic: WORD;
+    MajorLinkerVersion: BYTE;
+    MinorLinkerVersion: BYTE;
+    SizeOfCode: DWORD;
+    SizeOfInitializedData: DWORD;
+    SizeOfUninitializedData: DWORD;
+    AddressOfEntryPoint: DWORD;
+    BaseOfCode: DWORD;
+    BaseOfData: DWORD;
+    BaseOfBss: DWORD;
+    GprMask: DWORD;
+    CprMask: DWORD[4];
+    GpValue: DWORD;
+}
+
+@foreign
+typedef IMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER;
+
+@foreign
+typedef PIMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER*;
+
+@foreign
+struct _IMAGE_OPTIONAL_HEADER64 {
+    Magic: WORD;
+    MajorLinkerVersion: BYTE;
+    MinorLinkerVersion: BYTE;
+    SizeOfCode: DWORD;
+    SizeOfInitializedData: DWORD;
+    SizeOfUninitializedData: DWORD;
+    AddressOfEntryPoint: DWORD;
+    BaseOfCode: DWORD;
+    ImageBase: ULONGLONG;
+    SectionAlignment: DWORD;
+    FileAlignment: DWORD;
+    MajorOperatingSystemVersion: WORD;
+    MinorOperatingSystemVersion: WORD;
+    MajorImageVersion: WORD;
+    MinorImageVersion: WORD;
+    MajorSubsystemVersion: WORD;
+    MinorSubsystemVersion: WORD;
+    Win32VersionValue: DWORD;
+    SizeOfImage: DWORD;
+    SizeOfHeaders: DWORD;
+    CheckSum: DWORD;
+    Subsystem: WORD;
+    DllCharacteristics: WORD;
+    SizeOfStackReserve: ULONGLONG;
+    SizeOfStackCommit: ULONGLONG;
+    SizeOfHeapReserve: ULONGLONG;
+    SizeOfHeapCommit: ULONGLONG;
+    LoaderFlags: DWORD;
+    NumberOfRvaAndSizes: DWORD;
+    DataDirectory: IMAGE_DATA_DIRECTORY[16];
+}
+
+@foreign
+typedef IMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64;
+
+@foreign
+typedef PIMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64*;
+
+@foreign
+typedef IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER64;
+
+@foreign
+typedef PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER64;
+
+@foreign
+struct _IMAGE_NT_HEADERS64 {
+    Signature: DWORD;
+    FileHeader: IMAGE_FILE_HEADER;
+    OptionalHeader: IMAGE_OPTIONAL_HEADER64;
+}
+
+@foreign
+typedef IMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64;
+
+@foreign
+typedef PIMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64*;
+
+@foreign
+struct _IMAGE_NT_HEADERS {
+    Signature: DWORD;
+    FileHeader: IMAGE_FILE_HEADER;
+    OptionalHeader: IMAGE_OPTIONAL_HEADER32;
+}
+
+@foreign
+typedef IMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS;
+
+@foreign
+typedef PIMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS*;
+
+@foreign
+struct _IMAGE_ROM_HEADERS {
+    FileHeader: IMAGE_FILE_HEADER;
+    OptionalHeader: IMAGE_ROM_OPTIONAL_HEADER;
+}
+
+@foreign
+typedef IMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS;
+
+@foreign
+typedef PIMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS*;
+
+@foreign
+typedef IMAGE_NT_HEADERS = IMAGE_NT_HEADERS64;
+
+@foreign
+typedef PIMAGE_NT_HEADERS = PIMAGE_NT_HEADERS64;
+
+@foreign
+struct ANON_OBJECT_HEADER {
+    Sig1: WORD;
+    Sig2: WORD;
+    Version: WORD;
+    Machine: WORD;
+    TimeDateStamp: DWORD;
+    ClassID: CLSID;
+    SizeOfData: DWORD;
+}
+
+@foreign
+struct ANON_OBJECT_HEADER_V2 {
+    Sig1: WORD;
+    Sig2: WORD;
+    Version: WORD;
+    Machine: WORD;
+    TimeDateStamp: DWORD;
+    ClassID: CLSID;
+    SizeOfData: DWORD;
+    Flags: DWORD;
+    MetaDataSize: DWORD;
+    MetaDataOffset: DWORD;
+}
+
+@foreign
+struct ANON_OBJECT_HEADER_BIGOBJ {
+    Sig1: WORD;
+    Sig2: WORD;
+    Version: WORD;
+    Machine: WORD;
+    TimeDateStamp: DWORD;
+    ClassID: CLSID;
+    SizeOfData: DWORD;
+    Flags: DWORD;
+    MetaDataSize: DWORD;
+    MetaDataOffset: DWORD;
+    NumberOfSections: DWORD;
+    PointerToSymbolTable: DWORD;
+    NumberOfSymbols: DWORD;
+}
+
+/*
+@PROBLEM Nested struct def at line 16576, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_SECTION_HEADER {
+    Name: BYTE[8];
+    Misc: (null);
+    VirtualAddress: DWORD;
+    SizeOfRawData: DWORD;
+    PointerToRawData: DWORD;
+    PointerToRelocations: DWORD;
+    PointerToLinenumbers: DWORD;
+    NumberOfRelocations: WORD;
+    NumberOfLinenumbers: WORD;
+    Characteristics: DWORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 16576, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_SECTION_HEADER
+*/
+
+@foreign
+typedef PIMAGE_SECTION_HEADER = _IMAGE_SECTION_HEADER*;
+
+/*
+@PROBLEM Nested struct def at line 16663, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_SYMBOL {
+    N: (null);
+    Value: DWORD;
+    SectionNumber: SHORT;
+    Type: WORD;
+    StorageClass: BYTE;
+    NumberOfAuxSymbols: BYTE;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 16663, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_SYMBOL
+*/
+
+@foreign
+typedef PIMAGE_SYMBOL = IMAGE_SYMBOL*;
+
+/*
+@PROBLEM Nested struct def at line 16682, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_SYMBOL_EX {
+    N: (null);
+    Value: DWORD;
+    SectionNumber: LONG;
+    Type: WORD;
+    StorageClass: BYTE;
+    NumberOfAuxSymbols: BYTE;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 16682, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_SYMBOL_EX
+*/
+
+@foreign
+typedef PIMAGE_SYMBOL_EX = IMAGE_SYMBOL_EX*;
+
+@foreign
+struct IMAGE_AUX_SYMBOL_TOKEN_DEF {
+    bAuxType: BYTE;
+    bReserved: BYTE;
+    SymbolTableIndex: DWORD;
+    rgbReserved: BYTE[12];
+}
+
+@foreign
+typedef PIMAGE_AUX_SYMBOL_TOKEN_DEF = IMAGE_AUX_SYMBOL_TOKEN_DEF*;
+
+/*
+@PROBLEM Nested struct def at line 16836, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+union _IMAGE_AUX_SYMBOL {
+    Sym: (null);
+    File: (null);
+    Section: (null);
+    TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF;
+    CRC: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 16836, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_AUX_SYMBOL
+*/
+
+@foreign
+typedef PIMAGE_AUX_SYMBOL = IMAGE_AUX_SYMBOL*;
+
+/*
+@PROBLEM Nested struct def at line 16878, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+union _IMAGE_AUX_SYMBOL_EX {
+    Sym: (null);
+    File: (null);
+    Section: (null);
+    s: (null);
+    CRC: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 16878, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_AUX_SYMBOL_EX
+*/
+
+@foreign
+typedef PIMAGE_AUX_SYMBOL_EX = IMAGE_AUX_SYMBOL_EX*;
+
+@foreign
+enum IMAGE_AUX_SYMBOL_TYPE {
+    IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1,
+}
+
+/*
+@PROBLEM Nested struct def at line 16935, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_RELOCATION {
+    u: (null);
+    SymbolTableIndex: DWORD;
+    Type: WORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 16935, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_RELOCATION
+*/
+
+@foreign
+typedef PIMAGE_RELOCATION = IMAGE_RELOCATION*;
+
+/*
+@PROBLEM Nested struct def at line 17337, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_LINENUMBER {
+    Type: (null);
+    Linenumber: WORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17337, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_LINENUMBER
+*/
+
+@foreign
+typedef PIMAGE_LINENUMBER = IMAGE_LINENUMBER*;
+
+@foreign
+struct _IMAGE_BASE_RELOCATION {
+    VirtualAddress: DWORD;
+    SizeOfBlock: DWORD;
+}
+
+@foreign
+typedef IMAGE_BASE_RELOCATION = _IMAGE_BASE_RELOCATION;
+
+@foreign
+typedef PIMAGE_BASE_RELOCATION = IMAGE_BASE_RELOCATION*;
+
+@foreign
+struct _IMAGE_ARCHIVE_MEMBER_HEADER {
+    Name: BYTE[16];
+    Date: BYTE[12];
+    UserID: BYTE[6];
+    GroupID: BYTE[6];
+    Mode: BYTE[8];
+    Size: BYTE[10];
+    EndHeader: BYTE[2];
+}
+
+@foreign
+typedef IMAGE_ARCHIVE_MEMBER_HEADER = _IMAGE_ARCHIVE_MEMBER_HEADER;
+
+@foreign
+typedef PIMAGE_ARCHIVE_MEMBER_HEADER = _IMAGE_ARCHIVE_MEMBER_HEADER*;
+
+@foreign
+struct _IMAGE_EXPORT_DIRECTORY {
+    Characteristics: DWORD;
+    TimeDateStamp: DWORD;
+    MajorVersion: WORD;
+    MinorVersion: WORD;
+    Name: DWORD;
+    Base: DWORD;
+    NumberOfFunctions: DWORD;
+    NumberOfNames: DWORD;
+    AddressOfFunctions: DWORD;
+    AddressOfNames: DWORD;
+    AddressOfNameOrdinals: DWORD;
+}
+
+@foreign
+typedef IMAGE_EXPORT_DIRECTORY = _IMAGE_EXPORT_DIRECTORY;
+
+@foreign
+typedef PIMAGE_EXPORT_DIRECTORY = _IMAGE_EXPORT_DIRECTORY*;
+
+@foreign
+struct _IMAGE_IMPORT_BY_NAME {
+    Hint: WORD;
+    Name: CHAR[1];
+}
+
+@foreign
+typedef IMAGE_IMPORT_BY_NAME = _IMAGE_IMPORT_BY_NAME;
+
+@foreign
+typedef PIMAGE_IMPORT_BY_NAME = _IMAGE_IMPORT_BY_NAME*;
+
+/*
+@PROBLEM Nested struct def at line 17448, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_THUNK_DATA64 {
+    u1: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17448, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_THUNK_DATA64
+*/
+
+@foreign
+typedef PIMAGE_THUNK_DATA64 = IMAGE_THUNK_DATA64*;
+
+/*
+@PROBLEM Nested struct def at line 17460, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_THUNK_DATA32 {
+    u1: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17460, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_THUNK_DATA32
+*/
+
+@foreign
+typedef PIMAGE_THUNK_DATA32 = IMAGE_THUNK_DATA32*;
+
+@foreign
+typedef PIMAGE_TLS_CALLBACK = func(DllHandle: PVOID, Reason: DWORD, Reserved: PVOID);
+
+/*
+@PROBLEM Nested struct def at line 17488, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_TLS_DIRECTORY64 {
+    StartAddressOfRawData: ULONGLONG;
+    EndAddressOfRawData: ULONGLONG;
+    AddressOfIndex: ULONGLONG;
+    AddressOfCallBacks: ULONGLONG;
+    SizeOfZeroFill: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17488, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_TLS_DIRECTORY64
+*/
+
+@foreign
+typedef PIMAGE_TLS_DIRECTORY64 = IMAGE_TLS_DIRECTORY64*;
+
+/*
+@PROBLEM Nested struct def at line 17507, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_TLS_DIRECTORY32 {
+    StartAddressOfRawData: DWORD;
+    EndAddressOfRawData: DWORD;
+    AddressOfIndex: DWORD;
+    AddressOfCallBacks: DWORD;
+    SizeOfZeroFill: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17507, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_TLS_DIRECTORY32
+*/
+
+@foreign
+typedef PIMAGE_TLS_DIRECTORY32 = IMAGE_TLS_DIRECTORY32*;
+
+@foreign
+typedef IMAGE_THUNK_DATA = IMAGE_THUNK_DATA64;
+
+@foreign
+typedef PIMAGE_THUNK_DATA = PIMAGE_THUNK_DATA64;
+
+@foreign
+typedef IMAGE_TLS_DIRECTORY = IMAGE_TLS_DIRECTORY64;
+
+@foreign
+typedef PIMAGE_TLS_DIRECTORY = PIMAGE_TLS_DIRECTORY64;
+
+/*
+@PROBLEM Nested struct def at line 17543, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_IMPORT_DESCRIPTOR {
+    u: (null);
+    TimeDateStamp: DWORD;
+    ForwarderChain: DWORD;
+    Name: DWORD;
+    FirstThunk: DWORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17543, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_IMPORT_DESCRIPTOR
+*/
+
+@foreign
+typedef PIMAGE_IMPORT_DESCRIPTOR = IMAGE_IMPORT_DESCRIPTOR*;
+
+@foreign
+struct _IMAGE_BOUND_IMPORT_DESCRIPTOR {
+    TimeDateStamp: DWORD;
+    OffsetModuleName: WORD;
+    NumberOfModuleForwarderRefs: WORD;
+}
+
+@foreign
+typedef IMAGE_BOUND_IMPORT_DESCRIPTOR = _IMAGE_BOUND_IMPORT_DESCRIPTOR;
+
+@foreign
+typedef PIMAGE_BOUND_IMPORT_DESCRIPTOR = _IMAGE_BOUND_IMPORT_DESCRIPTOR*;
+
+@foreign
+struct _IMAGE_BOUND_FORWARDER_REF {
+    TimeDateStamp: DWORD;
+    OffsetModuleName: WORD;
+    Reserved: WORD;
+}
+
+@foreign
+typedef IMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF;
+
+@foreign
+typedef PIMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF*;
+
+/*
+@PROBLEM Nested struct def at line 17576, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_DELAYLOAD_DESCRIPTOR {
+    Attributes: (null);
+    DllNameRVA: DWORD;
+    ModuleHandleRVA: DWORD;
+    ImportAddressTableRVA: DWORD;
+    ImportNameTableRVA: DWORD;
+    BoundImportAddressTableRVA: DWORD;
+    UnloadInformationTableRVA: DWORD;
+    TimeDateStamp: DWORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17576, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_DELAYLOAD_DESCRIPTOR
+*/
+
+@foreign
+typedef PIMAGE_DELAYLOAD_DESCRIPTOR = _IMAGE_DELAYLOAD_DESCRIPTOR*;
+
+@foreign
+typedef PCIMAGE_DELAYLOAD_DESCRIPTOR = IMAGE_DELAYLOAD_DESCRIPTOR*;
+
+@foreign
+struct _IMAGE_RESOURCE_DIRECTORY {
+    Characteristics: DWORD;
+    TimeDateStamp: DWORD;
+    MajorVersion: WORD;
+    MinorVersion: WORD;
+    NumberOfNamedEntries: WORD;
+    NumberOfIdEntries: WORD;
+}
+
+@foreign
+typedef IMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY;
+
+@foreign
+typedef PIMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY*;
+
+/*
+@PROBLEM Nested struct def at line 17643, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_RESOURCE_DIRECTORY_ENTRY {
+    u: (null);
+    u2: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17643, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_RESOURCE_DIRECTORY_ENTRY
+*/
+
+@foreign
+typedef PIMAGE_RESOURCE_DIRECTORY_ENTRY = _IMAGE_RESOURCE_DIRECTORY_ENTRY*;
+
+@foreign
+struct _IMAGE_RESOURCE_DIRECTORY_STRING {
+    Length: WORD;
+    NameString: CHAR[1];
+}
+
+@foreign
+typedef IMAGE_RESOURCE_DIRECTORY_STRING = _IMAGE_RESOURCE_DIRECTORY_STRING;
+
+@foreign
+typedef PIMAGE_RESOURCE_DIRECTORY_STRING = _IMAGE_RESOURCE_DIRECTORY_STRING*;
+
+@foreign
+struct _IMAGE_RESOURCE_DIR_STRING_U {
+    Length: WORD;
+    NameString: WCHAR[1];
+}
+
+@foreign
+typedef IMAGE_RESOURCE_DIR_STRING_U = _IMAGE_RESOURCE_DIR_STRING_U;
+
+@foreign
+typedef PIMAGE_RESOURCE_DIR_STRING_U = _IMAGE_RESOURCE_DIR_STRING_U*;
+
+@foreign
+struct _IMAGE_RESOURCE_DATA_ENTRY {
+    OffsetToData: DWORD;
+    Size: DWORD;
+    CodePage: DWORD;
+    Reserved: DWORD;
+}
+
+@foreign
+typedef IMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY;
+
+@foreign
+typedef PIMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY*;
+
+@foreign
+struct _IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
+    Flags: WORD;
+    Catalog: WORD;
+    CatalogOffset: DWORD;
+    Reserved: DWORD;
+}
+
+@foreign
+typedef IMAGE_LOAD_CONFIG_CODE_INTEGRITY = _IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
+
+@foreign
+typedef PIMAGE_LOAD_CONFIG_CODE_INTEGRITY = _IMAGE_LOAD_CONFIG_CODE_INTEGRITY*;
+
+@foreign
+struct _IMAGE_DYNAMIC_RELOCATION_TABLE {
+    Version: DWORD;
+    Size: DWORD;
+}
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION_TABLE = _IMAGE_DYNAMIC_RELOCATION_TABLE;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION_TABLE = _IMAGE_DYNAMIC_RELOCATION_TABLE*;
+
+@foreign
+struct _IMAGE_DYNAMIC_RELOCATION32 {
+    Symbol: DWORD;
+    BaseRelocSize: DWORD;
+}
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION32 = _IMAGE_DYNAMIC_RELOCATION32;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION32 = _IMAGE_DYNAMIC_RELOCATION32*;
+
+@foreign
+struct _IMAGE_DYNAMIC_RELOCATION64 {
+    Symbol: ULONGLONG;
+    BaseRelocSize: DWORD;
+}
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION64 = _IMAGE_DYNAMIC_RELOCATION64;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION64 = _IMAGE_DYNAMIC_RELOCATION64*;
+
+@foreign
+struct _IMAGE_DYNAMIC_RELOCATION32_V2 {
+    HeaderSize: DWORD;
+    FixupInfoSize: DWORD;
+    Symbol: DWORD;
+    SymbolGroup: DWORD;
+    Flags: DWORD;
+}
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION32_V2 = _IMAGE_DYNAMIC_RELOCATION32_V2;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION32_V2 = _IMAGE_DYNAMIC_RELOCATION32_V2*;
+
+@foreign
+struct _IMAGE_DYNAMIC_RELOCATION64_V2 {
+    HeaderSize: DWORD;
+    FixupInfoSize: DWORD;
+    Symbol: ULONGLONG;
+    SymbolGroup: DWORD;
+    Flags: DWORD;
+}
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION64_V2 = _IMAGE_DYNAMIC_RELOCATION64_V2;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION64_V2 = _IMAGE_DYNAMIC_RELOCATION64_V2*;
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION = IMAGE_DYNAMIC_RELOCATION64;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION = PIMAGE_DYNAMIC_RELOCATION64;
+
+@foreign
+typedef IMAGE_DYNAMIC_RELOCATION_V2 = IMAGE_DYNAMIC_RELOCATION64_V2;
+
+@foreign
+typedef PIMAGE_DYNAMIC_RELOCATION_V2 = PIMAGE_DYNAMIC_RELOCATION64_V2;
+
+@foreign
+struct _IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER {
+    PrologueByteCount: BYTE;
+}
+
+@foreign
+typedef IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = _IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER;
+
+@foreign
+typedef PIMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER*;
+
+@foreign
+struct _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER {
+    EpilogueCount: DWORD;
+    EpilogueByteCount: BYTE;
+    BranchDescriptorElementSize: BYTE;
+    BranchDescriptorCount: WORD;
+}
+
+@foreign
+typedef IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER;
+
+@foreign
+typedef PIMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER*;
+
+@foreign
+struct _IMAGE_LOAD_CONFIG_DIRECTORY32 {
+    Size: DWORD;
+    TimeDateStamp: DWORD;
+    MajorVersion: WORD;
+    MinorVersion: WORD;
+    GlobalFlagsClear: DWORD;
+    GlobalFlagsSet: DWORD;
+    CriticalSectionDefaultTimeout: DWORD;
+    DeCommitFreeBlockThreshold: DWORD;
+    DeCommitTotalFreeThreshold: DWORD;
+    LockPrefixTable: DWORD;
+    MaximumAllocationSize: DWORD;
+    VirtualMemoryThreshold: DWORD;
+    ProcessHeapFlags: DWORD;
+    ProcessAffinityMask: DWORD;
+    CSDVersion: WORD;
+    DependentLoadFlags: WORD;
+    EditList: DWORD;
+    SecurityCookie: DWORD;
+    SEHandlerTable: DWORD;
+    SEHandlerCount: DWORD;
+    GuardCFCheckFunctionPointer: DWORD;
+    GuardCFDispatchFunctionPointer: DWORD;
+    GuardCFFunctionTable: DWORD;
+    GuardCFFunctionCount: DWORD;
+    GuardFlags: DWORD;
+    CodeIntegrity: IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
+    GuardAddressTakenIatEntryTable: DWORD;
+    GuardAddressTakenIatEntryCount: DWORD;
+    GuardLongJumpTargetTable: DWORD;
+    GuardLongJumpTargetCount: DWORD;
+    DynamicValueRelocTable: DWORD;
+    CHPEMetadataPointer: DWORD;
+    GuardRFFailureRoutine: DWORD;
+    GuardRFFailureRoutineFunctionPointer: DWORD;
+    DynamicValueRelocTableOffset: DWORD;
+    DynamicValueRelocTableSection: WORD;
+    Reserved2: WORD;
+    GuardRFVerifyStackPointerFunctionPointer: DWORD;
+    HotPatchTableOffset: DWORD;
+    Reserved3: DWORD;
+    EnclaveConfigurationPointer: DWORD;
+}
+
+@foreign
+typedef IMAGE_LOAD_CONFIG_DIRECTORY32 = _IMAGE_LOAD_CONFIG_DIRECTORY32;
+
+@foreign
+typedef PIMAGE_LOAD_CONFIG_DIRECTORY32 = _IMAGE_LOAD_CONFIG_DIRECTORY32*;
+
+@foreign
+struct _IMAGE_LOAD_CONFIG_DIRECTORY64 {
+    Size: DWORD;
+    TimeDateStamp: DWORD;
+    MajorVersion: WORD;
+    MinorVersion: WORD;
+    GlobalFlagsClear: DWORD;
+    GlobalFlagsSet: DWORD;
+    CriticalSectionDefaultTimeout: DWORD;
+    DeCommitFreeBlockThreshold: ULONGLONG;
+    DeCommitTotalFreeThreshold: ULONGLONG;
+    LockPrefixTable: ULONGLONG;
+    MaximumAllocationSize: ULONGLONG;
+    VirtualMemoryThreshold: ULONGLONG;
+    ProcessAffinityMask: ULONGLONG;
+    ProcessHeapFlags: DWORD;
+    CSDVersion: WORD;
+    DependentLoadFlags: WORD;
+    EditList: ULONGLONG;
+    SecurityCookie: ULONGLONG;
+    SEHandlerTable: ULONGLONG;
+    SEHandlerCount: ULONGLONG;
+    GuardCFCheckFunctionPointer: ULONGLONG;
+    GuardCFDispatchFunctionPointer: ULONGLONG;
+    GuardCFFunctionTable: ULONGLONG;
+    GuardCFFunctionCount: ULONGLONG;
+    GuardFlags: DWORD;
+    CodeIntegrity: IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
+    GuardAddressTakenIatEntryTable: ULONGLONG;
+    GuardAddressTakenIatEntryCount: ULONGLONG;
+    GuardLongJumpTargetTable: ULONGLONG;
+    GuardLongJumpTargetCount: ULONGLONG;
+    DynamicValueRelocTable: ULONGLONG;
+    CHPEMetadataPointer: ULONGLONG;
+    GuardRFFailureRoutine: ULONGLONG;
+    GuardRFFailureRoutineFunctionPointer: ULONGLONG;
+    DynamicValueRelocTableOffset: DWORD;
+    DynamicValueRelocTableSection: WORD;
+    Reserved2: WORD;
+    GuardRFVerifyStackPointerFunctionPointer: ULONGLONG;
+    HotPatchTableOffset: DWORD;
+    Reserved3: DWORD;
+    EnclaveConfigurationPointer: ULONGLONG;
+}
+
+@foreign
+typedef IMAGE_LOAD_CONFIG_DIRECTORY64 = _IMAGE_LOAD_CONFIG_DIRECTORY64;
+
+@foreign
+typedef PIMAGE_LOAD_CONFIG_DIRECTORY64 = _IMAGE_LOAD_CONFIG_DIRECTORY64*;
+
+@foreign
+typedef IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY64;
+
+@foreign
+typedef PIMAGE_LOAD_CONFIG_DIRECTORY = PIMAGE_LOAD_CONFIG_DIRECTORY64;
+
+@foreign
+struct _IMAGE_HOT_PATCH_INFO {
+    Version: DWORD;
+    Size: DWORD;
+    SequenceNumber: DWORD;
+    BaseImageList: DWORD;
+    BaseImageCount: DWORD;
+    BufferOffset: DWORD;
+}
+
+@foreign
+typedef IMAGE_HOT_PATCH_INFO = _IMAGE_HOT_PATCH_INFO;
+
+@foreign
+typedef PIMAGE_HOT_PATCH_INFO = _IMAGE_HOT_PATCH_INFO*;
+
+@foreign
+struct _IMAGE_HOT_PATCH_BASE {
+    SequenceNumber: DWORD;
+    Flags: DWORD;
+    OriginalTimeDateStamp: DWORD;
+    OriginalCheckSum: DWORD;
+    CodeIntegrityInfo: DWORD;
+    CodeIntegritySize: DWORD;
+    PatchTable: DWORD;
+    BufferOffset: DWORD;
+}
+
+@foreign
+typedef IMAGE_HOT_PATCH_BASE = _IMAGE_HOT_PATCH_BASE;
+
+@foreign
+typedef PIMAGE_HOT_PATCH_BASE = _IMAGE_HOT_PATCH_BASE*;
+
+@foreign
+struct _IMAGE_HOT_PATCH_HASHES {
+    SHA256: BYTE[32];
+    SHA1: BYTE[20];
+}
+
+@foreign
+typedef IMAGE_HOT_PATCH_HASHES = _IMAGE_HOT_PATCH_HASHES;
+
+@foreign
+typedef PIMAGE_HOT_PATCH_HASHES = _IMAGE_HOT_PATCH_HASHES*;
+
+@foreign
+struct _IMAGE_CE_RUNTIME_FUNCTION_ENTRY {
+    FuncStart: DWORD;
+    PrologLen: DWORD;
+    FuncLen: DWORD;
+    ThirtyTwoBit: DWORD;
+    ExceptionFlag: DWORD;
+}
+
+@foreign
+typedef IMAGE_CE_RUNTIME_FUNCTION_ENTRY = _IMAGE_CE_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef PIMAGE_CE_RUNTIME_FUNCTION_ENTRY = _IMAGE_CE_RUNTIME_FUNCTION_ENTRY*;
+
+/*
+@PROBLEM Nested struct def at line 17989, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_ARM_RUNTIME_FUNCTION_ENTRY {
+    BeginAddress: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 17989, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_ARM_RUNTIME_FUNCTION_ENTRY
+*/
+
+@foreign
+typedef PIMAGE_ARM_RUNTIME_FUNCTION_ENTRY = _IMAGE_ARM_RUNTIME_FUNCTION_ENTRY*;
+
+/*
+@PROBLEM Nested struct def at line 18007, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY {
+    BeginAddress: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 18007, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY
+*/
+
+@foreign
+typedef PIMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY*;
+
+@foreign
+struct _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY {
+    BeginAddress: ULONGLONG;
+    EndAddress: ULONGLONG;
+    ExceptionHandler: ULONGLONG;
+    HandlerData: ULONGLONG;
+    PrologEndAddress: ULONGLONG;
+}
+
+@foreign
+typedef IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY*;
+
+@foreign
+struct _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
+    BeginAddress: DWORD;
+    EndAddress: DWORD;
+    ExceptionHandler: DWORD;
+    HandlerData: DWORD;
+    PrologEndAddress: DWORD;
+}
+
+@foreign
+typedef IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY*;
+
+/*
+@PROBLEM Nested struct def at line 18039, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_RUNTIME_FUNCTION_ENTRY {
+    BeginAddress: DWORD;
+    EndAddress: DWORD;
+    u: (null);
+}
+*/
+
+@foreign
+typedef _PIMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY*;
+
+@foreign
+typedef IMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef PIMAGE_IA64_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef IMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+typedef PIMAGE_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY;
+
+@foreign
+struct _IMAGE_ENCLAVE_CONFIG32 {
+    Size: DWORD;
+    MinimumRequiredConfigSize: DWORD;
+    PolicyFlags: DWORD;
+    NumberOfImports: DWORD;
+    ImportList: DWORD;
+    ImportEntrySize: DWORD;
+    FamilyID: BYTE[16];
+    ImageID: BYTE[16];
+    ImageVersion: DWORD;
+    SecurityVersion: DWORD;
+    EnclaveSize: DWORD;
+    NumberOfThreads: DWORD;
+    EnclaveFlags: DWORD;
+}
+
+@foreign
+typedef IMAGE_ENCLAVE_CONFIG32 = _IMAGE_ENCLAVE_CONFIG32;
+
+@foreign
+typedef PIMAGE_ENCLAVE_CONFIG32 = _IMAGE_ENCLAVE_CONFIG32*;
+
+@foreign
+struct _IMAGE_ENCLAVE_CONFIG64 {
+    Size: DWORD;
+    MinimumRequiredConfigSize: DWORD;
+    PolicyFlags: DWORD;
+    NumberOfImports: DWORD;
+    ImportList: DWORD;
+    ImportEntrySize: DWORD;
+    FamilyID: BYTE[16];
+    ImageID: BYTE[16];
+    ImageVersion: DWORD;
+    SecurityVersion: DWORD;
+    EnclaveSize: ULONGLONG;
+    NumberOfThreads: DWORD;
+    EnclaveFlags: DWORD;
+}
+
+@foreign
+typedef IMAGE_ENCLAVE_CONFIG64 = _IMAGE_ENCLAVE_CONFIG64;
+
+@foreign
+typedef PIMAGE_ENCLAVE_CONFIG64 = _IMAGE_ENCLAVE_CONFIG64*;
+
+@foreign
+typedef IMAGE_ENCLAVE_CONFIG = IMAGE_ENCLAVE_CONFIG64;
+
+@foreign
+typedef PIMAGE_ENCLAVE_CONFIG = PIMAGE_ENCLAVE_CONFIG64;
+
+@foreign
+struct _IMAGE_ENCLAVE_IMPORT {
+    MatchType: DWORD;
+    MinimumSecurityVersion: DWORD;
+    UniqueOrAuthorID: BYTE[32];
+    FamilyID: BYTE[16];
+    ImageID: BYTE[16];
+    ImportName: DWORD;
+    Reserved: DWORD;
+}
+
+@foreign
+typedef IMAGE_ENCLAVE_IMPORT = _IMAGE_ENCLAVE_IMPORT;
+
+@foreign
+typedef PIMAGE_ENCLAVE_IMPORT = _IMAGE_ENCLAVE_IMPORT*;
+
+@foreign
+struct _IMAGE_DEBUG_DIRECTORY {
+    Characteristics: DWORD;
+    TimeDateStamp: DWORD;
+    MajorVersion: WORD;
+    MinorVersion: WORD;
+    Type: DWORD;
+    SizeOfData: DWORD;
+    AddressOfRawData: DWORD;
+    PointerToRawData: DWORD;
+}
+
+@foreign
+typedef IMAGE_DEBUG_DIRECTORY = _IMAGE_DEBUG_DIRECTORY;
+
+@foreign
+typedef PIMAGE_DEBUG_DIRECTORY = _IMAGE_DEBUG_DIRECTORY*;
+
+@foreign
+struct _IMAGE_COFF_SYMBOLS_HEADER {
+    NumberOfSymbols: DWORD;
+    LvaToFirstSymbol: DWORD;
+    NumberOfLinenumbers: DWORD;
+    LvaToFirstLinenumber: DWORD;
+    RvaToFirstByteOfCode: DWORD;
+    RvaToLastByteOfCode: DWORD;
+    RvaToFirstByteOfData: DWORD;
+    RvaToLastByteOfData: DWORD;
+}
+
+@foreign
+typedef IMAGE_COFF_SYMBOLS_HEADER = _IMAGE_COFF_SYMBOLS_HEADER;
+
+@foreign
+typedef PIMAGE_COFF_SYMBOLS_HEADER = _IMAGE_COFF_SYMBOLS_HEADER*;
+
+@foreign
+struct _FPO_DATA {
+    ulOffStart: DWORD;
+    cbProcSize: DWORD;
+    cdwLocals: DWORD;
+    cdwParams: WORD;
+    cbProlog: WORD;
+    cbRegs: WORD;
+    fHasSEH: WORD;
+    fUseBP: WORD;
+    reserved: WORD;
+    cbFrame: WORD;
+}
+
+@foreign
+typedef FPO_DATA = _FPO_DATA;
+
+@foreign
+typedef PFPO_DATA = _FPO_DATA*;
+
+@foreign
+struct _IMAGE_DEBUG_MISC {
+    DataType: DWORD;
+    Length: DWORD;
+    Unicode: BOOLEAN;
+    Reserved: BYTE[3];
+    Data: BYTE[1];
+}
+
+@foreign
+typedef IMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC;
+
+@foreign
+typedef PIMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC*;
+
+@foreign
+struct _IMAGE_FUNCTION_ENTRY {
+    StartingAddress: DWORD;
+    EndingAddress: DWORD;
+    EndOfPrologue: DWORD;
+}
+
+@foreign
+typedef IMAGE_FUNCTION_ENTRY = _IMAGE_FUNCTION_ENTRY;
+
+@foreign
+typedef PIMAGE_FUNCTION_ENTRY = _IMAGE_FUNCTION_ENTRY*;
+
+/*
+@PROBLEM Nested struct def at line 18238, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_FUNCTION_ENTRY64 {
+    StartingAddress: ULONGLONG;
+    EndingAddress: ULONGLONG;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 18238, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_FUNCTION_ENTRY64
+*/
+
+@foreign
+typedef PIMAGE_FUNCTION_ENTRY64 = _IMAGE_FUNCTION_ENTRY64*;
+
+@foreign
+struct _IMAGE_SEPARATE_DEBUG_HEADER {
+    Signature: WORD;
+    Flags: WORD;
+    Machine: WORD;
+    Characteristics: WORD;
+    TimeDateStamp: DWORD;
+    CheckSum: DWORD;
+    ImageBase: DWORD;
+    SizeOfImage: DWORD;
+    NumberOfSections: DWORD;
+    ExportedNamesSize: DWORD;
+    DebugDirectorySize: DWORD;
+    SectionAlignment: DWORD;
+    Reserved: DWORD[2];
+}
+
+@foreign
+typedef IMAGE_SEPARATE_DEBUG_HEADER = _IMAGE_SEPARATE_DEBUG_HEADER;
+
+@foreign
+typedef PIMAGE_SEPARATE_DEBUG_HEADER = _IMAGE_SEPARATE_DEBUG_HEADER*;
+
+@foreign
+struct _NON_PAGED_DEBUG_INFO {
+    Signature: WORD;
+    Flags: WORD;
+    Size: DWORD;
+    Machine: WORD;
+    Characteristics: WORD;
+    TimeDateStamp: DWORD;
+    CheckSum: DWORD;
+    SizeOfImage: DWORD;
+    ImageBase: ULONGLONG;
+}
+
+@foreign
+typedef NON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO;
+
+@foreign
+typedef PNON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO*;
+
+@foreign
+struct _ImageArchitectureEntry {
+    FixupInstRVA: DWORD;
+    NewInst: DWORD;
+}
+
+@foreign
+typedef IMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry;
+
+@foreign
+typedef PIMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry*;
+
+/*
+@PROBLEM Nested struct def at line 18344, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct IMPORT_OBJECT_HEADER {
+    Sig1: WORD;
+    Sig2: WORD;
+    Version: WORD;
+    Machine: WORD;
+    TimeDateStamp: DWORD;
+    SizeOfData: DWORD;
+    u: (null);
+    Type: WORD;
+    NameType: WORD;
+    Reserved: WORD;
+}
+*/
+
+@foreign
+enum IMPORT_OBJECT_TYPE {
+    IMPORT_OBJECT_CODE = 0,
+    IMPORT_OBJECT_DATA = 1,
+    IMPORT_OBJECT_CONST = 2,
+}
+
+@foreign
+enum IMPORT_OBJECT_NAME_TYPE {
+    IMPORT_OBJECT_ORDINAL = 0,
+    IMPORT_OBJECT_NAME = 1,
+    IMPORT_OBJECT_NAME_NO_PREFIX = 2,
+    IMPORT_OBJECT_NAME_UNDECORATE = 3,
+    IMPORT_OBJECT_NAME_EXPORTAS = 4,
+}
+
+@foreign
+enum ReplacesCorHdrNumericDefines {
+    COMIMAGE_FLAGS_ILONLY = 1,
+    IMAGE_COR_MIH_METHODRVA = 1,
+    COR_VTABLE_32BIT = 1,
+    NATIVE_TYPE_MAX_CB = 1,
+    COR_VERSION_MAJOR = 2,
+    COR_VERSION_MAJOR_V2 = 2,
+    COR_VTABLE_64BIT = 2,
+    IMAGE_COR_MIH_EHRVA = 2,
+    COMIMAGE_FLAGS_32BITREQUIRED = 2,
+    COMIMAGE_FLAGS_IL_LIBRARY = 4,
+    COR_VTABLE_FROM_UNMANAGED = 4,
+    COR_VERSION_MINOR = 5,
+    COR_DELETED_NAME_LENGTH = 8,
+    IMAGE_COR_MIH_BASICBLOCK = 8,
+    COMIMAGE_FLAGS_STRONGNAMESIGNED = 8,
+    COR_VTABLEGAP_NAME_LENGTH = 8,
+    COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = 8,
+    COR_VTABLE_CALL_MOST_DERIVED = 16,
+    COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 16,
+    IMAGE_COR_EATJ_THUNK_SIZE = 32,
+    COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255,
+    MAX_CLASS_NAME = 1024,
+    MAX_PACKAGE_NAME = 1024,
+    COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536,
+    COMIMAGE_FLAGS_32BITPREFERRED = 131072,
+}
+
+/*
+@PROBLEM Nested struct def at line 18427, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct IMAGE_COR20_HEADER {
+    cb: DWORD;
+    MajorRuntimeVersion: WORD;
+    MinorRuntimeVersion: WORD;
+    MetaData: IMAGE_DATA_DIRECTORY;
+    Flags: DWORD;
+    u: (null);
+    Resources: IMAGE_DATA_DIRECTORY;
+    StrongNameSignature: IMAGE_DATA_DIRECTORY;
+    CodeManagerTable: IMAGE_DATA_DIRECTORY;
+    VTableFixups: IMAGE_DATA_DIRECTORY;
+    ExportAddressTableJumps: IMAGE_DATA_DIRECTORY;
+    ManagedNativeHeader: IMAGE_DATA_DIRECTORY;
+}
+*/
+
+@foreign
+typedef PIMAGE_COR20_HEADER = IMAGE_COR20_HEADER*;
+
+@foreign
+func RtlCaptureStackBackTrace(FramesToSkip: DWORD, FramesToCapture: DWORD, BackTrace: PVOID*, BackTraceHash: PDWORD): WORD;
+
+@foreign
+func RtlCaptureContext(ContextRecord: PCONTEXT);
+
+@foreign
+func RtlUnwind(TargetFrame: PVOID, TargetIp: PVOID, ExceptionRecord: PEXCEPTION_RECORD, ReturnValue: PVOID);
+
+@foreign
+func RtlAddFunctionTable(FunctionTable: PRUNTIME_FUNCTION, EntryCount: DWORD, BaseAddress: DWORD64): BOOLEAN;
+
+@foreign
+func RtlDeleteFunctionTable(FunctionTable: PRUNTIME_FUNCTION): BOOLEAN;
+
+@foreign
+func RtlInstallFunctionTableCallback(TableIdentifier: DWORD64, BaseAddress: DWORD64, Length: DWORD, Callback: PGET_RUNTIME_FUNCTION_CALLBACK, Context: PVOID, OutOfProcessCallbackDll: PCWSTR): BOOLEAN;
+
+@foreign
+func RtlAddGrowableFunctionTable(DynamicTable: PVOID*, FunctionTable: PRUNTIME_FUNCTION, EntryCount: DWORD, MaximumEntryCount: DWORD, RangeBase: ULONG_PTR, RangeEnd: ULONG_PTR): DWORD;
+
+@foreign
+func RtlGrowFunctionTable(DynamicTable: PVOID, NewEntryCount: DWORD);
+
+@foreign
+func RtlDeleteGrowableFunctionTable(DynamicTable: PVOID);
+
+@foreign
+func RtlLookupFunctionEntry(ControlPc: DWORD64, ImageBase: PDWORD64, HistoryTable: PUNWIND_HISTORY_TABLE): PRUNTIME_FUNCTION;
+
+@foreign
+func RtlRestoreContext(ContextRecord: PCONTEXT, ExceptionRecord: _EXCEPTION_RECORD*);
+
+@foreign
+func RtlUnwindEx(TargetFrame: PVOID, TargetIp: PVOID, ExceptionRecord: PEXCEPTION_RECORD, ReturnValue: PVOID, ContextRecord: PCONTEXT, HistoryTable: PUNWIND_HISTORY_TABLE);
+
+@foreign
+func RtlVirtualUnwind(HandlerType: DWORD, ImageBase: DWORD64, ControlPc: DWORD64, FunctionEntry: PRUNTIME_FUNCTION, ContextRecord: PCONTEXT, HandlerData: PVOID*, EstablisherFrame: PDWORD64, ContextPointers: PKNONVOLATILE_CONTEXT_POINTERS): PEXCEPTION_ROUTINE;
+
+@foreign
+func RtlPcToFileHeader(PcValue: PVOID, BaseOfImage: PVOID*): PVOID;
+
+@foreign
+func RtlCompareMemory(Source1: void const*, Source2: void const*, Length: SIZE_T): SIZE_T;
+
+@foreign
+struct _SLIST_ENTRY {
+    Next: _SLIST_ENTRY*;
+}
+
+@foreign
+typedef SLIST_ENTRY = _SLIST_ENTRY;
+
+@foreign
+typedef PSLIST_ENTRY = _SLIST_ENTRY*;
+
+/*
+@PROBLEM Nested struct def at line 19146, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+union _SLIST_HEADER {
+    s: (null);
+    HeaderX64: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 19146, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_SLIST_HEADER
+*/
+
+@foreign
+typedef PSLIST_HEADER = _SLIST_HEADER*;
+
+@foreign
+func RtlInitializeSListHead(ListHead: PSLIST_HEADER);
+
+@foreign
+func RtlFirstEntrySList(ListHead: SLIST_HEADER*): PSLIST_ENTRY;
+
+@foreign
+func RtlInterlockedPopEntrySList(ListHead: PSLIST_HEADER): PSLIST_ENTRY;
+
+@foreign
+func RtlInterlockedPushEntrySList(ListHead: PSLIST_HEADER, ListEntry: PSLIST_ENTRY): PSLIST_ENTRY;
+
+@foreign
+func RtlInterlockedPushListSListEx(ListHead: PSLIST_HEADER, List: PSLIST_ENTRY, ListEnd: PSLIST_ENTRY, Count: DWORD): PSLIST_ENTRY;
+
+@foreign
+func RtlInterlockedFlushSList(ListHead: PSLIST_HEADER): PSLIST_ENTRY;
+
+@foreign
+func RtlQueryDepthSList(ListHead: PSLIST_HEADER): WORD;
+
+@foreign
+union _RTL_RUN_ONCE {
+    Ptr: PVOID;
+}
+
+@foreign
+typedef RTL_RUN_ONCE = _RTL_RUN_ONCE;
+
+@foreign
+typedef PRTL_RUN_ONCE = _RTL_RUN_ONCE*;
+
+@foreign
+struct _RTL_BARRIER {
+    Reserved1: DWORD;
+    Reserved2: DWORD;
+    Reserved3: ULONG_PTR[2];
+    Reserved4: DWORD;
+    Reserved5: DWORD;
+}
+
+@foreign
+typedef RTL_BARRIER = _RTL_BARRIER;
+
+@foreign
+typedef PRTL_BARRIER = _RTL_BARRIER*;
+
+@foreign
+func __fastfail(Code: uint);
+
+@foreign
+struct _MESSAGE_RESOURCE_ENTRY {
+    Length: WORD;
+    Flags: WORD;
+    Text: BYTE[1];
+}
+
+@foreign
+typedef MESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY;
+
+@foreign
+typedef PMESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY*;
+
+@foreign
+struct _MESSAGE_RESOURCE_BLOCK {
+    LowId: DWORD;
+    HighId: DWORD;
+    OffsetToEntries: DWORD;
+}
+
+@foreign
+typedef MESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK;
+
+@foreign
+typedef PMESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK*;
+
+@foreign
+struct _MESSAGE_RESOURCE_DATA {
+    NumberOfBlocks: DWORD;
+    Blocks: MESSAGE_RESOURCE_BLOCK[1];
+}
+
+@foreign
+typedef MESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA;
+
+@foreign
+typedef PMESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA*;
+
+@foreign
+struct _OSVERSIONINFOA {
+    dwOSVersionInfoSize: DWORD;
+    dwMajorVersion: DWORD;
+    dwMinorVersion: DWORD;
+    dwBuildNumber: DWORD;
+    dwPlatformId: DWORD;
+    szCSDVersion: CHAR[128];
+}
+
+@foreign
+typedef OSVERSIONINFOA = _OSVERSIONINFOA;
+
+@foreign
+typedef POSVERSIONINFOA = _OSVERSIONINFOA*;
+
+@foreign
+typedef LPOSVERSIONINFOA = _OSVERSIONINFOA*;
+
+@foreign
+struct _OSVERSIONINFOW {
+    dwOSVersionInfoSize: DWORD;
+    dwMajorVersion: DWORD;
+    dwMinorVersion: DWORD;
+    dwBuildNumber: DWORD;
+    dwPlatformId: DWORD;
+    szCSDVersion: WCHAR[128];
+}
+
+@foreign
+typedef OSVERSIONINFOW = _OSVERSIONINFOW;
+
+@foreign
+typedef POSVERSIONINFOW = _OSVERSIONINFOW*;
+
+@foreign
+typedef LPOSVERSIONINFOW = _OSVERSIONINFOW*;
+
+@foreign
+typedef RTL_OSVERSIONINFOW = _OSVERSIONINFOW;
+
+@foreign
+typedef PRTL_OSVERSIONINFOW = _OSVERSIONINFOW*;
+
+@foreign
+typedef OSVERSIONINFO = OSVERSIONINFOA;
+
+@foreign
+typedef POSVERSIONINFO = POSVERSIONINFOA;
+
+@foreign
+typedef LPOSVERSIONINFO = LPOSVERSIONINFOA;
+
+@foreign
+struct _OSVERSIONINFOEXA {
+    dwOSVersionInfoSize: DWORD;
+    dwMajorVersion: DWORD;
+    dwMinorVersion: DWORD;
+    dwBuildNumber: DWORD;
+    dwPlatformId: DWORD;
+    szCSDVersion: CHAR[128];
+    wServicePackMajor: WORD;
+    wServicePackMinor: WORD;
+    wSuiteMask: WORD;
+    wProductType: BYTE;
+    wReserved: BYTE;
+}
+
+@foreign
+typedef OSVERSIONINFOEXA = _OSVERSIONINFOEXA;
+
+@foreign
+typedef POSVERSIONINFOEXA = _OSVERSIONINFOEXA*;
+
+@foreign
+typedef LPOSVERSIONINFOEXA = _OSVERSIONINFOEXA*;
+
+@foreign
+struct _OSVERSIONINFOEXW {
+    dwOSVersionInfoSize: DWORD;
+    dwMajorVersion: DWORD;
+    dwMinorVersion: DWORD;
+    dwBuildNumber: DWORD;
+    dwPlatformId: DWORD;
+    szCSDVersion: WCHAR[128];
+    wServicePackMajor: WORD;
+    wServicePackMinor: WORD;
+    wSuiteMask: WORD;
+    wProductType: BYTE;
+    wReserved: BYTE;
+}
+
+@foreign
+typedef OSVERSIONINFOEXW = _OSVERSIONINFOEXW;
+
+@foreign
+typedef POSVERSIONINFOEXW = _OSVERSIONINFOEXW*;
+
+@foreign
+typedef LPOSVERSIONINFOEXW = _OSVERSIONINFOEXW*;
+
+@foreign
+typedef RTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW;
+
+@foreign
+typedef PRTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW*;
+
+@foreign
+typedef OSVERSIONINFOEX = OSVERSIONINFOEXA;
+
+@foreign
+typedef POSVERSIONINFOEX = POSVERSIONINFOEXA;
+
+@foreign
+typedef LPOSVERSIONINFOEX = LPOSVERSIONINFOEXA;
+
+@foreign
+func VerSetConditionMask(ConditionMask: ULONGLONG, TypeMask: DWORD, Condition: BYTE): ULONGLONG;
+
+@foreign
+func RtlGetProductInfo(OSMajorVersion: DWORD, OSMinorVersion: DWORD, SpMajorVersion: DWORD, SpMinorVersion: DWORD, ReturnedProductType: PDWORD): BOOLEAN;
+
+@foreign
+enum _RTL_UMS_THREAD_INFO_CLASS {
+    UmsThreadInvalidInfoClass = 0,
+    UmsThreadUserContext,
+    UmsThreadPriority,
+    UmsThreadAffinity,
+    UmsThreadTeb,
+    UmsThreadIsSuspended,
+    UmsThreadIsTerminated,
+    UmsThreadMaxInfoClass,
+}
+
+@foreign
+typedef RTL_UMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS;
+
+@foreign
+typedef PRTL_UMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS*;
+
+@foreign
+enum _RTL_UMS_SCHEDULER_REASON {
+    UmsSchedulerStartup = 0,
+    UmsSchedulerThreadBlocked,
+    UmsSchedulerThreadYield,
+}
+
+@foreign
+typedef RTL_UMS_SCHEDULER_REASON = _RTL_UMS_SCHEDULER_REASON;
+
+@foreign
+typedef PRTL_UMS_SCHEDULER_REASON = _RTL_UMS_SCHEDULER_REASON*;
+
+@foreign
+typedef RTL_UMS_SCHEDULER_ENTRY_POINT = func(Reason: RTL_UMS_SCHEDULER_REASON, ActivationPayload: ULONG_PTR, SchedulerParam: PVOID);
+
+@foreign
+typedef PRTL_UMS_SCHEDULER_ENTRY_POINT = RTL_UMS_SCHEDULER_ENTRY_POINT*;
+
+@foreign
+func RtlCrc32(Buffer: void const*, Size: usize, InitialCrc: DWORD): DWORD;
+
+@foreign
+func RtlCrc64(Buffer: void const*, Size: usize, InitialCrc: ULONGLONG): ULONGLONG;
+
+@foreign
+enum _OS_DEPLOYEMENT_STATE_VALUES {
+    OS_DEPLOYMENT_STANDARD = 1,
+    OS_DEPLOYMENT_COMPACT,
+}
+
+@foreign
+typedef OS_DEPLOYEMENT_STATE_VALUES = _OS_DEPLOYEMENT_STATE_VALUES;
+
+@foreign
+func RtlOsDeploymentState(Flags: DWORD): OS_DEPLOYEMENT_STATE_VALUES;
+
+@foreign
+struct _NV_MEMORY_RANGE {
+    BaseAddress: void*;
+    Length: SIZE_T;
+}
+
+@foreign
+typedef NV_MEMORY_RANGE = _NV_MEMORY_RANGE;
+
+@foreign
+typedef PNV_MEMORY_RANGE = _NV_MEMORY_RANGE*;
+
+@foreign
+func RtlGetNonVolatileToken(NvBuffer: PVOID, Size: SIZE_T, NvToken: PVOID*): DWORD;
+
+@foreign
+func RtlFreeNonVolatileToken(NvToken: PVOID): DWORD;
+
+@foreign
+func RtlFlushNonVolatileMemory(NvToken: PVOID, NvBuffer: PVOID, Size: SIZE_T, Flags: DWORD): DWORD;
+
+@foreign
+func RtlDrainNonVolatileFlush(NvToken: PVOID): DWORD;
+
+@foreign
+func RtlWriteNonVolatileMemory(NvToken: PVOID, NvDestination: void*, Source: void*, Size: SIZE_T, Flags: DWORD): DWORD;
+
+@foreign
+func RtlFlushNonVolatileMemoryRanges(NvToken: PVOID, NvRanges: PNV_MEMORY_RANGE, NumRanges: SIZE_T, Flags: DWORD): DWORD;
+
+@foreign
+struct CORRELATION_VECTOR {
+    Version: CHAR;
+    Vector: CHAR[129];
+}
+
+@foreign
+typedef PCORRELATION_VECTOR = CORRELATION_VECTOR*;
+
+@foreign
+func RtlInitializeCorrelationVector(CorrelationVector: PCORRELATION_VECTOR, Version: int, Guid: GUID*): DWORD;
+
+@foreign
+func RtlIncrementCorrelationVector(CorrelationVector: PCORRELATION_VECTOR): DWORD;
+
+@foreign
+func RtlExtendCorrelationVector(CorrelationVector: PCORRELATION_VECTOR): DWORD;
+
+@foreign
+func RtlValidateCorrelationVector(Vector: PCORRELATION_VECTOR): DWORD;
+
+@foreign
+enum _IMAGE_POLICY_ENTRY_TYPE {
+    ImagePolicyEntryTypeNone = 0,
+    ImagePolicyEntryTypeBool,
+    ImagePolicyEntryTypeInt8,
+    ImagePolicyEntryTypeUInt8,
+    ImagePolicyEntryTypeInt16,
+    ImagePolicyEntryTypeUInt16,
+    ImagePolicyEntryTypeInt32,
+    ImagePolicyEntryTypeUInt32,
+    ImagePolicyEntryTypeInt64,
+    ImagePolicyEntryTypeUInt64,
+    ImagePolicyEntryTypeAnsiString,
+    ImagePolicyEntryTypeUnicodeString,
+    ImagePolicyEntryTypeMaximum,
+}
+
+@foreign
+typedef IMAGE_POLICY_ENTRY_TYPE = _IMAGE_POLICY_ENTRY_TYPE;
+
+@foreign
+enum _IMAGE_POLICY_ID {
+    ImagePolicyIdNone = 0,
+    ImagePolicyIdEtw,
+    ImagePolicyIdDebug,
+    ImagePolicyIdCrashDump,
+    ImagePolicyIdCrashDumpKey,
+    ImagePolicyIdCrashDumpKeyGuid,
+    ImagePolicyIdParentSd,
+    ImagePolicyIdParentSdRev,
+    ImagePolicyIdSvn,
+    ImagePolicyIdDeviceId,
+    ImagePolicyIdCapability,
+    ImagePolicyIdScenarioId,
+    ImagePolicyIdMaximum,
+}
+
+@foreign
+typedef IMAGE_POLICY_ID = _IMAGE_POLICY_ID;
+
+/*
+@PROBLEM Nested struct def at line 20058, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _IMAGE_POLICY_ENTRY {
+    Type: IMAGE_POLICY_ENTRY_TYPE;
+    PolicyId: IMAGE_POLICY_ID;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 20058, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_IMAGE_POLICY_ENTRY
+*/
+
+@foreign
+typedef PCIMAGE_POLICY_ENTRY = IMAGE_POLICY_ENTRY*;
+
+@foreign
+struct _IMAGE_POLICY_METADATA {
+    Version: BYTE;
+    Reserved0: BYTE[7];
+    ApplicationId: ULONGLONG;
+    Policies: IMAGE_POLICY_ENTRY[];
+}
+
+@foreign
+typedef IMAGE_POLICY_METADATA = _IMAGE_POLICY_METADATA;
+
+@foreign
+typedef PCIMAGE_POLICY_METADATA = IMAGE_POLICY_METADATA*;
+
+@foreign
+struct _RTL_CRITICAL_SECTION_DEBUG {
+    Type: WORD;
+    CreatorBackTraceIndex: WORD;
+    CriticalSection: _RTL_CRITICAL_SECTION*;
+    ProcessLocksList: LIST_ENTRY;
+    EntryCount: DWORD;
+    ContentionCount: DWORD;
+    Flags: DWORD;
+    CreatorBackTraceIndexHigh: WORD;
+    SpareWORD: WORD;
+}
+
+@foreign
+typedef RTL_CRITICAL_SECTION_DEBUG = _RTL_CRITICAL_SECTION_DEBUG;
+
+@foreign
+typedef PRTL_CRITICAL_SECTION_DEBUG = _RTL_CRITICAL_SECTION_DEBUG*;
+
+@foreign
+typedef RTL_RESOURCE_DEBUG = _RTL_CRITICAL_SECTION_DEBUG;
+
+@foreign
+typedef PRTL_RESOURCE_DEBUG = _RTL_CRITICAL_SECTION_DEBUG*;
+
+@foreign
+struct _RTL_CRITICAL_SECTION {
+    DebugInfo: PRTL_CRITICAL_SECTION_DEBUG;
+    LockCount: LONG;
+    RecursionCount: LONG;
+    OwningThread: HANDLE;
+    LockSemaphore: HANDLE;
+    SpinCount: ULONG_PTR;
+}
+
+@foreign
+typedef RTL_CRITICAL_SECTION = _RTL_CRITICAL_SECTION;
+
+@foreign
+typedef PRTL_CRITICAL_SECTION = _RTL_CRITICAL_SECTION*;
+
+@foreign
+struct _RTL_SRWLOCK {
+    Ptr: PVOID;
+}
+
+@foreign
+typedef RTL_SRWLOCK = _RTL_SRWLOCK;
+
+@foreign
+typedef PRTL_SRWLOCK = _RTL_SRWLOCK*;
+
+@foreign
+struct _RTL_CONDITION_VARIABLE {
+    Ptr: PVOID;
+}
+
+@foreign
+typedef RTL_CONDITION_VARIABLE = _RTL_CONDITION_VARIABLE;
+
+@foreign
+typedef PRTL_CONDITION_VARIABLE = _RTL_CONDITION_VARIABLE*;
+
+@foreign
+typedef PAPCFUNC = func(Parameter: ULONG_PTR);
+
+@foreign
+typedef PVECTORED_EXCEPTION_HANDLER = func(ExceptionInfo: _EXCEPTION_POINTERS*): LONG;
+
+@foreign
+enum _HEAP_INFORMATION_CLASS {
+    HeapCompatibilityInformation = 0,
+    HeapEnableTerminationOnCorruption = 1,
+    HeapOptimizeResources = 3,
+}
+
+@foreign
+typedef HEAP_INFORMATION_CLASS = _HEAP_INFORMATION_CLASS;
+
+@foreign
+struct _HEAP_OPTIMIZE_RESOURCES_INFORMATION {
+    Version: DWORD;
+    Flags: DWORD;
+}
+
+@foreign
+typedef HEAP_OPTIMIZE_RESOURCES_INFORMATION = _HEAP_OPTIMIZE_RESOURCES_INFORMATION;
+
+@foreign
+typedef PHEAP_OPTIMIZE_RESOURCES_INFORMATION = _HEAP_OPTIMIZE_RESOURCES_INFORMATION*;
+
+@foreign
+typedef WAITORTIMERCALLBACKFUNC = func(arg0: PVOID, arg1: BOOLEAN);
+
+@foreign
+typedef WORKERCALLBACKFUNC = func(arg0: PVOID);
+
+@foreign
+typedef APC_CALLBACK_FUNCTION = func(arg0: DWORD, arg1: PVOID, arg2: PVOID);
+
+@foreign
+typedef WAITORTIMERCALLBACK = WAITORTIMERCALLBACKFUNC;
+
+@foreign
+typedef PFLS_CALLBACK_FUNCTION = func(lpFlsData: PVOID);
+
+@foreign
+typedef PSECURE_MEMORY_CACHE_CALLBACK = func(Addr: PVOID, Range: SIZE_T): BOOLEAN;
+
+@foreign
+enum _ACTIVATION_CONTEXT_INFO_CLASS {
+    ActivationContextBasicInformation = 1,
+    ActivationContextDetailedInformation = 2,
+    AssemblyDetailedInformationInActivationContxt = 3,
+    AssemblyDetailedInformationInActivationContext = 3,
+    FileInformationInAssemblyOfAssemblyInActivationContxt = 4,
+    FileInformationInAssemblyOfAssemblyInActivationContext = 4,
+    RunlevelInformationInActivationContext = 5,
+    CompatibilityInformationInActivationContext = 6,
+    ActivationContextManifestResourceName = 7,
+    MaxActivationContextInfoClass,
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_INFO_CLASS = _ACTIVATION_CONTEXT_INFO_CLASS;
+
+@foreign
+struct _ACTIVATION_CONTEXT_QUERY_INDEX {
+    ulAssemblyIndex: DWORD;
+    ulFileIndexInAssembly: DWORD;
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX;
+
+@foreign
+typedef PACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX*;
+
+@foreign
+typedef PCACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX const*;
+
+@foreign
+struct _ASSEMBLY_FILE_DETAILED_INFORMATION {
+    ulFlags: DWORD;
+    ulFilenameLength: DWORD;
+    ulPathLength: DWORD;
+    lpFileName: PCWSTR;
+    lpFilePath: PCWSTR;
+}
+
+@foreign
+typedef ASSEMBLY_FILE_DETAILED_INFORMATION = _ASSEMBLY_FILE_DETAILED_INFORMATION;
+
+@foreign
+typedef PASSEMBLY_FILE_DETAILED_INFORMATION = _ASSEMBLY_FILE_DETAILED_INFORMATION*;
+
+@foreign
+typedef PCASSEMBLY_FILE_DETAILED_INFORMATION = ASSEMBLY_FILE_DETAILED_INFORMATION*;
+
+@foreign
+struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
+    ulFlags: DWORD;
+    ulEncodedAssemblyIdentityLength: DWORD;
+    ulManifestPathType: DWORD;
+    ulManifestPathLength: DWORD;
+    liManifestLastWriteTime: LARGE_INTEGER;
+    ulPolicyPathType: DWORD;
+    ulPolicyPathLength: DWORD;
+    liPolicyLastWriteTime: LARGE_INTEGER;
+    ulMetadataSatelliteRosterIndex: DWORD;
+    ulManifestVersionMajor: DWORD;
+    ulManifestVersionMinor: DWORD;
+    ulPolicyVersionMajor: DWORD;
+    ulPolicyVersionMinor: DWORD;
+    ulAssemblyDirectoryNameLength: DWORD;
+    lpAssemblyEncodedAssemblyIdentity: PCWSTR;
+    lpAssemblyManifestPath: PCWSTR;
+    lpAssemblyPolicyPath: PCWSTR;
+    lpAssemblyDirectoryName: PCWSTR;
+    ulFileCount: DWORD;
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION;
+
+@foreign
+typedef PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION*;
+
+@foreign
+typedef PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION const*;
+
+@foreign
+enum ACTCTX_REQUESTED_RUN_LEVEL {
+    ACTCTX_RUN_LEVEL_UNSPECIFIED = 0,
+    ACTCTX_RUN_LEVEL_AS_INVOKER,
+    ACTCTX_RUN_LEVEL_HIGHEST_AVAILABLE,
+    ACTCTX_RUN_LEVEL_REQUIRE_ADMIN,
+    ACTCTX_RUN_LEVEL_NUMBERS,
+}
+
+@foreign
+struct _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION {
+    ulFlags: DWORD;
+    RunLevel: ACTCTX_REQUESTED_RUN_LEVEL;
+    UiAccess: DWORD;
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION;
+
+@foreign
+typedef PACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION*;
+
+@foreign
+typedef PCACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION const*;
+
+@foreign
+enum ACTCTX_COMPATIBILITY_ELEMENT_TYPE {
+    ACTCTX_COMPATIBILITY_ELEMENT_TYPE_UNKNOWN = 0,
+    ACTCTX_COMPATIBILITY_ELEMENT_TYPE_OS,
+    ACTCTX_COMPATIBILITY_ELEMENT_TYPE_MITIGATION,
+}
+
+@foreign
+struct _COMPATIBILITY_CONTEXT_ELEMENT {
+    Id: GUID;
+    Type: ACTCTX_COMPATIBILITY_ELEMENT_TYPE;
+}
+
+@foreign
+typedef COMPATIBILITY_CONTEXT_ELEMENT = _COMPATIBILITY_CONTEXT_ELEMENT;
+
+@foreign
+typedef PCOMPATIBILITY_CONTEXT_ELEMENT = _COMPATIBILITY_CONTEXT_ELEMENT*;
+
+@foreign
+typedef PCCOMPATIBILITY_CONTEXT_ELEMENT = _COMPATIBILITY_CONTEXT_ELEMENT const*;
+
+@foreign
+struct _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
+    ElementCount: DWORD;
+    Elements: COMPATIBILITY_CONTEXT_ELEMENT[];
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION;
+
+@foreign
+typedef PACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION*;
+
+@foreign
+typedef PCACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION const*;
+
+@foreign
+struct _SUPPORTED_OS_INFO {
+    MajorVersion: WORD;
+    MinorVersion: WORD;
+}
+
+@foreign
+typedef SUPPORTED_OS_INFO = _SUPPORTED_OS_INFO;
+
+@foreign
+typedef PSUPPORTED_OS_INFO = _SUPPORTED_OS_INFO*;
+
+@foreign
+struct _ACTIVATION_CONTEXT_DETAILED_INFORMATION {
+    dwFlags: DWORD;
+    ulFormatVersion: DWORD;
+    ulAssemblyCount: DWORD;
+    ulRootManifestPathType: DWORD;
+    ulRootManifestPathChars: DWORD;
+    ulRootConfigurationPathType: DWORD;
+    ulRootConfigurationPathChars: DWORD;
+    ulAppDirPathType: DWORD;
+    ulAppDirPathChars: DWORD;
+    lpRootManifestPath: PCWSTR;
+    lpRootConfigurationPath: PCWSTR;
+    lpAppDirPath: PCWSTR;
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION;
+
+@foreign
+typedef PACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION*;
+
+@foreign
+typedef PCACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION const*;
+
+@foreign
+struct _HARDWARE_COUNTER_DATA {
+    Type: HARDWARE_COUNTER_TYPE;
+    Reserved: DWORD;
+    Value: DWORD64;
+}
+
+@foreign
+typedef HARDWARE_COUNTER_DATA = _HARDWARE_COUNTER_DATA;
+
+@foreign
+typedef PHARDWARE_COUNTER_DATA = _HARDWARE_COUNTER_DATA*;
+
+@foreign
+struct _PERFORMANCE_DATA {
+    Size: WORD;
+    Version: BYTE;
+    HwCountersCount: BYTE;
+    ContextSwitchCount: DWORD;
+    WaitReasonBitMap: DWORD64;
+    CycleTime: DWORD64;
+    RetryCount: DWORD;
+    Reserved: DWORD;
+    HwCounters: HARDWARE_COUNTER_DATA[16];
+}
+
+@foreign
+typedef PERFORMANCE_DATA = _PERFORMANCE_DATA;
+
+@foreign
+typedef PPERFORMANCE_DATA = _PERFORMANCE_DATA*;
+
+@foreign
+func RtlGetDeviceFamilyInfoEnum(pullUAPInfo: ULONGLONG*, pulDeviceFamily: DWORD*, pulDeviceForm: DWORD*);
+
+@foreign
+func RtlConvertDeviceFamilyInfoToString(pulDeviceFamilyBufferSize: PDWORD, pulDeviceFormBufferSize: PDWORD, DeviceFamily: PWSTR, DeviceForm: PWSTR): DWORD;
+
+@foreign
+func RtlSwitchedVVI(VersionInfo: PRTL_OSVERSIONINFOEXW, TypeMask: DWORD, ConditionMask: ULONGLONG): DWORD;
+
+@foreign
+struct _EVENTLOGRECORD {
+    Length: DWORD;
+    Reserved: DWORD;
+    RecordNumber: DWORD;
+    TimeGenerated: DWORD;
+    TimeWritten: DWORD;
+    EventID: DWORD;
+    EventType: WORD;
+    NumStrings: WORD;
+    EventCategory: WORD;
+    ReservedFlags: WORD;
+    ClosingRecordNumber: DWORD;
+    StringOffset: DWORD;
+    UserSidLength: DWORD;
+    UserSidOffset: DWORD;
+    DataLength: DWORD;
+    DataOffset: DWORD;
+}
+
+@foreign
+typedef EVENTLOGRECORD = _EVENTLOGRECORD;
+
+@foreign
+typedef PEVENTLOGRECORD = _EVENTLOGRECORD*;
+
+@foreign
+typedef EVENTSFORLOGFILE = _EVENTSFORLOGFILE;
+
+@foreign
+typedef PEVENTSFORLOGFILE = _EVENTSFORLOGFILE*;
+
+@foreign
+typedef PACKEDEVENTINFO = _PACKEDEVENTINFO;
+
+@foreign
+typedef PPACKEDEVENTINFO = _PACKEDEVENTINFO*;
+
+@foreign
+struct _EVENTSFORLOGFILE {
+    ulSize: DWORD;
+    szLogicalLogFile: WCHAR[256];
+    ulNumRecords: DWORD;
+    pEventLogRecords: EVENTLOGRECORD[];
+}
+
+@foreign
+struct _PACKEDEVENTINFO {
+    ulSize: DWORD;
+    ulNumEventsForLogFile: DWORD;
+    ulOffsets: DWORD[];
+}
+
+@foreign
+enum _CM_SERVICE_NODE_TYPE {
+    DriverType = 1,
+    FileSystemType = 2,
+    AdapterType = 4,
+    RecognizerType = 8,
+    Win32ServiceOwnProcess = 16,
+    Win32ServiceShareProcess = 32,
+}
+
+@foreign
+typedef SERVICE_NODE_TYPE = _CM_SERVICE_NODE_TYPE;
+
+@foreign
+enum _CM_SERVICE_LOAD_TYPE {
+    BootLoad = 0,
+    SystemLoad = 1,
+    AutoLoad = 2,
+    DemandLoad = 3,
+    DisableLoad = 4,
+}
+
+@foreign
+typedef SERVICE_LOAD_TYPE = _CM_SERVICE_LOAD_TYPE;
+
+@foreign
+enum _CM_ERROR_CONTROL_TYPE {
+    IgnoreError = 0,
+    NormalError = 1,
+    SevereError = 2,
+    CriticalError = 3,
+}
+
+@foreign
+typedef SERVICE_ERROR_TYPE = _CM_ERROR_CONTROL_TYPE;
+
+@foreign
+struct _TAPE_ERASE {
+    Type: DWORD;
+    Immediate: BOOLEAN;
+}
+
+@foreign
+typedef TAPE_ERASE = _TAPE_ERASE;
+
+@foreign
+typedef PTAPE_ERASE = _TAPE_ERASE*;
+
+@foreign
+struct _TAPE_PREPARE {
+    Operation: DWORD;
+    Immediate: BOOLEAN;
+}
+
+@foreign
+typedef TAPE_PREPARE = _TAPE_PREPARE;
+
+@foreign
+typedef PTAPE_PREPARE = _TAPE_PREPARE*;
+
+@foreign
+struct _TAPE_WRITE_MARKS {
+    Type: DWORD;
+    Count: DWORD;
+    Immediate: BOOLEAN;
+}
+
+@foreign
+typedef TAPE_WRITE_MARKS = _TAPE_WRITE_MARKS;
+
+@foreign
+typedef PTAPE_WRITE_MARKS = _TAPE_WRITE_MARKS*;
+
+@foreign
+struct _TAPE_GET_POSITION {
+    Type: DWORD;
+    Partition: DWORD;
+    Offset: LARGE_INTEGER;
+}
+
+@foreign
+typedef TAPE_GET_POSITION = _TAPE_GET_POSITION;
+
+@foreign
+typedef PTAPE_GET_POSITION = _TAPE_GET_POSITION*;
+
+@foreign
+struct _TAPE_SET_POSITION {
+    Method: DWORD;
+    Partition: DWORD;
+    Offset: LARGE_INTEGER;
+    Immediate: BOOLEAN;
+}
+
+@foreign
+typedef TAPE_SET_POSITION = _TAPE_SET_POSITION;
+
+@foreign
+typedef PTAPE_SET_POSITION = _TAPE_SET_POSITION*;
+
+@foreign
+struct _TAPE_GET_DRIVE_PARAMETERS {
+    ECC: BOOLEAN;
+    Compression: BOOLEAN;
+    DataPadding: BOOLEAN;
+    ReportSetmarks: BOOLEAN;
+    DefaultBlockSize: DWORD;
+    MaximumBlockSize: DWORD;
+    MinimumBlockSize: DWORD;
+    MaximumPartitionCount: DWORD;
+    FeaturesLow: DWORD;
+    FeaturesHigh: DWORD;
+    EOTWarningZoneSize: DWORD;
+}
+
+@foreign
+typedef TAPE_GET_DRIVE_PARAMETERS = _TAPE_GET_DRIVE_PARAMETERS;
+
+@foreign
+typedef PTAPE_GET_DRIVE_PARAMETERS = _TAPE_GET_DRIVE_PARAMETERS*;
+
+@foreign
+struct _TAPE_SET_DRIVE_PARAMETERS {
+    ECC: BOOLEAN;
+    Compression: BOOLEAN;
+    DataPadding: BOOLEAN;
+    ReportSetmarks: BOOLEAN;
+    EOTWarningZoneSize: DWORD;
+}
+
+@foreign
+typedef TAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS;
+
+@foreign
+typedef PTAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS*;
+
+@foreign
+struct _TAPE_GET_MEDIA_PARAMETERS {
+    Capacity: LARGE_INTEGER;
+    Remaining: LARGE_INTEGER;
+    BlockSize: DWORD;
+    PartitionCount: DWORD;
+    WriteProtected: BOOLEAN;
+}
+
+@foreign
+typedef TAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS;
+
+@foreign
+typedef PTAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS*;
+
+@foreign
+struct _TAPE_SET_MEDIA_PARAMETERS {
+    BlockSize: DWORD;
+}
+
+@foreign
+typedef TAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS;
+
+@foreign
+typedef PTAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS*;
+
+@foreign
+struct _TAPE_CREATE_PARTITION {
+    Method: DWORD;
+    Count: DWORD;
+    Size: DWORD;
+}
+
+@foreign
+typedef TAPE_CREATE_PARTITION = _TAPE_CREATE_PARTITION;
+
+@foreign
+typedef PTAPE_CREATE_PARTITION = _TAPE_CREATE_PARTITION*;
+
+@foreign
+struct _TAPE_WMI_OPERATIONS {
+    Method: DWORD;
+    DataBufferSize: DWORD;
+    DataBuffer: PVOID;
+}
+
+@foreign
+typedef TAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS;
+
+@foreign
+typedef PTAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS*;
+
+@foreign
+enum _TAPE_DRIVE_PROBLEM_TYPE {
+    TapeDriveProblemNone,
+    TapeDriveReadWriteWarning,
+    TapeDriveReadWriteError,
+    TapeDriveReadWarning,
+    TapeDriveWriteWarning,
+    TapeDriveReadError,
+    TapeDriveWriteError,
+    TapeDriveHardwareError,
+    TapeDriveUnsupportedMedia,
+    TapeDriveScsiConnectionError,
+    TapeDriveTimetoClean,
+    TapeDriveCleanDriveNow,
+    TapeDriveMediaLifeExpired,
+    TapeDriveSnappedTape,
+}
+
+@foreign
+typedef TAPE_DRIVE_PROBLEM_TYPE = _TAPE_DRIVE_PROBLEM_TYPE;
+
+@foreign
+enum _TRANSACTION_OUTCOME {
+    TransactionOutcomeUndetermined = 1,
+    TransactionOutcomeCommitted,
+    TransactionOutcomeAborted,
+}
+
+@foreign
+typedef TRANSACTION_OUTCOME = _TRANSACTION_OUTCOME;
+
+@foreign
+enum _TRANSACTION_STATE {
+    TransactionStateNormal = 1,
+    TransactionStateIndoubt,
+    TransactionStateCommittedNotify,
+}
+
+@foreign
+typedef TRANSACTION_STATE = _TRANSACTION_STATE;
+
+@foreign
+struct _TRANSACTION_BASIC_INFORMATION {
+    TransactionId: GUID;
+    State: DWORD;
+    Outcome: DWORD;
+}
+
+@foreign
+typedef TRANSACTION_BASIC_INFORMATION = _TRANSACTION_BASIC_INFORMATION;
+
+@foreign
+typedef PTRANSACTION_BASIC_INFORMATION = _TRANSACTION_BASIC_INFORMATION*;
+
+@foreign
+struct _TRANSACTIONMANAGER_BASIC_INFORMATION {
+    TmIdentity: GUID;
+    VirtualClock: LARGE_INTEGER;
+}
+
+@foreign
+typedef TRANSACTIONMANAGER_BASIC_INFORMATION = _TRANSACTIONMANAGER_BASIC_INFORMATION;
+
+@foreign
+typedef PTRANSACTIONMANAGER_BASIC_INFORMATION = _TRANSACTIONMANAGER_BASIC_INFORMATION*;
+
+@foreign
+struct _TRANSACTIONMANAGER_LOG_INFORMATION {
+    LogIdentity: GUID;
+}
+
+@foreign
+typedef TRANSACTIONMANAGER_LOG_INFORMATION = _TRANSACTIONMANAGER_LOG_INFORMATION;
+
+@foreign
+typedef PTRANSACTIONMANAGER_LOG_INFORMATION = _TRANSACTIONMANAGER_LOG_INFORMATION*;
+
+@foreign
+struct _TRANSACTIONMANAGER_LOGPATH_INFORMATION {
+    LogPathLength: DWORD;
+    LogPath: WCHAR[1];
+}
+
+@foreign
+typedef TRANSACTIONMANAGER_LOGPATH_INFORMATION = _TRANSACTIONMANAGER_LOGPATH_INFORMATION;
+
+@foreign
+typedef PTRANSACTIONMANAGER_LOGPATH_INFORMATION = _TRANSACTIONMANAGER_LOGPATH_INFORMATION*;
+
+@foreign
+struct _TRANSACTIONMANAGER_RECOVERY_INFORMATION {
+    LastRecoveredLsn: ULONGLONG;
+}
+
+@foreign
+typedef TRANSACTIONMANAGER_RECOVERY_INFORMATION = _TRANSACTIONMANAGER_RECOVERY_INFORMATION;
+
+@foreign
+typedef PTRANSACTIONMANAGER_RECOVERY_INFORMATION = _TRANSACTIONMANAGER_RECOVERY_INFORMATION*;
+
+@foreign
+struct _TRANSACTIONMANAGER_OLDEST_INFORMATION {
+    OldestTransactionGuid: GUID;
+}
+
+@foreign
+typedef TRANSACTIONMANAGER_OLDEST_INFORMATION = _TRANSACTIONMANAGER_OLDEST_INFORMATION;
+
+@foreign
+typedef PTRANSACTIONMANAGER_OLDEST_INFORMATION = _TRANSACTIONMANAGER_OLDEST_INFORMATION*;
+
+@foreign
+struct _TRANSACTION_PROPERTIES_INFORMATION {
+    IsolationLevel: DWORD;
+    IsolationFlags: DWORD;
+    Timeout: LARGE_INTEGER;
+    Outcome: DWORD;
+    DescriptionLength: DWORD;
+    Description: WCHAR[1];
+}
+
+@foreign
+typedef TRANSACTION_PROPERTIES_INFORMATION = _TRANSACTION_PROPERTIES_INFORMATION;
+
+@foreign
+typedef PTRANSACTION_PROPERTIES_INFORMATION = _TRANSACTION_PROPERTIES_INFORMATION*;
+
+@foreign
+struct _TRANSACTION_BIND_INFORMATION {
+    TmHandle: HANDLE;
+}
+
+@foreign
+typedef TRANSACTION_BIND_INFORMATION = _TRANSACTION_BIND_INFORMATION;
+
+@foreign
+typedef PTRANSACTION_BIND_INFORMATION = _TRANSACTION_BIND_INFORMATION*;
+
+@foreign
+struct _TRANSACTION_ENLISTMENT_PAIR {
+    EnlistmentId: GUID;
+    ResourceManagerId: GUID;
+}
+
+@foreign
+typedef TRANSACTION_ENLISTMENT_PAIR = _TRANSACTION_ENLISTMENT_PAIR;
+
+@foreign
+typedef PTRANSACTION_ENLISTMENT_PAIR = _TRANSACTION_ENLISTMENT_PAIR*;
+
+@foreign
+struct _TRANSACTION_ENLISTMENTS_INFORMATION {
+    NumberOfEnlistments: DWORD;
+    EnlistmentPair: TRANSACTION_ENLISTMENT_PAIR[1];
+}
+
+@foreign
+typedef TRANSACTION_ENLISTMENTS_INFORMATION = _TRANSACTION_ENLISTMENTS_INFORMATION;
+
+@foreign
+typedef PTRANSACTION_ENLISTMENTS_INFORMATION = _TRANSACTION_ENLISTMENTS_INFORMATION*;
+
+@foreign
+struct _TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION {
+    SuperiorEnlistmentPair: TRANSACTION_ENLISTMENT_PAIR;
+}
+
+@foreign
+typedef TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = _TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION;
+
+@foreign
+typedef PTRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = _TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION*;
+
+@foreign
+struct _RESOURCEMANAGER_BASIC_INFORMATION {
+    ResourceManagerId: GUID;
+    DescriptionLength: DWORD;
+    Description: WCHAR[1];
+}
+
+@foreign
+typedef RESOURCEMANAGER_BASIC_INFORMATION = _RESOURCEMANAGER_BASIC_INFORMATION;
+
+@foreign
+typedef PRESOURCEMANAGER_BASIC_INFORMATION = _RESOURCEMANAGER_BASIC_INFORMATION*;
+
+@foreign
+struct _RESOURCEMANAGER_COMPLETION_INFORMATION {
+    IoCompletionPortHandle: HANDLE;
+    CompletionKey: ULONG_PTR;
+}
+
+@foreign
+typedef RESOURCEMANAGER_COMPLETION_INFORMATION = _RESOURCEMANAGER_COMPLETION_INFORMATION;
+
+@foreign
+typedef PRESOURCEMANAGER_COMPLETION_INFORMATION = _RESOURCEMANAGER_COMPLETION_INFORMATION*;
+
+@foreign
+enum _TRANSACTION_INFORMATION_CLASS {
+    TransactionBasicInformation,
+    TransactionPropertiesInformation,
+    TransactionEnlistmentInformation,
+    TransactionSuperiorEnlistmentInformation,
+    TransactionBindInformation,
+    TransactionDTCPrivateInformation,
+}
+
+@foreign
+typedef TRANSACTION_INFORMATION_CLASS = _TRANSACTION_INFORMATION_CLASS;
+
+@foreign
+enum _TRANSACTIONMANAGER_INFORMATION_CLASS {
+    TransactionManagerBasicInformation,
+    TransactionManagerLogInformation,
+    TransactionManagerLogPathInformation,
+    TransactionManagerOnlineProbeInformation = 3,
+    TransactionManagerRecoveryInformation = 4,
+    TransactionManagerOldestTransactionInformation = 5,
+}
+
+@foreign
+typedef TRANSACTIONMANAGER_INFORMATION_CLASS = _TRANSACTIONMANAGER_INFORMATION_CLASS;
+
+@foreign
+enum _RESOURCEMANAGER_INFORMATION_CLASS {
+    ResourceManagerBasicInformation,
+    ResourceManagerCompletionInformation,
+}
+
+@foreign
+typedef RESOURCEMANAGER_INFORMATION_CLASS = _RESOURCEMANAGER_INFORMATION_CLASS;
+
+@foreign
+struct _ENLISTMENT_BASIC_INFORMATION {
+    EnlistmentId: GUID;
+    TransactionId: GUID;
+    ResourceManagerId: GUID;
+}
+
+@foreign
+typedef ENLISTMENT_BASIC_INFORMATION = _ENLISTMENT_BASIC_INFORMATION;
+
+@foreign
+typedef PENLISTMENT_BASIC_INFORMATION = _ENLISTMENT_BASIC_INFORMATION*;
+
+@foreign
+struct _ENLISTMENT_CRM_INFORMATION {
+    CrmTransactionManagerId: GUID;
+    CrmResourceManagerId: GUID;
+    CrmEnlistmentId: GUID;
+}
+
+@foreign
+typedef ENLISTMENT_CRM_INFORMATION = _ENLISTMENT_CRM_INFORMATION;
+
+@foreign
+typedef PENLISTMENT_CRM_INFORMATION = _ENLISTMENT_CRM_INFORMATION*;
+
+@foreign
+enum _ENLISTMENT_INFORMATION_CLASS {
+    EnlistmentBasicInformation,
+    EnlistmentRecoveryInformation,
+    EnlistmentCrmInformation,
+}
+
+@foreign
+typedef ENLISTMENT_INFORMATION_CLASS = _ENLISTMENT_INFORMATION_CLASS;
+
+@foreign
+struct _TRANSACTION_LIST_ENTRY {
+    UOW: UOW;
+}
+
+@foreign
+typedef TRANSACTION_LIST_ENTRY = _TRANSACTION_LIST_ENTRY;
+
+@foreign
+typedef PTRANSACTION_LIST_ENTRY = _TRANSACTION_LIST_ENTRY*;
+
+@foreign
+struct _TRANSACTION_LIST_INFORMATION {
+    NumberOfTransactions: DWORD;
+    TransactionInformation: TRANSACTION_LIST_ENTRY[1];
+}
+
+@foreign
+typedef TRANSACTION_LIST_INFORMATION = _TRANSACTION_LIST_INFORMATION;
+
+@foreign
+typedef PTRANSACTION_LIST_INFORMATION = _TRANSACTION_LIST_INFORMATION*;
+
+@foreign
+enum _KTMOBJECT_TYPE {
+    KTMOBJECT_TRANSACTION,
+    KTMOBJECT_TRANSACTION_MANAGER,
+    KTMOBJECT_RESOURCE_MANAGER,
+    KTMOBJECT_ENLISTMENT,
+    KTMOBJECT_INVALID,
+}
+
+@foreign
+typedef KTMOBJECT_TYPE = _KTMOBJECT_TYPE;
+
+@foreign
+typedef PKTMOBJECT_TYPE = _KTMOBJECT_TYPE*;
+
+@foreign
+struct _KTMOBJECT_CURSOR {
+    LastQuery: GUID;
+    ObjectIdCount: DWORD;
+    ObjectIds: GUID[1];
+}
+
+@foreign
+typedef KTMOBJECT_CURSOR = _KTMOBJECT_CURSOR;
+
+@foreign
+typedef PKTMOBJECT_CURSOR = _KTMOBJECT_CURSOR*;
+
+@foreign
+typedef TP_VERSION = DWORD;
+
+@foreign
+typedef PTP_VERSION = DWORD*;
+
+@foreign
+typedef TP_CALLBACK_INSTANCE = _TP_CALLBACK_INSTANCE;
+
+@foreign
+typedef PTP_CALLBACK_INSTANCE = _TP_CALLBACK_INSTANCE*;
+
+@foreign
+typedef PTP_SIMPLE_CALLBACK = func(Instance: PTP_CALLBACK_INSTANCE, Context: PVOID);
+
+@foreign
+typedef TP_POOL = _TP_POOL;
+
+@foreign
+typedef PTP_POOL = _TP_POOL*;
+
+@foreign
+enum _TP_CALLBACK_PRIORITY {
+    TP_CALLBACK_PRIORITY_HIGH,
+    TP_CALLBACK_PRIORITY_NORMAL,
+    TP_CALLBACK_PRIORITY_LOW,
+    TP_CALLBACK_PRIORITY_INVALID,
+    TP_CALLBACK_PRIORITY_COUNT = 3,
+}
+
+@foreign
+typedef TP_CALLBACK_PRIORITY = _TP_CALLBACK_PRIORITY;
+
+@foreign
+struct _TP_POOL_STACK_INFORMATION {
+    StackReserve: SIZE_T;
+    StackCommit: SIZE_T;
+}
+
+@foreign
+typedef TP_POOL_STACK_INFORMATION = _TP_POOL_STACK_INFORMATION;
+
+@foreign
+typedef PTP_POOL_STACK_INFORMATION = _TP_POOL_STACK_INFORMATION*;
+
+@foreign
+typedef TP_CLEANUP_GROUP = _TP_CLEANUP_GROUP;
+
+@foreign
+typedef PTP_CLEANUP_GROUP = _TP_CLEANUP_GROUP*;
+
+@foreign
+typedef PTP_CLEANUP_GROUP_CANCEL_CALLBACK = func(ObjectContext: PVOID, CleanupContext: PVOID);
+
+/*
+@PROBLEM Nested struct def at line 21666, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+@foreign
+struct _TP_CALLBACK_ENVIRON_V3 {
+    Version: TP_VERSION;
+    Pool: PTP_POOL;
+    CleanupGroup: PTP_CLEANUP_GROUP;
+    CleanupGroupCancelCallback: PTP_CLEANUP_GROUP_CANCEL_CALLBACK;
+    RaceDll: PVOID;
+    ActivationContext: _ACTIVATION_CONTEXT*;
+    FinalizationCallback: PTP_SIMPLE_CALLBACK;
+    u: (null);
+    CallbackPriority: TP_CALLBACK_PRIORITY;
+    Size: DWORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 21666, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+_TP_CALLBACK_ENVIRON_V3
+*/
+
+@foreign
+typedef TP_CALLBACK_ENVIRON = TP_CALLBACK_ENVIRON_V3;
+
+@foreign
+typedef PTP_CALLBACK_ENVIRON = TP_CALLBACK_ENVIRON_V3*;
+
+@foreign
+typedef TP_WORK = _TP_WORK;
+
+@foreign
+typedef PTP_WORK = _TP_WORK*;
+
+@foreign
+typedef PTP_WORK_CALLBACK = func(Instance: PTP_CALLBACK_INSTANCE, Context: PVOID, Work: PTP_WORK);
+
+@foreign
+typedef TP_TIMER = _TP_TIMER;
+
+@foreign
+typedef PTP_TIMER = _TP_TIMER*;
+
+@foreign
+typedef PTP_TIMER_CALLBACK = func(Instance: PTP_CALLBACK_INSTANCE, Context: PVOID, Timer: PTP_TIMER);
+
+@foreign
+typedef TP_WAIT_RESULT = DWORD;
+
+@foreign
+typedef TP_WAIT = _TP_WAIT;
+
+@foreign
+typedef PTP_WAIT = _TP_WAIT*;
+
+@foreign
+typedef PTP_WAIT_CALLBACK = func(Instance: PTP_CALLBACK_INSTANCE, Context: PVOID, Wait: PTP_WAIT, WaitResult: TP_WAIT_RESULT);
+
+@foreign
+typedef TP_IO = _TP_IO;
+
+@foreign
+typedef PTP_IO = _TP_IO*;
+
+@foreign
+struct _TP_WAIT;
+
+@foreign
+struct _TP_CLEANUP_GROUP;
+
+@foreign
+struct _TP_POOL;
+
+@foreign
+struct _TP_CALLBACK_INSTANCE;
+
+@foreign
+struct _TP_IO;
+
+@foreign
+struct _TP_WORK;
+
+@foreign
+struct _TP_TIMER;
+

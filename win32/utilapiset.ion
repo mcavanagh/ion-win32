@@ -1,0 +1,23 @@
+#foreign(header = "<utilapiset.h>")
+
+@foreign
+func EncodePointer(Ptr: PVOID): PVOID;
+
+@foreign
+func DecodePointer(Ptr: PVOID): PVOID;
+
+@foreign
+func EncodeSystemPointer(Ptr: PVOID): PVOID;
+
+@foreign
+func DecodeSystemPointer(Ptr: PVOID): PVOID;
+
+@foreign
+func EncodeRemotePointer(ProcessHandle: HANDLE, Ptr: PVOID, EncodedPtr: PVOID*): HRESULT;
+
+@foreign
+func DecodeRemotePointer(ProcessHandle: HANDLE, Ptr: PVOID, DecodedPtr: PVOID*): HRESULT;
+
+@foreign
+func Beep(dwFreq: DWORD, dwDuration: DWORD): BOOL;
+

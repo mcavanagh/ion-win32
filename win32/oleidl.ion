@@ -1,0 +1,915 @@
+#foreign(header = "<oleidl.h>")
+
+@foreign
+typedef LPOLEADVISEHOLDER = IOleAdviseHolder*;
+
+@foreign
+struct IOleAdviseHolderVtbl {
+    QueryInterface: func(This: IOleAdviseHolder*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleAdviseHolder*): ULONG;
+    Release: func(This: IOleAdviseHolder*): ULONG;
+    Advise: func(This: IOleAdviseHolder*, pAdvise: IAdviseSink*, pdwConnection: DWORD*): HRESULT;
+    Unadvise: func(This: IOleAdviseHolder*, dwConnection: DWORD): HRESULT;
+    EnumAdvise: func(This: IOleAdviseHolder*, ppenumAdvise: IEnumSTATDATA**): HRESULT;
+    SendOnRename: func(This: IOleAdviseHolder*, pmk: IMoniker*): HRESULT;
+    SendOnSave: func(This: IOleAdviseHolder*): HRESULT;
+    SendOnClose: func(This: IOleAdviseHolder*): HRESULT;
+}
+
+@foreign
+struct IOleAdviseHolder {
+    lpVtbl: IOleAdviseHolderVtbl*;
+}
+
+@foreign
+typedef LPOLECACHE = IOleCache*;
+
+@foreign
+struct IOleCacheVtbl {
+    QueryInterface: func(This: IOleCache*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleCache*): ULONG;
+    Release: func(This: IOleCache*): ULONG;
+    Cache: func(This: IOleCache*, pformatetc: FORMATETC*, advf: DWORD, pdwConnection: DWORD*): HRESULT;
+    Uncache: func(This: IOleCache*, dwConnection: DWORD): HRESULT;
+    EnumCache: func(This: IOleCache*, ppenumSTATDATA: IEnumSTATDATA**): HRESULT;
+    InitCache: func(This: IOleCache*, pDataObject: IDataObject*): HRESULT;
+    SetData: func(This: IOleCache*, pformatetc: FORMATETC*, pmedium: STGMEDIUM*, fRelease: BOOL): HRESULT;
+}
+
+@foreign
+struct IOleCache {
+    lpVtbl: IOleCacheVtbl*;
+}
+
+@foreign
+typedef LPOLECACHE2 = IOleCache2*;
+
+@foreign
+enum tagDISCARDCACHE {
+    DISCARDCACHE_SAVEIFDIRTY = 0,
+    DISCARDCACHE_NOSAVE = 1,
+}
+
+@foreign
+typedef DISCARDCACHE = tagDISCARDCACHE;
+
+@foreign
+struct IOleCache2Vtbl {
+    QueryInterface: func(This: IOleCache2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleCache2*): ULONG;
+    Release: func(This: IOleCache2*): ULONG;
+    Cache: func(This: IOleCache2*, pformatetc: FORMATETC*, advf: DWORD, pdwConnection: DWORD*): HRESULT;
+    Uncache: func(This: IOleCache2*, dwConnection: DWORD): HRESULT;
+    EnumCache: func(This: IOleCache2*, ppenumSTATDATA: IEnumSTATDATA**): HRESULT;
+    InitCache: func(This: IOleCache2*, pDataObject: IDataObject*): HRESULT;
+    SetData: func(This: IOleCache2*, pformatetc: FORMATETC*, pmedium: STGMEDIUM*, fRelease: BOOL): HRESULT;
+    UpdateCache: func(This: IOleCache2*, pDataObject: LPDATAOBJECT, grfUpdf: DWORD, pReserved: LPVOID): HRESULT;
+    DiscardCache: func(This: IOleCache2*, dwDiscardOptions: DWORD): HRESULT;
+}
+
+@foreign
+struct IOleCache2 {
+    lpVtbl: IOleCache2Vtbl*;
+}
+
+@foreign
+func IOleCache2_RemoteUpdateCache_Proxy(This: IOleCache2*, pDataObject: LPDATAOBJECT, grfUpdf: DWORD, pReserved: LONG_PTR): HRESULT;
+
+@foreign
+func IOleCache2_RemoteUpdateCache_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPOLECACHECONTROL = IOleCacheControl*;
+
+@foreign
+struct IOleCacheControlVtbl {
+    QueryInterface: func(This: IOleCacheControl*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleCacheControl*): ULONG;
+    Release: func(This: IOleCacheControl*): ULONG;
+    OnRun: func(This: IOleCacheControl*, pDataObject: LPDATAOBJECT): HRESULT;
+    OnStop: func(This: IOleCacheControl*): HRESULT;
+}
+
+@foreign
+struct IOleCacheControl {
+    lpVtbl: IOleCacheControlVtbl*;
+}
+
+@foreign
+typedef LPPARSEDISPLAYNAME = IParseDisplayName*;
+
+@foreign
+struct IParseDisplayNameVtbl {
+    QueryInterface: func(This: IParseDisplayName*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IParseDisplayName*): ULONG;
+    Release: func(This: IParseDisplayName*): ULONG;
+    ParseDisplayName: func(This: IParseDisplayName*, pbc: IBindCtx*, pszDisplayName: LPOLESTR, pchEaten: ULONG*, ppmkOut: IMoniker**): HRESULT;
+}
+
+@foreign
+struct IParseDisplayName {
+    lpVtbl: IParseDisplayNameVtbl*;
+}
+
+@foreign
+typedef LPOLECONTAINER = IOleContainer*;
+
+@foreign
+struct IOleContainerVtbl {
+    QueryInterface: func(This: IOleContainer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleContainer*): ULONG;
+    Release: func(This: IOleContainer*): ULONG;
+    ParseDisplayName: func(This: IOleContainer*, pbc: IBindCtx*, pszDisplayName: LPOLESTR, pchEaten: ULONG*, ppmkOut: IMoniker**): HRESULT;
+    EnumObjects: func(This: IOleContainer*, grfFlags: DWORD, ppenum: IEnumUnknown**): HRESULT;
+    LockContainer: func(This: IOleContainer*, fLock: BOOL): HRESULT;
+}
+
+@foreign
+struct IOleContainer {
+    lpVtbl: IOleContainerVtbl*;
+}
+
+@foreign
+typedef LPOLECLIENTSITE = IOleClientSite*;
+
+@foreign
+struct IOleClientSiteVtbl {
+    QueryInterface: func(This: IOleClientSite*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleClientSite*): ULONG;
+    Release: func(This: IOleClientSite*): ULONG;
+    SaveObject: func(This: IOleClientSite*): HRESULT;
+    GetMoniker: func(This: IOleClientSite*, dwAssign: DWORD, dwWhichMoniker: DWORD, ppmk: IMoniker**): HRESULT;
+    GetContainer: func(This: IOleClientSite*, ppContainer: IOleContainer**): HRESULT;
+    ShowObject: func(This: IOleClientSite*): HRESULT;
+    OnShowWindow: func(This: IOleClientSite*, fShow: BOOL): HRESULT;
+    RequestNewObjectLayout: func(This: IOleClientSite*): HRESULT;
+}
+
+@foreign
+struct IOleClientSite {
+    lpVtbl: IOleClientSiteVtbl*;
+}
+
+@foreign
+typedef LPOLEOBJECT = IOleObject*;
+
+@foreign
+enum tagOLEGETMONIKER {
+    OLEGETMONIKER_ONLYIFTHERE = 1,
+    OLEGETMONIKER_FORCEASSIGN = 2,
+    OLEGETMONIKER_UNASSIGN = 3,
+    OLEGETMONIKER_TEMPFORUSER = 4,
+}
+
+@foreign
+typedef OLEGETMONIKER = tagOLEGETMONIKER;
+
+@foreign
+enum tagOLEWHICHMK {
+    OLEWHICHMK_CONTAINER = 1,
+    OLEWHICHMK_OBJREL = 2,
+    OLEWHICHMK_OBJFULL = 3,
+}
+
+@foreign
+typedef OLEWHICHMK = tagOLEWHICHMK;
+
+@foreign
+enum tagUSERCLASSTYPE {
+    USERCLASSTYPE_FULL = 1,
+    USERCLASSTYPE_SHORT = 2,
+    USERCLASSTYPE_APPNAME = 3,
+}
+
+@foreign
+typedef USERCLASSTYPE = tagUSERCLASSTYPE;
+
+@foreign
+enum tagOLEMISC {
+    OLEMISC_RECOMPOSEONRESIZE = 1,
+    OLEMISC_ONLYICONIC = 2,
+    OLEMISC_INSERTNOTREPLACE = 4,
+    OLEMISC_STATIC = 8,
+    OLEMISC_CANTLINKINSIDE = 16,
+    OLEMISC_CANLINKBYOLE1 = 32,
+    OLEMISC_ISLINKOBJECT = 64,
+    OLEMISC_INSIDEOUT = 128,
+    OLEMISC_ACTIVATEWHENVISIBLE = 256,
+    OLEMISC_RENDERINGISDEVICEINDEPENDENT = 512,
+    OLEMISC_INVISIBLEATRUNTIME = 1024,
+    OLEMISC_ALWAYSRUN = 2048,
+    OLEMISC_ACTSLIKEBUTTON = 4096,
+    OLEMISC_ACTSLIKELABEL = 8192,
+    OLEMISC_NOUIACTIVATE = 16384,
+    OLEMISC_ALIGNABLE = 32768,
+    OLEMISC_SIMPLEFRAME = 65536,
+    OLEMISC_SETCLIENTSITEFIRST = 131072,
+    OLEMISC_IMEMODE = 262144,
+    OLEMISC_IGNOREACTIVATEWHENVISIBLE = 524288,
+    OLEMISC_WANTSTOMENUMERGE = 1048576,
+    OLEMISC_SUPPORTSMULTILEVELUNDO = 2097152,
+}
+
+@foreign
+typedef OLEMISC = tagOLEMISC;
+
+@foreign
+enum tagOLECLOSE {
+    OLECLOSE_SAVEIFDIRTY = 0,
+    OLECLOSE_NOSAVE = 1,
+    OLECLOSE_PROMPTSAVE = 2,
+}
+
+@foreign
+typedef OLECLOSE = tagOLECLOSE;
+
+@foreign
+struct IOleObjectVtbl {
+    QueryInterface: func(This: IOleObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleObject*): ULONG;
+    Release: func(This: IOleObject*): ULONG;
+    SetClientSite: func(This: IOleObject*, pClientSite: IOleClientSite*): HRESULT;
+    GetClientSite: func(This: IOleObject*, ppClientSite: IOleClientSite**): HRESULT;
+    SetHostNames: func(This: IOleObject*, szContainerApp: LPCOLESTR, szContainerObj: LPCOLESTR): HRESULT;
+    Close: func(This: IOleObject*, dwSaveOption: DWORD): HRESULT;
+    SetMoniker: func(This: IOleObject*, dwWhichMoniker: DWORD, pmk: IMoniker*): HRESULT;
+    GetMoniker: func(This: IOleObject*, dwAssign: DWORD, dwWhichMoniker: DWORD, ppmk: IMoniker**): HRESULT;
+    InitFromData: func(This: IOleObject*, pDataObject: IDataObject*, fCreation: BOOL, dwReserved: DWORD): HRESULT;
+    GetClipboardData: func(This: IOleObject*, dwReserved: DWORD, ppDataObject: IDataObject**): HRESULT;
+    DoVerb: func(This: IOleObject*, iVerb: LONG, lpmsg: LPMSG, pActiveSite: IOleClientSite*, lindex: LONG, hwndParent: HWND, lprcPosRect: LPCRECT): HRESULT;
+    EnumVerbs: func(This: IOleObject*, ppEnumOleVerb: IEnumOLEVERB**): HRESULT;
+    Update: func(This: IOleObject*): HRESULT;
+    IsUpToDate: func(This: IOleObject*): HRESULT;
+    GetUserClassID: func(This: IOleObject*, pClsid: CLSID*): HRESULT;
+    GetUserType: func(This: IOleObject*, dwFormOfType: DWORD, pszUserType: LPOLESTR*): HRESULT;
+    SetExtent: func(This: IOleObject*, dwDrawAspect: DWORD, psizel: SIZEL*): HRESULT;
+    GetExtent: func(This: IOleObject*, dwDrawAspect: DWORD, psizel: SIZEL*): HRESULT;
+    Advise: func(This: IOleObject*, pAdvSink: IAdviseSink*, pdwConnection: DWORD*): HRESULT;
+    Unadvise: func(This: IOleObject*, dwConnection: DWORD): HRESULT;
+    EnumAdvise: func(This: IOleObject*, ppenumAdvise: IEnumSTATDATA**): HRESULT;
+    GetMiscStatus: func(This: IOleObject*, dwAspect: DWORD, pdwStatus: DWORD*): HRESULT;
+    SetColorScheme: func(This: IOleObject*, pLogpal: LOGPALETTE*): HRESULT;
+}
+
+@foreign
+struct IOleObject {
+    lpVtbl: IOleObjectVtbl*;
+}
+
+@foreign
+enum tagOLERENDER {
+    OLERENDER_NONE = 0,
+    OLERENDER_DRAW = 1,
+    OLERENDER_FORMAT = 2,
+    OLERENDER_ASIS = 3,
+}
+
+@foreign
+typedef OLERENDER = tagOLERENDER;
+
+@foreign
+typedef LPOLERENDER = OLERENDER*;
+
+@foreign
+struct tagOBJECTDESCRIPTOR {
+    cbSize: ULONG;
+    clsid: CLSID;
+    dwDrawAspect: DWORD;
+    sizel: SIZEL;
+    pointl: POINTL;
+    dwStatus: DWORD;
+    dwFullUserTypeName: DWORD;
+    dwSrcOfCopy: DWORD;
+}
+
+@foreign
+typedef OBJECTDESCRIPTOR = tagOBJECTDESCRIPTOR;
+
+@foreign
+typedef POBJECTDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+
+@foreign
+typedef LPOBJECTDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+
+@foreign
+typedef LINKSRCDESCRIPTOR = tagOBJECTDESCRIPTOR;
+
+@foreign
+typedef PLINKSRCDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+
+@foreign
+typedef LPLINKSRCDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+
+@foreign
+typedef LPOLEWINDOW = IOleWindow*;
+
+@foreign
+struct IOleWindowVtbl {
+    QueryInterface: func(This: IOleWindow*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleWindow*): ULONG;
+    Release: func(This: IOleWindow*): ULONG;
+    GetWindow: func(This: IOleWindow*, phwnd: HWND*): HRESULT;
+    ContextSensitiveHelp: func(This: IOleWindow*, fEnterMode: BOOL): HRESULT;
+}
+
+@foreign
+struct IOleWindow {
+    lpVtbl: IOleWindowVtbl*;
+}
+
+@foreign
+typedef LPOLELINK = IOleLink*;
+
+@foreign
+enum tagOLEUPDATE {
+    OLEUPDATE_ALWAYS = 1,
+    OLEUPDATE_ONCALL = 3,
+}
+
+@foreign
+typedef OLEUPDATE = tagOLEUPDATE;
+
+@foreign
+typedef LPOLEUPDATE = OLEUPDATE*;
+
+@foreign
+typedef POLEUPDATE = OLEUPDATE*;
+
+@foreign
+enum tagOLELINKBIND {
+    OLELINKBIND_EVENIFCLASSDIFF = 1,
+}
+
+@foreign
+typedef OLELINKBIND = tagOLELINKBIND;
+
+@foreign
+struct IOleLinkVtbl {
+    QueryInterface: func(This: IOleLink*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleLink*): ULONG;
+    Release: func(This: IOleLink*): ULONG;
+    SetUpdateOptions: func(This: IOleLink*, dwUpdateOpt: DWORD): HRESULT;
+    GetUpdateOptions: func(This: IOleLink*, pdwUpdateOpt: DWORD*): HRESULT;
+    SetSourceMoniker: func(This: IOleLink*, pmk: IMoniker*, rclsid: IID* const): HRESULT;
+    GetSourceMoniker: func(This: IOleLink*, ppmk: IMoniker**): HRESULT;
+    SetSourceDisplayName: func(This: IOleLink*, pszStatusText: LPCOLESTR): HRESULT;
+    GetSourceDisplayName: func(This: IOleLink*, ppszDisplayName: LPOLESTR*): HRESULT;
+    BindToSource: func(This: IOleLink*, bindflags: DWORD, pbc: IBindCtx*): HRESULT;
+    BindIfRunning: func(This: IOleLink*): HRESULT;
+    GetBoundSource: func(This: IOleLink*, ppunk: IUnknown**): HRESULT;
+    UnbindSource: func(This: IOleLink*): HRESULT;
+    Update: func(This: IOleLink*, pbc: IBindCtx*): HRESULT;
+}
+
+@foreign
+struct IOleLink {
+    lpVtbl: IOleLinkVtbl*;
+}
+
+@foreign
+typedef LPOLEITEMCONTAINER = IOleItemContainer*;
+
+@foreign
+enum tagBINDSPEED {
+    BINDSPEED_INDEFINITE = 1,
+    BINDSPEED_MODERATE = 2,
+    BINDSPEED_IMMEDIATE = 3,
+}
+
+@foreign
+typedef BINDSPEED = tagBINDSPEED;
+
+@foreign
+enum tagOLECONTF {
+    OLECONTF_EMBEDDINGS = 1,
+    OLECONTF_LINKS = 2,
+    OLECONTF_OTHERS = 4,
+    OLECONTF_ONLYUSER = 8,
+    OLECONTF_ONLYIFRUNNING = 16,
+}
+
+@foreign
+typedef OLECONTF = tagOLECONTF;
+
+@foreign
+struct IOleItemContainerVtbl {
+    QueryInterface: func(This: IOleItemContainer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleItemContainer*): ULONG;
+    Release: func(This: IOleItemContainer*): ULONG;
+    ParseDisplayName: func(This: IOleItemContainer*, pbc: IBindCtx*, pszDisplayName: LPOLESTR, pchEaten: ULONG*, ppmkOut: IMoniker**): HRESULT;
+    EnumObjects: func(This: IOleItemContainer*, grfFlags: DWORD, ppenum: IEnumUnknown**): HRESULT;
+    LockContainer: func(This: IOleItemContainer*, fLock: BOOL): HRESULT;
+    GetObjectA: func(This: IOleItemContainer*, pszItem: LPOLESTR, dwSpeedNeeded: DWORD, pbc: IBindCtx*, riid: IID* const, ppvObject: void**): HRESULT;
+    GetObjectStorage: func(This: IOleItemContainer*, pszItem: LPOLESTR, pbc: IBindCtx*, riid: IID* const, ppvStorage: void**): HRESULT;
+    IsRunning: func(This: IOleItemContainer*, pszItem: LPOLESTR): HRESULT;
+}
+
+@foreign
+struct IOleItemContainer {
+    lpVtbl: IOleItemContainerVtbl*;
+}
+
+@foreign
+typedef LPOLEINPLACEUIWINDOW = IOleInPlaceUIWindow*;
+
+@foreign
+typedef BORDERWIDTHS = RECT;
+
+@foreign
+typedef LPBORDERWIDTHS = LPRECT;
+
+@foreign
+typedef LPCBORDERWIDTHS = LPCRECT;
+
+@foreign
+struct IOleInPlaceUIWindowVtbl {
+    QueryInterface: func(This: IOleInPlaceUIWindow*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleInPlaceUIWindow*): ULONG;
+    Release: func(This: IOleInPlaceUIWindow*): ULONG;
+    GetWindow: func(This: IOleInPlaceUIWindow*, phwnd: HWND*): HRESULT;
+    ContextSensitiveHelp: func(This: IOleInPlaceUIWindow*, fEnterMode: BOOL): HRESULT;
+    GetBorder: func(This: IOleInPlaceUIWindow*, lprectBorder: LPRECT): HRESULT;
+    RequestBorderSpace: func(This: IOleInPlaceUIWindow*, pborderwidths: LPCBORDERWIDTHS): HRESULT;
+    SetBorderSpace: func(This: IOleInPlaceUIWindow*, pborderwidths: LPCBORDERWIDTHS): HRESULT;
+    SetActiveObject: func(This: IOleInPlaceUIWindow*, pActiveObject: IOleInPlaceActiveObject*, pszObjName: LPCOLESTR): HRESULT;
+}
+
+@foreign
+struct IOleInPlaceUIWindow {
+    lpVtbl: IOleInPlaceUIWindowVtbl*;
+}
+
+@foreign
+typedef LPOLEINPLACEACTIVEOBJECT = IOleInPlaceActiveObject*;
+
+@foreign
+struct IOleInPlaceActiveObjectVtbl {
+    QueryInterface: func(This: IOleInPlaceActiveObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleInPlaceActiveObject*): ULONG;
+    Release: func(This: IOleInPlaceActiveObject*): ULONG;
+    GetWindow: func(This: IOleInPlaceActiveObject*, phwnd: HWND*): HRESULT;
+    ContextSensitiveHelp: func(This: IOleInPlaceActiveObject*, fEnterMode: BOOL): HRESULT;
+    TranslateAcceleratorA: func(This: IOleInPlaceActiveObject*, lpmsg: LPMSG): HRESULT;
+    OnFrameWindowActivate: func(This: IOleInPlaceActiveObject*, fActivate: BOOL): HRESULT;
+    OnDocWindowActivate: func(This: IOleInPlaceActiveObject*, fActivate: BOOL): HRESULT;
+    ResizeBorder: func(This: IOleInPlaceActiveObject*, prcBorder: LPCRECT, pUIWindow: IOleInPlaceUIWindow*, fFrameWindow: BOOL): HRESULT;
+    EnableModeless: func(This: IOleInPlaceActiveObject*, fEnable: BOOL): HRESULT;
+}
+
+@foreign
+struct IOleInPlaceActiveObject {
+    lpVtbl: IOleInPlaceActiveObjectVtbl*;
+}
+
+@foreign
+func IOleInPlaceActiveObject_RemoteTranslateAccelerator_Proxy(This: IOleInPlaceActiveObject*): HRESULT;
+
+@foreign
+func IOleInPlaceActiveObject_RemoteTranslateAccelerator_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IOleInPlaceActiveObject_RemoteResizeBorder_Proxy(This: IOleInPlaceActiveObject*, prcBorder: LPCRECT, riid: IID* const, pUIWindow: IOleInPlaceUIWindow*, fFrameWindow: BOOL): HRESULT;
+
+@foreign
+func IOleInPlaceActiveObject_RemoteResizeBorder_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPOLEINPLACEFRAME = IOleInPlaceFrame*;
+
+@foreign
+struct tagOIFI {
+    cb: UINT;
+    fMDIApp: BOOL;
+    hwndFrame: HWND;
+    haccel: HACCEL;
+    cAccelEntries: UINT;
+}
+
+@foreign
+typedef OLEINPLACEFRAMEINFO = tagOIFI;
+
+@foreign
+typedef LPOLEINPLACEFRAMEINFO = tagOIFI*;
+
+@foreign
+struct tagOleMenuGroupWidths {
+    width: LONG[6];
+}
+
+@foreign
+typedef OLEMENUGROUPWIDTHS = tagOleMenuGroupWidths;
+
+@foreign
+typedef LPOLEMENUGROUPWIDTHS = tagOleMenuGroupWidths*;
+
+@foreign
+typedef HOLEMENU = HGLOBAL;
+
+@foreign
+struct IOleInPlaceFrameVtbl {
+    QueryInterface: func(This: IOleInPlaceFrame*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleInPlaceFrame*): ULONG;
+    Release: func(This: IOleInPlaceFrame*): ULONG;
+    GetWindow: func(This: IOleInPlaceFrame*, phwnd: HWND*): HRESULT;
+    ContextSensitiveHelp: func(This: IOleInPlaceFrame*, fEnterMode: BOOL): HRESULT;
+    GetBorder: func(This: IOleInPlaceFrame*, lprectBorder: LPRECT): HRESULT;
+    RequestBorderSpace: func(This: IOleInPlaceFrame*, pborderwidths: LPCBORDERWIDTHS): HRESULT;
+    SetBorderSpace: func(This: IOleInPlaceFrame*, pborderwidths: LPCBORDERWIDTHS): HRESULT;
+    SetActiveObject: func(This: IOleInPlaceFrame*, pActiveObject: IOleInPlaceActiveObject*, pszObjName: LPCOLESTR): HRESULT;
+    InsertMenus: func(This: IOleInPlaceFrame*, hmenuShared: HMENU, lpMenuWidths: LPOLEMENUGROUPWIDTHS): HRESULT;
+    SetMenu: func(This: IOleInPlaceFrame*, hmenuShared: HMENU, holemenu: HOLEMENU, hwndActiveObject: HWND): HRESULT;
+    RemoveMenus: func(This: IOleInPlaceFrame*, hmenuShared: HMENU): HRESULT;
+    SetStatusText: func(This: IOleInPlaceFrame*, pszStatusText: LPCOLESTR): HRESULT;
+    EnableModeless: func(This: IOleInPlaceFrame*, fEnable: BOOL): HRESULT;
+    TranslateAcceleratorA: func(This: IOleInPlaceFrame*, lpmsg: LPMSG, wID: WORD): HRESULT;
+}
+
+@foreign
+struct IOleInPlaceFrame {
+    lpVtbl: IOleInPlaceFrameVtbl*;
+}
+
+@foreign
+typedef LPOLEINPLACEOBJECT = IOleInPlaceObject*;
+
+@foreign
+struct IOleInPlaceObjectVtbl {
+    QueryInterface: func(This: IOleInPlaceObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleInPlaceObject*): ULONG;
+    Release: func(This: IOleInPlaceObject*): ULONG;
+    GetWindow: func(This: IOleInPlaceObject*, phwnd: HWND*): HRESULT;
+    ContextSensitiveHelp: func(This: IOleInPlaceObject*, fEnterMode: BOOL): HRESULT;
+    InPlaceDeactivate: func(This: IOleInPlaceObject*): HRESULT;
+    UIDeactivate: func(This: IOleInPlaceObject*): HRESULT;
+    SetObjectRects: func(This: IOleInPlaceObject*, lprcPosRect: LPCRECT, lprcClipRect: LPCRECT): HRESULT;
+    ReactivateAndUndo: func(This: IOleInPlaceObject*): HRESULT;
+}
+
+@foreign
+struct IOleInPlaceObject {
+    lpVtbl: IOleInPlaceObjectVtbl*;
+}
+
+@foreign
+typedef LPOLEINPLACESITE = IOleInPlaceSite*;
+
+@foreign
+struct IOleInPlaceSiteVtbl {
+    QueryInterface: func(This: IOleInPlaceSite*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOleInPlaceSite*): ULONG;
+    Release: func(This: IOleInPlaceSite*): ULONG;
+    GetWindow: func(This: IOleInPlaceSite*, phwnd: HWND*): HRESULT;
+    ContextSensitiveHelp: func(This: IOleInPlaceSite*, fEnterMode: BOOL): HRESULT;
+    CanInPlaceActivate: func(This: IOleInPlaceSite*): HRESULT;
+    OnInPlaceActivate: func(This: IOleInPlaceSite*): HRESULT;
+    OnUIActivate: func(This: IOleInPlaceSite*): HRESULT;
+    GetWindowContext: func(This: IOleInPlaceSite*, ppFrame: IOleInPlaceFrame**, ppDoc: IOleInPlaceUIWindow**, lprcPosRect: LPRECT, lprcClipRect: LPRECT, lpFrameInfo: LPOLEINPLACEFRAMEINFO): HRESULT;
+    Scroll: func(This: IOleInPlaceSite*, scrollExtant: SIZE): HRESULT;
+    OnUIDeactivate: func(This: IOleInPlaceSite*, fUndoable: BOOL): HRESULT;
+    OnInPlaceDeactivate: func(This: IOleInPlaceSite*): HRESULT;
+    DiscardUndoState: func(This: IOleInPlaceSite*): HRESULT;
+    DeactivateAndUndo: func(This: IOleInPlaceSite*): HRESULT;
+    OnPosRectChange: func(This: IOleInPlaceSite*, lprcPosRect: LPCRECT): HRESULT;
+}
+
+@foreign
+struct IOleInPlaceSite {
+    lpVtbl: IOleInPlaceSiteVtbl*;
+}
+
+@foreign
+struct IContinueVtbl {
+    QueryInterface: func(This: IContinue*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IContinue*): ULONG;
+    Release: func(This: IContinue*): ULONG;
+    FContinue: func(This: IContinue*): HRESULT;
+}
+
+@foreign
+struct IContinue {
+    lpVtbl: IContinueVtbl*;
+}
+
+@foreign
+typedef LPVIEWOBJECT = IViewObject*;
+
+@foreign
+struct IViewObjectVtbl {
+    QueryInterface: func(This: IViewObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IViewObject*): ULONG;
+    Release: func(This: IViewObject*): ULONG;
+    Draw: func(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, ptd: DVTARGETDEVICE*, hdcTargetDev: HDC, hdcDraw: HDC, lprcBounds: LPCRECTL, lprcWBounds: LPCRECTL, pfnContinue: func(dwContinue: ULONG_PTR): BOOL, dwContinue: ULONG_PTR): HRESULT;
+    GetColorSet: func(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, ptd: DVTARGETDEVICE*, hicTargetDev: HDC, ppColorSet: LOGPALETTE**): HRESULT;
+    Freeze: func(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, pdwFreeze: DWORD*): HRESULT;
+    Unfreeze: func(This: IViewObject*, dwFreeze: DWORD): HRESULT;
+    SetAdvise: func(This: IViewObject*, aspects: DWORD, advf: DWORD, pAdvSink: IAdviseSink*): HRESULT;
+    GetAdvise: func(This: IViewObject*, pAspects: DWORD*, pAdvf: DWORD*, ppAdvSink: IAdviseSink**): HRESULT;
+}
+
+@foreign
+struct IViewObject {
+    lpVtbl: IViewObjectVtbl*;
+}
+
+@foreign
+func IViewObject_RemoteDraw_Proxy(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: ULONG_PTR, ptd: DVTARGETDEVICE*, hdcTargetDev: HDC, hdcDraw: HDC, lprcBounds: LPCRECTL, lprcWBounds: LPCRECTL, pContinue: IContinue*): HRESULT;
+
+@foreign
+func IViewObject_RemoteDraw_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IViewObject_RemoteGetColorSet_Proxy(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: ULONG_PTR, ptd: DVTARGETDEVICE*, hicTargetDev: ULONG_PTR, ppColorSet: LOGPALETTE**): HRESULT;
+
+@foreign
+func IViewObject_RemoteGetColorSet_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IViewObject_RemoteFreeze_Proxy(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: ULONG_PTR, pdwFreeze: DWORD*): HRESULT;
+
+@foreign
+func IViewObject_RemoteFreeze_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IViewObject_RemoteGetAdvise_Proxy(This: IViewObject*, pAspects: DWORD*, pAdvf: DWORD*, ppAdvSink: IAdviseSink**): HRESULT;
+
+@foreign
+func IViewObject_RemoteGetAdvise_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPVIEWOBJECT2 = IViewObject2*;
+
+@foreign
+struct IViewObject2Vtbl {
+    QueryInterface: func(This: IViewObject2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IViewObject2*): ULONG;
+    Release: func(This: IViewObject2*): ULONG;
+    Draw: func(This: IViewObject2*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, ptd: DVTARGETDEVICE*, hdcTargetDev: HDC, hdcDraw: HDC, lprcBounds: LPCRECTL, lprcWBounds: LPCRECTL, pfnContinue: func(dwContinue: ULONG_PTR): BOOL, dwContinue: ULONG_PTR): HRESULT;
+    GetColorSet: func(This: IViewObject2*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, ptd: DVTARGETDEVICE*, hicTargetDev: HDC, ppColorSet: LOGPALETTE**): HRESULT;
+    Freeze: func(This: IViewObject2*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, pdwFreeze: DWORD*): HRESULT;
+    Unfreeze: func(This: IViewObject2*, dwFreeze: DWORD): HRESULT;
+    SetAdvise: func(This: IViewObject2*, aspects: DWORD, advf: DWORD, pAdvSink: IAdviseSink*): HRESULT;
+    GetAdvise: func(This: IViewObject2*, pAspects: DWORD*, pAdvf: DWORD*, ppAdvSink: IAdviseSink**): HRESULT;
+    GetExtent: func(This: IViewObject2*, dwDrawAspect: DWORD, lindex: LONG, ptd: DVTARGETDEVICE*, lpsizel: LPSIZEL): HRESULT;
+}
+
+@foreign
+struct IViewObject2 {
+    lpVtbl: IViewObject2Vtbl*;
+}
+
+@foreign
+typedef LPDROPSOURCE = IDropSource*;
+
+@foreign
+struct IDropSourceVtbl {
+    QueryInterface: func(This: IDropSource*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDropSource*): ULONG;
+    Release: func(This: IDropSource*): ULONG;
+    QueryContinueDrag: func(This: IDropSource*, fEscapePressed: BOOL, grfKeyState: DWORD): HRESULT;
+    GiveFeedback: func(This: IDropSource*, dwEffect: DWORD): HRESULT;
+}
+
+@foreign
+struct IDropSource {
+    lpVtbl: IDropSourceVtbl*;
+}
+
+@foreign
+typedef LPDROPTARGET = IDropTarget*;
+
+@foreign
+struct IDropTargetVtbl {
+    QueryInterface: func(This: IDropTarget*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDropTarget*): ULONG;
+    Release: func(This: IDropTarget*): ULONG;
+    DragEnter: func(This: IDropTarget*, pDataObj: IDataObject*, grfKeyState: DWORD, pt: POINTL, pdwEffect: DWORD*): HRESULT;
+    DragOver: func(This: IDropTarget*, grfKeyState: DWORD, pt: POINTL, pdwEffect: DWORD*): HRESULT;
+    DragLeave: func(This: IDropTarget*): HRESULT;
+    Drop: func(This: IDropTarget*, pDataObj: IDataObject*, grfKeyState: DWORD, pt: POINTL, pdwEffect: DWORD*): HRESULT;
+}
+
+@foreign
+struct IDropTarget {
+    lpVtbl: IDropTargetVtbl*;
+}
+
+@foreign
+struct IDropSourceNotifyVtbl {
+    QueryInterface: func(This: IDropSourceNotify*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDropSourceNotify*): ULONG;
+    Release: func(This: IDropSourceNotify*): ULONG;
+    DragEnterTarget: func(This: IDropSourceNotify*, hwndTarget: HWND): HRESULT;
+    DragLeaveTarget: func(This: IDropSourceNotify*): HRESULT;
+}
+
+@foreign
+struct IDropSourceNotify {
+    lpVtbl: IDropSourceNotifyVtbl*;
+}
+
+@foreign
+struct IEnterpriseDropTargetVtbl {
+    QueryInterface: func(This: IEnterpriseDropTarget*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnterpriseDropTarget*): ULONG;
+    Release: func(This: IEnterpriseDropTarget*): ULONG;
+    SetDropSourceEnterpriseId: func(This: IEnterpriseDropTarget*, identity: LPCWSTR): HRESULT;
+    IsEvaluatingEdpPolicy: func(This: IEnterpriseDropTarget*, value: BOOL*): HRESULT;
+}
+
+@foreign
+struct IEnterpriseDropTarget {
+    lpVtbl: IEnterpriseDropTargetVtbl*;
+}
+
+@foreign
+typedef LPENUMOLEVERB = IEnumOLEVERB*;
+
+@foreign
+struct tagOLEVERB {
+    lVerb: LONG;
+    lpszVerbName: LPOLESTR;
+    fuFlags: DWORD;
+    grfAttribs: DWORD;
+}
+
+@foreign
+typedef OLEVERB = tagOLEVERB;
+
+@foreign
+typedef LPOLEVERB = tagOLEVERB*;
+
+@foreign
+enum tagOLEVERBATTRIB {
+    OLEVERBATTRIB_NEVERDIRTIES = 1,
+    OLEVERBATTRIB_ONCONTAINERMENU = 2,
+}
+
+@foreign
+typedef OLEVERBATTRIB = tagOLEVERBATTRIB;
+
+@foreign
+struct IEnumOLEVERBVtbl {
+    QueryInterface: func(This: IEnumOLEVERB*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumOLEVERB*): ULONG;
+    Release: func(This: IEnumOLEVERB*): ULONG;
+    Next: func(This: IEnumOLEVERB*, celt: ULONG, rgelt: LPOLEVERB, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumOLEVERB*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumOLEVERB*): HRESULT;
+    Clone: func(This: IEnumOLEVERB*, ppenum: IEnumOLEVERB**): HRESULT;
+}
+
+@foreign
+struct IEnumOLEVERB {
+    lpVtbl: IEnumOLEVERBVtbl*;
+}
+
+@foreign
+func IEnumOLEVERB_RemoteNext_Proxy(This: IEnumOLEVERB*, celt: ULONG, rgelt: LPOLEVERB, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumOLEVERB_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func HACCEL_UserSize(arg0: ulong*, arg1: ulong, arg2: HACCEL*): ulong;
+
+@foreign
+func HACCEL_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HACCEL*): uchar*;
+
+@foreign
+func HACCEL_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HACCEL*): uchar*;
+
+@foreign
+func HACCEL_UserFree(arg0: ulong*, arg1: HACCEL*);
+
+@foreign
+func HGLOBAL_UserSize(arg0: ulong*, arg1: ulong, arg2: HGLOBAL*): ulong;
+
+@foreign
+func HGLOBAL_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HGLOBAL*): uchar*;
+
+@foreign
+func HGLOBAL_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HGLOBAL*): uchar*;
+
+@foreign
+func HGLOBAL_UserFree(arg0: ulong*, arg1: HGLOBAL*);
+
+@foreign
+func HMENU_UserSize(arg0: ulong*, arg1: ulong, arg2: HMENU*): ulong;
+
+@foreign
+func HMENU_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HMENU*): uchar*;
+
+@foreign
+func HMENU_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HMENU*): uchar*;
+
+@foreign
+func HMENU_UserFree(arg0: ulong*, arg1: HMENU*);
+
+@foreign
+func HWND_UserSize(arg0: ulong*, arg1: ulong, arg2: HWND*): ulong;
+
+@foreign
+func HWND_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HWND*): uchar*;
+
+@foreign
+func HWND_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HWND*): uchar*;
+
+@foreign
+func HWND_UserFree(arg0: ulong*, arg1: HWND*);
+
+@foreign
+func HACCEL_UserSize64(arg0: ulong*, arg1: ulong, arg2: HACCEL*): ulong;
+
+@foreign
+func HACCEL_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HACCEL*): uchar*;
+
+@foreign
+func HACCEL_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HACCEL*): uchar*;
+
+@foreign
+func HACCEL_UserFree64(arg0: ulong*, arg1: HACCEL*);
+
+@foreign
+func HGLOBAL_UserSize64(arg0: ulong*, arg1: ulong, arg2: HGLOBAL*): ulong;
+
+@foreign
+func HGLOBAL_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HGLOBAL*): uchar*;
+
+@foreign
+func HGLOBAL_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HGLOBAL*): uchar*;
+
+@foreign
+func HGLOBAL_UserFree64(arg0: ulong*, arg1: HGLOBAL*);
+
+@foreign
+func HMENU_UserSize64(arg0: ulong*, arg1: ulong, arg2: HMENU*): ulong;
+
+@foreign
+func HMENU_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HMENU*): uchar*;
+
+@foreign
+func HMENU_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HMENU*): uchar*;
+
+@foreign
+func HMENU_UserFree64(arg0: ulong*, arg1: HMENU*);
+
+@foreign
+func HWND_UserSize64(arg0: ulong*, arg1: ulong, arg2: HWND*): ulong;
+
+@foreign
+func HWND_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HWND*): uchar*;
+
+@foreign
+func HWND_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HWND*): uchar*;
+
+@foreign
+func HWND_UserFree64(arg0: ulong*, arg1: HWND*);
+
+@foreign
+func IOleCache2_UpdateCache_Proxy(This: IOleCache2*, pDataObject: LPDATAOBJECT, grfUpdf: DWORD, pReserved: LPVOID): HRESULT;
+
+@foreign
+func IOleCache2_UpdateCache_Stub(This: IOleCache2*, pDataObject: LPDATAOBJECT, grfUpdf: DWORD, pReserved: LONG_PTR): HRESULT;
+
+@foreign
+func IOleInPlaceActiveObject_TranslateAccelerator_Proxy(This: IOleInPlaceActiveObject*, lpmsg: LPMSG): HRESULT;
+
+@foreign
+func IOleInPlaceActiveObject_TranslateAccelerator_Stub(This: IOleInPlaceActiveObject*): HRESULT;
+
+@foreign
+func IOleInPlaceActiveObject_ResizeBorder_Proxy(This: IOleInPlaceActiveObject*, prcBorder: LPCRECT, pUIWindow: IOleInPlaceUIWindow*, fFrameWindow: BOOL): HRESULT;
+
+@foreign
+func IOleInPlaceActiveObject_ResizeBorder_Stub(This: IOleInPlaceActiveObject*, prcBorder: LPCRECT, riid: IID* const, pUIWindow: IOleInPlaceUIWindow*, fFrameWindow: BOOL): HRESULT;
+
+@foreign
+func IViewObject_Draw_Proxy(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, ptd: DVTARGETDEVICE*, hdcTargetDev: HDC, hdcDraw: HDC, lprcBounds: LPCRECTL, lprcWBounds: LPCRECTL, pfnContinue: func(dwContinue: ULONG_PTR): BOOL, dwContinue: ULONG_PTR): HRESULT;
+
+@foreign
+func IViewObject_Draw_Stub(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: ULONG_PTR, ptd: DVTARGETDEVICE*, hdcTargetDev: HDC, hdcDraw: HDC, lprcBounds: LPCRECTL, lprcWBounds: LPCRECTL, pContinue: IContinue*): HRESULT;
+
+@foreign
+func IViewObject_GetColorSet_Proxy(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, ptd: DVTARGETDEVICE*, hicTargetDev: HDC, ppColorSet: LOGPALETTE**): HRESULT;
+
+@foreign
+func IViewObject_GetColorSet_Stub(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: ULONG_PTR, ptd: DVTARGETDEVICE*, hicTargetDev: ULONG_PTR, ppColorSet: LOGPALETTE**): HRESULT;
+
+@foreign
+func IViewObject_Freeze_Proxy(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: void*, pdwFreeze: DWORD*): HRESULT;
+
+@foreign
+func IViewObject_Freeze_Stub(This: IViewObject*, dwDrawAspect: DWORD, lindex: LONG, pvAspect: ULONG_PTR, pdwFreeze: DWORD*): HRESULT;
+
+@foreign
+func IViewObject_GetAdvise_Proxy(This: IViewObject*, pAspects: DWORD*, pAdvf: DWORD*, ppAdvSink: IAdviseSink**): HRESULT;
+
+@foreign
+func IViewObject_GetAdvise_Stub(This: IViewObject*, pAspects: DWORD*, pAdvf: DWORD*, ppAdvSink: IAdviseSink**): HRESULT;
+
+@foreign
+func IEnumOLEVERB_Next_Proxy(This: IEnumOLEVERB*, celt: ULONG, rgelt: LPOLEVERB, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumOLEVERB_Next_Stub(This: IEnumOLEVERB*, celt: ULONG, rgelt: LPOLEVERB, pceltFetched: ULONG*): HRESULT;
+

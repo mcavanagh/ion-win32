@@ -1,0 +1,116 @@
+#foreign(header = "<threadpoolapiset.h>")
+
+@foreign
+typedef PTP_WIN32_IO_CALLBACK = func(Instance: PTP_CALLBACK_INSTANCE, Context: PVOID, Overlapped: PVOID, IoResult: ULONG, NumberOfBytesTransferred: ULONG_PTR, Io: PTP_IO);
+
+@foreign
+func CreateThreadpool(reserved: PVOID): PTP_POOL;
+
+@foreign
+func SetThreadpoolThreadMaximum(ptpp: PTP_POOL, cthrdMost: DWORD);
+
+@foreign
+func SetThreadpoolThreadMinimum(ptpp: PTP_POOL, cthrdMic: DWORD): BOOL;
+
+@foreign
+func SetThreadpoolStackInformation(ptpp: PTP_POOL, ptpsi: PTP_POOL_STACK_INFORMATION): BOOL;
+
+@foreign
+func QueryThreadpoolStackInformation(ptpp: PTP_POOL, ptpsi: PTP_POOL_STACK_INFORMATION): BOOL;
+
+@foreign
+func CloseThreadpool(ptpp: PTP_POOL);
+
+@foreign
+func CreateThreadpoolCleanupGroup(): PTP_CLEANUP_GROUP;
+
+@foreign
+func CloseThreadpoolCleanupGroupMembers(ptpcg: PTP_CLEANUP_GROUP, fCancelPendingCallbacks: BOOL, pvCleanupContext: PVOID);
+
+@foreign
+func CloseThreadpoolCleanupGroup(ptpcg: PTP_CLEANUP_GROUP);
+
+@foreign
+func SetEventWhenCallbackReturns(pci: PTP_CALLBACK_INSTANCE, evt: HANDLE);
+
+@foreign
+func ReleaseSemaphoreWhenCallbackReturns(pci: PTP_CALLBACK_INSTANCE, sem: HANDLE, crel: DWORD);
+
+@foreign
+func ReleaseMutexWhenCallbackReturns(pci: PTP_CALLBACK_INSTANCE, mut: HANDLE);
+
+@foreign
+func LeaveCriticalSectionWhenCallbackReturns(pci: PTP_CALLBACK_INSTANCE, pcs: PCRITICAL_SECTION);
+
+@foreign
+func FreeLibraryWhenCallbackReturns(pci: PTP_CALLBACK_INSTANCE, mod: HMODULE);
+
+@foreign
+func CallbackMayRunLong(pci: PTP_CALLBACK_INSTANCE): BOOL;
+
+@foreign
+func DisassociateCurrentThreadFromCallback(pci: PTP_CALLBACK_INSTANCE);
+
+@foreign
+func TrySubmitThreadpoolCallback(pfns: PTP_SIMPLE_CALLBACK, pv: PVOID, pcbe: PTP_CALLBACK_ENVIRON): BOOL;
+
+@foreign
+func CreateThreadpoolWork(pfnwk: PTP_WORK_CALLBACK, pv: PVOID, pcbe: PTP_CALLBACK_ENVIRON): PTP_WORK;
+
+@foreign
+func SubmitThreadpoolWork(pwk: PTP_WORK);
+
+@foreign
+func WaitForThreadpoolWorkCallbacks(pwk: PTP_WORK, fCancelPendingCallbacks: BOOL);
+
+@foreign
+func CloseThreadpoolWork(pwk: PTP_WORK);
+
+@foreign
+func CreateThreadpoolTimer(pfnti: PTP_TIMER_CALLBACK, pv: PVOID, pcbe: PTP_CALLBACK_ENVIRON): PTP_TIMER;
+
+@foreign
+func SetThreadpoolTimer(pti: PTP_TIMER, pftDueTime: PFILETIME, msPeriod: DWORD, msWindowLength: DWORD);
+
+@foreign
+func IsThreadpoolTimerSet(pti: PTP_TIMER): BOOL;
+
+@foreign
+func WaitForThreadpoolTimerCallbacks(pti: PTP_TIMER, fCancelPendingCallbacks: BOOL);
+
+@foreign
+func CloseThreadpoolTimer(pti: PTP_TIMER);
+
+@foreign
+func CreateThreadpoolWait(pfnwa: PTP_WAIT_CALLBACK, pv: PVOID, pcbe: PTP_CALLBACK_ENVIRON): PTP_WAIT;
+
+@foreign
+func SetThreadpoolWait(pwa: PTP_WAIT, h: HANDLE, pftTimeout: PFILETIME);
+
+@foreign
+func WaitForThreadpoolWaitCallbacks(pwa: PTP_WAIT, fCancelPendingCallbacks: BOOL);
+
+@foreign
+func CloseThreadpoolWait(pwa: PTP_WAIT);
+
+@foreign
+func CreateThreadpoolIo(fl: HANDLE, pfnio: PTP_WIN32_IO_CALLBACK, pv: PVOID, pcbe: PTP_CALLBACK_ENVIRON): PTP_IO;
+
+@foreign
+func StartThreadpoolIo(pio: PTP_IO);
+
+@foreign
+func CancelThreadpoolIo(pio: PTP_IO);
+
+@foreign
+func WaitForThreadpoolIoCallbacks(pio: PTP_IO, fCancelPendingCallbacks: BOOL);
+
+@foreign
+func CloseThreadpoolIo(pio: PTP_IO);
+
+@foreign
+func SetThreadpoolTimerEx(pti: PTP_TIMER, pftDueTime: PFILETIME, msPeriod: DWORD, msWindowLength: DWORD): BOOL;
+
+@foreign
+func SetThreadpoolWaitEx(pwa: PTP_WAIT, h: HANDLE, pftTimeout: PFILETIME, Reserved: PVOID): BOOL;
+

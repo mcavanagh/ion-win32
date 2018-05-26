@@ -1,0 +1,32 @@
+#foreign(header = "<corecrt_search.h>")
+
+@foreign
+typedef _CoreCrtNonSecureSearchSortCompareFunction = func(arg0: void const*, arg1: void const*): int;
+
+@foreign
+func bsearch_s(_Key: void const*, _Base: void const*, _NumOfElements: rsize_t, _SizeOfElements: rsize_t, _CompareFunction: _CoreCrtSecureSearchSortCompareFunction, _Context: void*): void*;
+
+@foreign
+func qsort_s(_Base: void*, _NumOfElements: rsize_t, _SizeOfElements: rsize_t, _CompareFunction: _CoreCrtSecureSearchSortCompareFunction, _Context: void*);
+
+@foreign
+func _lfind_s(_Key: void const*, _Base: void const*, _NumOfElements: uint*, _SizeOfElements: usize, _CompareFunction: _CoreCrtSecureSearchSortCompareFunction, _Context: void*): void*;
+
+@foreign
+func _lfind(_Key: void const*, _Base: void const*, _NumOfElements: uint*, _SizeOfElements: uint, _CompareFunction: _CoreCrtNonSecureSearchSortCompareFunction): void*;
+
+@foreign
+func _lsearch_s(_Key: void const*, _Base: void*, _NumOfElements: uint*, _SizeOfElements: usize, _CompareFunction: _CoreCrtSecureSearchSortCompareFunction, _Context: void*): void*;
+
+@foreign
+func _lsearch(_Key: void const*, _Base: void*, _NumOfElements: uint*, _SizeOfElements: uint, _CompareFunction: _CoreCrtNonSecureSearchSortCompareFunction): void*;
+
+@foreign
+func lfind(_Key: void const*, _Base: void const*, _NumOfElements: uint*, _SizeOfElements: uint, _CompareFunction: _CoreCrtNonSecureSearchSortCompareFunction): void*;
+
+@foreign
+func lsearch(_Key: void const*, _Base: void*, _NumOfElements: uint*, _SizeOfElements: uint, _CompareFunction: _CoreCrtNonSecureSearchSortCompareFunction): void*;
+
+@foreign
+func _itow_s(_Value: int, _Buffer: wchar*, _BufferCount: usize, _Radix: int): errno_t;
+

@@ -1,0 +1,8 @@
+#foreign(header = "<profileapi.h>")
+
+@foreign
+func QueryPerformanceCounter(lpPerformanceCount: LARGE_INTEGER*): BOOL;
+
+@foreign
+func QueryPerformanceFrequency(lpFrequency: LARGE_INTEGER*): BOOL;
+

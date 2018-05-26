@@ -1,0 +1,1568 @@
+#foreign(header = "<oaidl.h>")
+
+@foreign
+typedef CURRENCY = CY;
+
+@foreign
+struct tagSAFEARRAYBOUND {
+    cElements: ULONG;
+    lLbound: LONG;
+}
+
+@foreign
+typedef SAFEARRAYBOUND = tagSAFEARRAYBOUND;
+
+@foreign
+typedef LPSAFEARRAYBOUND = tagSAFEARRAYBOUND*;
+
+@foreign
+typedef wireVARIANT = _wireVARIANT*;
+
+@foreign
+typedef wireBRECORD = _wireBRECORD*;
+
+@foreign
+struct _wireSAFEARR_BSTR {
+    Size: ULONG;
+    aBstr: wireBSTR*;
+}
+
+@foreign
+typedef SAFEARR_BSTR = _wireSAFEARR_BSTR;
+
+@foreign
+struct _wireSAFEARR_UNKNOWN {
+    Size: ULONG;
+    apUnknown: IUnknown**;
+}
+
+@foreign
+typedef SAFEARR_UNKNOWN = _wireSAFEARR_UNKNOWN;
+
+@foreign
+struct _wireSAFEARR_DISPATCH {
+    Size: ULONG;
+    apDispatch: IDispatch**;
+}
+
+@foreign
+typedef SAFEARR_DISPATCH = _wireSAFEARR_DISPATCH;
+
+@foreign
+struct _wireSAFEARR_VARIANT {
+    Size: ULONG;
+    aVariant: wireVARIANT*;
+}
+
+@foreign
+typedef SAFEARR_VARIANT = _wireSAFEARR_VARIANT;
+
+@foreign
+struct _wireSAFEARR_BRECORD {
+    Size: ULONG;
+    aRecord: wireBRECORD*;
+}
+
+@foreign
+typedef SAFEARR_BRECORD = _wireSAFEARR_BRECORD;
+
+@foreign
+struct _wireSAFEARR_HAVEIID {
+    Size: ULONG;
+    apUnknown: IUnknown**;
+    iid: IID;
+}
+
+@foreign
+typedef SAFEARR_HAVEIID = _wireSAFEARR_HAVEIID;
+
+@foreign
+enum tagSF_TYPE {
+    SF_I2 = 2,
+    SF_I4 = 3,
+    SF_BSTR = 8,
+    SF_DISPATCH = 9,
+    SF_ERROR = 10,
+    SF_VARIANT = 12,
+    SF_UNKNOWN = 13,
+    SF_I1 = 16,
+    SF_I8 = 20,
+    SF_RECORD = 36,
+    SF_HAVEIID = 32781,
+}
+
+@foreign
+typedef SF_TYPE = tagSF_TYPE;
+
+/*
+@PROBLEM Nested struct def at line 335, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+@foreign
+struct _wireSAFEARRAY_UNION {
+    sfType: ULONG;
+    u: __MIDL_IOleAutomationTypes_0001;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 335, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+_wireSAFEARRAY_UNION
+*/
+
+@foreign
+struct _wireSAFEARRAY {
+    cDims: USHORT;
+    fFeatures: USHORT;
+    cbElements: ULONG;
+    cLocks: ULONG;
+    uArrayStructs: SAFEARRAYUNION;
+    rgsabound: SAFEARRAYBOUND[1];
+}
+
+@foreign
+typedef wireSAFEARRAY = _wireSAFEARRAY*;
+
+@foreign
+typedef wirePSAFEARRAY = wireSAFEARRAY*;
+
+@foreign
+struct tagSAFEARRAY {
+    cDims: USHORT;
+    fFeatures: USHORT;
+    cbElements: ULONG;
+    cLocks: ULONG;
+    pvData: PVOID;
+    rgsabound: SAFEARRAYBOUND[1];
+}
+
+@foreign
+typedef SAFEARRAY = tagSAFEARRAY;
+
+@foreign
+typedef LPSAFEARRAY = SAFEARRAY*;
+
+@foreign
+typedef VARIANT = tagVARIANT;
+
+/*
+@PROBLEM Nested struct def at line 468, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+@foreign
+struct tagVARIANT {
+    n1: (null);
+}
+*/
+
+@foreign
+typedef LPVARIANT = VARIANT*;
+
+@foreign
+typedef VARIANTARG = VARIANT;
+
+@foreign
+typedef LPVARIANTARG = VARIANT*;
+
+@foreign
+struct _wireBRECORD {
+    fFlags: ULONG;
+    clSize: ULONG;
+    pRecInfo: IRecordInfo*;
+    pRecord: byte*;
+}
+
+/*
+@PROBLEM Nested struct def at line 565, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+@foreign
+struct _wireVARIANT {
+    clSize: DWORD;
+    rpcReserved: DWORD;
+    vt: USHORT;
+    wReserved1: USHORT;
+    wReserved2: USHORT;
+    wReserved3: USHORT;
+    u: (null);
+}
+*/
+
+@foreign
+typedef DISPID = LONG;
+
+@foreign
+typedef MEMBERID = DISPID;
+
+@foreign
+typedef HREFTYPE = DWORD;
+
+@foreign
+enum tagTYPEKIND {
+    TKIND_ENUM = 0,
+    TKIND_RECORD = 1,
+    TKIND_MODULE = 2,
+    TKIND_INTERFACE = 3,
+    TKIND_DISPATCH = 4,
+    TKIND_COCLASS = 5,
+    TKIND_ALIAS = 6,
+    TKIND_UNION = 7,
+    TKIND_MAX = 8,
+}
+
+@foreign
+typedef TYPEKIND = tagTYPEKIND;
+
+/*
+@PROBLEM Nested struct def at line 643, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+@foreign
+struct tagTYPEDESC {
+    u: (null);
+    vt: VARTYPE;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 643, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+tagTYPEDESC
+*/
+
+@foreign
+struct tagARRAYDESC {
+    tdescElem: TYPEDESC;
+    cDims: USHORT;
+    rgbounds: SAFEARRAYBOUND[1];
+}
+
+@foreign
+typedef ARRAYDESC = tagARRAYDESC;
+
+@foreign
+struct tagPARAMDESCEX {
+    cBytes: ULONG;
+    varDefaultValue: VARIANTARG;
+}
+
+@foreign
+typedef PARAMDESCEX = tagPARAMDESCEX;
+
+@foreign
+typedef LPPARAMDESCEX = tagPARAMDESCEX*;
+
+@foreign
+struct tagPARAMDESC {
+    pparamdescex: LPPARAMDESCEX;
+    wParamFlags: USHORT;
+}
+
+@foreign
+typedef PARAMDESC = tagPARAMDESC;
+
+@foreign
+typedef LPPARAMDESC = tagPARAMDESC*;
+
+@foreign
+struct tagIDLDESC {
+    dwReserved: ULONG_PTR;
+    wIDLFlags: USHORT;
+}
+
+@foreign
+typedef IDLDESC = tagIDLDESC;
+
+@foreign
+typedef LPIDLDESC = tagIDLDESC*;
+
+/*
+@PROBLEM Nested struct def at line 723, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+@foreign
+struct tagELEMDESC {
+    tdesc: TYPEDESC;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 723, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+tagELEMDESC
+*/
+
+@foreign
+typedef LPELEMDESC = tagELEMDESC*;
+
+@foreign
+struct tagTYPEATTR {
+    guid: GUID;
+    lcid: LCID;
+    dwReserved: DWORD;
+    memidConstructor: MEMBERID;
+    memidDestructor: MEMBERID;
+    lpstrSchema: LPOLESTR;
+    cbSizeInstance: ULONG;
+    typekind: TYPEKIND;
+    cFuncs: WORD;
+    cVars: WORD;
+    cImplTypes: WORD;
+    cbSizeVft: WORD;
+    cbAlignment: WORD;
+    wTypeFlags: WORD;
+    wMajorVerNum: WORD;
+    wMinorVerNum: WORD;
+    tdescAlias: TYPEDESC;
+    idldescType: IDLDESC;
+}
+
+@foreign
+typedef TYPEATTR = tagTYPEATTR;
+
+@foreign
+typedef LPTYPEATTR = tagTYPEATTR*;
+
+@foreign
+struct tagDISPPARAMS {
+    rgvarg: VARIANTARG*;
+    rgdispidNamedArgs: DISPID*;
+    cArgs: UINT;
+    cNamedArgs: UINT;
+}
+
+@foreign
+typedef DISPPARAMS = tagDISPPARAMS;
+
+@foreign
+struct tagEXCEPINFO {
+    wCode: WORD;
+    wReserved: WORD;
+    bstrSource: BSTR;
+    bstrDescription: BSTR;
+    bstrHelpFile: BSTR;
+    dwHelpContext: DWORD;
+    pvReserved: PVOID;
+    pfnDeferredFillIn: func(arg0: tagEXCEPINFO*): HRESULT;
+    scode: SCODE;
+}
+
+@foreign
+typedef EXCEPINFO = tagEXCEPINFO;
+
+@foreign
+typedef LPEXCEPINFO = tagEXCEPINFO*;
+
+@foreign
+enum tagCALLCONV {
+    CC_FASTCALL = 0,
+    CC_CDECL = 1,
+    CC_PASCAL = 2,
+    CC_MSCPASCAL = 2,
+    CC_MACPASCAL = 3,
+    CC_STDCALL = 4,
+    CC_FPFASTCALL = 5,
+    CC_SYSCALL = 6,
+    CC_MPWCDECL = 7,
+    CC_MPWPASCAL = 8,
+    CC_MAX = 9,
+}
+
+@foreign
+typedef CALLCONV = tagCALLCONV;
+
+@foreign
+enum tagFUNCKIND {
+    FUNC_VIRTUAL = 0,
+    FUNC_PUREVIRTUAL = 1,
+    FUNC_NONVIRTUAL = 2,
+    FUNC_STATIC = 3,
+    FUNC_DISPATCH = 4,
+}
+
+@foreign
+typedef FUNCKIND = tagFUNCKIND;
+
+@foreign
+enum tagINVOKEKIND {
+    INVOKE_FUNC = 1,
+    INVOKE_PROPERTYGET = 2,
+    INVOKE_PROPERTYPUT = 4,
+    INVOKE_PROPERTYPUTREF = 8,
+}
+
+@foreign
+typedef INVOKEKIND = tagINVOKEKIND;
+
+@foreign
+struct tagFUNCDESC {
+    memid: MEMBERID;
+    lprgscode: SCODE*;
+    lprgelemdescParam: ELEMDESC*;
+    funckind: FUNCKIND;
+    invkind: INVOKEKIND;
+    callconv: CALLCONV;
+    cParams: SHORT;
+    cParamsOpt: SHORT;
+    oVft: SHORT;
+    cScodes: SHORT;
+    elemdescFunc: ELEMDESC;
+    wFuncFlags: WORD;
+}
+
+@foreign
+typedef FUNCDESC = tagFUNCDESC;
+
+@foreign
+typedef LPFUNCDESC = tagFUNCDESC*;
+
+@foreign
+enum tagVARKIND {
+    VAR_PERINSTANCE = 0,
+    VAR_STATIC = 1,
+    VAR_CONST = 2,
+    VAR_DISPATCH = 3,
+}
+
+@foreign
+typedef VARKIND = tagVARKIND;
+
+/*
+@PROBLEM Nested struct def at line 868, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+@foreign
+struct tagVARDESC {
+    memid: MEMBERID;
+    lpstrSchema: LPOLESTR;
+    u: (null);
+    elemdescVar: ELEMDESC;
+    wVarFlags: WORD;
+    varkind: VARKIND;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 868, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+
+tagVARDESC
+*/
+
+@foreign
+typedef LPVARDESC = tagVARDESC*;
+
+@foreign
+enum tagTYPEFLAGS {
+    TYPEFLAG_FAPPOBJECT = 1,
+    TYPEFLAG_FCANCREATE = 2,
+    TYPEFLAG_FLICENSED = 4,
+    TYPEFLAG_FPREDECLID = 8,
+    TYPEFLAG_FHIDDEN = 16,
+    TYPEFLAG_FCONTROL = 32,
+    TYPEFLAG_FDUAL = 64,
+    TYPEFLAG_FNONEXTENSIBLE = 128,
+    TYPEFLAG_FOLEAUTOMATION = 256,
+    TYPEFLAG_FRESTRICTED = 512,
+    TYPEFLAG_FAGGREGATABLE = 1024,
+    TYPEFLAG_FREPLACEABLE = 2048,
+    TYPEFLAG_FDISPATCHABLE = 4096,
+    TYPEFLAG_FREVERSEBIND = 8192,
+    TYPEFLAG_FPROXY = 16384,
+}
+
+@foreign
+typedef TYPEFLAGS = tagTYPEFLAGS;
+
+@foreign
+enum tagFUNCFLAGS {
+    FUNCFLAG_FRESTRICTED = 1,
+    FUNCFLAG_FSOURCE = 2,
+    FUNCFLAG_FBINDABLE = 4,
+    FUNCFLAG_FREQUESTEDIT = 8,
+    FUNCFLAG_FDISPLAYBIND = 16,
+    FUNCFLAG_FDEFAULTBIND = 32,
+    FUNCFLAG_FHIDDEN = 64,
+    FUNCFLAG_FUSESGETLASTERROR = 128,
+    FUNCFLAG_FDEFAULTCOLLELEM = 256,
+    FUNCFLAG_FUIDEFAULT = 512,
+    FUNCFLAG_FNONBROWSABLE = 1024,
+    FUNCFLAG_FREPLACEABLE = 2048,
+    FUNCFLAG_FIMMEDIATEBIND = 4096,
+}
+
+@foreign
+typedef FUNCFLAGS = tagFUNCFLAGS;
+
+@foreign
+enum tagVARFLAGS {
+    VARFLAG_FREADONLY = 1,
+    VARFLAG_FSOURCE = 2,
+    VARFLAG_FBINDABLE = 4,
+    VARFLAG_FREQUESTEDIT = 8,
+    VARFLAG_FDISPLAYBIND = 16,
+    VARFLAG_FDEFAULTBIND = 32,
+    VARFLAG_FHIDDEN = 64,
+    VARFLAG_FRESTRICTED = 128,
+    VARFLAG_FDEFAULTCOLLELEM = 256,
+    VARFLAG_FUIDEFAULT = 512,
+    VARFLAG_FNONBROWSABLE = 1024,
+    VARFLAG_FREPLACEABLE = 2048,
+    VARFLAG_FIMMEDIATEBIND = 4096,
+}
+
+@foreign
+typedef VARFLAGS = tagVARFLAGS;
+
+@foreign
+struct tagCLEANLOCALSTORAGE {
+    pInterface: IUnknown*;
+    pStorage: PVOID;
+    flags: DWORD;
+}
+
+@foreign
+typedef CLEANLOCALSTORAGE = tagCLEANLOCALSTORAGE;
+
+@foreign
+struct tagCUSTDATAITEM {
+    guid: GUID;
+    varValue: VARIANTARG;
+}
+
+@foreign
+typedef CUSTDATAITEM = tagCUSTDATAITEM;
+
+@foreign
+typedef LPCUSTDATAITEM = tagCUSTDATAITEM*;
+
+@foreign
+struct tagCUSTDATA {
+    cCustData: DWORD;
+    prgCustData: LPCUSTDATAITEM;
+}
+
+@foreign
+typedef CUSTDATA = tagCUSTDATA;
+
+@foreign
+typedef LPCUSTDATA = tagCUSTDATA*;
+
+@foreign
+typedef LPCREATETYPEINFO = ICreateTypeInfo*;
+
+@foreign
+struct ICreateTypeInfoVtbl {
+    QueryInterface: func(This: ICreateTypeInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICreateTypeInfo*): ULONG;
+    Release: func(This: ICreateTypeInfo*): ULONG;
+    SetGuid: func(This: ICreateTypeInfo*, guid: GUID* const): HRESULT;
+    SetTypeFlags: func(This: ICreateTypeInfo*, uTypeFlags: UINT): HRESULT;
+    SetDocString: func(This: ICreateTypeInfo*, pStrDoc: LPOLESTR): HRESULT;
+    SetHelpContext: func(This: ICreateTypeInfo*, dwHelpContext: DWORD): HRESULT;
+    SetVersion: func(This: ICreateTypeInfo*, wMajorVerNum: WORD, wMinorVerNum: WORD): HRESULT;
+    AddRefTypeInfo: func(This: ICreateTypeInfo*, pTInfo: ITypeInfo*, phRefType: HREFTYPE*): HRESULT;
+    AddFuncDesc: func(This: ICreateTypeInfo*, index: UINT, pFuncDesc: FUNCDESC*): HRESULT;
+    AddImplType: func(This: ICreateTypeInfo*, index: UINT, hRefType: HREFTYPE): HRESULT;
+    SetImplTypeFlags: func(This: ICreateTypeInfo*, index: UINT, implTypeFlags: INT): HRESULT;
+    SetAlignment: func(This: ICreateTypeInfo*, cbAlignment: WORD): HRESULT;
+    SetSchema: func(This: ICreateTypeInfo*, pStrSchema: LPOLESTR): HRESULT;
+    AddVarDesc: func(This: ICreateTypeInfo*, index: UINT, pVarDesc: VARDESC*): HRESULT;
+    SetFuncAndParamNames: func(This: ICreateTypeInfo*, index: UINT, rgszNames: LPOLESTR*, cNames: UINT): HRESULT;
+    SetVarName: func(This: ICreateTypeInfo*, index: UINT, szName: LPOLESTR): HRESULT;
+    SetTypeDescAlias: func(This: ICreateTypeInfo*, pTDescAlias: TYPEDESC*): HRESULT;
+    DefineFuncAsDllEntry: func(This: ICreateTypeInfo*, index: UINT, szDllName: LPOLESTR, szProcName: LPOLESTR): HRESULT;
+    SetFuncDocString: func(This: ICreateTypeInfo*, index: UINT, szDocString: LPOLESTR): HRESULT;
+    SetVarDocString: func(This: ICreateTypeInfo*, index: UINT, szDocString: LPOLESTR): HRESULT;
+    SetFuncHelpContext: func(This: ICreateTypeInfo*, index: UINT, dwHelpContext: DWORD): HRESULT;
+    SetVarHelpContext: func(This: ICreateTypeInfo*, index: UINT, dwHelpContext: DWORD): HRESULT;
+    SetMops: func(This: ICreateTypeInfo*, index: UINT, bstrMops: BSTR): HRESULT;
+    SetTypeIdldesc: func(This: ICreateTypeInfo*, pIdlDesc: IDLDESC*): HRESULT;
+    LayOut: func(This: ICreateTypeInfo*): HRESULT;
+}
+
+@foreign
+struct ICreateTypeInfo {
+    lpVtbl: ICreateTypeInfoVtbl*;
+}
+
+@foreign
+typedef LPCREATETYPEINFO2 = ICreateTypeInfo2*;
+
+@foreign
+struct ICreateTypeInfo2Vtbl {
+    QueryInterface: func(This: ICreateTypeInfo2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICreateTypeInfo2*): ULONG;
+    Release: func(This: ICreateTypeInfo2*): ULONG;
+    SetGuid: func(This: ICreateTypeInfo2*, guid: GUID* const): HRESULT;
+    SetTypeFlags: func(This: ICreateTypeInfo2*, uTypeFlags: UINT): HRESULT;
+    SetDocString: func(This: ICreateTypeInfo2*, pStrDoc: LPOLESTR): HRESULT;
+    SetHelpContext: func(This: ICreateTypeInfo2*, dwHelpContext: DWORD): HRESULT;
+    SetVersion: func(This: ICreateTypeInfo2*, wMajorVerNum: WORD, wMinorVerNum: WORD): HRESULT;
+    AddRefTypeInfo: func(This: ICreateTypeInfo2*, pTInfo: ITypeInfo*, phRefType: HREFTYPE*): HRESULT;
+    AddFuncDesc: func(This: ICreateTypeInfo2*, index: UINT, pFuncDesc: FUNCDESC*): HRESULT;
+    AddImplType: func(This: ICreateTypeInfo2*, index: UINT, hRefType: HREFTYPE): HRESULT;
+    SetImplTypeFlags: func(This: ICreateTypeInfo2*, index: UINT, implTypeFlags: INT): HRESULT;
+    SetAlignment: func(This: ICreateTypeInfo2*, cbAlignment: WORD): HRESULT;
+    SetSchema: func(This: ICreateTypeInfo2*, pStrSchema: LPOLESTR): HRESULT;
+    AddVarDesc: func(This: ICreateTypeInfo2*, index: UINT, pVarDesc: VARDESC*): HRESULT;
+    SetFuncAndParamNames: func(This: ICreateTypeInfo2*, index: UINT, rgszNames: LPOLESTR*, cNames: UINT): HRESULT;
+    SetVarName: func(This: ICreateTypeInfo2*, index: UINT, szName: LPOLESTR): HRESULT;
+    SetTypeDescAlias: func(This: ICreateTypeInfo2*, pTDescAlias: TYPEDESC*): HRESULT;
+    DefineFuncAsDllEntry: func(This: ICreateTypeInfo2*, index: UINT, szDllName: LPOLESTR, szProcName: LPOLESTR): HRESULT;
+    SetFuncDocString: func(This: ICreateTypeInfo2*, index: UINT, szDocString: LPOLESTR): HRESULT;
+    SetVarDocString: func(This: ICreateTypeInfo2*, index: UINT, szDocString: LPOLESTR): HRESULT;
+    SetFuncHelpContext: func(This: ICreateTypeInfo2*, index: UINT, dwHelpContext: DWORD): HRESULT;
+    SetVarHelpContext: func(This: ICreateTypeInfo2*, index: UINT, dwHelpContext: DWORD): HRESULT;
+    SetMops: func(This: ICreateTypeInfo2*, index: UINT, bstrMops: BSTR): HRESULT;
+    SetTypeIdldesc: func(This: ICreateTypeInfo2*, pIdlDesc: IDLDESC*): HRESULT;
+    LayOut: func(This: ICreateTypeInfo2*): HRESULT;
+    DeleteFuncDesc: func(This: ICreateTypeInfo2*, index: UINT): HRESULT;
+    DeleteFuncDescByMemId: func(This: ICreateTypeInfo2*, memid: MEMBERID, invKind: INVOKEKIND): HRESULT;
+    DeleteVarDesc: func(This: ICreateTypeInfo2*, index: UINT): HRESULT;
+    DeleteVarDescByMemId: func(This: ICreateTypeInfo2*, memid: MEMBERID): HRESULT;
+    DeleteImplType: func(This: ICreateTypeInfo2*, index: UINT): HRESULT;
+    SetCustData: func(This: ICreateTypeInfo2*, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    SetFuncCustData: func(This: ICreateTypeInfo2*, index: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    SetParamCustData: func(This: ICreateTypeInfo2*, indexFunc: UINT, indexParam: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    SetVarCustData: func(This: ICreateTypeInfo2*, index: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    SetImplTypeCustData: func(This: ICreateTypeInfo2*, index: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    SetHelpStringContext: func(This: ICreateTypeInfo2*, dwHelpStringContext: ULONG): HRESULT;
+    SetFuncHelpStringContext: func(This: ICreateTypeInfo2*, index: UINT, dwHelpStringContext: ULONG): HRESULT;
+    SetVarHelpStringContext: func(This: ICreateTypeInfo2*, index: UINT, dwHelpStringContext: ULONG): HRESULT;
+    Invalidate: func(This: ICreateTypeInfo2*): HRESULT;
+    SetName: func(This: ICreateTypeInfo2*, szName: LPOLESTR): HRESULT;
+}
+
+@foreign
+struct ICreateTypeInfo2 {
+    lpVtbl: ICreateTypeInfo2Vtbl*;
+}
+
+@foreign
+typedef LPCREATETYPELIB = ICreateTypeLib*;
+
+@foreign
+struct ICreateTypeLibVtbl {
+    QueryInterface: func(This: ICreateTypeLib*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICreateTypeLib*): ULONG;
+    Release: func(This: ICreateTypeLib*): ULONG;
+    CreateTypeInfo: func(This: ICreateTypeLib*, szName: LPOLESTR, tkind: TYPEKIND, ppCTInfo: ICreateTypeInfo**): HRESULT;
+    SetName: func(This: ICreateTypeLib*, szName: LPOLESTR): HRESULT;
+    SetVersion: func(This: ICreateTypeLib*, wMajorVerNum: WORD, wMinorVerNum: WORD): HRESULT;
+    SetGuid: func(This: ICreateTypeLib*, guid: GUID* const): HRESULT;
+    SetDocString: func(This: ICreateTypeLib*, szDoc: LPOLESTR): HRESULT;
+    SetHelpFileName: func(This: ICreateTypeLib*, szHelpFileName: LPOLESTR): HRESULT;
+    SetHelpContext: func(This: ICreateTypeLib*, dwHelpContext: DWORD): HRESULT;
+    SetLcid: func(This: ICreateTypeLib*, lcid: LCID): HRESULT;
+    SetLibFlags: func(This: ICreateTypeLib*, uLibFlags: UINT): HRESULT;
+    SaveAllChanges: func(This: ICreateTypeLib*): HRESULT;
+}
+
+@foreign
+struct ICreateTypeLib {
+    lpVtbl: ICreateTypeLibVtbl*;
+}
+
+@foreign
+typedef LPCREATETYPELIB2 = ICreateTypeLib2*;
+
+@foreign
+struct ICreateTypeLib2Vtbl {
+    QueryInterface: func(This: ICreateTypeLib2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICreateTypeLib2*): ULONG;
+    Release: func(This: ICreateTypeLib2*): ULONG;
+    CreateTypeInfo: func(This: ICreateTypeLib2*, szName: LPOLESTR, tkind: TYPEKIND, ppCTInfo: ICreateTypeInfo**): HRESULT;
+    SetName: func(This: ICreateTypeLib2*, szName: LPOLESTR): HRESULT;
+    SetVersion: func(This: ICreateTypeLib2*, wMajorVerNum: WORD, wMinorVerNum: WORD): HRESULT;
+    SetGuid: func(This: ICreateTypeLib2*, guid: GUID* const): HRESULT;
+    SetDocString: func(This: ICreateTypeLib2*, szDoc: LPOLESTR): HRESULT;
+    SetHelpFileName: func(This: ICreateTypeLib2*, szHelpFileName: LPOLESTR): HRESULT;
+    SetHelpContext: func(This: ICreateTypeLib2*, dwHelpContext: DWORD): HRESULT;
+    SetLcid: func(This: ICreateTypeLib2*, lcid: LCID): HRESULT;
+    SetLibFlags: func(This: ICreateTypeLib2*, uLibFlags: UINT): HRESULT;
+    SaveAllChanges: func(This: ICreateTypeLib2*): HRESULT;
+    DeleteTypeInfo: func(This: ICreateTypeLib2*, szName: LPOLESTR): HRESULT;
+    SetCustData: func(This: ICreateTypeLib2*, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    SetHelpStringContext: func(This: ICreateTypeLib2*, dwHelpStringContext: ULONG): HRESULT;
+    SetHelpStringDll: func(This: ICreateTypeLib2*, szFileName: LPOLESTR): HRESULT;
+}
+
+@foreign
+struct ICreateTypeLib2 {
+    lpVtbl: ICreateTypeLib2Vtbl*;
+}
+
+@foreign
+typedef LPDISPATCH = IDispatch*;
+
+@foreign
+struct IDispatchVtbl {
+    QueryInterface: func(This: IDispatch*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDispatch*): ULONG;
+    Release: func(This: IDispatch*): ULONG;
+    GetTypeInfoCount: func(This: IDispatch*, pctinfo: UINT*): HRESULT;
+    GetTypeInfo: func(This: IDispatch*, iTInfo: UINT, lcid: LCID, ppTInfo: ITypeInfo**): HRESULT;
+    GetIDsOfNames: func(This: IDispatch*, riid: IID* const, rgszNames: LPOLESTR*, cNames: UINT, lcid: LCID, rgDispId: DISPID*): HRESULT;
+    Invoke: func(This: IDispatch*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+}
+
+@foreign
+struct IDispatch {
+    lpVtbl: IDispatchVtbl*;
+}
+
+@foreign
+func IDispatch_RemoteInvoke_Proxy(This: IDispatch*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, dwFlags: DWORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, pArgErr: UINT*, cVarRef: UINT, rgVarRefIdx: UINT*, rgVarRef: VARIANTARG*): HRESULT;
+
+@foreign
+func IDispatch_RemoteInvoke_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPENUMVARIANT = IEnumVARIANT*;
+
+@foreign
+struct IEnumVARIANTVtbl {
+    QueryInterface: func(This: IEnumVARIANT*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumVARIANT*): ULONG;
+    Release: func(This: IEnumVARIANT*): ULONG;
+    Next: func(This: IEnumVARIANT*, celt: ULONG, rgVar: VARIANT*, pCeltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumVARIANT*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumVARIANT*): HRESULT;
+    Clone: func(This: IEnumVARIANT*, ppEnum: IEnumVARIANT**): HRESULT;
+}
+
+@foreign
+struct IEnumVARIANT {
+    lpVtbl: IEnumVARIANTVtbl*;
+}
+
+@foreign
+func IEnumVARIANT_RemoteNext_Proxy(This: IEnumVARIANT*, celt: ULONG, rgVar: VARIANT*, pCeltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumVARIANT_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPTYPECOMP = ITypeComp*;
+
+@foreign
+enum tagDESCKIND {
+    DESCKIND_NONE = 0,
+    DESCKIND_FUNCDESC = 1,
+    DESCKIND_VARDESC = 2,
+    DESCKIND_TYPECOMP = 3,
+    DESCKIND_IMPLICITAPPOBJ = 4,
+    DESCKIND_MAX = 5,
+}
+
+@foreign
+typedef DESCKIND = tagDESCKIND;
+
+@foreign
+union tagBINDPTR {
+    lpfuncdesc: FUNCDESC*;
+    lpvardesc: VARDESC*;
+    lptcomp: ITypeComp*;
+}
+
+@foreign
+typedef BINDPTR = tagBINDPTR;
+
+@foreign
+typedef LPBINDPTR = tagBINDPTR*;
+
+@foreign
+struct ITypeCompVtbl {
+    QueryInterface: func(This: ITypeComp*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeComp*): ULONG;
+    Release: func(This: ITypeComp*): ULONG;
+    Bind: func(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, wFlags: WORD, ppTInfo: ITypeInfo**, pDescKind: DESCKIND*, pBindPtr: BINDPTR*): HRESULT;
+    BindType: func(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, ppTComp: ITypeComp**): HRESULT;
+}
+
+@foreign
+struct ITypeComp {
+    lpVtbl: ITypeCompVtbl*;
+}
+
+@foreign
+func ITypeComp_RemoteBind_Proxy(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, wFlags: WORD, ppTInfo: ITypeInfo**, pDescKind: DESCKIND*, ppFuncDesc: LPFUNCDESC*, ppVarDesc: LPVARDESC*, ppTypeComp: ITypeComp**, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeComp_RemoteBind_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeComp_RemoteBindType_Proxy(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**): HRESULT;
+
+@foreign
+func ITypeComp_RemoteBindType_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPTYPEINFO = ITypeInfo*;
+
+@foreign
+struct ITypeInfoVtbl {
+    QueryInterface: func(This: ITypeInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeInfo*): ULONG;
+    Release: func(This: ITypeInfo*): ULONG;
+    GetTypeAttr: func(This: ITypeInfo*, ppTypeAttr: TYPEATTR**): HRESULT;
+    GetTypeComp: func(This: ITypeInfo*, ppTComp: ITypeComp**): HRESULT;
+    GetFuncDesc: func(This: ITypeInfo*, index: UINT, ppFuncDesc: FUNCDESC**): HRESULT;
+    GetVarDesc: func(This: ITypeInfo*, index: UINT, ppVarDesc: VARDESC**): HRESULT;
+    GetNames: func(This: ITypeInfo*, memid: MEMBERID, rgBstrNames: BSTR*, cMaxNames: UINT, pcNames: UINT*): HRESULT;
+    GetRefTypeOfImplType: func(This: ITypeInfo*, index: UINT, pRefType: HREFTYPE*): HRESULT;
+    GetImplTypeFlags: func(This: ITypeInfo*, index: UINT, pImplTypeFlags: INT*): HRESULT;
+    GetIDsOfNames: func(This: ITypeInfo*, rgszNames: LPOLESTR*, cNames: UINT, pMemId: MEMBERID*): HRESULT;
+    Invoke: func(This: ITypeInfo*, pvInstance: PVOID, memid: MEMBERID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    GetDocumentation: func(This: ITypeInfo*, memid: MEMBERID, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+    GetDllEntry: func(This: ITypeInfo*, memid: MEMBERID, invKind: INVOKEKIND, pBstrDllName: BSTR*, pBstrName: BSTR*, pwOrdinal: WORD*): HRESULT;
+    GetRefTypeInfo: func(This: ITypeInfo*, hRefType: HREFTYPE, ppTInfo: ITypeInfo**): HRESULT;
+    AddressOfMember: func(This: ITypeInfo*, memid: MEMBERID, invKind: INVOKEKIND, ppv: PVOID*): HRESULT;
+    CreateInstance: func(This: ITypeInfo*, pUnkOuter: IUnknown*, riid: IID* const, ppvObj: PVOID*): HRESULT;
+    GetMops: func(This: ITypeInfo*, memid: MEMBERID, pBstrMops: BSTR*): HRESULT;
+    GetContainingTypeLib: func(This: ITypeInfo*, ppTLib: ITypeLib**, pIndex: UINT*): HRESULT;
+    ReleaseTypeAttr: func(This: ITypeInfo*, pTypeAttr: TYPEATTR*);
+    ReleaseFuncDesc: func(This: ITypeInfo*, pFuncDesc: FUNCDESC*);
+    ReleaseVarDesc: func(This: ITypeInfo*, pVarDesc: VARDESC*);
+}
+
+@foreign
+struct ITypeInfo {
+    lpVtbl: ITypeInfoVtbl*;
+}
+
+@foreign
+func ITypeInfo_RemoteGetTypeAttr_Proxy(This: ITypeInfo*, ppTypeAttr: LPTYPEATTR*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetTypeAttr_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteGetFuncDesc_Proxy(This: ITypeInfo*, index: UINT, ppFuncDesc: LPFUNCDESC*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetFuncDesc_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteGetVarDesc_Proxy(This: ITypeInfo*, index: UINT, ppVarDesc: LPVARDESC*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetVarDesc_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteGetNames_Proxy(This: ITypeInfo*, memid: MEMBERID, rgBstrNames: BSTR*, cMaxNames: UINT, pcNames: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetNames_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_LocalGetIDsOfNames_Proxy(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_LocalGetIDsOfNames_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_LocalInvoke_Proxy(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_LocalInvoke_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteGetDocumentation_Proxy(This: ITypeInfo*, memid: MEMBERID, refPtrFlags: DWORD, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetDocumentation_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteGetDllEntry_Proxy(This: ITypeInfo*, memid: MEMBERID, invKind: INVOKEKIND, refPtrFlags: DWORD, pBstrDllName: BSTR*, pBstrName: BSTR*, pwOrdinal: WORD*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetDllEntry_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_LocalAddressOfMember_Proxy(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_LocalAddressOfMember_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteCreateInstance_Proxy(This: ITypeInfo*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteCreateInstance_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_RemoteGetContainingTypeLib_Proxy(This: ITypeInfo*, ppTLib: ITypeLib**, pIndex: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_RemoteGetContainingTypeLib_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_LocalReleaseTypeAttr_Proxy(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_LocalReleaseTypeAttr_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_LocalReleaseFuncDesc_Proxy(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_LocalReleaseFuncDesc_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeInfo_LocalReleaseVarDesc_Proxy(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_LocalReleaseVarDesc_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPTYPEINFO2 = ITypeInfo2*;
+
+@foreign
+struct ITypeInfo2Vtbl {
+    QueryInterface: func(This: ITypeInfo2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeInfo2*): ULONG;
+    Release: func(This: ITypeInfo2*): ULONG;
+    GetTypeAttr: func(This: ITypeInfo2*, ppTypeAttr: TYPEATTR**): HRESULT;
+    GetTypeComp: func(This: ITypeInfo2*, ppTComp: ITypeComp**): HRESULT;
+    GetFuncDesc: func(This: ITypeInfo2*, index: UINT, ppFuncDesc: FUNCDESC**): HRESULT;
+    GetVarDesc: func(This: ITypeInfo2*, index: UINT, ppVarDesc: VARDESC**): HRESULT;
+    GetNames: func(This: ITypeInfo2*, memid: MEMBERID, rgBstrNames: BSTR*, cMaxNames: UINT, pcNames: UINT*): HRESULT;
+    GetRefTypeOfImplType: func(This: ITypeInfo2*, index: UINT, pRefType: HREFTYPE*): HRESULT;
+    GetImplTypeFlags: func(This: ITypeInfo2*, index: UINT, pImplTypeFlags: INT*): HRESULT;
+    GetIDsOfNames: func(This: ITypeInfo2*, rgszNames: LPOLESTR*, cNames: UINT, pMemId: MEMBERID*): HRESULT;
+    Invoke: func(This: ITypeInfo2*, pvInstance: PVOID, memid: MEMBERID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+    GetDocumentation: func(This: ITypeInfo2*, memid: MEMBERID, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+    GetDllEntry: func(This: ITypeInfo2*, memid: MEMBERID, invKind: INVOKEKIND, pBstrDllName: BSTR*, pBstrName: BSTR*, pwOrdinal: WORD*): HRESULT;
+    GetRefTypeInfo: func(This: ITypeInfo2*, hRefType: HREFTYPE, ppTInfo: ITypeInfo**): HRESULT;
+    AddressOfMember: func(This: ITypeInfo2*, memid: MEMBERID, invKind: INVOKEKIND, ppv: PVOID*): HRESULT;
+    CreateInstance: func(This: ITypeInfo2*, pUnkOuter: IUnknown*, riid: IID* const, ppvObj: PVOID*): HRESULT;
+    GetMops: func(This: ITypeInfo2*, memid: MEMBERID, pBstrMops: BSTR*): HRESULT;
+    GetContainingTypeLib: func(This: ITypeInfo2*, ppTLib: ITypeLib**, pIndex: UINT*): HRESULT;
+    ReleaseTypeAttr: func(This: ITypeInfo2*, pTypeAttr: TYPEATTR*);
+    ReleaseFuncDesc: func(This: ITypeInfo2*, pFuncDesc: FUNCDESC*);
+    ReleaseVarDesc: func(This: ITypeInfo2*, pVarDesc: VARDESC*);
+    GetTypeKind: func(This: ITypeInfo2*, pTypeKind: TYPEKIND*): HRESULT;
+    GetTypeFlags: func(This: ITypeInfo2*, pTypeFlags: ULONG*): HRESULT;
+    GetFuncIndexOfMemId: func(This: ITypeInfo2*, memid: MEMBERID, invKind: INVOKEKIND, pFuncIndex: UINT*): HRESULT;
+    GetVarIndexOfMemId: func(This: ITypeInfo2*, memid: MEMBERID, pVarIndex: UINT*): HRESULT;
+    GetCustData: func(This: ITypeInfo2*, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    GetFuncCustData: func(This: ITypeInfo2*, index: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    GetParamCustData: func(This: ITypeInfo2*, indexFunc: UINT, indexParam: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    GetVarCustData: func(This: ITypeInfo2*, index: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    GetImplTypeCustData: func(This: ITypeInfo2*, index: UINT, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    GetDocumentation2: func(This: ITypeInfo2*, memid: MEMBERID, lcid: LCID, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+    GetAllCustData: func(This: ITypeInfo2*, pCustData: CUSTDATA*): HRESULT;
+    GetAllFuncCustData: func(This: ITypeInfo2*, index: UINT, pCustData: CUSTDATA*): HRESULT;
+    GetAllParamCustData: func(This: ITypeInfo2*, indexFunc: UINT, indexParam: UINT, pCustData: CUSTDATA*): HRESULT;
+    GetAllVarCustData: func(This: ITypeInfo2*, index: UINT, pCustData: CUSTDATA*): HRESULT;
+    GetAllImplTypeCustData: func(This: ITypeInfo2*, index: UINT, pCustData: CUSTDATA*): HRESULT;
+}
+
+@foreign
+struct ITypeInfo2 {
+    lpVtbl: ITypeInfo2Vtbl*;
+}
+
+@foreign
+func ITypeInfo2_RemoteGetDocumentation2_Proxy(This: ITypeInfo2*, memid: MEMBERID, lcid: LCID, refPtrFlags: DWORD, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+
+@foreign
+func ITypeInfo2_RemoteGetDocumentation2_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+enum tagSYSKIND {
+    SYS_WIN16 = 0,
+    SYS_WIN32 = 1,
+    SYS_MAC = 2,
+    SYS_WIN64 = 3,
+}
+
+@foreign
+typedef SYSKIND = tagSYSKIND;
+
+@foreign
+enum tagLIBFLAGS {
+    LIBFLAG_FRESTRICTED = 1,
+    LIBFLAG_FCONTROL = 2,
+    LIBFLAG_FHIDDEN = 4,
+    LIBFLAG_FHASDISKIMAGE = 8,
+}
+
+@foreign
+typedef LIBFLAGS = tagLIBFLAGS;
+
+@foreign
+typedef LPTYPELIB = ITypeLib*;
+
+@foreign
+struct tagTLIBATTR {
+    guid: GUID;
+    lcid: LCID;
+    syskind: SYSKIND;
+    wMajorVerNum: WORD;
+    wMinorVerNum: WORD;
+    wLibFlags: WORD;
+}
+
+@foreign
+typedef TLIBATTR = tagTLIBATTR;
+
+@foreign
+typedef LPTLIBATTR = tagTLIBATTR*;
+
+@foreign
+struct ITypeLibVtbl {
+    QueryInterface: func(This: ITypeLib*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeLib*): ULONG;
+    Release: func(This: ITypeLib*): ULONG;
+    GetTypeInfoCount: func(This: ITypeLib*): UINT;
+    GetTypeInfo: func(This: ITypeLib*, index: UINT, ppTInfo: ITypeInfo**): HRESULT;
+    GetTypeInfoType: func(This: ITypeLib*, index: UINT, pTKind: TYPEKIND*): HRESULT;
+    GetTypeInfoOfGuid: func(This: ITypeLib*, guid: GUID* const, ppTinfo: ITypeInfo**): HRESULT;
+    GetLibAttr: func(This: ITypeLib*, ppTLibAttr: TLIBATTR**): HRESULT;
+    GetTypeComp: func(This: ITypeLib*, ppTComp: ITypeComp**): HRESULT;
+    GetDocumentation: func(This: ITypeLib*, index: INT, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+    IsName: func(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, pfName: BOOL*): HRESULT;
+    FindName: func(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, rgMemId: MEMBERID*, pcFound: USHORT*): HRESULT;
+    ReleaseTLibAttr: func(This: ITypeLib*, pTLibAttr: TLIBATTR*);
+}
+
+@foreign
+struct ITypeLib {
+    lpVtbl: ITypeLibVtbl*;
+}
+
+@foreign
+func ITypeLib_RemoteGetTypeInfoCount_Proxy(This: ITypeLib*, pcTInfo: UINT*): HRESULT;
+
+@foreign
+func ITypeLib_RemoteGetTypeInfoCount_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeLib_RemoteGetLibAttr_Proxy(This: ITypeLib*, ppTLibAttr: LPTLIBATTR*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeLib_RemoteGetLibAttr_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeLib_RemoteGetDocumentation_Proxy(This: ITypeLib*, index: INT, refPtrFlags: DWORD, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_RemoteGetDocumentation_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeLib_RemoteIsName_Proxy(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, pfName: BOOL*, pBstrLibName: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_RemoteIsName_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeLib_RemoteFindName_Proxy(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, rgMemId: MEMBERID*, pcFound: USHORT*, pBstrLibName: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_RemoteFindName_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeLib_LocalReleaseTLibAttr_Proxy(This: ITypeLib*): HRESULT;
+
+@foreign
+func ITypeLib_LocalReleaseTLibAttr_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPTYPELIB2 = ITypeLib2*;
+
+@foreign
+struct ITypeLib2Vtbl {
+    QueryInterface: func(This: ITypeLib2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeLib2*): ULONG;
+    Release: func(This: ITypeLib2*): ULONG;
+    GetTypeInfoCount: func(This: ITypeLib2*): UINT;
+    GetTypeInfo: func(This: ITypeLib2*, index: UINT, ppTInfo: ITypeInfo**): HRESULT;
+    GetTypeInfoType: func(This: ITypeLib2*, index: UINT, pTKind: TYPEKIND*): HRESULT;
+    GetTypeInfoOfGuid: func(This: ITypeLib2*, guid: GUID* const, ppTinfo: ITypeInfo**): HRESULT;
+    GetLibAttr: func(This: ITypeLib2*, ppTLibAttr: TLIBATTR**): HRESULT;
+    GetTypeComp: func(This: ITypeLib2*, ppTComp: ITypeComp**): HRESULT;
+    GetDocumentation: func(This: ITypeLib2*, index: INT, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+    IsName: func(This: ITypeLib2*, szNameBuf: LPOLESTR, lHashVal: ULONG, pfName: BOOL*): HRESULT;
+    FindName: func(This: ITypeLib2*, szNameBuf: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, rgMemId: MEMBERID*, pcFound: USHORT*): HRESULT;
+    ReleaseTLibAttr: func(This: ITypeLib2*, pTLibAttr: TLIBATTR*);
+    GetCustData: func(This: ITypeLib2*, guid: GUID* const, pVarVal: VARIANT*): HRESULT;
+    GetLibStatistics: func(This: ITypeLib2*, pcUniqueNames: ULONG*, pcchUniqueNames: ULONG*): HRESULT;
+    GetDocumentation2: func(This: ITypeLib2*, index: INT, lcid: LCID, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+    GetAllCustData: func(This: ITypeLib2*, pCustData: CUSTDATA*): HRESULT;
+}
+
+@foreign
+struct ITypeLib2 {
+    lpVtbl: ITypeLib2Vtbl*;
+}
+
+@foreign
+func ITypeLib2_RemoteGetLibStatistics_Proxy(This: ITypeLib2*, pcUniqueNames: ULONG*, pcchUniqueNames: ULONG*): HRESULT;
+
+@foreign
+func ITypeLib2_RemoteGetLibStatistics_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ITypeLib2_RemoteGetDocumentation2_Proxy(This: ITypeLib2*, index: INT, lcid: LCID, refPtrFlags: DWORD, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib2_RemoteGetDocumentation2_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPTYPECHANGEEVENTS = ITypeChangeEvents*;
+
+@foreign
+enum tagCHANGEKIND {
+    CHANGEKIND_ADDMEMBER = 0,
+    CHANGEKIND_DELETEMEMBER = 1,
+    CHANGEKIND_SETNAMES = 2,
+    CHANGEKIND_SETDOCUMENTATION = 3,
+    CHANGEKIND_GENERAL = 4,
+    CHANGEKIND_INVALIDATE = 5,
+    CHANGEKIND_CHANGEFAILED = 6,
+    CHANGEKIND_MAX = 7,
+}
+
+@foreign
+typedef CHANGEKIND = tagCHANGEKIND;
+
+@foreign
+struct ITypeChangeEventsVtbl {
+    QueryInterface: func(This: ITypeChangeEvents*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeChangeEvents*): ULONG;
+    Release: func(This: ITypeChangeEvents*): ULONG;
+    RequestTypeChange: func(This: ITypeChangeEvents*, changeKind: CHANGEKIND, pTInfoBefore: ITypeInfo*, pStrName: LPOLESTR, pfCancel: INT*): HRESULT;
+    AfterTypeChange: func(This: ITypeChangeEvents*, changeKind: CHANGEKIND, pTInfoAfter: ITypeInfo*, pStrName: LPOLESTR): HRESULT;
+}
+
+@foreign
+struct ITypeChangeEvents {
+    lpVtbl: ITypeChangeEventsVtbl*;
+}
+
+@foreign
+typedef LPERRORINFO = IErrorInfo*;
+
+@foreign
+struct IErrorInfoVtbl {
+    QueryInterface: func(This: IErrorInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IErrorInfo*): ULONG;
+    Release: func(This: IErrorInfo*): ULONG;
+    GetGUID: func(This: IErrorInfo*, pGUID: GUID*): HRESULT;
+    GetSource: func(This: IErrorInfo*, pBstrSource: BSTR*): HRESULT;
+    GetDescription: func(This: IErrorInfo*, pBstrDescription: BSTR*): HRESULT;
+    GetHelpFile: func(This: IErrorInfo*, pBstrHelpFile: BSTR*): HRESULT;
+    GetHelpContext: func(This: IErrorInfo*, pdwHelpContext: DWORD*): HRESULT;
+}
+
+@foreign
+struct IErrorInfo {
+    lpVtbl: IErrorInfoVtbl*;
+}
+
+@foreign
+typedef LPCREATEERRORINFO = ICreateErrorInfo*;
+
+@foreign
+struct ICreateErrorInfoVtbl {
+    QueryInterface: func(This: ICreateErrorInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICreateErrorInfo*): ULONG;
+    Release: func(This: ICreateErrorInfo*): ULONG;
+    SetGUID: func(This: ICreateErrorInfo*, rguid: GUID* const): HRESULT;
+    SetSource: func(This: ICreateErrorInfo*, szSource: LPOLESTR): HRESULT;
+    SetDescription: func(This: ICreateErrorInfo*, szDescription: LPOLESTR): HRESULT;
+    SetHelpFile: func(This: ICreateErrorInfo*, szHelpFile: LPOLESTR): HRESULT;
+    SetHelpContext: func(This: ICreateErrorInfo*, dwHelpContext: DWORD): HRESULT;
+}
+
+@foreign
+struct ICreateErrorInfo {
+    lpVtbl: ICreateErrorInfoVtbl*;
+}
+
+@foreign
+typedef LPSUPPORTERRORINFO = ISupportErrorInfo*;
+
+@foreign
+struct ISupportErrorInfoVtbl {
+    QueryInterface: func(This: ISupportErrorInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISupportErrorInfo*): ULONG;
+    Release: func(This: ISupportErrorInfo*): ULONG;
+    InterfaceSupportsErrorInfo: func(This: ISupportErrorInfo*, riid: IID* const): HRESULT;
+}
+
+@foreign
+struct ISupportErrorInfo {
+    lpVtbl: ISupportErrorInfoVtbl*;
+}
+
+@foreign
+struct ITypeFactoryVtbl {
+    QueryInterface: func(This: ITypeFactory*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeFactory*): ULONG;
+    Release: func(This: ITypeFactory*): ULONG;
+    CreateFromTypeInfo: func(This: ITypeFactory*, pTypeInfo: ITypeInfo*, riid: IID* const, ppv: IUnknown**): HRESULT;
+}
+
+@foreign
+struct ITypeFactory {
+    lpVtbl: ITypeFactoryVtbl*;
+}
+
+@foreign
+struct ITypeMarshalVtbl {
+    QueryInterface: func(This: ITypeMarshal*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeMarshal*): ULONG;
+    Release: func(This: ITypeMarshal*): ULONG;
+    Size: func(This: ITypeMarshal*, pvType: PVOID, dwDestContext: DWORD, pvDestContext: PVOID, pSize: ULONG*): HRESULT;
+    Marshal: func(This: ITypeMarshal*, pvType: PVOID, dwDestContext: DWORD, pvDestContext: PVOID, cbBufferLength: ULONG, pBuffer: BYTE*, pcbWritten: ULONG*): HRESULT;
+    Unmarshal: func(This: ITypeMarshal*, pvType: PVOID, dwFlags: DWORD, cbBufferLength: ULONG, pBuffer: BYTE*, pcbRead: ULONG*): HRESULT;
+    Free: func(This: ITypeMarshal*, pvType: PVOID): HRESULT;
+}
+
+@foreign
+struct ITypeMarshal {
+    lpVtbl: ITypeMarshalVtbl*;
+}
+
+@foreign
+typedef LPRECORDINFO = IRecordInfo*;
+
+@foreign
+struct IRecordInfoVtbl {
+    QueryInterface: func(This: IRecordInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRecordInfo*): ULONG;
+    Release: func(This: IRecordInfo*): ULONG;
+    RecordInit: func(This: IRecordInfo*, pvNew: PVOID): HRESULT;
+    RecordClear: func(This: IRecordInfo*, pvExisting: PVOID): HRESULT;
+    RecordCopy: func(This: IRecordInfo*, pvExisting: PVOID, pvNew: PVOID): HRESULT;
+    GetGuid: func(This: IRecordInfo*, pguid: GUID*): HRESULT;
+    GetName: func(This: IRecordInfo*, pbstrName: BSTR*): HRESULT;
+    GetSize: func(This: IRecordInfo*, pcbSize: ULONG*): HRESULT;
+    GetTypeInfo: func(This: IRecordInfo*, ppTypeInfo: ITypeInfo**): HRESULT;
+    GetField: func(This: IRecordInfo*, pvData: PVOID, szFieldName: LPCOLESTR, pvarField: VARIANT*): HRESULT;
+    GetFieldNoCopy: func(This: IRecordInfo*, pvData: PVOID, szFieldName: LPCOLESTR, pvarField: VARIANT*, ppvDataCArray: PVOID*): HRESULT;
+    PutField: func(This: IRecordInfo*, wFlags: ULONG, pvData: PVOID, szFieldName: LPCOLESTR, pvarField: VARIANT*): HRESULT;
+    PutFieldNoCopy: func(This: IRecordInfo*, wFlags: ULONG, pvData: PVOID, szFieldName: LPCOLESTR, pvarField: VARIANT*): HRESULT;
+    GetFieldNames: func(This: IRecordInfo*, pcNames: ULONG*, rgBstrNames: BSTR*): HRESULT;
+    IsMatchingType: func(This: IRecordInfo*, pRecordInfo: IRecordInfo*): BOOL;
+    RecordCreate: func(This: IRecordInfo*): PVOID;
+    RecordCreateCopy: func(This: IRecordInfo*, pvSource: PVOID, ppvDest: PVOID*): HRESULT;
+    RecordDestroy: func(This: IRecordInfo*, pvRecord: PVOID): HRESULT;
+}
+
+@foreign
+struct IRecordInfo {
+    lpVtbl: IRecordInfoVtbl*;
+}
+
+@foreign
+typedef LPERRORLOG = IErrorLog*;
+
+@foreign
+struct IErrorLogVtbl {
+    QueryInterface: func(This: IErrorLog*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IErrorLog*): ULONG;
+    Release: func(This: IErrorLog*): ULONG;
+    AddError: func(This: IErrorLog*, pszPropName: LPCOLESTR, pExcepInfo: EXCEPINFO*): HRESULT;
+}
+
+@foreign
+struct IErrorLog {
+    lpVtbl: IErrorLogVtbl*;
+}
+
+@foreign
+typedef LPPROPERTYBAG = IPropertyBag*;
+
+@foreign
+struct IPropertyBagVtbl {
+    QueryInterface: func(This: IPropertyBag*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPropertyBag*): ULONG;
+    Release: func(This: IPropertyBag*): ULONG;
+    Read: func(This: IPropertyBag*, pszPropName: LPCOLESTR, pVar: VARIANT*, pErrorLog: IErrorLog*): HRESULT;
+    Write: func(This: IPropertyBag*, pszPropName: LPCOLESTR, pVar: VARIANT*): HRESULT;
+}
+
+@foreign
+struct IPropertyBag {
+    lpVtbl: IPropertyBagVtbl*;
+}
+
+@foreign
+func IPropertyBag_RemoteRead_Proxy(This: IPropertyBag*, pszPropName: LPCOLESTR, pVar: VARIANT*, pErrorLog: IErrorLog*, varType: DWORD, pUnkObj: IUnknown*): HRESULT;
+
+@foreign
+func IPropertyBag_RemoteRead_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct ITypeLibRegistrationReaderVtbl {
+    QueryInterface: func(This: ITypeLibRegistrationReader*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeLibRegistrationReader*): ULONG;
+    Release: func(This: ITypeLibRegistrationReader*): ULONG;
+    EnumTypeLibRegistrations: func(This: ITypeLibRegistrationReader*, ppEnumUnknown: IEnumUnknown**): HRESULT;
+}
+
+@foreign
+struct ITypeLibRegistrationReader {
+    lpVtbl: ITypeLibRegistrationReaderVtbl*;
+}
+
+@foreign
+struct ITypeLibRegistrationVtbl {
+    QueryInterface: func(This: ITypeLibRegistration*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITypeLibRegistration*): ULONG;
+    Release: func(This: ITypeLibRegistration*): ULONG;
+    GetGuid: func(This: ITypeLibRegistration*, pGuid: GUID*): HRESULT;
+    GetVersion: func(This: ITypeLibRegistration*, pVersion: BSTR*): HRESULT;
+    GetLcid: func(This: ITypeLibRegistration*, pLcid: LCID*): HRESULT;
+    GetWin32Path: func(This: ITypeLibRegistration*, pWin32Path: BSTR*): HRESULT;
+    GetWin64Path: func(This: ITypeLibRegistration*, pWin64Path: BSTR*): HRESULT;
+    GetDisplayName: func(This: ITypeLibRegistration*, pDisplayName: BSTR*): HRESULT;
+    GetFlags: func(This: ITypeLibRegistration*, pFlags: DWORD*): HRESULT;
+    GetHelpDir: func(This: ITypeLibRegistration*, pHelpDir: BSTR*): HRESULT;
+}
+
+@foreign
+struct ITypeLibRegistration {
+    lpVtbl: ITypeLibRegistrationVtbl*;
+}
+
+@foreign
+func BSTR_UserSize(arg0: ulong*, arg1: ulong, arg2: BSTR*): ulong;
+
+@foreign
+func BSTR_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: BSTR*): uchar*;
+
+@foreign
+func BSTR_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: BSTR*): uchar*;
+
+@foreign
+func BSTR_UserFree(arg0: ulong*, arg1: BSTR*);
+
+@foreign
+func CLEANLOCALSTORAGE_UserSize(arg0: ulong*, arg1: ulong, arg2: CLEANLOCALSTORAGE*): ulong;
+
+@foreign
+func CLEANLOCALSTORAGE_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: CLEANLOCALSTORAGE*): uchar*;
+
+@foreign
+func CLEANLOCALSTORAGE_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: CLEANLOCALSTORAGE*): uchar*;
+
+@foreign
+func CLEANLOCALSTORAGE_UserFree(arg0: ulong*, arg1: CLEANLOCALSTORAGE*);
+
+@foreign
+func VARIANT_UserSize(arg0: ulong*, arg1: ulong, arg2: VARIANT*): ulong;
+
+@foreign
+func VARIANT_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: VARIANT*): uchar*;
+
+@foreign
+func VARIANT_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: VARIANT*): uchar*;
+
+@foreign
+func VARIANT_UserFree(arg0: ulong*, arg1: VARIANT*);
+
+@foreign
+func BSTR_UserSize64(arg0: ulong*, arg1: ulong, arg2: BSTR*): ulong;
+
+@foreign
+func BSTR_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: BSTR*): uchar*;
+
+@foreign
+func BSTR_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: BSTR*): uchar*;
+
+@foreign
+func BSTR_UserFree64(arg0: ulong*, arg1: BSTR*);
+
+@foreign
+func CLEANLOCALSTORAGE_UserSize64(arg0: ulong*, arg1: ulong, arg2: CLEANLOCALSTORAGE*): ulong;
+
+@foreign
+func CLEANLOCALSTORAGE_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: CLEANLOCALSTORAGE*): uchar*;
+
+@foreign
+func CLEANLOCALSTORAGE_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: CLEANLOCALSTORAGE*): uchar*;
+
+@foreign
+func CLEANLOCALSTORAGE_UserFree64(arg0: ulong*, arg1: CLEANLOCALSTORAGE*);
+
+@foreign
+func VARIANT_UserSize64(arg0: ulong*, arg1: ulong, arg2: VARIANT*): ulong;
+
+@foreign
+func VARIANT_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: VARIANT*): uchar*;
+
+@foreign
+func VARIANT_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: VARIANT*): uchar*;
+
+@foreign
+func VARIANT_UserFree64(arg0: ulong*, arg1: VARIANT*);
+
+@foreign
+func IDispatch_Invoke_Proxy(This: IDispatch*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+
+@foreign
+func IDispatch_Invoke_Stub(This: IDispatch*, dispIdMember: DISPID, riid: IID* const, lcid: LCID, dwFlags: DWORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, pArgErr: UINT*, cVarRef: UINT, rgVarRefIdx: UINT*, rgVarRef: VARIANTARG*): HRESULT;
+
+@foreign
+func IEnumVARIANT_Next_Proxy(This: IEnumVARIANT*, celt: ULONG, rgVar: VARIANT*, pCeltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumVARIANT_Next_Stub(This: IEnumVARIANT*, celt: ULONG, rgVar: VARIANT*, pCeltFetched: ULONG*): HRESULT;
+
+@foreign
+func ITypeComp_Bind_Proxy(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, wFlags: WORD, ppTInfo: ITypeInfo**, pDescKind: DESCKIND*, pBindPtr: BINDPTR*): HRESULT;
+
+@foreign
+func ITypeComp_Bind_Stub(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, wFlags: WORD, ppTInfo: ITypeInfo**, pDescKind: DESCKIND*, ppFuncDesc: LPFUNCDESC*, ppVarDesc: LPVARDESC*, ppTypeComp: ITypeComp**, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeComp_BindType_Proxy(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, ppTComp: ITypeComp**): HRESULT;
+
+@foreign
+func ITypeComp_BindType_Stub(This: ITypeComp*, szName: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**): HRESULT;
+
+@foreign
+func ITypeInfo_GetTypeAttr_Proxy(This: ITypeInfo*, ppTypeAttr: TYPEATTR**): HRESULT;
+
+@foreign
+func ITypeInfo_GetTypeAttr_Stub(This: ITypeInfo*, ppTypeAttr: LPTYPEATTR*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeInfo_GetFuncDesc_Proxy(This: ITypeInfo*, index: UINT, ppFuncDesc: FUNCDESC**): HRESULT;
+
+@foreign
+func ITypeInfo_GetFuncDesc_Stub(This: ITypeInfo*, index: UINT, ppFuncDesc: LPFUNCDESC*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeInfo_GetVarDesc_Proxy(This: ITypeInfo*, index: UINT, ppVarDesc: VARDESC**): HRESULT;
+
+@foreign
+func ITypeInfo_GetVarDesc_Stub(This: ITypeInfo*, index: UINT, ppVarDesc: LPVARDESC*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeInfo_GetNames_Proxy(This: ITypeInfo*, memid: MEMBERID, rgBstrNames: BSTR*, cMaxNames: UINT, pcNames: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_GetNames_Stub(This: ITypeInfo*, memid: MEMBERID, rgBstrNames: BSTR*, cMaxNames: UINT, pcNames: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_GetIDsOfNames_Proxy(This: ITypeInfo*, rgszNames: LPOLESTR*, cNames: UINT, pMemId: MEMBERID*): HRESULT;
+
+@foreign
+func ITypeInfo_GetIDsOfNames_Stub(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_Invoke_Proxy(This: ITypeInfo*, pvInstance: PVOID, memid: MEMBERID, wFlags: WORD, pDispParams: DISPPARAMS*, pVarResult: VARIANT*, pExcepInfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_Invoke_Stub(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_GetDocumentation_Proxy(This: ITypeInfo*, memid: MEMBERID, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+
+@foreign
+func ITypeInfo_GetDocumentation_Stub(This: ITypeInfo*, memid: MEMBERID, refPtrFlags: DWORD, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+
+@foreign
+func ITypeInfo_GetDllEntry_Proxy(This: ITypeInfo*, memid: MEMBERID, invKind: INVOKEKIND, pBstrDllName: BSTR*, pBstrName: BSTR*, pwOrdinal: WORD*): HRESULT;
+
+@foreign
+func ITypeInfo_GetDllEntry_Stub(This: ITypeInfo*, memid: MEMBERID, invKind: INVOKEKIND, refPtrFlags: DWORD, pBstrDllName: BSTR*, pBstrName: BSTR*, pwOrdinal: WORD*): HRESULT;
+
+@foreign
+func ITypeInfo_AddressOfMember_Proxy(This: ITypeInfo*, memid: MEMBERID, invKind: INVOKEKIND, ppv: PVOID*): HRESULT;
+
+@foreign
+func ITypeInfo_AddressOfMember_Stub(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_CreateInstance_Proxy(This: ITypeInfo*, pUnkOuter: IUnknown*, riid: IID* const, ppvObj: PVOID*): HRESULT;
+
+@foreign
+func ITypeInfo_CreateInstance_Stub(This: ITypeInfo*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func ITypeInfo_GetContainingTypeLib_Proxy(This: ITypeInfo*, ppTLib: ITypeLib**, pIndex: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_GetContainingTypeLib_Stub(This: ITypeInfo*, ppTLib: ITypeLib**, pIndex: UINT*): HRESULT;
+
+@foreign
+func ITypeInfo_ReleaseTypeAttr_Proxy(This: ITypeInfo*, pTypeAttr: TYPEATTR*);
+
+@foreign
+func ITypeInfo_ReleaseTypeAttr_Stub(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_ReleaseFuncDesc_Proxy(This: ITypeInfo*, pFuncDesc: FUNCDESC*);
+
+@foreign
+func ITypeInfo_ReleaseFuncDesc_Stub(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo_ReleaseVarDesc_Proxy(This: ITypeInfo*, pVarDesc: VARDESC*);
+
+@foreign
+func ITypeInfo_ReleaseVarDesc_Stub(This: ITypeInfo*): HRESULT;
+
+@foreign
+func ITypeInfo2_GetDocumentation2_Proxy(This: ITypeInfo2*, memid: MEMBERID, lcid: LCID, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+
+@foreign
+func ITypeInfo2_GetDocumentation2_Stub(This: ITypeInfo2*, memid: MEMBERID, lcid: LCID, refPtrFlags: DWORD, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_GetTypeInfoCount_Proxy(This: ITypeLib*): UINT;
+
+@foreign
+func ITypeLib_GetTypeInfoCount_Stub(This: ITypeLib*, pcTInfo: UINT*): HRESULT;
+
+@foreign
+func ITypeLib_GetLibAttr_Proxy(This: ITypeLib*, ppTLibAttr: TLIBATTR**): HRESULT;
+
+@foreign
+func ITypeLib_GetLibAttr_Stub(This: ITypeLib*, ppTLibAttr: LPTLIBATTR*, pDummy: CLEANLOCALSTORAGE*): HRESULT;
+
+@foreign
+func ITypeLib_GetDocumentation_Proxy(This: ITypeLib*, index: INT, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_GetDocumentation_Stub(This: ITypeLib*, index: INT, refPtrFlags: DWORD, pBstrName: BSTR*, pBstrDocString: BSTR*, pdwHelpContext: DWORD*, pBstrHelpFile: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_IsName_Proxy(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, pfName: BOOL*): HRESULT;
+
+@foreign
+func ITypeLib_IsName_Stub(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, pfName: BOOL*, pBstrLibName: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_FindName_Proxy(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, rgMemId: MEMBERID*, pcFound: USHORT*): HRESULT;
+
+@foreign
+func ITypeLib_FindName_Stub(This: ITypeLib*, szNameBuf: LPOLESTR, lHashVal: ULONG, ppTInfo: ITypeInfo**, rgMemId: MEMBERID*, pcFound: USHORT*, pBstrLibName: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib_ReleaseTLibAttr_Proxy(This: ITypeLib*, pTLibAttr: TLIBATTR*);
+
+@foreign
+func ITypeLib_ReleaseTLibAttr_Stub(This: ITypeLib*): HRESULT;
+
+@foreign
+func ITypeLib2_GetLibStatistics_Proxy(This: ITypeLib2*, pcUniqueNames: ULONG*, pcchUniqueNames: ULONG*): HRESULT;
+
+@foreign
+func ITypeLib2_GetLibStatistics_Stub(This: ITypeLib2*, pcUniqueNames: ULONG*, pcchUniqueNames: ULONG*): HRESULT;
+
+@foreign
+func ITypeLib2_GetDocumentation2_Proxy(This: ITypeLib2*, index: INT, lcid: LCID, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+
+@foreign
+func ITypeLib2_GetDocumentation2_Stub(This: ITypeLib2*, index: INT, lcid: LCID, refPtrFlags: DWORD, pbstrHelpString: BSTR*, pdwHelpStringContext: DWORD*, pbstrHelpStringDll: BSTR*): HRESULT;
+
+@foreign
+func IPropertyBag_Read_Proxy(This: IPropertyBag*, pszPropName: LPCOLESTR, pVar: VARIANT*, pErrorLog: IErrorLog*): HRESULT;
+
+@foreign
+func IPropertyBag_Read_Stub(This: IPropertyBag*, pszPropName: LPCOLESTR, pVar: VARIANT*, pErrorLog: IErrorLog*, varType: DWORD, pUnkObj: IUnknown*): HRESULT;
+

@@ -1,0 +1,1252 @@
+#foreign(header = "<rpcndr.h>")
+
+@foreign
+typedef byte = uchar;
+
+@foreign
+typedef cs_byte = byte;
+
+@foreign
+typedef boolean = uchar;
+
+@foreign
+func MIDL_user_allocate(size: usize): void*;
+
+@foreign
+func MIDL_user_free(arg0: void*);
+
+@foreign
+func I_RpcDefaultAllocate(bh: handle_t, size: usize, RealAlloc: func(arg0: usize): void*): void*;
+
+@foreign
+func I_RpcDefaultFree(bh: handle_t, arg1: void*, RealFree: func(arg0: void*));
+
+@foreign
+typedef NDR_CCONTEXT = void*;
+
+/*
+@PROBLEM Derived typedef to anonymous struct at line 275, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+
+
+*/
+
+@foreign
+typedef NDR_RUNDOWN = func(context: void*);
+
+@foreign
+typedef NDR_NOTIFY_ROUTINE = func();
+
+@foreign
+typedef NDR_NOTIFY2_ROUTINE = func(flag: boolean);
+
+@foreign
+struct _SCONTEXT_QUEUE {
+    NumberOfObjects: ulong;
+    ArrayOfObjects: NDR_SCONTEXT*;
+}
+
+@foreign
+typedef SCONTEXT_QUEUE = _SCONTEXT_QUEUE;
+
+@foreign
+typedef PSCONTEXT_QUEUE = _SCONTEXT_QUEUE*;
+
+@foreign
+func NDRCContextBinding(CContext: NDR_CCONTEXT): RPC_BINDING_HANDLE;
+
+@foreign
+func NDRCContextMarshall(CContext: NDR_CCONTEXT, pBuff: void*);
+
+@foreign
+func NDRCContextUnmarshall(pCContext: NDR_CCONTEXT*, hBinding: RPC_BINDING_HANDLE, pBuff: void*, DataRepresentation: ulong);
+
+@foreign
+func NDRCContextUnmarshall2(pCContext: NDR_CCONTEXT*, hBinding: RPC_BINDING_HANDLE, pBuff: void*, DataRepresentation: ulong);
+
+@foreign
+func NDRSContextMarshall(CContext: NDR_SCONTEXT, pBuff: void*, userRunDownIn: NDR_RUNDOWN);
+
+@foreign
+func NDRSContextUnmarshall(pBuff: void*, DataRepresentation: ulong): NDR_SCONTEXT;
+
+@foreign
+func NDRSContextMarshallEx(BindingHandle: RPC_BINDING_HANDLE, CContext: NDR_SCONTEXT, pBuff: void*, userRunDownIn: NDR_RUNDOWN);
+
+@foreign
+func NDRSContextMarshall2(BindingHandle: RPC_BINDING_HANDLE, CContext: NDR_SCONTEXT, pBuff: void*, userRunDownIn: NDR_RUNDOWN, CtxGuard: void*, Flags: ulong);
+
+@foreign
+func NDRSContextUnmarshallEx(BindingHandle: RPC_BINDING_HANDLE, pBuff: void*, DataRepresentation: ulong): NDR_SCONTEXT;
+
+@foreign
+func NDRSContextUnmarshall2(BindingHandle: RPC_BINDING_HANDLE, pBuff: void*, DataRepresentation: ulong, CtxGuard: void*, Flags: ulong): NDR_SCONTEXT;
+
+@foreign
+func RpcSsDestroyClientContext(ContextHandle: void**);
+
+@foreign
+typedef error_status_t = ulong;
+
+@foreign
+typedef RPC_BUFPTR = uchar*;
+
+@foreign
+typedef RPC_LENGTH = ulong;
+
+@foreign
+typedef EXPR_EVAL = func(arg0: _MIDL_STUB_MESSAGE*);
+
+@foreign
+typedef PFORMAT_STRING = uchar const*;
+
+@foreign
+struct ARRAY_INFO {
+    Dimension: long;
+    BufferConformanceMark: ulong*;
+    BufferVarianceMark: ulong*;
+    MaxCountArray: ulong*;
+    OffsetArray: ulong*;
+    ActualCountArray: ulong*;
+}
+
+@foreign
+typedef PARRAY_INFO = ARRAY_INFO;
+
+@foreign
+typedef PNDR_ASYNC_MESSAGE = _NDR_ASYNC_MESSAGE*;
+
+@foreign
+typedef PNDR_CORRELATION_INFO = _NDR_CORRELATION_INFO*;
+
+@foreign
+typedef MIDL_SYNTAX_INFO = _MIDL_SYNTAX_INFO;
+
+@foreign
+typedef PMIDL_SYNTAX_INFO = _MIDL_SYNTAX_INFO*;
+
+@foreign
+struct _MIDL_STUB_MESSAGE {
+    RpcMsg: PRPC_MESSAGE;
+    Buffer: uchar*;
+    BufferStart: uchar*;
+    BufferEnd: uchar*;
+    BufferMark: uchar*;
+    BufferLength: ulong;
+    MemorySize: ulong;
+    Memory: uchar*;
+    IsClient: uchar;
+    Pad: uchar;
+    uFlags2: ushort;
+    ReuseBuffer: int;
+    pAllocAllNodesContext: NDR_ALLOC_ALL_NODES_CONTEXT*;
+    pPointerQueueState: NDR_POINTER_QUEUE_STATE*;
+    IgnoreEmbeddedPointers: int;
+    PointerBufferMark: uchar*;
+    CorrDespIncrement: uchar;
+    uFlags: uchar;
+    UniquePtrCount: ushort;
+    MaxCount: ULONG_PTR;
+    Offset: ulong;
+    ActualCount: ulong;
+    pfnAllocate: func(arg0: usize): void*;
+    pfnFree: func(arg0: void*);
+    StackTop: uchar*;
+    pPresentedType: uchar*;
+    pTransmitType: uchar*;
+    SavedHandle: handle_t;
+    StubDesc: _MIDL_STUB_DESC const*;
+    FullPtrXlatTables: _FULL_PTR_XLAT_TABLES*;
+    FullPtrRefId: ulong;
+    PointerLength: ulong;
+    fInDontFree: int;
+    fDontCallFreeInst: int;
+    fUnused1: int;
+    fHasReturn: int;
+    fHasExtensions: int;
+    fHasNewCorrDesc: int;
+    fIsIn: int;
+    fIsOut: int;
+    fIsOicf: int;
+    fBufferValid: int;
+    fHasMemoryValidateCallback: int;
+    fInFree: int;
+    fNeedMCCP: int;
+    fUnused2: int;
+    fUnused3: int;
+    dwDestContext: ulong;
+    pvDestContext: void*;
+    SavedContextHandles: NDR_SCONTEXT*;
+    ParamNumber: long;
+    pRpcChannelBuffer: IRpcChannelBuffer*;
+    pArrayInfo: PARRAY_INFO;
+    SizePtrCountArray: ulong*;
+    SizePtrOffsetArray: ulong*;
+    SizePtrLengthArray: ulong*;
+    pArgQueue: void*;
+    dwStubPhase: ulong;
+    LowStackMark: void*;
+    pAsyncMsg: PNDR_ASYNC_MESSAGE;
+    pCorrInfo: PNDR_CORRELATION_INFO;
+    pCorrMemory: uchar*;
+    pMemoryList: void*;
+    pCSInfo: INT_PTR;
+    ConformanceMark: uchar*;
+    VarianceMark: uchar*;
+    Unused: INT_PTR;
+    pContext: _NDR_PROC_CONTEXT*;
+    ContextHandleHash: void*;
+    pUserMarshalList: void*;
+    Reserved51_3: INT_PTR;
+    Reserved51_4: INT_PTR;
+    Reserved51_5: INT_PTR;
+}
+
+@foreign
+typedef MIDL_STUB_MESSAGE = _MIDL_STUB_MESSAGE;
+
+@foreign
+typedef PMIDL_STUB_MESSAGE = _MIDL_STUB_MESSAGE*;
+
+@foreign
+typedef GENERIC_BINDING_ROUTINE = func(arg0: void*): void*;
+
+@foreign
+typedef GENERIC_UNBIND_ROUTINE = func(arg0: void*, arg1: uchar*);
+
+@foreign
+struct _GENERIC_BINDING_ROUTINE_PAIR {
+    pfnBind: GENERIC_BINDING_ROUTINE;
+    pfnUnbind: GENERIC_UNBIND_ROUTINE;
+}
+
+@foreign
+typedef GENERIC_BINDING_ROUTINE_PAIR = _GENERIC_BINDING_ROUTINE_PAIR;
+
+@foreign
+typedef PGENERIC_BINDING_ROUTINE_PAIR = _GENERIC_BINDING_ROUTINE_PAIR*;
+
+@foreign
+struct __GENERIC_BINDING_INFO {
+    pObj: void*;
+    Size: uint;
+    pfnBind: GENERIC_BINDING_ROUTINE;
+    pfnUnbind: GENERIC_UNBIND_ROUTINE;
+}
+
+@foreign
+typedef GENERIC_BINDING_INFO = __GENERIC_BINDING_INFO;
+
+@foreign
+typedef PGENERIC_BINDING_INFO = __GENERIC_BINDING_INFO*;
+
+@foreign
+typedef XMIT_HELPER_ROUTINE = func(arg0: PMIDL_STUB_MESSAGE);
+
+@foreign
+struct _XMIT_ROUTINE_QUINTUPLE {
+    pfnTranslateToXmit: XMIT_HELPER_ROUTINE;
+    pfnTranslateFromXmit: XMIT_HELPER_ROUTINE;
+    pfnFreeXmit: XMIT_HELPER_ROUTINE;
+    pfnFreeInst: XMIT_HELPER_ROUTINE;
+}
+
+@foreign
+typedef XMIT_ROUTINE_QUINTUPLE = _XMIT_ROUTINE_QUINTUPLE;
+
+@foreign
+typedef PXMIT_ROUTINE_QUINTUPLE = _XMIT_ROUTINE_QUINTUPLE*;
+
+@foreign
+typedef USER_MARSHAL_SIZING_ROUTINE = func(arg0: ulong*, arg1: ulong, arg2: void*): ulong;
+
+@foreign
+typedef USER_MARSHAL_MARSHALLING_ROUTINE = func(arg0: ulong*, arg1: uchar*, arg2: void*): uchar*;
+
+@foreign
+typedef USER_MARSHAL_UNMARSHALLING_ROUTINE = func(arg0: ulong*, arg1: uchar*, arg2: void*): uchar*;
+
+@foreign
+typedef USER_MARSHAL_FREEING_ROUTINE = func(arg0: ulong*, arg1: void*);
+
+@foreign
+struct _USER_MARSHAL_ROUTINE_QUADRUPLE {
+    pfnBufferSize: USER_MARSHAL_SIZING_ROUTINE;
+    pfnMarshall: USER_MARSHAL_MARSHALLING_ROUTINE;
+    pfnUnmarshall: USER_MARSHAL_UNMARSHALLING_ROUTINE;
+    pfnFree: USER_MARSHAL_FREEING_ROUTINE;
+}
+
+@foreign
+typedef USER_MARSHAL_ROUTINE_QUADRUPLE = _USER_MARSHAL_ROUTINE_QUADRUPLE;
+
+@foreign
+enum _USER_MARSHAL_CB_TYPE {
+    USER_MARSHAL_CB_BUFFER_SIZE,
+    USER_MARSHAL_CB_MARSHALL,
+    USER_MARSHAL_CB_UNMARSHALL,
+    USER_MARSHAL_CB_FREE,
+}
+
+@foreign
+typedef USER_MARSHAL_CB_TYPE = _USER_MARSHAL_CB_TYPE;
+
+@foreign
+struct _USER_MARSHAL_CB {
+    Flags: ulong;
+    pStubMsg: PMIDL_STUB_MESSAGE;
+    pReserve: PFORMAT_STRING;
+    Signature: ulong;
+    CBType: USER_MARSHAL_CB_TYPE;
+    pFormat: PFORMAT_STRING;
+    pTypeFormat: PFORMAT_STRING;
+}
+
+@foreign
+typedef USER_MARSHAL_CB = _USER_MARSHAL_CB;
+
+@foreign
+struct _MALLOC_FREE_STRUCT {
+    pfnAllocate: func(arg0: usize): void*;
+    pfnFree: func(arg0: void*);
+}
+
+@foreign
+typedef MALLOC_FREE_STRUCT = _MALLOC_FREE_STRUCT;
+
+@foreign
+struct _COMM_FAULT_OFFSETS {
+    CommOffset: short;
+    FaultOffset: short;
+}
+
+@foreign
+typedef COMM_FAULT_OFFSETS = _COMM_FAULT_OFFSETS;
+
+@foreign
+enum _IDL_CS_CONVERT {
+    IDL_CS_NO_CONVERT,
+    IDL_CS_IN_PLACE_CONVERT,
+    IDL_CS_NEW_BUFFER_CONVERT,
+}
+
+@foreign
+typedef IDL_CS_CONVERT = _IDL_CS_CONVERT;
+
+@foreign
+typedef CS_TYPE_NET_SIZE_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, ulNetworkCodeSet: ulong, ulLocalBufferSize: ulong, conversionType: IDL_CS_CONVERT*, pulNetworkBufferSize: ulong*, pStatus: error_status_t*);
+
+@foreign
+typedef CS_TYPE_LOCAL_SIZE_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, ulNetworkCodeSet: ulong, ulNetworkBufferSize: ulong, conversionType: IDL_CS_CONVERT*, pulLocalBufferSize: ulong*, pStatus: error_status_t*);
+
+@foreign
+typedef CS_TYPE_TO_NETCS_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, ulNetworkCodeSet: ulong, pLocalData: void*, ulLocalDataLength: ulong, pNetworkData: byte*, pulNetworkDataLength: ulong*, pStatus: error_status_t*);
+
+@foreign
+typedef CS_TYPE_FROM_NETCS_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, ulNetworkCodeSet: ulong, pNetworkData: byte*, ulNetworkDataLength: ulong, ulLocalBufferSize: ulong, pLocalData: void*, pulLocalDataLength: ulong*, pStatus: error_status_t*);
+
+@foreign
+typedef CS_TAG_GETTING_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, fServerSide: int, pulSendingTag: ulong*, pulDesiredReceivingTag: ulong*, pulReceivingTag: ulong*, pStatus: error_status_t*);
+
+@foreign
+func RpcCsGetTags(hBinding: RPC_BINDING_HANDLE, fServerSide: int, pulSendingTag: ulong*, pulDesiredReceivingTag: ulong*, pulReceivingTag: ulong*, pStatus: error_status_t*);
+
+@foreign
+struct _NDR_CS_SIZE_CONVERT_ROUTINES {
+    pfnNetSize: CS_TYPE_NET_SIZE_ROUTINE;
+    pfnToNetCs: CS_TYPE_TO_NETCS_ROUTINE;
+    pfnLocalSize: CS_TYPE_LOCAL_SIZE_ROUTINE;
+    pfnFromNetCs: CS_TYPE_FROM_NETCS_ROUTINE;
+}
+
+@foreign
+typedef NDR_CS_SIZE_CONVERT_ROUTINES = _NDR_CS_SIZE_CONVERT_ROUTINES;
+
+@foreign
+struct _NDR_CS_ROUTINES {
+    pSizeConvertRoutines: NDR_CS_SIZE_CONVERT_ROUTINES*;
+    pTagGettingRoutines: CS_TAG_GETTING_ROUTINE*;
+}
+
+@foreign
+typedef NDR_CS_ROUTINES = _NDR_CS_ROUTINES;
+
+@foreign
+struct _NDR_EXPR_DESC {
+    pOffset: ushort const*;
+    pFormatExpr: PFORMAT_STRING;
+}
+
+@foreign
+typedef NDR_EXPR_DESC = _NDR_EXPR_DESC;
+
+/*
+@PROBLEM Nested struct def at line 1018, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+
+@foreign
+struct _MIDL_STUB_DESC {
+    RpcInterfaceInformation: void*;
+    pfnAllocate: func(arg0: usize): void*;
+    pfnFree: func(arg0: void*);
+    IMPLICIT_HANDLE_INFO: (null);
+    apfnNdrRundownRoutines: NDR_RUNDOWN*;
+    aGenericBindingRoutinePairs: GENERIC_BINDING_ROUTINE_PAIR*;
+    apfnExprEval: EXPR_EVAL*;
+    aXmitQuintuple: XMIT_ROUTINE_QUINTUPLE*;
+    pFormatTypes: uchar const*;
+    fCheckBounds: int;
+    Version: ulong;
+    pMallocFreeStruct: MALLOC_FREE_STRUCT*;
+    MIDLVersion: long;
+    CommFaultOffsets: COMM_FAULT_OFFSETS*;
+    aUserMarshalQuadruple: USER_MARSHAL_ROUTINE_QUADRUPLE*;
+    NotifyRoutineTable: NDR_NOTIFY_ROUTINE*;
+    mFlags: ULONG_PTR;
+    CsRoutineTables: NDR_CS_ROUTINES*;
+    ProxyServerInfo: void*;
+    pExprInfo: NDR_EXPR_DESC*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1018, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+
+_MIDL_STUB_DESC
+*/
+
+@foreign
+typedef PMIDL_STUB_DESC = MIDL_STUB_DESC*;
+
+@foreign
+typedef PMIDL_XMIT_TYPE = void*;
+
+@foreign
+struct _MIDL_FORMAT_STRING {
+    Pad: short;
+    Format: uchar[];
+}
+
+@foreign
+typedef MIDL_FORMAT_STRING = _MIDL_FORMAT_STRING;
+
+@foreign
+typedef STUB_THUNK = func(arg0: PMIDL_STUB_MESSAGE);
+
+@foreign
+typedef SERVER_ROUTINE = func(): long;
+
+@foreign
+struct _MIDL_METHOD_PROPERTY {
+    Id: ulong;
+    Value: ULONG_PTR;
+}
+
+@foreign
+typedef MIDL_METHOD_PROPERTY = _MIDL_METHOD_PROPERTY;
+
+@foreign
+typedef PMIDL_METHOD_PROPERTY = _MIDL_METHOD_PROPERTY*;
+
+@foreign
+struct _MIDL_METHOD_PROPERTY_MAP {
+    Count: ulong;
+    Properties: MIDL_METHOD_PROPERTY*;
+}
+
+@foreign
+typedef MIDL_METHOD_PROPERTY_MAP = _MIDL_METHOD_PROPERTY_MAP;
+
+@foreign
+typedef PMIDL_METHOD_PROPERTY_MAP = _MIDL_METHOD_PROPERTY_MAP*;
+
+@foreign
+struct _MIDL_INTERFACE_METHOD_PROPERTIES {
+    MethodCount: ushort;
+    MethodProperties: MIDL_METHOD_PROPERTY_MAP* const*;
+}
+
+@foreign
+typedef MIDL_INTERFACE_METHOD_PROPERTIES = _MIDL_INTERFACE_METHOD_PROPERTIES;
+
+@foreign
+struct _MIDL_SERVER_INFO_ {
+    pStubDesc: PMIDL_STUB_DESC;
+    DispatchTable: SERVER_ROUTINE*;
+    ProcString: PFORMAT_STRING;
+    FmtStringOffset: ushort const*;
+    ThunkTable: STUB_THUNK*;
+    pTransferSyntax: PRPC_SYNTAX_IDENTIFIER;
+    nCount: ULONG_PTR;
+    pSyntaxInfo: PMIDL_SYNTAX_INFO;
+}
+
+@foreign
+typedef MIDL_SERVER_INFO = _MIDL_SERVER_INFO_;
+
+@foreign
+typedef PMIDL_SERVER_INFO = _MIDL_SERVER_INFO_*;
+
+@foreign
+struct _MIDL_STUBLESS_PROXY_INFO {
+    pStubDesc: PMIDL_STUB_DESC;
+    ProcFormatString: PFORMAT_STRING;
+    FormatStringOffset: ushort const*;
+    pTransferSyntax: PRPC_SYNTAX_IDENTIFIER;
+    nCount: ULONG_PTR;
+    pSyntaxInfo: PMIDL_SYNTAX_INFO;
+}
+
+@foreign
+typedef MIDL_STUBLESS_PROXY_INFO = _MIDL_STUBLESS_PROXY_INFO;
+
+@foreign
+typedef PMIDL_STUBLESS_PROXY_INFO = MIDL_STUBLESS_PROXY_INFO*;
+
+@foreign
+typedef PARAM_OFFSETTABLE = ushort*;
+
+@foreign
+typedef PPARAM_OFFSETTABLE = ushort*;
+
+@foreign
+union _CLIENT_CALL_RETURN {
+    Pointer: void*;
+    Simple: LONG_PTR;
+}
+
+@foreign
+typedef CLIENT_CALL_RETURN = _CLIENT_CALL_RETURN;
+
+@foreign
+enum XLAT_SIDE {
+    XLAT_SERVER = 1,
+    XLAT_CLIENT,
+}
+
+@foreign
+struct _FULL_PTR_XLAT_TABLES {
+    RefIdToPointer: void*;
+    PointerToRefId: void*;
+    NextRefId: ulong;
+    XlatSide: XLAT_SIDE;
+}
+
+@foreign
+typedef FULL_PTR_XLAT_TABLES = _FULL_PTR_XLAT_TABLES;
+
+@foreign
+typedef PFULL_PTR_XLAT_TABLES = _FULL_PTR_XLAT_TABLES*;
+
+@foreign
+enum _system_handle_t {
+    SYSTEM_HANDLE_FILE = 0,
+    SYSTEM_HANDLE_SEMAPHORE = 1,
+    SYSTEM_HANDLE_EVENT = 2,
+    SYSTEM_HANDLE_MUTEX = 3,
+    SYSTEM_HANDLE_PROCESS = 4,
+    SYSTEM_HANDLE_TOKEN = 5,
+    SYSTEM_HANDLE_SECTION = 6,
+    SYSTEM_HANDLE_REG_KEY = 7,
+    SYSTEM_HANDLE_THREAD = 8,
+    SYSTEM_HANDLE_COMPOSITION_OBJECT = 9,
+    SYSTEM_HANDLE_SOCKET = 10,
+    SYSTEM_HANDLE_JOB = 11,
+    SYSTEM_HANDLE_PIPE = 12,
+    SYSTEM_HANDLE_MAX = 12,
+    SYSTEM_HANDLE_INVALID = 255,
+}
+
+@foreign
+typedef system_handle_t = _system_handle_t;
+
+@foreign
+enum {
+    MidlInterceptionInfoVersionOne = 1,
+}
+
+@foreign
+enum {
+    MidlWinrtTypeSerializationInfoVersionOne = 1,
+}
+
+@foreign
+struct _MIDL_INTERCEPTION_INFO {
+    Version: ulong;
+    ProcString: PFORMAT_STRING;
+    ProcFormatOffsetTable: ushort const*;
+    ProcCount: ulong;
+    TypeString: PFORMAT_STRING;
+}
+
+@foreign
+typedef MIDL_INTERCEPTION_INFO = _MIDL_INTERCEPTION_INFO;
+
+@foreign
+typedef PMIDL_INTERCEPTION_INFO = _MIDL_INTERCEPTION_INFO*;
+
+@foreign
+struct _MIDL_WINRT_TYPE_SERIALIZATION_INFO {
+    Version: ulong;
+    TypeFormatString: PFORMAT_STRING;
+    FormatStringSize: ushort;
+    TypeOffset: ushort;
+    StubDesc: PMIDL_STUB_DESC;
+}
+
+@foreign
+typedef MIDL_WINRT_TYPE_SERIALIZATION_INFO = _MIDL_WINRT_TYPE_SERIALIZATION_INFO;
+
+@foreign
+typedef PMIDL_WINRT_TYPE_SERIALIZATION_INFO = _MIDL_WINRT_TYPE_SERIALIZATION_INFO*;
+
+@foreign
+func NdrClientGetSupportedSyntaxes(pInf: RPC_CLIENT_INTERFACE*, pCount: ulong*, pArr: MIDL_SYNTAX_INFO**): RPC_STATUS;
+
+@foreign
+func NdrServerGetSupportedSyntaxes(pInf: RPC_SERVER_INTERFACE*, pCount: ulong*, pArr: MIDL_SYNTAX_INFO**, pPreferSyntaxIndex: ulong*): RPC_STATUS;
+
+@foreign
+func NdrSimpleTypeMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, FormatChar: uchar);
+
+@foreign
+func NdrPointerMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrCsArrayMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrCsTagMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrSimpleStructMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrConformantStructMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrConformantVaryingStructMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrComplexStructMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrFixedArrayMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrConformantArrayMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrConformantVaryingArrayMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrVaryingArrayMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrComplexArrayMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrNonConformantStringMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrConformantStringMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrEncapsulatedUnionMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrNonEncapsulatedUnionMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrByteCountPointerMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrXmitOrRepAsMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrUserMarshalMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrInterfacePointerMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING): uchar*;
+
+@foreign
+func NdrClientContextMarshall(pStubMsg: PMIDL_STUB_MESSAGE, ContextHandle: NDR_CCONTEXT, fCheck: int);
+
+@foreign
+func NdrServerContextMarshall(pStubMsg: PMIDL_STUB_MESSAGE, ContextHandle: NDR_SCONTEXT, RundownRoutine: NDR_RUNDOWN);
+
+@foreign
+func NdrServerContextNewMarshall(pStubMsg: PMIDL_STUB_MESSAGE, ContextHandle: NDR_SCONTEXT, RundownRoutine: NDR_RUNDOWN, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrSimpleTypeUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, FormatChar: uchar);
+
+@foreign
+func NdrCsArrayUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrCsTagUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrRangeUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrCorrelationInitialize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: void*, CacheSize: ulong, flags: ulong);
+
+@foreign
+func NdrCorrelationPass(pStubMsg: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrCorrelationFree(pStubMsg: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrPointerUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrSimpleStructUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrConformantStructUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrConformantVaryingStructUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrComplexStructUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrFixedArrayUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrConformantArrayUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrConformantVaryingArrayUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrVaryingArrayUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrComplexArrayUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrNonConformantStringUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrConformantStringUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrEncapsulatedUnionUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrNonEncapsulatedUnionUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrByteCountPointerUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrXmitOrRepAsUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrUserMarshalUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrInterfacePointerUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: uchar**, pFormat: PFORMAT_STRING, fMustAlloc: uchar): uchar*;
+
+@foreign
+func NdrClientContextUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, pContextHandle: NDR_CCONTEXT*, BindHandle: RPC_BINDING_HANDLE);
+
+@foreign
+func NdrServerContextUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE): NDR_SCONTEXT;
+
+@foreign
+func NdrContextHandleInitialize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): NDR_SCONTEXT;
+
+@foreign
+func NdrServerContextNewUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): NDR_SCONTEXT;
+
+@foreign
+func NdrPointerBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrCsArrayBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrCsTagBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrSimpleStructBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantStructBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantVaryingStructBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrComplexStructBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrFixedArrayBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantArrayBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantVaryingArrayBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrVaryingArrayBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrComplexArrayBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantStringBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrNonConformantStringBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrEncapsulatedUnionBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrNonEncapsulatedUnionBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrByteCountPointerBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrXmitOrRepAsBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrUserMarshalBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrInterfacePointerBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrContextHandleSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrPointerMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrContextHandleMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrCsArrayMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrCsTagMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrSimpleStructMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrConformantStructMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrConformantVaryingStructMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrComplexStructMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrFixedArrayMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrConformantArrayMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrConformantVaryingArrayMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrVaryingArrayMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrComplexArrayMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrConformantStringMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrNonConformantStringMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrEncapsulatedUnionMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrNonEncapsulatedUnionMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrXmitOrRepAsMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrUserMarshalMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrInterfacePointerMemorySize(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING): ulong;
+
+@foreign
+func NdrPointerFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrCsArrayFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrSimpleStructFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantStructFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantVaryingStructFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrComplexStructFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrFixedArrayFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantArrayFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConformantVaryingArrayFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrVaryingArrayFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrComplexArrayFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrEncapsulatedUnionFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrNonEncapsulatedUnionFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrByteCountPointerFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrXmitOrRepAsFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrUserMarshalFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrInterfacePointerFree(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: uchar*, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrConvert2(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING, NumberParams: long);
+
+@foreign
+func NdrConvert(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrUserMarshalSimpleTypeConvert(pFlags: ulong*, pBuffer: uchar*, FormatChar: uchar): uchar*;
+
+@foreign
+func NdrClientInitializeNew(pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC, ProcNum: uint);
+
+@foreign
+func NdrServerInitializeNew(pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC): uchar*;
+
+@foreign
+func NdrServerInitializePartial(pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC, RequestedBufferSize: ulong);
+
+@foreign
+func NdrClientInitialize(pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC, ProcNum: uint);
+
+@foreign
+func NdrServerInitialize(pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC): uchar*;
+
+@foreign
+func NdrServerInitializeUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC, pRpcMsg: PRPC_MESSAGE): uchar*;
+
+@foreign
+func NdrServerInitializeMarshall(pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrGetBuffer(pStubMsg: PMIDL_STUB_MESSAGE, BufferLength: ulong, Handle: RPC_BINDING_HANDLE): uchar*;
+
+@foreign
+func NdrNsGetBuffer(pStubMsg: PMIDL_STUB_MESSAGE, BufferLength: ulong, Handle: RPC_BINDING_HANDLE): uchar*;
+
+@foreign
+func NdrSendReceive(pStubMsg: PMIDL_STUB_MESSAGE, pBufferEnd: uchar*): uchar*;
+
+@foreign
+func NdrNsSendReceive(pStubMsg: PMIDL_STUB_MESSAGE, pBufferEnd: uchar*, pAutoHandle: RPC_BINDING_HANDLE*): uchar*;
+
+@foreign
+func NdrFreeBuffer(pStubMsg: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrGetDcomProtocolVersion(pStubMsg: PMIDL_STUB_MESSAGE, pVersion: RPC_VERSION*): RPC_STATUS;
+
+@foreign
+func NdrClientCall2(pStubDescriptor: PMIDL_STUB_DESC, pFormat: PFORMAT_STRING, ...): CLIENT_CALL_RETURN;
+
+@foreign
+func NdrClientCall(pStubDescriptor: PMIDL_STUB_DESC, pFormat: PFORMAT_STRING, ...): CLIENT_CALL_RETURN;
+
+@foreign
+func NdrAsyncClientCall(pStubDescriptor: PMIDL_STUB_DESC, pFormat: PFORMAT_STRING, ...): CLIENT_CALL_RETURN;
+
+@foreign
+func NdrDcomAsyncClientCall(pStubDescriptor: PMIDL_STUB_DESC, pFormat: PFORMAT_STRING, ...): CLIENT_CALL_RETURN;
+
+@foreign
+enum STUB_PHASE {
+    STUB_UNMARSHAL,
+    STUB_CALL_SERVER,
+    STUB_MARSHAL,
+    STUB_CALL_SERVER_NO_HRESULT,
+}
+
+@foreign
+enum PROXY_PHASE {
+    PROXY_CALCSIZE,
+    PROXY_GETBUFFER,
+    PROXY_MARSHAL,
+    PROXY_SENDRECEIVE,
+    PROXY_UNMARSHAL,
+}
+
+@foreign
+func NdrAsyncServerCall(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func NdrAsyncStubCall(pThis: IRpcStubBuffer*, pChannel: IRpcChannelBuffer*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func NdrDcomAsyncStubCall(pThis: IRpcStubBuffer*, pChannel: IRpcChannelBuffer*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func NdrStubCall2(pThis: void*, pChannel: void*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func NdrServerCall2(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func NdrStubCall(pThis: void*, pChannel: void*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func NdrServerCall(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func NdrServerUnmarshall(pChannel: void*, pRpcMsg: PRPC_MESSAGE, pStubMsg: PMIDL_STUB_MESSAGE, pStubDescriptor: PMIDL_STUB_DESC, pFormat: PFORMAT_STRING, pParamList: void*): int;
+
+@foreign
+func NdrServerMarshall(pThis: void*, pChannel: void*, pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING);
+
+@foreign
+func NdrMapCommAndFaultStatus(pStubMsg: PMIDL_STUB_MESSAGE, pCommStatus: ulong*, pFaultStatus: ulong*, Status: RPC_STATUS): RPC_STATUS;
+
+@foreign
+typedef RPC_SS_THREAD_HANDLE = void*;
+
+@foreign
+typedef RPC_CLIENT_ALLOC = func(Size: usize): void*;
+
+@foreign
+typedef RPC_CLIENT_FREE = func(Ptr: void*);
+
+@foreign
+func RpcSsAllocate(Size: usize): void*;
+
+@foreign
+func RpcSsDisableAllocate();
+
+@foreign
+func RpcSsEnableAllocate();
+
+@foreign
+func RpcSsFree(NodeToFree: void*);
+
+@foreign
+func RpcSsGetThreadHandle(): RPC_SS_THREAD_HANDLE;
+
+@foreign
+func RpcSsSetClientAllocFree(ClientAlloc: RPC_CLIENT_ALLOC*, ClientFree: RPC_CLIENT_FREE*);
+
+@foreign
+func RpcSsSetThreadHandle(Id: RPC_SS_THREAD_HANDLE);
+
+@foreign
+func RpcSsSwapClientAllocFree(ClientAlloc: RPC_CLIENT_ALLOC*, ClientFree: RPC_CLIENT_FREE*, OldClientAlloc: RPC_CLIENT_ALLOC**, OldClientFree: RPC_CLIENT_FREE**);
+
+@foreign
+func RpcSmAllocate(Size: usize, pStatus: RPC_STATUS*): void*;
+
+@foreign
+func RpcSmClientFree(pNodeToFree: void*): RPC_STATUS;
+
+@foreign
+func RpcSmDestroyClientContext(ContextHandle: void**): RPC_STATUS;
+
+@foreign
+func RpcSmDisableAllocate(): RPC_STATUS;
+
+@foreign
+func RpcSmEnableAllocate(): RPC_STATUS;
+
+@foreign
+func RpcSmFree(NodeToFree: void*): RPC_STATUS;
+
+@foreign
+func RpcSmGetThreadHandle(pStatus: RPC_STATUS*): RPC_SS_THREAD_HANDLE;
+
+@foreign
+func RpcSmSetClientAllocFree(ClientAlloc: RPC_CLIENT_ALLOC*, ClientFree: RPC_CLIENT_FREE*): RPC_STATUS;
+
+@foreign
+func RpcSmSetThreadHandle(Id: RPC_SS_THREAD_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcSmSwapClientAllocFree(ClientAlloc: RPC_CLIENT_ALLOC*, ClientFree: RPC_CLIENT_FREE*, OldClientAlloc: RPC_CLIENT_ALLOC**, OldClientFree: RPC_CLIENT_FREE**): RPC_STATUS;
+
+@foreign
+func NdrRpcSsEnableAllocate(pMessage: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrRpcSsDisableAllocate(pMessage: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrRpcSmSetClientToOsf(pMessage: PMIDL_STUB_MESSAGE);
+
+@foreign
+func NdrRpcSmClientAllocate(Size: usize): void*;
+
+@foreign
+func NdrRpcSmClientFree(NodeToFree: void*);
+
+@foreign
+func NdrRpcSsDefaultAllocate(Size: usize): void*;
+
+@foreign
+func NdrRpcSsDefaultFree(NodeToFree: void*);
+
+@foreign
+func NdrFullPointerXlatInit(NumberOfPointers: ulong, XlatSide: XLAT_SIDE): PFULL_PTR_XLAT_TABLES;
+
+@foreign
+func NdrFullPointerXlatFree(pXlatTables: PFULL_PTR_XLAT_TABLES);
+
+@foreign
+func NdrAllocate(pStubMsg: PMIDL_STUB_MESSAGE, Len: usize): void*;
+
+@foreign
+func NdrClearOutParameters(pStubMsg: PMIDL_STUB_MESSAGE, pFormat: PFORMAT_STRING, ArgAddr: void*);
+
+@foreign
+func NdrOleAllocate(Size: usize): void*;
+
+@foreign
+func NdrOleFree(NodeToFree: void*);
+
+@foreign
+struct _NDR_USER_MARSHAL_INFO_LEVEL1 {
+    Buffer: void*;
+    BufferSize: ulong;
+    pfnAllocate: func(arg0: usize): void*;
+    pfnFree: func(arg0: void*);
+    pRpcChannelBuffer: IRpcChannelBuffer*;
+    Reserved: ULONG_PTR[5];
+}
+
+@foreign
+typedef NDR_USER_MARSHAL_INFO_LEVEL1 = _NDR_USER_MARSHAL_INFO_LEVEL1;
+
+/*
+@PROBLEM Nested struct def at line 3094, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+
+@foreign
+struct _NDR_USER_MARSHAL_INFO {
+    InformationLevel: ulong;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 3094, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+
+_NDR_USER_MARSHAL_INFO
+*/
+
+@foreign
+func NdrGetUserMarshalInfo(pFlags: ulong*, InformationLevel: ulong, pMarshalInfo: NDR_USER_MARSHAL_INFO*): RPC_STATUS;
+
+@foreign
+func NdrCreateServerInterfaceFromStub(pStub: IRpcStubBuffer*, pServerIf: RPC_SERVER_INTERFACE*): RPC_STATUS;
+
+@foreign
+func NdrClientCall3(pProxyInfo: MIDL_STUBLESS_PROXY_INFO*, nProcNum: ulong, pReturnValue: void*, ...): CLIENT_CALL_RETURN;
+
+@foreign
+func Ndr64AsyncClientCall(pProxyInfo: MIDL_STUBLESS_PROXY_INFO*, nProcNum: ulong, pReturnValue: void*, ...): CLIENT_CALL_RETURN;
+
+@foreign
+func Ndr64DcomAsyncClientCall(pProxyInfo: MIDL_STUBLESS_PROXY_INFO*, nProcNum: ulong, pReturnValue: void*, ...): CLIENT_CALL_RETURN;
+
+@foreign
+func Ndr64AsyncServerCall(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func Ndr64AsyncServerCall64(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func Ndr64AsyncServerCallAll(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func Ndr64AsyncStubCall(pThis: IRpcStubBuffer*, pChannel: IRpcChannelBuffer*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func Ndr64DcomAsyncStubCall(pThis: IRpcStubBuffer*, pChannel: IRpcChannelBuffer*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func NdrStubCall3(pThis: void*, pChannel: void*, pRpcMsg: PRPC_MESSAGE, pdwStubPhase: ulong*): long;
+
+@foreign
+func NdrServerCallAll(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func NdrServerCallNdr64(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func NdrServerCall3(pRpcMsg: PRPC_MESSAGE);
+
+@foreign
+func NdrPartialIgnoreClientMarshall(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: void*);
+
+@foreign
+func NdrPartialIgnoreServerUnmarshall(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: void**);
+
+@foreign
+func NdrPartialIgnoreClientBufferSize(pStubMsg: PMIDL_STUB_MESSAGE, pMemory: void*);
+
+@foreign
+func NdrPartialIgnoreServerInitialize(pStubMsg: PMIDL_STUB_MESSAGE, ppMemory: void**, pFormat: PFORMAT_STRING);
+
+@foreign
+func RpcUserFree(AsyncHandle: handle_t, pBuffer: void*);
+
+@foreign
+struct NDR_ALLOC_ALL_NODES_CONTEXT;
+
+@foreign
+struct _MIDL_SYNTAX_INFO;
+
+@foreign
+struct _NDR_PROC_CONTEXT;
+
+@foreign
+struct _NDR_CORRELATION_INFO;
+
+@foreign
+struct _NDR_ASYNC_MESSAGE;
+
+@foreign
+struct NDR_POINTER_QUEUE_STATE;
+

@@ -1,0 +1,1175 @@
+#foreign(header = "<rpcdce.h>")
+
+@foreign
+typedef RPC_CSTR = uchar*;
+
+@foreign
+typedef RPC_WSTR = ushort*;
+
+@foreign
+typedef RPC_CWSTR = ushort const*;
+
+@foreign
+typedef RPC_BINDING_HANDLE = I_RPC_HANDLE;
+
+@foreign
+typedef handle_t = RPC_BINDING_HANDLE;
+
+@foreign
+typedef UUID = GUID;
+
+@foreign
+struct _RPC_BINDING_VECTOR {
+    Count: ulong;
+    BindingH: RPC_BINDING_HANDLE[1];
+}
+
+@foreign
+typedef RPC_BINDING_VECTOR = _RPC_BINDING_VECTOR;
+
+@foreign
+struct _UUID_VECTOR {
+    Count: ulong;
+    Uuid: UUID*[1];
+}
+
+@foreign
+typedef UUID_VECTOR = _UUID_VECTOR;
+
+@foreign
+typedef RPC_IF_HANDLE = void*;
+
+@foreign
+struct _RPC_IF_ID {
+    Uuid: UUID;
+    VersMajor: ushort;
+    VersMinor: ushort;
+}
+
+@foreign
+typedef RPC_IF_ID = _RPC_IF_ID;
+
+@foreign
+struct _RPC_PROTSEQ_VECTORA {
+    Count: uint;
+    Protseq: uchar*[1];
+}
+
+@foreign
+typedef RPC_PROTSEQ_VECTORA = _RPC_PROTSEQ_VECTORA;
+
+@foreign
+struct _RPC_PROTSEQ_VECTORW {
+    Count: uint;
+    Protseq: ushort*[1];
+}
+
+@foreign
+typedef RPC_PROTSEQ_VECTORW = _RPC_PROTSEQ_VECTORW;
+
+@foreign
+struct _RPC_POLICY {
+    Length: uint;
+    EndpointFlags: ulong;
+    NICFlags: ulong;
+}
+
+@foreign
+typedef RPC_POLICY = _RPC_POLICY;
+
+@foreign
+typedef PRPC_POLICY = _RPC_POLICY*;
+
+@foreign
+typedef RPC_OBJECT_INQ_FN = func(ObjectUuid: UUID*, TypeUuid: UUID*, Status: RPC_STATUS*);
+
+@foreign
+typedef RPC_IF_CALLBACK_FN = func(InterfaceUuid: RPC_IF_HANDLE, Context: void*): RPC_STATUS;
+
+@foreign
+typedef RPC_SECURITY_CALLBACK_FN = func(Context: void*);
+
+@foreign
+struct RPC_STATS_VECTOR {
+    Count: uint;
+    Stats: ulong[1];
+}
+
+@foreign
+struct RPC_IF_ID_VECTOR {
+    Count: ulong;
+    IfId: RPC_IF_ID*[1];
+}
+
+@foreign
+func RpcBindingCopy(SourceBinding: RPC_BINDING_HANDLE, DestinationBinding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingFree(Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingSetOption(hBinding: RPC_BINDING_HANDLE, option: ulong, optionValue: ULONG_PTR): RPC_STATUS;
+
+@foreign
+func RpcBindingInqOption(hBinding: RPC_BINDING_HANDLE, option: ulong, pOptionValue: ULONG_PTR*): RPC_STATUS;
+
+@foreign
+func RpcBindingFromStringBindingA(StringBinding: RPC_CSTR, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingFromStringBinding(StringBinding: RPC_CSTR, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingFromStringBindingW(StringBinding: RPC_WSTR, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcSsGetContextBinding(ContextHandle: void*, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqObject(Binding: RPC_BINDING_HANDLE, ObjectUuid: UUID*): RPC_STATUS;
+
+@foreign
+func RpcBindingReset(Binding: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcBindingSetObject(Binding: RPC_BINDING_HANDLE, ObjectUuid: UUID*): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqDefaultProtectLevel(AuthnSvc: ulong, AuthnLevel: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingToStringBindingA(Binding: RPC_BINDING_HANDLE, StringBinding: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcBindingToStringBinding(Binding: RPC_BINDING_HANDLE, StringBinding: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcBindingToStringBindingW(Binding: RPC_BINDING_HANDLE, StringBinding: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcBindingVectorFree(BindingVector: RPC_BINDING_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcStringBindingComposeA(ObjUuid: RPC_CSTR, ProtSeq: RPC_CSTR, NetworkAddr: RPC_CSTR, Endpoint: RPC_CSTR, Options: RPC_CSTR, StringBinding: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringBindingCompose(ObjUuid: RPC_CSTR, ProtSeq: RPC_CSTR, NetworkAddr: RPC_CSTR, Endpoint: RPC_CSTR, Options: RPC_CSTR, StringBinding: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringBindingComposeW(ObjUuid: RPC_WSTR, ProtSeq: RPC_WSTR, NetworkAddr: RPC_WSTR, Endpoint: RPC_WSTR, Options: RPC_WSTR, StringBinding: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringBindingParseA(StringBinding: RPC_CSTR, ObjUuid: RPC_CSTR*, Protseq: RPC_CSTR*, NetworkAddr: RPC_CSTR*, Endpoint: RPC_CSTR*, NetworkOptions: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringBindingParse(StringBinding: RPC_CSTR, ObjUuid: RPC_CSTR*, Protseq: RPC_CSTR*, NetworkAddr: RPC_CSTR*, Endpoint: RPC_CSTR*, NetworkOptions: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringBindingParseW(StringBinding: RPC_WSTR, ObjUuid: RPC_WSTR*, Protseq: RPC_WSTR*, NetworkAddr: RPC_WSTR*, Endpoint: RPC_WSTR*, NetworkOptions: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringFreeA(String: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringFree(String: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcStringFreeW(String: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcIfInqId(RpcIfHandle: RPC_IF_HANDLE, RpcIfId: RPC_IF_ID*): RPC_STATUS;
+
+@foreign
+func RpcNetworkIsProtseqValidA(Protseq: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNetworkIsProtseqValid(Protseq: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNetworkIsProtseqValidW(Protseq: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqComTimeout(Binding: RPC_BINDING_HANDLE, Timeout: uint*): RPC_STATUS;
+
+@foreign
+func RpcMgmtSetComTimeout(Binding: RPC_BINDING_HANDLE, Timeout: uint): RPC_STATUS;
+
+@foreign
+func RpcMgmtSetCancelTimeout(Timeout: long): RPC_STATUS;
+
+@foreign
+func RpcNetworkInqProtseqsA(ProtseqVector: RPC_PROTSEQ_VECTORA**): RPC_STATUS;
+
+@foreign
+func RpcNetworkInqProtseqs(ProtseqVector: RPC_PROTSEQ_VECTORA**): RPC_STATUS;
+
+@foreign
+func RpcNetworkInqProtseqsW(ProtseqVector: RPC_PROTSEQ_VECTORW**): RPC_STATUS;
+
+@foreign
+func RpcObjectInqType(ObjUuid: UUID*, TypeUuid: UUID*): RPC_STATUS;
+
+@foreign
+func RpcObjectSetInqFn(InquiryFn: RPC_OBJECT_INQ_FN*): RPC_STATUS;
+
+@foreign
+func RpcObjectSetType(ObjUuid: UUID*, TypeUuid: UUID*): RPC_STATUS;
+
+@foreign
+func RpcProtseqVectorFreeA(ProtseqVector: RPC_PROTSEQ_VECTORA**): RPC_STATUS;
+
+@foreign
+func RpcProtseqVectorFree(ProtseqVector: RPC_PROTSEQ_VECTORA**): RPC_STATUS;
+
+@foreign
+func RpcProtseqVectorFreeW(ProtseqVector: RPC_PROTSEQ_VECTORW**): RPC_STATUS;
+
+@foreign
+func RpcServerInqBindings(BindingVector: RPC_BINDING_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcServerInqBindingsEx(SecurityDescriptor: void*, BindingVector: RPC_BINDING_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcServerInqIf(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, MgrEpv: void**): RPC_STATUS;
+
+@foreign
+func RpcServerListen(MinimumCallThreads: uint, MaxCalls: uint, DontWait: uint): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterIf(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, MgrEpv: void*): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterIfEx(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, MgrEpv: void*, Flags: uint, MaxCalls: uint, IfCallback: RPC_IF_CALLBACK_FN*): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterIf2(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, MgrEpv: void*, Flags: uint, MaxCalls: uint, MaxRpcSize: uint, IfCallbackFn: RPC_IF_CALLBACK_FN*): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterIf3(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, MgrEpv: void*, Flags: uint, MaxCalls: uint, MaxRpcSize: uint, IfCallback: RPC_IF_CALLBACK_FN*, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUnregisterIf(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, WaitForCallsToComplete: uint): RPC_STATUS;
+
+@foreign
+func RpcServerUnregisterIfEx(IfSpec: RPC_IF_HANDLE, MgrTypeUuid: UUID*, RundownContextHandles: int): RPC_STATUS;
+
+@foreign
+func RpcServerUseAllProtseqs(MaxCalls: uint, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseAllProtseqsEx(MaxCalls: uint, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseAllProtseqsIf(MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseAllProtseqsIfEx(MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqA(Protseq: RPC_CSTR, MaxCalls: uint, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqExA(Protseq: RPC_CSTR, MaxCalls: uint, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseq(Protseq: RPC_CSTR, MaxCalls: uint, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqW(Protseq: RPC_WSTR, MaxCalls: uint, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEx(Protseq: RPC_CSTR, MaxCalls: uint, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqExW(Protseq: RPC_WSTR, MaxCalls: uint, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEpA(Protseq: RPC_CSTR, MaxCalls: uint, Endpoint: RPC_CSTR, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEpExA(Protseq: RPC_CSTR, MaxCalls: uint, Endpoint: RPC_CSTR, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEp(Protseq: RPC_CSTR, MaxCalls: uint, Endpoint: RPC_CSTR, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEpW(Protseq: RPC_WSTR, MaxCalls: uint, Endpoint: RPC_WSTR, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEpEx(Protseq: RPC_CSTR, MaxCalls: uint, Endpoint: RPC_CSTR, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqEpExW(Protseq: RPC_WSTR, MaxCalls: uint, Endpoint: RPC_WSTR, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqIfA(Protseq: RPC_CSTR, MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqIfExA(Protseq: RPC_CSTR, MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqIf(Protseq: RPC_CSTR, MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqIfW(Protseq: RPC_WSTR, MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqIfEx(Protseq: RPC_CSTR, MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerUseProtseqIfExW(Protseq: RPC_WSTR, MaxCalls: uint, IfSpec: RPC_IF_HANDLE, SecurityDescriptor: void*, Policy: PRPC_POLICY): RPC_STATUS;
+
+@foreign
+func RpcServerYield();
+
+@foreign
+func RpcMgmtStatsVectorFree(StatsVector: RPC_STATS_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqStats(Binding: RPC_BINDING_HANDLE, Statistics: RPC_STATS_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcMgmtIsServerListening(Binding: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcMgmtStopServerListening(Binding: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcMgmtWaitServerListen(): RPC_STATUS;
+
+@foreign
+func RpcMgmtSetServerStackSize(ThreadStackSize: ulong): RPC_STATUS;
+
+@foreign
+func RpcSsDontSerializeContext();
+
+@foreign
+func RpcMgmtEnableIdleCleanup(): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqIfIds(Binding: RPC_BINDING_HANDLE, IfIdVector: RPC_IF_ID_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcIfIdVectorFree(IfIdVector: RPC_IF_ID_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqServerPrincNameA(Binding: RPC_BINDING_HANDLE, AuthnSvc: ulong, ServerPrincName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqServerPrincName(Binding: RPC_BINDING_HANDLE, AuthnSvc: ulong, ServerPrincName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcMgmtInqServerPrincNameW(Binding: RPC_BINDING_HANDLE, AuthnSvc: ulong, ServerPrincName: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcServerInqDefaultPrincNameA(AuthnSvc: ulong, PrincName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcServerInqDefaultPrincName(AuthnSvc: ulong, PrincName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcServerInqDefaultPrincNameW(AuthnSvc: ulong, PrincName: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcEpResolveBinding(Binding: RPC_BINDING_HANDLE, IfSpec: RPC_IF_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcNsBindingInqEntryNameA(Binding: RPC_BINDING_HANDLE, EntryNameSyntax: ulong, EntryName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingInqEntryName(Binding: RPC_BINDING_HANDLE, EntryNameSyntax: ulong, EntryName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingInqEntryNameW(Binding: RPC_BINDING_HANDLE, EntryNameSyntax: ulong, EntryName: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+typedef RPC_AUTH_IDENTITY_HANDLE = void*;
+
+@foreign
+typedef RPC_AUTHZ_HANDLE = void*;
+
+@foreign
+struct _RPC_SECURITY_QOS {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+}
+
+@foreign
+typedef RPC_SECURITY_QOS = _RPC_SECURITY_QOS;
+
+@foreign
+typedef PRPC_SECURITY_QOS = _RPC_SECURITY_QOS*;
+
+@foreign
+struct _SEC_WINNT_AUTH_IDENTITY_W {
+    User: ushort*;
+    UserLength: ulong;
+    Domain: ushort*;
+    DomainLength: ulong;
+    Password: ushort*;
+    PasswordLength: ulong;
+    Flags: ulong;
+}
+
+@foreign
+typedef SEC_WINNT_AUTH_IDENTITY_W = _SEC_WINNT_AUTH_IDENTITY_W;
+
+@foreign
+typedef PSEC_WINNT_AUTH_IDENTITY_W = _SEC_WINNT_AUTH_IDENTITY_W*;
+
+@foreign
+struct _SEC_WINNT_AUTH_IDENTITY_A {
+    User: uchar*;
+    UserLength: ulong;
+    Domain: uchar*;
+    DomainLength: ulong;
+    Password: uchar*;
+    PasswordLength: ulong;
+    Flags: ulong;
+}
+
+@foreign
+typedef SEC_WINNT_AUTH_IDENTITY_A = _SEC_WINNT_AUTH_IDENTITY_A;
+
+@foreign
+typedef PSEC_WINNT_AUTH_IDENTITY_A = _SEC_WINNT_AUTH_IDENTITY_A*;
+
+@foreign
+struct _RPC_HTTP_TRANSPORT_CREDENTIALS_W {
+    TransportCredentials: SEC_WINNT_AUTH_IDENTITY_W*;
+    Flags: ulong;
+    AuthenticationTarget: ulong;
+    NumberOfAuthnSchemes: ulong;
+    AuthnSchemes: ulong*;
+    ServerCertificateSubject: ushort*;
+}
+
+@foreign
+typedef RPC_HTTP_TRANSPORT_CREDENTIALS_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_W;
+
+@foreign
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
+
+@foreign
+struct _RPC_HTTP_TRANSPORT_CREDENTIALS_A {
+    TransportCredentials: SEC_WINNT_AUTH_IDENTITY_A*;
+    Flags: ulong;
+    AuthenticationTarget: ulong;
+    NumberOfAuthnSchemes: ulong;
+    AuthnSchemes: ulong*;
+    ServerCertificateSubject: uchar*;
+}
+
+@foreign
+typedef RPC_HTTP_TRANSPORT_CREDENTIALS_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_A;
+
+@foreign
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
+
+@foreign
+struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W {
+    TransportCredentials: SEC_WINNT_AUTH_IDENTITY_W*;
+    Flags: ulong;
+    AuthenticationTarget: ulong;
+    NumberOfAuthnSchemes: ulong;
+    AuthnSchemes: ulong*;
+    ServerCertificateSubject: ushort*;
+    ProxyCredentials: SEC_WINNT_AUTH_IDENTITY_W*;
+    NumberOfProxyAuthnSchemes: ulong;
+    ProxyAuthnSchemes: ulong*;
+}
+
+@foreign
+typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W;
+
+@foreign
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V2_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W*;
+
+@foreign
+struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A {
+    TransportCredentials: SEC_WINNT_AUTH_IDENTITY_A*;
+    Flags: ulong;
+    AuthenticationTarget: ulong;
+    NumberOfAuthnSchemes: ulong;
+    AuthnSchemes: ulong*;
+    ServerCertificateSubject: uchar*;
+    ProxyCredentials: SEC_WINNT_AUTH_IDENTITY_A*;
+    NumberOfProxyAuthnSchemes: ulong;
+    ProxyAuthnSchemes: ulong*;
+}
+
+@foreign
+typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A;
+
+@foreign
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V2_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A*;
+
+@foreign
+struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W {
+    TransportCredentials: RPC_AUTH_IDENTITY_HANDLE;
+    Flags: ulong;
+    AuthenticationTarget: ulong;
+    NumberOfAuthnSchemes: ulong;
+    AuthnSchemes: ulong*;
+    ServerCertificateSubject: ushort*;
+    ProxyCredentials: RPC_AUTH_IDENTITY_HANDLE;
+    NumberOfProxyAuthnSchemes: ulong;
+    ProxyAuthnSchemes: ulong*;
+}
+
+@foreign
+typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W;
+
+@foreign
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W*;
+
+@foreign
+struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A {
+    TransportCredentials: RPC_AUTH_IDENTITY_HANDLE;
+    Flags: ulong;
+    AuthenticationTarget: ulong;
+    NumberOfAuthnSchemes: ulong;
+    AuthnSchemes: ulong*;
+    ServerCertificateSubject: uchar*;
+    ProxyCredentials: RPC_AUTH_IDENTITY_HANDLE;
+    NumberOfProxyAuthnSchemes: ulong;
+    ProxyAuthnSchemes: ulong*;
+}
+
+@foreign
+typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A;
+
+@foreign
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A*;
+
+/*
+@PROBLEM Nested struct def at line 1793, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V2_W {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1793, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V2_W
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V2_W = _RPC_SECURITY_QOS_V2_W*;
+
+/*
+@PROBLEM Nested struct def at line 1805, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V2_A {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1805, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V2_A
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V2_A = _RPC_SECURITY_QOS_V2_A*;
+
+/*
+@PROBLEM Nested struct def at line 1820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V3_W {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+    Sid: void*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V3_W
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V3_W = _RPC_SECURITY_QOS_V3_W*;
+
+/*
+@PROBLEM Nested struct def at line 1833, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V3_A {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+    Sid: void*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1833, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V3_A
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V3_A = _RPC_SECURITY_QOS_V3_A*;
+
+/*
+@PROBLEM Nested struct def at line 1851, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V4_W {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+    Sid: void*;
+    EffectiveOnly: uint;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1851, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V4_W
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V4_W = _RPC_SECURITY_QOS_V4_W*;
+
+/*
+@PROBLEM Nested struct def at line 1865, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V4_A {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+    Sid: void*;
+    EffectiveOnly: uint;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1865, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V4_A
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V4_A = _RPC_SECURITY_QOS_V4_A*;
+
+/*
+@PROBLEM Nested struct def at line 1884, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V5_W {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+    Sid: void*;
+    EffectiveOnly: uint;
+    ServerSecurityDescriptor: void*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1884, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V5_W
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V5_W = _RPC_SECURITY_QOS_V5_W*;
+
+/*
+@PROBLEM Nested struct def at line 1899, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_SECURITY_QOS_V5_A {
+    Version: ulong;
+    Capabilities: ulong;
+    IdentityTracking: ulong;
+    ImpersonationType: ulong;
+    AdditionalSecurityInfoType: ulong;
+    u: (null);
+    Sid: void*;
+    EffectiveOnly: uint;
+    ServerSecurityDescriptor: void*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1899, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_SECURITY_QOS_V5_A
+*/
+
+@foreign
+typedef PRPC_SECURITY_QOS_V5_A = _RPC_SECURITY_QOS_V5_A*;
+
+/*
+@PROBLEM Nested struct def at line 2029, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_BINDING_HANDLE_TEMPLATE_V1_W {
+    Version: ulong;
+    Flags: ulong;
+    ProtocolSequence: ulong;
+    NetworkAddress: ushort*;
+    StringEndpoint: ushort*;
+    u1: (null);
+    ObjectUuid: UUID;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 2029, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_BINDING_HANDLE_TEMPLATE_V1_W
+*/
+
+@foreign
+typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_W = _RPC_BINDING_HANDLE_TEMPLATE_V1_W*;
+
+/*
+@PROBLEM Nested struct def at line 2042, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+@foreign
+struct _RPC_BINDING_HANDLE_TEMPLATE_V1_A {
+    Version: ulong;
+    Flags: ulong;
+    ProtocolSequence: ulong;
+    NetworkAddress: uchar*;
+    StringEndpoint: uchar*;
+    u1: (null);
+    ObjectUuid: UUID;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 2042, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+
+_RPC_BINDING_HANDLE_TEMPLATE_V1_A
+*/
+
+@foreign
+typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_A = _RPC_BINDING_HANDLE_TEMPLATE_V1_A*;
+
+@foreign
+struct _RPC_BINDING_HANDLE_SECURITY_V1_W {
+    Version: ulong;
+    ServerPrincName: ushort*;
+    AuthnLevel: ulong;
+    AuthnSvc: ulong;
+    AuthIdentity: SEC_WINNT_AUTH_IDENTITY_W*;
+    SecurityQos: RPC_SECURITY_QOS*;
+}
+
+@foreign
+typedef RPC_BINDING_HANDLE_SECURITY_V1_W = _RPC_BINDING_HANDLE_SECURITY_V1_W;
+
+@foreign
+typedef PRPC_BINDING_HANDLE_SECURITY_V1_W = _RPC_BINDING_HANDLE_SECURITY_V1_W*;
+
+@foreign
+struct _RPC_BINDING_HANDLE_SECURITY_V1_A {
+    Version: ulong;
+    ServerPrincName: uchar*;
+    AuthnLevel: ulong;
+    AuthnSvc: ulong;
+    AuthIdentity: SEC_WINNT_AUTH_IDENTITY_A*;
+    SecurityQos: RPC_SECURITY_QOS*;
+}
+
+@foreign
+typedef RPC_BINDING_HANDLE_SECURITY_V1_A = _RPC_BINDING_HANDLE_SECURITY_V1_A;
+
+@foreign
+typedef PRPC_BINDING_HANDLE_SECURITY_V1_A = _RPC_BINDING_HANDLE_SECURITY_V1_A*;
+
+@foreign
+struct _RPC_BINDING_HANDLE_OPTIONS_V1 {
+    Version: ulong;
+    Flags: ulong;
+    ComTimeout: ulong;
+    CallTimeout: ulong;
+}
+
+@foreign
+typedef RPC_BINDING_HANDLE_OPTIONS_V1 = _RPC_BINDING_HANDLE_OPTIONS_V1;
+
+@foreign
+typedef PRPC_BINDING_HANDLE_OPTIONS_V1 = _RPC_BINDING_HANDLE_OPTIONS_V1*;
+
+@foreign
+func RpcBindingCreateA(Template: RPC_BINDING_HANDLE_TEMPLATE_V1_A*, Security: RPC_BINDING_HANDLE_SECURITY_V1_A*, Options: RPC_BINDING_HANDLE_OPTIONS_V1*, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingCreate(Template: RPC_BINDING_HANDLE_TEMPLATE_V1_A*, Security: RPC_BINDING_HANDLE_SECURITY_V1_A*, Options: RPC_BINDING_HANDLE_OPTIONS_V1*, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingCreateW(Template: RPC_BINDING_HANDLE_TEMPLATE_V1_W*, Security: RPC_BINDING_HANDLE_SECURITY_V1_W*, Options: RPC_BINDING_HANDLE_OPTIONS_V1*, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcBindingGetTrainingContextHandle(Binding: RPC_BINDING_HANDLE, ContextHandle: void**): RPC_STATUS;
+
+@foreign
+func RpcServerInqBindingHandle(Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+enum _RPC_HTTP_REDIRECTOR_STAGE {
+    RPCHTTP_RS_REDIRECT = 1,
+    RPCHTTP_RS_ACCESS_1,
+    RPCHTTP_RS_SESSION,
+    RPCHTTP_RS_ACCESS_2,
+    RPCHTTP_RS_INTERFACE,
+}
+
+@foreign
+typedef RPC_HTTP_REDIRECTOR_STAGE = _RPC_HTTP_REDIRECTOR_STAGE;
+
+@foreign
+typedef RPC_NEW_HTTP_PROXY_CHANNEL = func(RedirectorStage: RPC_HTTP_REDIRECTOR_STAGE, ServerName: RPC_WSTR, ServerPort: RPC_WSTR, RemoteUser: RPC_WSTR, AuthType: RPC_WSTR, ResourceUuid: void*, SessionId: void*, Interface: void*, Reserved: void*, Flags: ulong, NewServerName: RPC_WSTR*, NewServerPort: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+typedef RPC_HTTP_PROXY_FREE_STRING = func(String: RPC_WSTR);
+
+@foreign
+func RpcImpersonateClient(BindingHandle: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcImpersonateClient2(BindingHandle: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcRevertToSelfEx(BindingHandle: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcRevertToSelf(): RPC_STATUS;
+
+@foreign
+func RpcImpersonateClientContainer(BindingHandle: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcRevertContainerImpersonation(): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthClientA(ClientBinding: RPC_BINDING_HANDLE, Privs: RPC_AUTHZ_HANDLE*, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthzSvc: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthClient(ClientBinding: RPC_BINDING_HANDLE, Privs: RPC_AUTHZ_HANDLE*, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthzSvc: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthClientW(ClientBinding: RPC_BINDING_HANDLE, Privs: RPC_AUTHZ_HANDLE*, ServerPrincName: RPC_WSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthzSvc: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthClientExA(ClientBinding: RPC_BINDING_HANDLE, Privs: RPC_AUTHZ_HANDLE*, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthzSvc: ulong*, Flags: ulong): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthClientEx(ClientBinding: RPC_BINDING_HANDLE, Privs: RPC_AUTHZ_HANDLE*, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthzSvc: ulong*, Flags: ulong): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthClientExW(ClientBinding: RPC_BINDING_HANDLE, Privs: RPC_AUTHZ_HANDLE*, ServerPrincName: RPC_WSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthzSvc: ulong*, Flags: ulong): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthInfoA(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE*, AuthzSvc: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthInfo(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE*, AuthzSvc: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthInfoW(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_WSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE*, AuthzSvc: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingSetAuthInfoA(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR, AuthnLevel: ulong, AuthnSvc: ulong, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE, AuthzSvc: ulong): RPC_STATUS;
+
+@foreign
+func RpcBindingSetAuthInfoExA(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR, AuthnLevel: ulong, AuthnSvc: ulong, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE, AuthzSvc: ulong, SecurityQos: RPC_SECURITY_QOS*): RPC_STATUS;
+
+@foreign
+func RpcBindingSetAuthInfo(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR, AuthnLevel: ulong, AuthnSvc: ulong, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE, AuthzSvc: ulong): RPC_STATUS;
+
+@foreign
+func RpcBindingSetAuthInfoW(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_WSTR, AuthnLevel: ulong, AuthnSvc: ulong, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE, AuthzSvc: ulong): RPC_STATUS;
+
+@foreign
+func RpcBindingSetAuthInfoEx(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR, AuthnLevel: ulong, AuthnSvc: ulong, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE, AuthzSvc: ulong, SecurityQos: RPC_SECURITY_QOS*): RPC_STATUS;
+
+@foreign
+func RpcBindingSetAuthInfoExW(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_WSTR, AuthnLevel: ulong, AuthnSvc: ulong, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE, AuthzSvc: ulong, SecurityQOS: RPC_SECURITY_QOS*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthInfoExA(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE*, AuthzSvc: ulong*, RpcQosVersion: ulong, SecurityQOS: RPC_SECURITY_QOS*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthInfoEx(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_CSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE*, AuthzSvc: ulong*, RpcQosVersion: ulong, SecurityQOS: RPC_SECURITY_QOS*): RPC_STATUS;
+
+@foreign
+func RpcBindingInqAuthInfoExW(Binding: RPC_BINDING_HANDLE, ServerPrincName: RPC_WSTR*, AuthnLevel: ulong*, AuthnSvc: ulong*, AuthIdentity: RPC_AUTH_IDENTITY_HANDLE*, AuthzSvc: ulong*, RpcQosVersion: ulong, SecurityQOS: RPC_SECURITY_QOS*): RPC_STATUS;
+
+@foreign
+typedef RPC_AUTH_KEY_RETRIEVAL_FN = func(Arg: void*, ServerPrincName: RPC_WSTR, KeyVer: ulong, Key: void**, Status: RPC_STATUS*);
+
+@foreign
+func RpcServerCompleteSecurityCallback(BindingHandle: RPC_BINDING_HANDLE, Status: RPC_STATUS): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterAuthInfoA(ServerPrincName: RPC_CSTR, AuthnSvc: ulong, GetKeyFn: RPC_AUTH_KEY_RETRIEVAL_FN, Arg: void*): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterAuthInfo(ServerPrincName: RPC_CSTR, AuthnSvc: ulong, GetKeyFn: RPC_AUTH_KEY_RETRIEVAL_FN, Arg: void*): RPC_STATUS;
+
+@foreign
+func RpcServerRegisterAuthInfoW(ServerPrincName: RPC_WSTR, AuthnSvc: ulong, GetKeyFn: RPC_AUTH_KEY_RETRIEVAL_FN, Arg: void*): RPC_STATUS;
+
+@foreign
+struct RPC_CLIENT_INFORMATION1 {
+    UserName: uchar*;
+    ComputerName: uchar*;
+    Privilege: ushort;
+    AuthFlags: ulong;
+}
+
+@foreign
+typedef PRPC_CLIENT_INFORMATION1 = RPC_CLIENT_INFORMATION1;
+
+@foreign
+func RpcBindingServerFromClient(ClientBinding: RPC_BINDING_HANDLE, ServerBinding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcRaiseException(exception: RPC_STATUS);
+
+@foreign
+func RpcTestCancel(): RPC_STATUS;
+
+@foreign
+func RpcServerTestCancel(BindingHandle: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcCancelThread(Thread: void*): RPC_STATUS;
+
+@foreign
+func RpcCancelThreadEx(Thread: void*, Timeout: long): RPC_STATUS;
+
+@foreign
+func UuidCreate(Uuid: UUID*): RPC_STATUS;
+
+@foreign
+func UuidCreateSequential(Uuid: UUID*): RPC_STATUS;
+
+@foreign
+func UuidToStringA(Uuid: UUID*, StringUuid: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func UuidFromStringA(StringUuid: RPC_CSTR, Uuid: UUID*): RPC_STATUS;
+
+@foreign
+func UuidToString(Uuid: UUID*, StringUuid: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func UuidToStringW(Uuid: UUID*, StringUuid: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func UuidFromString(StringUuid: RPC_CSTR, Uuid: UUID*): RPC_STATUS;
+
+@foreign
+func UuidFromStringW(StringUuid: RPC_WSTR, Uuid: UUID*): RPC_STATUS;
+
+@foreign
+func UuidCompare(Uuid1: UUID*, Uuid2: UUID*, Status: RPC_STATUS*): int;
+
+@foreign
+func UuidCreateNil(NilUuid: UUID*): RPC_STATUS;
+
+@foreign
+func UuidEqual(Uuid1: UUID*, Uuid2: UUID*, Status: RPC_STATUS*): int;
+
+@foreign
+func UuidHash(Uuid: UUID*, Status: RPC_STATUS*): ushort;
+
+@foreign
+func UuidIsNil(Uuid: UUID*, Status: RPC_STATUS*): int;
+
+@foreign
+func RpcEpRegisterNoReplaceA(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*, Annotation: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcEpRegisterNoReplace(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*, Annotation: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcEpRegisterNoReplaceW(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*, Annotation: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcEpRegisterA(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*, Annotation: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcEpRegister(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*, Annotation: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcEpRegisterW(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*, Annotation: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcEpUnregister(IfSpec: RPC_IF_HANDLE, BindingVector: RPC_BINDING_VECTOR*, UuidVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func DceErrorInqTextA(RpcStatus: RPC_STATUS, ErrorText: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func DceErrorInqText(RpcStatus: RPC_STATUS, ErrorText: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func DceErrorInqTextW(RpcStatus: RPC_STATUS, ErrorText: RPC_WSTR): RPC_STATUS;
+
+@foreign
+typedef RPC_EP_INQ_HANDLE = I_RPC_HANDLE*;
+
+@foreign
+func RpcMgmtEpEltInqBegin(EpBinding: RPC_BINDING_HANDLE, InquiryType: ulong, IfId: RPC_IF_ID*, VersOption: ulong, ObjectUuid: UUID*, InquiryContext: RPC_EP_INQ_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcMgmtEpEltInqDone(InquiryContext: RPC_EP_INQ_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcMgmtEpEltInqNextA(InquiryContext: RPC_EP_INQ_HANDLE, IfId: RPC_IF_ID*, Binding: RPC_BINDING_HANDLE*, ObjectUuid: UUID*, Annotation: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcMgmtEpEltInqNext(InquiryContext: RPC_EP_INQ_HANDLE, IfId: RPC_IF_ID*, Binding: RPC_BINDING_HANDLE*, ObjectUuid: UUID*, Annotation: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcMgmtEpEltInqNextW(InquiryContext: RPC_EP_INQ_HANDLE, IfId: RPC_IF_ID*, Binding: RPC_BINDING_HANDLE*, ObjectUuid: UUID*, Annotation: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcMgmtEpUnregister(EpBinding: RPC_BINDING_HANDLE, IfId: RPC_IF_ID*, Binding: RPC_BINDING_HANDLE, ObjectUuid: UUID*): RPC_STATUS;
+
+@foreign
+typedef RPC_MGMT_AUTHORIZATION_FN = func(ClientBinding: RPC_BINDING_HANDLE, RequestedMgmtOperation: ulong, Status: RPC_STATUS*): int;
+
+@foreign
+func RpcMgmtSetAuthorizationFn(AuthorizationFn: RPC_MGMT_AUTHORIZATION_FN): RPC_STATUS;
+
+@foreign
+func RpcExceptionFilter(ExceptionCode: ulong): int;
+
+@foreign
+typedef RPC_INTERFACE_GROUP = void*;
+
+@foreign
+typedef PRPC_INTERFACE_GROUP = void**;
+
+@foreign
+struct RPC_ENDPOINT_TEMPLATEW {
+    Version: ulong;
+    ProtSeq: RPC_WSTR;
+    Endpoint: RPC_WSTR;
+    SecurityDescriptor: void*;
+    Backlog: ulong;
+}
+
+@foreign
+typedef PRPC_ENDPOINT_TEMPLATEW = RPC_ENDPOINT_TEMPLATEW;
+
+@foreign
+struct RPC_ENDPOINT_TEMPLATEA {
+    Version: ulong;
+    ProtSeq: RPC_CSTR;
+    Endpoint: RPC_CSTR;
+    SecurityDescriptor: void*;
+    Backlog: ulong;
+}
+
+@foreign
+typedef PRPC_ENDPOINT_TEMPLATEA = RPC_ENDPOINT_TEMPLATEA;
+
+@foreign
+struct RPC_INTERFACE_TEMPLATEA {
+    Version: ulong;
+    IfSpec: RPC_IF_HANDLE;
+    MgrTypeUuid: UUID*;
+    MgrEpv: void*;
+    Flags: uint;
+    MaxCalls: uint;
+    MaxRpcSize: uint;
+    IfCallback: RPC_IF_CALLBACK_FN*;
+    UuidVector: UUID_VECTOR*;
+    Annotation: RPC_CSTR;
+    SecurityDescriptor: void*;
+}
+
+@foreign
+typedef PRPC_INTERFACE_TEMPLATEA = RPC_INTERFACE_TEMPLATEA;
+
+@foreign
+struct RPC_INTERFACE_TEMPLATEW {
+    Version: ulong;
+    IfSpec: RPC_IF_HANDLE;
+    MgrTypeUuid: UUID*;
+    MgrEpv: void*;
+    Flags: uint;
+    MaxCalls: uint;
+    MaxRpcSize: uint;
+    IfCallback: RPC_IF_CALLBACK_FN*;
+    UuidVector: UUID_VECTOR*;
+    Annotation: RPC_WSTR;
+    SecurityDescriptor: void*;
+}
+
+@foreign
+typedef PRPC_INTERFACE_TEMPLATEW = RPC_INTERFACE_TEMPLATEW;
+
+@foreign
+typedef RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN = func(IfGroup: RPC_INTERFACE_GROUP, IdleCallbackContext: void*, IsGroupIdle: ulong);
+
+@foreign
+func RpcServerInterfaceGroupCreateW(Interfaces: RPC_INTERFACE_TEMPLATEW*, NumIfs: ulong, Endpoints: RPC_ENDPOINT_TEMPLATEW*, NumEndpoints: ulong, IdlePeriod: ulong, IdleCallbackFn: RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN*, IdleCallbackContext: void*, IfGroup: PRPC_INTERFACE_GROUP): RPC_STATUS;
+
+@foreign
+func RpcServerInterfaceGroupCreate(Interfaces: RPC_INTERFACE_TEMPLATEA*, NumIfs: ulong, Endpoints: RPC_ENDPOINT_TEMPLATEA*, NumEndpoints: ulong, IdlePeriod: ulong, IdleCallbackFn: RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN*, IdleCallbackContext: void*, IfGroup: PRPC_INTERFACE_GROUP): RPC_STATUS;
+
+@foreign
+func RpcServerInterfaceGroupCreateA(Interfaces: RPC_INTERFACE_TEMPLATEA*, NumIfs: ulong, Endpoints: RPC_ENDPOINT_TEMPLATEA*, NumEndpoints: ulong, IdlePeriod: ulong, IdleCallbackFn: RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN*, IdleCallbackContext: void*, IfGroup: PRPC_INTERFACE_GROUP): RPC_STATUS;
+
+@foreign
+func RpcServerInterfaceGroupClose(IfGroup: RPC_INTERFACE_GROUP): RPC_STATUS;
+
+@foreign
+func RpcServerInterfaceGroupActivate(IfGroup: RPC_INTERFACE_GROUP): RPC_STATUS;
+
+@foreign
+func RpcServerInterfaceGroupDeactivate(IfGroup: RPC_INTERFACE_GROUP, ForceDeactivation: ulong): RPC_STATUS;
+
+@foreign
+func RpcServerInterfaceGroupInqBindings(IfGroup: RPC_INTERFACE_GROUP, BindingVector: RPC_BINDING_VECTOR**): RPC_STATUS;
+

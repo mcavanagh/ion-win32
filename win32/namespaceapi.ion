@@ -1,0 +1,20 @@
+#foreign(header = "<namespaceapi.h>")
+
+@foreign
+func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes: LPSECURITY_ATTRIBUTES, lpBoundaryDescriptor: LPVOID, lpAliasPrefix: LPCWSTR): HANDLE;
+
+@foreign
+func OpenPrivateNamespaceW(lpBoundaryDescriptor: LPVOID, lpAliasPrefix: LPCWSTR): HANDLE;
+
+@foreign
+func ClosePrivateNamespace(Handle: HANDLE, Flags: ULONG): BOOLEAN;
+
+@foreign
+func CreateBoundaryDescriptorW(Name: LPCWSTR, Flags: ULONG): HANDLE;
+
+@foreign
+func AddSIDToBoundaryDescriptor(BoundaryDescriptor: HANDLE*, RequiredSid: PSID): BOOL;
+
+@foreign
+func DeleteBoundaryDescriptor(BoundaryDescriptor: HANDLE);
+

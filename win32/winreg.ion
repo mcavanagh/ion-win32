@@ -1,0 +1,495 @@
+#foreign(header = "<winreg.h>")
+
+@foreign
+typedef LSTATUS = LONG;
+
+@foreign
+typedef REGSAM = ACCESS_MASK;
+
+@foreign
+struct val_context {
+    valuelen: int;
+    value_context: LPVOID;
+    val_buff_ptr: LPVOID;
+}
+
+@foreign
+typedef PVALCONTEXT = val_context*;
+
+@foreign
+struct pvalueA {
+    pv_valuename: LPSTR;
+    pv_valuelen: int;
+    pv_value_context: LPVOID;
+    pv_type: DWORD;
+}
+
+@foreign
+typedef PVALUEA = pvalueA;
+
+@foreign
+typedef PPVALUEA = pvalueA*;
+
+@foreign
+struct pvalueW {
+    pv_valuename: LPWSTR;
+    pv_valuelen: int;
+    pv_value_context: LPVOID;
+    pv_type: DWORD;
+}
+
+@foreign
+typedef PVALUEW = pvalueW;
+
+@foreign
+typedef PPVALUEW = pvalueW*;
+
+@foreign
+typedef PVALUE = PVALUEA;
+
+@foreign
+typedef PPVALUE = PPVALUEA;
+
+@foreign
+typedef QUERYHANDLER = func(keycontext: LPVOID, val_list: PVALCONTEXT, num_vals: DWORD, outputbuffer: LPVOID, total_outlen: DWORD*, input_blen: DWORD): DWORD;
+
+@foreign
+typedef PQUERYHANDLER = QUERYHANDLER*;
+
+@foreign
+struct provider_info {
+    pi_R0_1val: PQUERYHANDLER;
+    pi_R0_allvals: PQUERYHANDLER;
+    pi_R3_1val: PQUERYHANDLER;
+    pi_R3_allvals: PQUERYHANDLER;
+    pi_flags: DWORD;
+    pi_key_context: LPVOID;
+}
+
+@foreign
+typedef REG_PROVIDER = provider_info;
+
+@foreign
+typedef PPROVIDER = provider_info*;
+
+@foreign
+struct value_entA {
+    ve_valuename: LPSTR;
+    ve_valuelen: DWORD;
+    ve_valueptr: DWORD_PTR;
+    ve_type: DWORD;
+}
+
+@foreign
+typedef VALENTA = value_entA;
+
+@foreign
+typedef PVALENTA = value_entA*;
+
+@foreign
+struct value_entW {
+    ve_valuename: LPWSTR;
+    ve_valuelen: DWORD;
+    ve_valueptr: DWORD_PTR;
+    ve_type: DWORD;
+}
+
+@foreign
+typedef VALENTW = value_entW;
+
+@foreign
+typedef PVALENTW = value_entW*;
+
+@foreign
+typedef VALENT = VALENTA;
+
+@foreign
+typedef PVALENT = PVALENTA;
+
+@foreign
+func RegCloseKey(hKey: HKEY): LSTATUS;
+
+@foreign
+func RegOverridePredefKey(hKey: HKEY, hNewHKey: HKEY): LSTATUS;
+
+@foreign
+func RegOpenUserClassesRoot(hToken: HANDLE, dwOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenCurrentUser(samDesired: REGSAM, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegDisablePredefinedCache(): LSTATUS;
+
+@foreign
+func RegDisablePredefinedCacheEx(): LSTATUS;
+
+@foreign
+func RegConnectRegistryA(lpMachineName: LPCSTR, hKey: HKEY, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegConnectRegistry(lpMachineName: LPCSTR, hKey: HKEY, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegConnectRegistryW(lpMachineName: LPCWSTR, hKey: HKEY, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegConnectRegistryExA(lpMachineName: LPCSTR, hKey: HKEY, Flags: ULONG, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegConnectRegistryEx(lpMachineName: LPCSTR, hKey: HKEY, Flags: ULONG, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegConnectRegistryExW(lpMachineName: LPCWSTR, hKey: HKEY, Flags: ULONG, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegCreateKeyA(hKey: HKEY, lpSubKey: LPCSTR, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegCreateKey(hKey: HKEY, lpSubKey: LPCSTR, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegCreateKeyW(hKey: HKEY, lpSubKey: LPCWSTR, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegCreateKeyExA(hKey: HKEY, lpSubKey: LPCSTR, Reserved: DWORD, lpClass: LPSTR, dwOptions: DWORD, samDesired: REGSAM, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, phkResult: PHKEY, lpdwDisposition: LPDWORD): LSTATUS;
+
+@foreign
+func RegCreateKeyEx(hKey: HKEY, lpSubKey: LPCSTR, Reserved: DWORD, lpClass: LPSTR, dwOptions: DWORD, samDesired: REGSAM, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, phkResult: PHKEY, lpdwDisposition: LPDWORD): LSTATUS;
+
+@foreign
+func RegCreateKeyExW(hKey: HKEY, lpSubKey: LPCWSTR, Reserved: DWORD, lpClass: LPWSTR, dwOptions: DWORD, samDesired: REGSAM, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, phkResult: PHKEY, lpdwDisposition: LPDWORD): LSTATUS;
+
+@foreign
+func RegCreateKeyTransactedA(hKey: HKEY, lpSubKey: LPCSTR, Reserved: DWORD, lpClass: LPSTR, dwOptions: DWORD, samDesired: REGSAM, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, phkResult: PHKEY, lpdwDisposition: LPDWORD, hTransaction: HANDLE, pExtendedParemeter: PVOID): LSTATUS;
+
+@foreign
+func RegCreateKeyTransacted(hKey: HKEY, lpSubKey: LPCSTR, Reserved: DWORD, lpClass: LPSTR, dwOptions: DWORD, samDesired: REGSAM, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, phkResult: PHKEY, lpdwDisposition: LPDWORD, hTransaction: HANDLE, pExtendedParemeter: PVOID): LSTATUS;
+
+@foreign
+func RegCreateKeyTransactedW(hKey: HKEY, lpSubKey: LPCWSTR, Reserved: DWORD, lpClass: LPWSTR, dwOptions: DWORD, samDesired: REGSAM, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, phkResult: PHKEY, lpdwDisposition: LPDWORD, hTransaction: HANDLE, pExtendedParemeter: PVOID): LSTATUS;
+
+@foreign
+func RegDeleteKeyA(hKey: HKEY, lpSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteKey(hKey: HKEY, lpSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteKeyW(hKey: HKEY, lpSubKey: LPCWSTR): LSTATUS;
+
+@foreign
+func RegDeleteKeyExA(hKey: HKEY, lpSubKey: LPCSTR, samDesired: REGSAM, Reserved: DWORD): LSTATUS;
+
+@foreign
+func RegDeleteKeyEx(hKey: HKEY, lpSubKey: LPCSTR, samDesired: REGSAM, Reserved: DWORD): LSTATUS;
+
+@foreign
+func RegDeleteKeyExW(hKey: HKEY, lpSubKey: LPCWSTR, samDesired: REGSAM, Reserved: DWORD): LSTATUS;
+
+@foreign
+func RegDeleteKeyTransactedA(hKey: HKEY, lpSubKey: LPCSTR, samDesired: REGSAM, Reserved: DWORD, hTransaction: HANDLE, pExtendedParameter: PVOID): LSTATUS;
+
+@foreign
+func RegDeleteKeyTransacted(hKey: HKEY, lpSubKey: LPCSTR, samDesired: REGSAM, Reserved: DWORD, hTransaction: HANDLE, pExtendedParameter: PVOID): LSTATUS;
+
+@foreign
+func RegDeleteKeyTransactedW(hKey: HKEY, lpSubKey: LPCWSTR, samDesired: REGSAM, Reserved: DWORD, hTransaction: HANDLE, pExtendedParameter: PVOID): LSTATUS;
+
+@foreign
+func RegDisableReflectionKey(hBase: HKEY): LONG;
+
+@foreign
+func RegEnableReflectionKey(hBase: HKEY): LONG;
+
+@foreign
+func RegQueryReflectionKey(hBase: HKEY, bIsReflectionDisabled: BOOL*): LONG;
+
+@foreign
+func RegDeleteValueA(hKey: HKEY, lpValueName: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteValue(hKey: HKEY, lpValueName: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteValueW(hKey: HKEY, lpValueName: LPCWSTR): LSTATUS;
+
+@foreign
+func RegEnumKeyA(hKey: HKEY, dwIndex: DWORD, lpName: LPSTR, cchName: DWORD): LSTATUS;
+
+@foreign
+func RegEnumKey(hKey: HKEY, dwIndex: DWORD, lpName: LPSTR, cchName: DWORD): LSTATUS;
+
+@foreign
+func RegEnumKeyW(hKey: HKEY, dwIndex: DWORD, lpName: LPWSTR, cchName: DWORD): LSTATUS;
+
+@foreign
+func RegEnumKeyExA(hKey: HKEY, dwIndex: DWORD, lpName: LPSTR, lpcchName: LPDWORD, lpReserved: LPDWORD, lpClass: LPSTR, lpcchClass: LPDWORD, lpftLastWriteTime: PFILETIME): LSTATUS;
+
+@foreign
+func RegEnumKeyEx(hKey: HKEY, dwIndex: DWORD, lpName: LPSTR, lpcchName: LPDWORD, lpReserved: LPDWORD, lpClass: LPSTR, lpcchClass: LPDWORD, lpftLastWriteTime: PFILETIME): LSTATUS;
+
+@foreign
+func RegEnumKeyExW(hKey: HKEY, dwIndex: DWORD, lpName: LPWSTR, lpcchName: LPDWORD, lpReserved: LPDWORD, lpClass: LPWSTR, lpcchClass: LPDWORD, lpftLastWriteTime: PFILETIME): LSTATUS;
+
+@foreign
+func RegEnumValueA(hKey: HKEY, dwIndex: DWORD, lpValueName: LPSTR, lpcchValueName: LPDWORD, lpReserved: LPDWORD, lpType: LPDWORD, lpData: LPBYTE, lpcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegEnumValue(hKey: HKEY, dwIndex: DWORD, lpValueName: LPSTR, lpcchValueName: LPDWORD, lpReserved: LPDWORD, lpType: LPDWORD, lpData: LPBYTE, lpcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegEnumValueW(hKey: HKEY, dwIndex: DWORD, lpValueName: LPWSTR, lpcchValueName: LPDWORD, lpReserved: LPDWORD, lpType: LPDWORD, lpData: LPBYTE, lpcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegFlushKey(hKey: HKEY): LSTATUS;
+
+@foreign
+func RegGetKeySecurity(hKey: HKEY, SecurityInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR, lpcbSecurityDescriptor: LPDWORD): LSTATUS;
+
+@foreign
+func RegLoadKeyA(hKey: HKEY, lpSubKey: LPCSTR, lpFile: LPCSTR): LSTATUS;
+
+@foreign
+func RegLoadKey(hKey: HKEY, lpSubKey: LPCSTR, lpFile: LPCSTR): LSTATUS;
+
+@foreign
+func RegLoadKeyW(hKey: HKEY, lpSubKey: LPCWSTR, lpFile: LPCWSTR): LSTATUS;
+
+@foreign
+func RegNotifyChangeKeyValue(hKey: HKEY, bWatchSubtree: BOOL, dwNotifyFilter: DWORD, hEvent: HANDLE, fAsynchronous: BOOL): LSTATUS;
+
+@foreign
+func RegOpenKeyA(hKey: HKEY, lpSubKey: LPCSTR, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenKey(hKey: HKEY, lpSubKey: LPCSTR, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenKeyW(hKey: HKEY, lpSubKey: LPCWSTR, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenKeyExA(hKey: HKEY, lpSubKey: LPCSTR, ulOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenKeyEx(hKey: HKEY, lpSubKey: LPCSTR, ulOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenKeyExW(hKey: HKEY, lpSubKey: LPCWSTR, ulOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY): LSTATUS;
+
+@foreign
+func RegOpenKeyTransactedA(hKey: HKEY, lpSubKey: LPCSTR, ulOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY, hTransaction: HANDLE, pExtendedParemeter: PVOID): LSTATUS;
+
+@foreign
+func RegOpenKeyTransacted(hKey: HKEY, lpSubKey: LPCSTR, ulOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY, hTransaction: HANDLE, pExtendedParemeter: PVOID): LSTATUS;
+
+@foreign
+func RegOpenKeyTransactedW(hKey: HKEY, lpSubKey: LPCWSTR, ulOptions: DWORD, samDesired: REGSAM, phkResult: PHKEY, hTransaction: HANDLE, pExtendedParemeter: PVOID): LSTATUS;
+
+@foreign
+func RegQueryInfoKeyA(hKey: HKEY, lpClass: LPSTR, lpcchClass: LPDWORD, lpReserved: LPDWORD, lpcSubKeys: LPDWORD, lpcbMaxSubKeyLen: LPDWORD, lpcbMaxClassLen: LPDWORD, lpcValues: LPDWORD, lpcbMaxValueNameLen: LPDWORD, lpcbMaxValueLen: LPDWORD, lpcbSecurityDescriptor: LPDWORD, lpftLastWriteTime: PFILETIME): LSTATUS;
+
+@foreign
+func RegQueryInfoKey(hKey: HKEY, lpClass: LPSTR, lpcchClass: LPDWORD, lpReserved: LPDWORD, lpcSubKeys: LPDWORD, lpcbMaxSubKeyLen: LPDWORD, lpcbMaxClassLen: LPDWORD, lpcValues: LPDWORD, lpcbMaxValueNameLen: LPDWORD, lpcbMaxValueLen: LPDWORD, lpcbSecurityDescriptor: LPDWORD, lpftLastWriteTime: PFILETIME): LSTATUS;
+
+@foreign
+func RegQueryInfoKeyW(hKey: HKEY, lpClass: LPWSTR, lpcchClass: LPDWORD, lpReserved: LPDWORD, lpcSubKeys: LPDWORD, lpcbMaxSubKeyLen: LPDWORD, lpcbMaxClassLen: LPDWORD, lpcValues: LPDWORD, lpcbMaxValueNameLen: LPDWORD, lpcbMaxValueLen: LPDWORD, lpcbSecurityDescriptor: LPDWORD, lpftLastWriteTime: PFILETIME): LSTATUS;
+
+@foreign
+func RegQueryValueA(hKey: HKEY, lpSubKey: LPCSTR, lpData: LPSTR, lpcbData: PLONG): LSTATUS;
+
+@foreign
+func RegQueryValue(hKey: HKEY, lpSubKey: LPCSTR, lpData: LPSTR, lpcbData: PLONG): LSTATUS;
+
+@foreign
+func RegQueryValueW(hKey: HKEY, lpSubKey: LPCWSTR, lpData: LPWSTR, lpcbData: PLONG): LSTATUS;
+
+@foreign
+func RegQueryMultipleValuesA(hKey: HKEY, val_list: PVALENTA, num_vals: DWORD, lpValueBuf: LPSTR, ldwTotsize: LPDWORD): LSTATUS;
+
+@foreign
+func RegQueryMultipleValues(hKey: HKEY, val_list: PVALENTA, num_vals: DWORD, lpValueBuf: LPSTR, ldwTotsize: LPDWORD): LSTATUS;
+
+@foreign
+func RegQueryMultipleValuesW(hKey: HKEY, val_list: PVALENTW, num_vals: DWORD, lpValueBuf: LPWSTR, ldwTotsize: LPDWORD): LSTATUS;
+
+@foreign
+func RegQueryValueExA(hKey: HKEY, lpValueName: LPCSTR, lpReserved: LPDWORD, lpType: LPDWORD, lpData: LPBYTE, lpcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegQueryValueEx(hKey: HKEY, lpValueName: LPCSTR, lpReserved: LPDWORD, lpType: LPDWORD, lpData: LPBYTE, lpcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegQueryValueExW(hKey: HKEY, lpValueName: LPCWSTR, lpReserved: LPDWORD, lpType: LPDWORD, lpData: LPBYTE, lpcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegReplaceKeyA(hKey: HKEY, lpSubKey: LPCSTR, lpNewFile: LPCSTR, lpOldFile: LPCSTR): LSTATUS;
+
+@foreign
+func RegReplaceKey(hKey: HKEY, lpSubKey: LPCSTR, lpNewFile: LPCSTR, lpOldFile: LPCSTR): LSTATUS;
+
+@foreign
+func RegReplaceKeyW(hKey: HKEY, lpSubKey: LPCWSTR, lpNewFile: LPCWSTR, lpOldFile: LPCWSTR): LSTATUS;
+
+@foreign
+func RegRestoreKeyA(hKey: HKEY, lpFile: LPCSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func RegRestoreKey(hKey: HKEY, lpFile: LPCSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func RegRestoreKeyW(hKey: HKEY, lpFile: LPCWSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func RegRenameKey(hKey: HKEY, lpSubKeyName: LPCWSTR, lpNewKeyName: LPCWSTR): LSTATUS;
+
+@foreign
+func RegSaveKeyA(hKey: HKEY, lpFile: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): LSTATUS;
+
+@foreign
+func RegSaveKey(hKey: HKEY, lpFile: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): LSTATUS;
+
+@foreign
+func RegSaveKeyW(hKey: HKEY, lpFile: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): LSTATUS;
+
+@foreign
+func RegSetKeySecurity(hKey: HKEY, SecurityInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR): LSTATUS;
+
+@foreign
+func RegSetValueA(hKey: HKEY, lpSubKey: LPCSTR, dwType: DWORD, lpData: LPCSTR, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetValue(hKey: HKEY, lpSubKey: LPCSTR, dwType: DWORD, lpData: LPCSTR, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetValueW(hKey: HKEY, lpSubKey: LPCWSTR, dwType: DWORD, lpData: LPCWSTR, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetValueExA(hKey: HKEY, lpValueName: LPCSTR, Reserved: DWORD, dwType: DWORD, lpData: BYTE*, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetValueEx(hKey: HKEY, lpValueName: LPCSTR, Reserved: DWORD, dwType: DWORD, lpData: BYTE*, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetValueExW(hKey: HKEY, lpValueName: LPCWSTR, Reserved: DWORD, dwType: DWORD, lpData: BYTE*, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegUnLoadKeyA(hKey: HKEY, lpSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func RegUnLoadKey(hKey: HKEY, lpSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func RegUnLoadKeyW(hKey: HKEY, lpSubKey: LPCWSTR): LSTATUS;
+
+@foreign
+func RegDeleteKeyValueA(hKey: HKEY, lpSubKey: LPCSTR, lpValueName: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteKeyValue(hKey: HKEY, lpSubKey: LPCSTR, lpValueName: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteKeyValueW(hKey: HKEY, lpSubKey: LPCWSTR, lpValueName: LPCWSTR): LSTATUS;
+
+@foreign
+func RegSetKeyValueA(hKey: HKEY, lpSubKey: LPCSTR, lpValueName: LPCSTR, dwType: DWORD, lpData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetKeyValue(hKey: HKEY, lpSubKey: LPCSTR, lpValueName: LPCSTR, dwType: DWORD, lpData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegSetKeyValueW(hKey: HKEY, lpSubKey: LPCWSTR, lpValueName: LPCWSTR, dwType: DWORD, lpData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+func RegDeleteTreeA(hKey: HKEY, lpSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteTree(hKey: HKEY, lpSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func RegDeleteTreeW(hKey: HKEY, lpSubKey: LPCWSTR): LSTATUS;
+
+@foreign
+func RegCopyTreeA(hKeySrc: HKEY, lpSubKey: LPCSTR, hKeyDest: HKEY): LSTATUS;
+
+@foreign
+func RegGetValueA(hkey: HKEY, lpSubKey: LPCSTR, lpValue: LPCSTR, dwFlags: DWORD, pdwType: LPDWORD, pvData: PVOID, pcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegGetValue(hkey: HKEY, lpSubKey: LPCSTR, lpValue: LPCSTR, dwFlags: DWORD, pdwType: LPDWORD, pvData: PVOID, pcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegGetValueW(hkey: HKEY, lpSubKey: LPCWSTR, lpValue: LPCWSTR, dwFlags: DWORD, pdwType: LPDWORD, pvData: PVOID, pcbData: LPDWORD): LSTATUS;
+
+@foreign
+func RegCopyTree(hKeySrc: HKEY, lpSubKey: LPCSTR, hKeyDest: HKEY): LSTATUS;
+
+@foreign
+func RegCopyTreeW(hKeySrc: HKEY, lpSubKey: LPCWSTR, hKeyDest: HKEY): LSTATUS;
+
+@foreign
+func RegLoadMUIStringA(hKey: HKEY, pszValue: LPCSTR, pszOutBuf: LPSTR, cbOutBuf: DWORD, pcbData: LPDWORD, Flags: DWORD, pszDirectory: LPCSTR): LSTATUS;
+
+@foreign
+func RegLoadMUIString(hKey: HKEY, pszValue: LPCSTR, pszOutBuf: LPSTR, cbOutBuf: DWORD, pcbData: LPDWORD, Flags: DWORD, pszDirectory: LPCSTR): LSTATUS;
+
+@foreign
+func RegLoadMUIStringW(hKey: HKEY, pszValue: LPCWSTR, pszOutBuf: LPWSTR, cbOutBuf: DWORD, pcbData: LPDWORD, Flags: DWORD, pszDirectory: LPCWSTR): LSTATUS;
+
+@foreign
+func RegLoadAppKeyA(lpFile: LPCSTR, phkResult: PHKEY, samDesired: REGSAM, dwOptions: DWORD, Reserved: DWORD): LSTATUS;
+
+@foreign
+func RegLoadAppKey(lpFile: LPCSTR, phkResult: PHKEY, samDesired: REGSAM, dwOptions: DWORD, Reserved: DWORD): LSTATUS;
+
+@foreign
+func RegLoadAppKeyW(lpFile: LPCWSTR, phkResult: PHKEY, samDesired: REGSAM, dwOptions: DWORD, Reserved: DWORD): LSTATUS;
+
+@foreign
+func InitiateSystemShutdownA(lpMachineName: LPSTR, lpMessage: LPSTR, dwTimeout: DWORD, bForceAppsClosed: BOOL, bRebootAfterShutdown: BOOL): BOOL;
+
+@foreign
+func InitiateSystemShutdown(lpMachineName: LPSTR, lpMessage: LPSTR, dwTimeout: DWORD, bForceAppsClosed: BOOL, bRebootAfterShutdown: BOOL): BOOL;
+
+@foreign
+func InitiateSystemShutdownW(lpMachineName: LPWSTR, lpMessage: LPWSTR, dwTimeout: DWORD, bForceAppsClosed: BOOL, bRebootAfterShutdown: BOOL): BOOL;
+
+@foreign
+func AbortSystemShutdownA(lpMachineName: LPSTR): BOOL;
+
+@foreign
+func AbortSystemShutdown(lpMachineName: LPSTR): BOOL;
+
+@foreign
+func AbortSystemShutdownW(lpMachineName: LPWSTR): BOOL;
+
+@foreign
+func InitiateSystemShutdownExA(lpMachineName: LPSTR, lpMessage: LPSTR, dwTimeout: DWORD, bForceAppsClosed: BOOL, bRebootAfterShutdown: BOOL, dwReason: DWORD): BOOL;
+
+@foreign
+func InitiateSystemShutdownEx(lpMachineName: LPSTR, lpMessage: LPSTR, dwTimeout: DWORD, bForceAppsClosed: BOOL, bRebootAfterShutdown: BOOL, dwReason: DWORD): BOOL;
+
+@foreign
+func InitiateSystemShutdownExW(lpMachineName: LPWSTR, lpMessage: LPWSTR, dwTimeout: DWORD, bForceAppsClosed: BOOL, bRebootAfterShutdown: BOOL, dwReason: DWORD): BOOL;
+
+@foreign
+func InitiateShutdownA(lpMachineName: LPSTR, lpMessage: LPSTR, dwGracePeriod: DWORD, dwShutdownFlags: DWORD, dwReason: DWORD): DWORD;
+
+@foreign
+func InitiateShutdown(lpMachineName: LPSTR, lpMessage: LPSTR, dwGracePeriod: DWORD, dwShutdownFlags: DWORD, dwReason: DWORD): DWORD;
+
+@foreign
+func InitiateShutdownW(lpMachineName: LPWSTR, lpMessage: LPWSTR, dwGracePeriod: DWORD, dwShutdownFlags: DWORD, dwReason: DWORD): DWORD;
+
+@foreign
+func CheckForHiberboot(pHiberboot: PBOOLEAN, bClearFlag: BOOLEAN): DWORD;
+
+@foreign
+func RegSaveKeyExA(hKey: HKEY, lpFile: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, Flags: DWORD): LSTATUS;
+
+@foreign
+func RegSaveKeyEx(hKey: HKEY, lpFile: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, Flags: DWORD): LSTATUS;
+
+@foreign
+func RegSaveKeyExW(hKey: HKEY, lpFile: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, Flags: DWORD): LSTATUS;
+

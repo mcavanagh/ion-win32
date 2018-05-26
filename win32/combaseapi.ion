@@ -1,0 +1,330 @@
+#foreign(header = "<combaseapi.h>")
+
+@foreign
+enum tagCOINITBASE {
+    COINITBASE_MULTITHREADED = 0,
+}
+
+@foreign
+typedef COINITBASE = tagCOINITBASE;
+
+@foreign
+func CoGetMalloc(dwMemContext: DWORD, ppMalloc: LPMALLOC*): HRESULT;
+
+@foreign
+func CreateStreamOnHGlobal(hGlobal: HGLOBAL, fDeleteOnRelease: BOOL, ppstm: LPSTREAM*): HRESULT;
+
+@foreign
+func GetHGlobalFromStream(pstm: LPSTREAM, phglobal: HGLOBAL*): HRESULT;
+
+@foreign
+func CoUninitialize();
+
+@foreign
+func CoGetCurrentProcess(): DWORD;
+
+@foreign
+func CoInitializeEx(pvReserved: LPVOID, dwCoInit: DWORD): HRESULT;
+
+@foreign
+func CoGetCallerTID(lpdwTID: LPDWORD): HRESULT;
+
+@foreign
+func CoGetCurrentLogicalThreadId(pguid: GUID*): HRESULT;
+
+@foreign
+func CoGetContextToken(pToken: ULONG_PTR*): HRESULT;
+
+@foreign
+func CoGetDefaultContext(aptType: APTTYPE, riid: IID* const, ppv: void**): HRESULT;
+
+@foreign
+func CoGetApartmentType(pAptType: APTTYPE*, pAptQualifier: APTTYPEQUALIFIER*): HRESULT;
+
+@foreign
+struct tagServerInformation {
+    dwServerPid: DWORD;
+    dwServerTid: DWORD;
+    ui64ServerAddress: UINT64;
+}
+
+@foreign
+typedef ServerInformation = tagServerInformation;
+
+@foreign
+typedef PServerInformation = tagServerInformation*;
+
+@foreign
+func CoDecodeProxy(dwClientPid: DWORD, ui64ProxyAddress: UINT64, pServerInformation: PServerInformation): HRESULT;
+
+@foreign
+struct CO_MTA_USAGE_COOKIE__ {
+    unused: int;
+}
+
+@foreign
+typedef CO_MTA_USAGE_COOKIE = CO_MTA_USAGE_COOKIE__*;
+
+@foreign
+func CoIncrementMTAUsage(pCookie: CO_MTA_USAGE_COOKIE*): HRESULT;
+
+@foreign
+func CoDecrementMTAUsage(Cookie: CO_MTA_USAGE_COOKIE): HRESULT;
+
+@foreign
+func CoAllowUnmarshalerCLSID(clsid: IID* const): HRESULT;
+
+@foreign
+func CoGetObjectContext(riid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func CoGetClassObject(rclsid: IID* const, dwClsContext: DWORD, pvReserved: LPVOID, riid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func CoRegisterClassObject(rclsid: IID* const, pUnk: LPUNKNOWN, dwClsContext: DWORD, flags: DWORD, lpdwRegister: LPDWORD): HRESULT;
+
+@foreign
+func CoRevokeClassObject(dwRegister: DWORD): HRESULT;
+
+@foreign
+func CoResumeClassObjects(): HRESULT;
+
+@foreign
+func CoSuspendClassObjects(): HRESULT;
+
+@foreign
+func CoAddRefServerProcess(): ULONG;
+
+@foreign
+func CoReleaseServerProcess(): ULONG;
+
+@foreign
+func CoGetPSClsid(riid: IID* const, pClsid: CLSID*): HRESULT;
+
+@foreign
+func CoRegisterPSClsid(riid: IID* const, rclsid: IID* const): HRESULT;
+
+@foreign
+func CoRegisterSurrogate(pSurrogate: LPSURROGATE): HRESULT;
+
+@foreign
+func CoGetMarshalSizeMax(pulSize: ULONG*, riid: IID* const, pUnk: LPUNKNOWN, dwDestContext: DWORD, pvDestContext: LPVOID, mshlflags: DWORD): HRESULT;
+
+@foreign
+func CoMarshalInterface(pStm: LPSTREAM, riid: IID* const, pUnk: LPUNKNOWN, dwDestContext: DWORD, pvDestContext: LPVOID, mshlflags: DWORD): HRESULT;
+
+@foreign
+func CoUnmarshalInterface(pStm: LPSTREAM, riid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func CoMarshalHresult(pstm: LPSTREAM, hresult: HRESULT): HRESULT;
+
+@foreign
+func CoUnmarshalHresult(pstm: LPSTREAM, phresult: HRESULT*): HRESULT;
+
+@foreign
+func CoReleaseMarshalData(pStm: LPSTREAM): HRESULT;
+
+@foreign
+func CoDisconnectObject(pUnk: LPUNKNOWN, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoLockObjectExternal(pUnk: LPUNKNOWN, fLock: BOOL, fLastUnlockReleases: BOOL): HRESULT;
+
+@foreign
+func CoGetStandardMarshal(riid: IID* const, pUnk: LPUNKNOWN, dwDestContext: DWORD, pvDestContext: LPVOID, mshlflags: DWORD, ppMarshal: LPMARSHAL*): HRESULT;
+
+@foreign
+func CoGetStdMarshalEx(pUnkOuter: LPUNKNOWN, smexflags: DWORD, ppUnkInner: LPUNKNOWN*): HRESULT;
+
+@foreign
+enum tagSTDMSHLFLAGS {
+    SMEXF_SERVER = 1,
+    SMEXF_HANDLER = 2,
+}
+
+@foreign
+typedef STDMSHLFLAGS = tagSTDMSHLFLAGS;
+
+@foreign
+func CoIsHandlerConnected(pUnk: LPUNKNOWN): BOOL;
+
+@foreign
+func CoMarshalInterThreadInterfaceInStream(riid: IID* const, pUnk: LPUNKNOWN, ppStm: LPSTREAM*): HRESULT;
+
+@foreign
+func CoGetInterfaceAndReleaseStream(pStm: LPSTREAM, iid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func CoCreateFreeThreadedMarshaler(punkOuter: LPUNKNOWN, ppunkMarshal: LPUNKNOWN*): HRESULT;
+
+@foreign
+func CoFreeUnusedLibraries();
+
+@foreign
+func CoFreeUnusedLibrariesEx(dwUnloadDelay: DWORD, dwReserved: DWORD);
+
+@foreign
+func CoDisconnectContext(dwTimeout: DWORD): HRESULT;
+
+@foreign
+func CoInitializeSecurity(pSecDesc: PSECURITY_DESCRIPTOR, cAuthSvc: LONG, asAuthSvc: SOLE_AUTHENTICATION_SERVICE*, pReserved1: void*, dwAuthnLevel: DWORD, dwImpLevel: DWORD, pAuthList: void*, dwCapabilities: DWORD, pReserved3: void*): HRESULT;
+
+@foreign
+func CoGetCallContext(riid: IID* const, ppInterface: void**): HRESULT;
+
+@foreign
+func CoQueryProxyBlanket(pProxy: IUnknown*, pwAuthnSvc: DWORD*, pAuthzSvc: DWORD*, pServerPrincName: LPOLESTR*, pAuthnLevel: DWORD*, pImpLevel: DWORD*, pAuthInfo: RPC_AUTH_IDENTITY_HANDLE*, pCapabilites: DWORD*): HRESULT;
+
+@foreign
+func CoSetProxyBlanket(pProxy: IUnknown*, dwAuthnSvc: DWORD, dwAuthzSvc: DWORD, pServerPrincName: OLECHAR*, dwAuthnLevel: DWORD, dwImpLevel: DWORD, pAuthInfo: RPC_AUTH_IDENTITY_HANDLE, dwCapabilities: DWORD): HRESULT;
+
+@foreign
+func CoCopyProxy(pProxy: IUnknown*, ppCopy: IUnknown**): HRESULT;
+
+@foreign
+func CoQueryClientBlanket(pAuthnSvc: DWORD*, pAuthzSvc: DWORD*, pServerPrincName: LPOLESTR*, pAuthnLevel: DWORD*, pImpLevel: DWORD*, pPrivs: RPC_AUTHZ_HANDLE*, pCapabilities: DWORD*): HRESULT;
+
+@foreign
+func CoImpersonateClient(): HRESULT;
+
+@foreign
+func CoRevertToSelf(): HRESULT;
+
+@foreign
+func CoQueryAuthenticationServices(pcAuthSvc: DWORD*, asAuthSvc: SOLE_AUTHENTICATION_SERVICE**): HRESULT;
+
+@foreign
+func CoSwitchCallContext(pNewObject: IUnknown*, ppOldObject: IUnknown**): HRESULT;
+
+@foreign
+func CoCreateInstance(rclsid: IID* const, pUnkOuter: LPUNKNOWN, dwClsContext: DWORD, riid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func CoCreateInstanceEx(Clsid: IID* const, punkOuter: IUnknown*, dwClsCtx: DWORD, pServerInfo: COSERVERINFO*, dwCount: DWORD, pResults: MULTI_QI*): HRESULT;
+
+@foreign
+func CoRegisterActivationFilter(pActivationFilter: IActivationFilter*): HRESULT;
+
+@foreign
+func CoCreateInstanceFromApp(Clsid: IID* const, punkOuter: IUnknown*, dwClsCtx: DWORD, reserved: PVOID, dwCount: DWORD, pResults: MULTI_QI*): HRESULT;
+
+@foreign
+func CoGetCancelObject(dwThreadId: DWORD, iid: IID* const, ppUnk: void**): HRESULT;
+
+@foreign
+func CoSetCancelObject(pUnk: IUnknown*): HRESULT;
+
+@foreign
+func CoCancelCall(dwThreadId: DWORD, ulTimeout: ULONG): HRESULT;
+
+@foreign
+func CoTestCancel(): HRESULT;
+
+@foreign
+func CoEnableCallCancellation(pReserved: LPVOID): HRESULT;
+
+@foreign
+func CoDisableCallCancellation(pReserved: LPVOID): HRESULT;
+
+@foreign
+func StringFromCLSID(rclsid: IID* const, lplpsz: LPOLESTR*): HRESULT;
+
+@foreign
+func CLSIDFromString(lpsz: LPCOLESTR, pclsid: LPCLSID): HRESULT;
+
+@foreign
+func StringFromIID(rclsid: IID* const, lplpsz: LPOLESTR*): HRESULT;
+
+@foreign
+func IIDFromString(lpsz: LPCOLESTR, lpiid: LPIID): HRESULT;
+
+@foreign
+func ProgIDFromCLSID(clsid: IID* const, lplpszProgID: LPOLESTR*): HRESULT;
+
+@foreign
+func CLSIDFromProgID(lpszProgID: LPCOLESTR, lpclsid: LPCLSID): HRESULT;
+
+@foreign
+func StringFromGUID2(rguid: GUID* const, lpsz: LPOLESTR, cchMax: int): int;
+
+@foreign
+func CoCreateGuid(pguid: GUID*): HRESULT;
+
+@foreign
+func PropVariantCopy(pvarDest: PROPVARIANT*, pvarSrc: PROPVARIANT*): HRESULT;
+
+@foreign
+func PropVariantClear(pvar: PROPVARIANT*): HRESULT;
+
+@foreign
+func FreePropVariantArray(cVariants: ULONG, rgvars: PROPVARIANT*): HRESULT;
+
+@foreign
+func CoWaitForMultipleHandles(dwFlags: DWORD, dwTimeout: DWORD, cHandles: ULONG, pHandles: LPHANDLE, lpdwindex: LPDWORD): HRESULT;
+
+@foreign
+enum tagCOWAIT_FLAGS {
+    COWAIT_DEFAULT = 0,
+    COWAIT_WAITALL = 1,
+    COWAIT_ALERTABLE = 2,
+    COWAIT_INPUTAVAILABLE = 4,
+    COWAIT_DISPATCH_CALLS = 8,
+    COWAIT_DISPATCH_WINDOW_MESSAGES = 16,
+}
+
+@foreign
+typedef COWAIT_FLAGS = tagCOWAIT_FLAGS;
+
+@foreign
+enum CWMO_FLAGS {
+    CWMO_DEFAULT = 0,
+    CWMO_DISPATCH_CALLS = 1,
+    CWMO_DISPATCH_WINDOW_MESSAGES = 2,
+}
+
+@foreign
+func CoWaitForMultipleObjects(dwFlags: DWORD, dwTimeout: DWORD, cHandles: ULONG, pHandles: HANDLE*, lpdwindex: LPDWORD): HRESULT;
+
+@foreign
+func CoGetTreatAsClass(clsidOld: IID* const, pClsidNew: LPCLSID): HRESULT;
+
+@foreign
+func CoInvalidateRemoteMachineBindings(pszMachineName: LPOLESTR): HRESULT;
+
+@foreign
+enum AgileReferenceOptions {
+    AGILEREFERENCE_DEFAULT = 0,
+    AGILEREFERENCE_DELAYEDMARSHAL = 1,
+}
+
+@foreign
+func RoGetAgileReference(options: AgileReferenceOptions, riid: IID* const, pUnk: IUnknown*, ppAgileReference: IAgileReference**): HRESULT;
+
+@foreign
+typedef LPFNGETCLASSOBJECT = func(arg0: IID* const, arg1: IID* const, arg2: LPVOID*): HRESULT;
+
+@foreign
+typedef LPFNCANUNLOADNOW = func(): HRESULT;
+
+@foreign
+func DllGetClassObject(rclsid: IID* const, riid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func DllCanUnloadNow(): HRESULT;
+
+@foreign
+func CoTaskMemAlloc(cb: SIZE_T): LPVOID;
+
+@foreign
+func CoTaskMemRealloc(pv: LPVOID, cb: SIZE_T): LPVOID;
+
+@foreign
+func CoTaskMemFree(pv: LPVOID);
+
+@foreign
+func CoFileTimeNow(lpFileTime: FILETIME*): HRESULT;
+
+@foreign
+func CLSIDFromProgIDEx(lpszProgID: LPCOLESTR, lpclsid: LPCLSID): HRESULT;
+

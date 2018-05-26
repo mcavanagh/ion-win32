@@ -1,0 +1,11 @@
+#foreign(header = "<vcruntime_string.h>")
+
+@foreign
+func wcschr(_Str: wchar*, _Ch: wchar): wchar*;
+
+@foreign
+func wcsrchr(_Str: wchar*, _Ch: wchar): wchar*;
+
+@foreign
+func wcsstr(_Str: wchar*, _SubStr: wchar*): wchar*;
+

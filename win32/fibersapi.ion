@@ -1,0 +1,17 @@
+#foreign(header = "<fibersapi.h>")
+
+@foreign
+func FlsAlloc(lpCallback: PFLS_CALLBACK_FUNCTION): DWORD;
+
+@foreign
+func FlsGetValue(dwFlsIndex: DWORD): PVOID;
+
+@foreign
+func FlsSetValue(dwFlsIndex: DWORD, lpFlsData: PVOID): BOOL;
+
+@foreign
+func FlsFree(dwFlsIndex: DWORD): BOOL;
+
+@foreign
+func IsThreadAFiber(): BOOL;
+

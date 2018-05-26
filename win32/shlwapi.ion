@@ -1,0 +1,1893 @@
+#foreign(header = "<shlwapi.h>")
+
+@foreign
+func StrChrA(pszStart: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrChr(pszStart: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrChrW(pszStart: PCWSTR, wMatch: WCHAR): PWSTR;
+
+@foreign
+func StrChrIA(pszStart: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrChrI(pszStart: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrChrIW(pszStart: PCWSTR, wMatch: WCHAR): PWSTR;
+
+@foreign
+func StrChrNW(pszStart: PCWSTR, wMatch: WCHAR, cchMax: UINT): PWSTR;
+
+@foreign
+func StrChrNIW(pszStart: PCWSTR, wMatch: WCHAR, cchMax: UINT): PWSTR;
+
+@foreign
+func StrCmpNA(psz1: PCSTR, psz2: PCSTR, nChar: int): int;
+
+@foreign
+func StrCmpN(psz1: PCSTR, psz2: PCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNW(psz1: PCWSTR, psz2: PCWSTR, nChar: int): int;
+
+@foreign
+func StrCmpNIA(psz1: PCSTR, psz2: PCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNI(psz1: PCSTR, psz2: PCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNIW(psz1: PCWSTR, psz2: PCWSTR, nChar: int): int;
+
+@foreign
+func StrCSpnA(pszStr: PCSTR, pszSet: PCSTR): int;
+
+@foreign
+func StrCSpn(pszStr: PCSTR, pszSet: PCSTR): int;
+
+@foreign
+func StrCSpnW(pszStr: PCWSTR, pszSet: PCWSTR): int;
+
+@foreign
+func StrCSpnIA(pszStr: PCSTR, pszSet: PCSTR): int;
+
+@foreign
+func StrCSpnI(pszStr: PCSTR, pszSet: PCSTR): int;
+
+@foreign
+func StrCSpnIW(pszStr: PCWSTR, pszSet: PCWSTR): int;
+
+@foreign
+func StrDupA(pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrDup(pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrDupW(pszSrch: PCWSTR): PWSTR;
+
+@foreign
+enum tagSFBS_FLAGS {
+    SFBS_FLAGS_ROUND_TO_NEAREST_DISPLAYED_DIGIT = 1,
+    SFBS_FLAGS_TRUNCATE_UNDISPLAYED_DECIMAL_DIGITS = 2,
+}
+
+@foreign
+typedef SFBS_FLAGS = int;
+
+@foreign
+func StrFormatByteSizeEx(ull: ULONGLONG, flags: SFBS_FLAGS, pszBuf: PWSTR, cchBuf: UINT): HRESULT;
+
+@foreign
+func StrFormatByteSizeA(dw: DWORD, pszBuf: PSTR, cchBuf: UINT): PSTR;
+
+@foreign
+func StrFormatByteSize64A(qdw: LONGLONG, pszBuf: PSTR, cchBuf: UINT): PSTR;
+
+@foreign
+func StrFormatByteSize(dw: DWORD, pszBuf: PSTR, cchBuf: UINT): PSTR;
+
+@foreign
+func StrFormatByteSizeW(qdw: LONGLONG, pszBuf: PWSTR, cchBuf: UINT): PWSTR;
+
+@foreign
+func StrFormatKBSizeW(qdw: LONGLONG, pszBuf: PWSTR, cchBuf: UINT): PWSTR;
+
+@foreign
+func StrFormatKBSize(qdw: LONGLONG, pszBuf: PSTR, cchBuf: UINT): PSTR;
+
+@foreign
+func StrFormatKBSizeA(qdw: LONGLONG, pszBuf: PSTR, cchBuf: UINT): PSTR;
+
+@foreign
+func StrFromTimeIntervalA(pszOut: PSTR, cchMax: UINT, dwTimeMS: DWORD, digits: int): int;
+
+@foreign
+func StrFromTimeInterval(pszOut: PSTR, cchMax: UINT, dwTimeMS: DWORD, digits: int): int;
+
+@foreign
+func StrFromTimeIntervalW(pszOut: PWSTR, cchMax: UINT, dwTimeMS: DWORD, digits: int): int;
+
+@foreign
+func StrIsIntlEqualA(fCaseSens: BOOL, pszString1: PCSTR, pszString2: PCSTR, nChar: int): BOOL;
+
+@foreign
+func StrIsIntlEqual(fCaseSens: BOOL, pszString1: PCSTR, pszString2: PCSTR, nChar: int): BOOL;
+
+@foreign
+func StrIsIntlEqualW(fCaseSens: BOOL, pszString1: PCWSTR, pszString2: PCWSTR, nChar: int): BOOL;
+
+@foreign
+func StrNCatA(psz1: PSTR, psz2: PCSTR, cchMax: int): PSTR;
+
+@foreign
+func StrNCat(psz1: PSTR, psz2: PCSTR, cchMax: int): PSTR;
+
+@foreign
+func StrNCatW(psz1: PWSTR, psz2: PCWSTR, cchMax: int): PWSTR;
+
+@foreign
+func StrPBrkA(psz: PCSTR, pszSet: PCSTR): PSTR;
+
+@foreign
+func StrPBrk(psz: PCSTR, pszSet: PCSTR): PSTR;
+
+@foreign
+func StrPBrkW(psz: PCWSTR, pszSet: PCWSTR): PWSTR;
+
+@foreign
+func StrRChrA(pszStart: PCSTR, pszEnd: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrRChr(pszStart: PCSTR, pszEnd: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrRChrW(pszStart: PCWSTR, pszEnd: PCWSTR, wMatch: WCHAR): PWSTR;
+
+@foreign
+func StrRChrIA(pszStart: PCSTR, pszEnd: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrRChrI(pszStart: PCSTR, pszEnd: PCSTR, wMatch: WORD): PSTR;
+
+@foreign
+func StrRChrIW(pszStart: PCWSTR, pszEnd: PCWSTR, wMatch: WCHAR): PWSTR;
+
+@foreign
+func StrRStrIA(pszSource: PCSTR, pszLast: PCSTR, pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrRStrI(pszSource: PCSTR, pszLast: PCSTR, pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrRStrIW(pszSource: PCWSTR, pszLast: PCWSTR, pszSrch: PCWSTR): PWSTR;
+
+@foreign
+func StrSpnA(psz: PCSTR, pszSet: PCSTR): int;
+
+@foreign
+func StrSpn(psz: PCSTR, pszSet: PCSTR): int;
+
+@foreign
+func StrSpnW(psz: PCWSTR, pszSet: PCWSTR): int;
+
+@foreign
+func StrStrA(pszFirst: PCSTR, pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrStr(pszFirst: PCSTR, pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrStrW(pszFirst: PCWSTR, pszSrch: PCWSTR): PWSTR;
+
+@foreign
+func StrStrIA(pszFirst: PCSTR, pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrStrI(pszFirst: PCSTR, pszSrch: PCSTR): PSTR;
+
+@foreign
+func StrStrIW(pszFirst: PCWSTR, pszSrch: PCWSTR): PWSTR;
+
+@foreign
+func StrStrNW(pszFirst: PCWSTR, pszSrch: PCWSTR, cchMax: UINT): PWSTR;
+
+@foreign
+func StrStrNIW(pszFirst: PCWSTR, pszSrch: PCWSTR, cchMax: UINT): PWSTR;
+
+@foreign
+typedef STIF_FLAGS = int;
+
+@foreign
+func StrToIntA(pszSrc: PCSTR): int;
+
+@foreign
+func StrToInt(pszSrc: PCSTR): int;
+
+@foreign
+func StrToIntW(pszSrc: PCWSTR): int;
+
+@foreign
+func StrToIntExA(pszString: PCSTR, dwFlags: STIF_FLAGS, piRet: int*): BOOL;
+
+@foreign
+func StrToIntEx(pszString: PCSTR, dwFlags: STIF_FLAGS, piRet: int*): BOOL;
+
+@foreign
+func StrToIntExW(pszString: PCWSTR, dwFlags: STIF_FLAGS, piRet: int*): BOOL;
+
+@foreign
+func StrToInt64ExA(pszString: PCSTR, dwFlags: STIF_FLAGS, pllRet: LONGLONG*): BOOL;
+
+@foreign
+func StrToInt64Ex(pszString: PCSTR, dwFlags: STIF_FLAGS, pllRet: LONGLONG*): BOOL;
+
+@foreign
+func StrToInt64ExW(pszString: PCWSTR, dwFlags: STIF_FLAGS, pllRet: LONGLONG*): BOOL;
+
+@foreign
+func StrTrimA(psz: PSTR, pszTrimChars: PCSTR): BOOL;
+
+@foreign
+func StrTrim(psz: PSTR, pszTrimChars: PCSTR): BOOL;
+
+@foreign
+func StrTrimW(psz: PWSTR, pszTrimChars: PCWSTR): BOOL;
+
+@foreign
+func StrCatW(psz1: PWSTR, psz2: PCWSTR): PWSTR;
+
+@foreign
+func StrCmpW(psz1: PCWSTR, psz2: PCWSTR): int;
+
+@foreign
+func StrCmpIW(psz1: PCWSTR, psz2: PCWSTR): int;
+
+@foreign
+func StrCpyW(psz1: PWSTR, psz2: PCWSTR): PWSTR;
+
+@foreign
+func StrCpyNW(pszDst: PWSTR, pszSrc: PCWSTR, cchMax: int): PWSTR;
+
+@foreign
+func StrCatBuffW(pszDest: PWSTR, pszSrc: PCWSTR, cchDestBuffSize: int): PWSTR;
+
+@foreign
+func StrCatBuff(pszDest: PSTR, pszSrc: PCSTR, cchDestBuffSize: int): PSTR;
+
+@foreign
+func StrCatBuffA(pszDest: PSTR, pszSrc: PCSTR, cchDestBuffSize: int): PSTR;
+
+@foreign
+func ChrCmpIA(w1: WORD, w2: WORD): BOOL;
+
+@foreign
+func ChrCmpI(w1: WORD, w2: WORD): BOOL;
+
+@foreign
+func ChrCmpIW(w1: WCHAR, w2: WCHAR): BOOL;
+
+@foreign
+func wvnsprintfA(pszDest: PSTR, cchDest: int, pszFmt: PCSTR, arglist: va_list): int;
+
+@foreign
+func wvnsprintf(pszDest: PSTR, cchDest: int, pszFmt: PCSTR, arglist: va_list): int;
+
+@foreign
+func wvnsprintfW(pszDest: PWSTR, cchDest: int, pszFmt: PCWSTR, arglist: va_list): int;
+
+@foreign
+func wnsprintfA(pszDest: PSTR, cchDest: int, pszFmt: PCSTR, ...): int;
+
+@foreign
+func wnsprintf(pszDest: PSTR, cchDest: int, pszFmt: PCSTR, ...): int;
+
+@foreign
+func wnsprintfW(pszDest: PWSTR, cchDest: int, pszFmt: PCWSTR, ...): int;
+
+@foreign
+func StrRetToStrA(pstr: STRRET*, pidl: LPCITEMIDLIST, ppsz: LPSTR*): HRESULT;
+
+@foreign
+func StrRetToStr(pstr: STRRET*, pidl: LPCITEMIDLIST, ppsz: LPSTR*): HRESULT;
+
+@foreign
+func StrRetToStrW(pstr: STRRET*, pidl: LPCITEMIDLIST, ppsz: LPWSTR*): HRESULT;
+
+@foreign
+func StrRetToBufA(pstr: STRRET*, pidl: LPCITEMIDLIST, pszBuf: LPSTR, cchBuf: UINT): HRESULT;
+
+@foreign
+func StrRetToBuf(pstr: STRRET*, pidl: LPCITEMIDLIST, pszBuf: LPSTR, cchBuf: UINT): HRESULT;
+
+@foreign
+func StrRetToBufW(pstr: STRRET*, pidl: LPCITEMIDLIST, pszBuf: LPWSTR, cchBuf: UINT): HRESULT;
+
+@foreign
+func SHStrDupA(psz: LPCSTR, ppwsz: LPWSTR*): HRESULT;
+
+@foreign
+func SHStrDup(psz: LPCSTR, ppwsz: LPWSTR*): HRESULT;
+
+@foreign
+func SHStrDupW(psz: LPCWSTR, ppwsz: LPWSTR*): HRESULT;
+
+@foreign
+func StrCmpLogicalW(psz1: PCWSTR, psz2: PCWSTR): int;
+
+@foreign
+func StrCatChainW(pszDst: PWSTR, cchDst: DWORD, ichAt: DWORD, pszSrc: PCWSTR): DWORD;
+
+@foreign
+func StrRetToBSTR(pstr: STRRET*, pidl: LPCITEMIDLIST, pbstr: BSTR*): HRESULT;
+
+@foreign
+func SHLoadIndirectString(pszSource: PCWSTR, pszOutBuf: PWSTR, cchOutBuf: UINT, ppvReserved: void**): HRESULT;
+
+@foreign
+func IsCharSpaceA(wch: CHAR): BOOL;
+
+@foreign
+func IsCharSpace(wch: CHAR): BOOL;
+
+@foreign
+func IsCharSpaceW(wch: WCHAR): BOOL;
+
+@foreign
+func StrCmpCA(pszStr1: LPCSTR, pszStr2: LPCSTR): int;
+
+@foreign
+func StrCmpC(pszStr1: LPCSTR, pszStr2: LPCSTR): int;
+
+@foreign
+func StrCmpCW(pszStr1: LPCWSTR, pszStr2: LPCWSTR): int;
+
+@foreign
+func StrCmpICA(pszStr1: LPCSTR, pszStr2: LPCSTR): int;
+
+@foreign
+func StrCmpIC(pszStr1: LPCSTR, pszStr2: LPCSTR): int;
+
+@foreign
+func StrCmpICW(pszStr1: LPCWSTR, pszStr2: LPCWSTR): int;
+
+@foreign
+func StrCmpNCA(pszStr1: LPCSTR, pszStr2: LPCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNC(pszStr1: LPCSTR, pszStr2: LPCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNCW(pszStr1: LPCWSTR, pszStr2: LPCWSTR, nChar: int): int;
+
+@foreign
+func StrCmpNICA(pszStr1: LPCSTR, pszStr2: LPCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNIC(pszStr1: LPCSTR, pszStr2: LPCSTR, nChar: int): int;
+
+@foreign
+func StrCmpNICW(pszStr1: LPCWSTR, pszStr2: LPCWSTR, nChar: int): int;
+
+@foreign
+func IntlStrEqWorkerA(fCaseSens: BOOL, lpString1: LPCSTR, lpString2: LPCSTR, nChar: int): BOOL;
+
+@foreign
+func IntlStrEqWorker(fCaseSens: BOOL, lpString1: LPCSTR, lpString2: LPCSTR, nChar: int): BOOL;
+
+@foreign
+func IntlStrEqWorkerW(fCaseSens: BOOL, lpString1: LPCWSTR, lpString2: LPCWSTR, nChar: int): BOOL;
+
+@foreign
+func PathAddBackslashA(pszPath: LPSTR): LPSTR;
+
+@foreign
+func PathAddBackslash(pszPath: LPSTR): LPSTR;
+
+@foreign
+func PathAddBackslashW(pszPath: LPWSTR): LPWSTR;
+
+@foreign
+func PathAddExtensionA(pszPath: LPSTR, pszExt: LPCSTR): BOOL;
+
+@foreign
+func PathAddExtension(pszPath: LPSTR, pszExt: LPCSTR): BOOL;
+
+@foreign
+func PathAddExtensionW(pszPath: LPWSTR, pszExt: LPCWSTR): BOOL;
+
+@foreign
+func PathAppendA(pszPath: LPSTR, pszMore: LPCSTR): BOOL;
+
+@foreign
+func PathAppend(pszPath: LPSTR, pszMore: LPCSTR): BOOL;
+
+@foreign
+func PathAppendW(pszPath: LPWSTR, pszMore: LPCWSTR): BOOL;
+
+@foreign
+func PathBuildRootA(pszRoot: LPSTR, iDrive: int): LPSTR;
+
+@foreign
+func PathBuildRoot(pszRoot: LPSTR, iDrive: int): LPSTR;
+
+@foreign
+func PathBuildRootW(pszRoot: LPWSTR, iDrive: int): LPWSTR;
+
+@foreign
+func PathCanonicalizeA(pszBuf: LPSTR, pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathCanonicalize(pszBuf: LPSTR, pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathCanonicalizeW(pszBuf: LPWSTR, pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathCombineA(pszDest: LPSTR, pszDir: LPCSTR, pszFile: LPCSTR): LPSTR;
+
+@foreign
+func PathCombine(pszDest: LPSTR, pszDir: LPCSTR, pszFile: LPCSTR): LPSTR;
+
+@foreign
+func PathCombineW(pszDest: LPWSTR, pszDir: LPCWSTR, pszFile: LPCWSTR): LPWSTR;
+
+@foreign
+func PathCompactPathA(hDC: HDC, pszPath: LPSTR, dx: UINT): BOOL;
+
+@foreign
+func PathCompactPath(hDC: HDC, pszPath: LPSTR, dx: UINT): BOOL;
+
+@foreign
+func PathCompactPathW(hDC: HDC, pszPath: LPWSTR, dx: UINT): BOOL;
+
+@foreign
+func PathCompactPathExA(pszOut: LPSTR, pszSrc: LPCSTR, cchMax: UINT, dwFlags: DWORD): BOOL;
+
+@foreign
+func PathCompactPathEx(pszOut: LPSTR, pszSrc: LPCSTR, cchMax: UINT, dwFlags: DWORD): BOOL;
+
+@foreign
+func PathCompactPathExW(pszOut: LPWSTR, pszSrc: LPCWSTR, cchMax: UINT, dwFlags: DWORD): BOOL;
+
+@foreign
+func PathCommonPrefixA(pszFile1: LPCSTR, pszFile2: LPCSTR, achPath: LPSTR): int;
+
+@foreign
+func PathCommonPrefix(pszFile1: LPCSTR, pszFile2: LPCSTR, achPath: LPSTR): int;
+
+@foreign
+func PathCommonPrefixW(pszFile1: LPCWSTR, pszFile2: LPCWSTR, achPath: LPWSTR): int;
+
+@foreign
+func PathFileExistsA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathFileExists(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathFileExistsW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathFindExtensionA(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathFindExtension(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathFindExtensionW(pszPath: LPCWSTR): LPWSTR;
+
+@foreign
+func PathFindFileNameA(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathFindFileName(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathFindFileNameW(pszPath: LPCWSTR): LPWSTR;
+
+@foreign
+func PathFindNextComponentA(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathFindNextComponent(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathFindNextComponentW(pszPath: LPCWSTR): LPWSTR;
+
+@foreign
+func PathFindOnPathA(pszPath: LPSTR, ppszOtherDirs: PZPCSTR): BOOL;
+
+@foreign
+func PathFindOnPath(pszPath: LPSTR, ppszOtherDirs: PZPCSTR): BOOL;
+
+@foreign
+func PathFindOnPathW(pszPath: LPWSTR, ppszOtherDirs: PZPCWSTR): BOOL;
+
+@foreign
+func PathFindSuffixArrayA(pszPath: LPCSTR, apszSuffix: LPCSTR*, iArraySize: int): LPCSTR;
+
+@foreign
+func PathFindSuffixArray(pszPath: LPCSTR, apszSuffix: LPCSTR*, iArraySize: int): LPCSTR;
+
+@foreign
+func PathFindSuffixArrayW(pszPath: LPCWSTR, apszSuffix: LPCWSTR*, iArraySize: int): LPCWSTR;
+
+@foreign
+func PathGetArgsA(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathGetArgs(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathGetArgsW(pszPath: LPCWSTR): LPWSTR;
+
+@foreign
+func PathIsLFNFileSpecA(pszName: LPCSTR): BOOL;
+
+@foreign
+func PathIsLFNFileSpec(pszName: LPCSTR): BOOL;
+
+@foreign
+func PathIsLFNFileSpecW(pszName: LPCWSTR): BOOL;
+
+@foreign
+func PathGetCharTypeA(ch: UCHAR): UINT;
+
+@foreign
+func PathGetCharType(ch: UCHAR): UINT;
+
+@foreign
+func PathGetCharTypeW(ch: WCHAR): UINT;
+
+@foreign
+func PathGetDriveNumberA(pszPath: LPCSTR): int;
+
+@foreign
+func PathGetDriveNumber(pszPath: LPCSTR): int;
+
+@foreign
+func PathGetDriveNumberW(pszPath: LPCWSTR): int;
+
+@foreign
+func PathIsDirectoryA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsDirectory(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsDirectoryW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsDirectoryEmptyA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsDirectoryEmpty(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsDirectoryEmptyW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsFileSpecA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsFileSpec(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsFileSpecW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsPrefixA(pszPrefix: LPCSTR, pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsPrefix(pszPrefix: LPCSTR, pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsPrefixW(pszPrefix: LPCWSTR, pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsRelativeA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsRelative(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsRelativeW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsRootA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsRoot(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsRootW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsSameRootA(pszPath1: LPCSTR, pszPath2: LPCSTR): BOOL;
+
+@foreign
+func PathIsSameRoot(pszPath1: LPCSTR, pszPath2: LPCSTR): BOOL;
+
+@foreign
+func PathIsSameRootW(pszPath1: LPCWSTR, pszPath2: LPCWSTR): BOOL;
+
+@foreign
+func PathIsUNCA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsUNC(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsUNCW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsNetworkPathA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsNetworkPath(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsNetworkPathW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsUNCServerA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsUNCServer(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsUNCServerW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsUNCServerShareA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsUNCServerShare(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsUNCServerShareW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsContentTypeA(pszPath: LPCSTR, pszContentType: LPCSTR): BOOL;
+
+@foreign
+func PathIsContentType(pszPath: LPCSTR, pszContentType: LPCSTR): BOOL;
+
+@foreign
+func PathIsContentTypeW(pszPath: LPCWSTR, pszContentType: LPCWSTR): BOOL;
+
+@foreign
+func PathIsURLA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsURL(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathIsURLW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathMakePrettyA(pszPath: LPSTR): BOOL;
+
+@foreign
+func PathMakePretty(pszPath: LPSTR): BOOL;
+
+@foreign
+func PathMakePrettyW(pszPath: LPWSTR): BOOL;
+
+@foreign
+func PathMatchSpecA(pszFile: LPCSTR, pszSpec: LPCSTR): BOOL;
+
+@foreign
+func PathMatchSpec(pszFile: LPCSTR, pszSpec: LPCSTR): BOOL;
+
+@foreign
+func PathMatchSpecW(pszFile: LPCWSTR, pszSpec: LPCWSTR): BOOL;
+
+@foreign
+func PathMatchSpecExA(pszFile: LPCSTR, pszSpec: LPCSTR, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathMatchSpecEx(pszFile: LPCSTR, pszSpec: LPCSTR, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathMatchSpecExW(pszFile: LPCWSTR, pszSpec: LPCWSTR, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathParseIconLocationA(pszIconFile: LPSTR): int;
+
+@foreign
+func PathParseIconLocation(pszIconFile: LPSTR): int;
+
+@foreign
+func PathParseIconLocationW(pszIconFile: LPWSTR): int;
+
+@foreign
+func PathQuoteSpacesA(lpsz: LPSTR): BOOL;
+
+@foreign
+func PathQuoteSpaces(lpsz: LPSTR): BOOL;
+
+@foreign
+func PathQuoteSpacesW(lpsz: LPWSTR): BOOL;
+
+@foreign
+func PathRelativePathToA(pszPath: LPSTR, pszFrom: LPCSTR, dwAttrFrom: DWORD, pszTo: LPCSTR, dwAttrTo: DWORD): BOOL;
+
+@foreign
+func PathRelativePathTo(pszPath: LPSTR, pszFrom: LPCSTR, dwAttrFrom: DWORD, pszTo: LPCSTR, dwAttrTo: DWORD): BOOL;
+
+@foreign
+func PathRelativePathToW(pszPath: LPWSTR, pszFrom: LPCWSTR, dwAttrFrom: DWORD, pszTo: LPCWSTR, dwAttrTo: DWORD): BOOL;
+
+@foreign
+func PathRemoveArgsA(pszPath: LPSTR);
+
+@foreign
+func PathRemoveArgs(pszPath: LPSTR);
+
+@foreign
+func PathRemoveArgsW(pszPath: LPWSTR);
+
+@foreign
+func PathRemoveBackslashA(pszPath: LPSTR): LPSTR;
+
+@foreign
+func PathRemoveBackslash(pszPath: LPSTR): LPSTR;
+
+@foreign
+func PathRemoveBackslashW(pszPath: LPWSTR): LPWSTR;
+
+@foreign
+func PathRemoveBlanksA(pszPath: LPSTR);
+
+@foreign
+func PathRemoveBlanks(pszPath: LPSTR);
+
+@foreign
+func PathRemoveBlanksW(pszPath: LPWSTR);
+
+@foreign
+func PathRemoveExtensionA(pszPath: LPSTR);
+
+@foreign
+func PathRemoveExtension(pszPath: LPSTR);
+
+@foreign
+func PathRemoveExtensionW(pszPath: LPWSTR);
+
+@foreign
+func PathRemoveFileSpecA(pszPath: LPSTR): BOOL;
+
+@foreign
+func PathRemoveFileSpec(pszPath: LPSTR): BOOL;
+
+@foreign
+func PathRemoveFileSpecW(pszPath: LPWSTR): BOOL;
+
+@foreign
+func PathRenameExtensionA(pszPath: LPSTR, pszExt: LPCSTR): BOOL;
+
+@foreign
+func PathRenameExtension(pszPath: LPSTR, pszExt: LPCSTR): BOOL;
+
+@foreign
+func PathRenameExtensionW(pszPath: LPWSTR, pszExt: LPCWSTR): BOOL;
+
+@foreign
+func PathSearchAndQualifyA(pszPath: LPCSTR, pszBuf: LPSTR, cchBuf: UINT): BOOL;
+
+@foreign
+func PathSearchAndQualify(pszPath: LPCSTR, pszBuf: LPSTR, cchBuf: UINT): BOOL;
+
+@foreign
+func PathSearchAndQualifyW(pszPath: LPCWSTR, pszBuf: LPWSTR, cchBuf: UINT): BOOL;
+
+@foreign
+func PathSetDlgItemPathA(hDlg: HWND, id: int, pszPath: LPCSTR);
+
+@foreign
+func PathSetDlgItemPath(hDlg: HWND, id: int, pszPath: LPCSTR);
+
+@foreign
+func PathSetDlgItemPathW(hDlg: HWND, id: int, pszPath: LPCWSTR);
+
+@foreign
+func PathSkipRootA(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathSkipRoot(pszPath: LPCSTR): LPSTR;
+
+@foreign
+func PathSkipRootW(pszPath: LPCWSTR): LPWSTR;
+
+@foreign
+func PathStripPathA(pszPath: LPSTR);
+
+@foreign
+func PathStripPath(pszPath: LPSTR);
+
+@foreign
+func PathStripPathW(pszPath: LPWSTR);
+
+@foreign
+func PathStripToRootA(pszPath: LPSTR): BOOL;
+
+@foreign
+func PathStripToRoot(pszPath: LPSTR): BOOL;
+
+@foreign
+func PathStripToRootW(pszPath: LPWSTR): BOOL;
+
+@foreign
+func PathUnquoteSpacesA(lpsz: LPSTR): BOOL;
+
+@foreign
+func PathUnquoteSpaces(lpsz: LPSTR): BOOL;
+
+@foreign
+func PathUnquoteSpacesW(lpsz: LPWSTR): BOOL;
+
+@foreign
+func PathMakeSystemFolderA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathMakeSystemFolder(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathMakeSystemFolderW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathUnmakeSystemFolderA(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathUnmakeSystemFolder(pszPath: LPCSTR): BOOL;
+
+@foreign
+func PathUnmakeSystemFolderW(pszPath: LPCWSTR): BOOL;
+
+@foreign
+func PathIsSystemFolderA(pszPath: LPCSTR, dwAttrb: DWORD): BOOL;
+
+@foreign
+func PathIsSystemFolder(pszPath: LPCSTR, dwAttrb: DWORD): BOOL;
+
+@foreign
+func PathIsSystemFolderW(pszPath: LPCWSTR, dwAttrb: DWORD): BOOL;
+
+@foreign
+func PathUndecorateA(pszPath: LPSTR);
+
+@foreign
+func PathUndecorate(pszPath: LPSTR);
+
+@foreign
+func PathUndecorateW(pszPath: LPWSTR);
+
+@foreign
+func PathUnExpandEnvStringsA(pszPath: LPCSTR, pszBuf: LPSTR, cchBuf: UINT): BOOL;
+
+@foreign
+func PathUnExpandEnvStrings(pszPath: LPCSTR, pszBuf: LPSTR, cchBuf: UINT): BOOL;
+
+@foreign
+func PathUnExpandEnvStringsW(pszPath: LPCWSTR, pszBuf: LPWSTR, cchBuf: UINT): BOOL;
+
+@foreign
+enum URL_SCHEME {
+    URL_SCHEME_INVALID = -1,
+    URL_SCHEME_UNKNOWN = 0,
+    URL_SCHEME_FTP,
+    URL_SCHEME_HTTP,
+    URL_SCHEME_GOPHER,
+    URL_SCHEME_MAILTO,
+    URL_SCHEME_NEWS,
+    URL_SCHEME_NNTP,
+    URL_SCHEME_TELNET,
+    URL_SCHEME_WAIS,
+    URL_SCHEME_FILE,
+    URL_SCHEME_MK,
+    URL_SCHEME_HTTPS,
+    URL_SCHEME_SHELL,
+    URL_SCHEME_SNEWS,
+    URL_SCHEME_LOCAL,
+    URL_SCHEME_JAVASCRIPT,
+    URL_SCHEME_VBSCRIPT,
+    URL_SCHEME_ABOUT,
+    URL_SCHEME_RES,
+    URL_SCHEME_MSSHELLROOTED,
+    URL_SCHEME_MSSHELLIDLIST,
+    URL_SCHEME_MSHELP,
+    URL_SCHEME_MSSHELLDEVICE,
+    URL_SCHEME_WILDCARD,
+    URL_SCHEME_SEARCH_MS,
+    URL_SCHEME_SEARCH,
+    URL_SCHEME_KNOWNFOLDER,
+    URL_SCHEME_MAXVALUE,
+}
+
+@foreign
+enum URL_PART {
+    URL_PART_NONE = 0,
+    URL_PART_SCHEME = 1,
+    URL_PART_HOSTNAME,
+    URL_PART_USERNAME,
+    URL_PART_PASSWORD,
+    URL_PART_PORT,
+    URL_PART_QUERY,
+}
+
+@foreign
+enum URLIS {
+    URLIS_URL,
+    URLIS_OPAQUE,
+    URLIS_NOHISTORY,
+    URLIS_FILEURL,
+    URLIS_APPLIABLE,
+    URLIS_DIRECTORY,
+    URLIS_HASQUERY,
+}
+
+@foreign
+func UrlCompareA(psz1: PCSTR, psz2: PCSTR, fIgnoreSlash: BOOL): int;
+
+@foreign
+func UrlCompare(psz1: PCSTR, psz2: PCSTR, fIgnoreSlash: BOOL): int;
+
+@foreign
+func UrlCompareW(psz1: PCWSTR, psz2: PCWSTR, fIgnoreSlash: BOOL): int;
+
+@foreign
+func UrlCombineA(pszBase: PCSTR, pszRelative: PCSTR, pszCombined: PSTR, pcchCombined: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCombine(pszBase: PCSTR, pszRelative: PCSTR, pszCombined: PSTR, pcchCombined: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCombineW(pszBase: PCWSTR, pszRelative: PCWSTR, pszCombined: PWSTR, pcchCombined: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCanonicalizeA(pszUrl: PCSTR, pszCanonicalized: PSTR, pcchCanonicalized: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCanonicalize(pszUrl: PCSTR, pszCanonicalized: PSTR, pcchCanonicalized: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCanonicalizeW(pszUrl: PCWSTR, pszCanonicalized: PWSTR, pcchCanonicalized: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlIsOpaqueA(pszURL: PCSTR): BOOL;
+
+@foreign
+func UrlIsOpaque(pszURL: PCSTR): BOOL;
+
+@foreign
+func UrlIsOpaqueW(pszURL: PCWSTR): BOOL;
+
+@foreign
+func UrlIsNoHistoryA(pszURL: PCSTR): BOOL;
+
+@foreign
+func UrlIsNoHistory(pszURL: PCSTR): BOOL;
+
+@foreign
+func UrlIsNoHistoryW(pszURL: PCWSTR): BOOL;
+
+@foreign
+func UrlIsA(pszUrl: PCSTR, UrlIs: URLIS): BOOL;
+
+@foreign
+func UrlIs(pszUrl: PCSTR, UrlIs: URLIS): BOOL;
+
+@foreign
+func UrlIsW(pszUrl: PCWSTR, UrlIs: URLIS): BOOL;
+
+@foreign
+func UrlGetLocationA(pszURL: PCSTR): LPCSTR;
+
+@foreign
+func UrlGetLocation(pszURL: PCSTR): LPCSTR;
+
+@foreign
+func UrlGetLocationW(pszURL: PCWSTR): LPCWSTR;
+
+@foreign
+func UrlUnescapeA(pszUrl: PSTR, pszUnescaped: PSTR, pcchUnescaped: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlUnescape(pszUrl: PSTR, pszUnescaped: PSTR, pcchUnescaped: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlUnescapeW(pszUrl: PWSTR, pszUnescaped: PWSTR, pcchUnescaped: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlEscapeA(pszUrl: PCSTR, pszEscaped: PSTR, pcchEscaped: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlEscape(pszUrl: PCSTR, pszEscaped: PSTR, pcchEscaped: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlEscapeW(pszUrl: PCWSTR, pszEscaped: PWSTR, pcchEscaped: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCreateFromPathA(pszPath: PCSTR, pszUrl: PSTR, pcchUrl: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCreateFromPath(pszPath: PCSTR, pszUrl: PSTR, pcchUrl: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlCreateFromPathW(pszPath: PCWSTR, pszUrl: PWSTR, pcchUrl: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathCreateFromUrlA(pszUrl: PCSTR, pszPath: PSTR, pcchPath: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathCreateFromUrl(pszUrl: PCSTR, pszPath: PSTR, pcchPath: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathCreateFromUrlW(pszUrl: PCWSTR, pszPath: PWSTR, pcchPath: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func PathCreateFromUrlAlloc(pszIn: PCWSTR, ppszOut: PWSTR*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlHashA(pszUrl: PCSTR, pbHash: BYTE*, cbHash: DWORD): HRESULT;
+
+@foreign
+func UrlHash(pszUrl: PCSTR, pbHash: BYTE*, cbHash: DWORD): HRESULT;
+
+@foreign
+func UrlHashW(pszUrl: PCWSTR, pbHash: BYTE*, cbHash: DWORD): HRESULT;
+
+@foreign
+func UrlGetPartW(pszIn: PCWSTR, pszOut: PWSTR, pcchOut: DWORD*, dwPart: DWORD, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlGetPart(pszIn: PCSTR, pszOut: PSTR, pcchOut: DWORD*, dwPart: DWORD, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlGetPartA(pszIn: PCSTR, pszOut: PSTR, pcchOut: DWORD*, dwPart: DWORD, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlApplySchemeA(pszIn: PCSTR, pszOut: PSTR, pcchOut: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlApplyScheme(pszIn: PCSTR, pszOut: PSTR, pcchOut: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UrlApplySchemeW(pszIn: PCWSTR, pszOut: PWSTR, pcchOut: DWORD*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func HashData(pbData: BYTE*, cbData: DWORD, pbHash: BYTE*, cbHash: DWORD): HRESULT;
+
+@foreign
+func UrlFixupW(pcszUrl: PCWSTR, pszTranslatedUrl: PWSTR, cchMax: DWORD): HRESULT;
+
+@foreign
+struct tagPARSEDURLA {
+    cbSize: DWORD;
+    pszProtocol: LPCSTR;
+    cchProtocol: UINT;
+    pszSuffix: LPCSTR;
+    cchSuffix: UINT;
+    nScheme: UINT;
+}
+
+@foreign
+typedef PARSEDURLA = tagPARSEDURLA;
+
+@foreign
+typedef PPARSEDURLA = tagPARSEDURLA*;
+
+@foreign
+struct tagPARSEDURLW {
+    cbSize: DWORD;
+    pszProtocol: LPCWSTR;
+    cchProtocol: UINT;
+    pszSuffix: LPCWSTR;
+    cchSuffix: UINT;
+    nScheme: UINT;
+}
+
+@foreign
+typedef PARSEDURLW = tagPARSEDURLW;
+
+@foreign
+typedef PPARSEDURLW = tagPARSEDURLW*;
+
+@foreign
+typedef PARSEDURL = PARSEDURLA;
+
+@foreign
+typedef PPARSEDURL = PPARSEDURLA;
+
+@foreign
+func ParseURLA(pcszURL: LPCSTR, ppu: PARSEDURLA*): HRESULT;
+
+@foreign
+func ParseURL(pcszURL: LPCSTR, ppu: PARSEDURLA*): HRESULT;
+
+@foreign
+func ParseURLW(pcszURL: LPCWSTR, ppu: PARSEDURLW*): HRESULT;
+
+@foreign
+func SHDeleteEmptyKeyA(hkey: HKEY, pszSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func SHDeleteEmptyKey(hkey: HKEY, pszSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func SHDeleteEmptyKeyW(hkey: HKEY, pszSubKey: LPCWSTR): LSTATUS;
+
+@foreign
+func SHDeleteKeyA(hkey: HKEY, pszSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func SHDeleteKey(hkey: HKEY, pszSubKey: LPCSTR): LSTATUS;
+
+@foreign
+func SHDeleteKeyW(hkey: HKEY, pszSubKey: LPCWSTR): LSTATUS;
+
+@foreign
+func SHRegDuplicateHKey(hkey: HKEY): HKEY;
+
+@foreign
+func SHDeleteValueA(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR): LSTATUS;
+
+@foreign
+func SHDeleteValue(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR): LSTATUS;
+
+@foreign
+func SHDeleteValueW(hkey: HKEY, pszSubKey: LPCWSTR, pszValue: LPCWSTR): LSTATUS;
+
+@foreign
+func SHGetValueA(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHGetValue(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHGetValueW(hkey: HKEY, pszSubKey: LPCWSTR, pszValue: LPCWSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHSetValueA(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR, dwType: DWORD, pvData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+func SHSetValue(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR, dwType: DWORD, pvData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+func SHSetValueW(hkey: HKEY, pszSubKey: LPCWSTR, pszValue: LPCWSTR, dwType: DWORD, pvData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+typedef SRRF = int;
+
+@foreign
+func SHRegGetValueA(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR, srrfFlags: SRRF, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHRegGetValue(hkey: HKEY, pszSubKey: LPCSTR, pszValue: LPCSTR, srrfFlags: SRRF, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHRegGetValueW(hkey: HKEY, pszSubKey: LPCWSTR, pszValue: LPCWSTR, srrfFlags: SRRF, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHRegSetValue(hkey: HKEY, pszSubKey: LPCWSTR, pszValue: LPCWSTR, srrfFlags: SRRF, dwType: DWORD, pvData: LPCVOID, cbData: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetValueFromHKCUHKLM(pwszKey: PCWSTR, pwszValue: PCWSTR, srrfFlags: SRRF, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHRegGetBoolValueFromHKCUHKLM(pszKey: PCWSTR, pszValue: PCWSTR, fDefault: BOOL): BOOL;
+
+@foreign
+func SHQueryValueExA(hkey: HKEY, pszValue: LPCSTR, pdwReserved: DWORD*, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHQueryValueEx(hkey: HKEY, pszValue: LPCSTR, pdwReserved: DWORD*, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHQueryValueExW(hkey: HKEY, pszValue: LPCWSTR, pdwReserved: DWORD*, pdwType: DWORD*, pvData: void*, pcbData: DWORD*): LSTATUS;
+
+@foreign
+func SHEnumKeyExA(hkey: HKEY, dwIndex: DWORD, pszName: LPSTR, pcchName: LPDWORD): LSTATUS;
+
+@foreign
+func SHEnumKeyEx(hkey: HKEY, dwIndex: DWORD, pszName: LPSTR, pcchName: LPDWORD): LSTATUS;
+
+@foreign
+func SHEnumKeyExW(hkey: HKEY, dwIndex: DWORD, pszName: LPWSTR, pcchName: LPDWORD): LSTATUS;
+
+@foreign
+func SHEnumValueA(hkey: HKEY, dwIndex: DWORD, pszValueName: PSTR, pcchValueName: LPDWORD, pdwType: LPDWORD, pvData: void*, pcbData: LPDWORD): LSTATUS;
+
+@foreign
+func SHEnumValue(hkey: HKEY, dwIndex: DWORD, pszValueName: PSTR, pcchValueName: LPDWORD, pdwType: LPDWORD, pvData: void*, pcbData: LPDWORD): LSTATUS;
+
+@foreign
+func SHEnumValueW(hkey: HKEY, dwIndex: DWORD, pszValueName: PWSTR, pcchValueName: LPDWORD, pdwType: LPDWORD, pvData: void*, pcbData: LPDWORD): LSTATUS;
+
+@foreign
+func SHQueryInfoKeyA(hkey: HKEY, pcSubKeys: LPDWORD, pcchMaxSubKeyLen: LPDWORD, pcValues: LPDWORD, pcchMaxValueNameLen: LPDWORD): LSTATUS;
+
+@foreign
+func SHQueryInfoKey(hkey: HKEY, pcSubKeys: LPDWORD, pcchMaxSubKeyLen: LPDWORD, pcValues: LPDWORD, pcchMaxValueNameLen: LPDWORD): LSTATUS;
+
+@foreign
+func SHQueryInfoKeyW(hkey: HKEY, pcSubKeys: LPDWORD, pcchMaxSubKeyLen: LPDWORD, pcValues: LPDWORD, pcchMaxValueNameLen: LPDWORD): LSTATUS;
+
+@foreign
+func SHCopyKeyA(hkeySrc: HKEY, pszSrcSubKey: LPCSTR, hkeyDest: HKEY, fReserved: DWORD): LSTATUS;
+
+@foreign
+func SHCopyKey(hkeySrc: HKEY, pszSrcSubKey: LPCSTR, hkeyDest: HKEY, fReserved: DWORD): LSTATUS;
+
+@foreign
+func SHCopyKeyW(hkeySrc: HKEY, pszSrcSubKey: LPCWSTR, hkeyDest: HKEY, fReserved: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetPathA(hKey: HKEY, pcszSubKey: LPCSTR, pcszValue: LPCSTR, pszPath: LPSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetPath(hKey: HKEY, pcszSubKey: LPCSTR, pcszValue: LPCSTR, pszPath: LPSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetPathW(hKey: HKEY, pcszSubKey: LPCWSTR, pcszValue: LPCWSTR, pszPath: LPWSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegSetPathA(hKey: HKEY, pcszSubKey: LPCSTR, pcszValue: LPCSTR, pcszPath: LPCSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegSetPath(hKey: HKEY, pcszSubKey: LPCSTR, pcszValue: LPCSTR, pcszPath: LPCSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegSetPathW(hKey: HKEY, pcszSubKey: LPCWSTR, pcszValue: LPCWSTR, pcszPath: LPCWSTR, dwFlags: DWORD): LSTATUS;
+
+@foreign
+enum SHREGDEL_FLAGS {
+    SHREGDEL_DEFAULT = 0,
+    SHREGDEL_HKCU = 1,
+    SHREGDEL_HKLM = 16,
+    SHREGDEL_BOTH = 17,
+}
+
+@foreign
+enum SHREGENUM_FLAGS {
+    SHREGENUM_DEFAULT = 0,
+    SHREGENUM_HKCU = 1,
+    SHREGENUM_HKLM = 16,
+    SHREGENUM_BOTH = 17,
+}
+
+@foreign
+typedef HUSKEY = HANDLE;
+
+@foreign
+typedef PHUSKEY = HUSKEY*;
+
+@foreign
+func SHRegCreateUSKeyA(pszPath: LPCSTR, samDesired: REGSAM, hRelativeUSKey: HUSKEY, phNewUSKey: PHUSKEY, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegCreateUSKey(pszPath: LPCSTR, samDesired: REGSAM, hRelativeUSKey: HUSKEY, phNewUSKey: PHUSKEY, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegCreateUSKeyW(pwzPath: LPCWSTR, samDesired: REGSAM, hRelativeUSKey: HUSKEY, phNewUSKey: PHUSKEY, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegOpenUSKeyA(pszPath: LPCSTR, samDesired: REGSAM, hRelativeUSKey: HUSKEY, phNewUSKey: PHUSKEY, fIgnoreHKCU: BOOL): LSTATUS;
+
+@foreign
+func SHRegOpenUSKey(pszPath: LPCSTR, samDesired: REGSAM, hRelativeUSKey: HUSKEY, phNewUSKey: PHUSKEY, fIgnoreHKCU: BOOL): LSTATUS;
+
+@foreign
+func SHRegOpenUSKeyW(pwzPath: LPCWSTR, samDesired: REGSAM, hRelativeUSKey: HUSKEY, phNewUSKey: PHUSKEY, fIgnoreHKCU: BOOL): LSTATUS;
+
+@foreign
+func SHRegQueryUSValueA(hUSKey: HUSKEY, pszValue: LPCSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*, fIgnoreHKCU: BOOL, pvDefaultData: void*, dwDefaultDataSize: DWORD): LSTATUS;
+
+@foreign
+func SHRegQueryUSValue(hUSKey: HUSKEY, pszValue: LPCSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*, fIgnoreHKCU: BOOL, pvDefaultData: void*, dwDefaultDataSize: DWORD): LSTATUS;
+
+@foreign
+func SHRegQueryUSValueW(hUSKey: HUSKEY, pszValue: LPCWSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*, fIgnoreHKCU: BOOL, pvDefaultData: void*, dwDefaultDataSize: DWORD): LSTATUS;
+
+@foreign
+func SHRegWriteUSValueA(hUSKey: HUSKEY, pszValue: LPCSTR, dwType: DWORD, pvData: void const*, cbData: DWORD, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegWriteUSValue(hUSKey: HUSKEY, pszValue: LPCSTR, dwType: DWORD, pvData: void const*, cbData: DWORD, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegWriteUSValueW(hUSKey: HUSKEY, pwzValue: LPCWSTR, dwType: DWORD, pvData: void const*, cbData: DWORD, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegDeleteUSValueA(hUSKey: HUSKEY, pszValue: LPCSTR, delRegFlags: SHREGDEL_FLAGS): LSTATUS;
+
+@foreign
+func SHRegDeleteUSValue(hUSKey: HUSKEY, pszValue: LPCSTR, delRegFlags: SHREGDEL_FLAGS): LSTATUS;
+
+@foreign
+func SHRegDeleteUSValueW(hUSKey: HUSKEY, pwzValue: LPCWSTR, delRegFlags: SHREGDEL_FLAGS): LSTATUS;
+
+@foreign
+func SHRegDeleteEmptyUSKeyW(hUSKey: HUSKEY, pwzSubKey: LPCWSTR, delRegFlags: SHREGDEL_FLAGS): LSTATUS;
+
+@foreign
+func SHRegDeleteEmptyUSKey(hUSKey: HUSKEY, pszSubKey: LPCSTR, delRegFlags: SHREGDEL_FLAGS): LSTATUS;
+
+@foreign
+func SHRegDeleteEmptyUSKeyA(hUSKey: HUSKEY, pszSubKey: LPCSTR, delRegFlags: SHREGDEL_FLAGS): LSTATUS;
+
+@foreign
+func SHRegEnumUSKeyA(hUSKey: HUSKEY, dwIndex: DWORD, pszName: LPSTR, pcchName: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegEnumUSKey(hUSKey: HUSKEY, dwIndex: DWORD, pszName: LPSTR, pcchName: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegEnumUSKeyW(hUSKey: HUSKEY, dwIndex: DWORD, pwzName: LPWSTR, pcchName: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegEnumUSValueA(hUSkey: HUSKEY, dwIndex: DWORD, pszValueName: LPSTR, pcchValueName: LPDWORD, pdwType: LPDWORD, pvData: void*, pcbData: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegEnumUSValue(hUSkey: HUSKEY, dwIndex: DWORD, pszValueName: LPSTR, pcchValueName: LPDWORD, pdwType: LPDWORD, pvData: void*, pcbData: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegEnumUSValueW(hUSkey: HUSKEY, dwIndex: DWORD, pszValueName: LPWSTR, pcchValueName: LPDWORD, pdwType: LPDWORD, pvData: void*, pcbData: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegQueryInfoUSKeyA(hUSKey: HUSKEY, pcSubKeys: LPDWORD, pcchMaxSubKeyLen: LPDWORD, pcValues: LPDWORD, pcchMaxValueNameLen: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegQueryInfoUSKey(hUSKey: HUSKEY, pcSubKeys: LPDWORD, pcchMaxSubKeyLen: LPDWORD, pcValues: LPDWORD, pcchMaxValueNameLen: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegQueryInfoUSKeyW(hUSKey: HUSKEY, pcSubKeys: LPDWORD, pcchMaxSubKeyLen: LPDWORD, pcValues: LPDWORD, pcchMaxValueNameLen: LPDWORD, enumRegFlags: SHREGENUM_FLAGS): LSTATUS;
+
+@foreign
+func SHRegCloseUSKey(hUSKey: HUSKEY): LSTATUS;
+
+@foreign
+func SHRegGetUSValueA(pszSubKey: LPCSTR, pszValue: LPCSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*, fIgnoreHKCU: BOOL, pvDefaultData: void*, dwDefaultDataSize: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetUSValue(pszSubKey: LPCSTR, pszValue: LPCSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*, fIgnoreHKCU: BOOL, pvDefaultData: void*, dwDefaultDataSize: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetUSValueW(pszSubKey: LPCWSTR, pszValue: LPCWSTR, pdwType: DWORD*, pvData: void*, pcbData: DWORD*, fIgnoreHKCU: BOOL, pvDefaultData: void*, dwDefaultDataSize: DWORD): LSTATUS;
+
+@foreign
+func SHRegSetUSValueA(pszSubKey: LPCSTR, pszValue: LPCSTR, dwType: DWORD, pvData: void const*, cbData: DWORD, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegSetUSValue(pszSubKey: LPCSTR, pszValue: LPCSTR, dwType: DWORD, pvData: void const*, cbData: DWORD, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegSetUSValueW(pwzSubKey: LPCWSTR, pwzValue: LPCWSTR, dwType: DWORD, pvData: void const*, cbData: DWORD, dwFlags: DWORD): LSTATUS;
+
+@foreign
+func SHRegGetIntW(hk: HKEY, pwzKey: PCWSTR, iDefault: int): int;
+
+@foreign
+func SHRegGetBoolUSValueA(pszSubKey: LPCSTR, pszValue: LPCSTR, fIgnoreHKCU: BOOL, fDefault: BOOL): BOOL;
+
+@foreign
+func SHRegGetBoolUSValue(pszSubKey: LPCSTR, pszValue: LPCSTR, fIgnoreHKCU: BOOL, fDefault: BOOL): BOOL;
+
+@foreign
+func SHRegGetBoolUSValueW(pszSubKey: LPCWSTR, pszValue: LPCWSTR, fIgnoreHKCU: BOOL, fDefault: BOOL): BOOL;
+
+@foreign
+enum {
+    ASSOCF_NONE = 0,
+    ASSOCF_INIT_NOREMAPCLSID = 1,
+    ASSOCF_OPEN_BYEXENAME = 2,
+    ASSOCF_INIT_BYEXENAME = 2,
+    ASSOCF_INIT_DEFAULTTOSTAR = 4,
+    ASSOCF_INIT_DEFAULTTOFOLDER = 8,
+    ASSOCF_NOUSERSETTINGS = 16,
+    ASSOCF_NOTRUNCATE = 32,
+    ASSOCF_VERIFY = 64,
+    ASSOCF_REMAPRUNDLL = 128,
+    ASSOCF_NOFIXUPS = 256,
+    ASSOCF_IGNOREBASECLASS = 512,
+    ASSOCF_INIT_IGNOREUNKNOWN = 1024,
+    ASSOCF_INIT_FIXED_PROGID = 2048,
+    ASSOCF_IS_PROTOCOL = 4096,
+    ASSOCF_INIT_FOR_FILE = 8192,
+    ASSOCF_IS_FULL_URI = 16384,
+    ASSOCF_PER_MACHINE_ONLY = 32768,
+}
+
+@foreign
+typedef ASSOCF = DWORD;
+
+@foreign
+enum ASSOCSTR {
+    ASSOCSTR_COMMAND = 1,
+    ASSOCSTR_EXECUTABLE,
+    ASSOCSTR_FRIENDLYDOCNAME,
+    ASSOCSTR_FRIENDLYAPPNAME,
+    ASSOCSTR_NOOPEN,
+    ASSOCSTR_SHELLNEWVALUE,
+    ASSOCSTR_DDECOMMAND,
+    ASSOCSTR_DDEIFEXEC,
+    ASSOCSTR_DDEAPPLICATION,
+    ASSOCSTR_DDETOPIC,
+    ASSOCSTR_INFOTIP,
+    ASSOCSTR_QUICKTIP,
+    ASSOCSTR_TILEINFO,
+    ASSOCSTR_CONTENTTYPE,
+    ASSOCSTR_DEFAULTICON,
+    ASSOCSTR_SHELLEXTENSION,
+    ASSOCSTR_DROPTARGET,
+    ASSOCSTR_DELEGATEEXECUTE,
+    ASSOCSTR_SUPPORTED_URI_PROTOCOLS,
+    ASSOCSTR_PROGID,
+    ASSOCSTR_APPID,
+    ASSOCSTR_APPPUBLISHER,
+    ASSOCSTR_APPICONREFERENCE,
+    ASSOCSTR_MAX,
+}
+
+@foreign
+enum ASSOCKEY {
+    ASSOCKEY_SHELLEXECCLASS = 1,
+    ASSOCKEY_APP,
+    ASSOCKEY_CLASS,
+    ASSOCKEY_BASECLASS,
+    ASSOCKEY_MAX,
+}
+
+@foreign
+enum ASSOCDATA {
+    ASSOCDATA_MSIDESCRIPTOR = 1,
+    ASSOCDATA_NOACTIVATEHANDLER,
+    ASSOCDATA_UNUSED1,
+    ASSOCDATA_HASPERUSERASSOC,
+    ASSOCDATA_EDITFLAGS,
+    ASSOCDATA_VALUE,
+    ASSOCDATA_MAX,
+}
+
+@foreign
+enum ASSOCENUM {
+    ASSOCENUM_NONE,
+}
+
+@foreign
+enum FILETYPEATTRIBUTEFLAGS {
+    FTA_None = 0,
+    FTA_Exclude = 1,
+    FTA_Show = 2,
+    FTA_HasExtension = 4,
+    FTA_NoEdit = 8,
+    FTA_NoRemove = 16,
+    FTA_NoNewVerb = 32,
+    FTA_NoEditVerb = 64,
+    FTA_NoRemoveVerb = 128,
+    FTA_NoEditDesc = 256,
+    FTA_NoEditIcon = 512,
+    FTA_NoEditDflt = 1024,
+    FTA_NoEditVerbCmd = 2048,
+    FTA_NoEditVerbExe = 4096,
+    FTA_NoDDE = 8192,
+    FTA_NoEditMIME = 32768,
+    FTA_OpenIsSafe = 65536,
+    FTA_AlwaysUnsafe = 131072,
+    FTA_NoRecentDocs = 1048576,
+    FTA_SafeForElevation = 2097152,
+    FTA_AlwaysUseDirectInvoke = 4194304,
+}
+
+@foreign
+struct IQueryAssociations {
+    lpVtbl: IQueryAssociationsVtbl*;
+}
+
+@foreign
+struct IQueryAssociationsVtbl {
+    Init: func(This: IQueryAssociations*, flags: ASSOCF, pszAssoc: LPCWSTR, hkProgid: HKEY, hwnd: HWND): HRESULT;
+    GetString: func(This: IQueryAssociations*, flags: ASSOCF, str: ASSOCSTR, pszExtra: LPCWSTR, pszOut: LPWSTR, pcchOut: DWORD*): HRESULT;
+    GetKey: func(This: IQueryAssociations*, flags: ASSOCF, key: ASSOCKEY, pszExtra: LPCWSTR, phkeyOut: HKEY*): HRESULT;
+    GetData: func(This: IQueryAssociations*, flags: ASSOCF, data: ASSOCDATA, pszExtra: LPCWSTR, pvOut: void*, pcbOut: DWORD*): HRESULT;
+    GetEnum: func(This: IQueryAssociations*, flags: ASSOCF, assocenum: ASSOCENUM, pszExtra: LPCWSTR, riid: IID* const, ppvOut: void**): HRESULT;
+}
+
+@foreign
+func AssocCreate(clsid: CLSID, riid: IID* const, ppv: void**): HRESULT;
+
+@foreign
+func SHGetAssocKeys(pqa: IQueryAssociations*, rgKeys: HKEY*, cKeys: DWORD): DWORD;
+
+@foreign
+func AssocQueryStringA(flags: ASSOCF, str: ASSOCSTR, pszAssoc: LPCSTR, pszExtra: LPCSTR, pszOut: LPSTR, pcchOut: DWORD*): HRESULT;
+
+@foreign
+func AssocQueryString(flags: ASSOCF, str: ASSOCSTR, pszAssoc: LPCSTR, pszExtra: LPCSTR, pszOut: LPSTR, pcchOut: DWORD*): HRESULT;
+
+@foreign
+func AssocQueryStringW(flags: ASSOCF, str: ASSOCSTR, pszAssoc: LPCWSTR, pszExtra: LPCWSTR, pszOut: LPWSTR, pcchOut: DWORD*): HRESULT;
+
+@foreign
+func AssocQueryStringByKeyA(flags: ASSOCF, str: ASSOCSTR, hkAssoc: HKEY, pszExtra: LPCSTR, pszOut: LPSTR, pcchOut: DWORD*): HRESULT;
+
+@foreign
+func AssocQueryStringByKey(flags: ASSOCF, str: ASSOCSTR, hkAssoc: HKEY, pszExtra: LPCSTR, pszOut: LPSTR, pcchOut: DWORD*): HRESULT;
+
+@foreign
+func AssocQueryStringByKeyW(flags: ASSOCF, str: ASSOCSTR, hkAssoc: HKEY, pszExtra: LPCWSTR, pszOut: LPWSTR, pcchOut: DWORD*): HRESULT;
+
+@foreign
+func AssocQueryKeyA(flags: ASSOCF, key: ASSOCKEY, pszAssoc: LPCSTR, pszExtra: LPCSTR, phkeyOut: HKEY*): HRESULT;
+
+@foreign
+func AssocQueryKey(flags: ASSOCF, key: ASSOCKEY, pszAssoc: LPCSTR, pszExtra: LPCSTR, phkeyOut: HKEY*): HRESULT;
+
+@foreign
+func AssocQueryKeyW(flags: ASSOCF, key: ASSOCKEY, pszAssoc: LPCWSTR, pszExtra: LPCWSTR, phkeyOut: HKEY*): HRESULT;
+
+@foreign
+func AssocIsDangerous(pszAssoc: PCWSTR): BOOL;
+
+@foreign
+func AssocGetPerceivedType(pszExt: PCWSTR, ptype: PERCEIVED*, pflag: PERCEIVEDFLAG*, ppszType: PWSTR*): HRESULT;
+
+@foreign
+func SHOpenRegStreamA(hkey: HKEY, pszSubkey: LPCSTR, pszValue: LPCSTR, grfMode: DWORD): IStream*;
+
+@foreign
+func SHOpenRegStream(hkey: HKEY, pszSubkey: LPCSTR, pszValue: LPCSTR, grfMode: DWORD): IStream*;
+
+@foreign
+func SHOpenRegStreamW(hkey: HKEY, pszSubkey: LPCWSTR, pszValue: LPCWSTR, grfMode: DWORD): IStream*;
+
+@foreign
+func SHOpenRegStream2A(hkey: HKEY, pszSubkey: LPCSTR, pszValue: LPCSTR, grfMode: DWORD): IStream*;
+
+@foreign
+func SHOpenRegStream2(hkey: HKEY, pszSubkey: LPCSTR, pszValue: LPCSTR, grfMode: DWORD): IStream*;
+
+@foreign
+func SHOpenRegStream2W(hkey: HKEY, pszSubkey: LPCWSTR, pszValue: LPCWSTR, grfMode: DWORD): IStream*;
+
+@foreign
+func SHCreateStreamOnFileA(pszFile: LPCSTR, grfMode: DWORD, ppstm: IStream**): HRESULT;
+
+@foreign
+func SHCreateStreamOnFile(pszFile: LPCSTR, grfMode: DWORD, ppstm: IStream**): HRESULT;
+
+@foreign
+func SHCreateStreamOnFileW(pszFile: LPCWSTR, grfMode: DWORD, ppstm: IStream**): HRESULT;
+
+@foreign
+func SHCreateStreamOnFileEx(pszFile: LPCWSTR, grfMode: DWORD, dwAttributes: DWORD, fCreate: BOOL, pstmTemplate: IStream*, ppstm: IStream**): HRESULT;
+
+@foreign
+func SHCreateMemStream(pInit: BYTE*, cbInit: UINT): IStream*;
+
+@foreign
+func GetAcceptLanguagesA(pszLanguages: LPSTR, pcchLanguages: DWORD*): HRESULT;
+
+@foreign
+func GetAcceptLanguages(pszLanguages: LPSTR, pcchLanguages: DWORD*): HRESULT;
+
+@foreign
+func GetAcceptLanguagesW(pszLanguages: LPWSTR, pcchLanguages: DWORD*): HRESULT;
+
+@foreign
+func IUnknown_Set(ppunk: IUnknown**, punk: IUnknown*);
+
+@foreign
+func IUnknown_AtomicRelease(ppunk: void**);
+
+@foreign
+func IUnknown_GetWindow(punk: IUnknown*, phwnd: HWND*): HRESULT;
+
+@foreign
+func IUnknown_SetSite(punk: IUnknown*, punkSite: IUnknown*): HRESULT;
+
+@foreign
+func IUnknown_GetSite(punk: IUnknown*, riid: IID* const, ppv: void**): HRESULT;
+
+@foreign
+func IUnknown_QueryService(punk: IUnknown*, guidService: GUID* const, riid: IID* const, ppvOut: void**): HRESULT;
+
+@foreign
+func IStream_Read(pstm: IStream*, pv: void*, cb: ULONG): HRESULT;
+
+@foreign
+func IStream_Write(pstm: IStream*, pv: void const*, cb: ULONG): HRESULT;
+
+@foreign
+func IStream_Reset(pstm: IStream*): HRESULT;
+
+@foreign
+func IStream_Size(pstm: IStream*, pui: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func ConnectToConnectionPoint(punk: IUnknown*, riidEvent: IID* const, fConnect: BOOL, punkTarget: IUnknown*, pdwCookie: DWORD*, ppcpOut: IConnectionPoint**): HRESULT;
+
+@foreign
+func IStream_ReadPidl(pstm: IStream*, ppidlOut: LPITEMIDLIST*): HRESULT;
+
+@foreign
+func IStream_WritePidl(pstm: IStream*, pidlWrite: LPCITEMIDLIST): HRESULT;
+
+@foreign
+func IStream_ReadStr(pstm: IStream*, ppsz: PWSTR*): HRESULT;
+
+@foreign
+func IStream_WriteStr(pstm: IStream*, psz: PCWSTR): HRESULT;
+
+@foreign
+func IStream_Copy(pstmFrom: IStream*, pstmTo: IStream*, cb: DWORD): HRESULT;
+
+@foreign
+func SHGetViewStatePropertyBag(pidl: LPCITEMIDLIST, pszBagName: PCWSTR, dwFlags: DWORD, riid: IID* const, ppv: void**): HRESULT;
+
+@foreign
+func SHFormatDateTimeA(pft: FILETIME*, pdwFlags: DWORD*, pszBuf: LPSTR, cchBuf: UINT): int;
+
+@foreign
+func SHFormatDateTime(pft: FILETIME*, pdwFlags: DWORD*, pszBuf: LPSTR, cchBuf: UINT): int;
+
+@foreign
+func SHFormatDateTimeW(pft: FILETIME*, pdwFlags: DWORD*, pszBuf: LPWSTR, cchBuf: UINT): int;
+
+@foreign
+func SHAnsiToUnicode(pszSrc: PCSTR, pwszDst: PWSTR, cwchBuf: int): int;
+
+@foreign
+func SHAnsiToAnsi(pszSrc: PCSTR, pszDst: PSTR, cchBuf: int): int;
+
+@foreign
+func SHUnicodeToAnsi(pwszSrc: PCWSTR, pszDst: PSTR, cchBuf: int): int;
+
+@foreign
+func SHUnicodeToUnicode(pwzSrc: PCWSTR, pwzDst: PWSTR, cwchBuf: int): int;
+
+@foreign
+func SHMessageBoxCheckA(hwnd: HWND, pszText: LPCSTR, pszCaption: LPCSTR, uType: UINT, iDefault: int, pszRegVal: LPCSTR): int;
+
+@foreign
+func SHMessageBoxCheck(hwnd: HWND, pszText: LPCSTR, pszCaption: LPCSTR, uType: UINT, iDefault: int, pszRegVal: LPCSTR): int;
+
+@foreign
+func SHMessageBoxCheckW(hwnd: HWND, pszText: LPCWSTR, pszCaption: LPCWSTR, uType: UINT, iDefault: int, pszRegVal: LPCWSTR): int;
+
+@foreign
+func SHSendMessageBroadcastA(uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SHSendMessageBroadcast(uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SHSendMessageBroadcastW(uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SHStripMneumonicA(pszMenu: LPSTR): CHAR;
+
+@foreign
+func SHStripMneumonic(pszMenu: LPSTR): CHAR;
+
+@foreign
+func SHStripMneumonicW(pszMenu: LPWSTR): WCHAR;
+
+@foreign
+func IsOS(dwOS: DWORD): BOOL;
+
+@foreign
+enum SHGLOBALCOUNTER {
+    GLOBALCOUNTER_SEARCHMANAGER,
+    GLOBALCOUNTER_SEARCHOPTIONS,
+    GLOBALCOUNTER_FOLDERSETTINGSCHANGE,
+    GLOBALCOUNTER_RATINGS,
+    GLOBALCOUNTER_APPROVEDSITES,
+    GLOBALCOUNTER_RESTRICTIONS,
+    GLOBALCOUNTER_SHELLSETTINGSCHANGED,
+    GLOBALCOUNTER_SYSTEMPIDLCHANGE,
+    GLOBALCOUNTER_OVERLAYMANAGER,
+    GLOBALCOUNTER_QUERYASSOCIATIONS,
+    GLOBALCOUNTER_IESESSIONS,
+    GLOBALCOUNTER_IEONLY_SESSIONS,
+    GLOBALCOUNTER_APPLICATION_DESTINATIONS,
+    __UNUSED_RECYCLE_WAS_GLOBALCOUNTER_CSCSYNCINPROGRESS,
+    GLOBALCOUNTER_BITBUCKETNUMDELETERS,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_SHARES,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_A,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_B,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_C,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_D,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_E,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_F,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_G,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_H,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_I,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_J,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_K,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_L,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_M,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_N,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_O,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_P,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_Q,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_R,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_S,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_T,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_U,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_V,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_W,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_X,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_Y,
+    GLOBALCOUNTER_RECYCLEDIRTYCOUNT_DRIVE_Z,
+    __UNUSED_RECYCLE_WAS_GLOBALCOUNTER_RECYCLEDIRTYCOUNT_SERVERDRIVE,
+    __UNUSED_RECYCLE_WAS_GLOBALCOUNTER_RECYCLEGLOBALDIRTYCOUNT,
+    GLOBALCOUNTER_RECYCLEBINENUM,
+    GLOBALCOUNTER_RECYCLEBINCORRUPTED,
+    GLOBALCOUNTER_RATINGS_STATECOUNTER,
+    GLOBALCOUNTER_PRIVATE_PROFILE_CACHE,
+    GLOBALCOUNTER_INTERNETTOOLBAR_LAYOUT,
+    GLOBALCOUNTER_FOLDERDEFINITION_CACHE,
+    GLOBALCOUNTER_COMMONPLACES_LIST_CACHE,
+    GLOBALCOUNTER_PRIVATE_PROFILE_CACHE_MACHINEWIDE,
+    GLOBALCOUNTER_ASSOCCHANGED,
+    GLOBALCOUNTER_APP_ITEMS_STATE_STORE_CACHE,
+    GLOBALCOUNTER_SETTINGSYNC_ENABLED,
+    GLOBALCOUNTER_APPSFOLDER_FILETYPEASSOCIATION_COUNTER,
+    GLOBALCOUNTER_USERINFOCHANGED,
+    GLOBALCOUNTER_SYNC_ENGINE_INFORMATION_CACHE_MACHINEWIDE,
+    GLOBALCOUNTER_BANNERS_DATAMODEL_CACHE_MACHINEWIDE,
+    GLOBALCOUNTER_MAXIMUMVALUE,
+}
+
+@foreign
+func SHGlobalCounterGetValue(id: SHGLOBALCOUNTER): long;
+
+@foreign
+func SHGlobalCounterIncrement(id: SHGLOBALCOUNTER): long;
+
+@foreign
+func SHGlobalCounterDecrement(id: SHGLOBALCOUNTER): long;
+
+@foreign
+func SHAllocShared(pvData: void const*, dwSize: DWORD, dwProcessId: DWORD): HANDLE;
+
+@foreign
+func SHFreeShared(hData: HANDLE, dwProcessId: DWORD): BOOL;
+
+@foreign
+func SHLockShared(hData: HANDLE, dwProcessId: DWORD): void*;
+
+@foreign
+func SHUnlockShared(pvData: void*): BOOL;
+
+@foreign
+func WhichPlatform(): UINT;
+
+@foreign
+struct QITAB {
+    piid: IID*;
+    dwOffset: DWORD;
+}
+
+@foreign
+typedef LPQITAB = QITAB;
+
+@foreign
+typedef LPCQITAB = QITAB*;
+
+@foreign
+func QISearch(that: void*, pqit: LPCQITAB, riid: IID* const, ppv: void**): HRESULT;
+
+@foreign
+func SHIsLowMemoryMachine(dwType: DWORD): BOOL;
+
+@foreign
+func GetMenuPosFromID(hmenu: HMENU, id: UINT): int;
+
+@foreign
+func SHGetInverseCMAP(pbMap: BYTE*, cbMap: ULONG): HRESULT;
+
+@foreign
+func SHAutoComplete(hwndEdit: HWND, dwFlags: DWORD): HRESULT;
+
+@foreign
+func SHCreateThreadRef(pcRef: LONG*, ppunk: IUnknown**): HRESULT;
+
+@foreign
+func SHSetThreadRef(punk: IUnknown*): HRESULT;
+
+@foreign
+func SHGetThreadRef(ppunk: IUnknown**): HRESULT;
+
+@foreign
+func SHSkipJunction(pbc: IBindCtx*, pclsid: CLSID*): BOOL;
+
+@foreign
+enum {
+    CTF_INSIST = 1,
+    CTF_THREAD_REF = 2,
+    CTF_PROCESS_REF = 4,
+    CTF_COINIT = 8,
+    CTF_COINIT_STA = 8,
+    CTF_FREELIBANDEXIT = 16,
+    CTF_REF_COUNTED = 32,
+    CTF_WAIT_ALLOWCOM = 64,
+    CTF_UNUSED = 128,
+    CTF_INHERITWOW64 = 256,
+    CTF_WAIT_NO_REENTRANCY = 512,
+    CTF_KEYBOARD_LOCALE = 1024,
+    CTF_OLEINITIALIZE = 2048,
+    CTF_COINIT_MTA = 4096,
+    CTF_NOADDREFLIB = 8192,
+}
+
+@foreign
+typedef SHCT_FLAGS = DWORD;
+
+@foreign
+func SHCreateThread(pfnThreadProc: LPTHREAD_START_ROUTINE, pData: void*, flags: SHCT_FLAGS, pfnCallback: LPTHREAD_START_ROUTINE): BOOL;
+
+@foreign
+func SHCreateThreadWithHandle(pfnThreadProc: LPTHREAD_START_ROUTINE, pData: void*, flags: SHCT_FLAGS, pfnCallback: LPTHREAD_START_ROUTINE, pHandle: HANDLE*): BOOL;
+
+@foreign
+func SetProcessReference(punk: IUnknown*);
+
+@foreign
+func GetProcessReference(punk: IUnknown**): HRESULT;
+
+@foreign
+func SHReleaseThreadRef(): HRESULT;
+
+@foreign
+func SHCreateShellPalette(hdc: HDC): HPALETTE;
+
+@foreign
+func ColorRGBToHLS(clrRGB: COLORREF, pwHue: WORD*, pwLuminance: WORD*, pwSaturation: WORD*);
+
+@foreign
+func ColorHLSToRGB(wHue: WORD, wLuminance: WORD, wSaturation: WORD): COLORREF;
+
+@foreign
+func ColorAdjustLuma(clrRGB: COLORREF, n: int, fScale: BOOL): COLORREF;
+
+@foreign
+struct _DLLVERSIONINFO {
+    cbSize: DWORD;
+    dwMajorVersion: DWORD;
+    dwMinorVersion: DWORD;
+    dwBuildNumber: DWORD;
+    dwPlatformID: DWORD;
+}
+
+@foreign
+typedef DLLVERSIONINFO = _DLLVERSIONINFO;
+
+@foreign
+struct _DLLVERSIONINFO2 {
+    info1: DLLVERSIONINFO;
+    dwFlags: DWORD;
+    ullVersion: ULONGLONG;
+}
+
+@foreign
+typedef DLLVERSIONINFO2 = _DLLVERSIONINFO2;
+
+@foreign
+typedef DLLGETVERSIONPROC = func(arg0: DLLVERSIONINFO*): HRESULT;
+
+@foreign
+func DllInstall(bInstall: BOOL, pszCmdLine: PCWSTR): HRESULT;
+
+@foreign
+func IsInternetESCEnabled(): BOOL;
+
+@foreign
+struct IConnectionPoint;
+

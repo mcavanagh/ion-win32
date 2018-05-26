@@ -1,0 +1,286 @@
+#foreign(header = "<windef.h>")
+
+@foreign
+struct HWND__ {
+    unused: int;
+}
+
+@foreign
+typedef HWND = HWND__*;
+
+@foreign
+struct HHOOK__ {
+    unused: int;
+}
+
+@foreign
+typedef HHOOK = HHOOK__*;
+
+@foreign
+typedef HGDIOBJ = void*;
+
+@foreign
+struct HACCEL__ {
+    unused: int;
+}
+
+@foreign
+typedef HACCEL = HACCEL__*;
+
+@foreign
+struct HBITMAP__ {
+    unused: int;
+}
+
+@foreign
+typedef HBITMAP = HBITMAP__*;
+
+@foreign
+struct HBRUSH__ {
+    unused: int;
+}
+
+@foreign
+typedef HBRUSH = HBRUSH__*;
+
+@foreign
+struct HCOLORSPACE__ {
+    unused: int;
+}
+
+@foreign
+typedef HCOLORSPACE = HCOLORSPACE__*;
+
+@foreign
+struct HDC__ {
+    unused: int;
+}
+
+@foreign
+typedef HDC = HDC__*;
+
+@foreign
+struct HGLRC__ {
+    unused: int;
+}
+
+@foreign
+typedef HGLRC = HGLRC__*;
+
+@foreign
+struct HDESK__ {
+    unused: int;
+}
+
+@foreign
+typedef HDESK = HDESK__*;
+
+@foreign
+struct HENHMETAFILE__ {
+    unused: int;
+}
+
+@foreign
+typedef HENHMETAFILE = HENHMETAFILE__*;
+
+@foreign
+struct HFONT__ {
+    unused: int;
+}
+
+@foreign
+typedef HFONT = HFONT__*;
+
+@foreign
+struct HICON__ {
+    unused: int;
+}
+
+@foreign
+typedef HICON = HICON__*;
+
+@foreign
+struct HMENU__ {
+    unused: int;
+}
+
+@foreign
+typedef HMENU = HMENU__*;
+
+@foreign
+struct HPALETTE__ {
+    unused: int;
+}
+
+@foreign
+typedef HPALETTE = HPALETTE__*;
+
+@foreign
+struct HPEN__ {
+    unused: int;
+}
+
+@foreign
+typedef HPEN = HPEN__*;
+
+@foreign
+struct HWINEVENTHOOK__ {
+    unused: int;
+}
+
+@foreign
+typedef HWINEVENTHOOK = HWINEVENTHOOK__*;
+
+@foreign
+struct HMONITOR__ {
+    unused: int;
+}
+
+@foreign
+typedef HMONITOR = HMONITOR__*;
+
+@foreign
+struct HUMPD__ {
+    unused: int;
+}
+
+@foreign
+typedef HUMPD = HUMPD__*;
+
+@foreign
+typedef HCURSOR = HICON;
+
+@foreign
+typedef COLORREF = DWORD;
+
+@foreign
+typedef LPCOLORREF = DWORD*;
+
+@foreign
+struct tagRECT {
+    left: LONG;
+    top: LONG;
+    right: LONG;
+    bottom: LONG;
+}
+
+@foreign
+typedef RECT = tagRECT;
+
+@foreign
+typedef PRECT = tagRECT*;
+
+@foreign
+typedef NPRECT = tagRECT*;
+
+@foreign
+typedef LPRECT = tagRECT*;
+
+@foreign
+typedef LPCRECT = RECT*;
+
+@foreign
+struct _RECTL {
+    left: LONG;
+    top: LONG;
+    right: LONG;
+    bottom: LONG;
+}
+
+@foreign
+typedef RECTL = _RECTL;
+
+@foreign
+typedef PRECTL = _RECTL*;
+
+@foreign
+typedef LPRECTL = _RECTL*;
+
+@foreign
+typedef LPCRECTL = RECTL*;
+
+@foreign
+struct tagPOINT {
+    x: LONG;
+    y: LONG;
+}
+
+@foreign
+typedef POINT = tagPOINT;
+
+@foreign
+typedef PPOINT = tagPOINT*;
+
+@foreign
+typedef NPPOINT = tagPOINT*;
+
+@foreign
+typedef LPPOINT = tagPOINT*;
+
+@foreign
+struct _POINTL {
+    x: LONG;
+    y: LONG;
+}
+
+@foreign
+typedef POINTL = _POINTL;
+
+@foreign
+typedef PPOINTL = _POINTL*;
+
+@foreign
+struct tagSIZE {
+    cx: LONG;
+    cy: LONG;
+}
+
+@foreign
+typedef SIZE = tagSIZE;
+
+@foreign
+typedef PSIZE = tagSIZE*;
+
+@foreign
+typedef LPSIZE = tagSIZE*;
+
+@foreign
+typedef SIZEL = SIZE;
+
+@foreign
+typedef PSIZEL = SIZE*;
+
+@foreign
+typedef LPSIZEL = SIZE*;
+
+@foreign
+struct tagPOINTS {
+    x: SHORT;
+    y: SHORT;
+}
+
+@foreign
+typedef POINTS = tagPOINTS;
+
+@foreign
+typedef PPOINTS = tagPOINTS*;
+
+@foreign
+typedef LPPOINTS = tagPOINTS*;
+
+@foreign
+struct DPI_AWARENESS_CONTEXT__ {
+    unused: int;
+}
+
+@foreign
+typedef DPI_AWARENESS_CONTEXT = DPI_AWARENESS_CONTEXT__*;
+
+@foreign
+enum DPI_AWARENESS {
+    DPI_AWARENESS_INVALID = -1,
+    DPI_AWARENESS_UNAWARE = 0,
+    DPI_AWARENESS_SYSTEM_AWARE = 1,
+    DPI_AWARENESS_PER_MONITOR_AWARE = 2,
+}
+

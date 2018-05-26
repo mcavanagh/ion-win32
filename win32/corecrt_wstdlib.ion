@@ -1,0 +1,152 @@
+#foreign(header = "<corecrt_wstdlib.h>")
+
+@foreign
+func _itow(_Value: int, _Buffer: wchar*, _Radix: int): wchar*;
+
+@foreign
+func _ltow_s(_Value: long, _Buffer: wchar*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _ltow(_Value: long, _Buffer: wchar*, _Radix: int): wchar*;
+
+@foreign
+func _ultow_s(_Value: ulong, _Buffer: wchar*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _ultow(_Value: ulong, _Buffer: wchar*, _Radix: int): wchar*;
+
+@foreign
+func wcstod(_String: wchar*, _EndPtr: wchar**): double;
+
+@foreign
+func _wcstod_l(_String: wchar*, _EndPtr: wchar**, _Locale: _locale_t): double;
+
+@foreign
+func wcstol(_String: wchar*, _EndPtr: wchar**, _Radix: int): long;
+
+@foreign
+func _wcstol_l(_String: wchar*, _EndPtr: wchar**, _Radix: int, _Locale: _locale_t): long;
+
+@foreign
+func wcstoll(_String: wchar*, _EndPtr: wchar**, _Radix: int): llong;
+
+@foreign
+func _wcstoll_l(_String: wchar*, _EndPtr: wchar**, _Radix: int, _Locale: _locale_t): llong;
+
+@foreign
+func wcstoul(_String: wchar*, _EndPtr: wchar**, _Radix: int): ulong;
+
+@foreign
+func _wcstoul_l(_String: wchar*, _EndPtr: wchar**, _Radix: int, _Locale: _locale_t): ulong;
+
+@foreign
+func wcstoull(_String: wchar*, _EndPtr: wchar**, _Radix: int): ullong;
+
+@foreign
+func _wcstoull_l(_String: wchar*, _EndPtr: wchar**, _Radix: int, _Locale: _locale_t): ullong;
+
+@foreign
+func wcstof(_String: wchar*, _EndPtr: wchar**): float;
+
+@foreign
+func _wcstof_l(_String: wchar*, _EndPtr: wchar**, _Locale: _locale_t): float;
+
+@foreign
+func _wtof(_String: wchar*): double;
+
+@foreign
+func _wtof_l(_String: wchar*, _Locale: _locale_t): double;
+
+@foreign
+func _wtoi(_String: wchar*): int;
+
+@foreign
+func _wtoi_l(_String: wchar*, _Locale: _locale_t): int;
+
+@foreign
+func _wtol(_String: wchar*): long;
+
+@foreign
+func _wtol_l(_String: wchar*, _Locale: _locale_t): long;
+
+@foreign
+func _wtoll(_String: wchar*): llong;
+
+@foreign
+func _wtoll_l(_String: wchar*, _Locale: _locale_t): llong;
+
+@foreign
+func _i64tow_s(_Value: llong, _Buffer: wchar*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _i64tow(_Value: llong, _Buffer: wchar*, _Radix: int): wchar*;
+
+@foreign
+func _ui64tow_s(_Value: ullong, _Buffer: wchar*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _ui64tow(_Value: ullong, _Buffer: wchar*, _Radix: int): wchar*;
+
+@foreign
+func _wtoi64(_String: wchar*): llong;
+
+@foreign
+func _wtoi64_l(_String: wchar*, _Locale: _locale_t): llong;
+
+@foreign
+func _wcstoi64(_String: wchar*, _EndPtr: wchar**, _Radix: int): llong;
+
+@foreign
+func _wcstoi64_l(_String: wchar*, _EndPtr: wchar**, _Radix: int, _Locale: _locale_t): llong;
+
+@foreign
+func _wcstoui64(_String: wchar*, _EndPtr: wchar**, _Radix: int): ullong;
+
+@foreign
+func _wcstoui64_l(_String: wchar*, _EndPtr: wchar**, _Radix: int, _Locale: _locale_t): ullong;
+
+@foreign
+func _wfullpath(_Buffer: wchar*, _Path: wchar*, _BufferCount: usize): wchar*;
+
+@foreign
+func _wmakepath_s(_Buffer: wchar*, _BufferCount: usize, _Drive: wchar*, _Dir: wchar*, _Filename: wchar*, _Ext: wchar*): errno_t;
+
+@foreign
+func _wmakepath(_Buffer: wchar*, _Drive: wchar*, _Dir: wchar*, _Filename: wchar*, _Ext: wchar*);
+
+@foreign
+func _wperror(_ErrorMessage: wchar*);
+
+@foreign
+func _wsplitpath(_FullPath: wchar*, _Drive: wchar*, _Dir: wchar*, _Filename: wchar*, _Ext: wchar*);
+
+@foreign
+func _wsplitpath_s(_FullPath: wchar*, _Drive: wchar*, _DriveCount: usize, _Dir: wchar*, _DirCount: usize, _Filename: wchar*, _FilenameCount: usize, _Ext: wchar*, _ExtCount: usize): errno_t;
+
+@foreign
+func _wdupenv_s(_Buffer: wchar**, _BufferCount: usize*, _VarName: wchar*): errno_t;
+
+@foreign
+func _wgetenv(_VarName: wchar*): wchar*;
+
+@foreign
+func _wgetenv_s(_RequiredCount: usize*, _Buffer: wchar*, _BufferCount: usize, _VarName: wchar*): errno_t;
+
+@foreign
+func _wputenv(_EnvString: wchar*): int;
+
+@foreign
+func _wputenv_s(_Name: wchar*, _Value: wchar*): errno_t;
+
+@foreign
+func _wsearchenv_s(_Filename: wchar*, _VarName: wchar*, _Buffer: wchar*, _BufferCount: usize): errno_t;
+
+@foreign
+func _wsearchenv(_Filename: wchar*, _VarName: wchar*, _ResultPath: wchar*);
+
+@foreign
+func _wsystem(_Command: wchar*): int;
+
+@foreign
+func _swab(_Buf1: char*, _Buf2: char*, _SizeInBytes: int);
+

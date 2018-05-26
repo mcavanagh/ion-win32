@@ -1,0 +1,237 @@
+#foreign(header = "<minwindef.h>")
+
+@foreign
+typedef PULONG = ULONG*;
+
+@foreign
+typedef USHORT = ushort;
+
+@foreign
+typedef PUSHORT = USHORT*;
+
+@foreign
+typedef UCHAR = uchar;
+
+@foreign
+typedef PUCHAR = UCHAR*;
+
+@foreign
+typedef PSZ = char*;
+
+@foreign
+typedef DWORD = ulong;
+
+@foreign
+typedef BOOL = int;
+
+@foreign
+typedef BYTE = uchar;
+
+@foreign
+typedef WORD = ushort;
+
+@foreign
+typedef FLOAT = float;
+
+@foreign
+typedef PFLOAT = FLOAT*;
+
+@foreign
+typedef PBOOL = BOOL*;
+
+@foreign
+typedef LPBOOL = BOOL*;
+
+@foreign
+typedef PBYTE = BYTE*;
+
+@foreign
+typedef LPBYTE = BYTE*;
+
+@foreign
+typedef PINT = int*;
+
+@foreign
+typedef LPINT = int*;
+
+@foreign
+typedef PWORD = WORD*;
+
+@foreign
+typedef LPWORD = WORD*;
+
+@foreign
+typedef LPLONG = long*;
+
+@foreign
+typedef PDWORD = DWORD*;
+
+@foreign
+typedef LPDWORD = DWORD*;
+
+@foreign
+typedef LPVOID = void*;
+
+@foreign
+typedef LPCVOID = void const*;
+
+@foreign
+typedef INT = int;
+
+@foreign
+typedef UINT = uint;
+
+@foreign
+typedef PUINT = uint*;
+
+@foreign
+typedef WPARAM = UINT_PTR;
+
+@foreign
+typedef LPARAM = LONG_PTR;
+
+@foreign
+typedef LRESULT = LONG_PTR;
+
+@foreign
+typedef SPHANDLE = HANDLE*;
+
+@foreign
+typedef LPHANDLE = HANDLE*;
+
+@foreign
+typedef HGLOBAL = HANDLE;
+
+@foreign
+typedef HLOCAL = HANDLE;
+
+@foreign
+typedef GLOBALHANDLE = HANDLE;
+
+@foreign
+typedef LOCALHANDLE = HANDLE;
+
+@foreign
+typedef FARPROC = func(): INT_PTR;
+
+@foreign
+typedef NEARPROC = func(): INT_PTR;
+
+@foreign
+typedef PROC = func(): INT_PTR;
+
+@foreign
+typedef ATOM = WORD;
+
+@foreign
+struct HKEY__ {
+    unused: int;
+}
+
+@foreign
+typedef HKEY = HKEY__*;
+
+@foreign
+typedef PHKEY = HKEY*;
+
+@foreign
+struct HMETAFILE__ {
+    unused: int;
+}
+
+@foreign
+typedef HMETAFILE = HMETAFILE__*;
+
+@foreign
+struct HINSTANCE__ {
+    unused: int;
+}
+
+@foreign
+typedef HINSTANCE = HINSTANCE__*;
+
+@foreign
+typedef HMODULE = HINSTANCE;
+
+@foreign
+struct HRGN__ {
+    unused: int;
+}
+
+@foreign
+typedef HRGN = HRGN__*;
+
+@foreign
+struct HRSRC__ {
+    unused: int;
+}
+
+@foreign
+typedef HRSRC = HRSRC__*;
+
+@foreign
+struct HSPRITE__ {
+    unused: int;
+}
+
+@foreign
+typedef HSPRITE = HSPRITE__*;
+
+@foreign
+struct HLSURF__ {
+    unused: int;
+}
+
+@foreign
+typedef HLSURF = HLSURF__*;
+
+@foreign
+struct HSTR__ {
+    unused: int;
+}
+
+@foreign
+typedef HSTR = HSTR__*;
+
+@foreign
+struct HTASK__ {
+    unused: int;
+}
+
+@foreign
+typedef HTASK = HTASK__*;
+
+@foreign
+struct HWINSTA__ {
+    unused: int;
+}
+
+@foreign
+typedef HWINSTA = HWINSTA__*;
+
+@foreign
+struct HKL__ {
+    unused: int;
+}
+
+@foreign
+typedef HKL = HKL__*;
+
+@foreign
+typedef HFILE = int;
+
+@foreign
+struct _FILETIME {
+    dwLowDateTime: DWORD;
+    dwHighDateTime: DWORD;
+}
+
+@foreign
+typedef FILETIME = _FILETIME;
+
+@foreign
+typedef PFILETIME = _FILETIME*;
+
+@foreign
+typedef LPFILETIME = _FILETIME*;
+

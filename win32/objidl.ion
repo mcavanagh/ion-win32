@@ -1,0 +1,3034 @@
+#foreign(header = "<objidl.h>")
+
+@foreign
+struct _COSERVERINFO {
+    dwReserved1: DWORD;
+    pwszName: LPWSTR;
+    pAuthInfo: COAUTHINFO*;
+    dwReserved2: DWORD;
+}
+
+@foreign
+typedef COSERVERINFO = _COSERVERINFO;
+
+@foreign
+typedef LPMARSHAL = IMarshal*;
+
+@foreign
+struct IMarshalVtbl {
+    QueryInterface: func(This: IMarshal*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMarshal*): ULONG;
+    Release: func(This: IMarshal*): ULONG;
+    GetUnmarshalClass: func(This: IMarshal*, riid: IID* const, pv: void*, dwDestContext: DWORD, pvDestContext: void*, mshlflags: DWORD, pCid: CLSID*): HRESULT;
+    GetMarshalSizeMax: func(This: IMarshal*, riid: IID* const, pv: void*, dwDestContext: DWORD, pvDestContext: void*, mshlflags: DWORD, pSize: DWORD*): HRESULT;
+    MarshalInterface: func(This: IMarshal*, pStm: IStream*, riid: IID* const, pv: void*, dwDestContext: DWORD, pvDestContext: void*, mshlflags: DWORD): HRESULT;
+    UnmarshalInterface: func(This: IMarshal*, pStm: IStream*, riid: IID* const, ppv: void**): HRESULT;
+    ReleaseMarshalData: func(This: IMarshal*, pStm: IStream*): HRESULT;
+    DisconnectObject: func(This: IMarshal*, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct IMarshal {
+    lpVtbl: IMarshalVtbl*;
+}
+
+@foreign
+struct INoMarshalVtbl {
+    QueryInterface: func(This: INoMarshal*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: INoMarshal*): ULONG;
+    Release: func(This: INoMarshal*): ULONG;
+}
+
+@foreign
+struct INoMarshal {
+    lpVtbl: INoMarshalVtbl*;
+}
+
+@foreign
+struct IAgileObjectVtbl {
+    QueryInterface: func(This: IAgileObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAgileObject*): ULONG;
+    Release: func(This: IAgileObject*): ULONG;
+}
+
+@foreign
+struct IAgileObject {
+    lpVtbl: IAgileObjectVtbl*;
+}
+
+@foreign
+enum tagACTIVATIONTYPE {
+    ACTIVATIONTYPE_UNCATEGORIZED = 0,
+    ACTIVATIONTYPE_FROM_MONIKER = 1,
+    ACTIVATIONTYPE_FROM_DATA = 2,
+    ACTIVATIONTYPE_FROM_STORAGE = 4,
+    ACTIVATIONTYPE_FROM_STREAM = 8,
+    ACTIVATIONTYPE_FROM_FILE = 16,
+}
+
+@foreign
+typedef ACTIVATIONTYPE = tagACTIVATIONTYPE;
+
+@foreign
+struct IActivationFilterVtbl {
+    QueryInterface: func(This: IActivationFilter*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IActivationFilter*): ULONG;
+    Release: func(This: IActivationFilter*): ULONG;
+    HandleActivation: func(This: IActivationFilter*, dwActivationType: DWORD, rclsid: IID* const, pReplacementClsId: CLSID*): HRESULT;
+}
+
+@foreign
+struct IActivationFilter {
+    lpVtbl: IActivationFilterVtbl*;
+}
+
+@foreign
+typedef LPMARSHAL2 = IMarshal2*;
+
+@foreign
+struct IMarshal2Vtbl {
+    QueryInterface: func(This: IMarshal2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMarshal2*): ULONG;
+    Release: func(This: IMarshal2*): ULONG;
+    GetUnmarshalClass: func(This: IMarshal2*, riid: IID* const, pv: void*, dwDestContext: DWORD, pvDestContext: void*, mshlflags: DWORD, pCid: CLSID*): HRESULT;
+    GetMarshalSizeMax: func(This: IMarshal2*, riid: IID* const, pv: void*, dwDestContext: DWORD, pvDestContext: void*, mshlflags: DWORD, pSize: DWORD*): HRESULT;
+    MarshalInterface: func(This: IMarshal2*, pStm: IStream*, riid: IID* const, pv: void*, dwDestContext: DWORD, pvDestContext: void*, mshlflags: DWORD): HRESULT;
+    UnmarshalInterface: func(This: IMarshal2*, pStm: IStream*, riid: IID* const, ppv: void**): HRESULT;
+    ReleaseMarshalData: func(This: IMarshal2*, pStm: IStream*): HRESULT;
+    DisconnectObject: func(This: IMarshal2*, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct IMarshal2 {
+    lpVtbl: IMarshal2Vtbl*;
+}
+
+@foreign
+typedef LPMALLOC = IMalloc*;
+
+@foreign
+struct IMallocVtbl {
+    QueryInterface: func(This: IMalloc*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMalloc*): ULONG;
+    Release: func(This: IMalloc*): ULONG;
+    Alloc: func(This: IMalloc*, cb: SIZE_T): void*;
+    Realloc: func(This: IMalloc*, pv: void*, cb: SIZE_T): void*;
+    Free: func(This: IMalloc*, pv: void*);
+    GetSize: func(This: IMalloc*, pv: void*): SIZE_T;
+    DidAlloc: func(This: IMalloc*, pv: void*): int;
+    HeapMinimize: func(This: IMalloc*);
+}
+
+@foreign
+struct IMalloc {
+    lpVtbl: IMallocVtbl*;
+}
+
+@foreign
+typedef LPSTDMARSHALINFO = IStdMarshalInfo*;
+
+@foreign
+struct IStdMarshalInfoVtbl {
+    QueryInterface: func(This: IStdMarshalInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IStdMarshalInfo*): ULONG;
+    Release: func(This: IStdMarshalInfo*): ULONG;
+    GetClassForHandler: func(This: IStdMarshalInfo*, dwDestContext: DWORD, pvDestContext: void*, pClsid: CLSID*): HRESULT;
+}
+
+@foreign
+struct IStdMarshalInfo {
+    lpVtbl: IStdMarshalInfoVtbl*;
+}
+
+@foreign
+typedef LPEXTERNALCONNECTION = IExternalConnection*;
+
+@foreign
+enum tagEXTCONN {
+    EXTCONN_STRONG = 1,
+    EXTCONN_WEAK = 2,
+    EXTCONN_CALLABLE = 4,
+}
+
+@foreign
+typedef EXTCONN = tagEXTCONN;
+
+@foreign
+struct IExternalConnectionVtbl {
+    QueryInterface: func(This: IExternalConnection*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IExternalConnection*): ULONG;
+    Release: func(This: IExternalConnection*): ULONG;
+    AddConnection: func(This: IExternalConnection*, extconn: DWORD, reserved: DWORD): DWORD;
+    ReleaseConnection: func(This: IExternalConnection*, extconn: DWORD, reserved: DWORD, fLastReleaseCloses: BOOL): DWORD;
+}
+
+@foreign
+struct IExternalConnection {
+    lpVtbl: IExternalConnectionVtbl*;
+}
+
+@foreign
+typedef LPMULTIQI = IMultiQI*;
+
+@foreign
+struct tagMULTI_QI {
+    pIID: IID*;
+    pItf: IUnknown*;
+    hr: HRESULT;
+}
+
+@foreign
+typedef MULTI_QI = tagMULTI_QI;
+
+@foreign
+struct IMultiQIVtbl {
+    QueryInterface: func(This: IMultiQI*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMultiQI*): ULONG;
+    Release: func(This: IMultiQI*): ULONG;
+    QueryMultipleInterfaces: func(This: IMultiQI*, cMQIs: ULONG, pMQIs: MULTI_QI*): HRESULT;
+}
+
+@foreign
+struct IMultiQI {
+    lpVtbl: IMultiQIVtbl*;
+}
+
+@foreign
+struct AsyncIMultiQIVtbl {
+    QueryInterface: func(This: AsyncIMultiQI*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIMultiQI*): ULONG;
+    Release: func(This: AsyncIMultiQI*): ULONG;
+    Begin_QueryMultipleInterfaces: func(This: AsyncIMultiQI*, cMQIs: ULONG, pMQIs: MULTI_QI*): HRESULT;
+    Finish_QueryMultipleInterfaces: func(This: AsyncIMultiQI*, pMQIs: MULTI_QI*): HRESULT;
+}
+
+@foreign
+struct AsyncIMultiQI {
+    lpVtbl: AsyncIMultiQIVtbl*;
+}
+
+@foreign
+struct IInternalUnknownVtbl {
+    QueryInterface: func(This: IInternalUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternalUnknown*): ULONG;
+    Release: func(This: IInternalUnknown*): ULONG;
+    QueryInternalInterface: func(This: IInternalUnknown*, riid: IID* const, ppv: void**): HRESULT;
+}
+
+@foreign
+struct IInternalUnknown {
+    lpVtbl: IInternalUnknownVtbl*;
+}
+
+@foreign
+typedef LPENUMUNKNOWN = IEnumUnknown*;
+
+@foreign
+struct IEnumUnknownVtbl {
+    QueryInterface: func(This: IEnumUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumUnknown*): ULONG;
+    Release: func(This: IEnumUnknown*): ULONG;
+    Next: func(This: IEnumUnknown*, celt: ULONG, rgelt: IUnknown**, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumUnknown*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumUnknown*): HRESULT;
+    Clone: func(This: IEnumUnknown*, ppenum: IEnumUnknown**): HRESULT;
+}
+
+@foreign
+struct IEnumUnknown {
+    lpVtbl: IEnumUnknownVtbl*;
+}
+
+@foreign
+func IEnumUnknown_RemoteNext_Proxy(This: IEnumUnknown*, celt: ULONG, rgelt: IUnknown**, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumUnknown_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPENUMSTRING = IEnumString*;
+
+@foreign
+struct IEnumStringVtbl {
+    QueryInterface: func(This: IEnumString*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumString*): ULONG;
+    Release: func(This: IEnumString*): ULONG;
+    Next: func(This: IEnumString*, celt: ULONG, rgelt: LPOLESTR*, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumString*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumString*): HRESULT;
+    Clone: func(This: IEnumString*, ppenum: IEnumString**): HRESULT;
+}
+
+@foreign
+struct IEnumString {
+    lpVtbl: IEnumStringVtbl*;
+}
+
+@foreign
+func IEnumString_RemoteNext_Proxy(This: IEnumString*, celt: ULONG, rgelt: LPOLESTR*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumString_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct ISequentialStreamVtbl {
+    QueryInterface: func(This: ISequentialStream*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISequentialStream*): ULONG;
+    Release: func(This: ISequentialStream*): ULONG;
+    Read: func(This: ISequentialStream*, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+    Write: func(This: ISequentialStream*, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+}
+
+@foreign
+struct ISequentialStream {
+    lpVtbl: ISequentialStreamVtbl*;
+}
+
+@foreign
+func ISequentialStream_RemoteRead_Proxy(This: ISequentialStream*, pv: byte*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+
+@foreign
+func ISequentialStream_RemoteRead_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ISequentialStream_RemoteWrite_Proxy(This: ISequentialStream*, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func ISequentialStream_RemoteWrite_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPSTREAM = IStream*;
+
+@foreign
+struct tagSTATSTG {
+    pwcsName: LPOLESTR;
+    type: DWORD;
+    cbSize: ULARGE_INTEGER;
+    mtime: FILETIME;
+    ctime: FILETIME;
+    atime: FILETIME;
+    grfMode: DWORD;
+    grfLocksSupported: DWORD;
+    clsid: CLSID;
+    grfStateBits: DWORD;
+    reserved: DWORD;
+}
+
+@foreign
+typedef STATSTG = tagSTATSTG;
+
+@foreign
+enum tagSTGTY {
+    STGTY_STORAGE = 1,
+    STGTY_STREAM = 2,
+    STGTY_LOCKBYTES = 3,
+    STGTY_PROPERTY = 4,
+}
+
+@foreign
+typedef STGTY = tagSTGTY;
+
+@foreign
+enum tagSTREAM_SEEK {
+    STREAM_SEEK_SET = 0,
+    STREAM_SEEK_CUR = 1,
+    STREAM_SEEK_END = 2,
+}
+
+@foreign
+typedef STREAM_SEEK = tagSTREAM_SEEK;
+
+@foreign
+enum tagLOCKTYPE {
+    LOCK_WRITE = 1,
+    LOCK_EXCLUSIVE = 2,
+    LOCK_ONLYONCE = 4,
+}
+
+@foreign
+typedef LOCKTYPE = tagLOCKTYPE;
+
+@foreign
+struct IStreamVtbl {
+    QueryInterface: func(This: IStream*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IStream*): ULONG;
+    Release: func(This: IStream*): ULONG;
+    Read: func(This: IStream*, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+    Write: func(This: IStream*, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+    Seek: func(This: IStream*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+    SetSize: func(This: IStream*, libNewSize: ULARGE_INTEGER): HRESULT;
+    CopyTo: func(This: IStream*, pstm: IStream*, cb: ULARGE_INTEGER, pcbRead: ULARGE_INTEGER*, pcbWritten: ULARGE_INTEGER*): HRESULT;
+    Commit: func(This: IStream*, grfCommitFlags: DWORD): HRESULT;
+    Revert: func(This: IStream*): HRESULT;
+    LockRegion: func(This: IStream*, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: DWORD): HRESULT;
+    UnlockRegion: func(This: IStream*, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: DWORD): HRESULT;
+    Stat: func(This: IStream*, pstatstg: STATSTG*, grfStatFlag: DWORD): HRESULT;
+    Clone: func(This: IStream*, ppstm: IStream**): HRESULT;
+}
+
+@foreign
+struct IStream {
+    lpVtbl: IStreamVtbl*;
+}
+
+@foreign
+func IStream_RemoteSeek_Proxy(This: IStream*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func IStream_RemoteSeek_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IStream_RemoteCopyTo_Proxy(This: IStream*, pstm: IStream*, cb: ULARGE_INTEGER, pcbRead: ULARGE_INTEGER*, pcbWritten: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func IStream_RemoteCopyTo_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef RPCOLEDATAREP = ULONG;
+
+@foreign
+struct tagRPCOLEMESSAGE {
+    reserved1: void*;
+    dataRepresentation: RPCOLEDATAREP;
+    Buffer: void*;
+    cbBuffer: ULONG;
+    iMethod: ULONG;
+    reserved2: void*[5];
+    rpcFlags: ULONG;
+}
+
+@foreign
+typedef RPCOLEMESSAGE = tagRPCOLEMESSAGE;
+
+@foreign
+typedef PRPCOLEMESSAGE = RPCOLEMESSAGE*;
+
+@foreign
+struct IRpcChannelBufferVtbl {
+    QueryInterface: func(This: IRpcChannelBuffer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcChannelBuffer*): ULONG;
+    Release: func(This: IRpcChannelBuffer*): ULONG;
+    GetBuffer: func(This: IRpcChannelBuffer*, pMessage: RPCOLEMESSAGE*, riid: IID* const): HRESULT;
+    SendReceive: func(This: IRpcChannelBuffer*, pMessage: RPCOLEMESSAGE*, pStatus: ULONG*): HRESULT;
+    FreeBuffer: func(This: IRpcChannelBuffer*, pMessage: RPCOLEMESSAGE*): HRESULT;
+    GetDestCtx: func(This: IRpcChannelBuffer*, pdwDestContext: DWORD*, ppvDestContext: void**): HRESULT;
+    IsConnected: func(This: IRpcChannelBuffer*): HRESULT;
+}
+
+@foreign
+struct IRpcChannelBuffer {
+    lpVtbl: IRpcChannelBufferVtbl*;
+}
+
+@foreign
+struct IRpcChannelBuffer2Vtbl {
+    QueryInterface: func(This: IRpcChannelBuffer2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcChannelBuffer2*): ULONG;
+    Release: func(This: IRpcChannelBuffer2*): ULONG;
+    GetBuffer: func(This: IRpcChannelBuffer2*, pMessage: RPCOLEMESSAGE*, riid: IID* const): HRESULT;
+    SendReceive: func(This: IRpcChannelBuffer2*, pMessage: RPCOLEMESSAGE*, pStatus: ULONG*): HRESULT;
+    FreeBuffer: func(This: IRpcChannelBuffer2*, pMessage: RPCOLEMESSAGE*): HRESULT;
+    GetDestCtx: func(This: IRpcChannelBuffer2*, pdwDestContext: DWORD*, ppvDestContext: void**): HRESULT;
+    IsConnected: func(This: IRpcChannelBuffer2*): HRESULT;
+    GetProtocolVersion: func(This: IRpcChannelBuffer2*, pdwVersion: DWORD*): HRESULT;
+}
+
+@foreign
+struct IRpcChannelBuffer2 {
+    lpVtbl: IRpcChannelBuffer2Vtbl*;
+}
+
+@foreign
+struct IAsyncRpcChannelBufferVtbl {
+    QueryInterface: func(This: IAsyncRpcChannelBuffer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAsyncRpcChannelBuffer*): ULONG;
+    Release: func(This: IAsyncRpcChannelBuffer*): ULONG;
+    GetBuffer: func(This: IAsyncRpcChannelBuffer*, pMessage: RPCOLEMESSAGE*, riid: IID* const): HRESULT;
+    SendReceive: func(This: IAsyncRpcChannelBuffer*, pMessage: RPCOLEMESSAGE*, pStatus: ULONG*): HRESULT;
+    FreeBuffer: func(This: IAsyncRpcChannelBuffer*, pMessage: RPCOLEMESSAGE*): HRESULT;
+    GetDestCtx: func(This: IAsyncRpcChannelBuffer*, pdwDestContext: DWORD*, ppvDestContext: void**): HRESULT;
+    IsConnected: func(This: IAsyncRpcChannelBuffer*): HRESULT;
+    GetProtocolVersion: func(This: IAsyncRpcChannelBuffer*, pdwVersion: DWORD*): HRESULT;
+    Send: func(This: IAsyncRpcChannelBuffer*, pMsg: RPCOLEMESSAGE*, pSync: ISynchronize*, pulStatus: ULONG*): HRESULT;
+    Receive: func(This: IAsyncRpcChannelBuffer*, pMsg: RPCOLEMESSAGE*, pulStatus: ULONG*): HRESULT;
+    GetDestCtxEx: func(This: IAsyncRpcChannelBuffer*, pMsg: RPCOLEMESSAGE*, pdwDestContext: DWORD*, ppvDestContext: void**): HRESULT;
+}
+
+@foreign
+struct IAsyncRpcChannelBuffer {
+    lpVtbl: IAsyncRpcChannelBufferVtbl*;
+}
+
+@foreign
+struct IRpcChannelBuffer3Vtbl {
+    QueryInterface: func(This: IRpcChannelBuffer3*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcChannelBuffer3*): ULONG;
+    Release: func(This: IRpcChannelBuffer3*): ULONG;
+    GetBuffer: func(This: IRpcChannelBuffer3*, pMessage: RPCOLEMESSAGE*, riid: IID* const): HRESULT;
+    SendReceive: func(This: IRpcChannelBuffer3*, pMessage: RPCOLEMESSAGE*, pStatus: ULONG*): HRESULT;
+    FreeBuffer: func(This: IRpcChannelBuffer3*, pMessage: RPCOLEMESSAGE*): HRESULT;
+    GetDestCtx: func(This: IRpcChannelBuffer3*, pdwDestContext: DWORD*, ppvDestContext: void**): HRESULT;
+    IsConnected: func(This: IRpcChannelBuffer3*): HRESULT;
+    GetProtocolVersion: func(This: IRpcChannelBuffer3*, pdwVersion: DWORD*): HRESULT;
+    Send: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*, pulStatus: ULONG*): HRESULT;
+    Receive: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*, ulSize: ULONG, pulStatus: ULONG*): HRESULT;
+    Cancel: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*): HRESULT;
+    GetCallContext: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*, riid: IID* const, pInterface: void**): HRESULT;
+    GetDestCtxEx: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*, pdwDestContext: DWORD*, ppvDestContext: void**): HRESULT;
+    GetState: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*, pState: DWORD*): HRESULT;
+    RegisterAsync: func(This: IRpcChannelBuffer3*, pMsg: RPCOLEMESSAGE*, pAsyncMgr: IAsyncManager*): HRESULT;
+}
+
+@foreign
+struct IRpcChannelBuffer3 {
+    lpVtbl: IRpcChannelBuffer3Vtbl*;
+}
+
+@foreign
+struct IRpcSyntaxNegotiateVtbl {
+    QueryInterface: func(This: IRpcSyntaxNegotiate*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcSyntaxNegotiate*): ULONG;
+    Release: func(This: IRpcSyntaxNegotiate*): ULONG;
+    NegotiateSyntax: func(This: IRpcSyntaxNegotiate*, pMsg: RPCOLEMESSAGE*): HRESULT;
+}
+
+@foreign
+struct IRpcSyntaxNegotiate {
+    lpVtbl: IRpcSyntaxNegotiateVtbl*;
+}
+
+@foreign
+struct IRpcProxyBufferVtbl {
+    QueryInterface: func(This: IRpcProxyBuffer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcProxyBuffer*): ULONG;
+    Release: func(This: IRpcProxyBuffer*): ULONG;
+    Connect: func(This: IRpcProxyBuffer*, pRpcChannelBuffer: IRpcChannelBuffer*): HRESULT;
+    Disconnect: func(This: IRpcProxyBuffer*);
+}
+
+@foreign
+struct IRpcProxyBuffer {
+    lpVtbl: IRpcProxyBufferVtbl*;
+}
+
+@foreign
+struct IRpcStubBufferVtbl {
+    QueryInterface: func(This: IRpcStubBuffer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcStubBuffer*): ULONG;
+    Release: func(This: IRpcStubBuffer*): ULONG;
+    Connect: func(This: IRpcStubBuffer*, pUnkServer: IUnknown*): HRESULT;
+    Disconnect: func(This: IRpcStubBuffer*);
+    Invoke: func(This: IRpcStubBuffer*, _prpcmsg: RPCOLEMESSAGE*, _pRpcChannelBuffer: IRpcChannelBuffer*): HRESULT;
+    IsIIDSupported: func(This: IRpcStubBuffer*, riid: IID* const): IRpcStubBuffer*;
+    CountRefs: func(This: IRpcStubBuffer*): ULONG;
+    DebugServerQueryInterface: func(This: IRpcStubBuffer*, ppv: void**): HRESULT;
+    DebugServerRelease: func(This: IRpcStubBuffer*, pv: void*);
+}
+
+@foreign
+struct IRpcStubBuffer {
+    lpVtbl: IRpcStubBufferVtbl*;
+}
+
+@foreign
+struct IPSFactoryBufferVtbl {
+    QueryInterface: func(This: IPSFactoryBuffer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPSFactoryBuffer*): ULONG;
+    Release: func(This: IPSFactoryBuffer*): ULONG;
+    CreateProxy: func(This: IPSFactoryBuffer*, pUnkOuter: IUnknown*, riid: IID* const, ppProxy: IRpcProxyBuffer**, ppv: void**): HRESULT;
+    CreateStub: func(This: IPSFactoryBuffer*, riid: IID* const, pUnkServer: IUnknown*, ppStub: IRpcStubBuffer**): HRESULT;
+}
+
+@foreign
+struct IPSFactoryBuffer {
+    lpVtbl: IPSFactoryBufferVtbl*;
+}
+
+@foreign
+struct SChannelHookCallInfo {
+    iid: IID;
+    cbSize: DWORD;
+    uCausality: GUID;
+    dwServerPid: DWORD;
+    iMethod: DWORD;
+    pObject: void*;
+}
+
+@foreign
+struct IChannelHookVtbl {
+    QueryInterface: func(This: IChannelHook*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IChannelHook*): ULONG;
+    Release: func(This: IChannelHook*): ULONG;
+    ClientGetSize: func(This: IChannelHook*, uExtent: GUID* const, riid: IID* const, pDataSize: ULONG*);
+    ClientFillBuffer: func(This: IChannelHook*, uExtent: GUID* const, riid: IID* const, pDataSize: ULONG*, pDataBuffer: void*);
+    ClientNotify: func(This: IChannelHook*, uExtent: GUID* const, riid: IID* const, cbDataSize: ULONG, pDataBuffer: void*, lDataRep: DWORD, hrFault: HRESULT);
+    ServerNotify: func(This: IChannelHook*, uExtent: GUID* const, riid: IID* const, cbDataSize: ULONG, pDataBuffer: void*, lDataRep: DWORD);
+    ServerGetSize: func(This: IChannelHook*, uExtent: GUID* const, riid: IID* const, hrFault: HRESULT, pDataSize: ULONG*);
+    ServerFillBuffer: func(This: IChannelHook*, uExtent: GUID* const, riid: IID* const, pDataSize: ULONG*, pDataBuffer: void*, hrFault: HRESULT);
+}
+
+@foreign
+struct IChannelHook {
+    lpVtbl: IChannelHookVtbl*;
+}
+
+@foreign
+struct tagSOLE_AUTHENTICATION_SERVICE {
+    dwAuthnSvc: DWORD;
+    dwAuthzSvc: DWORD;
+    pPrincipalName: OLECHAR*;
+    hr: HRESULT;
+}
+
+@foreign
+typedef SOLE_AUTHENTICATION_SERVICE = tagSOLE_AUTHENTICATION_SERVICE;
+
+@foreign
+typedef PSOLE_AUTHENTICATION_SERVICE = SOLE_AUTHENTICATION_SERVICE*;
+
+@foreign
+enum tagEOLE_AUTHENTICATION_CAPABILITIES {
+    EOAC_NONE = 0,
+    EOAC_MUTUAL_AUTH = 1,
+    EOAC_SECURE_REFS = 2,
+    EOAC_ACCESS_CONTROL = 4,
+    EOAC_APPID = 8,
+    EOAC_DYNAMIC = 16,
+    EOAC_STATIC_CLOAKING = 32,
+    EOAC_DYNAMIC_CLOAKING = 64,
+    EOAC_ANY_AUTHORITY = 128,
+    EOAC_MAKE_FULLSIC = 256,
+    EOAC_REQUIRE_FULLSIC = 512,
+    EOAC_AUTO_IMPERSONATE = 1024,
+    EOAC_DEFAULT = 2048,
+    EOAC_DISABLE_AAA = 4096,
+    EOAC_NO_CUSTOM_MARSHAL = 8192,
+    EOAC_RESERVED1 = 16384,
+}
+
+@foreign
+typedef EOLE_AUTHENTICATION_CAPABILITIES = tagEOLE_AUTHENTICATION_CAPABILITIES;
+
+@foreign
+struct tagSOLE_AUTHENTICATION_INFO {
+    dwAuthnSvc: DWORD;
+    dwAuthzSvc: DWORD;
+    pAuthInfo: void*;
+}
+
+@foreign
+typedef SOLE_AUTHENTICATION_INFO = tagSOLE_AUTHENTICATION_INFO;
+
+@foreign
+typedef PSOLE_AUTHENTICATION_INFO = tagSOLE_AUTHENTICATION_INFO*;
+
+@foreign
+struct tagSOLE_AUTHENTICATION_LIST {
+    cAuthInfo: DWORD;
+    aAuthInfo: SOLE_AUTHENTICATION_INFO*;
+}
+
+@foreign
+typedef SOLE_AUTHENTICATION_LIST = tagSOLE_AUTHENTICATION_LIST;
+
+@foreign
+typedef PSOLE_AUTHENTICATION_LIST = tagSOLE_AUTHENTICATION_LIST*;
+
+@foreign
+struct IClientSecurityVtbl {
+    QueryInterface: func(This: IClientSecurity*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IClientSecurity*): ULONG;
+    Release: func(This: IClientSecurity*): ULONG;
+    QueryBlanket: func(This: IClientSecurity*, pProxy: IUnknown*, pAuthnSvc: DWORD*, pAuthzSvc: DWORD*, pServerPrincName: OLECHAR**, pAuthnLevel: DWORD*, pImpLevel: DWORD*, pAuthInfo: void**, pCapabilites: DWORD*): HRESULT;
+    SetBlanket: func(This: IClientSecurity*, pProxy: IUnknown*, dwAuthnSvc: DWORD, dwAuthzSvc: DWORD, pServerPrincName: OLECHAR*, dwAuthnLevel: DWORD, dwImpLevel: DWORD, pAuthInfo: void*, dwCapabilities: DWORD): HRESULT;
+    CopyProxy: func(This: IClientSecurity*, pProxy: IUnknown*, ppCopy: IUnknown**): HRESULT;
+}
+
+@foreign
+struct IClientSecurity {
+    lpVtbl: IClientSecurityVtbl*;
+}
+
+@foreign
+struct IServerSecurityVtbl {
+    QueryInterface: func(This: IServerSecurity*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IServerSecurity*): ULONG;
+    Release: func(This: IServerSecurity*): ULONG;
+    QueryBlanket: func(This: IServerSecurity*, pAuthnSvc: DWORD*, pAuthzSvc: DWORD*, pServerPrincName: OLECHAR**, pAuthnLevel: DWORD*, pImpLevel: DWORD*, pPrivs: void**, pCapabilities: DWORD*): HRESULT;
+    ImpersonateClient: func(This: IServerSecurity*): HRESULT;
+    RevertToSelf: func(This: IServerSecurity*): HRESULT;
+    IsImpersonating: func(This: IServerSecurity*): BOOL;
+}
+
+@foreign
+struct IServerSecurity {
+    lpVtbl: IServerSecurityVtbl*;
+}
+
+@foreign
+enum tagRPCOPT_PROPERTIES {
+    COMBND_RPCTIMEOUT = 1,
+    COMBND_SERVER_LOCALITY = 2,
+    COMBND_RESERVED1 = 4,
+    COMBND_RESERVED2 = 5,
+    COMBND_RESERVED3 = 8,
+    COMBND_RESERVED4 = 16,
+}
+
+@foreign
+typedef RPCOPT_PROPERTIES = tagRPCOPT_PROPERTIES;
+
+@foreign
+enum tagRPCOPT_SERVER_LOCALITY_VALUES {
+    SERVER_LOCALITY_PROCESS_LOCAL = 0,
+    SERVER_LOCALITY_MACHINE_LOCAL = 1,
+    SERVER_LOCALITY_REMOTE = 2,
+}
+
+@foreign
+typedef RPCOPT_SERVER_LOCALITY_VALUES = tagRPCOPT_SERVER_LOCALITY_VALUES;
+
+@foreign
+struct IRpcOptionsVtbl {
+    QueryInterface: func(This: IRpcOptions*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcOptions*): ULONG;
+    Release: func(This: IRpcOptions*): ULONG;
+    Set: func(This: IRpcOptions*, pPrx: IUnknown*, dwProperty: RPCOPT_PROPERTIES, dwValue: ULONG_PTR): HRESULT;
+    Query: func(This: IRpcOptions*, pPrx: IUnknown*, dwProperty: RPCOPT_PROPERTIES, pdwValue: ULONG_PTR*): HRESULT;
+}
+
+@foreign
+struct IRpcOptions {
+    lpVtbl: IRpcOptionsVtbl*;
+}
+
+@foreign
+enum tagGLOBALOPT_PROPERTIES {
+    COMGLB_EXCEPTION_HANDLING = 1,
+    COMGLB_APPID = 2,
+    COMGLB_RPC_THREADPOOL_SETTING = 3,
+    COMGLB_RO_SETTINGS = 4,
+    COMGLB_UNMARSHALING_POLICY = 5,
+    COMGLB_PROPERTIES_RESERVED1 = 6,
+}
+
+@foreign
+typedef GLOBALOPT_PROPERTIES = tagGLOBALOPT_PROPERTIES;
+
+@foreign
+enum tagGLOBALOPT_EH_VALUES {
+    COMGLB_EXCEPTION_HANDLE = 0,
+    COMGLB_EXCEPTION_DONOT_HANDLE = 1,
+    COMGLB_EXCEPTION_DONOT_HANDLE_FATAL = 1,
+    COMGLB_EXCEPTION_DONOT_HANDLE_ANY = 2,
+}
+
+@foreign
+typedef GLOBALOPT_EH_VALUES = tagGLOBALOPT_EH_VALUES;
+
+@foreign
+enum tagGLOBALOPT_RPCTP_VALUES {
+    COMGLB_RPC_THREADPOOL_SETTING_DEFAULT_POOL = 0,
+    COMGLB_RPC_THREADPOOL_SETTING_PRIVATE_POOL = 1,
+}
+
+@foreign
+typedef GLOBALOPT_RPCTP_VALUES = tagGLOBALOPT_RPCTP_VALUES;
+
+@foreign
+enum tagGLOBALOPT_RO_FLAGS {
+    COMGLB_STA_MODALLOOP_REMOVE_TOUCH_MESSAGES = 1,
+    COMGLB_STA_MODALLOOP_SHARED_QUEUE_REMOVE_INPUT_MESSAGES = 2,
+    COMGLB_STA_MODALLOOP_SHARED_QUEUE_DONOT_REMOVE_INPUT_MESSAGES = 4,
+    COMGLB_FAST_RUNDOWN = 8,
+    COMGLB_RESERVED1 = 16,
+    COMGLB_RESERVED2 = 32,
+    COMGLB_RESERVED3 = 64,
+    COMGLB_STA_MODALLOOP_SHARED_QUEUE_REORDER_POINTER_MESSAGES = 128,
+    COMGLB_RESERVED4 = 256,
+    COMGLB_RESERVED5 = 512,
+    COMGLB_RESERVED6 = 1024,
+}
+
+@foreign
+typedef GLOBALOPT_RO_FLAGS = tagGLOBALOPT_RO_FLAGS;
+
+@foreign
+enum tagGLOBALOPT_UNMARSHALING_POLICY_VALUES {
+    COMGLB_UNMARSHALING_POLICY_NORMAL = 0,
+    COMGLB_UNMARSHALING_POLICY_STRONG = 1,
+    COMGLB_UNMARSHALING_POLICY_HYBRID = 2,
+}
+
+@foreign
+typedef GLOBALOPT_UNMARSHALING_POLICY_VALUES = tagGLOBALOPT_UNMARSHALING_POLICY_VALUES;
+
+@foreign
+struct IGlobalOptionsVtbl {
+    QueryInterface: func(This: IGlobalOptions*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IGlobalOptions*): ULONG;
+    Release: func(This: IGlobalOptions*): ULONG;
+    Set: func(This: IGlobalOptions*, dwProperty: GLOBALOPT_PROPERTIES, dwValue: ULONG_PTR): HRESULT;
+    Query: func(This: IGlobalOptions*, dwProperty: GLOBALOPT_PROPERTIES, pdwValue: ULONG_PTR*): HRESULT;
+}
+
+@foreign
+struct IGlobalOptions {
+    lpVtbl: IGlobalOptionsVtbl*;
+}
+
+@foreign
+typedef LPSURROGATE = ISurrogate*;
+
+@foreign
+struct ISurrogateVtbl {
+    QueryInterface: func(This: ISurrogate*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISurrogate*): ULONG;
+    Release: func(This: ISurrogate*): ULONG;
+    LoadDllServer: func(This: ISurrogate*, Clsid: IID* const): HRESULT;
+    FreeSurrogate: func(This: ISurrogate*): HRESULT;
+}
+
+@foreign
+struct ISurrogate {
+    lpVtbl: ISurrogateVtbl*;
+}
+
+@foreign
+typedef LPGLOBALINTERFACETABLE = IGlobalInterfaceTable*;
+
+@foreign
+struct IGlobalInterfaceTableVtbl {
+    QueryInterface: func(This: IGlobalInterfaceTable*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IGlobalInterfaceTable*): ULONG;
+    Release: func(This: IGlobalInterfaceTable*): ULONG;
+    RegisterInterfaceInGlobal: func(This: IGlobalInterfaceTable*, pUnk: IUnknown*, riid: IID* const, pdwCookie: DWORD*): HRESULT;
+    RevokeInterfaceFromGlobal: func(This: IGlobalInterfaceTable*, dwCookie: DWORD): HRESULT;
+    GetInterfaceFromGlobal: func(This: IGlobalInterfaceTable*, dwCookie: DWORD, riid: IID* const, ppv: void**): HRESULT;
+}
+
+@foreign
+struct IGlobalInterfaceTable {
+    lpVtbl: IGlobalInterfaceTableVtbl*;
+}
+
+@foreign
+struct ISynchronizeVtbl {
+    QueryInterface: func(This: ISynchronize*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISynchronize*): ULONG;
+    Release: func(This: ISynchronize*): ULONG;
+    Wait: func(This: ISynchronize*, dwFlags: DWORD, dwMilliseconds: DWORD): HRESULT;
+    Signal: func(This: ISynchronize*): HRESULT;
+    Reset: func(This: ISynchronize*): HRESULT;
+}
+
+@foreign
+struct ISynchronize {
+    lpVtbl: ISynchronizeVtbl*;
+}
+
+@foreign
+struct ISynchronizeHandleVtbl {
+    QueryInterface: func(This: ISynchronizeHandle*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISynchronizeHandle*): ULONG;
+    Release: func(This: ISynchronizeHandle*): ULONG;
+    GetHandle: func(This: ISynchronizeHandle*, ph: HANDLE*): HRESULT;
+}
+
+@foreign
+struct ISynchronizeHandle {
+    lpVtbl: ISynchronizeHandleVtbl*;
+}
+
+@foreign
+struct ISynchronizeEventVtbl {
+    QueryInterface: func(This: ISynchronizeEvent*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISynchronizeEvent*): ULONG;
+    Release: func(This: ISynchronizeEvent*): ULONG;
+    GetHandle: func(This: ISynchronizeEvent*, ph: HANDLE*): HRESULT;
+    SetEventHandle: func(This: ISynchronizeEvent*, ph: HANDLE*): HRESULT;
+}
+
+@foreign
+struct ISynchronizeEvent {
+    lpVtbl: ISynchronizeEventVtbl*;
+}
+
+@foreign
+struct ISynchronizeContainerVtbl {
+    QueryInterface: func(This: ISynchronizeContainer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISynchronizeContainer*): ULONG;
+    Release: func(This: ISynchronizeContainer*): ULONG;
+    AddSynchronize: func(This: ISynchronizeContainer*, pSync: ISynchronize*): HRESULT;
+    WaitMultiple: func(This: ISynchronizeContainer*, dwFlags: DWORD, dwTimeOut: DWORD, ppSync: ISynchronize**): HRESULT;
+}
+
+@foreign
+struct ISynchronizeContainer {
+    lpVtbl: ISynchronizeContainerVtbl*;
+}
+
+@foreign
+struct ISynchronizeMutexVtbl {
+    QueryInterface: func(This: ISynchronizeMutex*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISynchronizeMutex*): ULONG;
+    Release: func(This: ISynchronizeMutex*): ULONG;
+    Wait: func(This: ISynchronizeMutex*, dwFlags: DWORD, dwMilliseconds: DWORD): HRESULT;
+    Signal: func(This: ISynchronizeMutex*): HRESULT;
+    Reset: func(This: ISynchronizeMutex*): HRESULT;
+    ReleaseMutex: func(This: ISynchronizeMutex*): HRESULT;
+}
+
+@foreign
+struct ISynchronizeMutex {
+    lpVtbl: ISynchronizeMutexVtbl*;
+}
+
+@foreign
+typedef LPCANCELMETHODCALLS = ICancelMethodCalls*;
+
+@foreign
+struct ICancelMethodCallsVtbl {
+    QueryInterface: func(This: ICancelMethodCalls*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICancelMethodCalls*): ULONG;
+    Release: func(This: ICancelMethodCalls*): ULONG;
+    Cancel: func(This: ICancelMethodCalls*, ulSeconds: ULONG): HRESULT;
+    TestCancel: func(This: ICancelMethodCalls*): HRESULT;
+}
+
+@foreign
+struct ICancelMethodCalls {
+    lpVtbl: ICancelMethodCallsVtbl*;
+}
+
+@foreign
+enum tagDCOM_CALL_STATE {
+    DCOM_NONE = 0,
+    DCOM_CALL_COMPLETE = 1,
+    DCOM_CALL_CANCELED = 2,
+}
+
+@foreign
+typedef DCOM_CALL_STATE = tagDCOM_CALL_STATE;
+
+@foreign
+struct IAsyncManagerVtbl {
+    QueryInterface: func(This: IAsyncManager*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAsyncManager*): ULONG;
+    Release: func(This: IAsyncManager*): ULONG;
+    CompleteCall: func(This: IAsyncManager*, Result: HRESULT): HRESULT;
+    GetCallContext: func(This: IAsyncManager*, riid: IID* const, pInterface: void**): HRESULT;
+    GetState: func(This: IAsyncManager*, pulStateFlags: ULONG*): HRESULT;
+}
+
+@foreign
+struct IAsyncManager {
+    lpVtbl: IAsyncManagerVtbl*;
+}
+
+@foreign
+struct ICallFactoryVtbl {
+    QueryInterface: func(This: ICallFactory*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICallFactory*): ULONG;
+    Release: func(This: ICallFactory*): ULONG;
+    CreateCall: func(This: ICallFactory*, riid: IID* const, pCtrlUnk: IUnknown*, riid2: IID* const, ppv: IUnknown**): HRESULT;
+}
+
+@foreign
+struct ICallFactory {
+    lpVtbl: ICallFactoryVtbl*;
+}
+
+@foreign
+struct IRpcHelperVtbl {
+    QueryInterface: func(This: IRpcHelper*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRpcHelper*): ULONG;
+    Release: func(This: IRpcHelper*): ULONG;
+    GetDCOMProtocolVersion: func(This: IRpcHelper*, pComVersion: DWORD*): HRESULT;
+    GetIIDFromOBJREF: func(This: IRpcHelper*, pObjRef: void*, piid: IID**): HRESULT;
+}
+
+@foreign
+struct IRpcHelper {
+    lpVtbl: IRpcHelperVtbl*;
+}
+
+@foreign
+struct IReleaseMarshalBuffersVtbl {
+    QueryInterface: func(This: IReleaseMarshalBuffers*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IReleaseMarshalBuffers*): ULONG;
+    Release: func(This: IReleaseMarshalBuffers*): ULONG;
+    ReleaseMarshalBuffer: func(This: IReleaseMarshalBuffers*, pMsg: RPCOLEMESSAGE*, dwFlags: DWORD, pChnl: IUnknown*): HRESULT;
+}
+
+@foreign
+struct IReleaseMarshalBuffers {
+    lpVtbl: IReleaseMarshalBuffersVtbl*;
+}
+
+@foreign
+struct IWaitMultipleVtbl {
+    QueryInterface: func(This: IWaitMultiple*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWaitMultiple*): ULONG;
+    Release: func(This: IWaitMultiple*): ULONG;
+    WaitMultiple: func(This: IWaitMultiple*, timeout: DWORD, pSync: ISynchronize**): HRESULT;
+    AddSynchronize: func(This: IWaitMultiple*, pSync: ISynchronize*): HRESULT;
+}
+
+@foreign
+struct IWaitMultiple {
+    lpVtbl: IWaitMultipleVtbl*;
+}
+
+@foreign
+typedef LPADDRTRACKINGCONTROL = IAddrTrackingControl*;
+
+@foreign
+struct IAddrTrackingControlVtbl {
+    QueryInterface: func(This: IAddrTrackingControl*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAddrTrackingControl*): ULONG;
+    Release: func(This: IAddrTrackingControl*): ULONG;
+    EnableCOMDynamicAddrTracking: func(This: IAddrTrackingControl*): HRESULT;
+    DisableCOMDynamicAddrTracking: func(This: IAddrTrackingControl*): HRESULT;
+}
+
+@foreign
+struct IAddrTrackingControl {
+    lpVtbl: IAddrTrackingControlVtbl*;
+}
+
+@foreign
+typedef LPADDREXCLUSIONCONTROL = IAddrExclusionControl*;
+
+@foreign
+struct IAddrExclusionControlVtbl {
+    QueryInterface: func(This: IAddrExclusionControl*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAddrExclusionControl*): ULONG;
+    Release: func(This: IAddrExclusionControl*): ULONG;
+    GetCurrentAddrExclusionList: func(This: IAddrExclusionControl*, riid: IID* const, ppEnumerator: void**): HRESULT;
+    UpdateAddrExclusionList: func(This: IAddrExclusionControl*, pEnumerator: IUnknown*): HRESULT;
+}
+
+@foreign
+struct IAddrExclusionControl {
+    lpVtbl: IAddrExclusionControlVtbl*;
+}
+
+@foreign
+struct IPipeByteVtbl {
+    QueryInterface: func(This: IPipeByte*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPipeByte*): ULONG;
+    Release: func(This: IPipeByte*): ULONG;
+    Pull: func(This: IPipeByte*, buf: BYTE*, cRequest: ULONG, pcReturned: ULONG*): HRESULT;
+    Push: func(This: IPipeByte*, buf: BYTE*, cSent: ULONG): HRESULT;
+}
+
+@foreign
+struct IPipeByte {
+    lpVtbl: IPipeByteVtbl*;
+}
+
+@foreign
+struct AsyncIPipeByteVtbl {
+    QueryInterface: func(This: AsyncIPipeByte*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIPipeByte*): ULONG;
+    Release: func(This: AsyncIPipeByte*): ULONG;
+    Begin_Pull: func(This: AsyncIPipeByte*, cRequest: ULONG): HRESULT;
+    Finish_Pull: func(This: AsyncIPipeByte*, buf: BYTE*, pcReturned: ULONG*): HRESULT;
+    Begin_Push: func(This: AsyncIPipeByte*, buf: BYTE*, cSent: ULONG): HRESULT;
+    Finish_Push: func(This: AsyncIPipeByte*): HRESULT;
+}
+
+@foreign
+struct AsyncIPipeByte {
+    lpVtbl: AsyncIPipeByteVtbl*;
+}
+
+@foreign
+struct IPipeLongVtbl {
+    QueryInterface: func(This: IPipeLong*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPipeLong*): ULONG;
+    Release: func(This: IPipeLong*): ULONG;
+    Pull: func(This: IPipeLong*, buf: LONG*, cRequest: ULONG, pcReturned: ULONG*): HRESULT;
+    Push: func(This: IPipeLong*, buf: LONG*, cSent: ULONG): HRESULT;
+}
+
+@foreign
+struct IPipeLong {
+    lpVtbl: IPipeLongVtbl*;
+}
+
+@foreign
+struct AsyncIPipeLongVtbl {
+    QueryInterface: func(This: AsyncIPipeLong*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIPipeLong*): ULONG;
+    Release: func(This: AsyncIPipeLong*): ULONG;
+    Begin_Pull: func(This: AsyncIPipeLong*, cRequest: ULONG): HRESULT;
+    Finish_Pull: func(This: AsyncIPipeLong*, buf: LONG*, pcReturned: ULONG*): HRESULT;
+    Begin_Push: func(This: AsyncIPipeLong*, buf: LONG*, cSent: ULONG): HRESULT;
+    Finish_Push: func(This: AsyncIPipeLong*): HRESULT;
+}
+
+@foreign
+struct AsyncIPipeLong {
+    lpVtbl: AsyncIPipeLongVtbl*;
+}
+
+@foreign
+struct IPipeDoubleVtbl {
+    QueryInterface: func(This: IPipeDouble*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPipeDouble*): ULONG;
+    Release: func(This: IPipeDouble*): ULONG;
+    Pull: func(This: IPipeDouble*, buf: DOUBLE*, cRequest: ULONG, pcReturned: ULONG*): HRESULT;
+    Push: func(This: IPipeDouble*, buf: DOUBLE*, cSent: ULONG): HRESULT;
+}
+
+@foreign
+struct IPipeDouble {
+    lpVtbl: IPipeDoubleVtbl*;
+}
+
+@foreign
+struct AsyncIPipeDoubleVtbl {
+    QueryInterface: func(This: AsyncIPipeDouble*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIPipeDouble*): ULONG;
+    Release: func(This: AsyncIPipeDouble*): ULONG;
+    Begin_Pull: func(This: AsyncIPipeDouble*, cRequest: ULONG): HRESULT;
+    Finish_Pull: func(This: AsyncIPipeDouble*, buf: DOUBLE*, pcReturned: ULONG*): HRESULT;
+    Begin_Push: func(This: AsyncIPipeDouble*, buf: DOUBLE*, cSent: ULONG): HRESULT;
+    Finish_Push: func(This: AsyncIPipeDouble*): HRESULT;
+}
+
+@foreign
+struct AsyncIPipeDouble {
+    lpVtbl: AsyncIPipeDoubleVtbl*;
+}
+
+@foreign
+enum _APTTYPEQUALIFIER {
+    APTTYPEQUALIFIER_NONE = 0,
+    APTTYPEQUALIFIER_IMPLICIT_MTA = 1,
+    APTTYPEQUALIFIER_NA_ON_MTA = 2,
+    APTTYPEQUALIFIER_NA_ON_STA = 3,
+    APTTYPEQUALIFIER_NA_ON_IMPLICIT_MTA = 4,
+    APTTYPEQUALIFIER_NA_ON_MAINSTA = 5,
+    APTTYPEQUALIFIER_APPLICATION_STA = 6,
+}
+
+@foreign
+typedef APTTYPEQUALIFIER = _APTTYPEQUALIFIER;
+
+@foreign
+enum _APTTYPE {
+    APTTYPE_CURRENT = -1,
+    APTTYPE_STA = 0,
+    APTTYPE_MTA = 1,
+    APTTYPE_NA = 2,
+    APTTYPE_MAINSTA = 3,
+}
+
+@foreign
+typedef APTTYPE = _APTTYPE;
+
+@foreign
+enum _THDTYPE {
+    THDTYPE_BLOCKMESSAGES = 0,
+    THDTYPE_PROCESSMESSAGES = 1,
+}
+
+@foreign
+typedef THDTYPE = _THDTYPE;
+
+@foreign
+typedef APARTMENTID = DWORD;
+
+@foreign
+struct IComThreadingInfoVtbl {
+    QueryInterface: func(This: IComThreadingInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IComThreadingInfo*): ULONG;
+    Release: func(This: IComThreadingInfo*): ULONG;
+    GetCurrentApartmentType: func(This: IComThreadingInfo*, pAptType: APTTYPE*): HRESULT;
+    GetCurrentThreadType: func(This: IComThreadingInfo*, pThreadType: THDTYPE*): HRESULT;
+    GetCurrentLogicalThreadId: func(This: IComThreadingInfo*, pguidLogicalThreadId: GUID*): HRESULT;
+    SetCurrentLogicalThreadId: func(This: IComThreadingInfo*, rguid: GUID* const): HRESULT;
+}
+
+@foreign
+struct IComThreadingInfo {
+    lpVtbl: IComThreadingInfoVtbl*;
+}
+
+@foreign
+struct IProcessInitControlVtbl {
+    QueryInterface: func(This: IProcessInitControl*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IProcessInitControl*): ULONG;
+    Release: func(This: IProcessInitControl*): ULONG;
+    ResetInitializerTimeout: func(This: IProcessInitControl*, dwSecondsRemaining: DWORD): HRESULT;
+}
+
+@foreign
+struct IProcessInitControl {
+    lpVtbl: IProcessInitControlVtbl*;
+}
+
+@foreign
+struct IFastRundownVtbl {
+    QueryInterface: func(This: IFastRundown*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IFastRundown*): ULONG;
+    Release: func(This: IFastRundown*): ULONG;
+}
+
+@foreign
+struct IFastRundown {
+    lpVtbl: IFastRundownVtbl*;
+}
+
+@foreign
+enum CO_MARSHALING_CONTEXT_ATTRIBUTES {
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_1 = -2147483648,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_2 = -2147483647,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_3 = -2147483646,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_4 = -2147483645,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_5 = -2147483644,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_6 = -2147483643,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_7 = -2147483642,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_8 = -2147483641,
+    CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_9 = -2147483640,
+    CO_MARSHALING_SOURCE_IS_APP_CONTAINER = 0,
+}
+
+@foreign
+struct IMarshalingStreamVtbl {
+    QueryInterface: func(This: IMarshalingStream*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMarshalingStream*): ULONG;
+    Release: func(This: IMarshalingStream*): ULONG;
+    Read: func(This: IMarshalingStream*, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+    Write: func(This: IMarshalingStream*, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+    Seek: func(This: IMarshalingStream*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+    SetSize: func(This: IMarshalingStream*, libNewSize: ULARGE_INTEGER): HRESULT;
+    CopyTo: func(This: IMarshalingStream*, pstm: IStream*, cb: ULARGE_INTEGER, pcbRead: ULARGE_INTEGER*, pcbWritten: ULARGE_INTEGER*): HRESULT;
+    Commit: func(This: IMarshalingStream*, grfCommitFlags: DWORD): HRESULT;
+    Revert: func(This: IMarshalingStream*): HRESULT;
+    LockRegion: func(This: IMarshalingStream*, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: DWORD): HRESULT;
+    UnlockRegion: func(This: IMarshalingStream*, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: DWORD): HRESULT;
+    Stat: func(This: IMarshalingStream*, pstatstg: STATSTG*, grfStatFlag: DWORD): HRESULT;
+    Clone: func(This: IMarshalingStream*, ppstm: IStream**): HRESULT;
+    GetMarshalingContextAttribute: func(This: IMarshalingStream*, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ULONG_PTR*): HRESULT;
+}
+
+@foreign
+struct IMarshalingStream {
+    lpVtbl: IMarshalingStreamVtbl*;
+}
+
+@foreign
+struct IAgileReferenceVtbl {
+    QueryInterface: func(This: IAgileReference*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAgileReference*): ULONG;
+    Release: func(This: IAgileReference*): ULONG;
+    Resolve: func(This: IAgileReference*, riid: IID* const, ppvObjectReference: void**): HRESULT;
+}
+
+@foreign
+struct IAgileReference {
+    lpVtbl: IAgileReferenceVtbl*;
+}
+
+@foreign
+typedef LPMALLOCSPY = IMallocSpy*;
+
+@foreign
+struct IMallocSpyVtbl {
+    QueryInterface: func(This: IMallocSpy*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMallocSpy*): ULONG;
+    Release: func(This: IMallocSpy*): ULONG;
+    PreAlloc: func(This: IMallocSpy*, cbRequest: SIZE_T): SIZE_T;
+    PostAlloc: func(This: IMallocSpy*, pActual: void*): void*;
+    PreFree: func(This: IMallocSpy*, pRequest: void*, fSpyed: BOOL): void*;
+    PostFree: func(This: IMallocSpy*, fSpyed: BOOL);
+    PreRealloc: func(This: IMallocSpy*, pRequest: void*, cbRequest: SIZE_T, ppNewRequest: void**, fSpyed: BOOL): SIZE_T;
+    PostRealloc: func(This: IMallocSpy*, pActual: void*, fSpyed: BOOL): void*;
+    PreGetSize: func(This: IMallocSpy*, pRequest: void*, fSpyed: BOOL): void*;
+    PostGetSize: func(This: IMallocSpy*, cbActual: SIZE_T, fSpyed: BOOL): SIZE_T;
+    PreDidAlloc: func(This: IMallocSpy*, pRequest: void*, fSpyed: BOOL): void*;
+    PostDidAlloc: func(This: IMallocSpy*, pRequest: void*, fSpyed: BOOL, fActual: int): int;
+    PreHeapMinimize: func(This: IMallocSpy*);
+    PostHeapMinimize: func(This: IMallocSpy*);
+}
+
+@foreign
+struct IMallocSpy {
+    lpVtbl: IMallocSpyVtbl*;
+}
+
+@foreign
+typedef LPBC = IBindCtx*;
+
+@foreign
+typedef LPBINDCTX = IBindCtx*;
+
+@foreign
+struct tagBIND_OPTS {
+    cbStruct: DWORD;
+    grfFlags: DWORD;
+    grfMode: DWORD;
+    dwTickCountDeadline: DWORD;
+}
+
+@foreign
+typedef BIND_OPTS = tagBIND_OPTS;
+
+@foreign
+typedef LPBIND_OPTS = tagBIND_OPTS*;
+
+@foreign
+struct tagBIND_OPTS2 {
+    cbStruct: DWORD;
+    grfFlags: DWORD;
+    grfMode: DWORD;
+    dwTickCountDeadline: DWORD;
+    dwTrackFlags: DWORD;
+    dwClassContext: DWORD;
+    locale: LCID;
+    pServerInfo: COSERVERINFO*;
+}
+
+@foreign
+typedef BIND_OPTS2 = tagBIND_OPTS2;
+
+@foreign
+typedef LPBIND_OPTS2 = tagBIND_OPTS2*;
+
+@foreign
+struct tagBIND_OPTS3 {
+    cbStruct: DWORD;
+    grfFlags: DWORD;
+    grfMode: DWORD;
+    dwTickCountDeadline: DWORD;
+    dwTrackFlags: DWORD;
+    dwClassContext: DWORD;
+    locale: LCID;
+    pServerInfo: COSERVERINFO*;
+    hwnd: HWND;
+}
+
+@foreign
+typedef BIND_OPTS3 = tagBIND_OPTS3;
+
+@foreign
+typedef LPBIND_OPTS3 = tagBIND_OPTS3*;
+
+@foreign
+enum tagBIND_FLAGS {
+    BIND_MAYBOTHERUSER = 1,
+    BIND_JUSTTESTEXISTENCE = 2,
+}
+
+@foreign
+typedef BIND_FLAGS = tagBIND_FLAGS;
+
+@foreign
+struct IBindCtxVtbl {
+    QueryInterface: func(This: IBindCtx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindCtx*): ULONG;
+    Release: func(This: IBindCtx*): ULONG;
+    RegisterObjectBound: func(This: IBindCtx*, punk: IUnknown*): HRESULT;
+    RevokeObjectBound: func(This: IBindCtx*, punk: IUnknown*): HRESULT;
+    ReleaseBoundObjects: func(This: IBindCtx*): HRESULT;
+    SetBindOptions: func(This: IBindCtx*, pbindopts: BIND_OPTS*): HRESULT;
+    GetBindOptions: func(This: IBindCtx*, pbindopts: BIND_OPTS*): HRESULT;
+    GetRunningObjectTable: func(This: IBindCtx*, pprot: IRunningObjectTable**): HRESULT;
+    RegisterObjectParam: func(This: IBindCtx*, pszKey: LPOLESTR, punk: IUnknown*): HRESULT;
+    GetObjectParam: func(This: IBindCtx*, pszKey: LPOLESTR, ppunk: IUnknown**): HRESULT;
+    EnumObjectParam: func(This: IBindCtx*, ppenum: IEnumString**): HRESULT;
+    RevokeObjectParam: func(This: IBindCtx*, pszKey: LPOLESTR): HRESULT;
+}
+
+@foreign
+struct IBindCtx {
+    lpVtbl: IBindCtxVtbl*;
+}
+
+@foreign
+func IBindCtx_RemoteSetBindOptions_Proxy(This: IBindCtx*, pbindopts: BIND_OPTS2*): HRESULT;
+
+@foreign
+func IBindCtx_RemoteSetBindOptions_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IBindCtx_RemoteGetBindOptions_Proxy(This: IBindCtx*, pbindopts: BIND_OPTS2*): HRESULT;
+
+@foreign
+func IBindCtx_RemoteGetBindOptions_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPENUMMONIKER = IEnumMoniker*;
+
+@foreign
+struct IEnumMonikerVtbl {
+    QueryInterface: func(This: IEnumMoniker*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumMoniker*): ULONG;
+    Release: func(This: IEnumMoniker*): ULONG;
+    Next: func(This: IEnumMoniker*, celt: ULONG, rgelt: IMoniker**, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumMoniker*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumMoniker*): HRESULT;
+    Clone: func(This: IEnumMoniker*, ppenum: IEnumMoniker**): HRESULT;
+}
+
+@foreign
+struct IEnumMoniker {
+    lpVtbl: IEnumMonikerVtbl*;
+}
+
+@foreign
+func IEnumMoniker_RemoteNext_Proxy(This: IEnumMoniker*, celt: ULONG, rgelt: IMoniker**, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumMoniker_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPRUNNABLEOBJECT = IRunnableObject*;
+
+@foreign
+struct IRunnableObjectVtbl {
+    QueryInterface: func(This: IRunnableObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRunnableObject*): ULONG;
+    Release: func(This: IRunnableObject*): ULONG;
+    GetRunningClass: func(This: IRunnableObject*, lpClsid: LPCLSID): HRESULT;
+    Run: func(This: IRunnableObject*, pbc: LPBINDCTX): HRESULT;
+    IsRunning: func(This: IRunnableObject*): BOOL;
+    LockRunning: func(This: IRunnableObject*, fLock: BOOL, fLastUnlockCloses: BOOL): HRESULT;
+    SetContainedObject: func(This: IRunnableObject*, fContained: BOOL): HRESULT;
+}
+
+@foreign
+struct IRunnableObject {
+    lpVtbl: IRunnableObjectVtbl*;
+}
+
+@foreign
+func IRunnableObject_RemoteIsRunning_Proxy(This: IRunnableObject*): HRESULT;
+
+@foreign
+func IRunnableObject_RemoteIsRunning_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPRUNNINGOBJECTTABLE = IRunningObjectTable*;
+
+@foreign
+struct IRunningObjectTableVtbl {
+    QueryInterface: func(This: IRunningObjectTable*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRunningObjectTable*): ULONG;
+    Release: func(This: IRunningObjectTable*): ULONG;
+    Register: func(This: IRunningObjectTable*, grfFlags: DWORD, punkObject: IUnknown*, pmkObjectName: IMoniker*, pdwRegister: DWORD*): HRESULT;
+    Revoke: func(This: IRunningObjectTable*, dwRegister: DWORD): HRESULT;
+    IsRunning: func(This: IRunningObjectTable*, pmkObjectName: IMoniker*): HRESULT;
+    GetObjectA: func(This: IRunningObjectTable*, pmkObjectName: IMoniker*, ppunkObject: IUnknown**): HRESULT;
+    NoteChangeTime: func(This: IRunningObjectTable*, dwRegister: DWORD, pfiletime: FILETIME*): HRESULT;
+    GetTimeOfLastChange: func(This: IRunningObjectTable*, pmkObjectName: IMoniker*, pfiletime: FILETIME*): HRESULT;
+    EnumRunning: func(This: IRunningObjectTable*, ppenumMoniker: IEnumMoniker**): HRESULT;
+}
+
+@foreign
+struct IRunningObjectTable {
+    lpVtbl: IRunningObjectTableVtbl*;
+}
+
+@foreign
+typedef LPPERSIST = IPersist*;
+
+@foreign
+struct IPersistVtbl {
+    QueryInterface: func(This: IPersist*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPersist*): ULONG;
+    Release: func(This: IPersist*): ULONG;
+    GetClassID: func(This: IPersist*, pClassID: CLSID*): HRESULT;
+}
+
+@foreign
+struct IPersist {
+    lpVtbl: IPersistVtbl*;
+}
+
+@foreign
+typedef LPPERSISTSTREAM = IPersistStream*;
+
+@foreign
+struct IPersistStreamVtbl {
+    QueryInterface: func(This: IPersistStream*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPersistStream*): ULONG;
+    Release: func(This: IPersistStream*): ULONG;
+    GetClassID: func(This: IPersistStream*, pClassID: CLSID*): HRESULT;
+    IsDirty: func(This: IPersistStream*): HRESULT;
+    Load: func(This: IPersistStream*, pStm: IStream*): HRESULT;
+    Save: func(This: IPersistStream*, pStm: IStream*, fClearDirty: BOOL): HRESULT;
+    GetSizeMax: func(This: IPersistStream*, pcbSize: ULARGE_INTEGER*): HRESULT;
+}
+
+@foreign
+struct IPersistStream {
+    lpVtbl: IPersistStreamVtbl*;
+}
+
+@foreign
+typedef LPMONIKER = IMoniker*;
+
+@foreign
+enum tagMKSYS {
+    MKSYS_NONE = 0,
+    MKSYS_GENERICCOMPOSITE = 1,
+    MKSYS_FILEMONIKER = 2,
+    MKSYS_ANTIMONIKER = 3,
+    MKSYS_ITEMMONIKER = 4,
+    MKSYS_POINTERMONIKER = 5,
+    MKSYS_CLASSMONIKER = 7,
+    MKSYS_OBJREFMONIKER = 8,
+    MKSYS_SESSIONMONIKER = 9,
+    MKSYS_LUAMONIKER = 10,
+}
+
+@foreign
+typedef MKSYS = tagMKSYS;
+
+@foreign
+enum tagMKREDUCE {
+    MKRREDUCE_ALL = 0,
+    MKRREDUCE_THROUGHUSER = 65536,
+    MKRREDUCE_TOUSER = 131072,
+    MKRREDUCE_ONE = 196608,
+}
+
+@foreign
+typedef MKRREDUCE = tagMKREDUCE;
+
+@foreign
+struct IMonikerVtbl {
+    QueryInterface: func(This: IMoniker*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMoniker*): ULONG;
+    Release: func(This: IMoniker*): ULONG;
+    GetClassID: func(This: IMoniker*, pClassID: CLSID*): HRESULT;
+    IsDirty: func(This: IMoniker*): HRESULT;
+    Load: func(This: IMoniker*, pStm: IStream*): HRESULT;
+    Save: func(This: IMoniker*, pStm: IStream*, fClearDirty: BOOL): HRESULT;
+    GetSizeMax: func(This: IMoniker*, pcbSize: ULARGE_INTEGER*): HRESULT;
+    BindToObject: func(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riidResult: IID* const, ppvResult: void**): HRESULT;
+    BindToStorage: func(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riid: IID* const, ppvObj: void**): HRESULT;
+    Reduce: func(This: IMoniker*, pbc: IBindCtx*, dwReduceHowFar: DWORD, ppmkToLeft: IMoniker**, ppmkReduced: IMoniker**): HRESULT;
+    ComposeWith: func(This: IMoniker*, pmkRight: IMoniker*, fOnlyIfNotGeneric: BOOL, ppmkComposite: IMoniker**): HRESULT;
+    Enum: func(This: IMoniker*, fForward: BOOL, ppenumMoniker: IEnumMoniker**): HRESULT;
+    IsEqual: func(This: IMoniker*, pmkOtherMoniker: IMoniker*): HRESULT;
+    Hash: func(This: IMoniker*, pdwHash: DWORD*): HRESULT;
+    IsRunning: func(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, pmkNewlyRunning: IMoniker*): HRESULT;
+    GetTimeOfLastChange: func(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, pFileTime: FILETIME*): HRESULT;
+    Inverse: func(This: IMoniker*, ppmk: IMoniker**): HRESULT;
+    CommonPrefixWith: func(This: IMoniker*, pmkOther: IMoniker*, ppmkPrefix: IMoniker**): HRESULT;
+    RelativePathTo: func(This: IMoniker*, pmkOther: IMoniker*, ppmkRelPath: IMoniker**): HRESULT;
+    GetDisplayName: func(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, ppszDisplayName: LPOLESTR*): HRESULT;
+    ParseDisplayName: func(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, pszDisplayName: LPOLESTR, pchEaten: ULONG*, ppmkOut: IMoniker**): HRESULT;
+    IsSystemMoniker: func(This: IMoniker*, pdwMksys: DWORD*): HRESULT;
+}
+
+@foreign
+struct IMoniker {
+    lpVtbl: IMonikerVtbl*;
+}
+
+@foreign
+func IMoniker_RemoteBindToObject_Proxy(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riidResult: IID* const, ppvResult: IUnknown**): HRESULT;
+
+@foreign
+func IMoniker_RemoteBindToObject_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IMoniker_RemoteBindToStorage_Proxy(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func IMoniker_RemoteBindToStorage_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct IROTDataVtbl {
+    QueryInterface: func(This: IROTData*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IROTData*): ULONG;
+    Release: func(This: IROTData*): ULONG;
+    GetComparisonData: func(This: IROTData*, pbData: byte*, cbMax: ULONG, pcbData: ULONG*): HRESULT;
+}
+
+@foreign
+struct IROTData {
+    lpVtbl: IROTDataVtbl*;
+}
+
+@foreign
+typedef LPENUMSTATSTG = IEnumSTATSTG*;
+
+@foreign
+struct IEnumSTATSTGVtbl {
+    QueryInterface: func(This: IEnumSTATSTG*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumSTATSTG*): ULONG;
+    Release: func(This: IEnumSTATSTG*): ULONG;
+    Next: func(This: IEnumSTATSTG*, celt: ULONG, rgelt: STATSTG*, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumSTATSTG*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumSTATSTG*): HRESULT;
+    Clone: func(This: IEnumSTATSTG*, ppenum: IEnumSTATSTG**): HRESULT;
+}
+
+@foreign
+struct IEnumSTATSTG {
+    lpVtbl: IEnumSTATSTGVtbl*;
+}
+
+@foreign
+func IEnumSTATSTG_RemoteNext_Proxy(This: IEnumSTATSTG*, celt: ULONG, rgelt: STATSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATSTG_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPSTORAGE = IStorage*;
+
+@foreign
+struct tagRemSNB {
+    ulCntStr: ULONG;
+    ulCntChar: ULONG;
+    rgString: OLECHAR[1];
+}
+
+@foreign
+typedef RemSNB = tagRemSNB;
+
+@foreign
+typedef wireSNB = RemSNB*;
+
+@foreign
+typedef SNB = LPOLESTR*;
+
+@foreign
+struct IStorageVtbl {
+    QueryInterface: func(This: IStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IStorage*): ULONG;
+    Release: func(This: IStorage*): ULONG;
+    CreateStream: func(This: IStorage*, pwcsName: OLECHAR*, grfMode: DWORD, reserved1: DWORD, reserved2: DWORD, ppstm: IStream**): HRESULT;
+    OpenStream: func(This: IStorage*, pwcsName: OLECHAR*, reserved1: void*, grfMode: DWORD, reserved2: DWORD, ppstm: IStream**): HRESULT;
+    CreateStorage: func(This: IStorage*, pwcsName: OLECHAR*, grfMode: DWORD, reserved1: DWORD, reserved2: DWORD, ppstg: IStorage**): HRESULT;
+    OpenStorage: func(This: IStorage*, pwcsName: OLECHAR*, pstgPriority: IStorage*, grfMode: DWORD, snbExclude: SNB, reserved: DWORD, ppstg: IStorage**): HRESULT;
+    CopyTo: func(This: IStorage*, ciidExclude: DWORD, rgiidExclude: IID*, snbExclude: SNB, pstgDest: IStorage*): HRESULT;
+    MoveElementTo: func(This: IStorage*, pwcsName: OLECHAR*, pstgDest: IStorage*, pwcsNewName: OLECHAR*, grfFlags: DWORD): HRESULT;
+    Commit: func(This: IStorage*, grfCommitFlags: DWORD): HRESULT;
+    Revert: func(This: IStorage*): HRESULT;
+    EnumElements: func(This: IStorage*, reserved1: DWORD, reserved2: void*, reserved3: DWORD, ppenum: IEnumSTATSTG**): HRESULT;
+    DestroyElement: func(This: IStorage*, pwcsName: OLECHAR*): HRESULT;
+    RenameElement: func(This: IStorage*, pwcsOldName: OLECHAR*, pwcsNewName: OLECHAR*): HRESULT;
+    SetElementTimes: func(This: IStorage*, pwcsName: OLECHAR*, pctime: FILETIME*, patime: FILETIME*, pmtime: FILETIME*): HRESULT;
+    SetClass: func(This: IStorage*, clsid: IID* const): HRESULT;
+    SetStateBits: func(This: IStorage*, grfStateBits: DWORD, grfMask: DWORD): HRESULT;
+    Stat: func(This: IStorage*, pstatstg: STATSTG*, grfStatFlag: DWORD): HRESULT;
+}
+
+@foreign
+struct IStorage {
+    lpVtbl: IStorageVtbl*;
+}
+
+@foreign
+func IStorage_RemoteOpenStream_Proxy(This: IStorage*, pwcsName: OLECHAR*, cbReserved1: ULONG, reserved1: byte*, grfMode: DWORD, reserved2: DWORD, ppstm: IStream**): HRESULT;
+
+@foreign
+func IStorage_RemoteOpenStream_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IStorage_RemoteCopyTo_Proxy(This: IStorage*, ciidExclude: DWORD, rgiidExclude: IID*, snbExclude: SNB, pstgDest: IStorage*): HRESULT;
+
+@foreign
+func IStorage_RemoteCopyTo_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IStorage_RemoteEnumElements_Proxy(This: IStorage*, reserved1: DWORD, cbReserved2: ULONG, reserved2: byte*, reserved3: DWORD, ppenum: IEnumSTATSTG**): HRESULT;
+
+@foreign
+func IStorage_RemoteEnumElements_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPPERSISTFILE = IPersistFile*;
+
+@foreign
+struct IPersistFileVtbl {
+    QueryInterface: func(This: IPersistFile*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPersistFile*): ULONG;
+    Release: func(This: IPersistFile*): ULONG;
+    GetClassID: func(This: IPersistFile*, pClassID: CLSID*): HRESULT;
+    IsDirty: func(This: IPersistFile*): HRESULT;
+    Load: func(This: IPersistFile*, pszFileName: LPCOLESTR, dwMode: DWORD): HRESULT;
+    Save: func(This: IPersistFile*, pszFileName: LPCOLESTR, fRemember: BOOL): HRESULT;
+    SaveCompleted: func(This: IPersistFile*, pszFileName: LPCOLESTR): HRESULT;
+    GetCurFile: func(This: IPersistFile*, ppszFileName: LPOLESTR*): HRESULT;
+}
+
+@foreign
+struct IPersistFile {
+    lpVtbl: IPersistFileVtbl*;
+}
+
+@foreign
+typedef LPPERSISTSTORAGE = IPersistStorage*;
+
+@foreign
+struct IPersistStorageVtbl {
+    QueryInterface: func(This: IPersistStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPersistStorage*): ULONG;
+    Release: func(This: IPersistStorage*): ULONG;
+    GetClassID: func(This: IPersistStorage*, pClassID: CLSID*): HRESULT;
+    IsDirty: func(This: IPersistStorage*): HRESULT;
+    InitNew: func(This: IPersistStorage*, pStg: IStorage*): HRESULT;
+    Load: func(This: IPersistStorage*, pStg: IStorage*): HRESULT;
+    Save: func(This: IPersistStorage*, pStgSave: IStorage*, fSameAsLoad: BOOL): HRESULT;
+    SaveCompleted: func(This: IPersistStorage*, pStgNew: IStorage*): HRESULT;
+    HandsOffStorage: func(This: IPersistStorage*): HRESULT;
+}
+
+@foreign
+struct IPersistStorage {
+    lpVtbl: IPersistStorageVtbl*;
+}
+
+@foreign
+typedef LPLOCKBYTES = ILockBytes*;
+
+@foreign
+struct ILockBytesVtbl {
+    QueryInterface: func(This: ILockBytes*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ILockBytes*): ULONG;
+    Release: func(This: ILockBytes*): ULONG;
+    ReadAt: func(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+    WriteAt: func(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+    Flush: func(This: ILockBytes*): HRESULT;
+    SetSize: func(This: ILockBytes*, cb: ULARGE_INTEGER): HRESULT;
+    LockRegion: func(This: ILockBytes*, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: DWORD): HRESULT;
+    UnlockRegion: func(This: ILockBytes*, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: DWORD): HRESULT;
+    Stat: func(This: ILockBytes*, pstatstg: STATSTG*, grfStatFlag: DWORD): HRESULT;
+}
+
+@foreign
+struct ILockBytes {
+    lpVtbl: ILockBytesVtbl*;
+}
+
+@foreign
+func ILockBytes_RemoteReadAt_Proxy(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: byte*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+
+@foreign
+func ILockBytes_RemoteReadAt_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func ILockBytes_RemoteWriteAt_Proxy(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func ILockBytes_RemoteWriteAt_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPENUMFORMATETC = IEnumFORMATETC*;
+
+@foreign
+struct tagDVTARGETDEVICE {
+    tdSize: DWORD;
+    tdDriverNameOffset: WORD;
+    tdDeviceNameOffset: WORD;
+    tdPortNameOffset: WORD;
+    tdExtDevmodeOffset: WORD;
+    tdData: BYTE[1];
+}
+
+@foreign
+typedef DVTARGETDEVICE = tagDVTARGETDEVICE;
+
+@foreign
+typedef LPCLIPFORMAT = CLIPFORMAT*;
+
+@foreign
+struct tagFORMATETC {
+    cfFormat: CLIPFORMAT;
+    ptd: DVTARGETDEVICE*;
+    dwAspect: DWORD;
+    lindex: LONG;
+    tymed: DWORD;
+}
+
+@foreign
+typedef FORMATETC = tagFORMATETC;
+
+@foreign
+typedef LPFORMATETC = tagFORMATETC*;
+
+@foreign
+struct IEnumFORMATETCVtbl {
+    QueryInterface: func(This: IEnumFORMATETC*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumFORMATETC*): ULONG;
+    Release: func(This: IEnumFORMATETC*): ULONG;
+    Next: func(This: IEnumFORMATETC*, celt: ULONG, rgelt: FORMATETC*, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumFORMATETC*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumFORMATETC*): HRESULT;
+    Clone: func(This: IEnumFORMATETC*, ppenum: IEnumFORMATETC**): HRESULT;
+}
+
+@foreign
+struct IEnumFORMATETC {
+    lpVtbl: IEnumFORMATETCVtbl*;
+}
+
+@foreign
+func IEnumFORMATETC_RemoteNext_Proxy(This: IEnumFORMATETC*, celt: ULONG, rgelt: FORMATETC*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumFORMATETC_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPENUMSTATDATA = IEnumSTATDATA*;
+
+@foreign
+enum tagADVF {
+    ADVF_NODATA = 1,
+    ADVF_PRIMEFIRST = 2,
+    ADVF_ONLYONCE = 4,
+    ADVFCACHE_NOHANDLER = 8,
+    ADVFCACHE_FORCEBUILTIN = 16,
+    ADVFCACHE_ONSAVE = 32,
+    ADVF_DATAONSTOP = 64,
+}
+
+@foreign
+typedef ADVF = tagADVF;
+
+@foreign
+struct tagSTATDATA {
+    formatetc: FORMATETC;
+    advf: DWORD;
+    pAdvSink: IAdviseSink*;
+    dwConnection: DWORD;
+}
+
+@foreign
+typedef STATDATA = tagSTATDATA;
+
+@foreign
+typedef LPSTATDATA = STATDATA*;
+
+@foreign
+struct IEnumSTATDATAVtbl {
+    QueryInterface: func(This: IEnumSTATDATA*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumSTATDATA*): ULONG;
+    Release: func(This: IEnumSTATDATA*): ULONG;
+    Next: func(This: IEnumSTATDATA*, celt: ULONG, rgelt: STATDATA*, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumSTATDATA*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumSTATDATA*): HRESULT;
+    Clone: func(This: IEnumSTATDATA*, ppenum: IEnumSTATDATA**): HRESULT;
+}
+
+@foreign
+struct IEnumSTATDATA {
+    lpVtbl: IEnumSTATDATAVtbl*;
+}
+
+@foreign
+func IEnumSTATDATA_RemoteNext_Proxy(This: IEnumSTATDATA*, celt: ULONG, rgelt: STATDATA*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATDATA_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPROOTSTORAGE = IRootStorage*;
+
+@foreign
+struct IRootStorageVtbl {
+    QueryInterface: func(This: IRootStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IRootStorage*): ULONG;
+    Release: func(This: IRootStorage*): ULONG;
+    SwitchToFile: func(This: IRootStorage*, pszFile: LPOLESTR): HRESULT;
+}
+
+@foreign
+struct IRootStorage {
+    lpVtbl: IRootStorageVtbl*;
+}
+
+@foreign
+typedef LPADVISESINK = IAdviseSink*;
+
+@foreign
+enum tagTYMED {
+    TYMED_NULL = 0,
+    TYMED_HGLOBAL = 1,
+    TYMED_FILE = 2,
+    TYMED_ISTREAM = 4,
+    TYMED_ISTORAGE = 8,
+    TYMED_GDI = 16,
+    TYMED_MFPICT = 32,
+    TYMED_ENHMF = 64,
+}
+
+@foreign
+typedef TYMED = tagTYMED;
+
+@foreign
+struct tagRemSTGMEDIUM {
+    tymed: DWORD;
+    dwHandleType: DWORD;
+    pData: ULONG;
+    pUnkForRelease: ULONG;
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemSTGMEDIUM = tagRemSTGMEDIUM;
+
+/*
+@PROBLEM Nested struct def at line 11243, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+@foreign
+struct tagSTGMEDIUM {
+    tymed: DWORD;
+    u: (null);
+    pUnkForRelease: IUnknown*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11243, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+tagSTGMEDIUM
+*/
+
+/*
+@PROBLEM Nested struct def at line 11275, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+@foreign
+struct _GDI_OBJECT {
+    ObjectType: DWORD;
+    u: __MIDL_IAdviseSink_0002;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11275, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+_GDI_OBJECT
+*/
+
+/*
+@PROBLEM Nested struct def at line 11286, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+@foreign
+struct _userSTGMEDIUM {
+    u: _STGMEDIUM_UNION;
+    pUnkForRelease: IUnknown*;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 11286, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+_userSTGMEDIUM
+*/
+
+@foreign
+typedef wireSTGMEDIUM = userSTGMEDIUM*;
+
+@foreign
+typedef STGMEDIUM = uSTGMEDIUM;
+
+@foreign
+typedef wireASYNC_STGMEDIUM = userSTGMEDIUM*;
+
+@foreign
+typedef ASYNC_STGMEDIUM = STGMEDIUM;
+
+@foreign
+typedef LPSTGMEDIUM = STGMEDIUM*;
+
+@foreign
+struct _userFLAG_STGMEDIUM {
+    ContextFlags: LONG;
+    fPassOwnership: LONG;
+    Stgmed: userSTGMEDIUM;
+}
+
+@foreign
+typedef userFLAG_STGMEDIUM = _userFLAG_STGMEDIUM;
+
+@foreign
+typedef wireFLAG_STGMEDIUM = userFLAG_STGMEDIUM*;
+
+@foreign
+struct _FLAG_STGMEDIUM {
+    ContextFlags: LONG;
+    fPassOwnership: LONG;
+    Stgmed: STGMEDIUM;
+}
+
+@foreign
+typedef FLAG_STGMEDIUM = _FLAG_STGMEDIUM;
+
+@foreign
+struct IAdviseSinkVtbl {
+    QueryInterface: func(This: IAdviseSink*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAdviseSink*): ULONG;
+    Release: func(This: IAdviseSink*): ULONG;
+    OnDataChange: func(This: IAdviseSink*, pFormatetc: FORMATETC*, pStgmed: STGMEDIUM*);
+    OnViewChange: func(This: IAdviseSink*, dwAspect: DWORD, lindex: LONG);
+    OnRename: func(This: IAdviseSink*, pmk: IMoniker*);
+    OnSave: func(This: IAdviseSink*);
+    OnClose: func(This: IAdviseSink*);
+}
+
+@foreign
+struct IAdviseSink {
+    lpVtbl: IAdviseSinkVtbl*;
+}
+
+@foreign
+func IAdviseSink_RemoteOnDataChange_Proxy(This: IAdviseSink*, pFormatetc: FORMATETC*, pStgmed: ASYNC_STGMEDIUM*): HRESULT;
+
+@foreign
+func IAdviseSink_RemoteOnDataChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IAdviseSink_RemoteOnViewChange_Proxy(This: IAdviseSink*, dwAspect: DWORD, lindex: LONG): HRESULT;
+
+@foreign
+func IAdviseSink_RemoteOnViewChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IAdviseSink_RemoteOnRename_Proxy(This: IAdviseSink*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func IAdviseSink_RemoteOnRename_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IAdviseSink_RemoteOnSave_Proxy(This: IAdviseSink*): HRESULT;
+
+@foreign
+func IAdviseSink_RemoteOnSave_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IAdviseSink_RemoteOnClose_Proxy(This: IAdviseSink*): HRESULT;
+
+@foreign
+func IAdviseSink_RemoteOnClose_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct AsyncIAdviseSinkVtbl {
+    QueryInterface: func(This: AsyncIAdviseSink*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIAdviseSink*): ULONG;
+    Release: func(This: AsyncIAdviseSink*): ULONG;
+    Begin_OnDataChange: func(This: AsyncIAdviseSink*, pFormatetc: FORMATETC*, pStgmed: STGMEDIUM*);
+    Finish_OnDataChange: func(This: AsyncIAdviseSink*);
+    Begin_OnViewChange: func(This: AsyncIAdviseSink*, dwAspect: DWORD, lindex: LONG);
+    Finish_OnViewChange: func(This: AsyncIAdviseSink*);
+    Begin_OnRename: func(This: AsyncIAdviseSink*, pmk: IMoniker*);
+    Finish_OnRename: func(This: AsyncIAdviseSink*);
+    Begin_OnSave: func(This: AsyncIAdviseSink*);
+    Finish_OnSave: func(This: AsyncIAdviseSink*);
+    Begin_OnClose: func(This: AsyncIAdviseSink*);
+    Finish_OnClose: func(This: AsyncIAdviseSink*);
+}
+
+@foreign
+struct AsyncIAdviseSink {
+    lpVtbl: AsyncIAdviseSinkVtbl*;
+}
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnDataChange_Proxy(This: AsyncIAdviseSink*, pFormatetc: FORMATETC*, pStgmed: ASYNC_STGMEDIUM*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnDataChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnDataChange_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnDataChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnViewChange_Proxy(This: AsyncIAdviseSink*, dwAspect: DWORD, lindex: LONG): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnViewChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnViewChange_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnViewChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnRename_Proxy(This: AsyncIAdviseSink*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnRename_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnRename_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnRename_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnSave_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnSave_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnSave_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnSave_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnClose_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_RemoteOnClose_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnClose_Proxy(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_RemoteOnClose_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPADVISESINK2 = IAdviseSink2*;
+
+@foreign
+struct IAdviseSink2Vtbl {
+    QueryInterface: func(This: IAdviseSink2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAdviseSink2*): ULONG;
+    Release: func(This: IAdviseSink2*): ULONG;
+    OnDataChange: func(This: IAdviseSink2*, pFormatetc: FORMATETC*, pStgmed: STGMEDIUM*);
+    OnViewChange: func(This: IAdviseSink2*, dwAspect: DWORD, lindex: LONG);
+    OnRename: func(This: IAdviseSink2*, pmk: IMoniker*);
+    OnSave: func(This: IAdviseSink2*);
+    OnClose: func(This: IAdviseSink2*);
+    OnLinkSrcChange: func(This: IAdviseSink2*, pmk: IMoniker*);
+}
+
+@foreign
+struct IAdviseSink2 {
+    lpVtbl: IAdviseSink2Vtbl*;
+}
+
+@foreign
+func IAdviseSink2_RemoteOnLinkSrcChange_Proxy(This: IAdviseSink2*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func IAdviseSink2_RemoteOnLinkSrcChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct AsyncIAdviseSink2Vtbl {
+    QueryInterface: func(This: AsyncIAdviseSink2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIAdviseSink2*): ULONG;
+    Release: func(This: AsyncIAdviseSink2*): ULONG;
+    Begin_OnDataChange: func(This: AsyncIAdviseSink2*, pFormatetc: FORMATETC*, pStgmed: STGMEDIUM*);
+    Finish_OnDataChange: func(This: AsyncIAdviseSink2*);
+    Begin_OnViewChange: func(This: AsyncIAdviseSink2*, dwAspect: DWORD, lindex: LONG);
+    Finish_OnViewChange: func(This: AsyncIAdviseSink2*);
+    Begin_OnRename: func(This: AsyncIAdviseSink2*, pmk: IMoniker*);
+    Finish_OnRename: func(This: AsyncIAdviseSink2*);
+    Begin_OnSave: func(This: AsyncIAdviseSink2*);
+    Finish_OnSave: func(This: AsyncIAdviseSink2*);
+    Begin_OnClose: func(This: AsyncIAdviseSink2*);
+    Finish_OnClose: func(This: AsyncIAdviseSink2*);
+    Begin_OnLinkSrcChange: func(This: AsyncIAdviseSink2*, pmk: IMoniker*);
+    Finish_OnLinkSrcChange: func(This: AsyncIAdviseSink2*);
+}
+
+@foreign
+struct AsyncIAdviseSink2 {
+    lpVtbl: AsyncIAdviseSink2Vtbl*;
+}
+
+@foreign
+func AsyncIAdviseSink2_Begin_RemoteOnLinkSrcChange_Proxy(This: AsyncIAdviseSink2*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink2_Begin_RemoteOnLinkSrcChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func AsyncIAdviseSink2_Finish_RemoteOnLinkSrcChange_Proxy(This: AsyncIAdviseSink2*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink2_Finish_RemoteOnLinkSrcChange_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPDATAOBJECT = IDataObject*;
+
+@foreign
+enum tagDATADIR {
+    DATADIR_GET = 1,
+    DATADIR_SET = 2,
+}
+
+@foreign
+typedef DATADIR = tagDATADIR;
+
+@foreign
+struct IDataObjectVtbl {
+    QueryInterface: func(This: IDataObject*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDataObject*): ULONG;
+    Release: func(This: IDataObject*): ULONG;
+    GetData: func(This: IDataObject*, pformatetcIn: FORMATETC*, pmedium: STGMEDIUM*): HRESULT;
+    GetDataHere: func(This: IDataObject*, pformatetc: FORMATETC*, pmedium: STGMEDIUM*): HRESULT;
+    QueryGetData: func(This: IDataObject*, pformatetc: FORMATETC*): HRESULT;
+    GetCanonicalFormatEtc: func(This: IDataObject*, pformatectIn: FORMATETC*, pformatetcOut: FORMATETC*): HRESULT;
+    SetData: func(This: IDataObject*, pformatetc: FORMATETC*, pmedium: STGMEDIUM*, fRelease: BOOL): HRESULT;
+    EnumFormatEtc: func(This: IDataObject*, dwDirection: DWORD, ppenumFormatEtc: IEnumFORMATETC**): HRESULT;
+    DAdvise: func(This: IDataObject*, pformatetc: FORMATETC*, advf: DWORD, pAdvSink: IAdviseSink*, pdwConnection: DWORD*): HRESULT;
+    DUnadvise: func(This: IDataObject*, dwConnection: DWORD): HRESULT;
+    EnumDAdvise: func(This: IDataObject*, ppenumAdvise: IEnumSTATDATA**): HRESULT;
+}
+
+@foreign
+struct IDataObject {
+    lpVtbl: IDataObjectVtbl*;
+}
+
+@foreign
+func IDataObject_RemoteGetData_Proxy(This: IDataObject*, pformatetcIn: FORMATETC*, pRemoteMedium: STGMEDIUM*): HRESULT;
+
+@foreign
+func IDataObject_RemoteGetData_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IDataObject_RemoteGetDataHere_Proxy(This: IDataObject*, pformatetc: FORMATETC*, pRemoteMedium: STGMEDIUM*): HRESULT;
+
+@foreign
+func IDataObject_RemoteGetDataHere_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IDataObject_RemoteSetData_Proxy(This: IDataObject*, pformatetc: FORMATETC*, pmedium: FLAG_STGMEDIUM*, fRelease: BOOL): HRESULT;
+
+@foreign
+func IDataObject_RemoteSetData_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPDATAADVISEHOLDER = IDataAdviseHolder*;
+
+@foreign
+struct IDataAdviseHolderVtbl {
+    QueryInterface: func(This: IDataAdviseHolder*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDataAdviseHolder*): ULONG;
+    Release: func(This: IDataAdviseHolder*): ULONG;
+    Advise: func(This: IDataAdviseHolder*, pDataObject: IDataObject*, pFetc: FORMATETC*, advf: DWORD, pAdvise: IAdviseSink*, pdwConnection: DWORD*): HRESULT;
+    Unadvise: func(This: IDataAdviseHolder*, dwConnection: DWORD): HRESULT;
+    EnumAdvise: func(This: IDataAdviseHolder*, ppenumAdvise: IEnumSTATDATA**): HRESULT;
+    SendOnDataChange: func(This: IDataAdviseHolder*, pDataObject: IDataObject*, dwReserved: DWORD, advf: DWORD): HRESULT;
+}
+
+@foreign
+struct IDataAdviseHolder {
+    lpVtbl: IDataAdviseHolderVtbl*;
+}
+
+@foreign
+typedef LPMESSAGEFILTER = IMessageFilter*;
+
+@foreign
+enum tagCALLTYPE {
+    CALLTYPE_TOPLEVEL = 1,
+    CALLTYPE_NESTED = 2,
+    CALLTYPE_ASYNC = 3,
+    CALLTYPE_TOPLEVEL_CALLPENDING = 4,
+    CALLTYPE_ASYNC_CALLPENDING = 5,
+}
+
+@foreign
+typedef CALLTYPE = tagCALLTYPE;
+
+@foreign
+enum tagSERVERCALL {
+    SERVERCALL_ISHANDLED = 0,
+    SERVERCALL_REJECTED = 1,
+    SERVERCALL_RETRYLATER = 2,
+}
+
+@foreign
+typedef SERVERCALL = tagSERVERCALL;
+
+@foreign
+enum tagPENDINGTYPE {
+    PENDINGTYPE_TOPLEVEL = 1,
+    PENDINGTYPE_NESTED = 2,
+}
+
+@foreign
+typedef PENDINGTYPE = tagPENDINGTYPE;
+
+@foreign
+enum tagPENDINGMSG {
+    PENDINGMSG_CANCELCALL = 0,
+    PENDINGMSG_WAITNOPROCESS = 1,
+    PENDINGMSG_WAITDEFPROCESS = 2,
+}
+
+@foreign
+typedef PENDINGMSG = tagPENDINGMSG;
+
+@foreign
+struct tagINTERFACEINFO {
+    pUnk: IUnknown*;
+    iid: IID;
+    wMethod: WORD;
+}
+
+@foreign
+typedef INTERFACEINFO = tagINTERFACEINFO;
+
+@foreign
+typedef LPINTERFACEINFO = tagINTERFACEINFO*;
+
+@foreign
+struct IMessageFilterVtbl {
+    QueryInterface: func(This: IMessageFilter*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMessageFilter*): ULONG;
+    Release: func(This: IMessageFilter*): ULONG;
+    HandleInComingCall: func(This: IMessageFilter*, dwCallType: DWORD, htaskCaller: HTASK, dwTickCount: DWORD, lpInterfaceInfo: LPINTERFACEINFO): DWORD;
+    RetryRejectedCall: func(This: IMessageFilter*, htaskCallee: HTASK, dwTickCount: DWORD, dwRejectType: DWORD): DWORD;
+    MessagePending: func(This: IMessageFilter*, htaskCallee: HTASK, dwTickCount: DWORD, dwPendingType: DWORD): DWORD;
+}
+
+@foreign
+struct IMessageFilter {
+    lpVtbl: IMessageFilterVtbl*;
+}
+
+@foreign
+struct IClassActivatorVtbl {
+    QueryInterface: func(This: IClassActivator*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IClassActivator*): ULONG;
+    Release: func(This: IClassActivator*): ULONG;
+    GetClassObject: func(This: IClassActivator*, rclsid: IID* const, dwClassContext: DWORD, locale: LCID, riid: IID* const, ppv: void**): HRESULT;
+}
+
+@foreign
+struct IClassActivator {
+    lpVtbl: IClassActivatorVtbl*;
+}
+
+@foreign
+struct IFillLockBytesVtbl {
+    QueryInterface: func(This: IFillLockBytes*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IFillLockBytes*): ULONG;
+    Release: func(This: IFillLockBytes*): ULONG;
+    FillAppend: func(This: IFillLockBytes*, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+    FillAt: func(This: IFillLockBytes*, ulOffset: ULARGE_INTEGER, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+    SetFillSize: func(This: IFillLockBytes*, ulSize: ULARGE_INTEGER): HRESULT;
+    Terminate: func(This: IFillLockBytes*, bCanceled: BOOL): HRESULT;
+}
+
+@foreign
+struct IFillLockBytes {
+    lpVtbl: IFillLockBytesVtbl*;
+}
+
+@foreign
+func IFillLockBytes_RemoteFillAppend_Proxy(This: IFillLockBytes*, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IFillLockBytes_RemoteFillAppend_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IFillLockBytes_RemoteFillAt_Proxy(This: IFillLockBytes*, ulOffset: ULARGE_INTEGER, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IFillLockBytes_RemoteFillAt_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct IProgressNotifyVtbl {
+    QueryInterface: func(This: IProgressNotify*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IProgressNotify*): ULONG;
+    Release: func(This: IProgressNotify*): ULONG;
+    OnProgress: func(This: IProgressNotify*, dwProgressCurrent: DWORD, dwProgressMaximum: DWORD, fAccurate: BOOL, fOwner: BOOL): HRESULT;
+}
+
+@foreign
+struct IProgressNotify {
+    lpVtbl: IProgressNotifyVtbl*;
+}
+
+@foreign
+struct tagStorageLayout {
+    LayoutType: DWORD;
+    pwcsElementName: OLECHAR*;
+    cOffset: LARGE_INTEGER;
+    cBytes: LARGE_INTEGER;
+}
+
+@foreign
+typedef StorageLayout = tagStorageLayout;
+
+@foreign
+struct ILayoutStorageVtbl {
+    QueryInterface: func(This: ILayoutStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ILayoutStorage*): ULONG;
+    Release: func(This: ILayoutStorage*): ULONG;
+    LayoutScript: func(This: ILayoutStorage*, pStorageLayout: StorageLayout*, nEntries: DWORD, glfInterleavedFlag: DWORD): HRESULT;
+    BeginMonitor: func(This: ILayoutStorage*): HRESULT;
+    EndMonitor: func(This: ILayoutStorage*): HRESULT;
+    ReLayoutDocfile: func(This: ILayoutStorage*, pwcsNewDfName: OLECHAR*): HRESULT;
+    ReLayoutDocfileOnILockBytes: func(This: ILayoutStorage*, pILockBytes: ILockBytes*): HRESULT;
+}
+
+@foreign
+struct ILayoutStorage {
+    lpVtbl: ILayoutStorageVtbl*;
+}
+
+@foreign
+struct IBlockingLockVtbl {
+    QueryInterface: func(This: IBlockingLock*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBlockingLock*): ULONG;
+    Release: func(This: IBlockingLock*): ULONG;
+    Lock: func(This: IBlockingLock*, dwTimeout: DWORD): HRESULT;
+    Unlock: func(This: IBlockingLock*): HRESULT;
+}
+
+@foreign
+struct IBlockingLock {
+    lpVtbl: IBlockingLockVtbl*;
+}
+
+@foreign
+struct ITimeAndNoticeControlVtbl {
+    QueryInterface: func(This: ITimeAndNoticeControl*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ITimeAndNoticeControl*): ULONG;
+    Release: func(This: ITimeAndNoticeControl*): ULONG;
+    SuppressChanges: func(This: ITimeAndNoticeControl*, res1: DWORD, res2: DWORD): HRESULT;
+}
+
+@foreign
+struct ITimeAndNoticeControl {
+    lpVtbl: ITimeAndNoticeControlVtbl*;
+}
+
+@foreign
+struct IOplockStorageVtbl {
+    QueryInterface: func(This: IOplockStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IOplockStorage*): ULONG;
+    Release: func(This: IOplockStorage*): ULONG;
+    CreateStorageEx: func(This: IOplockStorage*, pwcsName: LPCWSTR, grfMode: DWORD, stgfmt: DWORD, grfAttrs: DWORD, riid: IID* const, ppstgOpen: void**): HRESULT;
+    OpenStorageEx: func(This: IOplockStorage*, pwcsName: LPCWSTR, grfMode: DWORD, stgfmt: DWORD, grfAttrs: DWORD, riid: IID* const, ppstgOpen: void**): HRESULT;
+}
+
+@foreign
+struct IOplockStorage {
+    lpVtbl: IOplockStorageVtbl*;
+}
+
+@foreign
+struct IDirectWriterLockVtbl {
+    QueryInterface: func(This: IDirectWriterLock*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDirectWriterLock*): ULONG;
+    Release: func(This: IDirectWriterLock*): ULONG;
+    WaitForWriteAccess: func(This: IDirectWriterLock*, dwTimeout: DWORD): HRESULT;
+    ReleaseWriteAccess: func(This: IDirectWriterLock*): HRESULT;
+    HaveWriteAccess: func(This: IDirectWriterLock*): HRESULT;
+}
+
+@foreign
+struct IDirectWriterLock {
+    lpVtbl: IDirectWriterLockVtbl*;
+}
+
+@foreign
+struct IUrlMonVtbl {
+    QueryInterface: func(This: IUrlMon*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IUrlMon*): ULONG;
+    Release: func(This: IUrlMon*): ULONG;
+    AsyncGetClassBits: func(This: IUrlMon*, rclsid: IID* const, pszTYPE: LPCWSTR, pszExt: LPCWSTR, dwFileVersionMS: DWORD, dwFileVersionLS: DWORD, pszCodeBase: LPCWSTR, pbc: IBindCtx*, dwClassContext: DWORD, riid: IID* const, flags: DWORD): HRESULT;
+}
+
+@foreign
+struct IUrlMon {
+    lpVtbl: IUrlMonVtbl*;
+}
+
+@foreign
+struct IForegroundTransferVtbl {
+    QueryInterface: func(This: IForegroundTransfer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IForegroundTransfer*): ULONG;
+    Release: func(This: IForegroundTransfer*): ULONG;
+    AllowForegroundTransfer: func(This: IForegroundTransfer*, lpvReserved: void*): HRESULT;
+}
+
+@foreign
+struct IForegroundTransfer {
+    lpVtbl: IForegroundTransferVtbl*;
+}
+
+@foreign
+struct IThumbnailExtractorVtbl {
+    QueryInterface: func(This: IThumbnailExtractor*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IThumbnailExtractor*): ULONG;
+    Release: func(This: IThumbnailExtractor*): ULONG;
+    ExtractThumbnail: func(This: IThumbnailExtractor*, pStg: IStorage*, ulLength: ULONG, ulHeight: ULONG, pulOutputLength: ULONG*, pulOutputHeight: ULONG*, phOutputBitmap: HBITMAP*): HRESULT;
+    OnFileUpdated: func(This: IThumbnailExtractor*, pStg: IStorage*): HRESULT;
+}
+
+@foreign
+struct IThumbnailExtractor {
+    lpVtbl: IThumbnailExtractorVtbl*;
+}
+
+@foreign
+struct IDummyHICONIncluderVtbl {
+    QueryInterface: func(This: IDummyHICONIncluder*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDummyHICONIncluder*): ULONG;
+    Release: func(This: IDummyHICONIncluder*): ULONG;
+    Dummy: func(This: IDummyHICONIncluder*, h1: HICON, h2: HDC): HRESULT;
+}
+
+@foreign
+struct IDummyHICONIncluder {
+    lpVtbl: IDummyHICONIncluderVtbl*;
+}
+
+@foreign
+enum tagApplicationType {
+    ServerApplication = 0,
+    LibraryApplication = 1,
+}
+
+@foreign
+typedef ApplicationType = tagApplicationType;
+
+@foreign
+enum tagShutdownType {
+    IdleShutdown = 0,
+    ForcedShutdown = 1,
+}
+
+@foreign
+typedef ShutdownType = tagShutdownType;
+
+@foreign
+struct IProcessLockVtbl {
+    QueryInterface: func(This: IProcessLock*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IProcessLock*): ULONG;
+    Release: func(This: IProcessLock*): ULONG;
+    AddRefOnProcess: func(This: IProcessLock*): ULONG;
+    ReleaseRefOnProcess: func(This: IProcessLock*): ULONG;
+}
+
+@foreign
+struct IProcessLock {
+    lpVtbl: IProcessLockVtbl*;
+}
+
+@foreign
+struct ISurrogateServiceVtbl {
+    QueryInterface: func(This: ISurrogateService*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISurrogateService*): ULONG;
+    Release: func(This: ISurrogateService*): ULONG;
+    Init: func(This: ISurrogateService*, rguidProcessID: GUID* const, pProcessLock: IProcessLock*, pfApplicationAware: BOOL*): HRESULT;
+    ApplicationLaunch: func(This: ISurrogateService*, rguidApplID: GUID* const, appType: ApplicationType): HRESULT;
+    ApplicationFree: func(This: ISurrogateService*, rguidApplID: GUID* const): HRESULT;
+    CatalogRefresh: func(This: ISurrogateService*, ulReserved: ULONG): HRESULT;
+    ProcessShutdown: func(This: ISurrogateService*, shutdownType: ShutdownType): HRESULT;
+}
+
+@foreign
+struct ISurrogateService {
+    lpVtbl: ISurrogateServiceVtbl*;
+}
+
+@foreign
+typedef LPINITIALIZESPY = IInitializeSpy*;
+
+@foreign
+struct IInitializeSpyVtbl {
+    QueryInterface: func(This: IInitializeSpy*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInitializeSpy*): ULONG;
+    Release: func(This: IInitializeSpy*): ULONG;
+    PreInitialize: func(This: IInitializeSpy*, dwCoInit: DWORD, dwCurThreadAptRefs: DWORD): HRESULT;
+    PostInitialize: func(This: IInitializeSpy*, hrCoInit: HRESULT, dwCoInit: DWORD, dwNewThreadAptRefs: DWORD): HRESULT;
+    PreUninitialize: func(This: IInitializeSpy*, dwCurThreadAptRefs: DWORD): HRESULT;
+    PostUninitialize: func(This: IInitializeSpy*, dwNewThreadAptRefs: DWORD): HRESULT;
+}
+
+@foreign
+struct IInitializeSpy {
+    lpVtbl: IInitializeSpyVtbl*;
+}
+
+@foreign
+struct IApartmentShutdownVtbl {
+    QueryInterface: func(This: IApartmentShutdown*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IApartmentShutdown*): ULONG;
+    Release: func(This: IApartmentShutdown*): ULONG;
+    OnUninitialize: func(This: IApartmentShutdown*, ui64ApartmentIdentifier: UINT64);
+}
+
+@foreign
+struct IApartmentShutdown {
+    lpVtbl: IApartmentShutdownVtbl*;
+}
+
+@foreign
+func ASYNC_STGMEDIUM_UserSize(arg0: ulong*, arg1: ulong, arg2: ASYNC_STGMEDIUM*): ulong;
+
+@foreign
+func ASYNC_STGMEDIUM_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: ASYNC_STGMEDIUM*): uchar*;
+
+@foreign
+func ASYNC_STGMEDIUM_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: ASYNC_STGMEDIUM*): uchar*;
+
+@foreign
+func ASYNC_STGMEDIUM_UserFree(arg0: ulong*, arg1: ASYNC_STGMEDIUM*);
+
+@foreign
+func CLIPFORMAT_UserSize(arg0: ulong*, arg1: ulong, arg2: CLIPFORMAT*): ulong;
+
+@foreign
+func CLIPFORMAT_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: CLIPFORMAT*): uchar*;
+
+@foreign
+func CLIPFORMAT_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: CLIPFORMAT*): uchar*;
+
+@foreign
+func CLIPFORMAT_UserFree(arg0: ulong*, arg1: CLIPFORMAT*);
+
+@foreign
+func FLAG_STGMEDIUM_UserSize(arg0: ulong*, arg1: ulong, arg2: FLAG_STGMEDIUM*): ulong;
+
+@foreign
+func FLAG_STGMEDIUM_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: FLAG_STGMEDIUM*): uchar*;
+
+@foreign
+func FLAG_STGMEDIUM_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: FLAG_STGMEDIUM*): uchar*;
+
+@foreign
+func FLAG_STGMEDIUM_UserFree(arg0: ulong*, arg1: FLAG_STGMEDIUM*);
+
+@foreign
+func HBITMAP_UserSize(arg0: ulong*, arg1: ulong, arg2: HBITMAP*): ulong;
+
+@foreign
+func HBITMAP_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HBITMAP*): uchar*;
+
+@foreign
+func HBITMAP_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HBITMAP*): uchar*;
+
+@foreign
+func HBITMAP_UserFree(arg0: ulong*, arg1: HBITMAP*);
+
+@foreign
+func HDC_UserSize(arg0: ulong*, arg1: ulong, arg2: HDC*): ulong;
+
+@foreign
+func HDC_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HDC*): uchar*;
+
+@foreign
+func HDC_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HDC*): uchar*;
+
+@foreign
+func HDC_UserFree(arg0: ulong*, arg1: HDC*);
+
+@foreign
+func HICON_UserSize(arg0: ulong*, arg1: ulong, arg2: HICON*): ulong;
+
+@foreign
+func HICON_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: HICON*): uchar*;
+
+@foreign
+func HICON_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: HICON*): uchar*;
+
+@foreign
+func HICON_UserFree(arg0: ulong*, arg1: HICON*);
+
+@foreign
+func SNB_UserSize(arg0: ulong*, arg1: ulong, arg2: SNB*): ulong;
+
+@foreign
+func SNB_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: SNB*): uchar*;
+
+@foreign
+func SNB_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: SNB*): uchar*;
+
+@foreign
+func SNB_UserFree(arg0: ulong*, arg1: SNB*);
+
+@foreign
+func STGMEDIUM_UserSize(arg0: ulong*, arg1: ulong, arg2: STGMEDIUM*): ulong;
+
+@foreign
+func STGMEDIUM_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: STGMEDIUM*): uchar*;
+
+@foreign
+func STGMEDIUM_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: STGMEDIUM*): uchar*;
+
+@foreign
+func STGMEDIUM_UserFree(arg0: ulong*, arg1: STGMEDIUM*);
+
+@foreign
+func ASYNC_STGMEDIUM_UserSize64(arg0: ulong*, arg1: ulong, arg2: ASYNC_STGMEDIUM*): ulong;
+
+@foreign
+func ASYNC_STGMEDIUM_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: ASYNC_STGMEDIUM*): uchar*;
+
+@foreign
+func ASYNC_STGMEDIUM_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: ASYNC_STGMEDIUM*): uchar*;
+
+@foreign
+func ASYNC_STGMEDIUM_UserFree64(arg0: ulong*, arg1: ASYNC_STGMEDIUM*);
+
+@foreign
+func CLIPFORMAT_UserSize64(arg0: ulong*, arg1: ulong, arg2: CLIPFORMAT*): ulong;
+
+@foreign
+func CLIPFORMAT_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: CLIPFORMAT*): uchar*;
+
+@foreign
+func CLIPFORMAT_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: CLIPFORMAT*): uchar*;
+
+@foreign
+func CLIPFORMAT_UserFree64(arg0: ulong*, arg1: CLIPFORMAT*);
+
+@foreign
+func FLAG_STGMEDIUM_UserSize64(arg0: ulong*, arg1: ulong, arg2: FLAG_STGMEDIUM*): ulong;
+
+@foreign
+func FLAG_STGMEDIUM_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: FLAG_STGMEDIUM*): uchar*;
+
+@foreign
+func FLAG_STGMEDIUM_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: FLAG_STGMEDIUM*): uchar*;
+
+@foreign
+func FLAG_STGMEDIUM_UserFree64(arg0: ulong*, arg1: FLAG_STGMEDIUM*);
+
+@foreign
+func HBITMAP_UserSize64(arg0: ulong*, arg1: ulong, arg2: HBITMAP*): ulong;
+
+@foreign
+func HBITMAP_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HBITMAP*): uchar*;
+
+@foreign
+func HBITMAP_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HBITMAP*): uchar*;
+
+@foreign
+func HBITMAP_UserFree64(arg0: ulong*, arg1: HBITMAP*);
+
+@foreign
+func HDC_UserSize64(arg0: ulong*, arg1: ulong, arg2: HDC*): ulong;
+
+@foreign
+func HDC_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HDC*): uchar*;
+
+@foreign
+func HDC_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HDC*): uchar*;
+
+@foreign
+func HDC_UserFree64(arg0: ulong*, arg1: HDC*);
+
+@foreign
+func HICON_UserSize64(arg0: ulong*, arg1: ulong, arg2: HICON*): ulong;
+
+@foreign
+func HICON_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: HICON*): uchar*;
+
+@foreign
+func HICON_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: HICON*): uchar*;
+
+@foreign
+func HICON_UserFree64(arg0: ulong*, arg1: HICON*);
+
+@foreign
+func SNB_UserSize64(arg0: ulong*, arg1: ulong, arg2: SNB*): ulong;
+
+@foreign
+func SNB_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: SNB*): uchar*;
+
+@foreign
+func SNB_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: SNB*): uchar*;
+
+@foreign
+func SNB_UserFree64(arg0: ulong*, arg1: SNB*);
+
+@foreign
+func STGMEDIUM_UserSize64(arg0: ulong*, arg1: ulong, arg2: STGMEDIUM*): ulong;
+
+@foreign
+func STGMEDIUM_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: STGMEDIUM*): uchar*;
+
+@foreign
+func STGMEDIUM_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: STGMEDIUM*): uchar*;
+
+@foreign
+func STGMEDIUM_UserFree64(arg0: ulong*, arg1: STGMEDIUM*);
+
+@foreign
+func IEnumUnknown_Next_Proxy(This: IEnumUnknown*, celt: ULONG, rgelt: IUnknown**, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumUnknown_Next_Stub(This: IEnumUnknown*, celt: ULONG, rgelt: IUnknown**, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumString_Next_Proxy(This: IEnumString*, celt: ULONG, rgelt: LPOLESTR*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumString_Next_Stub(This: IEnumString*, celt: ULONG, rgelt: LPOLESTR*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func ISequentialStream_Read_Proxy(This: ISequentialStream*, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+
+@foreign
+func ISequentialStream_Read_Stub(This: ISequentialStream*, pv: byte*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+
+@foreign
+func ISequentialStream_Write_Proxy(This: ISequentialStream*, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func ISequentialStream_Write_Stub(This: ISequentialStream*, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IStream_Seek_Proxy(This: IStream*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func IStream_Seek_Stub(This: IStream*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func IStream_CopyTo_Proxy(This: IStream*, pstm: IStream*, cb: ULARGE_INTEGER, pcbRead: ULARGE_INTEGER*, pcbWritten: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func IStream_CopyTo_Stub(This: IStream*, pstm: IStream*, cb: ULARGE_INTEGER, pcbRead: ULARGE_INTEGER*, pcbWritten: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func IBindCtx_SetBindOptions_Proxy(This: IBindCtx*, pbindopts: BIND_OPTS*): HRESULT;
+
+@foreign
+func IBindCtx_SetBindOptions_Stub(This: IBindCtx*, pbindopts: BIND_OPTS2*): HRESULT;
+
+@foreign
+func IBindCtx_GetBindOptions_Proxy(This: IBindCtx*, pbindopts: BIND_OPTS*): HRESULT;
+
+@foreign
+func IBindCtx_GetBindOptions_Stub(This: IBindCtx*, pbindopts: BIND_OPTS2*): HRESULT;
+
+@foreign
+func IEnumMoniker_Next_Proxy(This: IEnumMoniker*, celt: ULONG, rgelt: IMoniker**, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumMoniker_Next_Stub(This: IEnumMoniker*, celt: ULONG, rgelt: IMoniker**, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IRunnableObject_IsRunning_Proxy(This: IRunnableObject*): BOOL;
+
+@foreign
+func IRunnableObject_IsRunning_Stub(This: IRunnableObject*): HRESULT;
+
+@foreign
+func IMoniker_BindToObject_Proxy(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riidResult: IID* const, ppvResult: void**): HRESULT;
+
+@foreign
+func IMoniker_BindToObject_Stub(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riidResult: IID* const, ppvResult: IUnknown**): HRESULT;
+
+@foreign
+func IMoniker_BindToStorage_Proxy(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riid: IID* const, ppvObj: void**): HRESULT;
+
+@foreign
+func IMoniker_BindToStorage_Stub(This: IMoniker*, pbc: IBindCtx*, pmkToLeft: IMoniker*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func IEnumSTATSTG_Next_Proxy(This: IEnumSTATSTG*, celt: ULONG, rgelt: STATSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATSTG_Next_Stub(This: IEnumSTATSTG*, celt: ULONG, rgelt: STATSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IStorage_OpenStream_Proxy(This: IStorage*, pwcsName: OLECHAR*, reserved1: void*, grfMode: DWORD, reserved2: DWORD, ppstm: IStream**): HRESULT;
+
+@foreign
+func IStorage_OpenStream_Stub(This: IStorage*, pwcsName: OLECHAR*, cbReserved1: ULONG, reserved1: byte*, grfMode: DWORD, reserved2: DWORD, ppstm: IStream**): HRESULT;
+
+@foreign
+func IStorage_CopyTo_Proxy(This: IStorage*, ciidExclude: DWORD, rgiidExclude: IID*, snbExclude: SNB, pstgDest: IStorage*): HRESULT;
+
+@foreign
+func IStorage_CopyTo_Stub(This: IStorage*, ciidExclude: DWORD, rgiidExclude: IID*, snbExclude: SNB, pstgDest: IStorage*): HRESULT;
+
+@foreign
+func IStorage_EnumElements_Proxy(This: IStorage*, reserved1: DWORD, reserved2: void*, reserved3: DWORD, ppenum: IEnumSTATSTG**): HRESULT;
+
+@foreign
+func IStorage_EnumElements_Stub(This: IStorage*, reserved1: DWORD, cbReserved2: ULONG, reserved2: byte*, reserved3: DWORD, ppenum: IEnumSTATSTG**): HRESULT;
+
+@foreign
+func ILockBytes_ReadAt_Proxy(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+
+@foreign
+func ILockBytes_ReadAt_Stub(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: byte*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+
+@foreign
+func ILockBytes_WriteAt_Proxy(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func ILockBytes_WriteAt_Stub(This: ILockBytes*, ulOffset: ULARGE_INTEGER, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IEnumFORMATETC_Next_Proxy(This: IEnumFORMATETC*, celt: ULONG, rgelt: FORMATETC*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumFORMATETC_Next_Stub(This: IEnumFORMATETC*, celt: ULONG, rgelt: FORMATETC*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATDATA_Next_Proxy(This: IEnumSTATDATA*, celt: ULONG, rgelt: STATDATA*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATDATA_Next_Stub(This: IEnumSTATDATA*, celt: ULONG, rgelt: STATDATA*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IAdviseSink_OnDataChange_Proxy(This: IAdviseSink*, pFormatetc: FORMATETC*, pStgmed: STGMEDIUM*);
+
+@foreign
+func IAdviseSink_OnDataChange_Stub(This: IAdviseSink*, pFormatetc: FORMATETC*, pStgmed: ASYNC_STGMEDIUM*): HRESULT;
+
+@foreign
+func IAdviseSink_OnViewChange_Proxy(This: IAdviseSink*, dwAspect: DWORD, lindex: LONG);
+
+@foreign
+func IAdviseSink_OnViewChange_Stub(This: IAdviseSink*, dwAspect: DWORD, lindex: LONG): HRESULT;
+
+@foreign
+func IAdviseSink_OnRename_Proxy(This: IAdviseSink*, pmk: IMoniker*);
+
+@foreign
+func IAdviseSink_OnRename_Stub(This: IAdviseSink*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func IAdviseSink_OnSave_Proxy(This: IAdviseSink*);
+
+@foreign
+func IAdviseSink_OnSave_Stub(This: IAdviseSink*): HRESULT;
+
+@foreign
+func IAdviseSink_OnClose_Proxy(This: IAdviseSink*);
+
+@foreign
+func IAdviseSink_OnClose_Stub(This: IAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_OnDataChange_Proxy(This: AsyncIAdviseSink*, pFormatetc: FORMATETC*, pStgmed: STGMEDIUM*);
+
+@foreign
+func AsyncIAdviseSink_Begin_OnDataChange_Stub(This: AsyncIAdviseSink*, pFormatetc: FORMATETC*, pStgmed: ASYNC_STGMEDIUM*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_OnDataChange_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Finish_OnDataChange_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_OnViewChange_Proxy(This: AsyncIAdviseSink*, dwAspect: DWORD, lindex: LONG);
+
+@foreign
+func AsyncIAdviseSink_Begin_OnViewChange_Stub(This: AsyncIAdviseSink*, dwAspect: DWORD, lindex: LONG): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_OnViewChange_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Finish_OnViewChange_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_OnRename_Proxy(This: AsyncIAdviseSink*, pmk: IMoniker*);
+
+@foreign
+func AsyncIAdviseSink_Begin_OnRename_Stub(This: AsyncIAdviseSink*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_OnRename_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Finish_OnRename_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_OnSave_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Begin_OnSave_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_OnSave_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Finish_OnSave_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Begin_OnClose_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Begin_OnClose_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink_Finish_OnClose_Proxy(This: AsyncIAdviseSink*);
+
+@foreign
+func AsyncIAdviseSink_Finish_OnClose_Stub(This: AsyncIAdviseSink*): HRESULT;
+
+@foreign
+func IAdviseSink2_OnLinkSrcChange_Proxy(This: IAdviseSink2*, pmk: IMoniker*);
+
+@foreign
+func IAdviseSink2_OnLinkSrcChange_Stub(This: IAdviseSink2*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink2_Begin_OnLinkSrcChange_Proxy(This: AsyncIAdviseSink2*, pmk: IMoniker*);
+
+@foreign
+func AsyncIAdviseSink2_Begin_OnLinkSrcChange_Stub(This: AsyncIAdviseSink2*, pmk: IMoniker*): HRESULT;
+
+@foreign
+func AsyncIAdviseSink2_Finish_OnLinkSrcChange_Proxy(This: AsyncIAdviseSink2*);
+
+@foreign
+func AsyncIAdviseSink2_Finish_OnLinkSrcChange_Stub(This: AsyncIAdviseSink2*): HRESULT;
+
+@foreign
+func IDataObject_GetData_Proxy(This: IDataObject*, pformatetcIn: FORMATETC*, pmedium: STGMEDIUM*): HRESULT;
+
+@foreign
+func IDataObject_GetData_Stub(This: IDataObject*, pformatetcIn: FORMATETC*, pRemoteMedium: STGMEDIUM*): HRESULT;
+
+@foreign
+func IDataObject_GetDataHere_Proxy(This: IDataObject*, pformatetc: FORMATETC*, pmedium: STGMEDIUM*): HRESULT;
+
+@foreign
+func IDataObject_GetDataHere_Stub(This: IDataObject*, pformatetc: FORMATETC*, pRemoteMedium: STGMEDIUM*): HRESULT;
+
+@foreign
+func IDataObject_SetData_Proxy(This: IDataObject*, pformatetc: FORMATETC*, pmedium: STGMEDIUM*, fRelease: BOOL): HRESULT;
+
+@foreign
+func IDataObject_SetData_Stub(This: IDataObject*, pformatetc: FORMATETC*, pmedium: FLAG_STGMEDIUM*, fRelease: BOOL): HRESULT;
+
+@foreign
+func IFillLockBytes_FillAppend_Proxy(This: IFillLockBytes*, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IFillLockBytes_FillAppend_Stub(This: IFillLockBytes*, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IFillLockBytes_FillAt_Proxy(This: IFillLockBytes*, ulOffset: ULARGE_INTEGER, pv: void const*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+func IFillLockBytes_FillAt_Stub(This: IFillLockBytes*, ulOffset: ULARGE_INTEGER, pv: byte*, cb: ULONG, pcbWritten: ULONG*): HRESULT;
+
+@foreign
+struct IEnumContextProps;
+
+@foreign
+struct IObjContext;
+
+@foreign
+struct IContext;
+

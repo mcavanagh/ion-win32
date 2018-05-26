@@ -1,0 +1,11 @@
+#foreign(header = "<stddef.h>")
+
+@foreign
+func __threadid(): ulong;
+
+@foreign
+func __threadhandle(): uintptr;
+
+@foreign
+typedef _CoreCrtSecureSearchSortCompareFunction = func(arg0: void*, arg1: void const*, arg2: void const*): int;
+

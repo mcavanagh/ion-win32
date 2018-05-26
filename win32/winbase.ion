@@ -1,0 +1,2750 @@
+#foreign(header = "<winbase.h>")
+
+import libc { va_list }
+
+@foreign const STD_INPUT_HANDLE     = DWORD(-10);
+@foreign const STD_OUTPUT_HANDLE    = DWORD(-11);
+@foreign const STD_ERROR_HANDLE     = DWORD(-12);
+
+@foreign const FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x00000100;
+@foreign const FORMAT_MESSAGE_IGNORE_INSERTS  = 0x00000200;
+@foreign const FORMAT_MESSAGE_FROM_STRING     = 0x00000400;
+@foreign const FORMAT_MESSAGE_FROM_HMODULE    = 0x00000800;
+@foreign const FORMAT_MESSAGE_FROM_SYSTEM     = 0x00001000;
+@foreign const FORMAT_MESSAGE_ARGUMENT_ARRAY  = 0x00002000;
+@foreign const FORMAT_MESSAGE_MAX_WIDTH_MASK  = 0x000000FF;
+
+@foreign
+typedef PFIBER_START_ROUTINE = func(lpFiberParameter: LPVOID);
+
+@foreign
+typedef LPFIBER_START_ROUTINE = PFIBER_START_ROUTINE;
+
+@foreign
+typedef PFIBER_CALLOUT_ROUTINE = func(lpParameter: LPVOID): LPVOID;
+
+@foreign
+typedef LPLDT_ENTRY = LPVOID;
+
+@foreign
+struct _COMMPROP {
+    wPacketLength: WORD;
+    wPacketVersion: WORD;
+    dwServiceMask: DWORD;
+    dwReserved1: DWORD;
+    dwMaxTxQueue: DWORD;
+    dwMaxRxQueue: DWORD;
+    dwMaxBaud: DWORD;
+    dwProvSubType: DWORD;
+    dwProvCapabilities: DWORD;
+    dwSettableParams: DWORD;
+    dwSettableBaud: DWORD;
+    wSettableData: WORD;
+    wSettableStopParity: WORD;
+    dwCurrentTxQueue: DWORD;
+    dwCurrentRxQueue: DWORD;
+    dwProvSpec1: DWORD;
+    dwProvSpec2: DWORD;
+    wcProvChar: WCHAR[1];
+}
+
+@foreign
+typedef COMMPROP = _COMMPROP;
+
+@foreign
+typedef LPCOMMPROP = _COMMPROP*;
+
+@foreign
+struct _COMSTAT {
+    fCtsHold: DWORD;
+    fDsrHold: DWORD;
+    fRlsdHold: DWORD;
+    fXoffHold: DWORD;
+    fXoffSent: DWORD;
+    fEof: DWORD;
+    fTxim: DWORD;
+    fReserved: DWORD;
+    cbInQue: DWORD;
+    cbOutQue: DWORD;
+}
+
+@foreign
+typedef COMSTAT = _COMSTAT;
+
+@foreign
+typedef LPCOMSTAT = _COMSTAT*;
+
+@foreign
+struct _DCB {
+    DCBlength: DWORD;
+    BaudRate: DWORD;
+    fBinary: DWORD;
+    fParity: DWORD;
+    fOutxCtsFlow: DWORD;
+    fOutxDsrFlow: DWORD;
+    fDtrControl: DWORD;
+    fDsrSensitivity: DWORD;
+    fTXContinueOnXoff: DWORD;
+    fOutX: DWORD;
+    fInX: DWORD;
+    fErrorChar: DWORD;
+    fNull: DWORD;
+    fRtsControl: DWORD;
+    fAbortOnError: DWORD;
+    fDummy2: DWORD;
+    wReserved: WORD;
+    XonLim: WORD;
+    XoffLim: WORD;
+    ByteSize: BYTE;
+    Parity: BYTE;
+    StopBits: BYTE;
+    XonChar: char;
+    XoffChar: char;
+    ErrorChar: char;
+    EofChar: char;
+    EvtChar: char;
+    wReserved1: WORD;
+}
+
+@foreign
+typedef DCB = _DCB;
+
+@foreign
+typedef LPDCB = _DCB*;
+
+@foreign
+struct _COMMTIMEOUTS {
+    ReadIntervalTimeout: DWORD;
+    ReadTotalTimeoutMultiplier: DWORD;
+    ReadTotalTimeoutConstant: DWORD;
+    WriteTotalTimeoutMultiplier: DWORD;
+    WriteTotalTimeoutConstant: DWORD;
+}
+
+@foreign
+typedef COMMTIMEOUTS = _COMMTIMEOUTS;
+
+@foreign
+typedef LPCOMMTIMEOUTS = _COMMTIMEOUTS*;
+
+@foreign
+struct _COMMCONFIG {
+    dwSize: DWORD;
+    wVersion: WORD;
+    wReserved: WORD;
+    dcb: DCB;
+    dwProviderSubType: DWORD;
+    dwProviderOffset: DWORD;
+    dwProviderSize: DWORD;
+    wcProviderData: WCHAR[1];
+}
+
+@foreign
+typedef COMMCONFIG = _COMMCONFIG;
+
+@foreign
+typedef LPCOMMCONFIG = _COMMCONFIG*;
+
+@foreign
+struct _MEMORYSTATUS {
+    dwLength: DWORD;
+    dwMemoryLoad: DWORD;
+    dwTotalPhys: SIZE_T;
+    dwAvailPhys: SIZE_T;
+    dwTotalPageFile: SIZE_T;
+    dwAvailPageFile: SIZE_T;
+    dwTotalVirtual: SIZE_T;
+    dwAvailVirtual: SIZE_T;
+}
+
+@foreign
+typedef MEMORYSTATUS = _MEMORYSTATUS;
+
+@foreign
+typedef LPMEMORYSTATUS = _MEMORYSTATUS*;
+
+@foreign
+struct _JIT_DEBUG_INFO {
+    dwSize: DWORD;
+    dwProcessorArchitecture: DWORD;
+    dwThreadID: DWORD;
+    dwReserved0: DWORD;
+    lpExceptionAddress: ULONG64;
+    lpExceptionRecord: ULONG64;
+    lpContextRecord: ULONG64;
+}
+
+@foreign
+typedef JIT_DEBUG_INFO = _JIT_DEBUG_INFO;
+
+@foreign
+typedef LPJIT_DEBUG_INFO = _JIT_DEBUG_INFO*;
+
+@foreign
+typedef JIT_DEBUG_INFO32 = JIT_DEBUG_INFO;
+
+@foreign
+typedef LPJIT_DEBUG_INFO32 = JIT_DEBUG_INFO*;
+
+@foreign
+typedef JIT_DEBUG_INFO64 = JIT_DEBUG_INFO;
+
+@foreign
+typedef LPJIT_DEBUG_INFO64 = JIT_DEBUG_INFO*;
+
+@foreign
+typedef LPEXCEPTION_RECORD = PEXCEPTION_RECORD;
+
+@foreign
+typedef LPEXCEPTION_POINTERS = PEXCEPTION_POINTERS;
+
+@foreign
+struct _OFSTRUCT {
+    cBytes: BYTE;
+    fFixedDisk: BYTE;
+    nErrCode: WORD;
+    Reserved1: WORD;
+    Reserved2: WORD;
+    szPathName: CHAR[128];
+}
+
+@foreign
+typedef OFSTRUCT = _OFSTRUCT;
+
+@foreign
+typedef LPOFSTRUCT = _OFSTRUCT*;
+
+@foreign
+typedef POFSTRUCT = _OFSTRUCT*;
+
+@foreign
+func WinMain(hInstance: HINSTANCE, hPrevInstance: HINSTANCE, lpCmdLine: LPSTR, nShowCmd: int): int;
+
+@foreign
+func wWinMain(hInstance: HINSTANCE, hPrevInstance: HINSTANCE, lpCmdLine: LPWSTR, nShowCmd: int): int;
+
+@foreign
+func GlobalAlloc(uFlags: UINT, dwBytes: SIZE_T): HGLOBAL;
+
+@foreign
+func GlobalReAlloc(hMem: HGLOBAL, dwBytes: SIZE_T, uFlags: UINT): HGLOBAL;
+
+@foreign
+func GlobalSize(hMem: HGLOBAL): SIZE_T;
+
+@foreign
+func GlobalUnlock(hMem: HGLOBAL): BOOL;
+
+@foreign
+func GlobalLock(hMem: HGLOBAL): LPVOID;
+
+@foreign
+func GlobalFlags(hMem: HGLOBAL): UINT;
+
+@foreign
+func GlobalHandle(pMem: LPCVOID): HGLOBAL;
+
+@foreign
+func GlobalFree(hMem: HGLOBAL): HGLOBAL;
+
+@foreign
+func GlobalCompact(dwMinFree: DWORD): SIZE_T;
+
+@foreign
+func GlobalFix(hMem: HGLOBAL);
+
+@foreign
+func GlobalUnfix(hMem: HGLOBAL);
+
+@foreign
+func GlobalWire(hMem: HGLOBAL): LPVOID;
+
+@foreign
+func GlobalUnWire(hMem: HGLOBAL): BOOL;
+
+@foreign
+func GlobalMemoryStatus(lpBuffer: LPMEMORYSTATUS);
+
+@foreign
+func LocalAlloc(uFlags: UINT, uBytes: SIZE_T): HLOCAL;
+
+@foreign
+func LocalReAlloc(hMem: HLOCAL, uBytes: SIZE_T, uFlags: UINT): HLOCAL;
+
+@foreign
+func LocalLock(hMem: HLOCAL): LPVOID;
+
+@foreign
+func LocalHandle(pMem: LPCVOID): HLOCAL;
+
+@foreign
+func LocalUnlock(hMem: HLOCAL): BOOL;
+
+@foreign
+func LocalSize(hMem: HLOCAL): SIZE_T;
+
+@foreign
+func LocalFlags(hMem: HLOCAL): UINT;
+
+@foreign
+func LocalFree(hMem: HLOCAL): HLOCAL;
+
+@foreign
+func LocalShrink(hMem: HLOCAL, cbNewSize: UINT): SIZE_T;
+
+@foreign
+func LocalCompact(uMinFree: UINT): SIZE_T;
+
+@foreign
+func GetBinaryTypeA(lpApplicationName: LPCSTR, lpBinaryType: LPDWORD): BOOL;
+
+@foreign
+func GetBinaryType(lpApplicationName: LPCSTR, lpBinaryType: LPDWORD): BOOL;
+
+@foreign
+func GetBinaryTypeW(lpApplicationName: LPCWSTR, lpBinaryType: LPDWORD): BOOL;
+
+@foreign
+func GetShortPathNameA(lpszLongPath: LPCSTR, lpszShortPath: LPSTR, cchBuffer: DWORD): DWORD;
+
+@foreign
+func GetLongPathNameTransactedA(lpszShortPath: LPCSTR, lpszLongPath: LPSTR, cchBuffer: DWORD, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetLongPathNameTransacted(lpszShortPath: LPCSTR, lpszLongPath: LPSTR, cchBuffer: DWORD, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetLongPathNameTransactedW(lpszShortPath: LPCWSTR, lpszLongPath: LPWSTR, cchBuffer: DWORD, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetProcessAffinityMask(hProcess: HANDLE, lpProcessAffinityMask: PDWORD_PTR, lpSystemAffinityMask: PDWORD_PTR): BOOL;
+
+@foreign
+func SetProcessAffinityMask(hProcess: HANDLE, dwProcessAffinityMask: DWORD_PTR): BOOL;
+
+@foreign
+func GetProcessIoCounters(hProcess: HANDLE, lpIoCounters: PIO_COUNTERS): BOOL;
+
+@foreign
+func GetProcessWorkingSetSize(hProcess: HANDLE, lpMinimumWorkingSetSize: PSIZE_T, lpMaximumWorkingSetSize: PSIZE_T): BOOL;
+
+@foreign
+func SetProcessWorkingSetSize(hProcess: HANDLE, dwMinimumWorkingSetSize: SIZE_T, dwMaximumWorkingSetSize: SIZE_T): BOOL;
+
+@foreign
+func FatalExit(ExitCode: int);
+
+@foreign
+func SetEnvironmentStringsA(NewEnvironment: LPCH): BOOL;
+
+@foreign
+func SwitchToFiber(lpFiber: LPVOID);
+
+@foreign
+func DeleteFiber(lpFiber: LPVOID);
+
+@foreign
+func ConvertFiberToThread(): BOOL;
+
+@foreign
+func CreateFiberEx(dwStackCommitSize: SIZE_T, dwStackReserveSize: SIZE_T, dwFlags: DWORD, lpStartAddress: LPFIBER_START_ROUTINE, lpParameter: LPVOID): LPVOID;
+
+@foreign
+func ConvertThreadToFiberEx(lpParameter: LPVOID, dwFlags: DWORD): LPVOID;
+
+@foreign
+func CreateFiber(dwStackSize: SIZE_T, lpStartAddress: LPFIBER_START_ROUTINE, lpParameter: LPVOID): LPVOID;
+
+@foreign
+func ConvertThreadToFiber(lpParameter: LPVOID): LPVOID;
+
+@foreign
+typedef PUMS_CONTEXT = void*;
+
+@foreign
+typedef PUMS_COMPLETION_LIST = void*;
+
+@foreign
+typedef UMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS;
+
+@foreign
+typedef PUMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS*;
+
+@foreign
+typedef UMS_SCHEDULER_REASON = _RTL_UMS_SCHEDULER_REASON;
+
+@foreign
+typedef PUMS_SCHEDULER_ENTRY_POINT = PRTL_UMS_SCHEDULER_ENTRY_POINT;
+
+@foreign
+struct _UMS_SCHEDULER_STARTUP_INFO {
+    UmsVersion: ULONG;
+    CompletionList: PUMS_COMPLETION_LIST;
+    SchedulerProc: PUMS_SCHEDULER_ENTRY_POINT;
+    SchedulerParam: PVOID;
+}
+
+@foreign
+typedef UMS_SCHEDULER_STARTUP_INFO = _UMS_SCHEDULER_STARTUP_INFO;
+
+@foreign
+typedef PUMS_SCHEDULER_STARTUP_INFO = _UMS_SCHEDULER_STARTUP_INFO*;
+
+/*
+@PROBLEM Nested struct def at line 1508, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+@foreign
+struct _UMS_SYSTEM_THREAD_INFORMATION {
+    UmsVersion: ULONG;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 1508, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+_UMS_SYSTEM_THREAD_INFORMATION
+*/
+
+@foreign
+typedef PUMS_SYSTEM_THREAD_INFORMATION = _UMS_SYSTEM_THREAD_INFORMATION*;
+
+@foreign
+func CreateUmsCompletionList(UmsCompletionList: PUMS_COMPLETION_LIST*): BOOL;
+
+@foreign
+func DequeueUmsCompletionListItems(UmsCompletionList: PUMS_COMPLETION_LIST, WaitTimeOut: DWORD, UmsThreadList: PUMS_CONTEXT*): BOOL;
+
+@foreign
+func GetUmsCompletionListEvent(UmsCompletionList: PUMS_COMPLETION_LIST, UmsCompletionEvent: PHANDLE): BOOL;
+
+@foreign
+func ExecuteUmsThread(UmsThread: PUMS_CONTEXT): BOOL;
+
+@foreign
+func UmsThreadYield(SchedulerParam: PVOID): BOOL;
+
+@foreign
+func DeleteUmsCompletionList(UmsCompletionList: PUMS_COMPLETION_LIST): BOOL;
+
+@foreign
+func GetCurrentUmsThread(): PUMS_CONTEXT;
+
+@foreign
+func GetNextUmsListItem(UmsContext: PUMS_CONTEXT): PUMS_CONTEXT;
+
+@foreign
+func QueryUmsThreadInformation(UmsThread: PUMS_CONTEXT, UmsThreadInfoClass: UMS_THREAD_INFO_CLASS, UmsThreadInformation: PVOID, UmsThreadInformationLength: ULONG, ReturnLength: PULONG): BOOL;
+
+@foreign
+func SetUmsThreadInformation(UmsThread: PUMS_CONTEXT, UmsThreadInfoClass: UMS_THREAD_INFO_CLASS, UmsThreadInformation: PVOID, UmsThreadInformationLength: ULONG): BOOL;
+
+@foreign
+func DeleteUmsThreadContext(UmsThread: PUMS_CONTEXT): BOOL;
+
+@foreign
+func CreateUmsThreadContext(lpUmsThread: PUMS_CONTEXT*): BOOL;
+
+@foreign
+func EnterUmsSchedulingMode(SchedulerStartupInfo: PUMS_SCHEDULER_STARTUP_INFO): BOOL;
+
+@foreign
+func GetUmsSystemThreadInformation(ThreadHandle: HANDLE, SystemThreadInfo: PUMS_SYSTEM_THREAD_INFORMATION): BOOL;
+
+@foreign
+func SetThreadAffinityMask(hThread: HANDLE, dwThreadAffinityMask: DWORD_PTR): DWORD_PTR;
+
+@foreign
+func SetProcessDEPPolicy(dwFlags: DWORD): BOOL;
+
+@foreign
+func GetProcessDEPPolicy(hProcess: HANDLE, lpFlags: LPDWORD, lpPermanent: PBOOL): BOOL;
+
+@foreign
+func RequestWakeupLatency(latency: LATENCY_TIME): BOOL;
+
+@foreign
+func IsSystemResumeAutomatic(): BOOL;
+
+@foreign
+func GetThreadSelectorEntry(hThread: HANDLE, dwSelector: DWORD, lpSelectorEntry: LPLDT_ENTRY): BOOL;
+
+@foreign
+func SetThreadExecutionState(esFlags: EXECUTION_STATE): EXECUTION_STATE;
+
+@foreign
+typedef POWER_REQUEST_CONTEXT = REASON_CONTEXT;
+
+@foreign
+typedef PPOWER_REQUEST_CONTEXT = REASON_CONTEXT*;
+
+@foreign
+typedef LPPOWER_REQUEST_CONTEXT = REASON_CONTEXT*;
+
+@foreign
+func PowerCreateRequest(Context: PREASON_CONTEXT): HANDLE;
+
+@foreign
+func PowerSetRequest(PowerRequest: HANDLE, RequestType: POWER_REQUEST_TYPE): BOOL;
+
+@foreign
+func PowerClearRequest(PowerRequest: HANDLE, RequestType: POWER_REQUEST_TYPE): BOOL;
+
+@foreign
+func SetFileCompletionNotificationModes(FileHandle: HANDLE, Flags: UCHAR): BOOL;
+
+@foreign
+func Wow64GetThreadContext(hThread: HANDLE, lpContext: PWOW64_CONTEXT): BOOL;
+
+@foreign
+func Wow64SetThreadContext(hThread: HANDLE, lpContext: WOW64_CONTEXT*): BOOL;
+
+@foreign
+func Wow64GetThreadSelectorEntry(hThread: HANDLE, dwSelector: DWORD, lpSelectorEntry: PWOW64_LDT_ENTRY): BOOL;
+
+@foreign
+func Wow64SuspendThread(hThread: HANDLE): DWORD;
+
+@foreign
+func DebugSetProcessKillOnExit(KillOnExit: BOOL): BOOL;
+
+@foreign
+func DebugBreakProcess(Process: HANDLE): BOOL;
+
+@foreign
+func PulseEvent(hEvent: HANDLE): BOOL;
+
+@foreign
+func GlobalDeleteAtom(nAtom: ATOM): ATOM;
+
+@foreign
+func InitAtomTable(nSize: DWORD): BOOL;
+
+@foreign
+func DeleteAtom(nAtom: ATOM): ATOM;
+
+@foreign
+func SetHandleCount(uNumber: UINT): UINT;
+
+@foreign
+func RequestDeviceWakeup(hDevice: HANDLE): BOOL;
+
+@foreign
+func CancelDeviceWakeupRequest(hDevice: HANDLE): BOOL;
+
+@foreign
+func GetDevicePowerState(hDevice: HANDLE, pfOn: BOOL*): BOOL;
+
+@foreign
+func SetMessageWaitingIndicator(hMsgIndicator: HANDLE, ulMsgCount: ULONG): BOOL;
+
+@foreign
+func SetFileShortNameA(hFile: HANDLE, lpShortName: LPCSTR): BOOL;
+
+@foreign
+func SetFileShortName(hFile: HANDLE, lpShortName: LPCSTR): BOOL;
+
+@foreign
+func SetFileShortNameW(hFile: HANDLE, lpShortName: LPCWSTR): BOOL;
+
+@foreign
+func LoadModule(lpModuleName: LPCSTR, lpParameterBlock: LPVOID): DWORD;
+
+@foreign
+func WinExec(lpCmdLine: LPCSTR, uCmdShow: UINT): UINT;
+
+@foreign
+func ClearCommBreak(hFile: HANDLE): BOOL;
+
+@foreign
+func ClearCommError(hFile: HANDLE, lpErrors: LPDWORD, lpStat: LPCOMSTAT): BOOL;
+
+@foreign
+func SetupComm(hFile: HANDLE, dwInQueue: DWORD, dwOutQueue: DWORD): BOOL;
+
+@foreign
+func EscapeCommFunction(hFile: HANDLE, dwFunc: DWORD): BOOL;
+
+@foreign
+func GetCommConfig(hCommDev: HANDLE, lpCC: LPCOMMCONFIG, lpdwSize: LPDWORD): BOOL;
+
+@foreign
+func GetCommMask(hFile: HANDLE, lpEvtMask: LPDWORD): BOOL;
+
+@foreign
+func GetCommProperties(hFile: HANDLE, lpCommProp: LPCOMMPROP): BOOL;
+
+@foreign
+func GetCommModemStatus(hFile: HANDLE, lpModemStat: LPDWORD): BOOL;
+
+@foreign
+func GetCommState(hFile: HANDLE, lpDCB: LPDCB): BOOL;
+
+@foreign
+func GetCommTimeouts(hFile: HANDLE, lpCommTimeouts: LPCOMMTIMEOUTS): BOOL;
+
+@foreign
+func PurgeComm(hFile: HANDLE, dwFlags: DWORD): BOOL;
+
+@foreign
+func SetCommBreak(hFile: HANDLE): BOOL;
+
+@foreign
+func SetCommConfig(hCommDev: HANDLE, lpCC: LPCOMMCONFIG, dwSize: DWORD): BOOL;
+
+@foreign
+func SetCommMask(hFile: HANDLE, dwEvtMask: DWORD): BOOL;
+
+@foreign
+func SetCommState(hFile: HANDLE, lpDCB: LPDCB): BOOL;
+
+@foreign
+func SetCommTimeouts(hFile: HANDLE, lpCommTimeouts: LPCOMMTIMEOUTS): BOOL;
+
+@foreign
+func TransmitCommChar(hFile: HANDLE, cChar: char): BOOL;
+
+@foreign
+func WaitCommEvent(hFile: HANDLE, lpEvtMask: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func OpenCommPort(uPortNumber: ULONG, dwDesiredAccess: DWORD, dwFlagsAndAttributes: DWORD): HANDLE;
+
+@foreign
+func SetTapePosition(hDevice: HANDLE, dwPositionMethod: DWORD, dwPartition: DWORD, dwOffsetLow: DWORD, dwOffsetHigh: DWORD, bImmediate: BOOL): DWORD;
+
+@foreign
+func GetTapePosition(hDevice: HANDLE, dwPositionType: DWORD, lpdwPartition: LPDWORD, lpdwOffsetLow: LPDWORD, lpdwOffsetHigh: LPDWORD): DWORD;
+
+@foreign
+func PrepareTape(hDevice: HANDLE, dwOperation: DWORD, bImmediate: BOOL): DWORD;
+
+@foreign
+func EraseTape(hDevice: HANDLE, dwEraseType: DWORD, bImmediate: BOOL): DWORD;
+
+@foreign
+func CreateTapePartition(hDevice: HANDLE, dwPartitionMethod: DWORD, dwCount: DWORD, dwSize: DWORD): DWORD;
+
+@foreign
+func WriteTapemark(hDevice: HANDLE, dwTapemarkType: DWORD, dwTapemarkCount: DWORD, bImmediate: BOOL): DWORD;
+
+@foreign
+func GetTapeStatus(hDevice: HANDLE): DWORD;
+
+@foreign
+func GetTapeParameters(hDevice: HANDLE, dwOperation: DWORD, lpdwSize: LPDWORD, lpTapeInformation: LPVOID): DWORD;
+
+@foreign
+func SetTapeParameters(hDevice: HANDLE, dwOperation: DWORD, lpTapeInformation: LPVOID): DWORD;
+
+@foreign
+func MulDiv(nNumber: int, nNumerator: int, nDenominator: int): int;
+
+@foreign
+enum _DEP_SYSTEM_POLICY_TYPE {
+    DEPPolicyAlwaysOff = 0,
+    DEPPolicyAlwaysOn,
+    DEPPolicyOptIn,
+    DEPPolicyOptOut,
+    DEPTotalPolicyCount,
+}
+
+@foreign
+typedef DEP_SYSTEM_POLICY_TYPE = _DEP_SYSTEM_POLICY_TYPE;
+
+@foreign
+func GetSystemDEPPolicy(): DEP_SYSTEM_POLICY_TYPE;
+
+@foreign
+func GetSystemRegistryQuota(pdwQuotaAllowed: PDWORD, pdwQuotaUsed: PDWORD): BOOL;
+
+@foreign
+func FileTimeToDosDateTime(lpFileTime: FILETIME*, lpFatDate: LPWORD, lpFatTime: LPWORD): BOOL;
+
+@foreign
+func DosDateTimeToFileTime(wFatDate: WORD, wFatTime: WORD, lpFileTime: LPFILETIME): BOOL;
+
+@foreign
+func FormatMessageA(dwFlags: DWORD, lpSource: LPCVOID, dwMessageId: DWORD, dwLanguageId: DWORD, lpBuffer: LPSTR, nSize: DWORD, Arguments: va_list*): DWORD;
+
+@foreign
+func FormatMessage(dwFlags: DWORD, lpSource: LPCVOID, dwMessageId: DWORD, dwLanguageId: DWORD, lpBuffer: LPSTR, nSize: DWORD, Arguments: va_list*): DWORD;
+
+@foreign
+func FormatMessageW(dwFlags: DWORD, lpSource: LPCVOID, dwMessageId: DWORD, dwLanguageId: DWORD, lpBuffer: LPWSTR, nSize: DWORD, Arguments: va_list*): DWORD;
+
+@foreign
+func CreateMailslotA(lpName: LPCSTR, nMaxMessageSize: DWORD, lReadTimeout: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): HANDLE;
+
+@foreign
+func CreateMailslot(lpName: LPCSTR, nMaxMessageSize: DWORD, lReadTimeout: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): HANDLE;
+
+@foreign
+func CreateMailslotW(lpName: LPCWSTR, nMaxMessageSize: DWORD, lReadTimeout: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): HANDLE;
+
+@foreign
+func GetMailslotInfo(hMailslot: HANDLE, lpMaxMessageSize: LPDWORD, lpNextSize: LPDWORD, lpMessageCount: LPDWORD, lpReadTimeout: LPDWORD): BOOL;
+
+@foreign
+func SetMailslotInfo(hMailslot: HANDLE, lReadTimeout: DWORD): BOOL;
+
+@foreign
+func EncryptFileA(lpFileName: LPCSTR): BOOL;
+
+@foreign
+func EncryptFile(lpFileName: LPCSTR): BOOL;
+
+@foreign
+func EncryptFileW(lpFileName: LPCWSTR): BOOL;
+
+@foreign
+func DecryptFileA(lpFileName: LPCSTR, dwReserved: DWORD): BOOL;
+
+@foreign
+func DecryptFile(lpFileName: LPCSTR, dwReserved: DWORD): BOOL;
+
+@foreign
+func DecryptFileW(lpFileName: LPCWSTR, dwReserved: DWORD): BOOL;
+
+@foreign
+func FileEncryptionStatusA(lpFileName: LPCSTR, lpStatus: LPDWORD): BOOL;
+
+@foreign
+func FileEncryptionStatus(lpFileName: LPCSTR, lpStatus: LPDWORD): BOOL;
+
+@foreign
+func FileEncryptionStatusW(lpFileName: LPCWSTR, lpStatus: LPDWORD): BOOL;
+
+@foreign
+typedef PFE_EXPORT_FUNC = func(pbData: PBYTE, pvCallbackContext: PVOID, ulLength: ULONG): DWORD;
+
+@foreign
+typedef PFE_IMPORT_FUNC = func(pbData: PBYTE, pvCallbackContext: PVOID, ulLength: PULONG): DWORD;
+
+@foreign
+func OpenEncryptedFileRawA(lpFileName: LPCSTR, ulFlags: ULONG, pvContext: PVOID*): DWORD;
+
+@foreign
+func OpenEncryptedFileRaw(lpFileName: LPCSTR, ulFlags: ULONG, pvContext: PVOID*): DWORD;
+
+@foreign
+func OpenEncryptedFileRawW(lpFileName: LPCWSTR, ulFlags: ULONG, pvContext: PVOID*): DWORD;
+
+@foreign
+func ReadEncryptedFileRaw(pfExportCallback: PFE_EXPORT_FUNC, pvCallbackContext: PVOID, pvContext: PVOID): DWORD;
+
+@foreign
+func WriteEncryptedFileRaw(pfImportCallback: PFE_IMPORT_FUNC, pvCallbackContext: PVOID, pvContext: PVOID): DWORD;
+
+@foreign
+func CloseEncryptedFileRaw(pvContext: PVOID);
+
+@foreign
+func lstrcmpA(lpString1: LPCSTR, lpString2: LPCSTR): int;
+
+@foreign
+func lstrcmp(lpString1: LPCSTR, lpString2: LPCSTR): int;
+
+@foreign
+func lstrcmpW(lpString1: LPCWSTR, lpString2: LPCWSTR): int;
+
+@foreign
+func lstrcmpiA(lpString1: LPCSTR, lpString2: LPCSTR): int;
+
+@foreign
+func lstrcmpi(lpString1: LPCSTR, lpString2: LPCSTR): int;
+
+@foreign
+func lstrcmpiW(lpString1: LPCWSTR, lpString2: LPCWSTR): int;
+
+@foreign
+func lstrcpynA(lpString1: LPSTR, lpString2: LPCSTR, iMaxLength: int): LPSTR;
+
+@foreign
+func lstrcpyn(lpString1: LPSTR, lpString2: LPCSTR, iMaxLength: int): LPSTR;
+
+@foreign
+func lstrcpynW(lpString1: LPWSTR, lpString2: LPCWSTR, iMaxLength: int): LPWSTR;
+
+@foreign
+func lstrcpyA(lpString1: LPSTR, lpString2: LPCSTR): LPSTR;
+
+@foreign
+func lstrcpy(lpString1: LPSTR, lpString2: LPCSTR): LPSTR;
+
+@foreign
+func lstrcpyW(lpString1: LPWSTR, lpString2: LPCWSTR): LPWSTR;
+
+@foreign
+func lstrcatA(lpString1: LPSTR, lpString2: LPCSTR): LPSTR;
+
+@foreign
+func lstrcat(lpString1: LPSTR, lpString2: LPCSTR): LPSTR;
+
+@foreign
+func lstrcatW(lpString1: LPWSTR, lpString2: LPCWSTR): LPWSTR;
+
+@foreign
+func lstrlenA(lpString: LPCSTR): int;
+
+@foreign
+func lstrlen(lpString: LPCSTR): int;
+
+@foreign
+func lstrlenW(lpString: LPCWSTR): int;
+
+@foreign
+func OpenFile(lpFileName: LPCSTR, lpReOpenBuff: LPOFSTRUCT, uStyle: UINT): HFILE;
+
+@foreign
+func _lopen(lpPathName: LPCSTR, iReadWrite: int): HFILE;
+
+@foreign
+func _lcreat(lpPathName: LPCSTR, iAttribute: int): HFILE;
+
+@foreign
+func _lread(hFile: HFILE, lpBuffer: LPVOID, uBytes: UINT): UINT;
+
+@foreign
+func _lwrite(hFile: HFILE, lpBuffer: LPCCH, uBytes: UINT): UINT;
+
+@foreign
+func _hread(hFile: HFILE, lpBuffer: LPVOID, lBytes: long): long;
+
+@foreign
+func _hwrite(hFile: HFILE, lpBuffer: LPCCH, lBytes: long): long;
+
+@foreign
+func _lclose(hFile: HFILE): HFILE;
+
+@foreign
+func _llseek(hFile: HFILE, lOffset: LONG, iOrigin: int): LONG;
+
+@foreign
+func IsTextUnicode(lpv: void const*, iSize: int, lpiResult: LPINT): BOOL;
+
+@foreign
+func BackupRead(hFile: HANDLE, lpBuffer: LPBYTE, nNumberOfBytesToRead: DWORD, lpNumberOfBytesRead: LPDWORD, bAbort: BOOL, bProcessSecurity: BOOL, lpContext: LPVOID*): BOOL;
+
+@foreign
+func BackupSeek(hFile: HANDLE, dwLowBytesToSeek: DWORD, dwHighBytesToSeek: DWORD, lpdwLowByteSeeked: LPDWORD, lpdwHighByteSeeked: LPDWORD, lpContext: LPVOID*): BOOL;
+
+@foreign
+func BackupWrite(hFile: HANDLE, lpBuffer: LPBYTE, nNumberOfBytesToWrite: DWORD, lpNumberOfBytesWritten: LPDWORD, bAbort: BOOL, bProcessSecurity: BOOL, lpContext: LPVOID*): BOOL;
+
+@foreign
+struct _WIN32_STREAM_ID {
+    dwStreamId: DWORD;
+    dwStreamAttributes: DWORD;
+    Size: LARGE_INTEGER;
+    dwStreamNameSize: DWORD;
+    cStreamName: WCHAR[1];
+}
+
+@foreign
+typedef WIN32_STREAM_ID = _WIN32_STREAM_ID;
+
+@foreign
+typedef LPWIN32_STREAM_ID = _WIN32_STREAM_ID*;
+
+@foreign
+struct _STARTUPINFOEXA {
+    StartupInfo: STARTUPINFOA;
+    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST;
+}
+
+@foreign
+typedef STARTUPINFOEXA = _STARTUPINFOEXA;
+
+@foreign
+typedef LPSTARTUPINFOEXA = _STARTUPINFOEXA*;
+
+@foreign
+struct _STARTUPINFOEXW {
+    StartupInfo: STARTUPINFOW;
+    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST;
+}
+
+@foreign
+typedef STARTUPINFOEXW = _STARTUPINFOEXW;
+
+@foreign
+typedef LPSTARTUPINFOEXW = _STARTUPINFOEXW*;
+
+@foreign
+typedef STARTUPINFOEX = STARTUPINFOEXA;
+
+@foreign
+typedef LPSTARTUPINFOEX = LPSTARTUPINFOEXA;
+
+@foreign
+func OpenMutexA(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpName: LPCSTR): HANDLE;
+
+@foreign
+func CreateSemaphoreA(lpSemaphoreAttributes: LPSECURITY_ATTRIBUTES, lInitialCount: LONG, lMaximumCount: LONG, lpName: LPCSTR): HANDLE;
+
+@foreign
+func OpenSemaphoreA(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpName: LPCSTR): HANDLE;
+
+@foreign
+func CreateWaitableTimerA(lpTimerAttributes: LPSECURITY_ATTRIBUTES, bManualReset: BOOL, lpTimerName: LPCSTR): HANDLE;
+
+@foreign
+func OpenWaitableTimerA(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpTimerName: LPCSTR): HANDLE;
+
+@foreign
+func CreateSemaphoreExA(lpSemaphoreAttributes: LPSECURITY_ATTRIBUTES, lInitialCount: LONG, lMaximumCount: LONG, lpName: LPCSTR, dwFlags: DWORD, dwDesiredAccess: DWORD): HANDLE;
+
+@foreign
+func CreateWaitableTimerExA(lpTimerAttributes: LPSECURITY_ATTRIBUTES, lpTimerName: LPCSTR, dwFlags: DWORD, dwDesiredAccess: DWORD): HANDLE;
+
+@foreign
+func CreateFileMappingA(hFile: HANDLE, lpFileMappingAttributes: LPSECURITY_ATTRIBUTES, flProtect: DWORD, dwMaximumSizeHigh: DWORD, dwMaximumSizeLow: DWORD, lpName: LPCSTR): HANDLE;
+
+@foreign
+func CreateFileMappingNumaA(hFile: HANDLE, lpFileMappingAttributes: LPSECURITY_ATTRIBUTES, flProtect: DWORD, dwMaximumSizeHigh: DWORD, dwMaximumSizeLow: DWORD, lpName: LPCSTR, nndPreferred: DWORD): HANDLE;
+
+@foreign
+func OpenFileMappingA(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpName: LPCSTR): HANDLE;
+
+@foreign
+func GetLogicalDriveStringsA(nBufferLength: DWORD, lpBuffer: LPSTR): DWORD;
+
+@foreign
+func LoadPackagedLibrary(lpwLibFileName: LPCWSTR, Reserved: DWORD): HMODULE;
+
+@foreign
+func QueryFullProcessImageNameA(hProcess: HANDLE, dwFlags: DWORD, lpExeName: LPSTR, lpdwSize: PDWORD): BOOL;
+
+@foreign
+func QueryFullProcessImageName(hProcess: HANDLE, dwFlags: DWORD, lpExeName: LPSTR, lpdwSize: PDWORD): BOOL;
+
+@foreign
+func QueryFullProcessImageNameW(hProcess: HANDLE, dwFlags: DWORD, lpExeName: LPWSTR, lpdwSize: PDWORD): BOOL;
+
+@foreign
+enum _PROC_THREAD_ATTRIBUTE_NUM {
+    ProcThreadAttributeParentProcess = 0,
+    ProcThreadAttributeHandleList = 2,
+    ProcThreadAttributeGroupAffinity = 3,
+    ProcThreadAttributePreferredNode = 4,
+    ProcThreadAttributeIdealProcessor = 5,
+    ProcThreadAttributeUmsThread = 6,
+    ProcThreadAttributeMitigationPolicy = 7,
+    ProcThreadAttributeSecurityCapabilities = 9,
+    ProcThreadAttributeProtectionLevel = 11,
+    ProcThreadAttributeJobList = 13,
+    ProcThreadAttributeChildProcessPolicy = 14,
+    ProcThreadAttributeAllApplicationPackagesPolicy = 15,
+    ProcThreadAttributeWin32kFilter = 16,
+    ProcThreadAttributeSafeOpenPromptOriginClaim = 17,
+    ProcThreadAttributeDesktopAppPolicy = 18,
+}
+
+@foreign
+typedef PROC_THREAD_ATTRIBUTE_NUM = _PROC_THREAD_ATTRIBUTE_NUM;
+
+@foreign
+func GetStartupInfoA(lpStartupInfo: LPSTARTUPINFOA);
+
+@foreign
+func GetFirmwareEnvironmentVariableA(lpName: LPCSTR, lpGuid: LPCSTR, pBuffer: PVOID, nSize: DWORD): DWORD;
+
+@foreign
+func GetFirmwareEnvironmentVariable(lpName: LPCSTR, lpGuid: LPCSTR, pBuffer: PVOID, nSize: DWORD): DWORD;
+
+@foreign
+func GetFirmwareEnvironmentVariableW(lpName: LPCWSTR, lpGuid: LPCWSTR, pBuffer: PVOID, nSize: DWORD): DWORD;
+
+@foreign
+func GetFirmwareEnvironmentVariableExA(lpName: LPCSTR, lpGuid: LPCSTR, pBuffer: PVOID, nSize: DWORD, pdwAttribubutes: PDWORD): DWORD;
+
+@foreign
+func GetFirmwareEnvironmentVariableEx(lpName: LPCSTR, lpGuid: LPCSTR, pBuffer: PVOID, nSize: DWORD, pdwAttribubutes: PDWORD): DWORD;
+
+@foreign
+func GetFirmwareEnvironmentVariableExW(lpName: LPCWSTR, lpGuid: LPCWSTR, pBuffer: PVOID, nSize: DWORD, pdwAttribubutes: PDWORD): DWORD;
+
+@foreign
+func SetFirmwareEnvironmentVariableA(lpName: LPCSTR, lpGuid: LPCSTR, pValue: PVOID, nSize: DWORD): BOOL;
+
+@foreign
+func SetFirmwareEnvironmentVariable(lpName: LPCSTR, lpGuid: LPCSTR, pValue: PVOID, nSize: DWORD): BOOL;
+
+@foreign
+func SetFirmwareEnvironmentVariableW(lpName: LPCWSTR, lpGuid: LPCWSTR, pValue: PVOID, nSize: DWORD): BOOL;
+
+@foreign
+func SetFirmwareEnvironmentVariableExA(lpName: LPCSTR, lpGuid: LPCSTR, pValue: PVOID, nSize: DWORD, dwAttributes: DWORD): BOOL;
+
+@foreign
+func SetFirmwareEnvironmentVariableEx(lpName: LPCSTR, lpGuid: LPCSTR, pValue: PVOID, nSize: DWORD, dwAttributes: DWORD): BOOL;
+
+@foreign
+func SetFirmwareEnvironmentVariableExW(lpName: LPCWSTR, lpGuid: LPCWSTR, pValue: PVOID, nSize: DWORD, dwAttributes: DWORD): BOOL;
+
+@foreign
+func GetFirmwareType(FirmwareType: PFIRMWARE_TYPE): BOOL;
+
+@foreign
+func IsNativeVhdBoot(NativeVhdBoot: PBOOL): BOOL;
+
+@foreign
+func FindResource(hModule: HMODULE, lpName: LPCSTR, lpType: LPCSTR): HRSRC;
+
+@foreign
+func FindResourceA(hModule: HMODULE, lpName: LPCSTR, lpType: LPCSTR): HRSRC;
+
+@foreign
+func FindResourceExA(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, wLanguage: WORD): HRSRC;
+
+@foreign
+func EnumResourceTypesA(hModule: HMODULE, lpEnumFunc: ENUMRESTYPEPROCA, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceTypes(hModule: HMODULE, lpEnumFunc: ENUMRESTYPEPROCA, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceTypesW(hModule: HMODULE, lpEnumFunc: ENUMRESTYPEPROCW, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceNames(hModule: HMODULE, lpType: LPCSTR, lpEnumFunc: ENUMRESNAMEPROCA, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceNamesA(hModule: HMODULE, lpType: LPCSTR, lpEnumFunc: ENUMRESNAMEPROCA, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceLanguagesA(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, lpEnumFunc: ENUMRESLANGPROCA, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceLanguages(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, lpEnumFunc: ENUMRESLANGPROCA, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumResourceLanguagesW(hModule: HMODULE, lpType: LPCWSTR, lpName: LPCWSTR, lpEnumFunc: ENUMRESLANGPROCW, lParam: LONG_PTR): BOOL;
+
+@foreign
+func BeginUpdateResourceA(pFileName: LPCSTR, bDeleteExistingResources: BOOL): HANDLE;
+
+@foreign
+func BeginUpdateResource(pFileName: LPCSTR, bDeleteExistingResources: BOOL): HANDLE;
+
+@foreign
+func BeginUpdateResourceW(pFileName: LPCWSTR, bDeleteExistingResources: BOOL): HANDLE;
+
+@foreign
+func UpdateResourceA(hUpdate: HANDLE, lpType: LPCSTR, lpName: LPCSTR, wLanguage: WORD, lpData: LPVOID, cb: DWORD): BOOL;
+
+@foreign
+func UpdateResource(hUpdate: HANDLE, lpType: LPCSTR, lpName: LPCSTR, wLanguage: WORD, lpData: LPVOID, cb: DWORD): BOOL;
+
+@foreign
+func UpdateResourceW(hUpdate: HANDLE, lpType: LPCWSTR, lpName: LPCWSTR, wLanguage: WORD, lpData: LPVOID, cb: DWORD): BOOL;
+
+@foreign
+func EndUpdateResourceA(hUpdate: HANDLE, fDiscard: BOOL): BOOL;
+
+@foreign
+func EndUpdateResource(hUpdate: HANDLE, fDiscard: BOOL): BOOL;
+
+@foreign
+func EndUpdateResourceW(hUpdate: HANDLE, fDiscard: BOOL): BOOL;
+
+@foreign
+func GlobalAddAtomA(lpString: LPCSTR): ATOM;
+
+@foreign
+func GlobalAddAtom(lpString: LPCSTR): ATOM;
+
+@foreign
+func GlobalAddAtomW(lpString: LPCWSTR): ATOM;
+
+@foreign
+func GlobalAddAtomExA(lpString: LPCSTR, Flags: DWORD): ATOM;
+
+@foreign
+func GlobalAddAtomEx(lpString: LPCSTR, Flags: DWORD): ATOM;
+
+@foreign
+func GlobalAddAtomExW(lpString: LPCWSTR, Flags: DWORD): ATOM;
+
+@foreign
+func GlobalFindAtomA(lpString: LPCSTR): ATOM;
+
+@foreign
+func GlobalFindAtom(lpString: LPCSTR): ATOM;
+
+@foreign
+func GlobalFindAtomW(lpString: LPCWSTR): ATOM;
+
+@foreign
+func GlobalGetAtomNameA(nAtom: ATOM, lpBuffer: LPSTR, nSize: int): UINT;
+
+@foreign
+func GlobalGetAtomName(nAtom: ATOM, lpBuffer: LPSTR, nSize: int): UINT;
+
+@foreign
+func GlobalGetAtomNameW(nAtom: ATOM, lpBuffer: LPWSTR, nSize: int): UINT;
+
+@foreign
+func AddAtomA(lpString: LPCSTR): ATOM;
+
+@foreign
+func AddAtom(lpString: LPCSTR): ATOM;
+
+@foreign
+func AddAtomW(lpString: LPCWSTR): ATOM;
+
+@foreign
+func FindAtomA(lpString: LPCSTR): ATOM;
+
+@foreign
+func FindAtom(lpString: LPCSTR): ATOM;
+
+@foreign
+func FindAtomW(lpString: LPCWSTR): ATOM;
+
+@foreign
+func GetAtomNameA(nAtom: ATOM, lpBuffer: LPSTR, nSize: int): UINT;
+
+@foreign
+func GetAtomName(nAtom: ATOM, lpBuffer: LPSTR, nSize: int): UINT;
+
+@foreign
+func GetAtomNameW(nAtom: ATOM, lpBuffer: LPWSTR, nSize: int): UINT;
+
+@foreign
+func GetProfileIntA(lpAppName: LPCSTR, lpKeyName: LPCSTR, nDefault: INT): UINT;
+
+@foreign
+func GetProfileInt(lpAppName: LPCSTR, lpKeyName: LPCSTR, nDefault: INT): UINT;
+
+@foreign
+func GetProfileIntW(lpAppName: LPCWSTR, lpKeyName: LPCWSTR, nDefault: INT): UINT;
+
+@foreign
+func GetProfileStringA(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpDefault: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetProfileString(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpDefault: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetProfileStringW(lpAppName: LPCWSTR, lpKeyName: LPCWSTR, lpDefault: LPCWSTR, lpReturnedString: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func WriteProfileStringA(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpString: LPCSTR): BOOL;
+
+@foreign
+func WriteProfileString(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpString: LPCSTR): BOOL;
+
+@foreign
+func WriteProfileStringW(lpAppName: LPCWSTR, lpKeyName: LPCWSTR, lpString: LPCWSTR): BOOL;
+
+@foreign
+func GetProfileSectionA(lpAppName: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetProfileSection(lpAppName: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetProfileSectionW(lpAppName: LPCWSTR, lpReturnedString: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func WriteProfileSectionA(lpAppName: LPCSTR, lpString: LPCSTR): BOOL;
+
+@foreign
+func WriteProfileSection(lpAppName: LPCSTR, lpString: LPCSTR): BOOL;
+
+@foreign
+func WriteProfileSectionW(lpAppName: LPCWSTR, lpString: LPCWSTR): BOOL;
+
+@foreign
+func GetPrivateProfileIntA(lpAppName: LPCSTR, lpKeyName: LPCSTR, nDefault: INT, lpFileName: LPCSTR): UINT;
+
+@foreign
+func GetPrivateProfileInt(lpAppName: LPCSTR, lpKeyName: LPCSTR, nDefault: INT, lpFileName: LPCSTR): UINT;
+
+@foreign
+func GetPrivateProfileIntW(lpAppName: LPCWSTR, lpKeyName: LPCWSTR, nDefault: INT, lpFileName: LPCWSTR): UINT;
+
+@foreign
+func GetPrivateProfileStringA(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpDefault: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD, lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetPrivateProfileString(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpDefault: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD, lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetPrivateProfileStringW(lpAppName: LPCWSTR, lpKeyName: LPCWSTR, lpDefault: LPCWSTR, lpReturnedString: LPWSTR, nSize: DWORD, lpFileName: LPCWSTR): DWORD;
+
+@foreign
+func WritePrivateProfileStringA(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpString: LPCSTR, lpFileName: LPCSTR): BOOL;
+
+@foreign
+func WritePrivateProfileString(lpAppName: LPCSTR, lpKeyName: LPCSTR, lpString: LPCSTR, lpFileName: LPCSTR): BOOL;
+
+@foreign
+func WritePrivateProfileStringW(lpAppName: LPCWSTR, lpKeyName: LPCWSTR, lpString: LPCWSTR, lpFileName: LPCWSTR): BOOL;
+
+@foreign
+func GetPrivateProfileSectionA(lpAppName: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD, lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetPrivateProfileSection(lpAppName: LPCSTR, lpReturnedString: LPSTR, nSize: DWORD, lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetPrivateProfileSectionW(lpAppName: LPCWSTR, lpReturnedString: LPWSTR, nSize: DWORD, lpFileName: LPCWSTR): DWORD;
+
+@foreign
+func WritePrivateProfileSectionA(lpAppName: LPCSTR, lpString: LPCSTR, lpFileName: LPCSTR): BOOL;
+
+@foreign
+func WritePrivateProfileSection(lpAppName: LPCSTR, lpString: LPCSTR, lpFileName: LPCSTR): BOOL;
+
+@foreign
+func WritePrivateProfileSectionW(lpAppName: LPCWSTR, lpString: LPCWSTR, lpFileName: LPCWSTR): BOOL;
+
+@foreign
+func GetPrivateProfileSectionNamesA(lpszReturnBuffer: LPSTR, nSize: DWORD, lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetPrivateProfileSectionNames(lpszReturnBuffer: LPSTR, nSize: DWORD, lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetPrivateProfileSectionNamesW(lpszReturnBuffer: LPWSTR, nSize: DWORD, lpFileName: LPCWSTR): DWORD;
+
+@foreign
+func GetPrivateProfileStructA(lpszSection: LPCSTR, lpszKey: LPCSTR, lpStruct: LPVOID, uSizeStruct: UINT, szFile: LPCSTR): BOOL;
+
+@foreign
+func GetPrivateProfileStruct(lpszSection: LPCSTR, lpszKey: LPCSTR, lpStruct: LPVOID, uSizeStruct: UINT, szFile: LPCSTR): BOOL;
+
+@foreign
+func GetPrivateProfileStructW(lpszSection: LPCWSTR, lpszKey: LPCWSTR, lpStruct: LPVOID, uSizeStruct: UINT, szFile: LPCWSTR): BOOL;
+
+@foreign
+func WritePrivateProfileStructA(lpszSection: LPCSTR, lpszKey: LPCSTR, lpStruct: LPVOID, uSizeStruct: UINT, szFile: LPCSTR): BOOL;
+
+@foreign
+func WritePrivateProfileStruct(lpszSection: LPCSTR, lpszKey: LPCSTR, lpStruct: LPVOID, uSizeStruct: UINT, szFile: LPCSTR): BOOL;
+
+@foreign
+func WritePrivateProfileStructW(lpszSection: LPCWSTR, lpszKey: LPCWSTR, lpStruct: LPVOID, uSizeStruct: UINT, szFile: LPCWSTR): BOOL;
+
+@foreign
+func Wow64EnableWow64FsRedirection(Wow64FsEnableRedirection: BOOLEAN): BOOLEAN;
+
+@foreign
+typedef PGET_SYSTEM_WOW64_DIRECTORY_A = func(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+typedef PGET_SYSTEM_WOW64_DIRECTORY_W = func(lpBuffer: LPWSTR, uSize: UINT): UINT;
+
+@foreign
+func SetDllDirectoryA(lpPathName: LPCSTR): BOOL;
+
+@foreign
+func SetDllDirectory(lpPathName: LPCSTR): BOOL;
+
+@foreign
+func SetDllDirectoryW(lpPathName: LPCWSTR): BOOL;
+
+@foreign
+func GetDllDirectoryA(nBufferLength: DWORD, lpBuffer: LPSTR): DWORD;
+
+@foreign
+func GetDllDirectory(nBufferLength: DWORD, lpBuffer: LPSTR): DWORD;
+
+@foreign
+func GetDllDirectoryW(nBufferLength: DWORD, lpBuffer: LPWSTR): DWORD;
+
+@foreign
+func SetSearchPathMode(Flags: DWORD): BOOL;
+
+@foreign
+func CreateDirectoryExA(lpTemplateDirectory: LPCSTR, lpNewDirectory: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateDirectoryEx(lpTemplateDirectory: LPCSTR, lpNewDirectory: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateDirectoryExW(lpTemplateDirectory: LPCWSTR, lpNewDirectory: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateDirectoryTransactedA(lpTemplateDirectory: LPCSTR, lpNewDirectory: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CreateDirectoryTransacted(lpTemplateDirectory: LPCSTR, lpNewDirectory: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CreateDirectoryTransactedW(lpTemplateDirectory: LPCWSTR, lpNewDirectory: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, hTransaction: HANDLE): BOOL;
+
+@foreign
+func RemoveDirectoryTransactedA(lpPathName: LPCSTR, hTransaction: HANDLE): BOOL;
+
+@foreign
+func RemoveDirectoryTransacted(lpPathName: LPCSTR, hTransaction: HANDLE): BOOL;
+
+@foreign
+func RemoveDirectoryTransactedW(lpPathName: LPCWSTR, hTransaction: HANDLE): BOOL;
+
+@foreign
+func GetFullPathNameTransactedA(lpFileName: LPCSTR, nBufferLength: DWORD, lpBuffer: LPSTR, lpFilePart: LPSTR*, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetFullPathNameTransacted(lpFileName: LPCSTR, nBufferLength: DWORD, lpBuffer: LPSTR, lpFilePart: LPSTR*, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetFullPathNameTransactedW(lpFileName: LPCWSTR, nBufferLength: DWORD, lpBuffer: LPWSTR, lpFilePart: LPWSTR*, hTransaction: HANDLE): DWORD;
+
+@foreign
+func DefineDosDeviceA(dwFlags: DWORD, lpDeviceName: LPCSTR, lpTargetPath: LPCSTR): BOOL;
+
+@foreign
+func QueryDosDeviceA(lpDeviceName: LPCSTR, lpTargetPath: LPSTR, ucchMax: DWORD): DWORD;
+
+@foreign
+func CreateFileTransactedA(lpFileName: LPCSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwCreationDisposition: DWORD, dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE, hTransaction: HANDLE, pusMiniVersion: PUSHORT, lpExtendedParameter: PVOID): HANDLE;
+
+@foreign
+func CreateFileTransacted(lpFileName: LPCSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwCreationDisposition: DWORD, dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE, hTransaction: HANDLE, pusMiniVersion: PUSHORT, lpExtendedParameter: PVOID): HANDLE;
+
+@foreign
+func CreateFileTransactedW(lpFileName: LPCWSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwCreationDisposition: DWORD, dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE, hTransaction: HANDLE, pusMiniVersion: PUSHORT, lpExtendedParameter: PVOID): HANDLE;
+
+@foreign
+func ReOpenFile(hOriginalFile: HANDLE, dwDesiredAccess: DWORD, dwShareMode: DWORD, dwFlagsAndAttributes: DWORD): HANDLE;
+
+@foreign
+func SetFileAttributesTransactedA(lpFileName: LPCSTR, dwFileAttributes: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func SetFileAttributesTransacted(lpFileName: LPCSTR, dwFileAttributes: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func SetFileAttributesTransactedW(lpFileName: LPCWSTR, dwFileAttributes: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func GetFileAttributesTransactedA(lpFileName: LPCSTR, fInfoLevelId: GET_FILEEX_INFO_LEVELS, lpFileInformation: LPVOID, hTransaction: HANDLE): BOOL;
+
+@foreign
+func GetFileAttributesTransacted(lpFileName: LPCSTR, fInfoLevelId: GET_FILEEX_INFO_LEVELS, lpFileInformation: LPVOID, hTransaction: HANDLE): BOOL;
+
+@foreign
+func GetFileAttributesTransactedW(lpFileName: LPCWSTR, fInfoLevelId: GET_FILEEX_INFO_LEVELS, lpFileInformation: LPVOID, hTransaction: HANDLE): BOOL;
+
+@foreign
+func GetCompressedFileSizeTransactedA(lpFileName: LPCSTR, lpFileSizeHigh: LPDWORD, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetCompressedFileSizeTransacted(lpFileName: LPCSTR, lpFileSizeHigh: LPDWORD, hTransaction: HANDLE): DWORD;
+
+@foreign
+func GetCompressedFileSizeTransactedW(lpFileName: LPCWSTR, lpFileSizeHigh: LPDWORD, hTransaction: HANDLE): DWORD;
+
+@foreign
+func DeleteFileTransactedA(lpFileName: LPCSTR, hTransaction: HANDLE): BOOL;
+
+@foreign
+func DeleteFileTransacted(lpFileName: LPCSTR, hTransaction: HANDLE): BOOL;
+
+@foreign
+func DeleteFileTransactedW(lpFileName: LPCWSTR, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CheckNameLegalDOS8Dot3A(lpName: LPCSTR, lpOemName: LPSTR, OemNameSize: DWORD, pbNameContainsSpaces: PBOOL, pbNameLegal: PBOOL): BOOL;
+
+@foreign
+func CheckNameLegalDOS8Dot3(lpName: LPCSTR, lpOemName: LPSTR, OemNameSize: DWORD, pbNameContainsSpaces: PBOOL, pbNameLegal: PBOOL): BOOL;
+
+@foreign
+func CheckNameLegalDOS8Dot3W(lpName: LPCWSTR, lpOemName: LPSTR, OemNameSize: DWORD, pbNameContainsSpaces: PBOOL, pbNameLegal: PBOOL): BOOL;
+
+@foreign
+func FindFirstFileTransactedA(lpFileName: LPCSTR, fInfoLevelId: FINDEX_INFO_LEVELS, lpFindFileData: LPVOID, fSearchOp: FINDEX_SEARCH_OPS, lpSearchFilter: LPVOID, dwAdditionalFlags: DWORD, hTransaction: HANDLE): HANDLE;
+
+@foreign
+func FindFirstFileTransacted(lpFileName: LPCSTR, fInfoLevelId: FINDEX_INFO_LEVELS, lpFindFileData: LPVOID, fSearchOp: FINDEX_SEARCH_OPS, lpSearchFilter: LPVOID, dwAdditionalFlags: DWORD, hTransaction: HANDLE): HANDLE;
+
+@foreign
+func FindFirstFileTransactedW(lpFileName: LPCWSTR, fInfoLevelId: FINDEX_INFO_LEVELS, lpFindFileData: LPVOID, fSearchOp: FINDEX_SEARCH_OPS, lpSearchFilter: LPVOID, dwAdditionalFlags: DWORD, hTransaction: HANDLE): HANDLE;
+
+@foreign
+func CopyFileA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, bFailIfExists: BOOL): BOOL;
+
+@foreign
+func CopyFile(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, bFailIfExists: BOOL): BOOL;
+
+@foreign
+func CopyFileW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, bFailIfExists: BOOL): BOOL;
+
+@foreign
+typedef LPPROGRESS_ROUTINE = func(TotalFileSize: LARGE_INTEGER, TotalBytesTransferred: LARGE_INTEGER, StreamSize: LARGE_INTEGER, StreamBytesTransferred: LARGE_INTEGER, dwStreamNumber: DWORD, dwCallbackReason: DWORD, hSourceFile: HANDLE, hDestinationFile: HANDLE, lpData: LPVOID): DWORD;
+
+@foreign
+func CopyFileExA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD): BOOL;
+
+@foreign
+func CopyFileEx(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD): BOOL;
+
+@foreign
+func CopyFileExW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD): BOOL;
+
+@foreign
+func CopyFileTransactedA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CopyFileTransacted(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CopyFileTransactedW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+enum _COPYFILE2_MESSAGE_TYPE {
+    COPYFILE2_CALLBACK_NONE = 0,
+    COPYFILE2_CALLBACK_CHUNK_STARTED,
+    COPYFILE2_CALLBACK_CHUNK_FINISHED,
+    COPYFILE2_CALLBACK_STREAM_STARTED,
+    COPYFILE2_CALLBACK_STREAM_FINISHED,
+    COPYFILE2_CALLBACK_POLL_CONTINUE,
+    COPYFILE2_CALLBACK_ERROR,
+    COPYFILE2_CALLBACK_MAX,
+}
+
+@foreign
+typedef COPYFILE2_MESSAGE_TYPE = _COPYFILE2_MESSAGE_TYPE;
+
+@foreign
+enum _COPYFILE2_MESSAGE_ACTION {
+    COPYFILE2_PROGRESS_CONTINUE = 0,
+    COPYFILE2_PROGRESS_CANCEL,
+    COPYFILE2_PROGRESS_STOP,
+    COPYFILE2_PROGRESS_QUIET,
+    COPYFILE2_PROGRESS_PAUSE,
+}
+
+@foreign
+typedef COPYFILE2_MESSAGE_ACTION = _COPYFILE2_MESSAGE_ACTION;
+
+@foreign
+enum _COPYFILE2_COPY_PHASE {
+    COPYFILE2_PHASE_NONE = 0,
+    COPYFILE2_PHASE_PREPARE_SOURCE,
+    COPYFILE2_PHASE_PREPARE_DEST,
+    COPYFILE2_PHASE_READ_SOURCE,
+    COPYFILE2_PHASE_WRITE_DESTINATION,
+    COPYFILE2_PHASE_SERVER_COPY,
+    COPYFILE2_PHASE_NAMEGRAFT_COPY,
+    COPYFILE2_PHASE_MAX,
+}
+
+@foreign
+typedef COPYFILE2_COPY_PHASE = _COPYFILE2_COPY_PHASE;
+
+/*
+@PROBLEM Nested struct def at line 5440, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+@foreign
+struct COPYFILE2_MESSAGE {
+    Type: COPYFILE2_MESSAGE_TYPE;
+    dwPadding: DWORD;
+    Info: (null);
+}
+*/
+
+@foreign
+typedef PCOPYFILE2_PROGRESS_ROUTINE = func(pMessage: COPYFILE2_MESSAGE*, pvCallbackContext: PVOID): COPYFILE2_MESSAGE_ACTION;
+
+@foreign
+struct COPYFILE2_EXTENDED_PARAMETERS {
+    dwSize: DWORD;
+    dwCopyFlags: DWORD;
+    pfCancel: BOOL*;
+    pProgressRoutine: PCOPYFILE2_PROGRESS_ROUTINE;
+    pvCallbackContext: PVOID;
+}
+
+@foreign
+func CopyFile2(pwszExistingFileName: PCWSTR, pwszNewFileName: PCWSTR, pExtendedParameters: COPYFILE2_EXTENDED_PARAMETERS*): HRESULT;
+
+@foreign
+func MoveFileA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR): BOOL;
+
+@foreign
+func MoveFile(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR): BOOL;
+
+@foreign
+func MoveFileW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR): BOOL;
+
+@foreign
+func MoveFileExA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, dwFlags: DWORD): BOOL;
+
+@foreign
+func MoveFileEx(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, dwFlags: DWORD): BOOL;
+
+@foreign
+func MoveFileExW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, dwFlags: DWORD): BOOL;
+
+@foreign
+func MoveFileWithProgressA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, dwFlags: DWORD): BOOL;
+
+@foreign
+func MoveFileWithProgress(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, dwFlags: DWORD): BOOL;
+
+@foreign
+func MoveFileWithProgressW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, dwFlags: DWORD): BOOL;
+
+@foreign
+func MoveFileTransactedA(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, dwFlags: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func MoveFileTransacted(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, dwFlags: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func MoveFileTransactedW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, dwFlags: DWORD, hTransaction: HANDLE): BOOL;
+
+@foreign
+func ReplaceFileA(lpReplacedFileName: LPCSTR, lpReplacementFileName: LPCSTR, lpBackupFileName: LPCSTR, dwReplaceFlags: DWORD, lpExclude: LPVOID, lpReserved: LPVOID): BOOL;
+
+@foreign
+func ReplaceFile(lpReplacedFileName: LPCSTR, lpReplacementFileName: LPCSTR, lpBackupFileName: LPCSTR, dwReplaceFlags: DWORD, lpExclude: LPVOID, lpReserved: LPVOID): BOOL;
+
+@foreign
+func ReplaceFileW(lpReplacedFileName: LPCWSTR, lpReplacementFileName: LPCWSTR, lpBackupFileName: LPCWSTR, dwReplaceFlags: DWORD, lpExclude: LPVOID, lpReserved: LPVOID): BOOL;
+
+@foreign
+func CreateHardLinkA(lpFileName: LPCSTR, lpExistingFileName: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateHardLink(lpFileName: LPCSTR, lpExistingFileName: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateHardLinkW(lpFileName: LPCWSTR, lpExistingFileName: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateHardLinkTransactedA(lpFileName: LPCSTR, lpExistingFileName: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CreateHardLinkTransacted(lpFileName: LPCSTR, lpExistingFileName: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, hTransaction: HANDLE): BOOL;
+
+@foreign
+func CreateHardLinkTransactedW(lpFileName: LPCWSTR, lpExistingFileName: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, hTransaction: HANDLE): BOOL;
+
+@foreign
+func FindFirstStreamTransactedW(lpFileName: LPCWSTR, InfoLevel: STREAM_INFO_LEVELS, lpFindStreamData: LPVOID, dwFlags: DWORD, hTransaction: HANDLE): HANDLE;
+
+@foreign
+func FindFirstFileNameTransactedW(lpFileName: LPCWSTR, dwFlags: DWORD, StringLength: LPDWORD, LinkName: PWSTR, hTransaction: HANDLE): HANDLE;
+
+@foreign
+func CreateNamedPipeA(lpName: LPCSTR, dwOpenMode: DWORD, dwPipeMode: DWORD, nMaxInstances: DWORD, nOutBufferSize: DWORD, nInBufferSize: DWORD, nDefaultTimeOut: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): HANDLE;
+
+@foreign
+func GetNamedPipeHandleStateA(hNamedPipe: HANDLE, lpState: LPDWORD, lpCurInstances: LPDWORD, lpMaxCollectionCount: LPDWORD, lpCollectDataTimeout: LPDWORD, lpUserName: LPSTR, nMaxUserNameSize: DWORD): BOOL;
+
+@foreign
+func CallNamedPipeA(lpNamedPipeName: LPCSTR, lpInBuffer: LPVOID, nInBufferSize: DWORD, lpOutBuffer: LPVOID, nOutBufferSize: DWORD, lpBytesRead: LPDWORD, nTimeOut: DWORD): BOOL;
+
+@foreign
+func WaitNamedPipeA(lpNamedPipeName: LPCSTR, nTimeOut: DWORD): BOOL;
+
+@foreign
+func GetNamedPipeClientComputerNameA(Pipe: HANDLE, ClientComputerName: LPSTR, ClientComputerNameLength: ULONG): BOOL;
+
+@foreign
+func GetNamedPipeClientProcessId(Pipe: HANDLE, ClientProcessId: PULONG): BOOL;
+
+@foreign
+func GetNamedPipeClientSessionId(Pipe: HANDLE, ClientSessionId: PULONG): BOOL;
+
+@foreign
+func GetNamedPipeServerProcessId(Pipe: HANDLE, ServerProcessId: PULONG): BOOL;
+
+@foreign
+func GetNamedPipeServerSessionId(Pipe: HANDLE, ServerSessionId: PULONG): BOOL;
+
+@foreign
+func SetVolumeLabelA(lpRootPathName: LPCSTR, lpVolumeName: LPCSTR): BOOL;
+
+@foreign
+func SetVolumeLabel(lpRootPathName: LPCSTR, lpVolumeName: LPCSTR): BOOL;
+
+@foreign
+func SetVolumeLabelW(lpRootPathName: LPCWSTR, lpVolumeName: LPCWSTR): BOOL;
+
+@foreign
+func SetFileBandwidthReservation(hFile: HANDLE, nPeriodMilliseconds: DWORD, nBytesPerPeriod: DWORD, bDiscardable: BOOL, lpTransferSize: LPDWORD, lpNumOutstandingRequests: LPDWORD): BOOL;
+
+@foreign
+func GetFileBandwidthReservation(hFile: HANDLE, lpPeriodMilliseconds: LPDWORD, lpBytesPerPeriod: LPDWORD, pDiscardable: LPBOOL, lpTransferSize: LPDWORD, lpNumOutstandingRequests: LPDWORD): BOOL;
+
+@foreign
+func ClearEventLogA(hEventLog: HANDLE, lpBackupFileName: LPCSTR): BOOL;
+
+@foreign
+func ClearEventLog(hEventLog: HANDLE, lpBackupFileName: LPCSTR): BOOL;
+
+@foreign
+func ClearEventLogW(hEventLog: HANDLE, lpBackupFileName: LPCWSTR): BOOL;
+
+@foreign
+func BackupEventLogA(hEventLog: HANDLE, lpBackupFileName: LPCSTR): BOOL;
+
+@foreign
+func BackupEventLog(hEventLog: HANDLE, lpBackupFileName: LPCSTR): BOOL;
+
+@foreign
+func BackupEventLogW(hEventLog: HANDLE, lpBackupFileName: LPCWSTR): BOOL;
+
+@foreign
+func CloseEventLog(hEventLog: HANDLE): BOOL;
+
+@foreign
+func DeregisterEventSource(hEventLog: HANDLE): BOOL;
+
+@foreign
+func NotifyChangeEventLog(hEventLog: HANDLE, hEvent: HANDLE): BOOL;
+
+@foreign
+func GetNumberOfEventLogRecords(hEventLog: HANDLE, NumberOfRecords: PDWORD): BOOL;
+
+@foreign
+func GetOldestEventLogRecord(hEventLog: HANDLE, OldestRecord: PDWORD): BOOL;
+
+@foreign
+func OpenEventLogA(lpUNCServerName: LPCSTR, lpSourceName: LPCSTR): HANDLE;
+
+@foreign
+func OpenEventLog(lpUNCServerName: LPCSTR, lpSourceName: LPCSTR): HANDLE;
+
+@foreign
+func OpenEventLogW(lpUNCServerName: LPCWSTR, lpSourceName: LPCWSTR): HANDLE;
+
+@foreign
+func RegisterEventSourceA(lpUNCServerName: LPCSTR, lpSourceName: LPCSTR): HANDLE;
+
+@foreign
+func RegisterEventSource(lpUNCServerName: LPCSTR, lpSourceName: LPCSTR): HANDLE;
+
+@foreign
+func RegisterEventSourceW(lpUNCServerName: LPCWSTR, lpSourceName: LPCWSTR): HANDLE;
+
+@foreign
+func OpenBackupEventLogA(lpUNCServerName: LPCSTR, lpFileName: LPCSTR): HANDLE;
+
+@foreign
+func OpenBackupEventLog(lpUNCServerName: LPCSTR, lpFileName: LPCSTR): HANDLE;
+
+@foreign
+func OpenBackupEventLogW(lpUNCServerName: LPCWSTR, lpFileName: LPCWSTR): HANDLE;
+
+@foreign
+func ReadEventLogA(hEventLog: HANDLE, dwReadFlags: DWORD, dwRecordOffset: DWORD, lpBuffer: LPVOID, nNumberOfBytesToRead: DWORD, pnBytesRead: DWORD*, pnMinNumberOfBytesNeeded: DWORD*): BOOL;
+
+@foreign
+func ReadEventLog(hEventLog: HANDLE, dwReadFlags: DWORD, dwRecordOffset: DWORD, lpBuffer: LPVOID, nNumberOfBytesToRead: DWORD, pnBytesRead: DWORD*, pnMinNumberOfBytesNeeded: DWORD*): BOOL;
+
+@foreign
+func ReadEventLogW(hEventLog: HANDLE, dwReadFlags: DWORD, dwRecordOffset: DWORD, lpBuffer: LPVOID, nNumberOfBytesToRead: DWORD, pnBytesRead: DWORD*, pnMinNumberOfBytesNeeded: DWORD*): BOOL;
+
+@foreign
+func ReportEventA(hEventLog: HANDLE, wType: WORD, wCategory: WORD, dwEventID: DWORD, lpUserSid: PSID, wNumStrings: WORD, dwDataSize: DWORD, lpStrings: LPCSTR*, lpRawData: LPVOID): BOOL;
+
+@foreign
+func ReportEvent(hEventLog: HANDLE, wType: WORD, wCategory: WORD, dwEventID: DWORD, lpUserSid: PSID, wNumStrings: WORD, dwDataSize: DWORD, lpStrings: LPCSTR*, lpRawData: LPVOID): BOOL;
+
+@foreign
+func ReportEventW(hEventLog: HANDLE, wType: WORD, wCategory: WORD, dwEventID: DWORD, lpUserSid: PSID, wNumStrings: WORD, dwDataSize: DWORD, lpStrings: LPCWSTR*, lpRawData: LPVOID): BOOL;
+
+@foreign
+struct _EVENTLOG_FULL_INFORMATION {
+    dwFull: DWORD;
+}
+
+@foreign
+typedef EVENTLOG_FULL_INFORMATION = _EVENTLOG_FULL_INFORMATION;
+
+@foreign
+typedef LPEVENTLOG_FULL_INFORMATION = _EVENTLOG_FULL_INFORMATION*;
+
+@foreign
+func GetEventLogInformation(hEventLog: HANDLE, dwInfoLevel: DWORD, lpBuffer: LPVOID, cbBufSize: DWORD, pcbBytesNeeded: LPDWORD): BOOL;
+
+@foreign
+typedef OPERATION_ID = ULONG;
+
+@foreign
+struct _OPERATION_START_PARAMETERS {
+    Version: ULONG;
+    OperationId: OPERATION_ID;
+    Flags: ULONG;
+}
+
+@foreign
+typedef OPERATION_START_PARAMETERS = _OPERATION_START_PARAMETERS;
+
+@foreign
+typedef POPERATION_START_PARAMETERS = _OPERATION_START_PARAMETERS*;
+
+@foreign
+struct _OPERATION_END_PARAMETERS {
+    Version: ULONG;
+    OperationId: OPERATION_ID;
+    Flags: ULONG;
+}
+
+@foreign
+typedef OPERATION_END_PARAMETERS = _OPERATION_END_PARAMETERS;
+
+@foreign
+typedef POPERATION_END_PARAMETERS = _OPERATION_END_PARAMETERS*;
+
+@foreign
+func OperationStart(OperationStartParams: OPERATION_START_PARAMETERS*): BOOL;
+
+@foreign
+func OperationEnd(OperationEndParams: OPERATION_END_PARAMETERS*): BOOL;
+
+@foreign
+func AccessCheckAndAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, ObjectTypeName: LPSTR, ObjectName: LPSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, DesiredAccess: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccess: LPDWORD, AccessStatus: LPBOOL, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByTypeAndAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, ObjectTypeName: LPCSTR, ObjectName: LPCSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, DesiredAccess: DWORD, AuditType: AUDIT_EVENT_TYPE, Flags: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccess: LPDWORD, AccessStatus: LPBOOL, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByTypeResultListAndAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, ObjectTypeName: LPCSTR, ObjectName: LPCSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, DesiredAccess: DWORD, AuditType: AUDIT_EVENT_TYPE, Flags: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccess: LPDWORD, AccessStatusList: LPDWORD, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByTypeResultListAndAuditAlarmByHandleA(SubsystemName: LPCSTR, HandleId: LPVOID, ClientToken: HANDLE, ObjectTypeName: LPCSTR, ObjectName: LPCSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, DesiredAccess: DWORD, AuditType: AUDIT_EVENT_TYPE, Flags: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccess: LPDWORD, AccessStatusList: LPDWORD, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func ObjectOpenAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, ObjectTypeName: LPSTR, ObjectName: LPSTR, pSecurityDescriptor: PSECURITY_DESCRIPTOR, ClientToken: HANDLE, DesiredAccess: DWORD, GrantedAccess: DWORD, Privileges: PPRIVILEGE_SET, ObjectCreation: BOOL, AccessGranted: BOOL, GenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func ObjectPrivilegeAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, ClientToken: HANDLE, DesiredAccess: DWORD, Privileges: PPRIVILEGE_SET, AccessGranted: BOOL): BOOL;
+
+@foreign
+func ObjectCloseAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, GenerateOnClose: BOOL): BOOL;
+
+@foreign
+func ObjectDeleteAuditAlarmA(SubsystemName: LPCSTR, HandleId: LPVOID, GenerateOnClose: BOOL): BOOL;
+
+@foreign
+func PrivilegedServiceAuditAlarmA(SubsystemName: LPCSTR, ServiceName: LPCSTR, ClientToken: HANDLE, Privileges: PPRIVILEGE_SET, AccessGranted: BOOL): BOOL;
+
+@foreign
+func AddConditionalAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AceType: UCHAR, AccessMask: DWORD, pSid: PSID, ConditionStr: PWCHAR, ReturnLength: DWORD*): BOOL;
+
+@foreign
+func SetFileSecurityA(lpFileName: LPCSTR, SecurityInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR): BOOL;
+
+@foreign
+func GetFileSecurityA(lpFileName: LPCSTR, RequestedInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+func ReadDirectoryChangesW(hDirectory: HANDLE, lpBuffer: LPVOID, nBufferLength: DWORD, bWatchSubtree: BOOL, dwNotifyFilter: DWORD, lpBytesReturned: LPDWORD, lpOverlapped: LPOVERLAPPED, lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE): BOOL;
+
+@foreign
+func ReadDirectoryChangesExW(hDirectory: HANDLE, lpBuffer: LPVOID, nBufferLength: DWORD, bWatchSubtree: BOOL, dwNotifyFilter: DWORD, lpBytesReturned: LPDWORD, lpOverlapped: LPOVERLAPPED, lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE, ReadDirectoryNotifyInformationClass: READ_DIRECTORY_NOTIFY_INFORMATION_CLASS): BOOL;
+
+@foreign
+func MapViewOfFileExNuma(hFileMappingObject: HANDLE, dwDesiredAccess: DWORD, dwFileOffsetHigh: DWORD, dwFileOffsetLow: DWORD, dwNumberOfBytesToMap: SIZE_T, lpBaseAddress: LPVOID, nndPreferred: DWORD): LPVOID;
+
+@foreign
+func IsBadReadPtr(lp: void const*, ucb: UINT_PTR): BOOL;
+
+@foreign
+func IsBadWritePtr(lp: LPVOID, ucb: UINT_PTR): BOOL;
+
+@foreign
+func IsBadHugeReadPtr(lp: void const*, ucb: UINT_PTR): BOOL;
+
+@foreign
+func IsBadHugeWritePtr(lp: LPVOID, ucb: UINT_PTR): BOOL;
+
+@foreign
+func IsBadCodePtr(lpfn: FARPROC): BOOL;
+
+@foreign
+func IsBadStringPtrA(lpsz: LPCSTR, ucchMax: UINT_PTR): BOOL;
+
+@foreign
+func IsBadStringPtr(lpsz: LPCSTR, ucchMax: UINT_PTR): BOOL;
+
+@foreign
+func IsBadStringPtrW(lpsz: LPCWSTR, ucchMax: UINT_PTR): BOOL;
+
+@foreign
+func LookupAccountSidA(lpSystemName: LPCSTR, Sid: PSID, Name: LPSTR, cchName: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountSid(lpSystemName: LPCSTR, Sid: PSID, Name: LPSTR, cchName: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountSidW(lpSystemName: LPCWSTR, Sid: PSID, Name: LPWSTR, cchName: LPDWORD, ReferencedDomainName: LPWSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountNameA(lpSystemName: LPCSTR, lpAccountName: LPCSTR, Sid: PSID, cbSid: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountName(lpSystemName: LPCSTR, lpAccountName: LPCSTR, Sid: PSID, cbSid: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountNameW(lpSystemName: LPCWSTR, lpAccountName: LPCWSTR, Sid: PSID, cbSid: LPDWORD, ReferencedDomainName: LPWSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountNameLocalA(lpAccountName: LPCSTR, Sid: PSID, cbSid: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountNameLocal(lpAccountName: LPCSTR, Sid: PSID, cbSid: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountNameLocalW(lpAccountName: LPCWSTR, Sid: PSID, cbSid: LPDWORD, ReferencedDomainName: LPWSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountSidLocalA(Sid: PSID, Name: LPSTR, cchName: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountSidLocal(Sid: PSID, Name: LPSTR, cchName: LPDWORD, ReferencedDomainName: LPSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupAccountSidLocalW(Sid: PSID, Name: LPWSTR, cchName: LPDWORD, ReferencedDomainName: LPWSTR, cchReferencedDomainName: LPDWORD, peUse: PSID_NAME_USE): BOOL;
+
+@foreign
+func LookupPrivilegeValueA(lpSystemName: LPCSTR, lpName: LPCSTR, lpLuid: PLUID): BOOL;
+
+@foreign
+func LookupPrivilegeValue(lpSystemName: LPCSTR, lpName: LPCSTR, lpLuid: PLUID): BOOL;
+
+@foreign
+func LookupPrivilegeValueW(lpSystemName: LPCWSTR, lpName: LPCWSTR, lpLuid: PLUID): BOOL;
+
+@foreign
+func LookupPrivilegeNameA(lpSystemName: LPCSTR, lpLuid: PLUID, lpName: LPSTR, cchName: LPDWORD): BOOL;
+
+@foreign
+func LookupPrivilegeName(lpSystemName: LPCSTR, lpLuid: PLUID, lpName: LPSTR, cchName: LPDWORD): BOOL;
+
+@foreign
+func LookupPrivilegeNameW(lpSystemName: LPCWSTR, lpLuid: PLUID, lpName: LPWSTR, cchName: LPDWORD): BOOL;
+
+@foreign
+func LookupPrivilegeDisplayNameA(lpSystemName: LPCSTR, lpName: LPCSTR, lpDisplayName: LPSTR, cchDisplayName: LPDWORD, lpLanguageId: LPDWORD): BOOL;
+
+@foreign
+func LookupPrivilegeDisplayName(lpSystemName: LPCSTR, lpName: LPCSTR, lpDisplayName: LPSTR, cchDisplayName: LPDWORD, lpLanguageId: LPDWORD): BOOL;
+
+@foreign
+func LookupPrivilegeDisplayNameW(lpSystemName: LPCWSTR, lpName: LPCWSTR, lpDisplayName: LPWSTR, cchDisplayName: LPDWORD, lpLanguageId: LPDWORD): BOOL;
+
+@foreign
+func BuildCommDCBA(lpDef: LPCSTR, lpDCB: LPDCB): BOOL;
+
+@foreign
+func BuildCommDCB(lpDef: LPCSTR, lpDCB: LPDCB): BOOL;
+
+@foreign
+func BuildCommDCBW(lpDef: LPCWSTR, lpDCB: LPDCB): BOOL;
+
+@foreign
+func BuildCommDCBAndTimeoutsA(lpDef: LPCSTR, lpDCB: LPDCB, lpCommTimeouts: LPCOMMTIMEOUTS): BOOL;
+
+@foreign
+func BuildCommDCBAndTimeouts(lpDef: LPCSTR, lpDCB: LPDCB, lpCommTimeouts: LPCOMMTIMEOUTS): BOOL;
+
+@foreign
+func BuildCommDCBAndTimeoutsW(lpDef: LPCWSTR, lpDCB: LPDCB, lpCommTimeouts: LPCOMMTIMEOUTS): BOOL;
+
+@foreign
+func CommConfigDialogA(lpszName: LPCSTR, hWnd: HWND, lpCC: LPCOMMCONFIG): BOOL;
+
+@foreign
+func CommConfigDialog(lpszName: LPCSTR, hWnd: HWND, lpCC: LPCOMMCONFIG): BOOL;
+
+@foreign
+func CommConfigDialogW(lpszName: LPCWSTR, hWnd: HWND, lpCC: LPCOMMCONFIG): BOOL;
+
+@foreign
+func GetDefaultCommConfigA(lpszName: LPCSTR, lpCC: LPCOMMCONFIG, lpdwSize: LPDWORD): BOOL;
+
+@foreign
+func GetDefaultCommConfig(lpszName: LPCSTR, lpCC: LPCOMMCONFIG, lpdwSize: LPDWORD): BOOL;
+
+@foreign
+func GetDefaultCommConfigW(lpszName: LPCWSTR, lpCC: LPCOMMCONFIG, lpdwSize: LPDWORD): BOOL;
+
+@foreign
+func SetDefaultCommConfigA(lpszName: LPCSTR, lpCC: LPCOMMCONFIG, dwSize: DWORD): BOOL;
+
+@foreign
+func SetDefaultCommConfig(lpszName: LPCSTR, lpCC: LPCOMMCONFIG, dwSize: DWORD): BOOL;
+
+@foreign
+func SetDefaultCommConfigW(lpszName: LPCWSTR, lpCC: LPCOMMCONFIG, dwSize: DWORD): BOOL;
+
+@foreign
+func GetComputerNameA(lpBuffer: LPSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func GetComputerName(lpBuffer: LPSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func GetComputerNameW(lpBuffer: LPWSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func DnsHostnameToComputerNameA(Hostname: LPCSTR, ComputerName: LPSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func DnsHostnameToComputerName(Hostname: LPCSTR, ComputerName: LPSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func DnsHostnameToComputerNameW(Hostname: LPCWSTR, ComputerName: LPWSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func GetUserNameA(lpBuffer: LPSTR, pcbBuffer: LPDWORD): BOOL;
+
+@foreign
+func GetUserName(lpBuffer: LPSTR, pcbBuffer: LPDWORD): BOOL;
+
+@foreign
+func GetUserNameW(lpBuffer: LPWSTR, pcbBuffer: LPDWORD): BOOL;
+
+@foreign
+func LogonUserA(lpszUsername: LPCSTR, lpszDomain: LPCSTR, lpszPassword: LPCSTR, dwLogonType: DWORD, dwLogonProvider: DWORD, phToken: PHANDLE): BOOL;
+
+@foreign
+func LogonUser(lpszUsername: LPCSTR, lpszDomain: LPCSTR, lpszPassword: LPCSTR, dwLogonType: DWORD, dwLogonProvider: DWORD, phToken: PHANDLE): BOOL;
+
+@foreign
+func LogonUserW(lpszUsername: LPCWSTR, lpszDomain: LPCWSTR, lpszPassword: LPCWSTR, dwLogonType: DWORD, dwLogonProvider: DWORD, phToken: PHANDLE): BOOL;
+
+@foreign
+func LogonUserExA(lpszUsername: LPCSTR, lpszDomain: LPCSTR, lpszPassword: LPCSTR, dwLogonType: DWORD, dwLogonProvider: DWORD, phToken: PHANDLE, ppLogonSid: PSID*, ppProfileBuffer: PVOID*, pdwProfileLength: LPDWORD, pQuotaLimits: PQUOTA_LIMITS): BOOL;
+
+@foreign
+func LogonUserEx(lpszUsername: LPCSTR, lpszDomain: LPCSTR, lpszPassword: LPCSTR, dwLogonType: DWORD, dwLogonProvider: DWORD, phToken: PHANDLE, ppLogonSid: PSID*, ppProfileBuffer: PVOID*, pdwProfileLength: LPDWORD, pQuotaLimits: PQUOTA_LIMITS): BOOL;
+
+@foreign
+func LogonUserExW(lpszUsername: LPCWSTR, lpszDomain: LPCWSTR, lpszPassword: LPCWSTR, dwLogonType: DWORD, dwLogonProvider: DWORD, phToken: PHANDLE, ppLogonSid: PSID*, ppProfileBuffer: PVOID*, pdwProfileLength: LPDWORD, pQuotaLimits: PQUOTA_LIMITS): BOOL;
+
+@foreign
+func CreateProcessWithLogonW(lpUsername: LPCWSTR, lpDomain: LPCWSTR, lpPassword: LPCWSTR, dwLogonFlags: DWORD, lpApplicationName: LPCWSTR, lpCommandLine: LPWSTR, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCWSTR, lpStartupInfo: LPSTARTUPINFOW, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func CreateProcessWithTokenW(hToken: HANDLE, dwLogonFlags: DWORD, lpApplicationName: LPCWSTR, lpCommandLine: LPWSTR, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCWSTR, lpStartupInfo: LPSTARTUPINFOW, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func IsTokenUntrusted(TokenHandle: HANDLE): BOOL;
+
+@foreign
+func RegisterWaitForSingleObject(phNewWaitObject: PHANDLE, hObject: HANDLE, Callback: WAITORTIMERCALLBACK, Context: PVOID, dwMilliseconds: ULONG, dwFlags: ULONG): BOOL;
+
+@foreign
+func UnregisterWait(WaitHandle: HANDLE): BOOL;
+
+@foreign
+func BindIoCompletionCallback(FileHandle: HANDLE, Function: LPOVERLAPPED_COMPLETION_ROUTINE, Flags: ULONG): BOOL;
+
+@foreign
+func SetTimerQueueTimer(TimerQueue: HANDLE, Callback: WAITORTIMERCALLBACK, Parameter: PVOID, DueTime: DWORD, Period: DWORD, PreferIo: BOOL): HANDLE;
+
+@foreign
+func CancelTimerQueueTimer(TimerQueue: HANDLE, Timer: HANDLE): BOOL;
+
+@foreign
+func DeleteTimerQueue(TimerQueue: HANDLE): BOOL;
+
+@foreign
+func CreatePrivateNamespaceA(lpPrivateNamespaceAttributes: LPSECURITY_ATTRIBUTES, lpBoundaryDescriptor: LPVOID, lpAliasPrefix: LPCSTR): HANDLE;
+
+@foreign
+func OpenPrivateNamespaceA(lpBoundaryDescriptor: LPVOID, lpAliasPrefix: LPCSTR): HANDLE;
+
+@foreign
+func CreateBoundaryDescriptorA(Name: LPCSTR, Flags: ULONG): HANDLE;
+
+@foreign
+func AddIntegrityLabelToBoundaryDescriptor(BoundaryDescriptor: HANDLE*, IntegrityLabel: PSID): BOOL;
+
+@foreign
+struct tagHW_PROFILE_INFOA {
+    dwDockInfo: DWORD;
+    szHwProfileGuid: CHAR[39];
+    szHwProfileName: CHAR[80];
+}
+
+@foreign
+typedef HW_PROFILE_INFOA = tagHW_PROFILE_INFOA;
+
+@foreign
+typedef LPHW_PROFILE_INFOA = tagHW_PROFILE_INFOA*;
+
+@foreign
+struct tagHW_PROFILE_INFOW {
+    dwDockInfo: DWORD;
+    szHwProfileGuid: WCHAR[39];
+    szHwProfileName: WCHAR[80];
+}
+
+@foreign
+typedef HW_PROFILE_INFOW = tagHW_PROFILE_INFOW;
+
+@foreign
+typedef LPHW_PROFILE_INFOW = tagHW_PROFILE_INFOW*;
+
+@foreign
+typedef HW_PROFILE_INFO = HW_PROFILE_INFOA;
+
+@foreign
+typedef LPHW_PROFILE_INFO = LPHW_PROFILE_INFOA;
+
+@foreign
+func GetCurrentHwProfileA(lpHwProfileInfo: LPHW_PROFILE_INFOA): BOOL;
+
+@foreign
+func GetCurrentHwProfile(lpHwProfileInfo: LPHW_PROFILE_INFOA): BOOL;
+
+@foreign
+func GetCurrentHwProfileW(lpHwProfileInfo: LPHW_PROFILE_INFOW): BOOL;
+
+@foreign
+func VerifyVersionInfoA(lpVersionInformation: LPOSVERSIONINFOEXA, dwTypeMask: DWORD, dwlConditionMask: DWORDLONG): BOOL;
+
+@foreign
+func VerifyVersionInfo(lpVersionInformation: LPOSVERSIONINFOEXA, dwTypeMask: DWORD, dwlConditionMask: DWORDLONG): BOOL;
+
+@foreign
+func VerifyVersionInfoW(lpVersionInformation: LPOSVERSIONINFOEXW, dwTypeMask: DWORD, dwlConditionMask: DWORDLONG): BOOL;
+
+@foreign
+func SetSystemPowerState(fSuspend: BOOL, fForce: BOOL): BOOL;
+
+@foreign
+struct _SYSTEM_POWER_STATUS {
+    ACLineStatus: BYTE;
+    BatteryFlag: BYTE;
+    BatteryLifePercent: BYTE;
+    SystemStatusFlag: BYTE;
+    BatteryLifeTime: DWORD;
+    BatteryFullLifeTime: DWORD;
+}
+
+@foreign
+typedef SYSTEM_POWER_STATUS = _SYSTEM_POWER_STATUS;
+
+@foreign
+typedef LPSYSTEM_POWER_STATUS = _SYSTEM_POWER_STATUS*;
+
+@foreign
+func GetSystemPowerStatus(lpSystemPowerStatus: LPSYSTEM_POWER_STATUS): BOOL;
+
+@foreign
+func MapUserPhysicalPagesScatter(VirtualAddresses: PVOID*, NumberOfPages: ULONG_PTR, PageArray: PULONG_PTR): BOOL;
+
+@foreign
+func CreateJobObjectA(lpJobAttributes: LPSECURITY_ATTRIBUTES, lpName: LPCSTR): HANDLE;
+
+@foreign
+func OpenJobObjectA(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpName: LPCSTR): HANDLE;
+
+@foreign
+func CreateJobSet(NumJob: ULONG, UserJobSet: PJOB_SET_ARRAY, Flags: ULONG): BOOL;
+
+@foreign
+func FindFirstVolumeA(lpszVolumeName: LPSTR, cchBufferLength: DWORD): HANDLE;
+
+@foreign
+func FindNextVolumeA(hFindVolume: HANDLE, lpszVolumeName: LPSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func FindFirstVolumeMountPointA(lpszRootPathName: LPCSTR, lpszVolumeMountPoint: LPSTR, cchBufferLength: DWORD): HANDLE;
+
+@foreign
+func FindFirstVolumeMountPoint(lpszRootPathName: LPCSTR, lpszVolumeMountPoint: LPSTR, cchBufferLength: DWORD): HANDLE;
+
+@foreign
+func FindFirstVolumeMountPointW(lpszRootPathName: LPCWSTR, lpszVolumeMountPoint: LPWSTR, cchBufferLength: DWORD): HANDLE;
+
+@foreign
+func FindNextVolumeMountPointA(hFindVolumeMountPoint: HANDLE, lpszVolumeMountPoint: LPSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func FindNextVolumeMountPoint(hFindVolumeMountPoint: HANDLE, lpszVolumeMountPoint: LPSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func FindNextVolumeMountPointW(hFindVolumeMountPoint: HANDLE, lpszVolumeMountPoint: LPWSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func FindVolumeMountPointClose(hFindVolumeMountPoint: HANDLE): BOOL;
+
+@foreign
+func SetVolumeMountPointA(lpszVolumeMountPoint: LPCSTR, lpszVolumeName: LPCSTR): BOOL;
+
+@foreign
+func SetVolumeMountPoint(lpszVolumeMountPoint: LPCSTR, lpszVolumeName: LPCSTR): BOOL;
+
+@foreign
+func SetVolumeMountPointW(lpszVolumeMountPoint: LPCWSTR, lpszVolumeName: LPCWSTR): BOOL;
+
+@foreign
+func DeleteVolumeMountPointA(lpszVolumeMountPoint: LPCSTR): BOOL;
+
+@foreign
+func GetVolumeNameForVolumeMountPointA(lpszVolumeMountPoint: LPCSTR, lpszVolumeName: LPSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func GetVolumePathNameA(lpszFileName: LPCSTR, lpszVolumePathName: LPSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func GetVolumePathNamesForVolumeNameA(lpszVolumeName: LPCSTR, lpszVolumePathNames: LPCH, cchBufferLength: DWORD, lpcchReturnLength: PDWORD): BOOL;
+
+@foreign
+struct tagACTCTXA {
+    cbSize: ULONG;
+    dwFlags: DWORD;
+    lpSource: LPCSTR;
+    wProcessorArchitecture: USHORT;
+    wLangId: LANGID;
+    lpAssemblyDirectory: LPCSTR;
+    lpResourceName: LPCSTR;
+    lpApplicationName: LPCSTR;
+    hModule: HMODULE;
+}
+
+@foreign
+typedef ACTCTXA = tagACTCTXA;
+
+@foreign
+typedef PACTCTXA = tagACTCTXA*;
+
+@foreign
+struct tagACTCTXW {
+    cbSize: ULONG;
+    dwFlags: DWORD;
+    lpSource: LPCWSTR;
+    wProcessorArchitecture: USHORT;
+    wLangId: LANGID;
+    lpAssemblyDirectory: LPCWSTR;
+    lpResourceName: LPCWSTR;
+    lpApplicationName: LPCWSTR;
+    hModule: HMODULE;
+}
+
+@foreign
+typedef ACTCTXW = tagACTCTXW;
+
+@foreign
+typedef PACTCTXW = tagACTCTXW*;
+
+@foreign
+typedef ACTCTX = ACTCTXA;
+
+@foreign
+typedef PACTCTX = PACTCTXA;
+
+@foreign
+typedef PCACTCTXA = ACTCTXA*;
+
+@foreign
+typedef PCACTCTXW = ACTCTXW*;
+
+@foreign
+typedef PCACTCTX = PCACTCTXA;
+
+@foreign
+func CreateActCtxA(pActCtx: PCACTCTXA): HANDLE;
+
+@foreign
+func CreateActCtx(pActCtx: PCACTCTXA): HANDLE;
+
+@foreign
+func CreateActCtxW(pActCtx: PCACTCTXW): HANDLE;
+
+@foreign
+func AddRefActCtx(hActCtx: HANDLE);
+
+@foreign
+func ReleaseActCtx(hActCtx: HANDLE);
+
+@foreign
+func ZombifyActCtx(hActCtx: HANDLE): BOOL;
+
+@foreign
+func ActivateActCtx(hActCtx: HANDLE, lpCookie: ULONG_PTR*): BOOL;
+
+@foreign
+func DeactivateActCtx(dwFlags: DWORD, ulCookie: ULONG_PTR): BOOL;
+
+@foreign
+func GetCurrentActCtx(lphActCtx: HANDLE*): BOOL;
+
+@foreign
+struct tagACTCTX_SECTION_KEYED_DATA_2600 {
+    cbSize: ULONG;
+    ulDataFormatVersion: ULONG;
+    lpData: PVOID;
+    ulLength: ULONG;
+    lpSectionGlobalData: PVOID;
+    ulSectionGlobalDataLength: ULONG;
+    lpSectionBase: PVOID;
+    ulSectionTotalLength: ULONG;
+    hActCtx: HANDLE;
+    ulAssemblyRosterIndex: ULONG;
+}
+
+@foreign
+typedef ACTCTX_SECTION_KEYED_DATA_2600 = tagACTCTX_SECTION_KEYED_DATA_2600;
+
+@foreign
+typedef PACTCTX_SECTION_KEYED_DATA_2600 = tagACTCTX_SECTION_KEYED_DATA_2600*;
+
+@foreign
+typedef PCACTCTX_SECTION_KEYED_DATA_2600 = ACTCTX_SECTION_KEYED_DATA_2600*;
+
+@foreign
+struct tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA {
+    lpInformation: PVOID;
+    lpSectionBase: PVOID;
+    ulSectionLength: ULONG;
+    lpSectionGlobalDataBase: PVOID;
+    ulSectionGlobalDataLength: ULONG;
+}
+
+@foreign
+typedef ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
+
+@foreign
+typedef PACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA*;
+
+@foreign
+typedef PCACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA*;
+
+@foreign
+struct tagACTCTX_SECTION_KEYED_DATA {
+    cbSize: ULONG;
+    ulDataFormatVersion: ULONG;
+    lpData: PVOID;
+    ulLength: ULONG;
+    lpSectionGlobalData: PVOID;
+    ulSectionGlobalDataLength: ULONG;
+    lpSectionBase: PVOID;
+    ulSectionTotalLength: ULONG;
+    hActCtx: HANDLE;
+    ulAssemblyRosterIndex: ULONG;
+    ulFlags: ULONG;
+    AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
+}
+
+@foreign
+typedef ACTCTX_SECTION_KEYED_DATA = tagACTCTX_SECTION_KEYED_DATA;
+
+@foreign
+typedef PACTCTX_SECTION_KEYED_DATA = tagACTCTX_SECTION_KEYED_DATA*;
+
+@foreign
+typedef PCACTCTX_SECTION_KEYED_DATA = ACTCTX_SECTION_KEYED_DATA*;
+
+@foreign
+func FindActCtxSectionStringA(dwFlags: DWORD, lpExtensionGuid: GUID*, ulSectionId: ULONG, lpStringToFind: LPCSTR, ReturnedData: PACTCTX_SECTION_KEYED_DATA): BOOL;
+
+@foreign
+func FindActCtxSectionString(dwFlags: DWORD, lpExtensionGuid: GUID*, ulSectionId: ULONG, lpStringToFind: LPCSTR, ReturnedData: PACTCTX_SECTION_KEYED_DATA): BOOL;
+
+@foreign
+func FindActCtxSectionStringW(dwFlags: DWORD, lpExtensionGuid: GUID*, ulSectionId: ULONG, lpStringToFind: LPCWSTR, ReturnedData: PACTCTX_SECTION_KEYED_DATA): BOOL;
+
+@foreign
+func FindActCtxSectionGuid(dwFlags: DWORD, lpExtensionGuid: GUID*, ulSectionId: ULONG, lpGuidToFind: GUID*, ReturnedData: PACTCTX_SECTION_KEYED_DATA): BOOL;
+
+@foreign
+struct _ACTIVATION_CONTEXT_BASIC_INFORMATION {
+    hActCtx: HANDLE;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef ACTIVATION_CONTEXT_BASIC_INFORMATION = _ACTIVATION_CONTEXT_BASIC_INFORMATION;
+
+@foreign
+typedef PACTIVATION_CONTEXT_BASIC_INFORMATION = _ACTIVATION_CONTEXT_BASIC_INFORMATION*;
+
+@foreign
+typedef PCACTIVATION_CONTEXT_BASIC_INFORMATION = _ACTIVATION_CONTEXT_BASIC_INFORMATION const*;
+
+@foreign
+func QueryActCtxW(dwFlags: DWORD, hActCtx: HANDLE, pvSubInstance: PVOID, ulInfoClass: ULONG, pvBuffer: PVOID, cbBuffer: SIZE_T, pcbWrittenOrRequired: SIZE_T*): BOOL;
+
+@foreign
+typedef PQUERYACTCTXW_FUNC = func(dwFlags: DWORD, hActCtx: HANDLE, pvSubInstance: PVOID, ulInfoClass: ULONG, pvBuffer: PVOID, cbBuffer: SIZE_T, pcbWrittenOrRequired: SIZE_T*): BOOL;
+
+@foreign
+func WTSGetActiveConsoleSessionId(): DWORD;
+
+@foreign
+func WTSGetServiceSessionId(): DWORD;
+
+@foreign
+func WTSIsServerContainer(): BOOLEAN;
+
+@foreign
+func GetActiveProcessorGroupCount(): WORD;
+
+@foreign
+func GetMaximumProcessorGroupCount(): WORD;
+
+@foreign
+func GetActiveProcessorCount(GroupNumber: WORD): DWORD;
+
+@foreign
+func GetMaximumProcessorCount(GroupNumber: WORD): DWORD;
+
+@foreign
+func GetNumaProcessorNode(Processor: UCHAR, NodeNumber: PUCHAR): BOOL;
+
+@foreign
+func GetNumaNodeNumberFromHandle(hFile: HANDLE, NodeNumber: PUSHORT): BOOL;
+
+@foreign
+func GetNumaProcessorNodeEx(Processor: PPROCESSOR_NUMBER, NodeNumber: PUSHORT): BOOL;
+
+@foreign
+func GetNumaNodeProcessorMask(Node: UCHAR, ProcessorMask: PULONGLONG): BOOL;
+
+@foreign
+func GetNumaAvailableMemoryNode(Node: UCHAR, AvailableBytes: PULONGLONG): BOOL;
+
+@foreign
+func GetNumaAvailableMemoryNodeEx(Node: USHORT, AvailableBytes: PULONGLONG): BOOL;
+
+@foreign
+func GetNumaProximityNode(ProximityId: ULONG, NodeNumber: PUCHAR): BOOL;
+
+@foreign
+typedef APPLICATION_RECOVERY_CALLBACK = func(pvParameter: PVOID): DWORD;
+
+@foreign
+func RegisterApplicationRecoveryCallback(pRecoveyCallback: APPLICATION_RECOVERY_CALLBACK, pvParameter: PVOID, dwPingInterval: DWORD, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UnregisterApplicationRecoveryCallback(): HRESULT;
+
+@foreign
+func RegisterApplicationRestart(pwzCommandline: PCWSTR, dwFlags: DWORD): HRESULT;
+
+@foreign
+func UnregisterApplicationRestart(): HRESULT;
+
+@foreign
+func GetApplicationRecoveryCallback(hProcess: HANDLE, pRecoveryCallback: APPLICATION_RECOVERY_CALLBACK*, ppvParameter: PVOID*, pdwPingInterval: PDWORD, pdwFlags: PDWORD): HRESULT;
+
+@foreign
+func GetApplicationRestartSettings(hProcess: HANDLE, pwzCommandline: PWSTR, pcchSize: PDWORD, pdwFlags: PDWORD): HRESULT;
+
+@foreign
+func ApplicationRecoveryInProgress(pbCancelled: PBOOL): HRESULT;
+
+@foreign
+func ApplicationRecoveryFinished(bSuccess: BOOL);
+
+@foreign
+struct _FILE_BASIC_INFO {
+    CreationTime: LARGE_INTEGER;
+    LastAccessTime: LARGE_INTEGER;
+    LastWriteTime: LARGE_INTEGER;
+    ChangeTime: LARGE_INTEGER;
+    FileAttributes: DWORD;
+}
+
+@foreign
+typedef FILE_BASIC_INFO = _FILE_BASIC_INFO;
+
+@foreign
+typedef PFILE_BASIC_INFO = _FILE_BASIC_INFO*;
+
+@foreign
+struct _FILE_STANDARD_INFO {
+    AllocationSize: LARGE_INTEGER;
+    EndOfFile: LARGE_INTEGER;
+    NumberOfLinks: DWORD;
+    DeletePending: BOOLEAN;
+    Directory: BOOLEAN;
+}
+
+@foreign
+typedef FILE_STANDARD_INFO = _FILE_STANDARD_INFO;
+
+@foreign
+typedef PFILE_STANDARD_INFO = _FILE_STANDARD_INFO*;
+
+@foreign
+struct _FILE_NAME_INFO {
+    FileNameLength: DWORD;
+    FileName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_NAME_INFO = _FILE_NAME_INFO;
+
+@foreign
+typedef PFILE_NAME_INFO = _FILE_NAME_INFO*;
+
+/*
+@PROBLEM Nested struct def at line 8513, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+@foreign
+struct _FILE_RENAME_INFO {
+    u: (null);
+    RootDirectory: HANDLE;
+    FileNameLength: DWORD;
+    FileName: WCHAR[1];
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 8513, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+_FILE_RENAME_INFO
+*/
+
+@foreign
+typedef PFILE_RENAME_INFO = _FILE_RENAME_INFO*;
+
+@foreign
+struct _FILE_ALLOCATION_INFO {
+    AllocationSize: LARGE_INTEGER;
+}
+
+@foreign
+typedef FILE_ALLOCATION_INFO = _FILE_ALLOCATION_INFO;
+
+@foreign
+typedef PFILE_ALLOCATION_INFO = _FILE_ALLOCATION_INFO*;
+
+@foreign
+struct _FILE_END_OF_FILE_INFO {
+    EndOfFile: LARGE_INTEGER;
+}
+
+@foreign
+typedef FILE_END_OF_FILE_INFO = _FILE_END_OF_FILE_INFO;
+
+@foreign
+typedef PFILE_END_OF_FILE_INFO = _FILE_END_OF_FILE_INFO*;
+
+@foreign
+struct _FILE_STREAM_INFO {
+    NextEntryOffset: DWORD;
+    StreamNameLength: DWORD;
+    StreamSize: LARGE_INTEGER;
+    StreamAllocationSize: LARGE_INTEGER;
+    StreamName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_STREAM_INFO = _FILE_STREAM_INFO;
+
+@foreign
+typedef PFILE_STREAM_INFO = _FILE_STREAM_INFO*;
+
+@foreign
+struct _FILE_COMPRESSION_INFO {
+    CompressedFileSize: LARGE_INTEGER;
+    CompressionFormat: WORD;
+    CompressionUnitShift: UCHAR;
+    ChunkShift: UCHAR;
+    ClusterShift: UCHAR;
+    Reserved: UCHAR[3];
+}
+
+@foreign
+typedef FILE_COMPRESSION_INFO = _FILE_COMPRESSION_INFO;
+
+@foreign
+typedef PFILE_COMPRESSION_INFO = _FILE_COMPRESSION_INFO*;
+
+@foreign
+struct _FILE_ATTRIBUTE_TAG_INFO {
+    FileAttributes: DWORD;
+    ReparseTag: DWORD;
+}
+
+@foreign
+typedef FILE_ATTRIBUTE_TAG_INFO = _FILE_ATTRIBUTE_TAG_INFO;
+
+@foreign
+typedef PFILE_ATTRIBUTE_TAG_INFO = _FILE_ATTRIBUTE_TAG_INFO*;
+
+@foreign
+struct _FILE_DISPOSITION_INFO {
+    DeleteFileA: BOOLEAN;
+}
+
+@foreign
+typedef FILE_DISPOSITION_INFO = _FILE_DISPOSITION_INFO;
+
+@foreign
+typedef PFILE_DISPOSITION_INFO = _FILE_DISPOSITION_INFO*;
+
+@foreign
+struct _FILE_DISPOSITION_INFO_EX {
+    Flags: DWORD;
+}
+
+@foreign
+typedef FILE_DISPOSITION_INFO_EX = _FILE_DISPOSITION_INFO_EX;
+
+@foreign
+typedef PFILE_DISPOSITION_INFO_EX = _FILE_DISPOSITION_INFO_EX*;
+
+@foreign
+struct _FILE_ID_BOTH_DIR_INFO {
+    NextEntryOffset: DWORD;
+    FileIndex: DWORD;
+    CreationTime: LARGE_INTEGER;
+    LastAccessTime: LARGE_INTEGER;
+    LastWriteTime: LARGE_INTEGER;
+    ChangeTime: LARGE_INTEGER;
+    EndOfFile: LARGE_INTEGER;
+    AllocationSize: LARGE_INTEGER;
+    FileAttributes: DWORD;
+    FileNameLength: DWORD;
+    EaSize: DWORD;
+    ShortNameLength: CCHAR;
+    ShortName: WCHAR[12];
+    FileId: LARGE_INTEGER;
+    FileName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_ID_BOTH_DIR_INFO = _FILE_ID_BOTH_DIR_INFO;
+
+@foreign
+typedef PFILE_ID_BOTH_DIR_INFO = _FILE_ID_BOTH_DIR_INFO*;
+
+@foreign
+struct _FILE_FULL_DIR_INFO {
+    NextEntryOffset: ULONG;
+    FileIndex: ULONG;
+    CreationTime: LARGE_INTEGER;
+    LastAccessTime: LARGE_INTEGER;
+    LastWriteTime: LARGE_INTEGER;
+    ChangeTime: LARGE_INTEGER;
+    EndOfFile: LARGE_INTEGER;
+    AllocationSize: LARGE_INTEGER;
+    FileAttributes: ULONG;
+    FileNameLength: ULONG;
+    EaSize: ULONG;
+    FileName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_FULL_DIR_INFO = _FILE_FULL_DIR_INFO;
+
+@foreign
+typedef PFILE_FULL_DIR_INFO = _FILE_FULL_DIR_INFO*;
+
+@foreign
+enum _PRIORITY_HINT {
+    IoPriorityHintVeryLow = 0,
+    IoPriorityHintLow,
+    IoPriorityHintNormal,
+    MaximumIoPriorityHintType,
+}
+
+@foreign
+typedef PRIORITY_HINT = _PRIORITY_HINT;
+
+@foreign
+struct _FILE_IO_PRIORITY_HINT_INFO {
+    PriorityHint: PRIORITY_HINT;
+}
+
+@foreign
+typedef FILE_IO_PRIORITY_HINT_INFO = _FILE_IO_PRIORITY_HINT_INFO;
+
+@foreign
+typedef PFILE_IO_PRIORITY_HINT_INFO = _FILE_IO_PRIORITY_HINT_INFO*;
+
+@foreign
+struct _FILE_ALIGNMENT_INFO {
+    AlignmentRequirement: ULONG;
+}
+
+@foreign
+typedef FILE_ALIGNMENT_INFO = _FILE_ALIGNMENT_INFO;
+
+@foreign
+typedef PFILE_ALIGNMENT_INFO = _FILE_ALIGNMENT_INFO*;
+
+@foreign
+struct _FILE_STORAGE_INFO {
+    LogicalBytesPerSector: ULONG;
+    PhysicalBytesPerSectorForAtomicity: ULONG;
+    PhysicalBytesPerSectorForPerformance: ULONG;
+    FileSystemEffectivePhysicalBytesPerSectorForAtomicity: ULONG;
+    Flags: ULONG;
+    ByteOffsetForSectorAlignment: ULONG;
+    ByteOffsetForPartitionAlignment: ULONG;
+}
+
+@foreign
+typedef FILE_STORAGE_INFO = _FILE_STORAGE_INFO;
+
+@foreign
+typedef PFILE_STORAGE_INFO = _FILE_STORAGE_INFO*;
+
+@foreign
+struct _FILE_ID_INFO {
+    VolumeSerialNumber: ULONGLONG;
+    FileId: FILE_ID_128;
+}
+
+@foreign
+typedef FILE_ID_INFO = _FILE_ID_INFO;
+
+@foreign
+typedef PFILE_ID_INFO = _FILE_ID_INFO*;
+
+@foreign
+struct _FILE_ID_EXTD_DIR_INFO {
+    NextEntryOffset: ULONG;
+    FileIndex: ULONG;
+    CreationTime: LARGE_INTEGER;
+    LastAccessTime: LARGE_INTEGER;
+    LastWriteTime: LARGE_INTEGER;
+    ChangeTime: LARGE_INTEGER;
+    EndOfFile: LARGE_INTEGER;
+    AllocationSize: LARGE_INTEGER;
+    FileAttributes: ULONG;
+    FileNameLength: ULONG;
+    EaSize: ULONG;
+    ReparsePointTag: ULONG;
+    FileId: FILE_ID_128;
+    FileName: WCHAR[1];
+}
+
+@foreign
+typedef FILE_ID_EXTD_DIR_INFO = _FILE_ID_EXTD_DIR_INFO;
+
+@foreign
+typedef PFILE_ID_EXTD_DIR_INFO = _FILE_ID_EXTD_DIR_INFO*;
+
+/*
+@PROBLEM Nested struct def at line 8718, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+@foreign
+struct _FILE_REMOTE_PROTOCOL_INFO {
+    StructureVersion: USHORT;
+    StructureSize: USHORT;
+    Protocol: ULONG;
+    ProtocolMajorVersion: USHORT;
+    ProtocolMinorVersion: USHORT;
+    ProtocolRevision: USHORT;
+    Reserved: USHORT;
+    Flags: ULONG;
+    GenericReserved: (null);
+    ProtocolSpecific: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 8718, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+_FILE_REMOTE_PROTOCOL_INFO
+*/
+
+@foreign
+typedef PFILE_REMOTE_PROTOCOL_INFO = _FILE_REMOTE_PROTOCOL_INFO*;
+
+@foreign
+func GetFileInformationByHandleEx(hFile: HANDLE, FileInformationClass: FILE_INFO_BY_HANDLE_CLASS, lpFileInformation: LPVOID, dwBufferSize: DWORD): BOOL;
+
+@foreign
+enum _FILE_ID_TYPE {
+    FileIdType,
+    ObjectIdType,
+    ExtendedFileIdType,
+    MaximumFileIdType,
+}
+
+@foreign
+typedef FILE_ID_TYPE = _FILE_ID_TYPE;
+
+@foreign
+typedef PFILE_ID_TYPE = _FILE_ID_TYPE*;
+
+/*
+@PROBLEM Nested struct def at line 8795, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+
+@foreign
+struct FILE_ID_DESCRIPTOR {
+    dwSize: DWORD;
+    Type: FILE_ID_TYPE;
+    u: (null);
+}
+*/
+
+@foreign
+typedef LPFILE_ID_DESCRIPTOR = FILE_ID_DESCRIPTOR*;
+
+@foreign
+func OpenFileById(hVolumeHint: HANDLE, lpFileId: LPFILE_ID_DESCRIPTOR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwFlagsAndAttributes: DWORD): HANDLE;
+
+@foreign
+func CreateSymbolicLinkA(lpSymlinkFileName: LPCSTR, lpTargetFileName: LPCSTR, dwFlags: DWORD): BOOLEAN;
+
+@foreign
+func CreateSymbolicLink(lpSymlinkFileName: LPCSTR, lpTargetFileName: LPCSTR, dwFlags: DWORD): BOOLEAN;
+
+@foreign
+func CreateSymbolicLinkW(lpSymlinkFileName: LPCWSTR, lpTargetFileName: LPCWSTR, dwFlags: DWORD): BOOLEAN;
+
+@foreign
+func QueryActCtxSettingsW(dwFlags: DWORD, hActCtx: HANDLE, settingsNameSpace: PCWSTR, settingName: PCWSTR, pvBuffer: PWSTR, dwBuffer: SIZE_T, pdwWrittenOrRequired: SIZE_T*): BOOL;
+
+@foreign
+func CreateSymbolicLinkTransactedA(lpSymlinkFileName: LPCSTR, lpTargetFileName: LPCSTR, dwFlags: DWORD, hTransaction: HANDLE): BOOLEAN;
+
+@foreign
+func CreateSymbolicLinkTransacted(lpSymlinkFileName: LPCSTR, lpTargetFileName: LPCSTR, dwFlags: DWORD, hTransaction: HANDLE): BOOLEAN;
+
+@foreign
+func CreateSymbolicLinkTransactedW(lpSymlinkFileName: LPCWSTR, lpTargetFileName: LPCWSTR, dwFlags: DWORD, hTransaction: HANDLE): BOOLEAN;
+
+@foreign
+func ReplacePartitionUnit(TargetPartition: PWSTR, SparePartition: PWSTR, Flags: ULONG): BOOL;
+
+@foreign
+func AddSecureMemoryCacheCallback(pfnCallBack: PSECURE_MEMORY_CACHE_CALLBACK): BOOL;
+
+@foreign
+func RemoveSecureMemoryCacheCallback(pfnCallBack: PSECURE_MEMORY_CACHE_CALLBACK): BOOL;
+
+@foreign
+func CopyContext(Destination: PCONTEXT, ContextFlags: DWORD, Source: PCONTEXT): BOOL;
+
+@foreign
+func InitializeContext(Buffer: PVOID, ContextFlags: DWORD, Context: PCONTEXT*, ContextLength: PDWORD): BOOL;
+
+@foreign
+func GetEnabledXStateFeatures(): DWORD64;
+
+@foreign
+func GetXStateFeaturesMask(Context: PCONTEXT, FeatureMask: PDWORD64): BOOL;
+
+@foreign
+func LocateXStateFeature(Context: PCONTEXT, FeatureId: DWORD, Length: PDWORD): PVOID;
+
+@foreign
+func SetXStateFeaturesMask(Context: PCONTEXT, FeatureMask: DWORD64): BOOL;
+
+@foreign
+func EnableThreadProfiling(ThreadHandle: HANDLE, Flags: DWORD, HardwareCounters: DWORD64, PerformanceDataHandle: HANDLE*): DWORD;
+
+@foreign
+func DisableThreadProfiling(PerformanceDataHandle: HANDLE): DWORD;
+
+@foreign
+func QueryThreadProfiling(ThreadHandle: HANDLE, Enabled: PBOOLEAN): DWORD;
+
+@foreign
+func ReadThreadProfilingData(PerformanceDataHandle: HANDLE, Flags: DWORD, PerformanceData: PPERFORMANCE_DATA): DWORD;
+

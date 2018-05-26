@@ -1,0 +1,149 @@
+#foreign(header = "<string.h>")
+
+@foreign
+func strcat_s(_Destination: char*, _SizeInBytes: rsize_t, _Source: char const*): errno_t;
+
+@foreign
+func strerror_s(_Buffer: char*, _SizeInBytes: usize, _ErrorNumber: int): errno_t;
+
+@foreign
+func strncat_s(_Destination: char*, _SizeInBytes: rsize_t, _Source: char const*, _MaxCount: rsize_t): errno_t;
+
+@foreign
+func strncpy_s(_Destination: char*, _SizeInBytes: rsize_t, _Source: char const*, _MaxCount: rsize_t): errno_t;
+
+@foreign
+func strtok_s(_String: char*, _Delimiter: char const*, _Context: char**): char*;
+
+@foreign
+func _memccpy(_Dst: void*, _Src: void const*, _Val: int, _MaxCount: usize): void*;
+
+@foreign
+func _strcmpi(_String1: char const*, _String2: char const*): int;
+
+@foreign
+func _strcoll_l(_String1: char const*, _String2: char const*, _Locale: _locale_t): int;
+
+@foreign
+func _strdup(_Source: char const*): char*;
+
+@foreign
+func _strerror(_ErrorMessage: char const*): char*;
+
+@foreign
+func _strerror_s(_Buffer: char*, _SizeInBytes: usize, _ErrorMessage: char const*): errno_t;
+
+@foreign
+func _stricmp(_String1: char const*, _String2: char const*): int;
+
+@foreign
+func _stricoll(_String1: char const*, _String2: char const*): int;
+
+@foreign
+func _stricoll_l(_String1: char const*, _String2: char const*, _Locale: _locale_t): int;
+
+@foreign
+func _stricmp_l(_String1: char const*, _String2: char const*, _Locale: _locale_t): int;
+
+@foreign
+func _strlwr_s(_String: char*, _Size: usize): errno_t;
+
+@foreign
+func _strlwr(_String: char*): char*;
+
+@foreign
+func _strlwr_s_l(_String: char*, _Size: usize, _Locale: _locale_t): errno_t;
+
+@foreign
+func _strlwr_l(_String: char*, _Locale: _locale_t): char*;
+
+@foreign
+func _strnicmp(_String1: char const*, _String2: char const*, _MaxCount: usize): int;
+
+@foreign
+func _strnicmp_l(_String1: char const*, _String2: char const*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func _strnicoll(_String1: char const*, _String2: char const*, _MaxCount: usize): int;
+
+@foreign
+func _strnicoll_l(_String1: char const*, _String2: char const*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func _strncoll(_String1: char const*, _String2: char const*, _MaxCount: usize): int;
+
+@foreign
+func _strncoll_l(_String1: char const*, _String2: char const*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func __strncnt(_String: char const*, _Count: usize): usize;
+
+@foreign
+func strnlen(_String: char const*, _MaxCount: usize): usize;
+
+@foreign
+func _strnset_s(_String: char*, _SizeInBytes: usize, _Value: int, _MaxCount: usize): errno_t;
+
+@foreign
+func _strnset(_Destination: char*, _Value: int, _Count: usize): char*;
+
+@foreign
+func _strrev(_Str: char*): char*;
+
+@foreign
+func _strset_s(_Destination: char*, _DestinationSize: usize, _Value: int): errno_t;
+
+@foreign
+func _strset(_Destination: char*, _Value: int): char*;
+
+@foreign
+func _strupr_s(_String: char*, _Size: usize): errno_t;
+
+@foreign
+func _strupr(_String: char*): char*;
+
+@foreign
+func _strupr_s_l(_String: char*, _Size: usize, _Locale: _locale_t): errno_t;
+
+@foreign
+func _strupr_l(_String: char*, _Locale: _locale_t): char*;
+
+@foreign
+func _strxfrm_l(_Destination: char*, _Source: char const*, _MaxCount: usize, _Locale: _locale_t): usize;
+
+@foreign
+func strdup(_String: char const*): char*;
+
+@foreign
+func strcmpi(_String1: char const*, _String2: char const*): int;
+
+@foreign
+func stricmp(_String1: char const*, _String2: char const*): int;
+
+@foreign
+func strlwr(_String: char*): char*;
+
+@foreign
+func strnicmp(_String1: char const*, _String2: char const*, _MaxCount: usize): int;
+
+@foreign
+func strnset(_String: char*, _Value: int, _MaxCount: usize): char*;
+
+@foreign
+func strrev(_String: char*): char*;
+
+@foreign
+func strset(_String: char*, _Value: int): char*;
+
+@foreign
+func strupr(_String: char*): char*;
+
+@foreign
+struct _OBJECTID {
+    Lineage: GUID;
+    Uniquifier: DWORD;
+}
+
+@foreign
+typedef OBJECTID = _OBJECTID;
+

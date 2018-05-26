@@ -1,0 +1,231 @@
+#foreign(header = "<wtypesbase.h>")
+
+@foreign
+typedef OLECHAR = WCHAR;
+
+@foreign
+typedef LPOLESTR = OLECHAR*;
+
+@foreign
+typedef LPCOLESTR = OLECHAR*;
+
+@foreign
+typedef DOUBLE = double;
+
+@foreign
+struct _COAUTHIDENTITY {
+    User: USHORT*;
+    UserLength: ULONG;
+    Domain: USHORT*;
+    DomainLength: ULONG;
+    Password: USHORT*;
+    PasswordLength: ULONG;
+    Flags: ULONG;
+}
+
+@foreign
+typedef COAUTHIDENTITY = _COAUTHIDENTITY;
+
+@foreign
+struct _COAUTHINFO {
+    dwAuthnSvc: DWORD;
+    dwAuthzSvc: DWORD;
+    pwszServerPrincName: LPWSTR;
+    dwAuthnLevel: DWORD;
+    dwImpersonationLevel: DWORD;
+    pAuthIdentityData: COAUTHIDENTITY*;
+    dwCapabilities: DWORD;
+}
+
+@foreign
+typedef COAUTHINFO = _COAUTHINFO;
+
+@foreign
+typedef SCODE = LONG;
+
+@foreign
+typedef PSCODE = SCODE*;
+
+@foreign
+enum tagMEMCTX {
+    MEMCTX_SAME = -2,
+    MEMCTX_UNKNOWN = -1,
+    MEMCTX_TASK = 1,
+    MEMCTX_SHARED = 2,
+    MEMCTX_MACSYSTEM = 3,
+}
+
+@foreign
+typedef MEMCTX = tagMEMCTX;
+
+@foreign
+enum tagCLSCTX {
+    CLSCTX_INPROC_SERVER = 1,
+    CLSCTX_INPROC_HANDLER = 2,
+    CLSCTX_LOCAL_SERVER = 4,
+    CLSCTX_INPROC_SERVER16 = 8,
+    CLSCTX_REMOTE_SERVER = 16,
+    CLSCTX_INPROC_HANDLER16 = 32,
+    CLSCTX_RESERVED1 = 64,
+    CLSCTX_RESERVED2 = 128,
+    CLSCTX_RESERVED3 = 256,
+    CLSCTX_RESERVED4 = 512,
+    CLSCTX_NO_CODE_DOWNLOAD = 1024,
+    CLSCTX_RESERVED5 = 2048,
+    CLSCTX_NO_CUSTOM_MARSHAL = 4096,
+    CLSCTX_ENABLE_CODE_DOWNLOAD = 8192,
+    CLSCTX_NO_FAILURE_LOG = 16384,
+    CLSCTX_DISABLE_AAA = 32768,
+    CLSCTX_ENABLE_AAA = 65536,
+    CLSCTX_FROM_DEFAULT_CONTEXT = 131072,
+    CLSCTX_ACTIVATE_32_BIT_SERVER = 262144,
+    CLSCTX_ACTIVATE_X86_SERVER = 262144,
+    CLSCTX_ACTIVATE_64_BIT_SERVER = 524288,
+    CLSCTX_ENABLE_CLOAKING = 1048576,
+    CLSCTX_APPCONTAINER = 4194304,
+    CLSCTX_ACTIVATE_AAA_AS_IU = 8388608,
+    CLSCTX_RESERVED6 = 16777216,
+    CLSCTX_ACTIVATE_ARM32_SERVER = 33554432,
+    CLSCTX_PS_DLL = -2147483648,
+}
+
+@foreign
+typedef CLSCTX = tagCLSCTX;
+
+@foreign
+enum tagMSHLFLAGS {
+    MSHLFLAGS_NORMAL = 0,
+    MSHLFLAGS_TABLESTRONG = 1,
+    MSHLFLAGS_TABLEWEAK = 2,
+    MSHLFLAGS_NOPING = 4,
+    MSHLFLAGS_RESERVED1 = 8,
+    MSHLFLAGS_RESERVED2 = 16,
+    MSHLFLAGS_RESERVED3 = 32,
+    MSHLFLAGS_RESERVED4 = 64,
+}
+
+@foreign
+typedef MSHLFLAGS = tagMSHLFLAGS;
+
+@foreign
+enum tagMSHCTX {
+    MSHCTX_LOCAL = 0,
+    MSHCTX_NOSHAREDMEM = 1,
+    MSHCTX_DIFFERENTMACHINE = 2,
+    MSHCTX_INPROC = 3,
+    MSHCTX_CROSSCTX = 4,
+}
+
+@foreign
+typedef MSHCTX = tagMSHCTX;
+
+@foreign
+struct _BYTE_BLOB {
+    clSize: ULONG;
+    abData: byte[1];
+}
+
+@foreign
+typedef BYTE_BLOB = _BYTE_BLOB;
+
+@foreign
+typedef UP_BYTE_BLOB = BYTE_BLOB*;
+
+@foreign
+struct _WORD_BLOB {
+    clSize: ULONG;
+    asData: ushort[1];
+}
+
+@foreign
+typedef WORD_BLOB = _WORD_BLOB;
+
+@foreign
+typedef UP_WORD_BLOB = WORD_BLOB*;
+
+@foreign
+struct _DWORD_BLOB {
+    clSize: ULONG;
+    alData: ULONG[1];
+}
+
+@foreign
+typedef DWORD_BLOB = _DWORD_BLOB;
+
+@foreign
+typedef UP_DWORD_BLOB = DWORD_BLOB*;
+
+@foreign
+struct _FLAGGED_BYTE_BLOB {
+    fFlags: ULONG;
+    clSize: ULONG;
+    abData: byte[1];
+}
+
+@foreign
+typedef FLAGGED_BYTE_BLOB = _FLAGGED_BYTE_BLOB;
+
+@foreign
+typedef UP_FLAGGED_BYTE_BLOB = FLAGGED_BYTE_BLOB*;
+
+@foreign
+struct _FLAGGED_WORD_BLOB {
+    fFlags: ULONG;
+    clSize: ULONG;
+    asData: ushort[1];
+}
+
+@foreign
+typedef FLAGGED_WORD_BLOB = _FLAGGED_WORD_BLOB;
+
+@foreign
+typedef UP_FLAGGED_WORD_BLOB = FLAGGED_WORD_BLOB*;
+
+@foreign
+struct _BYTE_SIZEDARR {
+    clSize: ULONG;
+    pData: byte*;
+}
+
+@foreign
+typedef BYTE_SIZEDARR = _BYTE_SIZEDARR;
+
+@foreign
+struct _SHORT_SIZEDARR {
+    clSize: ULONG;
+    pData: ushort*;
+}
+
+@foreign
+typedef WORD_SIZEDARR = _SHORT_SIZEDARR;
+
+@foreign
+struct _LONG_SIZEDARR {
+    clSize: ULONG;
+    pData: ULONG*;
+}
+
+@foreign
+typedef DWORD_SIZEDARR = _LONG_SIZEDARR;
+
+@foreign
+struct _HYPER_SIZEDARR {
+    clSize: ULONG;
+    pData: llong*;
+}
+
+@foreign
+typedef HYPER_SIZEDARR = _HYPER_SIZEDARR;
+
+@foreign
+struct tagBLOB {
+    cbSize: ULONG;
+    pBlobData: BYTE*;
+}
+
+@foreign
+typedef BLOB = tagBLOB;
+
+@foreign
+typedef LPBLOB = tagBLOB*;
+

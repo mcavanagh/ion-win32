@@ -1,0 +1,20 @@
+#foreign(header = "<errno.h>")
+
+@foreign
+func _errno(): int*;
+
+@foreign
+func _set_errno(_Value: int): errno_t;
+
+@foreign
+func _get_errno(_Value: int*): errno_t;
+
+@foreign
+func __doserrno(): ulong*;
+
+@foreign
+func _set_doserrno(_Value: ulong): errno_t;
+
+@foreign
+func _get_doserrno(_Value: ulong*): errno_t;
+

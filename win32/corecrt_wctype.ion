@@ -1,0 +1,122 @@
+#foreign(header = "<corecrt_wctype.h>")
+
+@foreign
+func __pwctype_func(): wctype_t*;
+
+@foreign
+func iswalnum(_C: wint_t): int;
+
+@foreign
+func iswalpha(_C: wint_t): int;
+
+@foreign
+func iswascii(_C: wint_t): int;
+
+@foreign
+func iswblank(_C: wint_t): int;
+
+@foreign
+func iswcntrl(_C: wint_t): int;
+
+@foreign
+func iswdigit(_C: wint_t): int;
+
+@foreign
+func iswgraph(_C: wint_t): int;
+
+@foreign
+func iswlower(_C: wint_t): int;
+
+@foreign
+func iswprint(_C: wint_t): int;
+
+@foreign
+func iswpunct(_C: wint_t): int;
+
+@foreign
+func iswspace(_C: wint_t): int;
+
+@foreign
+func iswupper(_C: wint_t): int;
+
+@foreign
+func iswxdigit(_C: wint_t): int;
+
+@foreign
+func __iswcsymf(_C: wint_t): int;
+
+@foreign
+func __iswcsym(_C: wint_t): int;
+
+@foreign
+func _iswalnum_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswalpha_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswblank_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswcntrl_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswdigit_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswgraph_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswlower_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswprint_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswpunct_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswspace_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswupper_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswxdigit_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswcsymf_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func _iswcsym_l(_C: wint_t, _Locale: _locale_t): int;
+
+@foreign
+func towupper(_C: wint_t): wint_t;
+
+@foreign
+func towlower(_C: wint_t): wint_t;
+
+@foreign
+func iswctype(_C: wint_t, _Type: wctype_t): int;
+
+@foreign
+func _towupper_l(_C: wint_t, _Locale: _locale_t): wint_t;
+
+@foreign
+func _towlower_l(_C: wint_t, _Locale: _locale_t): wint_t;
+
+@foreign
+func _iswctype_l(_C: wint_t, _Type: wctype_t, _Locale: _locale_t): int;
+
+@foreign
+func isleadbyte(_C: int): int;
+
+@foreign
+func _isleadbyte_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func is_wctype(_C: wint_t, _Type: wctype_t): int;
+
+@foreign
+func _isctype(_C: int, _Type: int): int;
+

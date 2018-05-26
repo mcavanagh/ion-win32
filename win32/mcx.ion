@@ -1,0 +1,60 @@
+#foreign(header = "<mcx.h>")
+
+@foreign
+struct _MODEMDEVCAPS {
+    dwActualSize: DWORD;
+    dwRequiredSize: DWORD;
+    dwDevSpecificOffset: DWORD;
+    dwDevSpecificSize: DWORD;
+    dwModemProviderVersion: DWORD;
+    dwModemManufacturerOffset: DWORD;
+    dwModemManufacturerSize: DWORD;
+    dwModemModelOffset: DWORD;
+    dwModemModelSize: DWORD;
+    dwModemVersionOffset: DWORD;
+    dwModemVersionSize: DWORD;
+    dwDialOptions: DWORD;
+    dwCallSetupFailTimer: DWORD;
+    dwInactivityTimeout: DWORD;
+    dwSpeakerVolume: DWORD;
+    dwSpeakerMode: DWORD;
+    dwModemOptions: DWORD;
+    dwMaxDTERate: DWORD;
+    dwMaxDCERate: DWORD;
+    abVariablePortion: BYTE[1];
+}
+
+@foreign
+typedef MODEMDEVCAPS = _MODEMDEVCAPS;
+
+@foreign
+typedef PMODEMDEVCAPS = _MODEMDEVCAPS*;
+
+@foreign
+typedef LPMODEMDEVCAPS = _MODEMDEVCAPS*;
+
+@foreign
+struct _MODEMSETTINGS {
+    dwActualSize: DWORD;
+    dwRequiredSize: DWORD;
+    dwDevSpecificOffset: DWORD;
+    dwDevSpecificSize: DWORD;
+    dwCallSetupFailTimer: DWORD;
+    dwInactivityTimeout: DWORD;
+    dwSpeakerVolume: DWORD;
+    dwSpeakerMode: DWORD;
+    dwPreferredModemOptions: DWORD;
+    dwNegotiatedModemOptions: DWORD;
+    dwNegotiatedDCERate: DWORD;
+    abVariablePortion: BYTE[1];
+}
+
+@foreign
+typedef MODEMSETTINGS = _MODEMSETTINGS;
+
+@foreign
+typedef PMODEMSETTINGS = _MODEMSETTINGS*;
+
+@foreign
+typedef LPMODEMSETTINGS = _MODEMSETTINGS*;
+

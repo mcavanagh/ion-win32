@@ -1,0 +1,1180 @@
+#foreign(header = "<oleauto.h>")
+
+@foreign
+func SysAllocString(psz: OLECHAR*): BSTR;
+
+@foreign
+func SysReAllocString(pbstr: BSTR*, psz: OLECHAR*): INT;
+
+@foreign
+func SysAllocStringLen(strIn: OLECHAR*, ui: UINT): BSTR;
+
+@foreign
+func SysReAllocStringLen(pbstr: BSTR*, psz: OLECHAR*, len: uint): INT;
+
+@foreign
+func SysAddRefString(bstrString: BSTR): HRESULT;
+
+@foreign
+func SysReleaseString(bstrString: BSTR);
+
+@foreign
+func SysFreeString(bstrString: BSTR);
+
+@foreign
+func SysStringLen(pbstr: BSTR): UINT;
+
+@foreign
+func SysStringByteLen(bstr: BSTR): UINT;
+
+@foreign
+func SysAllocStringByteLen(psz: LPCSTR, len: UINT): BSTR;
+
+@foreign
+func DosDateTimeToVariantTime(wDosDate: USHORT, wDosTime: USHORT, pvtime: DOUBLE*): INT;
+
+@foreign
+func VariantTimeToDosDateTime(vtime: DOUBLE, pwDosDate: USHORT*, pwDosTime: USHORT*): INT;
+
+@foreign
+func SystemTimeToVariantTime(lpSystemTime: LPSYSTEMTIME, pvtime: DOUBLE*): INT;
+
+@foreign
+func VariantTimeToSystemTime(vtime: DOUBLE, lpSystemTime: LPSYSTEMTIME): INT;
+
+@foreign
+func SafeArrayAllocDescriptor(cDims: UINT, ppsaOut: SAFEARRAY**): HRESULT;
+
+@foreign
+func SafeArrayAllocDescriptorEx(vt: VARTYPE, cDims: UINT, ppsaOut: SAFEARRAY**): HRESULT;
+
+@foreign
+func SafeArrayAllocData(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayCreate(vt: VARTYPE, cDims: UINT, rgsabound: SAFEARRAYBOUND*): SAFEARRAY*;
+
+@foreign
+func SafeArrayCreateEx(vt: VARTYPE, cDims: UINT, rgsabound: SAFEARRAYBOUND*, pvExtra: PVOID): SAFEARRAY*;
+
+@foreign
+func SafeArrayCopyData(psaSource: SAFEARRAY*, psaTarget: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayReleaseDescriptor(psa: SAFEARRAY*);
+
+@foreign
+func SafeArrayDestroyDescriptor(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayReleaseData(pData: PVOID);
+
+@foreign
+func SafeArrayDestroyData(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayAddRef(psa: SAFEARRAY*, ppDataToRelease: PVOID*): HRESULT;
+
+@foreign
+func SafeArrayDestroy(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayRedim(psa: SAFEARRAY*, psaboundNew: SAFEARRAYBOUND*): HRESULT;
+
+@foreign
+func SafeArrayGetDim(psa: SAFEARRAY*): UINT;
+
+@foreign
+func SafeArrayGetElemsize(psa: SAFEARRAY*): UINT;
+
+@foreign
+func SafeArrayGetUBound(psa: SAFEARRAY*, nDim: UINT, plUbound: LONG*): HRESULT;
+
+@foreign
+func SafeArrayGetLBound(psa: SAFEARRAY*, nDim: UINT, plLbound: LONG*): HRESULT;
+
+@foreign
+func SafeArrayLock(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayUnlock(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayAccessData(psa: SAFEARRAY*, ppvData: void**): HRESULT;
+
+@foreign
+func SafeArrayUnaccessData(psa: SAFEARRAY*): HRESULT;
+
+@foreign
+func SafeArrayGetElement(psa: SAFEARRAY*, rgIndices: LONG*, pv: void*): HRESULT;
+
+@foreign
+func SafeArrayPutElement(psa: SAFEARRAY*, rgIndices: LONG*, pv: void*): HRESULT;
+
+@foreign
+func SafeArrayCopy(psa: SAFEARRAY*, ppsaOut: SAFEARRAY**): HRESULT;
+
+@foreign
+func SafeArrayPtrOfIndex(psa: SAFEARRAY*, rgIndices: LONG*, ppvData: void**): HRESULT;
+
+@foreign
+func SafeArraySetRecordInfo(psa: SAFEARRAY*, prinfo: IRecordInfo*): HRESULT;
+
+@foreign
+func SafeArrayGetRecordInfo(psa: SAFEARRAY*, prinfo: IRecordInfo**): HRESULT;
+
+@foreign
+func SafeArraySetIID(psa: SAFEARRAY*, guid: GUID* const): HRESULT;
+
+@foreign
+func SafeArrayGetIID(psa: SAFEARRAY*, pguid: GUID*): HRESULT;
+
+@foreign
+func SafeArrayGetVartype(psa: SAFEARRAY*, pvt: VARTYPE*): HRESULT;
+
+@foreign
+func SafeArrayCreateVector(vt: VARTYPE, lLbound: LONG, cElements: ULONG): SAFEARRAY*;
+
+@foreign
+func SafeArrayCreateVectorEx(vt: VARTYPE, lLbound: LONG, cElements: ULONG, pvExtra: PVOID): SAFEARRAY*;
+
+@foreign
+func VariantInit(pvarg: VARIANTARG*);
+
+@foreign
+func VariantClear(pvarg: VARIANTARG*): HRESULT;
+
+@foreign
+func VariantCopy(pvargDest: VARIANTARG*, pvargSrc: VARIANTARG*): HRESULT;
+
+@foreign
+func VariantCopyInd(pvarDest: VARIANT*, pvargSrc: VARIANTARG*): HRESULT;
+
+@foreign
+func VariantChangeType(pvargDest: VARIANTARG*, pvarSrc: VARIANTARG*, wFlags: USHORT, vt: VARTYPE): HRESULT;
+
+@foreign
+func VariantChangeTypeEx(pvargDest: VARIANTARG*, pvarSrc: VARIANTARG*, lcid: LCID, wFlags: USHORT, vt: VARTYPE): HRESULT;
+
+@foreign
+func VectorFromBstr(bstr: BSTR, ppsa: SAFEARRAY**): HRESULT;
+
+@foreign
+func BstrFromVector(psa: SAFEARRAY*, pbstr: BSTR*): HRESULT;
+
+@foreign
+func VarUI1FromI2(sIn: SHORT, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromI4(lIn: LONG, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromI8(i64In: LONG64, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromR4(fltIn: FLOAT, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromR8(dblIn: DOUBLE, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromCy(cyIn: CY, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromDate(dateIn: DATE, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromDisp(pdispIn: IDispatch*, lcid: LCID, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromBool(boolIn: VARIANT_BOOL, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromI1(cIn: CHAR, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromUI2(uiIn: USHORT, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromUI4(ulIn: ULONG, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromUI8(ui64In: ULONG64, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarUI1FromDec(pdecIn: DECIMAL*, pbOut: BYTE*): HRESULT;
+
+@foreign
+func VarI2FromUI1(bIn: BYTE, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromI4(lIn: LONG, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromI8(i64In: LONG64, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromR4(fltIn: FLOAT, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromR8(dblIn: DOUBLE, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromCy(cyIn: CY, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromDate(dateIn: DATE, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromDisp(pdispIn: IDispatch*, lcid: LCID, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromBool(boolIn: VARIANT_BOOL, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromI1(cIn: CHAR, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromUI2(uiIn: USHORT, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromUI4(ulIn: ULONG, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromUI8(ui64In: ULONG64, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI2FromDec(pdecIn: DECIMAL*, psOut: SHORT*): HRESULT;
+
+@foreign
+func VarI4FromUI1(bIn: BYTE, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromI2(sIn: SHORT, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromI8(i64In: LONG64, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromR4(fltIn: FLOAT, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromR8(dblIn: DOUBLE, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromCy(cyIn: CY, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromDate(dateIn: DATE, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromDisp(pdispIn: IDispatch*, lcid: LCID, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromBool(boolIn: VARIANT_BOOL, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromI1(cIn: CHAR, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromUI2(uiIn: USHORT, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromUI4(ulIn: ULONG, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromUI8(ui64In: ULONG64, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI4FromDec(pdecIn: DECIMAL*, plOut: LONG*): HRESULT;
+
+@foreign
+func VarI8FromUI1(bIn: BYTE, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromI2(sIn: SHORT, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromR4(fltIn: FLOAT, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromR8(dblIn: DOUBLE, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromCy(cyIn: CY, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromDate(dateIn: DATE, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromDisp(pdispIn: IDispatch*, lcid: LCID, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromBool(boolIn: VARIANT_BOOL, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromI1(cIn: CHAR, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromUI2(uiIn: USHORT, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromUI4(ulIn: ULONG, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromUI8(ui64In: ULONG64, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarI8FromDec(pdecIn: DECIMAL*, pi64Out: LONG64*): HRESULT;
+
+@foreign
+func VarR4FromUI1(bIn: BYTE, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromI2(sIn: SHORT, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromI4(lIn: LONG, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromI8(i64In: LONG64, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromR8(dblIn: DOUBLE, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromCy(cyIn: CY, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromDate(dateIn: DATE, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromDisp(pdispIn: IDispatch*, lcid: LCID, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromBool(boolIn: VARIANT_BOOL, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromI1(cIn: CHAR, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromUI2(uiIn: USHORT, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromUI4(ulIn: ULONG, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromUI8(ui64In: ULONG64, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR4FromDec(pdecIn: DECIMAL*, pfltOut: FLOAT*): HRESULT;
+
+@foreign
+func VarR8FromUI1(bIn: BYTE, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromI2(sIn: SHORT, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromI4(lIn: LONG, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromI8(i64In: LONG64, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromR4(fltIn: FLOAT, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromCy(cyIn: CY, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromDate(dateIn: DATE, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromDisp(pdispIn: IDispatch*, lcid: LCID, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromBool(boolIn: VARIANT_BOOL, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromI1(cIn: CHAR, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromUI2(uiIn: USHORT, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromUI4(ulIn: ULONG, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromUI8(ui64In: ULONG64, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarR8FromDec(pdecIn: DECIMAL*, pdblOut: DOUBLE*): HRESULT;
+
+@foreign
+func VarDateFromUI1(bIn: BYTE, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromI2(sIn: SHORT, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromI4(lIn: LONG, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromI8(i64In: LONG64, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromR4(fltIn: FLOAT, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromR8(dblIn: DOUBLE, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromCy(cyIn: CY, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromDisp(pdispIn: IDispatch*, lcid: LCID, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromBool(boolIn: VARIANT_BOOL, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromI1(cIn: CHAR, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromUI2(uiIn: USHORT, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromUI4(ulIn: ULONG, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromUI8(ui64In: ULONG64, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromDec(pdecIn: DECIMAL*, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarCyFromUI1(bIn: BYTE, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromI2(sIn: SHORT, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromI4(lIn: LONG, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromI8(i64In: LONG64, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromR4(fltIn: FLOAT, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromR8(dblIn: DOUBLE, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromDate(dateIn: DATE, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromDisp(pdispIn: IDispatch*, lcid: LCID, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromBool(boolIn: VARIANT_BOOL, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromI1(cIn: CHAR, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromUI2(uiIn: USHORT, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromUI4(ulIn: ULONG, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromUI8(ui64In: ULONG64, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarCyFromDec(pdecIn: DECIMAL*, pcyOut: CY*): HRESULT;
+
+@foreign
+func VarBstrFromUI1(bVal: BYTE, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromI2(iVal: SHORT, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromI4(lIn: LONG, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromI8(i64In: LONG64, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromR4(fltIn: FLOAT, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromR8(dblIn: DOUBLE, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromCy(cyIn: CY, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromDate(dateIn: DATE, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromDisp(pdispIn: IDispatch*, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromBool(boolIn: VARIANT_BOOL, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromI1(cIn: CHAR, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromUI2(uiIn: USHORT, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromUI4(ulIn: ULONG, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromUI8(ui64In: ULONG64, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBstrFromDec(pdecIn: DECIMAL*, lcid: LCID, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarBoolFromUI1(bIn: BYTE, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromI2(sIn: SHORT, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromI4(lIn: LONG, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromI8(i64In: LONG64, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromR4(fltIn: FLOAT, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromR8(dblIn: DOUBLE, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromDate(dateIn: DATE, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromCy(cyIn: CY, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromDisp(pdispIn: IDispatch*, lcid: LCID, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromI1(cIn: CHAR, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromUI2(uiIn: USHORT, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromUI4(ulIn: ULONG, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromUI8(i64In: ULONG64, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarBoolFromDec(pdecIn: DECIMAL*, pboolOut: VARIANT_BOOL*): HRESULT;
+
+@foreign
+func VarI1FromUI1(bIn: BYTE, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromI2(uiIn: SHORT, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromI4(lIn: LONG, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromI8(i64In: LONG64, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromR4(fltIn: FLOAT, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromR8(dblIn: DOUBLE, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromDate(dateIn: DATE, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromCy(cyIn: CY, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromDisp(pdispIn: IDispatch*, lcid: LCID, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromBool(boolIn: VARIANT_BOOL, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromUI2(uiIn: USHORT, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromUI4(ulIn: ULONG, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromUI8(i64In: ULONG64, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarI1FromDec(pdecIn: DECIMAL*, pcOut: CHAR*): HRESULT;
+
+@foreign
+func VarUI2FromUI1(bIn: BYTE, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromI2(uiIn: SHORT, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromI4(lIn: LONG, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromI8(i64In: LONG64, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromR4(fltIn: FLOAT, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromR8(dblIn: DOUBLE, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromDate(dateIn: DATE, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromCy(cyIn: CY, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromDisp(pdispIn: IDispatch*, lcid: LCID, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromBool(boolIn: VARIANT_BOOL, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromI1(cIn: CHAR, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromUI4(ulIn: ULONG, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromUI8(i64In: ULONG64, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI2FromDec(pdecIn: DECIMAL*, puiOut: USHORT*): HRESULT;
+
+@foreign
+func VarUI4FromUI1(bIn: BYTE, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromI2(uiIn: SHORT, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromI4(lIn: LONG, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromI8(i64In: LONG64, plOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromR4(fltIn: FLOAT, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromR8(dblIn: DOUBLE, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromDate(dateIn: DATE, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromCy(cyIn: CY, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromDisp(pdispIn: IDispatch*, lcid: LCID, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromBool(boolIn: VARIANT_BOOL, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromI1(cIn: CHAR, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromUI2(uiIn: USHORT, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromUI8(ui64In: ULONG64, plOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI4FromDec(pdecIn: DECIMAL*, pulOut: ULONG*): HRESULT;
+
+@foreign
+func VarUI8FromUI1(bIn: BYTE, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromI2(sIn: SHORT, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromI4(lIn: LONG, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromI8(ui64In: LONG64, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromR4(fltIn: FLOAT, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromR8(dblIn: DOUBLE, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromCy(cyIn: CY, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromDate(dateIn: DATE, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromDisp(pdispIn: IDispatch*, lcid: LCID, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromBool(boolIn: VARIANT_BOOL, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromI1(cIn: CHAR, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromUI2(uiIn: USHORT, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromUI4(ulIn: ULONG, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarUI8FromDec(pdecIn: DECIMAL*, pi64Out: ULONG64*): HRESULT;
+
+@foreign
+func VarDecFromUI1(bIn: BYTE, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromI2(uiIn: SHORT, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromI4(lIn: LONG, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromI8(i64In: LONG64, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromR4(fltIn: FLOAT, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromR8(dblIn: DOUBLE, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromDate(dateIn: DATE, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromCy(cyIn: CY, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromDisp(pdispIn: IDispatch*, lcid: LCID, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromBool(boolIn: VARIANT_BOOL, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromI1(cIn: CHAR, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromUI2(uiIn: USHORT, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromUI4(ulIn: ULONG, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+func VarDecFromUI8(ui64In: ULONG64, pdecOut: DECIMAL*): HRESULT;
+
+@foreign
+struct NUMPARSE {
+    cDig: INT;
+    dwInFlags: ULONG;
+    dwOutFlags: ULONG;
+    cchUsed: INT;
+    nBaseShift: INT;
+    nPwr10: INT;
+}
+
+@foreign
+func VarParseNumFromStr(strIn: LPCOLESTR, lcid: LCID, dwFlags: ULONG, pnumprs: NUMPARSE*, rgbDig: BYTE*): HRESULT;
+
+@foreign
+func VarNumFromParseNum(pnumprs: NUMPARSE*, rgbDig: BYTE*, dwVtBits: ULONG, pvar: VARIANT*): HRESULT;
+
+@foreign
+func VarAdd(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarAnd(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarCat(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarDiv(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarEqv(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarIdiv(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarImp(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarMod(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarMul(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarOr(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarPow(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarSub(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarXor(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarAbs(pvarIn: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarFix(pvarIn: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarInt(pvarIn: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarNeg(pvarIn: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarNot(pvarIn: LPVARIANT, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarRound(pvarIn: LPVARIANT, cDecimals: int, pvarResult: LPVARIANT): HRESULT;
+
+@foreign
+func VarCmp(pvarLeft: LPVARIANT, pvarRight: LPVARIANT, lcid: LCID, dwFlags: ULONG): HRESULT;
+
+@foreign
+func VarDecAdd(pdecLeft: LPDECIMAL, pdecRight: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecDiv(pdecLeft: LPDECIMAL, pdecRight: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecMul(pdecLeft: LPDECIMAL, pdecRight: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecSub(pdecLeft: LPDECIMAL, pdecRight: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecAbs(pdecIn: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecFix(pdecIn: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecInt(pdecIn: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecNeg(pdecIn: LPDECIMAL, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecRound(pdecIn: LPDECIMAL, cDecimals: int, pdecResult: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecCmp(pdecLeft: LPDECIMAL, pdecRight: LPDECIMAL): HRESULT;
+
+@foreign
+func VarDecCmpR8(pdecLeft: LPDECIMAL, dblRight: double): HRESULT;
+
+@foreign
+func VarCyAdd(cyLeft: CY, cyRight: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyMul(cyLeft: CY, cyRight: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyMulI4(cyLeft: CY, lRight: LONG, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyMulI8(cyLeft: CY, lRight: LONG64, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCySub(cyLeft: CY, cyRight: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyAbs(cyIn: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyFix(cyIn: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyInt(cyIn: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyNeg(cyIn: CY, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyRound(cyIn: CY, cDecimals: int, pcyResult: LPCY): HRESULT;
+
+@foreign
+func VarCyCmp(cyLeft: CY, cyRight: CY): HRESULT;
+
+@foreign
+func VarCyCmpR8(cyLeft: CY, dblRight: double): HRESULT;
+
+@foreign
+func VarBstrCat(bstrLeft: BSTR, bstrRight: BSTR, pbstrResult: LPBSTR): HRESULT;
+
+@foreign
+func VarBstrCmp(bstrLeft: BSTR, bstrRight: BSTR, lcid: LCID, dwFlags: ULONG): HRESULT;
+
+@foreign
+func VarR8Pow(dblLeft: double, dblRight: double, pdblResult: double*): HRESULT;
+
+@foreign
+func VarR4CmpR8(fltLeft: float, dblRight: double): HRESULT;
+
+@foreign
+func VarR8Round(dblIn: double, cDecimals: int, pdblResult: double*): HRESULT;
+
+@foreign
+struct UDATE {
+    st: SYSTEMTIME;
+    wDayOfYear: USHORT;
+}
+
+@foreign
+func VarDateFromUdate(pudateIn: UDATE*, dwFlags: ULONG, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarDateFromUdateEx(pudateIn: UDATE*, lcid: LCID, dwFlags: ULONG, pdateOut: DATE*): HRESULT;
+
+@foreign
+func VarUdateFromDate(dateIn: DATE, dwFlags: ULONG, pudateOut: UDATE*): HRESULT;
+
+@foreign
+func GetAltMonthNames(lcid: LCID, prgp: LPOLESTR**): HRESULT;
+
+@foreign
+func VarFormat(pvarIn: LPVARIANT, pstrFormat: LPOLESTR, iFirstDay: int, iFirstWeek: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarFormatDateTime(pvarIn: LPVARIANT, iNamedFormat: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarFormatNumber(pvarIn: LPVARIANT, iNumDig: int, iIncLead: int, iUseParens: int, iGroup: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarFormatPercent(pvarIn: LPVARIANT, iNumDig: int, iIncLead: int, iUseParens: int, iGroup: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarFormatCurrency(pvarIn: LPVARIANT, iNumDig: int, iIncLead: int, iUseParens: int, iGroup: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarWeekdayName(iWeekday: int, fAbbrev: int, iFirstDay: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarMonthName(iMonth: int, fAbbrev: int, dwFlags: ULONG, pbstrOut: BSTR*): HRESULT;
+
+@foreign
+func VarFormatFromTokens(pvarIn: LPVARIANT, pstrFormat: LPOLESTR, pbTokCur: LPBYTE, dwFlags: ULONG, pbstrOut: BSTR*, lcid: LCID): HRESULT;
+
+@foreign
+func VarTokenizeFormatString(pstrFormat: LPOLESTR, rgbTok: LPBYTE, cbTok: int, iFirstDay: int, iFirstWeek: int, lcid: LCID, pcbActual: int*): HRESULT;
+
+@foreign
+func LHashValOfNameSysA(syskind: SYSKIND, lcid: LCID, szName: LPCSTR): ULONG;
+
+@foreign
+func LHashValOfNameSys(syskind: SYSKIND, lcid: LCID, szName: OLECHAR*): ULONG;
+
+@foreign
+func LoadTypeLib(szFile: LPCOLESTR, pptlib: ITypeLib**): HRESULT;
+
+@foreign
+enum tagREGKIND {
+    REGKIND_DEFAULT,
+    REGKIND_REGISTER,
+    REGKIND_NONE,
+}
+
+@foreign
+typedef REGKIND = tagREGKIND;
+
+@foreign
+func LoadTypeLibEx(szFile: LPCOLESTR, regkind: REGKIND, pptlib: ITypeLib**): HRESULT;
+
+@foreign
+func LoadRegTypeLib(rguid: GUID* const, wVerMajor: WORD, wVerMinor: WORD, lcid: LCID, pptlib: ITypeLib**): HRESULT;
+
+@foreign
+func QueryPathOfRegTypeLib(guid: GUID* const, wMaj: USHORT, wMin: USHORT, lcid: LCID, lpbstrPathName: LPBSTR): HRESULT;
+
+@foreign
+func RegisterTypeLib(ptlib: ITypeLib*, szFullPath: LPCOLESTR, szHelpDir: LPCOLESTR): HRESULT;
+
+@foreign
+func UnRegisterTypeLib(libID: GUID* const, wVerMajor: WORD, wVerMinor: WORD, lcid: LCID, syskind: SYSKIND): HRESULT;
+
+@foreign
+func RegisterTypeLibForUser(ptlib: ITypeLib*, szFullPath: OLECHAR*, szHelpDir: OLECHAR*): HRESULT;
+
+@foreign
+func UnRegisterTypeLibForUser(libID: GUID* const, wMajorVerNum: WORD, wMinorVerNum: WORD, lcid: LCID, syskind: SYSKIND): HRESULT;
+
+@foreign
+func CreateTypeLib(syskind: SYSKIND, szFile: LPCOLESTR, ppctlib: ICreateTypeLib**): HRESULT;
+
+@foreign
+func CreateTypeLib2(syskind: SYSKIND, szFile: LPCOLESTR, ppctlib: ICreateTypeLib2**): HRESULT;
+
+@foreign
+struct tagPARAMDATA {
+    szName: OLECHAR*;
+    vt: VARTYPE;
+}
+
+@foreign
+typedef PARAMDATA = tagPARAMDATA;
+
+@foreign
+typedef LPPARAMDATA = tagPARAMDATA*;
+
+@foreign
+struct tagMETHODDATA {
+    szName: OLECHAR*;
+    ppdata: PARAMDATA*;
+    dispid: DISPID;
+    iMeth: UINT;
+    cc: CALLCONV;
+    cArgs: UINT;
+    wFlags: WORD;
+    vtReturn: VARTYPE;
+}
+
+@foreign
+typedef METHODDATA = tagMETHODDATA;
+
+@foreign
+typedef LPMETHODDATA = tagMETHODDATA*;
+
+@foreign
+struct tagINTERFACEDATA {
+    pmethdata: METHODDATA*;
+    cMembers: UINT;
+}
+
+@foreign
+typedef INTERFACEDATA = tagINTERFACEDATA;
+
+@foreign
+typedef LPINTERFACEDATA = tagINTERFACEDATA*;
+
+@foreign
+func DispGetParam(pdispparams: DISPPARAMS*, position: UINT, vtTarg: VARTYPE, pvarResult: VARIANT*, puArgErr: UINT*): HRESULT;
+
+@foreign
+func DispGetIDsOfNames(ptinfo: ITypeInfo*, rgszNames: OLECHAR**, cNames: UINT, rgdispid: DISPID*): HRESULT;
+
+@foreign
+func DispInvoke(_this: void*, ptinfo: ITypeInfo*, dispidMember: DISPID, wFlags: WORD, pparams: DISPPARAMS*, pvarResult: VARIANT*, pexcepinfo: EXCEPINFO*, puArgErr: UINT*): HRESULT;
+
+@foreign
+func CreateDispTypeInfo(pidata: INTERFACEDATA*, lcid: LCID, pptinfo: ITypeInfo**): HRESULT;
+
+@foreign
+func CreateStdDispatch(punkOuter: IUnknown*, pvThis: void*, ptinfo: ITypeInfo*, ppunkStdDisp: IUnknown**): HRESULT;
+
+@foreign
+func DispCallFunc(pvInstance: void*, oVft: ULONG_PTR, cc: CALLCONV, vtReturn: VARTYPE, cActuals: UINT, prgvt: VARTYPE*, prgpvarg: VARIANTARG**, pvargResult: VARIANT*): HRESULT;
+
+@foreign
+func RegisterActiveObject(punk: IUnknown*, rclsid: IID* const, dwFlags: DWORD, pdwRegister: DWORD*): HRESULT;
+
+@foreign
+func RevokeActiveObject(dwRegister: DWORD, pvReserved: void*): HRESULT;
+
+@foreign
+func GetActiveObject(rclsid: IID* const, pvReserved: void*, ppunk: IUnknown**): HRESULT;
+
+@foreign
+func SetErrorInfo(dwReserved: ULONG, perrinfo: IErrorInfo*): HRESULT;
+
+@foreign
+func GetErrorInfo(dwReserved: ULONG, pperrinfo: IErrorInfo**): HRESULT;
+
+@foreign
+func CreateErrorInfo(pperrinfo: ICreateErrorInfo**): HRESULT;
+
+@foreign
+func GetRecordInfoFromTypeInfo(pTypeInfo: ITypeInfo*, ppRecInfo: IRecordInfo**): HRESULT;
+
+@foreign
+func GetRecordInfoFromGuids(rGuidTypeLib: GUID* const, uVerMajor: ULONG, uVerMinor: ULONG, lcid: LCID, rGuidTypeInfo: GUID* const, ppRecInfo: IRecordInfo**): HRESULT;
+
+@foreign
+func OaBuildVersion(): ULONG;
+
+@foreign
+func ClearCustData(pCustData: LPCUSTDATA);
+
+@foreign
+func OaEnablePerUserTLibRegistration();
+

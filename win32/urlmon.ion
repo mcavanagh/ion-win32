@@ -1,0 +1,2214 @@
+#foreign(header = "<urlmon.h>")
+
+@foreign
+func CreateURLMoniker(pMkCtx: LPMONIKER, szURL: LPCWSTR, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func CreateURLMonikerEx(pMkCtx: LPMONIKER, szURL: LPCWSTR, ppmk: LPMONIKER*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func GetClassURL(szURL: LPCWSTR, pClsID: CLSID*): HRESULT;
+
+@foreign
+func CreateAsyncBindCtx(reserved: DWORD, pBSCb: IBindStatusCallback*, pEFetc: IEnumFORMATETC*, ppBC: IBindCtx**): HRESULT;
+
+@foreign
+func CreateURLMonikerEx2(pMkCtx: LPMONIKER, pUri: IUri*, ppmk: LPMONIKER*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func CreateAsyncBindCtxEx(pbc: IBindCtx*, dwOptions: DWORD, pBSCb: IBindStatusCallback*, pEnum: IEnumFORMATETC*, ppBC: IBindCtx**, reserved: DWORD): HRESULT;
+
+@foreign
+func MkParseDisplayNameEx(pbc: IBindCtx*, szDisplayName: LPCWSTR, pchEaten: ULONG*, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func RegisterBindStatusCallback(pBC: LPBC, pBSCb: IBindStatusCallback*, ppBSCBPrev: IBindStatusCallback**, dwReserved: DWORD): HRESULT;
+
+@foreign
+func RevokeBindStatusCallback(pBC: LPBC, pBSCb: IBindStatusCallback*): HRESULT;
+
+@foreign
+func GetClassFileOrMime(pBC: LPBC, szFilename: LPCWSTR, pBuffer: LPVOID, cbSize: DWORD, szMime: LPCWSTR, dwReserved: DWORD, pclsid: CLSID*): HRESULT;
+
+@foreign
+func IsValidURL(pBC: LPBC, szURL: LPCWSTR, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoGetClassObjectFromURL(rCLASSID: IID* const, szCODE: LPCWSTR, dwFileVersionMS: DWORD, dwFileVersionLS: DWORD, szTYPE: LPCWSTR, pBindCtx: LPBINDCTX, dwClsContext: DWORD, pvReserved: LPVOID, riid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func IEInstallScope(pdwScope: LPDWORD): HRESULT;
+
+@foreign
+func FaultInIEFeature(hWnd: HWND, pClassSpec: uCLSSPEC*, pQuery: QUERYCONTEXT*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func GetComponentIDFromCLSSPEC(pClassspec: uCLSSPEC*, ppszComponentID: LPSTR*): HRESULT;
+
+@foreign
+func IsAsyncMoniker(pmk: IMoniker*): HRESULT;
+
+@foreign
+func CreateURLBinding(lpszUrl: LPCWSTR, pbc: IBindCtx*, ppBdg: IBinding**): HRESULT;
+
+@foreign
+func RegisterMediaTypes(ctypes: UINT, rgszTypes: LPCSTR*, rgcfTypes: CLIPFORMAT*): HRESULT;
+
+@foreign
+func FindMediaType(rgszTypes: LPCSTR, rgcfTypes: CLIPFORMAT*): HRESULT;
+
+@foreign
+func CreateFormatEnumerator(cfmtetc: UINT, rgfmtetc: FORMATETC*, ppenumfmtetc: IEnumFORMATETC**): HRESULT;
+
+@foreign
+func RegisterFormatEnumerator(pBC: LPBC, pEFetc: IEnumFORMATETC*, reserved: DWORD): HRESULT;
+
+@foreign
+func RevokeFormatEnumerator(pBC: LPBC, pEFetc: IEnumFORMATETC*): HRESULT;
+
+@foreign
+func RegisterMediaTypeClass(pBC: LPBC, ctypes: UINT, rgszTypes: LPCSTR*, rgclsID: CLSID*, reserved: DWORD): HRESULT;
+
+@foreign
+func FindMediaTypeClass(pBC: LPBC, szType: LPCSTR, pclsID: CLSID*, reserved: DWORD): HRESULT;
+
+@foreign
+func UrlMkSetSessionOption(dwOption: DWORD, pBuffer: LPVOID, dwBufferLength: DWORD, dwReserved: DWORD): HRESULT;
+
+@foreign
+func UrlMkGetSessionOption(dwOption: DWORD, pBuffer: LPVOID, dwBufferLength: DWORD, pdwBufferLengthOut: DWORD*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func FindMimeFromData(pBC: LPBC, pwzUrl: LPCWSTR, pBuffer: LPVOID, cbSize: DWORD, pwzMimeProposed: LPCWSTR, dwMimeFlags: DWORD, ppwzMimeOut: LPWSTR*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func ObtainUserAgentString(dwOption: DWORD, pszUAOut: LPSTR, cbSize: DWORD*): HRESULT;
+
+@foreign
+func CompareSecurityIds(pbSecurityId1: BYTE*, dwLen1: DWORD, pbSecurityId2: BYTE*, dwLen2: DWORD, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CompatFlagsFromClsid(pclsid: CLSID*, pdwCompatFlags: LPDWORD, pdwMiscStatusFlags: LPDWORD): HRESULT;
+
+@foreign
+enum IEObjectType {
+    IE_EPM_OBJECT_EVENT,
+    IE_EPM_OBJECT_MUTEX,
+    IE_EPM_OBJECT_SEMAPHORE,
+    IE_EPM_OBJECT_SHARED_MEMORY,
+    IE_EPM_OBJECT_WAITABLE_TIMER,
+    IE_EPM_OBJECT_FILE,
+    IE_EPM_OBJECT_NAMED_PIPE,
+    IE_EPM_OBJECT_REGISTRY,
+}
+
+@foreign
+func SetAccessForIEAppContainer(hObject: HANDLE, ieObjectType: IEObjectType, dwAccessMask: DWORD): HRESULT;
+
+@foreign
+typedef LPPERSISTMONIKER = IPersistMoniker*;
+
+@foreign
+struct IPersistMonikerVtbl {
+    QueryInterface: func(This: IPersistMoniker*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPersistMoniker*): ULONG;
+    Release: func(This: IPersistMoniker*): ULONG;
+    GetClassID: func(This: IPersistMoniker*, pClassID: CLSID*): HRESULT;
+    IsDirty: func(This: IPersistMoniker*): HRESULT;
+    Load: func(This: IPersistMoniker*, fFullyAvailable: BOOL, pimkName: IMoniker*, pibc: LPBC, grfMode: DWORD): HRESULT;
+    Save: func(This: IPersistMoniker*, pimkName: IMoniker*, pbc: LPBC, fRemember: BOOL): HRESULT;
+    SaveCompleted: func(This: IPersistMoniker*, pimkName: IMoniker*, pibc: LPBC): HRESULT;
+    GetCurMoniker: func(This: IPersistMoniker*, ppimkName: IMoniker**): HRESULT;
+}
+
+@foreign
+struct IPersistMoniker {
+    lpVtbl: IPersistMonikerVtbl*;
+}
+
+@foreign
+typedef LPMONIKERPROP = IMonikerProp*;
+
+@foreign
+enum __MIDL_IMonikerProp_0001 {
+    MIMETYPEPROP = 0,
+    USE_SRC_URL = 1,
+    CLASSIDPROP = 2,
+    TRUSTEDDOWNLOADPROP = 3,
+    POPUPLEVELPROP = 4,
+}
+
+@foreign
+typedef MONIKERPROPERTY = __MIDL_IMonikerProp_0001;
+
+@foreign
+struct IMonikerPropVtbl {
+    QueryInterface: func(This: IMonikerProp*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IMonikerProp*): ULONG;
+    Release: func(This: IMonikerProp*): ULONG;
+    PutProperty: func(This: IMonikerProp*, mkp: MONIKERPROPERTY, val: LPCWSTR): HRESULT;
+}
+
+@foreign
+struct IMonikerProp {
+    lpVtbl: IMonikerPropVtbl*;
+}
+
+@foreign
+typedef LPBINDPROTOCOL = IBindProtocol*;
+
+@foreign
+struct IBindProtocolVtbl {
+    QueryInterface: func(This: IBindProtocol*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindProtocol*): ULONG;
+    Release: func(This: IBindProtocol*): ULONG;
+    CreateBinding: func(This: IBindProtocol*, szUrl: LPCWSTR, pbc: IBindCtx*, ppb: IBinding**): HRESULT;
+}
+
+@foreign
+struct IBindProtocol {
+    lpVtbl: IBindProtocolVtbl*;
+}
+
+@foreign
+typedef LPBINDING = IBinding*;
+
+@foreign
+struct IBindingVtbl {
+    QueryInterface: func(This: IBinding*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBinding*): ULONG;
+    Release: func(This: IBinding*): ULONG;
+    Abort: func(This: IBinding*): HRESULT;
+    Suspend: func(This: IBinding*): HRESULT;
+    Resume: func(This: IBinding*): HRESULT;
+    SetPriority: func(This: IBinding*, nPriority: LONG): HRESULT;
+    GetPriority: func(This: IBinding*, pnPriority: LONG*): HRESULT;
+    GetBindResult: func(This: IBinding*, pclsidProtocol: CLSID*, pdwResult: DWORD*, pszResult: LPOLESTR*, pdwReserved: DWORD*): HRESULT;
+}
+
+@foreign
+struct IBinding {
+    lpVtbl: IBindingVtbl*;
+}
+
+@foreign
+func IBinding_RemoteGetBindResult_Proxy(This: IBinding*, pclsidProtocol: CLSID*, pdwResult: DWORD*, pszResult: LPOLESTR*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func IBinding_RemoteGetBindResult_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPBINDSTATUSCALLBACK = IBindStatusCallback*;
+
+@foreign
+enum __MIDL_IBindStatusCallback_0001 {
+    BINDVERB_GET = 0,
+    BINDVERB_POST = 1,
+    BINDVERB_PUT = 2,
+    BINDVERB_CUSTOM = 3,
+    BINDVERB_RESERVED1 = 4,
+}
+
+@foreign
+typedef BINDVERB = __MIDL_IBindStatusCallback_0001;
+
+@foreign
+enum __MIDL_IBindStatusCallback_0002 {
+    BINDINFOF_URLENCODESTGMEDDATA = 1,
+    BINDINFOF_URLENCODEDEXTRAINFO = 2,
+}
+
+@foreign
+typedef BINDINFOF = __MIDL_IBindStatusCallback_0002;
+
+@foreign
+enum __MIDL_IBindStatusCallback_0003 {
+    BINDF_ASYNCHRONOUS = 1,
+    BINDF_ASYNCSTORAGE = 2,
+    BINDF_NOPROGRESSIVERENDERING = 4,
+    BINDF_OFFLINEOPERATION = 8,
+    BINDF_GETNEWESTVERSION = 16,
+    BINDF_NOWRITECACHE = 32,
+    BINDF_NEEDFILE = 64,
+    BINDF_PULLDATA = 128,
+    BINDF_IGNORESECURITYPROBLEM = 256,
+    BINDF_RESYNCHRONIZE = 512,
+    BINDF_HYPERLINK = 1024,
+    BINDF_NO_UI = 2048,
+    BINDF_SILENTOPERATION = 4096,
+    BINDF_PRAGMA_NO_CACHE = 8192,
+    BINDF_GETCLASSOBJECT = 16384,
+    BINDF_RESERVED_1 = 32768,
+    BINDF_FREE_THREADED = 65536,
+    BINDF_DIRECT_READ = 131072,
+    BINDF_FORMS_SUBMIT = 262144,
+    BINDF_GETFROMCACHE_IF_NET_FAIL = 524288,
+    BINDF_FROMURLMON = 1048576,
+    BINDF_FWD_BACK = 2097152,
+    BINDF_PREFERDEFAULTHANDLER = 4194304,
+    BINDF_ENFORCERESTRICTED = 8388608,
+    BINDF_RESERVED_3 = 16777216,
+    BINDF_RESERVED_4 = 33554432,
+    BINDF_RESERVED_5 = 67108864,
+    BINDF_RESERVED_6 = 134217728,
+    BINDF_RESERVED_8 = 536870912,
+    BINDF_RESERVED_7 = 1073741824,
+    BINDF_RESERVED_2 = -2147483648,
+}
+
+@foreign
+typedef BINDF = __MIDL_IBindStatusCallback_0003;
+
+@foreign
+enum __MIDL_IBindStatusCallback_0004 {
+    URL_ENCODING_NONE = 0,
+    URL_ENCODING_ENABLE_UTF8 = 268435456,
+    URL_ENCODING_DISABLE_UTF8 = 536870912,
+}
+
+@foreign
+typedef URL_ENCODING = __MIDL_IBindStatusCallback_0004;
+
+@foreign
+struct _tagBINDINFO {
+    cbSize: ULONG;
+    szExtraInfo: LPWSTR;
+    stgmedData: STGMEDIUM;
+    grfBindInfoF: DWORD;
+    dwBindVerb: DWORD;
+    szCustomVerb: LPWSTR;
+    cbstgmedData: DWORD;
+    dwOptions: DWORD;
+    dwOptionsFlags: DWORD;
+    dwCodePage: DWORD;
+    securityAttributes: SECURITY_ATTRIBUTES;
+    iid: IID;
+    pUnk: IUnknown*;
+    dwReserved: DWORD;
+}
+
+@foreign
+typedef BINDINFO = _tagBINDINFO;
+
+@foreign
+struct _REMSECURITY_ATTRIBUTES {
+    nLength: DWORD;
+    lpSecurityDescriptor: DWORD;
+    bInheritHandle: BOOL;
+}
+
+@foreign
+typedef REMSECURITY_ATTRIBUTES = _REMSECURITY_ATTRIBUTES;
+
+@foreign
+typedef PREMSECURITY_ATTRIBUTES = _REMSECURITY_ATTRIBUTES*;
+
+@foreign
+typedef LPREMSECURITY_ATTRIBUTES = _REMSECURITY_ATTRIBUTES*;
+
+@foreign
+struct _tagRemBINDINFO {
+    cbSize: ULONG;
+    szExtraInfo: LPWSTR;
+    grfBindInfoF: DWORD;
+    dwBindVerb: DWORD;
+    szCustomVerb: LPWSTR;
+    cbstgmedData: DWORD;
+    dwOptions: DWORD;
+    dwOptionsFlags: DWORD;
+    dwCodePage: DWORD;
+    securityAttributes: REMSECURITY_ATTRIBUTES;
+    iid: IID;
+    pUnk: IUnknown*;
+    dwReserved: DWORD;
+}
+
+@foreign
+typedef RemBINDINFO = _tagRemBINDINFO;
+
+@foreign
+struct tagRemFORMATETC {
+    cfFormat: DWORD;
+    ptd: DWORD;
+    dwAspect: DWORD;
+    lindex: LONG;
+    tymed: DWORD;
+}
+
+@foreign
+typedef RemFORMATETC = tagRemFORMATETC;
+
+@foreign
+typedef LPREMFORMATETC = tagRemFORMATETC*;
+
+@foreign
+enum __MIDL_IBindStatusCallback_0005 {
+    BINDINFO_OPTIONS_WININETFLAG = 65536,
+    BINDINFO_OPTIONS_ENABLE_UTF8 = 131072,
+    BINDINFO_OPTIONS_DISABLE_UTF8 = 262144,
+    BINDINFO_OPTIONS_USE_IE_ENCODING = 524288,
+    BINDINFO_OPTIONS_BINDTOOBJECT = 1048576,
+    BINDINFO_OPTIONS_SECURITYOPTOUT = 2097152,
+    BINDINFO_OPTIONS_IGNOREMIMETEXTPLAIN = 4194304,
+    BINDINFO_OPTIONS_USEBINDSTRINGCREDS = 8388608,
+    BINDINFO_OPTIONS_IGNOREHTTPHTTPSREDIRECTS = 16777216,
+    BINDINFO_OPTIONS_IGNORE_SSLERRORS_ONCE = 33554432,
+    BINDINFO_WPC_DOWNLOADBLOCKED = 134217728,
+    BINDINFO_WPC_LOGGING_ENABLED = 268435456,
+    BINDINFO_OPTIONS_ALLOWCONNECTDATA = 536870912,
+    BINDINFO_OPTIONS_DISABLEAUTOREDIRECTS = 1073741824,
+    BINDINFO_OPTIONS_SHDOCVW_NAVIGATE = -2147483648,
+}
+
+@foreign
+typedef BINDINFO_OPTIONS = __MIDL_IBindStatusCallback_0005;
+
+@foreign
+enum __MIDL_IBindStatusCallback_0006 {
+    BSCF_FIRSTDATANOTIFICATION = 1,
+    BSCF_INTERMEDIATEDATANOTIFICATION = 2,
+    BSCF_LASTDATANOTIFICATION = 4,
+    BSCF_DATAFULLYAVAILABLE = 8,
+    BSCF_AVAILABLEDATASIZEUNKNOWN = 16,
+    BSCF_SKIPDRAINDATAFORFILEURLS = 32,
+    BSCF_64BITLENGTHDOWNLOAD = 64,
+}
+
+@foreign
+typedef BSCF = __MIDL_IBindStatusCallback_0006;
+
+@foreign
+enum tagBINDSTATUS {
+    BINDSTATUS_FINDINGRESOURCE = 1,
+    BINDSTATUS_CONNECTING = 2,
+    BINDSTATUS_REDIRECTING = 3,
+    BINDSTATUS_BEGINDOWNLOADDATA = 4,
+    BINDSTATUS_DOWNLOADINGDATA = 5,
+    BINDSTATUS_ENDDOWNLOADDATA = 6,
+    BINDSTATUS_BEGINDOWNLOADCOMPONENTS = 7,
+    BINDSTATUS_INSTALLINGCOMPONENTS = 8,
+    BINDSTATUS_ENDDOWNLOADCOMPONENTS = 9,
+    BINDSTATUS_USINGCACHEDCOPY = 10,
+    BINDSTATUS_SENDINGREQUEST = 11,
+    BINDSTATUS_CLASSIDAVAILABLE = 12,
+    BINDSTATUS_MIMETYPEAVAILABLE = 13,
+    BINDSTATUS_CACHEFILENAMEAVAILABLE = 14,
+    BINDSTATUS_BEGINSYNCOPERATION = 15,
+    BINDSTATUS_ENDSYNCOPERATION = 16,
+    BINDSTATUS_BEGINUPLOADDATA = 17,
+    BINDSTATUS_UPLOADINGDATA = 18,
+    BINDSTATUS_ENDUPLOADDATA = 19,
+    BINDSTATUS_PROTOCOLCLASSID = 20,
+    BINDSTATUS_ENCODING = 21,
+    BINDSTATUS_VERIFIEDMIMETYPEAVAILABLE = 22,
+    BINDSTATUS_CLASSINSTALLLOCATION = 23,
+    BINDSTATUS_DECODING = 24,
+    BINDSTATUS_LOADINGMIMEHANDLER = 25,
+    BINDSTATUS_CONTENTDISPOSITIONATTACH = 26,
+    BINDSTATUS_FILTERREPORTMIMETYPE = 27,
+    BINDSTATUS_CLSIDCANINSTANTIATE = 28,
+    BINDSTATUS_IUNKNOWNAVAILABLE = 29,
+    BINDSTATUS_DIRECTBIND = 30,
+    BINDSTATUS_RAWMIMETYPE = 31,
+    BINDSTATUS_PROXYDETECTING = 32,
+    BINDSTATUS_ACCEPTRANGES = 33,
+    BINDSTATUS_COOKIE_SENT = 34,
+    BINDSTATUS_COMPACT_POLICY_RECEIVED = 35,
+    BINDSTATUS_COOKIE_SUPPRESSED = 36,
+    BINDSTATUS_COOKIE_STATE_UNKNOWN = 37,
+    BINDSTATUS_COOKIE_STATE_ACCEPT = 38,
+    BINDSTATUS_COOKIE_STATE_REJECT = 39,
+    BINDSTATUS_COOKIE_STATE_PROMPT = 40,
+    BINDSTATUS_COOKIE_STATE_LEASH = 41,
+    BINDSTATUS_COOKIE_STATE_DOWNGRADE = 42,
+    BINDSTATUS_POLICY_HREF = 43,
+    BINDSTATUS_P3P_HEADER = 44,
+    BINDSTATUS_SESSION_COOKIE_RECEIVED = 45,
+    BINDSTATUS_PERSISTENT_COOKIE_RECEIVED = 46,
+    BINDSTATUS_SESSION_COOKIES_ALLOWED = 47,
+    BINDSTATUS_CACHECONTROL = 48,
+    BINDSTATUS_CONTENTDISPOSITIONFILENAME = 49,
+    BINDSTATUS_MIMETEXTPLAINMISMATCH = 50,
+    BINDSTATUS_PUBLISHERAVAILABLE = 51,
+    BINDSTATUS_DISPLAYNAMEAVAILABLE = 52,
+    BINDSTATUS_SSLUX_NAVBLOCKED = 53,
+    BINDSTATUS_SERVER_MIMETYPEAVAILABLE = 54,
+    BINDSTATUS_SNIFFED_CLASSIDAVAILABLE = 55,
+    BINDSTATUS_LAST = 56,
+    BINDSTATUS_64BIT_PROGRESS = 56,
+    BINDSTATUS_RESERVED_0 = 57,
+    BINDSTATUS_RESERVED_1 = 58,
+    BINDSTATUS_RESERVED_2 = 59,
+    BINDSTATUS_RESERVED_3 = 60,
+    BINDSTATUS_RESERVED_4 = 61,
+    BINDSTATUS_RESERVED_5 = 62,
+    BINDSTATUS_RESERVED_6 = 63,
+    BINDSTATUS_RESERVED_7 = 64,
+    BINDSTATUS_RESERVED_8 = 65,
+    BINDSTATUS_RESERVED_9 = 66,
+    BINDSTATUS_RESERVED_A = 67,
+    BINDSTATUS_RESERVED_B = 68,
+    BINDSTATUS_RESERVED_C = 69,
+    BINDSTATUS_RESERVED_D = 70,
+    BINDSTATUS_RESERVED_E = 71,
+    BINDSTATUS_RESERVED_F = 72,
+    BINDSTATUS_RESERVED_10 = 73,
+    BINDSTATUS_RESERVED_11 = 74,
+    BINDSTATUS_LAST_PRIVATE = 75,
+    BINDSTATUS_RESERVED_12 = 75,
+}
+
+@foreign
+typedef BINDSTATUS = tagBINDSTATUS;
+
+@foreign
+struct IBindStatusCallbackVtbl {
+    QueryInterface: func(This: IBindStatusCallback*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindStatusCallback*): ULONG;
+    Release: func(This: IBindStatusCallback*): ULONG;
+    OnStartBinding: func(This: IBindStatusCallback*, dwReserved: DWORD, pib: IBinding*): HRESULT;
+    GetPriority: func(This: IBindStatusCallback*, pnPriority: LONG*): HRESULT;
+    OnLowResource: func(This: IBindStatusCallback*, reserved: DWORD): HRESULT;
+    OnProgress: func(This: IBindStatusCallback*, ulProgress: ULONG, ulProgressMax: ULONG, ulStatusCode: ULONG, szStatusText: LPCWSTR): HRESULT;
+    OnStopBinding: func(This: IBindStatusCallback*, hresult: HRESULT, szError: LPCWSTR): HRESULT;
+    GetBindInfo: func(This: IBindStatusCallback*, grfBINDF: DWORD*, pbindinfo: BINDINFO*): HRESULT;
+    OnDataAvailable: func(This: IBindStatusCallback*, grfBSCF: DWORD, dwSize: DWORD, pformatetc: FORMATETC*, pstgmed: STGMEDIUM*): HRESULT;
+    OnObjectAvailable: func(This: IBindStatusCallback*, riid: IID* const, punk: IUnknown*): HRESULT;
+}
+
+@foreign
+struct IBindStatusCallback {
+    lpVtbl: IBindStatusCallbackVtbl*;
+}
+
+@foreign
+func IBindStatusCallback_RemoteGetBindInfo_Proxy(This: IBindStatusCallback*, grfBINDF: DWORD*, pbindinfo: RemBINDINFO*, pstgmed: RemSTGMEDIUM*): HRESULT;
+
+@foreign
+func IBindStatusCallback_RemoteGetBindInfo_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IBindStatusCallback_RemoteOnDataAvailable_Proxy(This: IBindStatusCallback*, grfBSCF: DWORD, dwSize: DWORD, pformatetc: RemFORMATETC*, pstgmed: RemSTGMEDIUM*): HRESULT;
+
+@foreign
+func IBindStatusCallback_RemoteOnDataAvailable_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPBINDSTATUSCALLBACKEX = IBindStatusCallbackEx*;
+
+@foreign
+enum __MIDL_IBindStatusCallbackEx_0001 {
+    BINDF2_DISABLEBASICOVERHTTP = 1,
+    BINDF2_DISABLEAUTOCOOKIEHANDLING = 2,
+    BINDF2_READ_DATA_GREATER_THAN_4GB = 4,
+    BINDF2_DISABLE_HTTP_REDIRECT_XSECURITYID = 8,
+    BINDF2_SETDOWNLOADMODE = 32,
+    BINDF2_DISABLE_HTTP_REDIRECT_CACHING = 64,
+    BINDF2_KEEP_CALLBACK_MODULE_LOADED = 128,
+    BINDF2_ALLOW_PROXY_CRED_PROMPT = 256,
+    BINDF2_RESERVED_17 = 512,
+    BINDF2_RESERVED_16 = 1024,
+    BINDF2_RESERVED_15 = 2048,
+    BINDF2_RESERVED_14 = 4096,
+    BINDF2_RESERVED_13 = 8192,
+    BINDF2_RESERVED_12 = 16384,
+    BINDF2_RESERVED_11 = 32768,
+    BINDF2_RESERVED_10 = 65536,
+    BINDF2_RESERVED_F = 131072,
+    BINDF2_RESERVED_E = 262144,
+    BINDF2_RESERVED_D = 524288,
+    BINDF2_RESERVED_C = 1048576,
+    BINDF2_RESERVED_B = 2097152,
+    BINDF2_RESERVED_A = 4194304,
+    BINDF2_RESERVED_9 = 8388608,
+    BINDF2_RESERVED_8 = 16777216,
+    BINDF2_RESERVED_7 = 33554432,
+    BINDF2_RESERVED_6 = 67108864,
+    BINDF2_RESERVED_5 = 134217728,
+    BINDF2_RESERVED_4 = 268435456,
+    BINDF2_RESERVED_3 = 536870912,
+    BINDF2_RESERVED_2 = 1073741824,
+    BINDF2_RESERVED_1 = -2147483648,
+}
+
+@foreign
+typedef BINDF2 = __MIDL_IBindStatusCallbackEx_0001;
+
+@foreign
+struct IBindStatusCallbackExVtbl {
+    QueryInterface: func(This: IBindStatusCallbackEx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindStatusCallbackEx*): ULONG;
+    Release: func(This: IBindStatusCallbackEx*): ULONG;
+    OnStartBinding: func(This: IBindStatusCallbackEx*, dwReserved: DWORD, pib: IBinding*): HRESULT;
+    GetPriority: func(This: IBindStatusCallbackEx*, pnPriority: LONG*): HRESULT;
+    OnLowResource: func(This: IBindStatusCallbackEx*, reserved: DWORD): HRESULT;
+    OnProgress: func(This: IBindStatusCallbackEx*, ulProgress: ULONG, ulProgressMax: ULONG, ulStatusCode: ULONG, szStatusText: LPCWSTR): HRESULT;
+    OnStopBinding: func(This: IBindStatusCallbackEx*, hresult: HRESULT, szError: LPCWSTR): HRESULT;
+    GetBindInfo: func(This: IBindStatusCallbackEx*, grfBINDF: DWORD*, pbindinfo: BINDINFO*): HRESULT;
+    OnDataAvailable: func(This: IBindStatusCallbackEx*, grfBSCF: DWORD, dwSize: DWORD, pformatetc: FORMATETC*, pstgmed: STGMEDIUM*): HRESULT;
+    OnObjectAvailable: func(This: IBindStatusCallbackEx*, riid: IID* const, punk: IUnknown*): HRESULT;
+    GetBindInfoEx: func(This: IBindStatusCallbackEx*, grfBINDF: DWORD*, pbindinfo: BINDINFO*, grfBINDF2: DWORD*, pdwReserved: DWORD*): HRESULT;
+}
+
+@foreign
+struct IBindStatusCallbackEx {
+    lpVtbl: IBindStatusCallbackExVtbl*;
+}
+
+@foreign
+func IBindStatusCallbackEx_RemoteGetBindInfoEx_Proxy(This: IBindStatusCallbackEx*, grfBINDF: DWORD*, pbindinfo: RemBINDINFO*, pstgmed: RemSTGMEDIUM*, grfBINDF2: DWORD*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IBindStatusCallbackEx_RemoteGetBindInfoEx_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPAUTHENTICATION = IAuthenticate*;
+
+@foreign
+struct IAuthenticateVtbl {
+    QueryInterface: func(This: IAuthenticate*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAuthenticate*): ULONG;
+    Release: func(This: IAuthenticate*): ULONG;
+    Authenticate: func(This: IAuthenticate*, phwnd: HWND*, pszUsername: LPWSTR*, pszPassword: LPWSTR*): HRESULT;
+}
+
+@foreign
+struct IAuthenticate {
+    lpVtbl: IAuthenticateVtbl*;
+}
+
+@foreign
+typedef LPAUTHENTICATIONEX = IAuthenticateEx*;
+
+@foreign
+enum __MIDL_IAuthenticateEx_0001 {
+    AUTHENTICATEF_PROXY = 1,
+    AUTHENTICATEF_BASIC = 2,
+    AUTHENTICATEF_HTTP = 4,
+}
+
+@foreign
+typedef AUTHENTICATEF = __MIDL_IAuthenticateEx_0001;
+
+@foreign
+struct _tagAUTHENTICATEINFO {
+    dwFlags: DWORD;
+    dwReserved: DWORD;
+}
+
+@foreign
+typedef AUTHENTICATEINFO = _tagAUTHENTICATEINFO;
+
+@foreign
+struct IAuthenticateExVtbl {
+    QueryInterface: func(This: IAuthenticateEx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IAuthenticateEx*): ULONG;
+    Release: func(This: IAuthenticateEx*): ULONG;
+    Authenticate: func(This: IAuthenticateEx*, phwnd: HWND*, pszUsername: LPWSTR*, pszPassword: LPWSTR*): HRESULT;
+    AuthenticateEx: func(This: IAuthenticateEx*, phwnd: HWND*, pszUsername: LPWSTR*, pszPassword: LPWSTR*, pauthinfo: AUTHENTICATEINFO*): HRESULT;
+}
+
+@foreign
+struct IAuthenticateEx {
+    lpVtbl: IAuthenticateExVtbl*;
+}
+
+@foreign
+typedef LPHTTPNEGOTIATE = IHttpNegotiate*;
+
+@foreign
+struct IHttpNegotiateVtbl {
+    QueryInterface: func(This: IHttpNegotiate*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IHttpNegotiate*): ULONG;
+    Release: func(This: IHttpNegotiate*): ULONG;
+    BeginningTransaction: func(This: IHttpNegotiate*, szURL: LPCWSTR, szHeaders: LPCWSTR, dwReserved: DWORD, pszAdditionalHeaders: LPWSTR*): HRESULT;
+    OnResponse: func(This: IHttpNegotiate*, dwResponseCode: DWORD, szResponseHeaders: LPCWSTR, szRequestHeaders: LPCWSTR, pszAdditionalRequestHeaders: LPWSTR*): HRESULT;
+}
+
+@foreign
+struct IHttpNegotiate {
+    lpVtbl: IHttpNegotiateVtbl*;
+}
+
+@foreign
+typedef LPHTTPNEGOTIATE2 = IHttpNegotiate2*;
+
+@foreign
+struct IHttpNegotiate2Vtbl {
+    QueryInterface: func(This: IHttpNegotiate2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IHttpNegotiate2*): ULONG;
+    Release: func(This: IHttpNegotiate2*): ULONG;
+    BeginningTransaction: func(This: IHttpNegotiate2*, szURL: LPCWSTR, szHeaders: LPCWSTR, dwReserved: DWORD, pszAdditionalHeaders: LPWSTR*): HRESULT;
+    OnResponse: func(This: IHttpNegotiate2*, dwResponseCode: DWORD, szResponseHeaders: LPCWSTR, szRequestHeaders: LPCWSTR, pszAdditionalRequestHeaders: LPWSTR*): HRESULT;
+    GetRootSecurityId: func(This: IHttpNegotiate2*, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+}
+
+@foreign
+struct IHttpNegotiate2 {
+    lpVtbl: IHttpNegotiate2Vtbl*;
+}
+
+@foreign
+typedef LPHTTPNEGOTIATE3 = IHttpNegotiate3*;
+
+@foreign
+struct IHttpNegotiate3Vtbl {
+    QueryInterface: func(This: IHttpNegotiate3*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IHttpNegotiate3*): ULONG;
+    Release: func(This: IHttpNegotiate3*): ULONG;
+    BeginningTransaction: func(This: IHttpNegotiate3*, szURL: LPCWSTR, szHeaders: LPCWSTR, dwReserved: DWORD, pszAdditionalHeaders: LPWSTR*): HRESULT;
+    OnResponse: func(This: IHttpNegotiate3*, dwResponseCode: DWORD, szResponseHeaders: LPCWSTR, szRequestHeaders: LPCWSTR, pszAdditionalRequestHeaders: LPWSTR*): HRESULT;
+    GetRootSecurityId: func(This: IHttpNegotiate3*, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+    GetSerializedClientCertContext: func(This: IHttpNegotiate3*, ppbCert: BYTE**, pcbCert: DWORD*): HRESULT;
+}
+
+@foreign
+struct IHttpNegotiate3 {
+    lpVtbl: IHttpNegotiate3Vtbl*;
+}
+
+@foreign
+typedef LPWININETFILESTREAM = IWinInetFileStream*;
+
+@foreign
+struct IWinInetFileStreamVtbl {
+    QueryInterface: func(This: IWinInetFileStream*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWinInetFileStream*): ULONG;
+    Release: func(This: IWinInetFileStream*): ULONG;
+    SetHandleForUnlock: func(This: IWinInetFileStream*, hWinInetLockHandle: DWORD_PTR, dwReserved: DWORD_PTR): HRESULT;
+    SetDeleteFile: func(This: IWinInetFileStream*, dwReserved: DWORD_PTR): HRESULT;
+}
+
+@foreign
+struct IWinInetFileStream {
+    lpVtbl: IWinInetFileStreamVtbl*;
+}
+
+@foreign
+typedef LPWINDOWFORBINDINGUI = IWindowForBindingUI*;
+
+@foreign
+struct IWindowForBindingUIVtbl {
+    QueryInterface: func(This: IWindowForBindingUI*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWindowForBindingUI*): ULONG;
+    Release: func(This: IWindowForBindingUI*): ULONG;
+    GetWindow: func(This: IWindowForBindingUI*, rguidReason: GUID* const, phwnd: HWND*): HRESULT;
+}
+
+@foreign
+struct IWindowForBindingUI {
+    lpVtbl: IWindowForBindingUIVtbl*;
+}
+
+@foreign
+typedef LPCODEINSTALL = ICodeInstall*;
+
+@foreign
+enum __MIDL_ICodeInstall_0001 {
+    CIP_DISK_FULL = 0,
+    CIP_ACCESS_DENIED = 1,
+    CIP_NEWER_VERSION_EXISTS = 2,
+    CIP_OLDER_VERSION_EXISTS = 3,
+    CIP_NAME_CONFLICT = 4,
+    CIP_TRUST_VERIFICATION_COMPONENT_MISSING = 5,
+    CIP_EXE_SELF_REGISTERATION_TIMEOUT = 6,
+    CIP_UNSAFE_TO_ABORT = 7,
+    CIP_NEED_REBOOT = 8,
+    CIP_NEED_REBOOT_UI_PERMISSION = 9,
+}
+
+@foreign
+typedef CIP_STATUS = __MIDL_ICodeInstall_0001;
+
+@foreign
+struct ICodeInstallVtbl {
+    QueryInterface: func(This: ICodeInstall*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICodeInstall*): ULONG;
+    Release: func(This: ICodeInstall*): ULONG;
+    GetWindow: func(This: ICodeInstall*, rguidReason: GUID* const, phwnd: HWND*): HRESULT;
+    OnCodeInstallProblem: func(This: ICodeInstall*, ulStatusCode: ULONG, szDestination: LPCWSTR, szSource: LPCWSTR, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct ICodeInstall {
+    lpVtbl: ICodeInstallVtbl*;
+}
+
+@foreign
+enum __MIDL_IUri_0001 {
+    Uri_PROPERTY_ABSOLUTE_URI = 0,
+    Uri_PROPERTY_STRING_START = 0,
+    Uri_PROPERTY_AUTHORITY = 1,
+    Uri_PROPERTY_DISPLAY_URI = 2,
+    Uri_PROPERTY_DOMAIN = 3,
+    Uri_PROPERTY_EXTENSION = 4,
+    Uri_PROPERTY_FRAGMENT = 5,
+    Uri_PROPERTY_HOST = 6,
+    Uri_PROPERTY_PASSWORD = 7,
+    Uri_PROPERTY_PATH = 8,
+    Uri_PROPERTY_PATH_AND_QUERY = 9,
+    Uri_PROPERTY_QUERY = 10,
+    Uri_PROPERTY_RAW_URI = 11,
+    Uri_PROPERTY_SCHEME_NAME = 12,
+    Uri_PROPERTY_USER_INFO = 13,
+    Uri_PROPERTY_USER_NAME = 14,
+    Uri_PROPERTY_STRING_LAST = 14,
+    Uri_PROPERTY_DWORD_START = 15,
+    Uri_PROPERTY_HOST_TYPE = 15,
+    Uri_PROPERTY_PORT = 16,
+    Uri_PROPERTY_SCHEME = 17,
+    Uri_PROPERTY_DWORD_LAST = 18,
+    Uri_PROPERTY_ZONE = 18,
+}
+
+@foreign
+typedef Uri_PROPERTY = __MIDL_IUri_0001;
+
+@foreign
+enum __MIDL_IUri_0002 {
+    Uri_HOST_UNKNOWN = 0,
+    Uri_HOST_DNS = 1,
+    Uri_HOST_IPV4 = 2,
+    Uri_HOST_IPV6 = 3,
+    Uri_HOST_IDN = 4,
+}
+
+@foreign
+typedef Uri_HOST_TYPE = __MIDL_IUri_0002;
+
+@foreign
+struct IUriVtbl {
+    QueryInterface: func(This: IUri*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IUri*): ULONG;
+    Release: func(This: IUri*): ULONG;
+    GetPropertyBSTR: func(This: IUri*, uriProp: Uri_PROPERTY, pbstrProperty: BSTR*, dwFlags: DWORD): HRESULT;
+    GetPropertyLength: func(This: IUri*, uriProp: Uri_PROPERTY, pcchProperty: DWORD*, dwFlags: DWORD): HRESULT;
+    GetPropertyDWORD: func(This: IUri*, uriProp: Uri_PROPERTY, pdwProperty: DWORD*, dwFlags: DWORD): HRESULT;
+    HasProperty: func(This: IUri*, uriProp: Uri_PROPERTY, pfHasProperty: BOOL*): HRESULT;
+    GetAbsoluteUri: func(This: IUri*, pbstrAbsoluteUri: BSTR*): HRESULT;
+    GetAuthority: func(This: IUri*, pbstrAuthority: BSTR*): HRESULT;
+    GetDisplayUri: func(This: IUri*, pbstrDisplayString: BSTR*): HRESULT;
+    GetDomain: func(This: IUri*, pbstrDomain: BSTR*): HRESULT;
+    GetExtension: func(This: IUri*, pbstrExtension: BSTR*): HRESULT;
+    GetFragment: func(This: IUri*, pbstrFragment: BSTR*): HRESULT;
+    GetHost: func(This: IUri*, pbstrHost: BSTR*): HRESULT;
+    GetPassword: func(This: IUri*, pbstrPassword: BSTR*): HRESULT;
+    GetPath: func(This: IUri*, pbstrPath: BSTR*): HRESULT;
+    GetPathAndQuery: func(This: IUri*, pbstrPathAndQuery: BSTR*): HRESULT;
+    GetQuery: func(This: IUri*, pbstrQuery: BSTR*): HRESULT;
+    GetRawUri: func(This: IUri*, pbstrRawUri: BSTR*): HRESULT;
+    GetSchemeName: func(This: IUri*, pbstrSchemeName: BSTR*): HRESULT;
+    GetUserInfo: func(This: IUri*, pbstrUserInfo: BSTR*): HRESULT;
+    GetUserNameA: func(This: IUri*, pbstrUserName: BSTR*): HRESULT;
+    GetHostType: func(This: IUri*, pdwHostType: DWORD*): HRESULT;
+    GetPort: func(This: IUri*, pdwPort: DWORD*): HRESULT;
+    GetScheme: func(This: IUri*, pdwScheme: DWORD*): HRESULT;
+    GetZone: func(This: IUri*, pdwZone: DWORD*): HRESULT;
+    GetProperties: func(This: IUri*, pdwFlags: LPDWORD): HRESULT;
+    IsEqual: func(This: IUri*, pUri: IUri*, pfEqual: BOOL*): HRESULT;
+}
+
+@foreign
+struct IUri {
+    lpVtbl: IUriVtbl*;
+}
+
+@foreign
+func CreateUri(pwzURI: LPCWSTR, dwFlags: DWORD, dwReserved: DWORD_PTR, ppURI: IUri**): HRESULT;
+
+@foreign
+func CreateUriWithFragment(pwzURI: LPCWSTR, pwzFragment: LPCWSTR, dwFlags: DWORD, dwReserved: DWORD_PTR, ppURI: IUri**): HRESULT;
+
+@foreign
+func CreateUriFromMultiByteString(pszANSIInputUri: LPCSTR, dwEncodingFlags: DWORD, dwCodePage: DWORD, dwCreateFlags: DWORD, dwReserved: DWORD_PTR, ppUri: IUri**): HRESULT;
+
+@foreign
+struct IUriContainerVtbl {
+    QueryInterface: func(This: IUriContainer*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IUriContainer*): ULONG;
+    Release: func(This: IUriContainer*): ULONG;
+    GetIUri: func(This: IUriContainer*, ppIUri: IUri**): HRESULT;
+}
+
+@foreign
+struct IUriContainer {
+    lpVtbl: IUriContainerVtbl*;
+}
+
+@foreign
+struct IUriBuilderVtbl {
+    QueryInterface: func(This: IUriBuilder*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IUriBuilder*): ULONG;
+    Release: func(This: IUriBuilder*): ULONG;
+    CreateUriSimple: func(This: IUriBuilder*, dwAllowEncodingPropertyMask: DWORD, dwReserved: DWORD_PTR, ppIUri: IUri**): HRESULT;
+    CreateUri: func(This: IUriBuilder*, dwCreateFlags: DWORD, dwAllowEncodingPropertyMask: DWORD, dwReserved: DWORD_PTR, ppIUri: IUri**): HRESULT;
+    CreateUriWithFlags: func(This: IUriBuilder*, dwCreateFlags: DWORD, dwUriBuilderFlags: DWORD, dwAllowEncodingPropertyMask: DWORD, dwReserved: DWORD_PTR, ppIUri: IUri**): HRESULT;
+    GetIUri: func(This: IUriBuilder*, ppIUri: IUri**): HRESULT;
+    SetIUri: func(This: IUriBuilder*, pIUri: IUri*): HRESULT;
+    GetFragment: func(This: IUriBuilder*, pcchFragment: DWORD*, ppwzFragment: LPCWSTR*): HRESULT;
+    GetHost: func(This: IUriBuilder*, pcchHost: DWORD*, ppwzHost: LPCWSTR*): HRESULT;
+    GetPassword: func(This: IUriBuilder*, pcchPassword: DWORD*, ppwzPassword: LPCWSTR*): HRESULT;
+    GetPath: func(This: IUriBuilder*, pcchPath: DWORD*, ppwzPath: LPCWSTR*): HRESULT;
+    GetPort: func(This: IUriBuilder*, pfHasPort: BOOL*, pdwPort: DWORD*): HRESULT;
+    GetQuery: func(This: IUriBuilder*, pcchQuery: DWORD*, ppwzQuery: LPCWSTR*): HRESULT;
+    GetSchemeName: func(This: IUriBuilder*, pcchSchemeName: DWORD*, ppwzSchemeName: LPCWSTR*): HRESULT;
+    GetUserNameA: func(This: IUriBuilder*, pcchUserName: DWORD*, ppwzUserName: LPCWSTR*): HRESULT;
+    SetFragment: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    SetHost: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    SetPassword: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    SetPath: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    SetPort: func(This: IUriBuilder*, fHasPort: BOOL, dwNewValue: DWORD): HRESULT;
+    SetQuery: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    SetSchemeName: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    SetUserName: func(This: IUriBuilder*, pwzNewValue: LPCWSTR): HRESULT;
+    RemoveProperties: func(This: IUriBuilder*, dwPropertyMask: DWORD): HRESULT;
+    HasBeenModified: func(This: IUriBuilder*, pfModified: BOOL*): HRESULT;
+}
+
+@foreign
+struct IUriBuilder {
+    lpVtbl: IUriBuilderVtbl*;
+}
+
+@foreign
+struct IUriBuilderFactoryVtbl {
+    QueryInterface: func(This: IUriBuilderFactory*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IUriBuilderFactory*): ULONG;
+    Release: func(This: IUriBuilderFactory*): ULONG;
+    CreateIUriBuilder: func(This: IUriBuilderFactory*, dwFlags: DWORD, dwReserved: DWORD_PTR, ppIUriBuilder: IUriBuilder**): HRESULT;
+    CreateInitializedIUriBuilder: func(This: IUriBuilderFactory*, dwFlags: DWORD, dwReserved: DWORD_PTR, ppIUriBuilder: IUriBuilder**): HRESULT;
+}
+
+@foreign
+struct IUriBuilderFactory {
+    lpVtbl: IUriBuilderFactoryVtbl*;
+}
+
+@foreign
+func CreateIUriBuilder(pIUri: IUri*, dwFlags: DWORD, dwReserved: DWORD_PTR, ppIUriBuilder: IUriBuilder**): HRESULT;
+
+@foreign
+typedef LPWININETINFO = IWinInetInfo*;
+
+@foreign
+struct IWinInetInfoVtbl {
+    QueryInterface: func(This: IWinInetInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWinInetInfo*): ULONG;
+    Release: func(This: IWinInetInfo*): ULONG;
+    QueryOption: func(This: IWinInetInfo*, dwOption: DWORD, pBuffer: LPVOID, pcbBuf: DWORD*): HRESULT;
+}
+
+@foreign
+struct IWinInetInfo {
+    lpVtbl: IWinInetInfoVtbl*;
+}
+
+@foreign
+func IWinInetInfo_RemoteQueryOption_Proxy(This: IWinInetInfo*, dwOption: DWORD, pBuffer: BYTE*, pcbBuf: DWORD*): HRESULT;
+
+@foreign
+func IWinInetInfo_RemoteQueryOption_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPHTTPSECURITY = IHttpSecurity*;
+
+@foreign
+struct IHttpSecurityVtbl {
+    QueryInterface: func(This: IHttpSecurity*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IHttpSecurity*): ULONG;
+    Release: func(This: IHttpSecurity*): ULONG;
+    GetWindow: func(This: IHttpSecurity*, rguidReason: GUID* const, phwnd: HWND*): HRESULT;
+    OnSecurityProblem: func(This: IHttpSecurity*, dwProblem: DWORD): HRESULT;
+}
+
+@foreign
+struct IHttpSecurity {
+    lpVtbl: IHttpSecurityVtbl*;
+}
+
+@foreign
+typedef LPWININETHTTPINFO = IWinInetHttpInfo*;
+
+@foreign
+struct IWinInetHttpInfoVtbl {
+    QueryInterface: func(This: IWinInetHttpInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWinInetHttpInfo*): ULONG;
+    Release: func(This: IWinInetHttpInfo*): ULONG;
+    QueryOption: func(This: IWinInetHttpInfo*, dwOption: DWORD, pBuffer: LPVOID, pcbBuf: DWORD*): HRESULT;
+    QueryInfo: func(This: IWinInetHttpInfo*, dwOption: DWORD, pBuffer: LPVOID, pcbBuf: DWORD*, pdwFlags: DWORD*, pdwReserved: DWORD*): HRESULT;
+}
+
+@foreign
+struct IWinInetHttpInfo {
+    lpVtbl: IWinInetHttpInfoVtbl*;
+}
+
+@foreign
+func IWinInetHttpInfo_RemoteQueryInfo_Proxy(This: IWinInetHttpInfo*, dwOption: DWORD, pBuffer: BYTE*, pcbBuf: DWORD*, pdwFlags: DWORD*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IWinInetHttpInfo_RemoteQueryInfo_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct IWinInetHttpTimeoutsVtbl {
+    QueryInterface: func(This: IWinInetHttpTimeouts*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWinInetHttpTimeouts*): ULONG;
+    Release: func(This: IWinInetHttpTimeouts*): ULONG;
+    GetRequestTimeouts: func(This: IWinInetHttpTimeouts*, pdwConnectTimeout: DWORD*, pdwSendTimeout: DWORD*, pdwReceiveTimeout: DWORD*): HRESULT;
+}
+
+@foreign
+struct IWinInetHttpTimeouts {
+    lpVtbl: IWinInetHttpTimeoutsVtbl*;
+}
+
+@foreign
+typedef LPWININETCACHEHINTS = IWinInetCacheHints*;
+
+@foreign
+struct IWinInetCacheHintsVtbl {
+    QueryInterface: func(This: IWinInetCacheHints*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWinInetCacheHints*): ULONG;
+    Release: func(This: IWinInetCacheHints*): ULONG;
+    SetCacheExtension: func(This: IWinInetCacheHints*, pwzExt: LPCWSTR, pszCacheFile: LPVOID, pcbCacheFile: DWORD*, pdwWinInetError: DWORD*, pdwReserved: DWORD*): HRESULT;
+}
+
+@foreign
+struct IWinInetCacheHints {
+    lpVtbl: IWinInetCacheHintsVtbl*;
+}
+
+@foreign
+typedef LPWININETCACHEHINTS2 = IWinInetCacheHints2*;
+
+@foreign
+struct IWinInetCacheHints2Vtbl {
+    QueryInterface: func(This: IWinInetCacheHints2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWinInetCacheHints2*): ULONG;
+    Release: func(This: IWinInetCacheHints2*): ULONG;
+    SetCacheExtension: func(This: IWinInetCacheHints2*, pwzExt: LPCWSTR, pszCacheFile: LPVOID, pcbCacheFile: DWORD*, pdwWinInetError: DWORD*, pdwReserved: DWORD*): HRESULT;
+    SetCacheExtension2: func(This: IWinInetCacheHints2*, pwzExt: LPCWSTR, pwzCacheFile: WCHAR*, pcchCacheFile: DWORD*, pdwWinInetError: DWORD*, pdwReserved: DWORD*): HRESULT;
+}
+
+@foreign
+struct IWinInetCacheHints2 {
+    lpVtbl: IWinInetCacheHints2Vtbl*;
+}
+
+@foreign
+typedef LPBINDHOST = IBindHost*;
+
+@foreign
+struct IBindHostVtbl {
+    QueryInterface: func(This: IBindHost*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindHost*): ULONG;
+    Release: func(This: IBindHost*): ULONG;
+    CreateMoniker: func(This: IBindHost*, szName: LPOLESTR, pBC: IBindCtx*, ppmk: IMoniker**, dwReserved: DWORD): HRESULT;
+    MonikerBindToStorage: func(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: void**): HRESULT;
+    MonikerBindToObject: func(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: void**): HRESULT;
+}
+
+@foreign
+struct IBindHost {
+    lpVtbl: IBindHostVtbl*;
+}
+
+@foreign
+func IBindHost_RemoteMonikerBindToStorage_Proxy(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func IBindHost_RemoteMonikerBindToStorage_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IBindHost_RemoteMonikerBindToObject_Proxy(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func IBindHost_RemoteMonikerBindToObject_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func HlinkSimpleNavigateToString(szTarget: LPCWSTR, szLocation: LPCWSTR, szTargetFrameName: LPCWSTR, pUnk: IUnknown*, pbc: IBindCtx*, arg5: IBindStatusCallback*, grfHLNF: DWORD, dwReserved: DWORD): HRESULT;
+
+@foreign
+func HlinkSimpleNavigateToMoniker(pmkTarget: IMoniker*, szLocation: LPCWSTR, szTargetFrameName: LPCWSTR, pUnk: IUnknown*, pbc: IBindCtx*, arg5: IBindStatusCallback*, grfHLNF: DWORD, dwReserved: DWORD): HRESULT;
+
+@foreign
+func URLOpenStreamA(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: DWORD, arg3: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenStream(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: DWORD, arg3: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenStreamW(arg0: LPUNKNOWN, arg1: LPCWSTR, arg2: DWORD, arg3: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenPullStreamA(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: DWORD, arg3: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenPullStream(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: DWORD, arg3: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenPullStreamW(arg0: LPUNKNOWN, arg1: LPCWSTR, arg2: DWORD, arg3: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLDownloadToFileA(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: LPCSTR, arg3: DWORD, arg4: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLDownloadToFile(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: LPCSTR, arg3: DWORD, arg4: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLDownloadToFileW(arg0: LPUNKNOWN, arg1: LPCWSTR, arg2: LPCWSTR, arg3: DWORD, arg4: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLDownloadToCacheFileA(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: LPSTR, cchFileName: DWORD, arg4: DWORD, arg5: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLDownloadToCacheFile(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: LPSTR, cchFileName: DWORD, arg4: DWORD, arg5: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLDownloadToCacheFileW(arg0: LPUNKNOWN, arg1: LPCWSTR, arg2: LPWSTR, cchFileName: DWORD, arg4: DWORD, arg5: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenBlockingStreamA(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: LPSTREAM*, arg3: DWORD, arg4: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenBlockingStream(arg0: LPUNKNOWN, arg1: LPCSTR, arg2: LPSTREAM*, arg3: DWORD, arg4: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func URLOpenBlockingStreamW(arg0: LPUNKNOWN, arg1: LPCWSTR, arg2: LPSTREAM*, arg3: DWORD, arg4: LPBINDSTATUSCALLBACK): HRESULT;
+
+@foreign
+func HlinkGoBack(pUnk: IUnknown*): HRESULT;
+
+@foreign
+func HlinkGoForward(pUnk: IUnknown*): HRESULT;
+
+@foreign
+func HlinkNavigateString(pUnk: IUnknown*, szTarget: LPCWSTR): HRESULT;
+
+@foreign
+func HlinkNavigateMoniker(pUnk: IUnknown*, pmkTarget: IMoniker*): HRESULT;
+
+@foreign
+typedef LPIINTERNET = IInternet*;
+
+@foreign
+struct IInternetVtbl {
+    QueryInterface: func(This: IInternet*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternet*): ULONG;
+    Release: func(This: IInternet*): ULONG;
+}
+
+@foreign
+struct IInternet {
+    lpVtbl: IInternetVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETBINDINFO = IInternetBindInfo*;
+
+@foreign
+enum tagBINDSTRING {
+    BINDSTRING_HEADERS = 1,
+    BINDSTRING_ACCEPT_MIMES = 2,
+    BINDSTRING_EXTRA_URL = 3,
+    BINDSTRING_LANGUAGE = 4,
+    BINDSTRING_USERNAME = 5,
+    BINDSTRING_PASSWORD = 6,
+    BINDSTRING_UA_PIXELS = 7,
+    BINDSTRING_UA_COLOR = 8,
+    BINDSTRING_OS = 9,
+    BINDSTRING_USER_AGENT = 10,
+    BINDSTRING_ACCEPT_ENCODINGS = 11,
+    BINDSTRING_POST_COOKIE = 12,
+    BINDSTRING_POST_DATA_MIME = 13,
+    BINDSTRING_URL = 14,
+    BINDSTRING_IID = 15,
+    BINDSTRING_FLAG_BIND_TO_OBJECT = 16,
+    BINDSTRING_PTR_BIND_CONTEXT = 17,
+    BINDSTRING_XDR_ORIGIN = 18,
+    BINDSTRING_DOWNLOADPATH = 19,
+    BINDSTRING_ROOTDOC_URL = 20,
+    BINDSTRING_INITIAL_FILENAME = 21,
+    BINDSTRING_PROXY_USERNAME = 22,
+    BINDSTRING_PROXY_PASSWORD = 23,
+    BINDSTRING_ENTERPRISE_ID = 24,
+    BINDSTRING_DOC_URL = 25,
+}
+
+@foreign
+typedef BINDSTRING = tagBINDSTRING;
+
+@foreign
+struct IInternetBindInfoVtbl {
+    QueryInterface: func(This: IInternetBindInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetBindInfo*): ULONG;
+    Release: func(This: IInternetBindInfo*): ULONG;
+    GetBindInfo: func(This: IInternetBindInfo*, grfBINDF: DWORD*, pbindinfo: BINDINFO*): HRESULT;
+    GetBindString: func(This: IInternetBindInfo*, ulStringType: ULONG, ppwzStr: LPOLESTR*, cEl: ULONG, pcElFetched: ULONG*): HRESULT;
+}
+
+@foreign
+struct IInternetBindInfo {
+    lpVtbl: IInternetBindInfoVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETBINDINFOEX = IInternetBindInfoEx*;
+
+@foreign
+struct IInternetBindInfoExVtbl {
+    QueryInterface: func(This: IInternetBindInfoEx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetBindInfoEx*): ULONG;
+    Release: func(This: IInternetBindInfoEx*): ULONG;
+    GetBindInfo: func(This: IInternetBindInfoEx*, grfBINDF: DWORD*, pbindinfo: BINDINFO*): HRESULT;
+    GetBindString: func(This: IInternetBindInfoEx*, ulStringType: ULONG, ppwzStr: LPOLESTR*, cEl: ULONG, pcElFetched: ULONG*): HRESULT;
+    GetBindInfoEx: func(This: IInternetBindInfoEx*, grfBINDF: DWORD*, pbindinfo: BINDINFO*, grfBINDF2: DWORD*, pdwReserved: DWORD*): HRESULT;
+}
+
+@foreign
+struct IInternetBindInfoEx {
+    lpVtbl: IInternetBindInfoExVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETPROTOCOLROOT = IInternetProtocolRoot*;
+
+@foreign
+enum _tagPI_FLAGS {
+    PI_PARSE_URL = 1,
+    PI_FILTER_MODE = 2,
+    PI_FORCE_ASYNC = 4,
+    PI_USE_WORKERTHREAD = 8,
+    PI_MIMEVERIFICATION = 16,
+    PI_CLSIDLOOKUP = 32,
+    PI_DATAPROGRESS = 64,
+    PI_SYNCHRONOUS = 128,
+    PI_APARTMENTTHREADED = 256,
+    PI_CLASSINSTALL = 512,
+    PI_PASSONBINDCTX = 8192,
+    PI_LOADAPPDIRECT = 16384,
+    PI_NOMIMEHANDLER = 32768,
+    PD_FORCE_SWITCH = 65536,
+    PI_PREFERDEFAULTHANDLER = 131072,
+}
+
+@foreign
+typedef PI_FLAGS = _tagPI_FLAGS;
+
+@foreign
+struct _tagPROTOCOLDATA {
+    grfFlags: DWORD;
+    dwState: DWORD;
+    pData: LPVOID;
+    cbData: ULONG;
+}
+
+@foreign
+typedef PROTOCOLDATA = _tagPROTOCOLDATA;
+
+@foreign
+struct _tagStartParam {
+    iid: IID;
+    pIBindCtx: IBindCtx*;
+    pItf: IUnknown*;
+}
+
+@foreign
+typedef StartParam = _tagStartParam;
+
+@foreign
+struct IInternetProtocolRootVtbl {
+    QueryInterface: func(This: IInternetProtocolRoot*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetProtocolRoot*): ULONG;
+    Release: func(This: IInternetProtocolRoot*): ULONG;
+    Start: func(This: IInternetProtocolRoot*, szUrl: LPCWSTR, pOIProtSink: IInternetProtocolSink*, pOIBindInfo: IInternetBindInfo*, grfPI: DWORD, dwReserved: HANDLE_PTR): HRESULT;
+    Continue: func(This: IInternetProtocolRoot*, pProtocolData: PROTOCOLDATA*): HRESULT;
+    Abort: func(This: IInternetProtocolRoot*, hrReason: HRESULT, dwOptions: DWORD): HRESULT;
+    Terminate: func(This: IInternetProtocolRoot*, dwOptions: DWORD): HRESULT;
+    Suspend: func(This: IInternetProtocolRoot*): HRESULT;
+    Resume: func(This: IInternetProtocolRoot*): HRESULT;
+}
+
+@foreign
+struct IInternetProtocolRoot {
+    lpVtbl: IInternetProtocolRootVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETPROTOCOL = IInternetProtocol*;
+
+@foreign
+struct IInternetProtocolVtbl {
+    QueryInterface: func(This: IInternetProtocol*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetProtocol*): ULONG;
+    Release: func(This: IInternetProtocol*): ULONG;
+    Start: func(This: IInternetProtocol*, szUrl: LPCWSTR, pOIProtSink: IInternetProtocolSink*, pOIBindInfo: IInternetBindInfo*, grfPI: DWORD, dwReserved: HANDLE_PTR): HRESULT;
+    Continue: func(This: IInternetProtocol*, pProtocolData: PROTOCOLDATA*): HRESULT;
+    Abort: func(This: IInternetProtocol*, hrReason: HRESULT, dwOptions: DWORD): HRESULT;
+    Terminate: func(This: IInternetProtocol*, dwOptions: DWORD): HRESULT;
+    Suspend: func(This: IInternetProtocol*): HRESULT;
+    Resume: func(This: IInternetProtocol*): HRESULT;
+    Read: func(This: IInternetProtocol*, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+    Seek: func(This: IInternetProtocol*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+    LockRequest: func(This: IInternetProtocol*, dwOptions: DWORD): HRESULT;
+    UnlockRequest: func(This: IInternetProtocol*): HRESULT;
+}
+
+@foreign
+struct IInternetProtocol {
+    lpVtbl: IInternetProtocolVtbl*;
+}
+
+@foreign
+struct IInternetProtocolExVtbl {
+    QueryInterface: func(This: IInternetProtocolEx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetProtocolEx*): ULONG;
+    Release: func(This: IInternetProtocolEx*): ULONG;
+    Start: func(This: IInternetProtocolEx*, szUrl: LPCWSTR, pOIProtSink: IInternetProtocolSink*, pOIBindInfo: IInternetBindInfo*, grfPI: DWORD, dwReserved: HANDLE_PTR): HRESULT;
+    Continue: func(This: IInternetProtocolEx*, pProtocolData: PROTOCOLDATA*): HRESULT;
+    Abort: func(This: IInternetProtocolEx*, hrReason: HRESULT, dwOptions: DWORD): HRESULT;
+    Terminate: func(This: IInternetProtocolEx*, dwOptions: DWORD): HRESULT;
+    Suspend: func(This: IInternetProtocolEx*): HRESULT;
+    Resume: func(This: IInternetProtocolEx*): HRESULT;
+    Read: func(This: IInternetProtocolEx*, pv: void*, cb: ULONG, pcbRead: ULONG*): HRESULT;
+    Seek: func(This: IInternetProtocolEx*, dlibMove: LARGE_INTEGER, dwOrigin: DWORD, plibNewPosition: ULARGE_INTEGER*): HRESULT;
+    LockRequest: func(This: IInternetProtocolEx*, dwOptions: DWORD): HRESULT;
+    UnlockRequest: func(This: IInternetProtocolEx*): HRESULT;
+    StartEx: func(This: IInternetProtocolEx*, pUri: IUri*, pOIProtSink: IInternetProtocolSink*, pOIBindInfo: IInternetBindInfo*, grfPI: DWORD, dwReserved: HANDLE_PTR): HRESULT;
+}
+
+@foreign
+struct IInternetProtocolEx {
+    lpVtbl: IInternetProtocolExVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETPROTOCOLSINK = IInternetProtocolSink*;
+
+@foreign
+struct IInternetProtocolSinkVtbl {
+    QueryInterface: func(This: IInternetProtocolSink*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetProtocolSink*): ULONG;
+    Release: func(This: IInternetProtocolSink*): ULONG;
+    Switch: func(This: IInternetProtocolSink*, pProtocolData: PROTOCOLDATA*): HRESULT;
+    ReportProgress: func(This: IInternetProtocolSink*, ulStatusCode: ULONG, szStatusText: LPCWSTR): HRESULT;
+    ReportData: func(This: IInternetProtocolSink*, grfBSCF: DWORD, ulProgress: ULONG, ulProgressMax: ULONG): HRESULT;
+    ReportResult: func(This: IInternetProtocolSink*, hrResult: HRESULT, dwError: DWORD, szResult: LPCWSTR): HRESULT;
+}
+
+@foreign
+struct IInternetProtocolSink {
+    lpVtbl: IInternetProtocolSinkVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETPROTOCOLSINKStackable = IInternetProtocolSinkStackable*;
+
+@foreign
+struct IInternetProtocolSinkStackableVtbl {
+    QueryInterface: func(This: IInternetProtocolSinkStackable*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetProtocolSinkStackable*): ULONG;
+    Release: func(This: IInternetProtocolSinkStackable*): ULONG;
+    SwitchSink: func(This: IInternetProtocolSinkStackable*, pOIProtSink: IInternetProtocolSink*): HRESULT;
+    CommitSwitch: func(This: IInternetProtocolSinkStackable*): HRESULT;
+    RollbackSwitch: func(This: IInternetProtocolSinkStackable*): HRESULT;
+}
+
+@foreign
+struct IInternetProtocolSinkStackable {
+    lpVtbl: IInternetProtocolSinkStackableVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETSESSION = IInternetSession*;
+
+@foreign
+enum _tagOIBDG_FLAGS {
+    OIBDG_APARTMENTTHREADED = 256,
+    OIBDG_DATAONLY = 4096,
+}
+
+@foreign
+typedef OIBDG_FLAGS = _tagOIBDG_FLAGS;
+
+@foreign
+struct IInternetSessionVtbl {
+    QueryInterface: func(This: IInternetSession*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetSession*): ULONG;
+    Release: func(This: IInternetSession*): ULONG;
+    RegisterNameSpace: func(This: IInternetSession*, pCF: IClassFactory*, rclsid: IID* const, pwzProtocol: LPCWSTR, cPatterns: ULONG, ppwzPatterns: LPCWSTR*, dwReserved: DWORD): HRESULT;
+    UnregisterNameSpace: func(This: IInternetSession*, pCF: IClassFactory*, pszProtocol: LPCWSTR): HRESULT;
+    RegisterMimeFilter: func(This: IInternetSession*, pCF: IClassFactory*, rclsid: IID* const, pwzType: LPCWSTR): HRESULT;
+    UnregisterMimeFilter: func(This: IInternetSession*, pCF: IClassFactory*, pwzType: LPCWSTR): HRESULT;
+    CreateBinding: func(This: IInternetSession*, pBC: LPBC, szUrl: LPCWSTR, pUnkOuter: IUnknown*, ppUnk: IUnknown**, ppOInetProt: IInternetProtocol**, dwOption: DWORD): HRESULT;
+    SetSessionOption: func(This: IInternetSession*, dwOption: DWORD, pBuffer: LPVOID, dwBufferLength: DWORD, dwReserved: DWORD): HRESULT;
+    GetSessionOption: func(This: IInternetSession*, dwOption: DWORD, pBuffer: LPVOID, pdwBufferLength: DWORD*, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct IInternetSession {
+    lpVtbl: IInternetSessionVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETTHREADSWITCH = IInternetThreadSwitch*;
+
+@foreign
+struct IInternetThreadSwitchVtbl {
+    QueryInterface: func(This: IInternetThreadSwitch*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetThreadSwitch*): ULONG;
+    Release: func(This: IInternetThreadSwitch*): ULONG;
+    Prepare: func(This: IInternetThreadSwitch*): HRESULT;
+    Continue: func(This: IInternetThreadSwitch*): HRESULT;
+}
+
+@foreign
+struct IInternetThreadSwitch {
+    lpVtbl: IInternetThreadSwitchVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETPRIORITY = IInternetPriority*;
+
+@foreign
+struct IInternetPriorityVtbl {
+    QueryInterface: func(This: IInternetPriority*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetPriority*): ULONG;
+    Release: func(This: IInternetPriority*): ULONG;
+    SetPriority: func(This: IInternetPriority*, nPriority: LONG): HRESULT;
+    GetPriority: func(This: IInternetPriority*, pnPriority: LONG*): HRESULT;
+}
+
+@foreign
+struct IInternetPriority {
+    lpVtbl: IInternetPriorityVtbl*;
+}
+
+@foreign
+typedef LPIINTERNETPROTOCOLINFO = IInternetProtocolInfo*;
+
+@foreign
+enum _tagPARSEACTION {
+    PARSE_CANONICALIZE = 1,
+    PARSE_FRIENDLY = 2,
+    PARSE_SECURITY_URL = 3,
+    PARSE_ROOTDOCUMENT = 4,
+    PARSE_DOCUMENT = 5,
+    PARSE_ANCHOR = 6,
+    PARSE_ENCODE_IS_UNESCAPE = 7,
+    PARSE_DECODE_IS_ESCAPE = 8,
+    PARSE_PATH_FROM_URL = 9,
+    PARSE_URL_FROM_PATH = 10,
+    PARSE_MIME = 11,
+    PARSE_SERVER = 12,
+    PARSE_SCHEMA = 13,
+    PARSE_SITE = 14,
+    PARSE_DOMAIN = 15,
+    PARSE_LOCATION = 16,
+    PARSE_SECURITY_DOMAIN = 17,
+    PARSE_ESCAPE = 18,
+    PARSE_UNESCAPE = 19,
+}
+
+@foreign
+typedef PARSEACTION = _tagPARSEACTION;
+
+@foreign
+enum _tagPSUACTION {
+    PSU_DEFAULT = 1,
+    PSU_SECURITY_URL_ONLY = 2,
+}
+
+@foreign
+typedef PSUACTION = _tagPSUACTION;
+
+@foreign
+enum _tagQUERYOPTION {
+    QUERY_EXPIRATION_DATE = 1,
+    QUERY_TIME_OF_LAST_CHANGE = 2,
+    QUERY_CONTENT_ENCODING = 3,
+    QUERY_CONTENT_TYPE = 4,
+    QUERY_REFRESH = 5,
+    QUERY_RECOMBINE = 6,
+    QUERY_CAN_NAVIGATE = 7,
+    QUERY_USES_NETWORK = 8,
+    QUERY_IS_CACHED = 9,
+    QUERY_IS_INSTALLEDENTRY = 10,
+    QUERY_IS_CACHED_OR_MAPPED = 11,
+    QUERY_USES_CACHE = 12,
+    QUERY_IS_SECURE = 13,
+    QUERY_IS_SAFE = 14,
+    QUERY_USES_HISTORYFOLDER = 15,
+    QUERY_IS_CACHED_AND_USABLE_OFFLINE = 16,
+}
+
+@foreign
+typedef QUERYOPTION = _tagQUERYOPTION;
+
+@foreign
+struct IInternetProtocolInfoVtbl {
+    QueryInterface: func(This: IInternetProtocolInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetProtocolInfo*): ULONG;
+    Release: func(This: IInternetProtocolInfo*): ULONG;
+    ParseUrl: func(This: IInternetProtocolInfo*, pwzUrl: LPCWSTR, ParseAction: PARSEACTION, dwParseFlags: DWORD, pwzResult: LPWSTR, cchResult: DWORD, pcchResult: DWORD*, dwReserved: DWORD): HRESULT;
+    CombineUrl: func(This: IInternetProtocolInfo*, pwzBaseUrl: LPCWSTR, pwzRelativeUrl: LPCWSTR, dwCombineFlags: DWORD, pwzResult: LPWSTR, cchResult: DWORD, pcchResult: DWORD*, dwReserved: DWORD): HRESULT;
+    CompareUrl: func(This: IInternetProtocolInfo*, pwzUrl1: LPCWSTR, pwzUrl2: LPCWSTR, dwCompareFlags: DWORD): HRESULT;
+    QueryInfo: func(This: IInternetProtocolInfo*, pwzUrl: LPCWSTR, OueryOption: QUERYOPTION, dwQueryFlags: DWORD, pBuffer: LPVOID, cbBuffer: DWORD, pcbBuf: DWORD*, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct IInternetProtocolInfo {
+    lpVtbl: IInternetProtocolInfoVtbl*;
+}
+
+@foreign
+func CoInternetParseUrl(pwzUrl: LPCWSTR, ParseAction: PARSEACTION, dwFlags: DWORD, pszResult: LPWSTR, cchResult: DWORD, pcchResult: DWORD*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoInternetParseIUri(pIUri: IUri*, ParseAction: PARSEACTION, dwFlags: DWORD, pwzResult: LPWSTR, cchResult: DWORD, pcchResult: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+
+@foreign
+func CoInternetCombineUrl(pwzBaseUrl: LPCWSTR, pwzRelativeUrl: LPCWSTR, dwCombineFlags: DWORD, pszResult: LPWSTR, cchResult: DWORD, pcchResult: DWORD*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoInternetCombineUrlEx(pBaseUri: IUri*, pwzRelativeUrl: LPCWSTR, dwCombineFlags: DWORD, ppCombinedUri: IUri**, dwReserved: DWORD_PTR): HRESULT;
+
+@foreign
+func CoInternetCombineIUri(pBaseUri: IUri*, pRelativeUri: IUri*, dwCombineFlags: DWORD, ppCombinedUri: IUri**, dwReserved: DWORD_PTR): HRESULT;
+
+@foreign
+func CoInternetCompareUrl(pwzUrl1: LPCWSTR, pwzUrl2: LPCWSTR, dwFlags: DWORD): HRESULT;
+
+@foreign
+func CoInternetGetProtocolFlags(pwzUrl: LPCWSTR, pdwFlags: DWORD*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoInternetQueryInfo(pwzUrl: LPCWSTR, QueryOptions: QUERYOPTION, dwQueryFlags: DWORD, pvBuffer: LPVOID, cbBuffer: DWORD, pcbBuffer: DWORD*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoInternetGetSession(dwSessionMode: DWORD, ppIInternetSession: IInternetSession**, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoInternetGetSecurityUrl(pwszUrl: LPCWSTR, ppwszSecUrl: LPWSTR*, psuAction: PSUACTION, dwReserved: DWORD): HRESULT;
+
+@foreign
+func AsyncInstallDistributionUnit(szDistUnit: LPCWSTR, szTYPE: LPCWSTR, szExt: LPCWSTR, dwFileVersionMS: DWORD, dwFileVersionLS: DWORD, szURL: LPCWSTR, pbc: IBindCtx*, pvReserved: LPVOID, flags: DWORD): HRESULT;
+
+@foreign
+func CoInternetGetSecurityUrlEx(pUri: IUri*, ppSecUri: IUri**, psuAction: PSUACTION, dwReserved: DWORD_PTR): HRESULT;
+
+@foreign
+enum _tagINTERNETFEATURELIST {
+    FEATURE_OBJECT_CACHING = 0,
+    FEATURE_ZONE_ELEVATION = 1,
+    FEATURE_MIME_HANDLING = 2,
+    FEATURE_MIME_SNIFFING = 3,
+    FEATURE_WINDOW_RESTRICTIONS = 4,
+    FEATURE_WEBOC_POPUPMANAGEMENT = 5,
+    FEATURE_BEHAVIORS = 6,
+    FEATURE_DISABLE_MK_PROTOCOL = 7,
+    FEATURE_LOCALMACHINE_LOCKDOWN = 8,
+    FEATURE_SECURITYBAND = 9,
+    FEATURE_RESTRICT_ACTIVEXINSTALL = 10,
+    FEATURE_VALIDATE_NAVIGATE_URL = 11,
+    FEATURE_RESTRICT_FILEDOWNLOAD = 12,
+    FEATURE_ADDON_MANAGEMENT = 13,
+    FEATURE_PROTOCOL_LOCKDOWN = 14,
+    FEATURE_HTTP_USERNAME_PASSWORD_DISABLE = 15,
+    FEATURE_SAFE_BINDTOOBJECT = 16,
+    FEATURE_UNC_SAVEDFILECHECK = 17,
+    FEATURE_GET_URL_DOM_FILEPATH_UNENCODED = 18,
+    FEATURE_TABBED_BROWSING = 19,
+    FEATURE_SSLUX = 20,
+    FEATURE_DISABLE_NAVIGATION_SOUNDS = 21,
+    FEATURE_DISABLE_LEGACY_COMPRESSION = 22,
+    FEATURE_FORCE_ADDR_AND_STATUS = 23,
+    FEATURE_XMLHTTP = 24,
+    FEATURE_DISABLE_TELNET_PROTOCOL = 25,
+    FEATURE_FEEDS = 26,
+    FEATURE_BLOCK_INPUT_PROMPTS = 27,
+    FEATURE_ENTRY_COUNT = 28,
+}
+
+@foreign
+typedef INTERNETFEATURELIST = _tagINTERNETFEATURELIST;
+
+@foreign
+func CoInternetSetFeatureEnabled(FeatureEntry: INTERNETFEATURELIST, dwFlags: DWORD, fEnable: BOOL): HRESULT;
+
+@foreign
+func CoInternetIsFeatureEnabled(FeatureEntry: INTERNETFEATURELIST, dwFlags: DWORD): HRESULT;
+
+@foreign
+func CoInternetIsFeatureEnabledForUrl(FeatureEntry: INTERNETFEATURELIST, dwFlags: DWORD, szURL: LPCWSTR, pSecMgr: IInternetSecurityManager*): HRESULT;
+
+@foreign
+func CoInternetIsFeatureEnabledForIUri(FeatureEntry: INTERNETFEATURELIST, dwFlags: DWORD, pIUri: IUri*, pSecMgr: IInternetSecurityManagerEx2*): HRESULT;
+
+@foreign
+func CoInternetIsFeatureZoneElevationEnabled(szFromURL: LPCWSTR, szToURL: LPCWSTR, pSecMgr: IInternetSecurityManager*, dwFlags: DWORD): HRESULT;
+
+@foreign
+func CopyStgMedium(pcstgmedSrc: STGMEDIUM*, pstgmedDest: STGMEDIUM*): HRESULT;
+
+@foreign
+func CopyBindInfo(pcbiSrc: BINDINFO*, pbiDest: BINDINFO*): HRESULT;
+
+@foreign
+func ReleaseBindInfo(pbindinfo: BINDINFO*);
+
+@foreign
+func IEGetUserPrivateNamespaceName(): PWSTR;
+
+@foreign
+func CoInternetCreateSecurityManager(pSP: IServiceProvider*, ppSM: IInternetSecurityManager**, dwReserved: DWORD): HRESULT;
+
+@foreign
+func CoInternetCreateZoneManager(pSP: IServiceProvider*, ppZM: IInternetZoneManager**, dwReserved: DWORD): HRESULT;
+
+@foreign
+struct IInternetSecurityMgrSiteVtbl {
+    QueryInterface: func(This: IInternetSecurityMgrSite*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetSecurityMgrSite*): ULONG;
+    Release: func(This: IInternetSecurityMgrSite*): ULONG;
+    GetWindow: func(This: IInternetSecurityMgrSite*, phwnd: HWND*): HRESULT;
+    EnableModeless: func(This: IInternetSecurityMgrSite*, fEnable: BOOL): HRESULT;
+}
+
+@foreign
+struct IInternetSecurityMgrSite {
+    lpVtbl: IInternetSecurityMgrSiteVtbl*;
+}
+
+@foreign
+enum __MIDL_IInternetSecurityManager_0001 {
+    PUAF_DEFAULT = 0,
+    PUAF_NOUI = 1,
+    PUAF_ISFILE = 2,
+    PUAF_WARN_IF_DENIED = 4,
+    PUAF_FORCEUI_FOREGROUND = 8,
+    PUAF_CHECK_TIFS = 16,
+    PUAF_DONTCHECKBOXINDIALOG = 32,
+    PUAF_TRUSTED = 64,
+    PUAF_ACCEPT_WILDCARD_SCHEME = 128,
+    PUAF_ENFORCERESTRICTED = 256,
+    PUAF_NOSAVEDFILECHECK = 512,
+    PUAF_REQUIRESAVEDFILECHECK = 1024,
+    PUAF_DONT_USE_CACHE = 4096,
+    PUAF_RESERVED1 = 8192,
+    PUAF_RESERVED2 = 16384,
+    PUAF_LMZ_UNLOCKED = 65536,
+    PUAF_LMZ_LOCKED = 131072,
+    PUAF_DEFAULTZONEPOL = 262144,
+    PUAF_NPL_USE_LOCKED_IF_RESTRICTED = 524288,
+    PUAF_NOUIIFLOCKED = 1048576,
+    PUAF_DRAGPROTOCOLCHECK = 2097152,
+}
+
+@foreign
+typedef PUAF = __MIDL_IInternetSecurityManager_0001;
+
+@foreign
+enum __MIDL_IInternetSecurityManager_0002 {
+    PUAFOUT_DEFAULT = 0,
+    PUAFOUT_ISLOCKZONEPOLICY = 1,
+}
+
+@foreign
+typedef PUAFOUT = __MIDL_IInternetSecurityManager_0002;
+
+@foreign
+enum __MIDL_IInternetSecurityManager_0003 {
+    SZM_CREATE = 0,
+    SZM_DELETE = 1,
+}
+
+@foreign
+typedef SZM_FLAGS = __MIDL_IInternetSecurityManager_0003;
+
+@foreign
+struct IInternetSecurityManagerVtbl {
+    QueryInterface: func(This: IInternetSecurityManager*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetSecurityManager*): ULONG;
+    Release: func(This: IInternetSecurityManager*): ULONG;
+    SetSecuritySite: func(This: IInternetSecurityManager*, pSite: IInternetSecurityMgrSite*): HRESULT;
+    GetSecuritySite: func(This: IInternetSecurityManager*, ppSite: IInternetSecurityMgrSite**): HRESULT;
+    MapUrlToZone: func(This: IInternetSecurityManager*, pwszUrl: LPCWSTR, pdwZone: DWORD*, dwFlags: DWORD): HRESULT;
+    GetSecurityId: func(This: IInternetSecurityManager*, pwszUrl: LPCWSTR, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+    ProcessUrlAction: func(This: IInternetSecurityManager*, pwszUrl: LPCWSTR, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD): HRESULT;
+    QueryCustomPolicy: func(This: IInternetSecurityManager*, pwszUrl: LPCWSTR, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, pContext: BYTE*, cbContext: DWORD, dwReserved: DWORD): HRESULT;
+    SetZoneMapping: func(This: IInternetSecurityManager*, dwZone: DWORD, lpszPattern: LPCWSTR, dwFlags: DWORD): HRESULT;
+    GetZoneMappings: func(This: IInternetSecurityManager*, dwZone: DWORD, ppenumString: IEnumString**, dwFlags: DWORD): HRESULT;
+}
+
+@foreign
+struct IInternetSecurityManager {
+    lpVtbl: IInternetSecurityManagerVtbl*;
+}
+
+@foreign
+struct IInternetSecurityManagerExVtbl {
+    QueryInterface: func(This: IInternetSecurityManagerEx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetSecurityManagerEx*): ULONG;
+    Release: func(This: IInternetSecurityManagerEx*): ULONG;
+    SetSecuritySite: func(This: IInternetSecurityManagerEx*, pSite: IInternetSecurityMgrSite*): HRESULT;
+    GetSecuritySite: func(This: IInternetSecurityManagerEx*, ppSite: IInternetSecurityMgrSite**): HRESULT;
+    MapUrlToZone: func(This: IInternetSecurityManagerEx*, pwszUrl: LPCWSTR, pdwZone: DWORD*, dwFlags: DWORD): HRESULT;
+    GetSecurityId: func(This: IInternetSecurityManagerEx*, pwszUrl: LPCWSTR, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+    ProcessUrlAction: func(This: IInternetSecurityManagerEx*, pwszUrl: LPCWSTR, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD): HRESULT;
+    QueryCustomPolicy: func(This: IInternetSecurityManagerEx*, pwszUrl: LPCWSTR, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, pContext: BYTE*, cbContext: DWORD, dwReserved: DWORD): HRESULT;
+    SetZoneMapping: func(This: IInternetSecurityManagerEx*, dwZone: DWORD, lpszPattern: LPCWSTR, dwFlags: DWORD): HRESULT;
+    GetZoneMappings: func(This: IInternetSecurityManagerEx*, dwZone: DWORD, ppenumString: IEnumString**, dwFlags: DWORD): HRESULT;
+    ProcessUrlActionEx: func(This: IInternetSecurityManagerEx*, pwszUrl: LPCWSTR, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD, pdwOutFlags: DWORD*): HRESULT;
+}
+
+@foreign
+struct IInternetSecurityManagerEx {
+    lpVtbl: IInternetSecurityManagerExVtbl*;
+}
+
+@foreign
+struct IInternetSecurityManagerEx2Vtbl {
+    QueryInterface: func(This: IInternetSecurityManagerEx2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetSecurityManagerEx2*): ULONG;
+    Release: func(This: IInternetSecurityManagerEx2*): ULONG;
+    SetSecuritySite: func(This: IInternetSecurityManagerEx2*, pSite: IInternetSecurityMgrSite*): HRESULT;
+    GetSecuritySite: func(This: IInternetSecurityManagerEx2*, ppSite: IInternetSecurityMgrSite**): HRESULT;
+    MapUrlToZone: func(This: IInternetSecurityManagerEx2*, pwszUrl: LPCWSTR, pdwZone: DWORD*, dwFlags: DWORD): HRESULT;
+    GetSecurityId: func(This: IInternetSecurityManagerEx2*, pwszUrl: LPCWSTR, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+    ProcessUrlAction: func(This: IInternetSecurityManagerEx2*, pwszUrl: LPCWSTR, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD): HRESULT;
+    QueryCustomPolicy: func(This: IInternetSecurityManagerEx2*, pwszUrl: LPCWSTR, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, pContext: BYTE*, cbContext: DWORD, dwReserved: DWORD): HRESULT;
+    SetZoneMapping: func(This: IInternetSecurityManagerEx2*, dwZone: DWORD, lpszPattern: LPCWSTR, dwFlags: DWORD): HRESULT;
+    GetZoneMappings: func(This: IInternetSecurityManagerEx2*, dwZone: DWORD, ppenumString: IEnumString**, dwFlags: DWORD): HRESULT;
+    ProcessUrlActionEx: func(This: IInternetSecurityManagerEx2*, pwszUrl: LPCWSTR, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD, pdwOutFlags: DWORD*): HRESULT;
+    MapUrlToZoneEx2: func(This: IInternetSecurityManagerEx2*, pUri: IUri*, pdwZone: DWORD*, dwFlags: DWORD, ppwszMappedUrl: LPWSTR*, pdwOutFlags: DWORD*): HRESULT;
+    ProcessUrlActionEx2: func(This: IInternetSecurityManagerEx2*, pUri: IUri*, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD_PTR, pdwOutFlags: DWORD*): HRESULT;
+    GetSecurityIdEx2: func(This: IInternetSecurityManagerEx2*, pUri: IUri*, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+    QueryCustomPolicyEx2: func(This: IInternetSecurityManagerEx2*, pUri: IUri*, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, pContext: BYTE*, cbContext: DWORD, dwReserved: DWORD_PTR): HRESULT;
+}
+
+@foreign
+struct IInternetSecurityManagerEx2 {
+    lpVtbl: IInternetSecurityManagerEx2Vtbl*;
+}
+
+@foreign
+struct IZoneIdentifierVtbl {
+    QueryInterface: func(This: IZoneIdentifier*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IZoneIdentifier*): ULONG;
+    Release: func(This: IZoneIdentifier*): ULONG;
+    GetId: func(This: IZoneIdentifier*, pdwZone: DWORD*): HRESULT;
+    SetId: func(This: IZoneIdentifier*, dwZone: DWORD): HRESULT;
+    Remove: func(This: IZoneIdentifier*): HRESULT;
+}
+
+@foreign
+struct IZoneIdentifier {
+    lpVtbl: IZoneIdentifierVtbl*;
+}
+
+@foreign
+struct IZoneIdentifier2Vtbl {
+    QueryInterface: func(This: IZoneIdentifier2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IZoneIdentifier2*): ULONG;
+    Release: func(This: IZoneIdentifier2*): ULONG;
+    GetId: func(This: IZoneIdentifier2*, pdwZone: DWORD*): HRESULT;
+    SetId: func(This: IZoneIdentifier2*, dwZone: DWORD): HRESULT;
+    Remove: func(This: IZoneIdentifier2*): HRESULT;
+    GetLastWriterPackageFamilyName: func(This: IZoneIdentifier2*, packageFamilyName: LPWSTR*): HRESULT;
+    SetLastWriterPackageFamilyName: func(This: IZoneIdentifier2*, packageFamilyName: LPCWSTR): HRESULT;
+    RemoveLastWriterPackageFamilyName: func(This: IZoneIdentifier2*): HRESULT;
+    GetAppZoneId: func(This: IZoneIdentifier2*, zone: DWORD*): HRESULT;
+    SetAppZoneId: func(This: IZoneIdentifier2*, zone: DWORD): HRESULT;
+    RemoveAppZoneId: func(This: IZoneIdentifier2*): HRESULT;
+}
+
+@foreign
+struct IZoneIdentifier2 {
+    lpVtbl: IZoneIdentifier2Vtbl*;
+}
+
+@foreign
+struct IInternetHostSecurityManagerVtbl {
+    QueryInterface: func(This: IInternetHostSecurityManager*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetHostSecurityManager*): ULONG;
+    Release: func(This: IInternetHostSecurityManager*): ULONG;
+    GetSecurityId: func(This: IInternetHostSecurityManager*, pbSecurityId: BYTE*, pcbSecurityId: DWORD*, dwReserved: DWORD_PTR): HRESULT;
+    ProcessUrlAction: func(This: IInternetHostSecurityManager*, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, pContext: BYTE*, cbContext: DWORD, dwFlags: DWORD, dwReserved: DWORD): HRESULT;
+    QueryCustomPolicy: func(This: IInternetHostSecurityManager*, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, pContext: BYTE*, cbContext: DWORD, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct IInternetHostSecurityManager {
+    lpVtbl: IInternetHostSecurityManagerVtbl*;
+}
+
+@foreign
+typedef LPURLZONEMANAGER = IInternetZoneManager*;
+
+@foreign
+enum tagURLZONE {
+    URLZONE_INVALID = -1,
+    URLZONE_PREDEFINED_MIN = 0,
+    URLZONE_LOCAL_MACHINE = 0,
+    URLZONE_INTRANET = 1,
+    URLZONE_TRUSTED = 2,
+    URLZONE_INTERNET = 3,
+    URLZONE_UNTRUSTED = 4,
+    URLZONE_PREDEFINED_MAX = 999,
+    URLZONE_USER_MIN = 1000,
+    URLZONE_USER_MAX = 10000,
+}
+
+@foreign
+typedef URLZONE = tagURLZONE;
+
+@foreign
+enum tagURLTEMPLATE {
+    URLTEMPLATE_CUSTOM = 0,
+    URLTEMPLATE_LOW = 65536,
+    URLTEMPLATE_PREDEFINED_MIN = 65536,
+    URLTEMPLATE_MEDLOW = 66816,
+    URLTEMPLATE_MEDIUM = 69632,
+    URLTEMPLATE_MEDHIGH = 70912,
+    URLTEMPLATE_HIGH = 73728,
+    URLTEMPLATE_PREDEFINED_MAX = 131072,
+}
+
+@foreign
+typedef URLTEMPLATE = tagURLTEMPLATE;
+
+@foreign
+enum __MIDL_IInternetZoneManager_0001 {
+    MAX_ZONE_DESCRIPTION = 200,
+    MAX_ZONE_PATH = 260,
+}
+
+@foreign
+enum __MIDL_IInternetZoneManager_0002 {
+    ZAFLAGS_CUSTOM_EDIT = 1,
+    ZAFLAGS_ADD_SITES = 2,
+    ZAFLAGS_REQUIRE_VERIFICATION = 4,
+    ZAFLAGS_INCLUDE_PROXY_OVERRIDE = 8,
+    ZAFLAGS_INCLUDE_INTRANET_SITES = 16,
+    ZAFLAGS_NO_UI = 32,
+    ZAFLAGS_SUPPORTS_VERIFICATION = 64,
+    ZAFLAGS_UNC_AS_INTRANET = 128,
+    ZAFLAGS_DETECT_INTRANET = 256,
+    ZAFLAGS_USE_LOCKED_ZONES = 65536,
+    ZAFLAGS_VERIFY_TEMPLATE_SETTINGS = 131072,
+    ZAFLAGS_NO_CACHE = 262144,
+}
+
+@foreign
+typedef ZAFLAGS = __MIDL_IInternetZoneManager_0002;
+
+@foreign
+struct _ZONEATTRIBUTES {
+    cbSize: ULONG;
+    szDisplayName: WCHAR[260];
+    szDescription: WCHAR[200];
+    szIconPath: WCHAR[260];
+    dwTemplateMinLevel: DWORD;
+    dwTemplateRecommended: DWORD;
+    dwTemplateCurrentLevel: DWORD;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef ZONEATTRIBUTES = _ZONEATTRIBUTES;
+
+@foreign
+typedef LPZONEATTRIBUTES = _ZONEATTRIBUTES*;
+
+@foreign
+enum _URLZONEREG {
+    URLZONEREG_DEFAULT = 0,
+    URLZONEREG_HKLM = 1,
+    URLZONEREG_HKCU = 2,
+}
+
+@foreign
+typedef URLZONEREG = _URLZONEREG;
+
+@foreign
+struct IInternetZoneManagerVtbl {
+    QueryInterface: func(This: IInternetZoneManager*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetZoneManager*): ULONG;
+    Release: func(This: IInternetZoneManager*): ULONG;
+    GetZoneAttributes: func(This: IInternetZoneManager*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*): HRESULT;
+    SetZoneAttributes: func(This: IInternetZoneManager*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*): HRESULT;
+    GetZoneCustomPolicy: func(This: IInternetZoneManager*, dwZone: DWORD, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, urlZoneReg: URLZONEREG): HRESULT;
+    SetZoneCustomPolicy: func(This: IInternetZoneManager*, dwZone: DWORD, guidKey: GUID* const, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    GetZoneActionPolicy: func(This: IInternetZoneManager*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    SetZoneActionPolicy: func(This: IInternetZoneManager*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    PromptAction: func(This: IInternetZoneManager*, dwAction: DWORD, hwndParent: HWND, pwszUrl: LPCWSTR, pwszText: LPCWSTR, dwPromptFlags: DWORD): HRESULT;
+    LogAction: func(This: IInternetZoneManager*, dwAction: DWORD, pwszUrl: LPCWSTR, pwszText: LPCWSTR, dwLogFlags: DWORD): HRESULT;
+    CreateZoneEnumerator: func(This: IInternetZoneManager*, pdwEnum: DWORD*, pdwCount: DWORD*, dwFlags: DWORD): HRESULT;
+    GetZoneAt: func(This: IInternetZoneManager*, dwEnum: DWORD, dwIndex: DWORD, pdwZone: DWORD*): HRESULT;
+    DestroyZoneEnumerator: func(This: IInternetZoneManager*, dwEnum: DWORD): HRESULT;
+    CopyTemplatePoliciesToZone: func(This: IInternetZoneManager*, dwTemplate: DWORD, dwZone: DWORD, dwReserved: DWORD): HRESULT;
+}
+
+@foreign
+struct IInternetZoneManager {
+    lpVtbl: IInternetZoneManagerVtbl*;
+}
+
+@foreign
+struct IInternetZoneManagerExVtbl {
+    QueryInterface: func(This: IInternetZoneManagerEx*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetZoneManagerEx*): ULONG;
+    Release: func(This: IInternetZoneManagerEx*): ULONG;
+    GetZoneAttributes: func(This: IInternetZoneManagerEx*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*): HRESULT;
+    SetZoneAttributes: func(This: IInternetZoneManagerEx*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*): HRESULT;
+    GetZoneCustomPolicy: func(This: IInternetZoneManagerEx*, dwZone: DWORD, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, urlZoneReg: URLZONEREG): HRESULT;
+    SetZoneCustomPolicy: func(This: IInternetZoneManagerEx*, dwZone: DWORD, guidKey: GUID* const, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    GetZoneActionPolicy: func(This: IInternetZoneManagerEx*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    SetZoneActionPolicy: func(This: IInternetZoneManagerEx*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    PromptAction: func(This: IInternetZoneManagerEx*, dwAction: DWORD, hwndParent: HWND, pwszUrl: LPCWSTR, pwszText: LPCWSTR, dwPromptFlags: DWORD): HRESULT;
+    LogAction: func(This: IInternetZoneManagerEx*, dwAction: DWORD, pwszUrl: LPCWSTR, pwszText: LPCWSTR, dwLogFlags: DWORD): HRESULT;
+    CreateZoneEnumerator: func(This: IInternetZoneManagerEx*, pdwEnum: DWORD*, pdwCount: DWORD*, dwFlags: DWORD): HRESULT;
+    GetZoneAt: func(This: IInternetZoneManagerEx*, dwEnum: DWORD, dwIndex: DWORD, pdwZone: DWORD*): HRESULT;
+    DestroyZoneEnumerator: func(This: IInternetZoneManagerEx*, dwEnum: DWORD): HRESULT;
+    CopyTemplatePoliciesToZone: func(This: IInternetZoneManagerEx*, dwTemplate: DWORD, dwZone: DWORD, dwReserved: DWORD): HRESULT;
+    GetZoneActionPolicyEx: func(This: IInternetZoneManagerEx*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG, dwFlags: DWORD): HRESULT;
+    SetZoneActionPolicyEx: func(This: IInternetZoneManagerEx*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG, dwFlags: DWORD): HRESULT;
+}
+
+@foreign
+struct IInternetZoneManagerEx {
+    lpVtbl: IInternetZoneManagerExVtbl*;
+}
+
+@foreign
+struct IInternetZoneManagerEx2Vtbl {
+    QueryInterface: func(This: IInternetZoneManagerEx2*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IInternetZoneManagerEx2*): ULONG;
+    Release: func(This: IInternetZoneManagerEx2*): ULONG;
+    GetZoneAttributes: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*): HRESULT;
+    SetZoneAttributes: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*): HRESULT;
+    GetZoneCustomPolicy: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, guidKey: GUID* const, ppPolicy: BYTE**, pcbPolicy: DWORD*, urlZoneReg: URLZONEREG): HRESULT;
+    SetZoneCustomPolicy: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, guidKey: GUID* const, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    GetZoneActionPolicy: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    SetZoneActionPolicy: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG): HRESULT;
+    PromptAction: func(This: IInternetZoneManagerEx2*, dwAction: DWORD, hwndParent: HWND, pwszUrl: LPCWSTR, pwszText: LPCWSTR, dwPromptFlags: DWORD): HRESULT;
+    LogAction: func(This: IInternetZoneManagerEx2*, dwAction: DWORD, pwszUrl: LPCWSTR, pwszText: LPCWSTR, dwLogFlags: DWORD): HRESULT;
+    CreateZoneEnumerator: func(This: IInternetZoneManagerEx2*, pdwEnum: DWORD*, pdwCount: DWORD*, dwFlags: DWORD): HRESULT;
+    GetZoneAt: func(This: IInternetZoneManagerEx2*, dwEnum: DWORD, dwIndex: DWORD, pdwZone: DWORD*): HRESULT;
+    DestroyZoneEnumerator: func(This: IInternetZoneManagerEx2*, dwEnum: DWORD): HRESULT;
+    CopyTemplatePoliciesToZone: func(This: IInternetZoneManagerEx2*, dwTemplate: DWORD, dwZone: DWORD, dwReserved: DWORD): HRESULT;
+    GetZoneActionPolicyEx: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG, dwFlags: DWORD): HRESULT;
+    SetZoneActionPolicyEx: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, dwAction: DWORD, pPolicy: BYTE*, cbPolicy: DWORD, urlZoneReg: URLZONEREG, dwFlags: DWORD): HRESULT;
+    GetZoneAttributesEx: func(This: IInternetZoneManagerEx2*, dwZone: DWORD, pZoneAttributes: ZONEATTRIBUTES*, dwFlags: DWORD): HRESULT;
+    GetZoneSecurityState: func(This: IInternetZoneManagerEx2*, dwZoneIndex: DWORD, fRespectPolicy: BOOL, pdwState: LPDWORD, pfPolicyEncountered: BOOL*): HRESULT;
+    GetIESecurityState: func(This: IInternetZoneManagerEx2*, fRespectPolicy: BOOL, pdwState: LPDWORD, pfPolicyEncountered: BOOL*, fNoCache: BOOL): HRESULT;
+    FixUnsecureSettings: func(This: IInternetZoneManagerEx2*): HRESULT;
+}
+
+@foreign
+struct IInternetZoneManagerEx2 {
+    lpVtbl: IInternetZoneManagerEx2Vtbl*;
+}
+
+@foreign
+struct _tagCODEBASEHOLD {
+    cbSize: ULONG;
+    szDistUnit: LPWSTR;
+    szCodeBase: LPWSTR;
+    dwVersionMS: DWORD;
+    dwVersionLS: DWORD;
+    dwStyle: DWORD;
+}
+
+@foreign
+typedef CODEBASEHOLD = _tagCODEBASEHOLD;
+
+@foreign
+typedef LPCODEBASEHOLD = _tagCODEBASEHOLD*;
+
+@foreign
+struct _tagSOFTDISTINFO {
+    cbSize: ULONG;
+    dwFlags: DWORD;
+    dwAdState: DWORD;
+    szTitle: LPWSTR;
+    szAbstract: LPWSTR;
+    szHREF: LPWSTR;
+    dwInstalledVersionMS: DWORD;
+    dwInstalledVersionLS: DWORD;
+    dwUpdateVersionMS: DWORD;
+    dwUpdateVersionLS: DWORD;
+    dwAdvertisedVersionMS: DWORD;
+    dwAdvertisedVersionLS: DWORD;
+    dwReserved: DWORD;
+}
+
+@foreign
+typedef SOFTDISTINFO = _tagSOFTDISTINFO;
+
+@foreign
+typedef LPSOFTDISTINFO = _tagSOFTDISTINFO*;
+
+@foreign
+struct ISoftDistExtVtbl {
+    QueryInterface: func(This: ISoftDistExt*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ISoftDistExt*): ULONG;
+    Release: func(This: ISoftDistExt*): ULONG;
+    ProcessSoftDist: func(This: ISoftDistExt*, szCDFURL: LPCWSTR, pSoftDistElement: IXMLElement*, lpsdi: LPSOFTDISTINFO): HRESULT;
+    GetFirstCodeBase: func(This: ISoftDistExt*, szCodeBase: LPWSTR*, dwMaxSize: LPDWORD): HRESULT;
+    GetNextCodeBase: func(This: ISoftDistExt*, szCodeBase: LPWSTR*, dwMaxSize: LPDWORD): HRESULT;
+    AsyncInstallDistributionUnit: func(This: ISoftDistExt*, pbc: IBindCtx*, pvReserved: LPVOID, flags: DWORD, lpcbh: LPCODEBASEHOLD): HRESULT;
+}
+
+@foreign
+struct ISoftDistExt {
+    lpVtbl: ISoftDistExtVtbl*;
+}
+
+@foreign
+func GetSoftwareUpdateInfo(szDistUnit: LPCWSTR, psdi: LPSOFTDISTINFO): HRESULT;
+
+@foreign
+func SetSoftwareUpdateAdvertisementState(szDistUnit: LPCWSTR, dwAdState: DWORD, dwAdvertisedVersionMS: DWORD, dwAdvertisedVersionLS: DWORD): HRESULT;
+
+@foreign
+typedef LPCATALOGFILEINFO = ICatalogFileInfo*;
+
+@foreign
+struct ICatalogFileInfoVtbl {
+    QueryInterface: func(This: ICatalogFileInfo*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: ICatalogFileInfo*): ULONG;
+    Release: func(This: ICatalogFileInfo*): ULONG;
+    GetCatalogFile: func(This: ICatalogFileInfo*, ppszCatalogFile: LPSTR*): HRESULT;
+    GetJavaTrust: func(This: ICatalogFileInfo*, ppJavaTrust: void**): HRESULT;
+}
+
+@foreign
+struct ICatalogFileInfo {
+    lpVtbl: ICatalogFileInfoVtbl*;
+}
+
+@foreign
+typedef LPDATAFILTER = IDataFilter*;
+
+@foreign
+struct IDataFilterVtbl {
+    QueryInterface: func(This: IDataFilter*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IDataFilter*): ULONG;
+    Release: func(This: IDataFilter*): ULONG;
+    DoEncode: func(This: IDataFilter*, dwFlags: DWORD, lInBufferSize: LONG, pbInBuffer: BYTE*, lOutBufferSize: LONG, pbOutBuffer: BYTE*, lInBytesAvailable: LONG, plInBytesRead: LONG*, plOutBytesWritten: LONG*, dwReserved: DWORD): HRESULT;
+    DoDecode: func(This: IDataFilter*, dwFlags: DWORD, lInBufferSize: LONG, pbInBuffer: BYTE*, lOutBufferSize: LONG, pbOutBuffer: BYTE*, lInBytesAvailable: LONG, plInBytesRead: LONG*, plOutBytesWritten: LONG*, dwReserved: DWORD): HRESULT;
+    SetEncodingLevel: func(This: IDataFilter*, dwEncLevel: DWORD): HRESULT;
+}
+
+@foreign
+struct IDataFilter {
+    lpVtbl: IDataFilterVtbl*;
+}
+
+@foreign
+struct _tagPROTOCOLFILTERDATA {
+    cbSize: DWORD;
+    pProtocolSink: IInternetProtocolSink*;
+    pProtocol: IInternetProtocol*;
+    pUnk: IUnknown*;
+    dwFilterFlags: DWORD;
+}
+
+@foreign
+typedef PROTOCOLFILTERDATA = _tagPROTOCOLFILTERDATA;
+
+@foreign
+typedef LPENCODINGFILTERFACTORY = IEncodingFilterFactory*;
+
+@foreign
+struct _tagDATAINFO {
+    ulTotalSize: ULONG;
+    ulavrPacketSize: ULONG;
+    ulConnectSpeed: ULONG;
+    ulProcessorSpeed: ULONG;
+}
+
+@foreign
+typedef DATAINFO = _tagDATAINFO;
+
+@foreign
+struct IEncodingFilterFactoryVtbl {
+    QueryInterface: func(This: IEncodingFilterFactory*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEncodingFilterFactory*): ULONG;
+    Release: func(This: IEncodingFilterFactory*): ULONG;
+    FindBestFilter: func(This: IEncodingFilterFactory*, pwzCodeIn: LPCWSTR, pwzCodeOut: LPCWSTR, info: DATAINFO, ppDF: IDataFilter**): HRESULT;
+    GetDefaultFilter: func(This: IEncodingFilterFactory*, pwzCodeIn: LPCWSTR, pwzCodeOut: LPCWSTR, ppDF: IDataFilter**): HRESULT;
+}
+
+@foreign
+struct IEncodingFilterFactory {
+    lpVtbl: IEncodingFilterFactoryVtbl*;
+}
+
+@foreign
+func IsLoggingEnabledA(pszUrl: LPCSTR): BOOL;
+
+@foreign
+func IsLoggingEnabled(pszUrl: LPCSTR): BOOL;
+
+@foreign
+func IsLoggingEnabledW(pwszUrl: LPCWSTR): BOOL;
+
+@foreign
+struct _tagHIT_LOGGING_INFO {
+    dwStructSize: DWORD;
+    lpszLoggedUrlName: LPSTR;
+    StartTime: SYSTEMTIME;
+    EndTime: SYSTEMTIME;
+    lpszExtendedInfo: LPSTR;
+}
+
+@foreign
+typedef HIT_LOGGING_INFO = _tagHIT_LOGGING_INFO;
+
+@foreign
+typedef LPHIT_LOGGING_INFO = _tagHIT_LOGGING_INFO*;
+
+@foreign
+func WriteHitLogging(lpLogginginfo: LPHIT_LOGGING_INFO): BOOL;
+
+@foreign
+struct CONFIRMSAFETY {
+    clsid: CLSID;
+    pUnk: IUnknown*;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef LPIWRAPPEDPROTOCOL = IWrappedProtocol*;
+
+@foreign
+struct IWrappedProtocolVtbl {
+    QueryInterface: func(This: IWrappedProtocol*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IWrappedProtocol*): ULONG;
+    Release: func(This: IWrappedProtocol*): ULONG;
+    GetWrapperCode: func(This: IWrappedProtocol*, pnCode: LONG*, dwReserved: DWORD_PTR): HRESULT;
+}
+
+@foreign
+struct IWrappedProtocol {
+    lpVtbl: IWrappedProtocolVtbl*;
+}
+
+@foreign
+typedef LPGETBINDHANDLE = IGetBindHandle*;
+
+@foreign
+enum __MIDL_IGetBindHandle_0001 {
+    BINDHANDLETYPES_APPCACHE = 0,
+    BINDHANDLETYPES_DEPENDENCY = 1,
+    BINDHANDLETYPES_COUNT = 2,
+}
+
+@foreign
+typedef BINDHANDLETYPES = __MIDL_IGetBindHandle_0001;
+
+@foreign
+struct IGetBindHandleVtbl {
+    QueryInterface: func(This: IGetBindHandle*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IGetBindHandle*): ULONG;
+    Release: func(This: IGetBindHandle*): ULONG;
+    GetBindHandle: func(This: IGetBindHandle*, enumRequestedHandle: BINDHANDLETYPES, pRetHandle: HANDLE*): HRESULT;
+}
+
+@foreign
+struct IGetBindHandle {
+    lpVtbl: IGetBindHandleVtbl*;
+}
+
+@foreign
+struct _tagPROTOCOL_ARGUMENT {
+    szMethod: LPCWSTR;
+    szTargetUrl: LPCWSTR;
+}
+
+@foreign
+typedef PROTOCOL_ARGUMENT = _tagPROTOCOL_ARGUMENT;
+
+@foreign
+typedef LPPROTOCOL_ARGUMENT = _tagPROTOCOL_ARGUMENT*;
+
+@foreign
+typedef LPBINDCALLBACKREDIRECT = IBindCallbackRedirect*;
+
+@foreign
+struct IBindCallbackRedirectVtbl {
+    QueryInterface: func(This: IBindCallbackRedirect*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindCallbackRedirect*): ULONG;
+    Release: func(This: IBindCallbackRedirect*): ULONG;
+    Redirect: func(This: IBindCallbackRedirect*, lpcUrl: LPCWSTR, vbCancel: VARIANT_BOOL*): HRESULT;
+}
+
+@foreign
+struct IBindCallbackRedirect {
+    lpVtbl: IBindCallbackRedirectVtbl*;
+}
+
+@foreign
+struct IBindHttpSecurityVtbl {
+    QueryInterface: func(This: IBindHttpSecurity*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IBindHttpSecurity*): ULONG;
+    Release: func(This: IBindHttpSecurity*): ULONG;
+    GetIgnoreCertMask: func(This: IBindHttpSecurity*, pdwIgnoreCertMask: DWORD*): HRESULT;
+}
+
+@foreign
+struct IBindHttpSecurity {
+    lpVtbl: IBindHttpSecurityVtbl*;
+}
+
+@foreign
+func IBinding_GetBindResult_Proxy(This: IBinding*, pclsidProtocol: CLSID*, pdwResult: DWORD*, pszResult: LPOLESTR*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IBinding_GetBindResult_Stub(This: IBinding*, pclsidProtocol: CLSID*, pdwResult: DWORD*, pszResult: LPOLESTR*, dwReserved: DWORD): HRESULT;
+
+@foreign
+func IBindStatusCallback_GetBindInfo_Proxy(This: IBindStatusCallback*, grfBINDF: DWORD*, pbindinfo: BINDINFO*): HRESULT;
+
+@foreign
+func IBindStatusCallback_GetBindInfo_Stub(This: IBindStatusCallback*, grfBINDF: DWORD*, pbindinfo: RemBINDINFO*, pstgmed: RemSTGMEDIUM*): HRESULT;
+
+@foreign
+func IBindStatusCallback_OnDataAvailable_Proxy(This: IBindStatusCallback*, grfBSCF: DWORD, dwSize: DWORD, pformatetc: FORMATETC*, pstgmed: STGMEDIUM*): HRESULT;
+
+@foreign
+func IBindStatusCallback_OnDataAvailable_Stub(This: IBindStatusCallback*, grfBSCF: DWORD, dwSize: DWORD, pformatetc: RemFORMATETC*, pstgmed: RemSTGMEDIUM*): HRESULT;
+
+@foreign
+func IBindStatusCallbackEx_GetBindInfoEx_Proxy(This: IBindStatusCallbackEx*, grfBINDF: DWORD*, pbindinfo: BINDINFO*, grfBINDF2: DWORD*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IBindStatusCallbackEx_GetBindInfoEx_Stub(This: IBindStatusCallbackEx*, grfBINDF: DWORD*, pbindinfo: RemBINDINFO*, pstgmed: RemSTGMEDIUM*, grfBINDF2: DWORD*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IWinInetInfo_QueryOption_Proxy(This: IWinInetInfo*, dwOption: DWORD, pBuffer: LPVOID, pcbBuf: DWORD*): HRESULT;
+
+@foreign
+func IWinInetInfo_QueryOption_Stub(This: IWinInetInfo*, dwOption: DWORD, pBuffer: BYTE*, pcbBuf: DWORD*): HRESULT;
+
+@foreign
+func IWinInetHttpInfo_QueryInfo_Proxy(This: IWinInetHttpInfo*, dwOption: DWORD, pBuffer: LPVOID, pcbBuf: DWORD*, pdwFlags: DWORD*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IWinInetHttpInfo_QueryInfo_Stub(This: IWinInetHttpInfo*, dwOption: DWORD, pBuffer: BYTE*, pcbBuf: DWORD*, pdwFlags: DWORD*, pdwReserved: DWORD*): HRESULT;
+
+@foreign
+func IBindHost_MonikerBindToStorage_Proxy(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: void**): HRESULT;
+
+@foreign
+func IBindHost_MonikerBindToStorage_Stub(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+
+@foreign
+func IBindHost_MonikerBindToObject_Proxy(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: void**): HRESULT;
+
+@foreign
+func IBindHost_MonikerBindToObject_Stub(This: IBindHost*, pMk: IMoniker*, pBC: IBindCtx*, pBSC: IBindStatusCallback*, riid: IID* const, ppvObj: IUnknown**): HRESULT;
+

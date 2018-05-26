@@ -1,0 +1,176 @@
+#foreign(header = "<corecrt_wstring.h>")
+
+@foreign
+func wcscpy_s(_Destination: wchar*, _SizeInWords: rsize_t, _Source: wchar*): errno_t;
+
+@foreign
+func wcsncat_s(_Destination: wchar*, _SizeInWords: rsize_t, _Source: wchar*, _MaxCount: rsize_t): errno_t;
+
+@foreign
+func wcsncpy_s(_Destination: wchar*, _SizeInWords: rsize_t, _Source: wchar*, _MaxCount: rsize_t): errno_t;
+
+@foreign
+func wcstok_s(_String: wchar*, _Delimiter: wchar*, _Context: wchar**): wchar*;
+
+@foreign
+func _wcsdup(_String: wchar*): wchar*;
+
+@foreign
+func wcscat(_Destination: wchar*, _Source: wchar*): wchar*;
+
+@foreign
+func wcscmp(_String1: wchar*, _String2: wchar*): int;
+
+@foreign
+func wcscpy(_Destination: wchar*, _Source: wchar*): wchar*;
+
+@foreign
+func wcscspn(_String: wchar*, _Control: wchar*): usize;
+
+@foreign
+func wcslen(_String: wchar*): usize;
+
+@foreign
+func wcsnlen(_Source: wchar*, _MaxCount: usize): usize;
+
+@foreign
+func wcsncat(_Destination: wchar*, _Source: wchar*, _Count: usize): wchar*;
+
+@foreign
+func wcsncmp(_String1: wchar*, _String2: wchar*, _MaxCount: usize): int;
+
+@foreign
+func wcsncpy(_Destination: wchar*, _Source: wchar*, _Count: usize): wchar*;
+
+@foreign
+func wcspbrk(_String: wchar*, _Control: wchar*): wchar*;
+
+@foreign
+func wcsspn(_String: wchar*, _Control: wchar*): usize;
+
+@foreign
+func wcstok(_String: wchar*, _Delimiter: wchar*, _Context: wchar**): wchar*;
+
+@foreign
+func _wcserror(_ErrorNumber: int): wchar*;
+
+@foreign
+func _wcserror_s(_Buffer: wchar*, _SizeInWords: usize, _ErrorNumber: int): errno_t;
+
+@foreign
+func __wcserror(_String: wchar*): wchar*;
+
+@foreign
+func __wcserror_s(_Buffer: wchar*, _SizeInWords: usize, _ErrorMessage: wchar*): errno_t;
+
+@foreign
+func _wcsicmp(_String1: wchar*, _String2: wchar*): int;
+
+@foreign
+func _wcsicmp_l(_String1: wchar*, _String2: wchar*, _Locale: _locale_t): int;
+
+@foreign
+func _wcsnicmp(_String1: wchar*, _String2: wchar*, _MaxCount: usize): int;
+
+@foreign
+func _wcsnicmp_l(_String1: wchar*, _String2: wchar*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func _wcsnset_s(_Destination: wchar*, _SizeInWords: usize, _Value: wchar, _MaxCount: usize): errno_t;
+
+@foreign
+func _wcsnset(_String: wchar*, _Value: wchar, _MaxCount: usize): wchar*;
+
+@foreign
+func _wcsrev(_String: wchar*): wchar*;
+
+@foreign
+func _wcsset_s(_Destination: wchar*, _SizeInWords: usize, _Value: wchar): errno_t;
+
+@foreign
+func _wcsset(_String: wchar*, _Value: wchar): wchar*;
+
+@foreign
+func _wcslwr_s(_String: wchar*, _SizeInWords: usize): errno_t;
+
+@foreign
+func _wcslwr(_String: wchar*): wchar*;
+
+@foreign
+func _wcslwr_s_l(_String: wchar*, _SizeInWords: usize, _Locale: _locale_t): errno_t;
+
+@foreign
+func _wcslwr_l(_String: wchar*, _Locale: _locale_t): wchar*;
+
+@foreign
+func _wcsupr_s(_String: wchar*, _Size: usize): errno_t;
+
+@foreign
+func _wcsupr(_String: wchar*): wchar*;
+
+@foreign
+func _wcsupr_s_l(_String: wchar*, _Size: usize, _Locale: _locale_t): errno_t;
+
+@foreign
+func _wcsupr_l(_String: wchar*, _Locale: _locale_t): wchar*;
+
+@foreign
+func wcsxfrm(_Destination: wchar*, _Source: wchar*, _MaxCount: usize): usize;
+
+@foreign
+func _wcsxfrm_l(_Destination: wchar*, _Source: wchar*, _MaxCount: usize, _Locale: _locale_t): usize;
+
+@foreign
+func wcscoll(_String1: wchar*, _String2: wchar*): int;
+
+@foreign
+func _wcscoll_l(_String1: wchar*, _String2: wchar*, _Locale: _locale_t): int;
+
+@foreign
+func _wcsicoll(_String1: wchar*, _String2: wchar*): int;
+
+@foreign
+func _wcsicoll_l(_String1: wchar*, _String2: wchar*, _Locale: _locale_t): int;
+
+@foreign
+func _wcsncoll(_String1: wchar*, _String2: wchar*, _MaxCount: usize): int;
+
+@foreign
+func _wcsncoll_l(_String1: wchar*, _String2: wchar*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func _wcsnicoll(_String1: wchar*, _String2: wchar*, _MaxCount: usize): int;
+
+@foreign
+func _wcsnicoll_l(_String1: wchar*, _String2: wchar*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func wcsdup(_String: wchar*): wchar*;
+
+@foreign
+func wcsicmp(_String1: wchar*, _String2: wchar*): int;
+
+@foreign
+func wcsnicmp(_String1: wchar*, _String2: wchar*, _MaxCount: usize): int;
+
+@foreign
+func wcsnset(_String: wchar*, _Value: wchar, _MaxCount: usize): wchar*;
+
+@foreign
+func wcsrev(_String: wchar*): wchar*;
+
+@foreign
+func wcsset(_String: wchar*, _Value: wchar): wchar*;
+
+@foreign
+func wcslwr(_String: wchar*): wchar*;
+
+@foreign
+func wcsupr(_String: wchar*): wchar*;
+
+@foreign
+func wcsicoll(_String1: wchar*, _String2: wchar*): int;
+
+@foreign
+func strcpy_s(_Destination: char*, _SizeInBytes: rsize_t, _Source: char const*): errno_t;
+

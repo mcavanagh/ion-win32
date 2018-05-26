@@ -1,0 +1,427 @@
+#foreign(header = "<minwinbase.h>")
+
+@foreign
+struct _SECURITY_ATTRIBUTES {
+    nLength: DWORD;
+    lpSecurityDescriptor: LPVOID;
+    bInheritHandle: BOOL;
+}
+
+@foreign
+typedef SECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES;
+
+@foreign
+typedef PSECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES*;
+
+@foreign
+typedef LPSECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES*;
+
+/*
+@PROBLEM Nested struct def at line 52, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+@foreign
+struct _OVERLAPPED {
+    Internal: ULONG_PTR;
+    InternalHigh: ULONG_PTR;
+    u: (null);
+    hEvent: HANDLE;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 52, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+_OVERLAPPED
+*/
+
+@foreign
+typedef LPOVERLAPPED = _OVERLAPPED*;
+
+@foreign
+struct _OVERLAPPED_ENTRY {
+    lpCompletionKey: ULONG_PTR;
+    lpOverlapped: LPOVERLAPPED;
+    Internal: ULONG_PTR;
+    dwNumberOfBytesTransferred: DWORD;
+}
+
+@foreign
+typedef OVERLAPPED_ENTRY = _OVERLAPPED_ENTRY;
+
+@foreign
+typedef LPOVERLAPPED_ENTRY = _OVERLAPPED_ENTRY*;
+
+@foreign
+struct _SYSTEMTIME {
+    wYear: WORD;
+    wMonth: WORD;
+    wDayOfWeek: WORD;
+    wDay: WORD;
+    wHour: WORD;
+    wMinute: WORD;
+    wSecond: WORD;
+    wMilliseconds: WORD;
+}
+
+@foreign
+typedef SYSTEMTIME = _SYSTEMTIME;
+
+@foreign
+typedef PSYSTEMTIME = _SYSTEMTIME*;
+
+@foreign
+typedef LPSYSTEMTIME = _SYSTEMTIME*;
+
+@foreign
+struct _WIN32_FIND_DATAA {
+    dwFileAttributes: DWORD;
+    ftCreationTime: FILETIME;
+    ftLastAccessTime: FILETIME;
+    ftLastWriteTime: FILETIME;
+    nFileSizeHigh: DWORD;
+    nFileSizeLow: DWORD;
+    dwReserved0: DWORD;
+    dwReserved1: DWORD;
+    cFileName: CHAR[260];
+    cAlternateFileName: CHAR[14];
+}
+
+@foreign
+typedef WIN32_FIND_DATAA = _WIN32_FIND_DATAA;
+
+@foreign
+typedef PWIN32_FIND_DATAA = _WIN32_FIND_DATAA*;
+
+@foreign
+typedef LPWIN32_FIND_DATAA = _WIN32_FIND_DATAA*;
+
+@foreign
+struct _WIN32_FIND_DATAW {
+    dwFileAttributes: DWORD;
+    ftCreationTime: FILETIME;
+    ftLastAccessTime: FILETIME;
+    ftLastWriteTime: FILETIME;
+    nFileSizeHigh: DWORD;
+    nFileSizeLow: DWORD;
+    dwReserved0: DWORD;
+    dwReserved1: DWORD;
+    cFileName: WCHAR[260];
+    cAlternateFileName: WCHAR[14];
+}
+
+@foreign
+typedef WIN32_FIND_DATAW = _WIN32_FIND_DATAW;
+
+@foreign
+typedef PWIN32_FIND_DATAW = _WIN32_FIND_DATAW*;
+
+@foreign
+typedef LPWIN32_FIND_DATAW = _WIN32_FIND_DATAW*;
+
+@foreign
+typedef WIN32_FIND_DATA = WIN32_FIND_DATAA;
+
+@foreign
+typedef PWIN32_FIND_DATA = PWIN32_FIND_DATAA;
+
+@foreign
+typedef LPWIN32_FIND_DATA = LPWIN32_FIND_DATAA;
+
+@foreign
+enum _FINDEX_INFO_LEVELS {
+    FindExInfoStandard,
+    FindExInfoBasic,
+    FindExInfoMaxInfoLevel,
+}
+
+@foreign
+typedef FINDEX_INFO_LEVELS = _FINDEX_INFO_LEVELS;
+
+@foreign
+enum _FINDEX_SEARCH_OPS {
+    FindExSearchNameMatch,
+    FindExSearchLimitToDirectories,
+    FindExSearchLimitToDevices,
+    FindExSearchMaxSearchOp,
+}
+
+@foreign
+typedef FINDEX_SEARCH_OPS = _FINDEX_SEARCH_OPS;
+
+@foreign
+enum _READ_DIRECTORY_NOTIFY_INFORMATION_CLASS {
+    ReadDirectoryNotifyInformation = 1,
+    ReadDirectoryNotifyExtendedInformation,
+}
+
+@foreign
+typedef READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = _READ_DIRECTORY_NOTIFY_INFORMATION_CLASS;
+
+@foreign
+typedef PREAD_DIRECTORY_NOTIFY_INFORMATION_CLASS = _READ_DIRECTORY_NOTIFY_INFORMATION_CLASS*;
+
+@foreign
+enum _GET_FILEEX_INFO_LEVELS {
+    GetFileExInfoStandard,
+    GetFileExMaxInfoLevel,
+}
+
+@foreign
+typedef GET_FILEEX_INFO_LEVELS = _GET_FILEEX_INFO_LEVELS;
+
+@foreign
+enum _FILE_INFO_BY_HANDLE_CLASS {
+    FileBasicInfo,
+    FileStandardInfo,
+    FileNameInfo,
+    FileRenameInfo,
+    FileDispositionInfo,
+    FileAllocationInfo,
+    FileEndOfFileInfo,
+    FileStreamInfo,
+    FileCompressionInfo,
+    FileAttributeTagInfo,
+    FileIdBothDirectoryInfo,
+    FileIdBothDirectoryRestartInfo,
+    FileIoPriorityHintInfo,
+    FileRemoteProtocolInfo,
+    FileFullDirectoryInfo,
+    FileFullDirectoryRestartInfo,
+    FileStorageInfo,
+    FileAlignmentInfo,
+    FileIdInfo,
+    FileIdExtdDirectoryInfo,
+    FileIdExtdDirectoryRestartInfo,
+    FileDispositionInfoEx,
+    FileRenameInfoEx,
+    MaximumFileInfoByHandleClass,
+}
+
+@foreign
+typedef FILE_INFO_BY_HANDLE_CLASS = _FILE_INFO_BY_HANDLE_CLASS;
+
+@foreign
+typedef PFILE_INFO_BY_HANDLE_CLASS = _FILE_INFO_BY_HANDLE_CLASS*;
+
+@foreign
+typedef CRITICAL_SECTION = RTL_CRITICAL_SECTION;
+
+@foreign
+typedef PCRITICAL_SECTION = PRTL_CRITICAL_SECTION;
+
+@foreign
+typedef LPCRITICAL_SECTION = PRTL_CRITICAL_SECTION;
+
+@foreign
+typedef CRITICAL_SECTION_DEBUG = RTL_CRITICAL_SECTION_DEBUG;
+
+@foreign
+typedef PCRITICAL_SECTION_DEBUG = PRTL_CRITICAL_SECTION_DEBUG;
+
+@foreign
+typedef LPCRITICAL_SECTION_DEBUG = PRTL_CRITICAL_SECTION_DEBUG;
+
+@foreign
+typedef LPOVERLAPPED_COMPLETION_ROUTINE = func(dwErrorCode: DWORD, dwNumberOfBytesTransfered: DWORD, lpOverlapped: LPOVERLAPPED);
+
+/*
+@PROBLEM Nested struct def at line 231, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+@foreign
+struct _PROCESS_HEAP_ENTRY {
+    lpData: PVOID;
+    cbData: DWORD;
+    cbOverhead: BYTE;
+    iRegionIndex: BYTE;
+    wFlags: WORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 231, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+_PROCESS_HEAP_ENTRY
+*/
+
+@foreign
+typedef LPPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
+
+@foreign
+typedef PPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
+
+/*
+@PROBLEM Nested struct def at line 258, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+@foreign
+struct _REASON_CONTEXT {
+    Version: ULONG;
+    Flags: DWORD;
+    Reason: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 258, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+_REASON_CONTEXT
+*/
+
+@foreign
+typedef PREASON_CONTEXT = _REASON_CONTEXT*;
+
+@foreign
+typedef PTHREAD_START_ROUTINE = func(lpThreadParameter: LPVOID): DWORD;
+
+@foreign
+typedef LPTHREAD_START_ROUTINE = PTHREAD_START_ROUTINE;
+
+@foreign
+typedef PENCLAVE_ROUTINE = func(lpThreadParameter: LPVOID): LPVOID;
+
+@foreign
+typedef LPENCLAVE_ROUTINE = PENCLAVE_ROUTINE;
+
+@foreign
+struct _EXCEPTION_DEBUG_INFO {
+    ExceptionRecord: EXCEPTION_RECORD;
+    dwFirstChance: DWORD;
+}
+
+@foreign
+typedef EXCEPTION_DEBUG_INFO = _EXCEPTION_DEBUG_INFO;
+
+@foreign
+typedef LPEXCEPTION_DEBUG_INFO = _EXCEPTION_DEBUG_INFO*;
+
+@foreign
+struct _CREATE_THREAD_DEBUG_INFO {
+    hThread: HANDLE;
+    lpThreadLocalBase: LPVOID;
+    lpStartAddress: LPTHREAD_START_ROUTINE;
+}
+
+@foreign
+typedef CREATE_THREAD_DEBUG_INFO = _CREATE_THREAD_DEBUG_INFO;
+
+@foreign
+typedef LPCREATE_THREAD_DEBUG_INFO = _CREATE_THREAD_DEBUG_INFO*;
+
+@foreign
+struct _CREATE_PROCESS_DEBUG_INFO {
+    hFile: HANDLE;
+    hProcess: HANDLE;
+    hThread: HANDLE;
+    lpBaseOfImage: LPVOID;
+    dwDebugInfoFileOffset: DWORD;
+    nDebugInfoSize: DWORD;
+    lpThreadLocalBase: LPVOID;
+    lpStartAddress: LPTHREAD_START_ROUTINE;
+    lpImageName: LPVOID;
+    fUnicode: WORD;
+}
+
+@foreign
+typedef CREATE_PROCESS_DEBUG_INFO = _CREATE_PROCESS_DEBUG_INFO;
+
+@foreign
+typedef LPCREATE_PROCESS_DEBUG_INFO = _CREATE_PROCESS_DEBUG_INFO*;
+
+@foreign
+struct _EXIT_THREAD_DEBUG_INFO {
+    dwExitCode: DWORD;
+}
+
+@foreign
+typedef EXIT_THREAD_DEBUG_INFO = _EXIT_THREAD_DEBUG_INFO;
+
+@foreign
+typedef LPEXIT_THREAD_DEBUG_INFO = _EXIT_THREAD_DEBUG_INFO*;
+
+@foreign
+struct _EXIT_PROCESS_DEBUG_INFO {
+    dwExitCode: DWORD;
+}
+
+@foreign
+typedef EXIT_PROCESS_DEBUG_INFO = _EXIT_PROCESS_DEBUG_INFO;
+
+@foreign
+typedef LPEXIT_PROCESS_DEBUG_INFO = _EXIT_PROCESS_DEBUG_INFO*;
+
+@foreign
+struct _LOAD_DLL_DEBUG_INFO {
+    hFile: HANDLE;
+    lpBaseOfDll: LPVOID;
+    dwDebugInfoFileOffset: DWORD;
+    nDebugInfoSize: DWORD;
+    lpImageName: LPVOID;
+    fUnicode: WORD;
+}
+
+@foreign
+typedef LOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO;
+
+@foreign
+typedef LPLOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO*;
+
+@foreign
+struct _UNLOAD_DLL_DEBUG_INFO {
+    lpBaseOfDll: LPVOID;
+}
+
+@foreign
+typedef UNLOAD_DLL_DEBUG_INFO = _UNLOAD_DLL_DEBUG_INFO;
+
+@foreign
+typedef LPUNLOAD_DLL_DEBUG_INFO = _UNLOAD_DLL_DEBUG_INFO*;
+
+@foreign
+struct _OUTPUT_DEBUG_STRING_INFO {
+    lpDebugStringData: LPSTR;
+    fUnicode: WORD;
+    nDebugStringLength: WORD;
+}
+
+@foreign
+typedef OUTPUT_DEBUG_STRING_INFO = _OUTPUT_DEBUG_STRING_INFO;
+
+@foreign
+typedef LPOUTPUT_DEBUG_STRING_INFO = _OUTPUT_DEBUG_STRING_INFO*;
+
+@foreign
+struct _RIP_INFO {
+    dwError: DWORD;
+    dwType: DWORD;
+}
+
+@foreign
+typedef RIP_INFO = _RIP_INFO;
+
+@foreign
+typedef LPRIP_INFO = _RIP_INFO*;
+
+/*
+@PROBLEM Nested struct def at line 354, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+@foreign
+struct _DEBUG_EVENT {
+    dwDebugEventCode: DWORD;
+    dwProcessId: DWORD;
+    dwThreadId: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 354, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+
+_DEBUG_EVENT
+*/
+
+@foreign
+typedef LPDEBUG_EVENT = _DEBUG_EVENT*;
+
+@foreign
+typedef LPCONTEXT = PCONTEXT;
+

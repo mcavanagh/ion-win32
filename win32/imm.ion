@@ -1,0 +1,547 @@
+#foreign(header = "<imm.h>")
+
+@foreign
+struct HIMC__ {
+    unused: int;
+}
+
+@foreign
+typedef HIMC = HIMC__*;
+
+@foreign
+struct HIMCC__ {
+    unused: int;
+}
+
+@foreign
+typedef HIMCC = HIMCC__*;
+
+@foreign
+typedef LPHKL = HKL*;
+
+@foreign
+typedef LPUINT = UINT*;
+
+@foreign
+struct tagCOMPOSITIONFORM {
+    dwStyle: DWORD;
+    ptCurrentPos: POINT;
+    rcArea: RECT;
+}
+
+@foreign
+typedef COMPOSITIONFORM = tagCOMPOSITIONFORM;
+
+@foreign
+typedef PCOMPOSITIONFORM = tagCOMPOSITIONFORM*;
+
+@foreign
+typedef NPCOMPOSITIONFORM = tagCOMPOSITIONFORM*;
+
+@foreign
+typedef LPCOMPOSITIONFORM = tagCOMPOSITIONFORM*;
+
+@foreign
+struct tagCANDIDATEFORM {
+    dwIndex: DWORD;
+    dwStyle: DWORD;
+    ptCurrentPos: POINT;
+    rcArea: RECT;
+}
+
+@foreign
+typedef CANDIDATEFORM = tagCANDIDATEFORM;
+
+@foreign
+typedef PCANDIDATEFORM = tagCANDIDATEFORM*;
+
+@foreign
+typedef NPCANDIDATEFORM = tagCANDIDATEFORM*;
+
+@foreign
+typedef LPCANDIDATEFORM = tagCANDIDATEFORM*;
+
+@foreign
+struct tagCANDIDATELIST {
+    dwSize: DWORD;
+    dwStyle: DWORD;
+    dwCount: DWORD;
+    dwSelection: DWORD;
+    dwPageStart: DWORD;
+    dwPageSize: DWORD;
+    dwOffset: DWORD[1];
+}
+
+@foreign
+typedef CANDIDATELIST = tagCANDIDATELIST;
+
+@foreign
+typedef PCANDIDATELIST = tagCANDIDATELIST*;
+
+@foreign
+typedef NPCANDIDATELIST = tagCANDIDATELIST*;
+
+@foreign
+typedef LPCANDIDATELIST = tagCANDIDATELIST*;
+
+@foreign
+struct tagREGISTERWORDA {
+    lpReading: LPSTR;
+    lpWord: LPSTR;
+}
+
+@foreign
+typedef REGISTERWORDA = tagREGISTERWORDA;
+
+@foreign
+typedef PREGISTERWORDA = tagREGISTERWORDA*;
+
+@foreign
+typedef NPREGISTERWORDA = tagREGISTERWORDA*;
+
+@foreign
+typedef LPREGISTERWORDA = tagREGISTERWORDA*;
+
+@foreign
+struct tagREGISTERWORDW {
+    lpReading: LPWSTR;
+    lpWord: LPWSTR;
+}
+
+@foreign
+typedef REGISTERWORDW = tagREGISTERWORDW;
+
+@foreign
+typedef PREGISTERWORDW = tagREGISTERWORDW*;
+
+@foreign
+typedef NPREGISTERWORDW = tagREGISTERWORDW*;
+
+@foreign
+typedef LPREGISTERWORDW = tagREGISTERWORDW*;
+
+@foreign
+typedef REGISTERWORD = REGISTERWORDA;
+
+@foreign
+typedef PREGISTERWORD = PREGISTERWORDA;
+
+@foreign
+typedef NPREGISTERWORD = NPREGISTERWORDA;
+
+@foreign
+typedef LPREGISTERWORD = LPREGISTERWORDA;
+
+@foreign
+struct tagRECONVERTSTRING {
+    dwSize: DWORD;
+    dwVersion: DWORD;
+    dwStrLen: DWORD;
+    dwStrOffset: DWORD;
+    dwCompStrLen: DWORD;
+    dwCompStrOffset: DWORD;
+    dwTargetStrLen: DWORD;
+    dwTargetStrOffset: DWORD;
+}
+
+@foreign
+typedef RECONVERTSTRING = tagRECONVERTSTRING;
+
+@foreign
+typedef PRECONVERTSTRING = tagRECONVERTSTRING*;
+
+@foreign
+typedef NPRECONVERTSTRING = tagRECONVERTSTRING*;
+
+@foreign
+typedef LPRECONVERTSTRING = tagRECONVERTSTRING*;
+
+@foreign
+struct tagSTYLEBUFA {
+    dwStyle: DWORD;
+    szDescription: CHAR[32];
+}
+
+@foreign
+typedef STYLEBUFA = tagSTYLEBUFA;
+
+@foreign
+typedef PSTYLEBUFA = tagSTYLEBUFA*;
+
+@foreign
+typedef NPSTYLEBUFA = tagSTYLEBUFA*;
+
+@foreign
+typedef LPSTYLEBUFA = tagSTYLEBUFA*;
+
+@foreign
+struct tagSTYLEBUFW {
+    dwStyle: DWORD;
+    szDescription: WCHAR[32];
+}
+
+@foreign
+typedef STYLEBUFW = tagSTYLEBUFW;
+
+@foreign
+typedef PSTYLEBUFW = tagSTYLEBUFW*;
+
+@foreign
+typedef NPSTYLEBUFW = tagSTYLEBUFW*;
+
+@foreign
+typedef LPSTYLEBUFW = tagSTYLEBUFW*;
+
+@foreign
+typedef STYLEBUF = STYLEBUFA;
+
+@foreign
+typedef PSTYLEBUF = PSTYLEBUFA;
+
+@foreign
+typedef NPSTYLEBUF = NPSTYLEBUFA;
+
+@foreign
+typedef LPSTYLEBUF = LPSTYLEBUFA;
+
+@foreign
+struct tagIMEMENUITEMINFOA {
+    cbSize: UINT;
+    fType: UINT;
+    fState: UINT;
+    wID: UINT;
+    hbmpChecked: HBITMAP;
+    hbmpUnchecked: HBITMAP;
+    dwItemData: DWORD;
+    szString: CHAR[80];
+    hbmpItem: HBITMAP;
+}
+
+@foreign
+typedef IMEMENUITEMINFOA = tagIMEMENUITEMINFOA;
+
+@foreign
+typedef PIMEMENUITEMINFOA = tagIMEMENUITEMINFOA*;
+
+@foreign
+typedef NPIMEMENUITEMINFOA = tagIMEMENUITEMINFOA*;
+
+@foreign
+typedef LPIMEMENUITEMINFOA = tagIMEMENUITEMINFOA*;
+
+@foreign
+struct tagIMEMENUITEMINFOW {
+    cbSize: UINT;
+    fType: UINT;
+    fState: UINT;
+    wID: UINT;
+    hbmpChecked: HBITMAP;
+    hbmpUnchecked: HBITMAP;
+    dwItemData: DWORD;
+    szString: WCHAR[80];
+    hbmpItem: HBITMAP;
+}
+
+@foreign
+typedef IMEMENUITEMINFOW = tagIMEMENUITEMINFOW;
+
+@foreign
+typedef PIMEMENUITEMINFOW = tagIMEMENUITEMINFOW*;
+
+@foreign
+typedef NPIMEMENUITEMINFOW = tagIMEMENUITEMINFOW*;
+
+@foreign
+typedef LPIMEMENUITEMINFOW = tagIMEMENUITEMINFOW*;
+
+@foreign
+typedef IMEMENUITEMINFO = IMEMENUITEMINFOA;
+
+@foreign
+typedef PIMEMENUITEMINFO = PIMEMENUITEMINFOA;
+
+@foreign
+typedef NPIMEMENUITEMINFO = NPIMEMENUITEMINFOA;
+
+@foreign
+typedef LPIMEMENUITEMINFO = LPIMEMENUITEMINFOA;
+
+@foreign
+struct tagIMECHARPOSITION {
+    dwSize: DWORD;
+    dwCharPos: DWORD;
+    pt: POINT;
+    cLineHeight: UINT;
+    rcDocument: RECT;
+}
+
+@foreign
+typedef IMECHARPOSITION = tagIMECHARPOSITION;
+
+@foreign
+typedef PIMECHARPOSITION = tagIMECHARPOSITION*;
+
+@foreign
+typedef NPIMECHARPOSITION = tagIMECHARPOSITION*;
+
+@foreign
+typedef LPIMECHARPOSITION = tagIMECHARPOSITION*;
+
+@foreign
+typedef IMCENUMPROC = func(arg0: HIMC, arg1: LPARAM): BOOL;
+
+@foreign
+func ImmInstallIMEA(lpszIMEFileName: LPCSTR, lpszLayoutText: LPCSTR): HKL;
+
+@foreign
+func ImmInstallIME(lpszIMEFileName: LPCSTR, lpszLayoutText: LPCSTR): HKL;
+
+@foreign
+func ImmInstallIMEW(lpszIMEFileName: LPCWSTR, lpszLayoutText: LPCWSTR): HKL;
+
+@foreign
+func ImmGetDefaultIMEWnd(arg0: HWND): HWND;
+
+@foreign
+func ImmGetDescriptionA(arg0: HKL, lpszDescription: LPSTR, uBufLen: UINT): UINT;
+
+@foreign
+func ImmGetDescription(arg0: HKL, lpszDescription: LPSTR, uBufLen: UINT): UINT;
+
+@foreign
+func ImmGetDescriptionW(arg0: HKL, lpszDescription: LPWSTR, uBufLen: UINT): UINT;
+
+@foreign
+func ImmGetIMEFileNameA(arg0: HKL, lpszFileName: LPSTR, uBufLen: UINT): UINT;
+
+@foreign
+func ImmGetIMEFileName(arg0: HKL, lpszFileName: LPSTR, uBufLen: UINT): UINT;
+
+@foreign
+func ImmGetIMEFileNameW(arg0: HKL, lpszFileName: LPWSTR, uBufLen: UINT): UINT;
+
+@foreign
+func ImmGetProperty(arg0: HKL, arg1: DWORD): DWORD;
+
+@foreign
+func ImmIsIME(arg0: HKL): BOOL;
+
+@foreign
+func ImmSimulateHotKey(arg0: HWND, arg1: DWORD): BOOL;
+
+@foreign
+func ImmCreateContext(): HIMC;
+
+@foreign
+func ImmDestroyContext(arg0: HIMC): BOOL;
+
+@foreign
+func ImmGetContext(arg0: HWND): HIMC;
+
+@foreign
+func ImmReleaseContext(arg0: HWND, arg1: HIMC): BOOL;
+
+@foreign
+func ImmAssociateContext(arg0: HWND, arg1: HIMC): HIMC;
+
+@foreign
+func ImmAssociateContextEx(arg0: HWND, arg1: HIMC, arg2: DWORD): BOOL;
+
+@foreign
+func ImmGetCompositionStringA(arg0: HIMC, arg1: DWORD, lpBuf: LPVOID, dwBufLen: DWORD): LONG;
+
+@foreign
+func ImmGetCompositionString(arg0: HIMC, arg1: DWORD, lpBuf: LPVOID, dwBufLen: DWORD): LONG;
+
+@foreign
+func ImmGetCompositionStringW(arg0: HIMC, arg1: DWORD, lpBuf: LPVOID, dwBufLen: DWORD): LONG;
+
+@foreign
+func ImmSetCompositionStringA(arg0: HIMC, dwIndex: DWORD, lpComp: LPVOID, dwCompLen: DWORD, lpRead: LPVOID, dwReadLen: DWORD): BOOL;
+
+@foreign
+func ImmSetCompositionString(arg0: HIMC, dwIndex: DWORD, lpComp: LPVOID, dwCompLen: DWORD, lpRead: LPVOID, dwReadLen: DWORD): BOOL;
+
+@foreign
+func ImmSetCompositionStringW(arg0: HIMC, dwIndex: DWORD, lpComp: LPVOID, dwCompLen: DWORD, lpRead: LPVOID, dwReadLen: DWORD): BOOL;
+
+@foreign
+func ImmGetCandidateListCountA(arg0: HIMC, lpdwListCount: LPDWORD): DWORD;
+
+@foreign
+func ImmGetCandidateListCount(arg0: HIMC, lpdwListCount: LPDWORD): DWORD;
+
+@foreign
+func ImmGetCandidateListCountW(arg0: HIMC, lpdwListCount: LPDWORD): DWORD;
+
+@foreign
+func ImmGetCandidateListA(arg0: HIMC, deIndex: DWORD, lpCandList: LPCANDIDATELIST, dwBufLen: DWORD): DWORD;
+
+@foreign
+func ImmGetCandidateList(arg0: HIMC, deIndex: DWORD, lpCandList: LPCANDIDATELIST, dwBufLen: DWORD): DWORD;
+
+@foreign
+func ImmGetCandidateListW(arg0: HIMC, deIndex: DWORD, lpCandList: LPCANDIDATELIST, dwBufLen: DWORD): DWORD;
+
+@foreign
+func ImmGetGuideLineA(arg0: HIMC, dwIndex: DWORD, lpBuf: LPSTR, dwBufLen: DWORD): DWORD;
+
+@foreign
+func ImmGetGuideLine(arg0: HIMC, dwIndex: DWORD, lpBuf: LPSTR, dwBufLen: DWORD): DWORD;
+
+@foreign
+func ImmGetGuideLineW(arg0: HIMC, dwIndex: DWORD, lpBuf: LPWSTR, dwBufLen: DWORD): DWORD;
+
+@foreign
+func ImmGetConversionStatus(arg0: HIMC, lpfdwConversion: LPDWORD, lpfdwSentence: LPDWORD): BOOL;
+
+@foreign
+func ImmSetConversionStatus(arg0: HIMC, arg1: DWORD, arg2: DWORD): BOOL;
+
+@foreign
+func ImmGetOpenStatus(arg0: HIMC): BOOL;
+
+@foreign
+func ImmSetOpenStatus(arg0: HIMC, arg1: BOOL): BOOL;
+
+@foreign
+func ImmGetCompositionFontA(arg0: HIMC, lplf: LPLOGFONTA): BOOL;
+
+@foreign
+func ImmGetCompositionFont(arg0: HIMC, lplf: LPLOGFONTA): BOOL;
+
+@foreign
+func ImmGetCompositionFontW(arg0: HIMC, lplf: LPLOGFONTW): BOOL;
+
+@foreign
+func ImmSetCompositionFontA(arg0: HIMC, lplf: LPLOGFONTA): BOOL;
+
+@foreign
+func ImmSetCompositionFont(arg0: HIMC, lplf: LPLOGFONTA): BOOL;
+
+@foreign
+func ImmSetCompositionFontW(arg0: HIMC, lplf: LPLOGFONTW): BOOL;
+
+@foreign
+func ImmConfigureIMEA(arg0: HKL, arg1: HWND, arg2: DWORD, arg3: LPVOID): BOOL;
+
+@foreign
+func ImmConfigureIME(arg0: HKL, arg1: HWND, arg2: DWORD, arg3: LPVOID): BOOL;
+
+@foreign
+func ImmConfigureIMEW(arg0: HKL, arg1: HWND, arg2: DWORD, arg3: LPVOID): BOOL;
+
+@foreign
+func ImmEscapeA(arg0: HKL, arg1: HIMC, arg2: UINT, arg3: LPVOID): LRESULT;
+
+@foreign
+func ImmEscape(arg0: HKL, arg1: HIMC, arg2: UINT, arg3: LPVOID): LRESULT;
+
+@foreign
+func ImmEscapeW(arg0: HKL, arg1: HIMC, arg2: UINT, arg3: LPVOID): LRESULT;
+
+@foreign
+func ImmGetConversionListA(arg0: HKL, arg1: HIMC, lpSrc: LPCSTR, lpDst: LPCANDIDATELIST, dwBufLen: DWORD, uFlag: UINT): DWORD;
+
+@foreign
+func ImmGetConversionList(arg0: HKL, arg1: HIMC, lpSrc: LPCSTR, lpDst: LPCANDIDATELIST, dwBufLen: DWORD, uFlag: UINT): DWORD;
+
+@foreign
+func ImmGetConversionListW(arg0: HKL, arg1: HIMC, lpSrc: LPCWSTR, lpDst: LPCANDIDATELIST, dwBufLen: DWORD, uFlag: UINT): DWORD;
+
+@foreign
+func ImmNotifyIME(arg0: HIMC, dwAction: DWORD, dwIndex: DWORD, dwValue: DWORD): BOOL;
+
+@foreign
+func ImmGetStatusWindowPos(arg0: HIMC, lpptPos: LPPOINT): BOOL;
+
+@foreign
+func ImmSetStatusWindowPos(arg0: HIMC, lpptPos: LPPOINT): BOOL;
+
+@foreign
+func ImmGetCompositionWindow(arg0: HIMC, lpCompForm: LPCOMPOSITIONFORM): BOOL;
+
+@foreign
+func ImmSetCompositionWindow(arg0: HIMC, lpCompForm: LPCOMPOSITIONFORM): BOOL;
+
+@foreign
+func ImmGetCandidateWindow(arg0: HIMC, arg1: DWORD, lpCandidate: LPCANDIDATEFORM): BOOL;
+
+@foreign
+func ImmSetCandidateWindow(arg0: HIMC, lpCandidate: LPCANDIDATEFORM): BOOL;
+
+@foreign
+func ImmIsUIMessageA(arg0: HWND, arg1: UINT, arg2: WPARAM, arg3: LPARAM): BOOL;
+
+@foreign
+func ImmIsUIMessage(arg0: HWND, arg1: UINT, arg2: WPARAM, arg3: LPARAM): BOOL;
+
+@foreign
+func ImmIsUIMessageW(arg0: HWND, arg1: UINT, arg2: WPARAM, arg3: LPARAM): BOOL;
+
+@foreign
+func ImmGetVirtualKey(arg0: HWND): UINT;
+
+@foreign
+typedef REGISTERWORDENUMPROCA = func(lpszReading: LPCSTR, arg1: DWORD, lpszString: LPCSTR, arg3: LPVOID): int;
+
+@foreign
+typedef REGISTERWORDENUMPROCW = func(lpszReading: LPCWSTR, arg1: DWORD, lpszString: LPCWSTR, arg3: LPVOID): int;
+
+@foreign
+func ImmRegisterWordA(arg0: HKL, lpszReading: LPCSTR, arg2: DWORD, lpszRegister: LPCSTR): BOOL;
+
+@foreign
+func ImmRegisterWord(arg0: HKL, lpszReading: LPCSTR, arg2: DWORD, lpszRegister: LPCSTR): BOOL;
+
+@foreign
+func ImmRegisterWordW(arg0: HKL, lpszReading: LPCWSTR, arg2: DWORD, lpszRegister: LPCWSTR): BOOL;
+
+@foreign
+func ImmUnregisterWordA(arg0: HKL, lpszReading: LPCSTR, arg2: DWORD, lpszUnregister: LPCSTR): BOOL;
+
+@foreign
+func ImmUnregisterWord(arg0: HKL, lpszReading: LPCSTR, arg2: DWORD, lpszUnregister: LPCSTR): BOOL;
+
+@foreign
+func ImmUnregisterWordW(arg0: HKL, lpszReading: LPCWSTR, arg2: DWORD, lpszUnregister: LPCWSTR): BOOL;
+
+@foreign
+func ImmGetRegisterWordStyleA(arg0: HKL, nItem: UINT, lpStyleBuf: LPSTYLEBUFA): UINT;
+
+@foreign
+func ImmGetRegisterWordStyle(arg0: HKL, nItem: UINT, lpStyleBuf: LPSTYLEBUFA): UINT;
+
+@foreign
+func ImmGetRegisterWordStyleW(arg0: HKL, nItem: UINT, lpStyleBuf: LPSTYLEBUFW): UINT;
+
+@foreign
+func ImmEnumRegisterWordA(arg0: HKL, arg1: REGISTERWORDENUMPROCA, lpszReading: LPCSTR, arg3: DWORD, lpszRegister: LPCSTR, arg5: LPVOID): UINT;
+
+@foreign
+func ImmEnumRegisterWord(arg0: HKL, arg1: REGISTERWORDENUMPROCA, lpszReading: LPCSTR, arg3: DWORD, lpszRegister: LPCSTR, arg5: LPVOID): UINT;
+
+@foreign
+func ImmEnumRegisterWordW(arg0: HKL, arg1: REGISTERWORDENUMPROCW, lpszReading: LPCWSTR, arg3: DWORD, lpszRegister: LPCWSTR, arg5: LPVOID): UINT;
+
+@foreign
+func ImmDisableIME(arg0: DWORD): BOOL;
+
+@foreign
+func ImmEnumInputContext(idThread: DWORD, lpfn: IMCENUMPROC, lParam: LPARAM): BOOL;
+
+@foreign
+func ImmGetImeMenuItemsA(arg0: HIMC, arg1: DWORD, arg2: DWORD, lpImeParentMenu: LPIMEMENUITEMINFOA, lpImeMenu: LPIMEMENUITEMINFOA, dwSize: DWORD): DWORD;
+
+@foreign
+func ImmGetImeMenuItems(arg0: HIMC, arg1: DWORD, arg2: DWORD, lpImeParentMenu: LPIMEMENUITEMINFOA, lpImeMenu: LPIMEMENUITEMINFOA, dwSize: DWORD): DWORD;
+
+@foreign
+func ImmGetImeMenuItemsW(arg0: HIMC, arg1: DWORD, arg2: DWORD, lpImeParentMenu: LPIMEMENUITEMINFOW, lpImeMenu: LPIMEMENUITEMINFOW, dwSize: DWORD): DWORD;
+
+@foreign
+func ImmDisableTextFrameService(idThread: DWORD): BOOL;
+
+@foreign
+func ImmDisableLegacyIME(): BOOL;
+

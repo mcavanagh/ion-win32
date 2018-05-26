@@ -1,0 +1,101 @@
+#foreign(header = "<processenv.h>")
+
+@foreign
+func SetEnvironmentStringsW(NewEnvironment: LPWCH): BOOL;
+
+@foreign
+func GetStdHandle(nStdHandle: DWORD): HANDLE;
+
+@foreign
+func SetStdHandle(nStdHandle: DWORD, hHandle: HANDLE): BOOL;
+
+@foreign
+func SetStdHandleEx(nStdHandle: DWORD, hHandle: HANDLE, phPrevValue: PHANDLE): BOOL;
+
+@foreign
+func GetCommandLineA(): LPSTR;
+
+@foreign
+func GetCommandLine(): LPSTR;
+
+@foreign
+func GetCommandLineW(): LPWSTR;
+
+@foreign
+func GetEnvironmentStrings(): LPCH;
+
+@foreign
+func GetEnvironmentStringsW(): LPWCH;
+
+@foreign
+func FreeEnvironmentStringsA(penv: LPCH): BOOL;
+
+@foreign
+func FreeEnvironmentStrings(penv: LPCH): BOOL;
+
+@foreign
+func FreeEnvironmentStringsW(penv: LPWCH): BOOL;
+
+@foreign
+func GetEnvironmentVariableA(lpName: LPCSTR, lpBuffer: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetEnvironmentVariable(lpName: LPCSTR, lpBuffer: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetEnvironmentVariableW(lpName: LPCWSTR, lpBuffer: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func SetEnvironmentVariableA(lpName: LPCSTR, lpValue: LPCSTR): BOOL;
+
+@foreign
+func SetEnvironmentVariable(lpName: LPCSTR, lpValue: LPCSTR): BOOL;
+
+@foreign
+func SetEnvironmentVariableW(lpName: LPCWSTR, lpValue: LPCWSTR): BOOL;
+
+@foreign
+func ExpandEnvironmentStringsA(lpSrc: LPCSTR, lpDst: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func ExpandEnvironmentStrings(lpSrc: LPCSTR, lpDst: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func ExpandEnvironmentStringsW(lpSrc: LPCWSTR, lpDst: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func SetCurrentDirectoryA(lpPathName: LPCSTR): BOOL;
+
+@foreign
+func SetCurrentDirectory(lpPathName: LPCSTR): BOOL;
+
+@foreign
+func SetCurrentDirectoryW(lpPathName: LPCWSTR): BOOL;
+
+@foreign
+func GetCurrentDirectoryA(nBufferLength: DWORD, lpBuffer: LPSTR): DWORD;
+
+@foreign
+func GetCurrentDirectory(nBufferLength: DWORD, lpBuffer: LPSTR): DWORD;
+
+@foreign
+func GetCurrentDirectoryW(nBufferLength: DWORD, lpBuffer: LPWSTR): DWORD;
+
+@foreign
+func SearchPathW(lpPath: LPCWSTR, lpFileName: LPCWSTR, lpExtension: LPCWSTR, nBufferLength: DWORD, lpBuffer: LPWSTR, lpFilePart: LPWSTR*): DWORD;
+
+@foreign
+func SearchPath(lpPath: LPCSTR, lpFileName: LPCSTR, lpExtension: LPCSTR, nBufferLength: DWORD, lpBuffer: LPSTR, lpFilePart: LPSTR*): DWORD;
+
+@foreign
+func SearchPathA(lpPath: LPCSTR, lpFileName: LPCSTR, lpExtension: LPCSTR, nBufferLength: DWORD, lpBuffer: LPSTR, lpFilePart: LPSTR*): DWORD;
+
+@foreign
+func NeedCurrentDirectoryForExePathA(ExeName: LPCSTR): BOOL;
+
+@foreign
+func NeedCurrentDirectoryForExePath(ExeName: LPCSTR): BOOL;
+
+@foreign
+func NeedCurrentDirectoryForExePathW(ExeName: LPCWSTR): BOOL;
+

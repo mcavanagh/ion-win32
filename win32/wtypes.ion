@@ -1,0 +1,531 @@
+#foreign(header = "<wtypes.h>")
+
+@foreign
+struct tagRemHGLOBAL {
+    fNullHGlobal: LONG;
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemHGLOBAL = tagRemHGLOBAL;
+
+@foreign
+struct tagRemHMETAFILEPICT {
+    mm: LONG;
+    xExt: LONG;
+    yExt: LONG;
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemHMETAFILEPICT = tagRemHMETAFILEPICT;
+
+@foreign
+struct tagRemHENHMETAFILE {
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemHENHMETAFILE = tagRemHENHMETAFILE;
+
+@foreign
+struct tagRemHBITMAP {
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemHBITMAP = tagRemHBITMAP;
+
+@foreign
+struct tagRemHPALETTE {
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemHPALETTE = tagRemHPALETTE;
+
+@foreign
+struct tagRemBRUSH {
+    cbData: ULONG;
+    data: byte[1];
+}
+
+@foreign
+typedef RemHBRUSH = tagRemBRUSH;
+
+@foreign
+enum tagDVASPECT {
+    DVASPECT_CONTENT = 1,
+    DVASPECT_THUMBNAIL = 2,
+    DVASPECT_ICON = 4,
+    DVASPECT_DOCPRINT = 8,
+}
+
+@foreign
+typedef DVASPECT = tagDVASPECT;
+
+@foreign
+enum tagSTGC {
+    STGC_DEFAULT = 0,
+    STGC_OVERWRITE = 1,
+    STGC_ONLYIFCURRENT = 2,
+    STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    STGC_CONSOLIDATE = 8,
+}
+
+@foreign
+typedef STGC = tagSTGC;
+
+@foreign
+enum tagSTGMOVE {
+    STGMOVE_MOVE = 0,
+    STGMOVE_COPY = 1,
+    STGMOVE_SHALLOWCOPY = 2,
+}
+
+@foreign
+typedef STGMOVE = tagSTGMOVE;
+
+@foreign
+enum tagSTATFLAG {
+    STATFLAG_DEFAULT = 0,
+    STATFLAG_NONAME = 1,
+    STATFLAG_NOOPEN = 2,
+}
+
+@foreign
+typedef STATFLAG = tagSTATFLAG;
+
+@foreign
+typedef HCONTEXT = void*;
+
+/*
+@PROBLEM Nested struct def at line 398, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userCLIPFORMAT {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0001;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 398, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userCLIPFORMAT
+*/
+
+@foreign
+typedef wireCLIPFORMAT = userCLIPFORMAT*;
+
+@foreign
+typedef CLIPFORMAT = WORD;
+
+/*
+@PROBLEM Nested struct def at line 412, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _GDI_NONREMOTE {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0002;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 412, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_GDI_NONREMOTE
+*/
+
+/*
+@PROBLEM Nested struct def at line 422, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userHGLOBAL {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0003;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 422, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userHGLOBAL
+*/
+
+@foreign
+typedef wireHGLOBAL = userHGLOBAL*;
+
+/*
+@PROBLEM Nested struct def at line 435, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userHMETAFILE {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0004;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 435, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userHMETAFILE
+*/
+
+@foreign
+struct _remoteMETAFILEPICT {
+    mm: LONG;
+    xExt: LONG;
+    yExt: LONG;
+    hMF: userHMETAFILE*;
+}
+
+@foreign
+typedef remoteMETAFILEPICT = _remoteMETAFILEPICT;
+
+/*
+@PROBLEM Nested struct def at line 454, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userHMETAFILEPICT {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0005;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 454, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userHMETAFILEPICT
+*/
+
+/*
+@PROBLEM Nested struct def at line 465, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userHENHMETAFILE {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0006;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 465, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userHENHMETAFILE
+*/
+
+@foreign
+struct _userBITMAP {
+    bmType: LONG;
+    bmWidth: LONG;
+    bmHeight: LONG;
+    bmWidthBytes: LONG;
+    bmPlanes: WORD;
+    bmBitsPixel: WORD;
+    cbSize: ULONG;
+    pBuffer: byte[1];
+}
+
+@foreign
+typedef userBITMAP = _userBITMAP;
+
+/*
+@PROBLEM Nested struct def at line 488, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userHBITMAP {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0007;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 488, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userHBITMAP
+*/
+
+/*
+@PROBLEM Nested struct def at line 499, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _userHPALETTE {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0008;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 499, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_userHPALETTE
+*/
+
+/*
+@PROBLEM Nested struct def at line 510, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct _RemotableHandle {
+    fContext: LONG;
+    u: __MIDL_IWinTypes_0009;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 510, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+_RemotableHandle
+*/
+
+@foreign
+typedef wireHWND = RemotableHandle*;
+
+@foreign
+typedef wireHMENU = RemotableHandle*;
+
+@foreign
+typedef wireHACCEL = RemotableHandle*;
+
+@foreign
+typedef wireHBRUSH = RemotableHandle*;
+
+@foreign
+typedef wireHFONT = RemotableHandle*;
+
+@foreign
+typedef wireHDC = RemotableHandle*;
+
+@foreign
+typedef wireHICON = RemotableHandle*;
+
+@foreign
+typedef wireHRGN = RemotableHandle*;
+
+@foreign
+typedef wireHMONITOR = RemotableHandle*;
+
+@foreign
+typedef wireHBITMAP = userHBITMAP*;
+
+@foreign
+typedef wireHPALETTE = userHPALETTE*;
+
+@foreign
+typedef wireHENHMETAFILE = userHENHMETAFILE*;
+
+@foreign
+typedef wireHMETAFILE = userHMETAFILE*;
+
+@foreign
+typedef wireHMETAFILEPICT = userHMETAFILEPICT*;
+
+@foreign
+typedef HMETAFILEPICT = void*;
+
+@foreign
+typedef DATE = double;
+
+/*
+@PROBLEM Nested struct def at line 670, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+union tagCY {
+    s: (null);
+    int64: LONGLONG;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 670, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+tagCY
+*/
+
+@foreign
+typedef LPCY = CY*;
+
+/*
+@PROBLEM Nested struct def at line 695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct tagDEC {
+    wReserved: USHORT;
+    u: (null);
+    Hi32: ULONG;
+    u2: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+tagDEC
+*/
+
+@foreign
+typedef LPDECIMAL = DECIMAL*;
+
+@foreign
+typedef wireBSTR = FLAGGED_WORD_BLOB*;
+
+@foreign
+typedef BSTR = OLECHAR*;
+
+@foreign
+typedef LPBSTR = BSTR*;
+
+@foreign
+typedef VARIANT_BOOL = short;
+
+@foreign
+struct tagBSTRBLOB {
+    cbSize: ULONG;
+    pData: BYTE*;
+}
+
+@foreign
+typedef BSTRBLOB = tagBSTRBLOB;
+
+@foreign
+typedef LPBSTRBLOB = tagBSTRBLOB*;
+
+@foreign
+struct tagCLIPDATA {
+    cbSize: ULONG;
+    ulClipFmt: LONG;
+    pClipData: BYTE*;
+}
+
+@foreign
+typedef CLIPDATA = tagCLIPDATA;
+
+@foreign
+typedef VARTYPE = ushort;
+
+@foreign
+enum VARENUM {
+    VT_EMPTY = 0,
+    VT_NULL = 1,
+    VT_I2 = 2,
+    VT_I4 = 3,
+    VT_R4 = 4,
+    VT_R8 = 5,
+    VT_CY = 6,
+    VT_DATE = 7,
+    VT_BSTR = 8,
+    VT_DISPATCH = 9,
+    VT_ERROR = 10,
+    VT_BOOL = 11,
+    VT_VARIANT = 12,
+    VT_UNKNOWN = 13,
+    VT_DECIMAL = 14,
+    VT_I1 = 16,
+    VT_UI1 = 17,
+    VT_UI2 = 18,
+    VT_UI4 = 19,
+    VT_I8 = 20,
+    VT_UI8 = 21,
+    VT_INT = 22,
+    VT_UINT = 23,
+    VT_VOID = 24,
+    VT_HRESULT = 25,
+    VT_PTR = 26,
+    VT_SAFEARRAY = 27,
+    VT_CARRAY = 28,
+    VT_USERDEFINED = 29,
+    VT_LPSTR = 30,
+    VT_LPWSTR = 31,
+    VT_RECORD = 36,
+    VT_INT_PTR = 37,
+    VT_UINT_PTR = 38,
+    VT_FILETIME = 64,
+    VT_BLOB = 65,
+    VT_STREAM = 66,
+    VT_STORAGE = 67,
+    VT_STREAMED_OBJECT = 68,
+    VT_STORED_OBJECT = 69,
+    VT_BLOB_OBJECT = 70,
+    VT_CF = 71,
+    VT_CLSID = 72,
+    VT_VERSIONED_STREAM = 73,
+    VT_TYPEMASK = 4095,
+    VT_BSTR_BLOB = 4095,
+    VT_ILLEGALMASKED = 4095,
+    VT_VECTOR = 4096,
+    VT_ARRAY = 8192,
+    VT_BYREF = 16384,
+    VT_RESERVED = 32768,
+    VT_ILLEGAL = 65535,
+}
+
+@foreign
+typedef PROPID = ULONG;
+
+@foreign
+struct _tagpropertykey {
+    fmtid: GUID;
+    pid: DWORD;
+}
+
+@foreign
+typedef PROPERTYKEY = _tagpropertykey;
+
+@foreign
+struct tagCSPLATFORM {
+    dwPlatformId: DWORD;
+    dwVersionHi: DWORD;
+    dwVersionLo: DWORD;
+    dwProcessorArch: DWORD;
+}
+
+@foreign
+typedef CSPLATFORM = tagCSPLATFORM;
+
+@foreign
+struct tagQUERYCONTEXT {
+    dwContext: DWORD;
+    Platform: CSPLATFORM;
+    Locale: LCID;
+    dwVersionHi: DWORD;
+    dwVersionLo: DWORD;
+}
+
+@foreign
+typedef QUERYCONTEXT = tagQUERYCONTEXT;
+
+@foreign
+enum tagTYSPEC {
+    TYSPEC_CLSID = 0,
+    TYSPEC_FILEEXT = 1,
+    TYSPEC_MIMETYPE = 2,
+    TYSPEC_FILENAME = 3,
+    TYSPEC_PROGID = 4,
+    TYSPEC_PACKAGENAME = 5,
+    TYSPEC_OBJECTID = 6,
+}
+
+@foreign
+typedef TYSPEC = tagTYSPEC;
+
+/*
+@PROBLEM Nested struct def at line 928, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+@foreign
+struct __MIDL___MIDL_itf_wtypes_0000_0001_0001 {
+    tyspec: DWORD;
+    tagged_union: __MIDL___MIDL_itf_wtypes_0000_0001_0005;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 928, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+
+__MIDL___MIDL_itf_wtypes_0000_0001_0001
+*/
+

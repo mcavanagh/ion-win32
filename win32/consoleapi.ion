@@ -1,0 +1,53 @@
+#foreign(header = "<consoleapi.h>")
+
+@foreign
+func AllocConsole(): BOOL;
+
+@foreign
+func GetConsoleCP(): UINT;
+
+@foreign
+func GetConsoleMode(hConsoleHandle: HANDLE, lpMode: LPDWORD): BOOL;
+
+@foreign
+func GetConsoleOutputCP(): UINT;
+
+@foreign
+func GetNumberOfConsoleInputEvents(hConsoleInput: HANDLE, lpNumberOfEvents: LPDWORD): BOOL;
+
+@foreign
+func PeekConsoleInputA(hConsoleInput: HANDLE, lpBuffer: PINPUT_RECORD, nLength: DWORD, lpNumberOfEventsRead: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleA(hConsoleInput: HANDLE, lpBuffer: LPVOID, nNumberOfCharsToRead: DWORD, lpNumberOfCharsRead: LPDWORD, pInputControl: PCONSOLE_READCONSOLE_CONTROL): BOOL;
+
+@foreign
+func ReadConsole(hConsoleInput: HANDLE, lpBuffer: LPVOID, nNumberOfCharsToRead: DWORD, lpNumberOfCharsRead: LPDWORD, pInputControl: PCONSOLE_READCONSOLE_CONTROL): BOOL;
+
+@foreign
+func ReadConsoleW(hConsoleInput: HANDLE, lpBuffer: LPVOID, nNumberOfCharsToRead: DWORD, lpNumberOfCharsRead: LPDWORD, pInputControl: PCONSOLE_READCONSOLE_CONTROL): BOOL;
+
+@foreign
+func ReadConsoleInputA(hConsoleInput: HANDLE, lpBuffer: PINPUT_RECORD, nLength: DWORD, lpNumberOfEventsRead: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleInput(hConsoleInput: HANDLE, lpBuffer: PINPUT_RECORD, nLength: DWORD, lpNumberOfEventsRead: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleInputW(hConsoleInput: HANDLE, lpBuffer: PINPUT_RECORD, nLength: DWORD, lpNumberOfEventsRead: LPDWORD): BOOL;
+
+@foreign
+func SetConsoleCtrlHandler(HandlerRoutine: PHANDLER_ROUTINE, Add: BOOL): BOOL;
+
+@foreign
+func SetConsoleMode(hConsoleHandle: HANDLE, dwMode: DWORD): BOOL;
+
+@foreign
+func WriteConsoleA(hConsoleOutput: HANDLE, lpBuffer: void const*, nNumberOfCharsToWrite: DWORD, lpNumberOfCharsWritten: LPDWORD, lpReserved: LPVOID): BOOL;
+
+@foreign
+func WriteConsole(hConsoleOutput: HANDLE, lpBuffer: void const*, nNumberOfCharsToWrite: DWORD, lpNumberOfCharsWritten: LPDWORD, lpReserved: LPVOID): BOOL;
+
+@foreign
+func WriteConsoleW(hConsoleOutput: HANDLE, lpBuffer: void const*, nNumberOfCharsToWrite: DWORD, lpNumberOfCharsWritten: LPDWORD, lpReserved: LPVOID): BOOL;
+

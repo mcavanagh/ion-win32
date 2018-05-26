@@ -1,0 +1,37 @@
+#foreign(header = "<guiddef.h>")
+
+@foreign
+struct _GUID {
+    Data1: ulong;
+    Data2: ushort;
+    Data3: ushort;
+    Data4: uchar[8];
+}
+
+@foreign
+typedef GUID = _GUID;
+
+@foreign
+typedef LPGUID = GUID*;
+
+@foreign
+typedef LPCGUID = GUID*;
+
+@foreign
+typedef IID = GUID;
+
+@foreign
+typedef LPIID = IID*;
+
+@foreign
+typedef CLSID = GUID;
+
+@foreign
+typedef LPCLSID = CLSID*;
+
+@foreign
+typedef FMTID = GUID;
+
+@foreign
+typedef LPFMTID = FMTID*;
+

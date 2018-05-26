@@ -1,0 +1,74 @@
+#foreign(header = "<ctype.h>")
+
+@foreign
+func _isctype_l(_C: int, _Type: int, _Locale: _locale_t): int;
+
+@foreign
+func _isalpha_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isupper_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _islower_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isdigit_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isxdigit_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isspace_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _ispunct_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isblank_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isalnum_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isprint_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _isgraph_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _iscntrl_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _tolower(_C: int): int;
+
+@foreign
+func _tolower_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func _toupper(_C: int): int;
+
+@foreign
+func _toupper_l(_C: int, _Locale: _locale_t): int;
+
+@foreign
+func __isascii(_C: int): int;
+
+@foreign
+func __toascii(_C: int): int;
+
+@foreign
+func __iscsymf(_C: int): int;
+
+@foreign
+func __iscsym(_C: int): int;
+
+@foreign
+func ___mb_cur_max_func(): int;
+
+@foreign
+func ___mb_cur_max_l_func(_Locale: _locale_t): int;
+
+@foreign
+typedef POINTER_64_INT = ullong;
+

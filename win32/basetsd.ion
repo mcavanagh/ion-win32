@@ -1,0 +1,152 @@
+#foreign(header = "<basetsd.h>")
+
+@foreign
+typedef INT8 = schar;
+
+@foreign
+typedef PINT8 = schar*;
+
+@foreign
+typedef INT16 = short;
+
+@foreign
+typedef PINT16 = short*;
+
+@foreign
+typedef INT32 = int;
+
+@foreign
+typedef PINT32 = int*;
+
+@foreign
+typedef INT64 = llong;
+
+@foreign
+typedef PINT64 = llong*;
+
+@foreign
+typedef UINT8 = uchar;
+
+@foreign
+typedef PUINT8 = uchar*;
+
+@foreign
+typedef UINT16 = ushort;
+
+@foreign
+typedef PUINT16 = ushort*;
+
+@foreign
+typedef UINT32 = uint;
+
+@foreign
+typedef PUINT32 = uint*;
+
+@foreign
+typedef UINT64 = ullong;
+
+@foreign
+typedef PUINT64 = ullong*;
+
+@foreign
+typedef LONG32 = int;
+
+@foreign
+typedef PLONG32 = int*;
+
+@foreign
+typedef ULONG32 = uint;
+
+@foreign
+typedef PULONG32 = uint*;
+
+@foreign
+typedef DWORD32 = uint;
+
+@foreign
+typedef PDWORD32 = uint*;
+
+@foreign
+typedef INT_PTR = llong;
+
+@foreign
+typedef PINT_PTR = llong*;
+
+@foreign
+typedef UINT_PTR = ullong;
+
+@foreign
+typedef PUINT_PTR = ullong*;
+
+@foreign
+typedef LONG_PTR = llong;
+
+@foreign
+typedef PLONG_PTR = llong*;
+
+@foreign
+typedef ULONG_PTR = ullong;
+
+@foreign
+typedef PULONG_PTR = ullong*;
+
+@foreign
+typedef SHANDLE_PTR = llong;
+
+@foreign
+typedef HANDLE_PTR = ullong;
+
+@foreign
+typedef UHALF_PTR = uint;
+
+@foreign
+typedef PUHALF_PTR = uint*;
+
+@foreign
+typedef HALF_PTR = int;
+
+@foreign
+typedef PHALF_PTR = int*;
+
+@foreign
+typedef SIZE_T = ULONG_PTR;
+
+@foreign
+typedef PSIZE_T = ULONG_PTR*;
+
+@foreign
+typedef SSIZE_T = LONG_PTR;
+
+@foreign
+typedef PSSIZE_T = LONG_PTR*;
+
+@foreign
+typedef DWORD_PTR = ULONG_PTR;
+
+@foreign
+typedef PDWORD_PTR = ULONG_PTR*;
+
+@foreign
+typedef LONG64 = llong;
+
+@foreign
+typedef PLONG64 = llong*;
+
+@foreign
+typedef ULONG64 = ullong;
+
+@foreign
+typedef PULONG64 = ullong*;
+
+@foreign
+typedef DWORD64 = ullong;
+
+@foreign
+typedef PDWORD64 = ullong*;
+
+@foreign
+typedef KAFFINITY = ULONG_PTR;
+
+@foreign
+typedef PKAFFINITY = KAFFINITY*;
+

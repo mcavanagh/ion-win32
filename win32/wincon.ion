@@ -1,0 +1,508 @@
+#foreign(header = "<wincon.h>")
+
+@foreign const ENABLE_PROCESSED_OUTPUT              = 0x0001;
+@foreign const ENABLE_WRAP_AT_EOL_OUTPUT            = 0x0002;
+@foreign const ENABLE_VIRTUAL_TERMINAL_PROCESSING   = 0x0004;
+@foreign const DISABLE_NEWLINE_AUTO_RETURN          = 0x0008;
+@foreign const ENABLE_LVB_GRID_WORLDWIDE            = 0x0010;
+
+@foreign const CONSOLE_TEXTMODE_BUFFER = 1;
+
+@foreign
+struct _COORD {
+    X: SHORT;
+    Y: SHORT;
+}
+
+@foreign
+typedef COORD = _COORD;
+
+@foreign
+typedef PCOORD = _COORD*;
+
+@foreign
+struct _SMALL_RECT {
+    Left: SHORT;
+    Top: SHORT;
+    Right: SHORT;
+    Bottom: SHORT;
+}
+
+@foreign
+typedef SMALL_RECT = _SMALL_RECT;
+
+@foreign
+typedef PSMALL_RECT = _SMALL_RECT*;
+
+/*
+@PROBLEM Nested struct def at line 69, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+
+@foreign
+struct _KEY_EVENT_RECORD {
+    bKeyDown: BOOL;
+    wRepeatCount: WORD;
+    wVirtualKeyCode: WORD;
+    wVirtualScanCode: WORD;
+    uChar: (null);
+    dwControlKeyState: DWORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 69, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+
+_KEY_EVENT_RECORD
+*/
+
+@foreign
+typedef PKEY_EVENT_RECORD = _KEY_EVENT_RECORD*;
+
+@foreign
+struct _MOUSE_EVENT_RECORD {
+    dwMousePosition: COORD;
+    dwButtonState: DWORD;
+    dwControlKeyState: DWORD;
+    dwEventFlags: DWORD;
+}
+
+@foreign
+typedef MOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD;
+
+@foreign
+typedef PMOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD*;
+
+@foreign
+struct _WINDOW_BUFFER_SIZE_RECORD {
+    dwSize: COORD;
+}
+
+@foreign
+typedef WINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD;
+
+@foreign
+typedef PWINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD*;
+
+@foreign
+struct _MENU_EVENT_RECORD {
+    dwCommandId: UINT;
+}
+
+@foreign
+typedef MENU_EVENT_RECORD = _MENU_EVENT_RECORD;
+
+@foreign
+typedef PMENU_EVENT_RECORD = _MENU_EVENT_RECORD*;
+
+@foreign
+struct _FOCUS_EVENT_RECORD {
+    bSetFocus: BOOL;
+}
+
+@foreign
+typedef FOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD;
+
+@foreign
+typedef PFOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD*;
+
+/*
+@PROBLEM Nested struct def at line 142, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+
+@foreign
+struct _INPUT_RECORD {
+    EventType: WORD;
+    Event: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 142, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+
+_INPUT_RECORD
+*/
+
+@foreign
+typedef PINPUT_RECORD = _INPUT_RECORD*;
+
+/*
+@PROBLEM Nested struct def at line 169, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+
+@foreign
+struct _CHAR_INFO {
+    Char: (null);
+    Attributes: WORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 169, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+
+_CHAR_INFO
+*/
+
+@foreign
+typedef PCHAR_INFO = _CHAR_INFO*;
+
+@foreign
+struct _CONSOLE_SCREEN_BUFFER_INFO {
+    dwSize: COORD;
+    dwCursorPosition: COORD;
+    wAttributes: WORD;
+    srWindow: SMALL_RECT;
+    dwMaximumWindowSize: COORD;
+}
+
+@foreign
+typedef CONSOLE_SCREEN_BUFFER_INFO = _CONSOLE_SCREEN_BUFFER_INFO;
+
+@foreign
+typedef PCONSOLE_SCREEN_BUFFER_INFO = _CONSOLE_SCREEN_BUFFER_INFO*;
+
+@foreign
+struct _CONSOLE_SCREEN_BUFFER_INFOEX {
+    cbSize: ULONG;
+    dwSize: COORD;
+    dwCursorPosition: COORD;
+    wAttributes: WORD;
+    srWindow: SMALL_RECT;
+    dwMaximumWindowSize: COORD;
+    wPopupAttributes: WORD;
+    bFullscreenSupported: BOOL;
+    ColorTable: COLORREF[16];
+}
+
+@foreign
+typedef CONSOLE_SCREEN_BUFFER_INFOEX = _CONSOLE_SCREEN_BUFFER_INFOEX;
+
+@foreign
+typedef PCONSOLE_SCREEN_BUFFER_INFOEX = _CONSOLE_SCREEN_BUFFER_INFOEX*;
+
+@foreign
+struct _CONSOLE_CURSOR_INFO {
+    dwSize: DWORD;
+    bVisible: BOOL;
+}
+
+@foreign
+typedef CONSOLE_CURSOR_INFO = _CONSOLE_CURSOR_INFO;
+
+@foreign
+typedef PCONSOLE_CURSOR_INFO = _CONSOLE_CURSOR_INFO*;
+
+@foreign
+struct _CONSOLE_FONT_INFO {
+    nFont: DWORD;
+    dwFontSize: COORD;
+}
+
+@foreign
+typedef CONSOLE_FONT_INFO = _CONSOLE_FONT_INFO;
+
+@foreign
+typedef PCONSOLE_FONT_INFO = _CONSOLE_FONT_INFO*;
+
+@foreign
+struct _CONSOLE_FONT_INFOEX {
+    cbSize: ULONG;
+    nFont: DWORD;
+    dwFontSize: COORD;
+    FontFamily: UINT;
+    FontWeight: UINT;
+    FaceName: WCHAR[32];
+}
+
+@foreign
+typedef CONSOLE_FONT_INFOEX = _CONSOLE_FONT_INFOEX;
+
+@foreign
+typedef PCONSOLE_FONT_INFOEX = _CONSOLE_FONT_INFOEX*;
+
+@foreign
+struct _CONSOLE_HISTORY_INFO {
+    cbSize: UINT;
+    HistoryBufferSize: UINT;
+    NumberOfHistoryBuffers: UINT;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef CONSOLE_HISTORY_INFO = _CONSOLE_HISTORY_INFO;
+
+@foreign
+typedef PCONSOLE_HISTORY_INFO = _CONSOLE_HISTORY_INFO*;
+
+@foreign
+struct _CONSOLE_SELECTION_INFO {
+    dwFlags: DWORD;
+    dwSelectionAnchor: COORD;
+    srSelection: SMALL_RECT;
+}
+
+@foreign
+typedef CONSOLE_SELECTION_INFO = _CONSOLE_SELECTION_INFO;
+
+@foreign
+typedef PCONSOLE_SELECTION_INFO = _CONSOLE_SELECTION_INFO*;
+
+@foreign
+typedef PHANDLER_ROUTINE = func(CtrlType: DWORD): BOOL;
+
+@foreign
+func PeekConsoleInputW(hConsoleInput: HANDLE, lpBuffer: PINPUT_RECORD, nLength: DWORD, lpNumberOfEventsRead: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleInputA(hConsoleInput: HANDLE, lpBuffer: INPUT_RECORD*, nLength: DWORD, lpNumberOfEventsWritten: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleInput(hConsoleInput: HANDLE, lpBuffer: INPUT_RECORD*, nLength: DWORD, lpNumberOfEventsWritten: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleInputW(hConsoleInput: HANDLE, lpBuffer: INPUT_RECORD*, nLength: DWORD, lpNumberOfEventsWritten: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleOutputA(hConsoleOutput: HANDLE, lpBuffer: PCHAR_INFO, dwBufferSize: COORD, dwBufferCoord: COORD, lpReadRegion: PSMALL_RECT): BOOL;
+
+@foreign
+func ReadConsoleOutput(hConsoleOutput: HANDLE, lpBuffer: PCHAR_INFO, dwBufferSize: COORD, dwBufferCoord: COORD, lpReadRegion: PSMALL_RECT): BOOL;
+
+@foreign
+func ReadConsoleOutputW(hConsoleOutput: HANDLE, lpBuffer: PCHAR_INFO, dwBufferSize: COORD, dwBufferCoord: COORD, lpReadRegion: PSMALL_RECT): BOOL;
+
+@foreign
+func WriteConsoleOutputA(hConsoleOutput: HANDLE, lpBuffer: CHAR_INFO*, dwBufferSize: COORD, dwBufferCoord: COORD, lpWriteRegion: PSMALL_RECT): BOOL;
+
+@foreign
+func WriteConsoleOutput(hConsoleOutput: HANDLE, lpBuffer: CHAR_INFO*, dwBufferSize: COORD, dwBufferCoord: COORD, lpWriteRegion: PSMALL_RECT): BOOL;
+
+@foreign
+func WriteConsoleOutputW(hConsoleOutput: HANDLE, lpBuffer: CHAR_INFO*, dwBufferSize: COORD, dwBufferCoord: COORD, lpWriteRegion: PSMALL_RECT): BOOL;
+
+@foreign
+func ReadConsoleOutputCharacterA(hConsoleOutput: HANDLE, lpCharacter: LPSTR, nLength: DWORD, dwReadCoord: COORD, lpNumberOfCharsRead: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleOutputCharacter(hConsoleOutput: HANDLE, lpCharacter: LPSTR, nLength: DWORD, dwReadCoord: COORD, lpNumberOfCharsRead: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleOutputCharacterW(hConsoleOutput: HANDLE, lpCharacter: LPWSTR, nLength: DWORD, dwReadCoord: COORD, lpNumberOfCharsRead: LPDWORD): BOOL;
+
+@foreign
+func ReadConsoleOutputAttribute(hConsoleOutput: HANDLE, lpAttribute: LPWORD, nLength: DWORD, dwReadCoord: COORD, lpNumberOfAttrsRead: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleOutputCharacterA(hConsoleOutput: HANDLE, lpCharacter: LPCSTR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleOutputCharacter(hConsoleOutput: HANDLE, lpCharacter: LPCSTR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleOutputCharacterW(hConsoleOutput: HANDLE, lpCharacter: LPCWSTR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+func WriteConsoleOutputAttribute(hConsoleOutput: HANDLE, lpAttribute: WORD*, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfAttrsWritten: LPDWORD): BOOL;
+
+@foreign
+func FillConsoleOutputCharacterA(hConsoleOutput: HANDLE, cCharacter: CHAR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+func FillConsoleOutputCharacter(hConsoleOutput: HANDLE, cCharacter: CHAR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+func FillConsoleOutputCharacterW(hConsoleOutput: HANDLE, cCharacter: WCHAR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL;
+
+@foreign
+func FillConsoleOutputAttribute(hConsoleOutput: HANDLE, wAttribute: WORD, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfAttrsWritten: LPDWORD): BOOL;
+
+@foreign
+func GetConsoleScreenBufferInfo(hConsoleOutput: HANDLE, lpConsoleScreenBufferInfo: PCONSOLE_SCREEN_BUFFER_INFO): BOOL;
+
+@foreign
+func GetConsoleScreenBufferInfoEx(hConsoleOutput: HANDLE, lpConsoleScreenBufferInfoEx: PCONSOLE_SCREEN_BUFFER_INFOEX): BOOL;
+
+@foreign
+func SetConsoleScreenBufferInfoEx(hConsoleOutput: HANDLE, lpConsoleScreenBufferInfoEx: PCONSOLE_SCREEN_BUFFER_INFOEX): BOOL;
+
+@foreign
+func GetLargestConsoleWindowSize(hConsoleOutput: HANDLE): COORD;
+
+@foreign
+func GetConsoleCursorInfo(hConsoleOutput: HANDLE, lpConsoleCursorInfo: PCONSOLE_CURSOR_INFO): BOOL;
+
+@foreign
+func GetCurrentConsoleFont(hConsoleOutput: HANDLE, bMaximumWindow: BOOL, lpConsoleCurrentFont: PCONSOLE_FONT_INFO): BOOL;
+
+@foreign
+func GetCurrentConsoleFontEx(hConsoleOutput: HANDLE, bMaximumWindow: BOOL, lpConsoleCurrentFontEx: PCONSOLE_FONT_INFOEX): BOOL;
+
+@foreign
+func SetCurrentConsoleFontEx(hConsoleOutput: HANDLE, bMaximumWindow: BOOL, lpConsoleCurrentFontEx: PCONSOLE_FONT_INFOEX): BOOL;
+
+@foreign
+func GetConsoleHistoryInfo(lpConsoleHistoryInfo: PCONSOLE_HISTORY_INFO): BOOL;
+
+@foreign
+func SetConsoleHistoryInfo(lpConsoleHistoryInfo: PCONSOLE_HISTORY_INFO): BOOL;
+
+@foreign
+func GetConsoleFontSize(hConsoleOutput: HANDLE, nFont: DWORD): COORD;
+
+@foreign
+func GetConsoleSelectionInfo(lpConsoleSelectionInfo: PCONSOLE_SELECTION_INFO): BOOL;
+
+@foreign
+func GetNumberOfConsoleMouseButtons(lpNumberOfMouseButtons: LPDWORD): BOOL;
+
+@foreign
+func SetConsoleActiveScreenBuffer(hConsoleOutput: HANDLE): BOOL;
+
+@foreign
+func FlushConsoleInputBuffer(hConsoleInput: HANDLE): BOOL;
+
+@foreign
+func SetConsoleScreenBufferSize(hConsoleOutput: HANDLE, dwSize: COORD): BOOL;
+
+@foreign
+func SetConsoleCursorPosition(hConsoleOutput: HANDLE, dwCursorPosition: COORD): BOOL;
+
+@foreign
+func SetConsoleCursorInfo(hConsoleOutput: HANDLE, lpConsoleCursorInfo: CONSOLE_CURSOR_INFO*): BOOL;
+
+@foreign
+func ScrollConsoleScreenBufferA(hConsoleOutput: HANDLE, lpScrollRectangle: SMALL_RECT*, lpClipRectangle: SMALL_RECT*, dwDestinationOrigin: COORD, lpFill: CHAR_INFO*): BOOL;
+
+@foreign
+func ScrollConsoleScreenBuffer(hConsoleOutput: HANDLE, lpScrollRectangle: SMALL_RECT*, lpClipRectangle: SMALL_RECT*, dwDestinationOrigin: COORD, lpFill: CHAR_INFO*): BOOL;
+
+@foreign
+func ScrollConsoleScreenBufferW(hConsoleOutput: HANDLE, lpScrollRectangle: SMALL_RECT*, lpClipRectangle: SMALL_RECT*, dwDestinationOrigin: COORD, lpFill: CHAR_INFO*): BOOL;
+
+@foreign
+func SetConsoleWindowInfo(hConsoleOutput: HANDLE, bAbsolute: BOOL, lpConsoleWindow: SMALL_RECT*): BOOL;
+
+@foreign
+func SetConsoleTextAttribute(hConsoleOutput: HANDLE, wAttributes: WORD): BOOL;
+
+@foreign
+func GenerateConsoleCtrlEvent(dwCtrlEvent: DWORD, dwProcessGroupId: DWORD): BOOL;
+
+@foreign
+func FreeConsole(): BOOL;
+
+@foreign
+func AttachConsole(dwProcessId: DWORD): BOOL;
+
+@foreign
+func GetConsoleTitleA(lpConsoleTitle: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetConsoleTitle(lpConsoleTitle: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetConsoleTitleW(lpConsoleTitle: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetConsoleOriginalTitleA(lpConsoleTitle: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetConsoleOriginalTitle(lpConsoleTitle: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetConsoleOriginalTitleW(lpConsoleTitle: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func SetConsoleTitleA(lpConsoleTitle: LPCSTR): BOOL;
+
+@foreign
+func SetConsoleTitle(lpConsoleTitle: LPCSTR): BOOL;
+
+@foreign
+func SetConsoleTitleW(lpConsoleTitle: LPCWSTR): BOOL;
+
+@foreign
+struct _CONSOLE_READCONSOLE_CONTROL {
+    nLength: ULONG;
+    nInitialChars: ULONG;
+    dwCtrlWakeupMask: ULONG;
+    dwControlKeyState: ULONG;
+}
+
+@foreign
+typedef CONSOLE_READCONSOLE_CONTROL = _CONSOLE_READCONSOLE_CONTROL;
+
+@foreign
+typedef PCONSOLE_READCONSOLE_CONTROL = _CONSOLE_READCONSOLE_CONTROL*;
+
+@foreign
+func CreateConsoleScreenBuffer(dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: SECURITY_ATTRIBUTES*, dwFlags: DWORD, lpScreenBufferData: LPVOID): HANDLE;
+
+@foreign
+func SetConsoleCP(wCodePageID: UINT): BOOL;
+
+@foreign
+func SetConsoleOutputCP(wCodePageID: UINT): BOOL;
+
+@foreign
+func GetConsoleDisplayMode(lpModeFlags: LPDWORD): BOOL;
+
+@foreign
+func SetConsoleDisplayMode(hConsoleOutput: HANDLE, dwFlags: DWORD, lpNewScreenBufferDimensions: PCOORD): BOOL;
+
+@foreign
+func GetConsoleWindow(): HWND;
+
+@foreign
+func GetConsoleProcessList(lpdwProcessList: LPDWORD, dwProcessCount: DWORD): DWORD;
+
+@foreign
+func AddConsoleAliasA(Source: LPSTR, Target: LPSTR, ExeName: LPSTR): BOOL;
+
+@foreign
+func AddConsoleAlias(Source: LPSTR, Target: LPSTR, ExeName: LPSTR): BOOL;
+
+@foreign
+func AddConsoleAliasW(Source: LPWSTR, Target: LPWSTR, ExeName: LPWSTR): BOOL;
+
+@foreign
+func GetConsoleAliasA(Source: LPSTR, TargetBuffer: LPSTR, TargetBufferLength: DWORD, ExeName: LPSTR): DWORD;
+
+@foreign
+func GetConsoleAlias(Source: LPSTR, TargetBuffer: LPSTR, TargetBufferLength: DWORD, ExeName: LPSTR): DWORD;
+
+@foreign
+func GetConsoleAliasW(Source: LPWSTR, TargetBuffer: LPWSTR, TargetBufferLength: DWORD, ExeName: LPWSTR): DWORD;
+
+@foreign
+func GetConsoleAliasesLengthA(ExeName: LPSTR): DWORD;
+
+@foreign
+func GetConsoleAliasesLength(ExeName: LPSTR): DWORD;
+
+@foreign
+func GetConsoleAliasesLengthW(ExeName: LPWSTR): DWORD;
+
+@foreign
+func GetConsoleAliasExesLengthA(): DWORD;
+
+@foreign
+func GetConsoleAliasExesLength(): DWORD;
+
+@foreign
+func GetConsoleAliasExesLengthW(): DWORD;
+
+@foreign
+func GetConsoleAliasesA(AliasBuffer: LPSTR, AliasBufferLength: DWORD, ExeName: LPSTR): DWORD;
+
+@foreign
+func GetConsoleAliases(AliasBuffer: LPSTR, AliasBufferLength: DWORD, ExeName: LPSTR): DWORD;
+
+@foreign
+func GetConsoleAliasesW(AliasBuffer: LPWSTR, AliasBufferLength: DWORD, ExeName: LPWSTR): DWORD;
+
+@foreign
+func GetConsoleAliasExesA(ExeNameBuffer: LPSTR, ExeNameBufferLength: DWORD): DWORD;
+
+@foreign
+func GetConsoleAliasExes(ExeNameBuffer: LPSTR, ExeNameBufferLength: DWORD): DWORD;
+
+@foreign
+func GetConsoleAliasExesW(ExeNameBuffer: LPWSTR, ExeNameBufferLength: DWORD): DWORD;
+

@@ -1,0 +1,208 @@
+#foreign(header = "<sysinfoapi.h>")
+
+/*
+@PROBLEM Nested struct def at line 90, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\sysinfoapi.h
+
+@foreign
+struct _SYSTEM_INFO {
+    u: (null);
+    dwPageSize: DWORD;
+    lpMinimumApplicationAddress: LPVOID;
+    lpMaximumApplicationAddress: LPVOID;
+    dwActiveProcessorMask: DWORD_PTR;
+    dwNumberOfProcessors: DWORD;
+    dwProcessorType: DWORD;
+    dwAllocationGranularity: DWORD;
+    wProcessorLevel: WORD;
+    wProcessorRevision: WORD;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 90, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\sysinfoapi.h
+
+_SYSTEM_INFO
+*/
+
+@foreign
+typedef LPSYSTEM_INFO = _SYSTEM_INFO*;
+
+@foreign
+struct _MEMORYSTATUSEX {
+    dwLength: DWORD;
+    dwMemoryLoad: DWORD;
+    ullTotalPhys: DWORDLONG;
+    ullAvailPhys: DWORDLONG;
+    ullTotalPageFile: DWORDLONG;
+    ullAvailPageFile: DWORDLONG;
+    ullTotalVirtual: DWORDLONG;
+    ullAvailVirtual: DWORDLONG;
+    ullAvailExtendedVirtual: DWORDLONG;
+}
+
+@foreign
+typedef MEMORYSTATUSEX = _MEMORYSTATUSEX;
+
+@foreign
+typedef LPMEMORYSTATUSEX = _MEMORYSTATUSEX*;
+
+@foreign
+func GlobalMemoryStatusEx(lpBuffer: LPMEMORYSTATUSEX): BOOL;
+
+@foreign
+func GetSystemInfo(lpSystemInfo: LPSYSTEM_INFO);
+
+@foreign
+func GetSystemTime(lpSystemTime: LPSYSTEMTIME);
+
+@foreign
+func GetSystemTimeAsFileTime(lpSystemTimeAsFileTime: LPFILETIME);
+
+@foreign
+func GetLocalTime(lpSystemTime: LPSYSTEMTIME);
+
+@foreign
+func GetVersion(): DWORD;
+
+@foreign
+func SetLocalTime(lpSystemTime: SYSTEMTIME*): BOOL;
+
+@foreign
+func GetTickCount(): DWORD;
+
+@foreign
+func GetTickCount64(): ULONGLONG;
+
+@foreign
+func GetSystemTimeAdjustment(lpTimeAdjustment: PDWORD, lpTimeIncrement: PDWORD, lpTimeAdjustmentDisabled: PBOOL): BOOL;
+
+@foreign
+func GetSystemDirectoryA(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemDirectory(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemDirectoryW(lpBuffer: LPWSTR, uSize: UINT): UINT;
+
+@foreign
+func GetWindowsDirectoryA(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetWindowsDirectory(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetWindowsDirectoryW(lpBuffer: LPWSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemWindowsDirectoryA(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemWindowsDirectory(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemWindowsDirectoryW(lpBuffer: LPWSTR, uSize: UINT): UINT;
+
+@foreign
+enum _COMPUTER_NAME_FORMAT {
+    ComputerNameNetBIOS,
+    ComputerNameDnsHostname,
+    ComputerNameDnsDomain,
+    ComputerNameDnsFullyQualified,
+    ComputerNamePhysicalNetBIOS,
+    ComputerNamePhysicalDnsHostname,
+    ComputerNamePhysicalDnsDomain,
+    ComputerNamePhysicalDnsFullyQualified,
+    ComputerNameMax,
+}
+
+@foreign
+typedef COMPUTER_NAME_FORMAT = _COMPUTER_NAME_FORMAT;
+
+@foreign
+func GetComputerNameExA(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func GetComputerNameEx(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func GetComputerNameExW(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPWSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func SetComputerNameExW(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPCWSTR): BOOL;
+
+@foreign
+func SetSystemTime(lpSystemTime: SYSTEMTIME*): BOOL;
+
+@foreign
+func GetVersionExA(lpVersionInformation: LPOSVERSIONINFOA): BOOL;
+
+@foreign
+func GetVersionEx(lpVersionInformation: LPOSVERSIONINFOA): BOOL;
+
+@foreign
+func GetVersionExW(lpVersionInformation: LPOSVERSIONINFOW): BOOL;
+
+@foreign
+func GetLogicalProcessorInformation(Buffer: PSYSTEM_LOGICAL_PROCESSOR_INFORMATION, ReturnedLength: PDWORD): BOOL;
+
+@foreign
+func GetLogicalProcessorInformationEx(RelationshipType: LOGICAL_PROCESSOR_RELATIONSHIP, Buffer: PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, ReturnedLength: PDWORD): BOOL;
+
+@foreign
+func GetNativeSystemInfo(lpSystemInfo: LPSYSTEM_INFO);
+
+@foreign
+func GetSystemTimePreciseAsFileTime(lpSystemTimeAsFileTime: LPFILETIME);
+
+@foreign
+func GetProductInfo(dwOSMajorVersion: DWORD, dwOSMinorVersion: DWORD, dwSpMajorVersion: DWORD, dwSpMinorVersion: DWORD, pdwReturnedProductType: PDWORD): BOOL;
+
+@foreign
+func GetOsSafeBootMode(Flags: PDWORD): BOOL;
+
+@foreign
+func EnumSystemFirmwareTables(FirmwareTableProviderSignature: DWORD, pFirmwareTableEnumBuffer: PVOID, BufferSize: DWORD): UINT;
+
+@foreign
+func GetSystemFirmwareTable(FirmwareTableProviderSignature: DWORD, FirmwareTableID: DWORD, pFirmwareTableBuffer: PVOID, BufferSize: DWORD): UINT;
+
+@foreign
+func DnsHostnameToComputerNameExW(Hostname: LPCWSTR, ComputerName: LPWSTR, nSize: LPDWORD): BOOL;
+
+@foreign
+func GetPhysicallyInstalledSystemMemory(TotalMemoryInKilobytes: PULONGLONG): BOOL;
+
+@foreign
+func SetComputerNameEx2W(NameType: COMPUTER_NAME_FORMAT, Flags: DWORD, lpBuffer: LPCWSTR): BOOL;
+
+@foreign
+func SetSystemTimeAdjustment(dwTimeAdjustment: DWORD, bTimeAdjustmentDisabled: BOOL): BOOL;
+
+@foreign
+func InstallELAMCertificateInfo(ELAMFile: HANDLE): BOOL;
+
+@foreign
+func GetProcessorSystemCycleTime(Group: USHORT, Buffer: PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION, ReturnedLength: PDWORD): BOOL;
+
+@foreign
+func GetOsManufacturingMode(pbEnabled: PBOOL): BOOL;
+
+@foreign
+func GetIntegratedDisplaySize(sizeInInches: double*): HRESULT;
+
+@foreign
+func SetComputerNameA(lpComputerName: LPCSTR): BOOL;
+
+@foreign
+func SetComputerName(lpComputerName: LPCSTR): BOOL;
+
+@foreign
+func SetComputerNameW(lpComputerName: LPCWSTR): BOOL;
+
+@foreign
+func SetComputerNameEx(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPCSTR): BOOL;
+
+@foreign
+func SetComputerNameExA(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPCSTR): BOOL;
+

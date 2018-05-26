@@ -1,0 +1,455 @@
+#foreign(header = "<processthreadsapi.h>")
+
+@foreign
+struct _PROCESS_INFORMATION {
+    hProcess: HANDLE;
+    hThread: HANDLE;
+    dwProcessId: DWORD;
+    dwThreadId: DWORD;
+}
+
+@foreign
+typedef PROCESS_INFORMATION = _PROCESS_INFORMATION;
+
+@foreign
+typedef PPROCESS_INFORMATION = _PROCESS_INFORMATION*;
+
+@foreign
+typedef LPPROCESS_INFORMATION = _PROCESS_INFORMATION*;
+
+@foreign
+struct _STARTUPINFOA {
+    cb: DWORD;
+    lpReserved: LPSTR;
+    lpDesktop: LPSTR;
+    lpTitle: LPSTR;
+    dwX: DWORD;
+    dwY: DWORD;
+    dwXSize: DWORD;
+    dwYSize: DWORD;
+    dwXCountChars: DWORD;
+    dwYCountChars: DWORD;
+    dwFillAttribute: DWORD;
+    dwFlags: DWORD;
+    wShowWindow: WORD;
+    cbReserved2: WORD;
+    lpReserved2: LPBYTE;
+    hStdInput: HANDLE;
+    hStdOutput: HANDLE;
+    hStdError: HANDLE;
+}
+
+@foreign
+typedef STARTUPINFOA = _STARTUPINFOA;
+
+@foreign
+typedef LPSTARTUPINFOA = _STARTUPINFOA*;
+
+@foreign
+struct _STARTUPINFOW {
+    cb: DWORD;
+    lpReserved: LPWSTR;
+    lpDesktop: LPWSTR;
+    lpTitle: LPWSTR;
+    dwX: DWORD;
+    dwY: DWORD;
+    dwXSize: DWORD;
+    dwYSize: DWORD;
+    dwXCountChars: DWORD;
+    dwYCountChars: DWORD;
+    dwFillAttribute: DWORD;
+    dwFlags: DWORD;
+    wShowWindow: WORD;
+    cbReserved2: WORD;
+    lpReserved2: LPBYTE;
+    hStdInput: HANDLE;
+    hStdOutput: HANDLE;
+    hStdError: HANDLE;
+}
+
+@foreign
+typedef STARTUPINFOW = _STARTUPINFOW;
+
+@foreign
+typedef LPSTARTUPINFOW = _STARTUPINFOW*;
+
+@foreign
+typedef STARTUPINFO = STARTUPINFOA;
+
+@foreign
+typedef LPSTARTUPINFO = LPSTARTUPINFOA;
+
+@foreign
+func QueueUserAPC(pfnAPC: PAPCFUNC, hThread: HANDLE, dwData: ULONG_PTR): DWORD;
+
+@foreign
+func GetProcessTimes(hProcess: HANDLE, lpCreationTime: LPFILETIME, lpExitTime: LPFILETIME, lpKernelTime: LPFILETIME, lpUserTime: LPFILETIME): BOOL;
+
+@foreign
+func GetCurrentProcess(): HANDLE;
+
+@foreign
+func GetCurrentProcessId(): DWORD;
+
+@foreign
+func ExitProcess(uExitCode: UINT);
+
+@foreign
+func TerminateProcess(hProcess: HANDLE, uExitCode: UINT): BOOL;
+
+@foreign
+func GetExitCodeProcess(hProcess: HANDLE, lpExitCode: LPDWORD): BOOL;
+
+@foreign
+func SwitchToThread(): BOOL;
+
+@foreign
+func CreateThread(lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: LPVOID, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE;
+
+@foreign
+func CreateRemoteThread(hProcess: HANDLE, lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: LPVOID, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE;
+
+@foreign
+func GetCurrentThread(): HANDLE;
+
+@foreign
+func GetCurrentThreadId(): DWORD;
+
+@foreign
+func OpenThread(dwDesiredAccess: DWORD, bInheritHandle: BOOL, dwThreadId: DWORD): HANDLE;
+
+@foreign
+func SetThreadPriority(hThread: HANDLE, nPriority: int): BOOL;
+
+@foreign
+func SetThreadPriorityBoost(hThread: HANDLE, bDisablePriorityBoost: BOOL): BOOL;
+
+@foreign
+func GetThreadPriorityBoost(hThread: HANDLE, pDisablePriorityBoost: PBOOL): BOOL;
+
+@foreign
+func GetThreadPriority(hThread: HANDLE): int;
+
+@foreign
+func ExitThread(dwExitCode: DWORD);
+
+@foreign
+func TerminateThread(hThread: HANDLE, dwExitCode: DWORD): BOOL;
+
+@foreign
+func GetExitCodeThread(hThread: HANDLE, lpExitCode: LPDWORD): BOOL;
+
+@foreign
+func SuspendThread(hThread: HANDLE): DWORD;
+
+@foreign
+func ResumeThread(hThread: HANDLE): DWORD;
+
+@foreign
+func TlsAlloc(): DWORD;
+
+@foreign
+func TlsGetValue(dwTlsIndex: DWORD): LPVOID;
+
+@foreign
+func TlsSetValue(dwTlsIndex: DWORD, lpTlsValue: LPVOID): BOOL;
+
+@foreign
+func TlsFree(dwTlsIndex: DWORD): BOOL;
+
+@foreign
+func CreateProcessA(lpApplicationName: LPCSTR, lpCommandLine: LPSTR, lpProcessAttributes: LPSECURITY_ATTRIBUTES, lpThreadAttributes: LPSECURITY_ATTRIBUTES, bInheritHandles: BOOL, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCSTR, lpStartupInfo: LPSTARTUPINFOA, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func CreateProcess(lpApplicationName: LPCSTR, lpCommandLine: LPSTR, lpProcessAttributes: LPSECURITY_ATTRIBUTES, lpThreadAttributes: LPSECURITY_ATTRIBUTES, bInheritHandles: BOOL, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCSTR, lpStartupInfo: LPSTARTUPINFOA, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func CreateProcessW(lpApplicationName: LPCWSTR, lpCommandLine: LPWSTR, lpProcessAttributes: LPSECURITY_ATTRIBUTES, lpThreadAttributes: LPSECURITY_ATTRIBUTES, bInheritHandles: BOOL, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCWSTR, lpStartupInfo: LPSTARTUPINFOW, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func SetProcessShutdownParameters(dwLevel: DWORD, dwFlags: DWORD): BOOL;
+
+@foreign
+func GetProcessVersion(ProcessId: DWORD): DWORD;
+
+@foreign
+func GetStartupInfoW(lpStartupInfo: LPSTARTUPINFOW);
+
+@foreign
+func CreateProcessAsUserW(hToken: HANDLE, lpApplicationName: LPCWSTR, lpCommandLine: LPWSTR, lpProcessAttributes: LPSECURITY_ATTRIBUTES, lpThreadAttributes: LPSECURITY_ATTRIBUTES, bInheritHandles: BOOL, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCWSTR, lpStartupInfo: LPSTARTUPINFOW, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func SetThreadToken(Thread: PHANDLE, Token: HANDLE): BOOL;
+
+@foreign
+func OpenProcessToken(ProcessHandle: HANDLE, DesiredAccess: DWORD, TokenHandle: PHANDLE): BOOL;
+
+@foreign
+func OpenThreadToken(ThreadHandle: HANDLE, DesiredAccess: DWORD, OpenAsSelf: BOOL, TokenHandle: PHANDLE): BOOL;
+
+@foreign
+func SetPriorityClass(hProcess: HANDLE, dwPriorityClass: DWORD): BOOL;
+
+@foreign
+func GetPriorityClass(hProcess: HANDLE): DWORD;
+
+@foreign
+func SetThreadStackGuarantee(StackSizeInBytes: PULONG): BOOL;
+
+@foreign
+func ProcessIdToSessionId(dwProcessId: DWORD, pSessionId: DWORD*): BOOL;
+
+@foreign
+typedef PPROC_THREAD_ATTRIBUTE_LIST = _PROC_THREAD_ATTRIBUTE_LIST*;
+
+@foreign
+typedef LPPROC_THREAD_ATTRIBUTE_LIST = _PROC_THREAD_ATTRIBUTE_LIST*;
+
+@foreign
+func GetProcessId(Process: HANDLE): DWORD;
+
+@foreign
+func GetThreadId(Thread: HANDLE): DWORD;
+
+@foreign
+func FlushProcessWriteBuffers();
+
+@foreign
+func GetProcessIdOfThread(Thread: HANDLE): DWORD;
+
+@foreign
+func InitializeProcThreadAttributeList(lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST, dwAttributeCount: DWORD, dwFlags: DWORD, lpSize: PSIZE_T): BOOL;
+
+@foreign
+func DeleteProcThreadAttributeList(lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST);
+
+@foreign
+func SetProcessAffinityUpdateMode(hProcess: HANDLE, dwFlags: DWORD): BOOL;
+
+@foreign
+func QueryProcessAffinityUpdateMode(hProcess: HANDLE, lpdwFlags: LPDWORD): BOOL;
+
+@foreign
+func UpdateProcThreadAttribute(lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST, dwFlags: DWORD, Attribute: DWORD_PTR, lpValue: PVOID, cbSize: SIZE_T, lpPreviousValue: PVOID, lpReturnSize: PSIZE_T): BOOL;
+
+@foreign
+func CreateRemoteThreadEx(hProcess: HANDLE, lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: LPVOID, dwCreationFlags: DWORD, lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST, lpThreadId: LPDWORD): HANDLE;
+
+@foreign
+func GetCurrentThreadStackLimits(LowLimit: PULONG_PTR, HighLimit: PULONG_PTR);
+
+@foreign
+func GetThreadContext(hThread: HANDLE, lpContext: LPCONTEXT): BOOL;
+
+@foreign
+func GetProcessMitigationPolicy(hProcess: HANDLE, MitigationPolicy: PROCESS_MITIGATION_POLICY, lpBuffer: PVOID, dwLength: SIZE_T): BOOL;
+
+@foreign
+func SetThreadContext(hThread: HANDLE, lpContext: CONTEXT*): BOOL;
+
+@foreign
+func SetProcessMitigationPolicy(MitigationPolicy: PROCESS_MITIGATION_POLICY, lpBuffer: PVOID, dwLength: SIZE_T): BOOL;
+
+@foreign
+func FlushInstructionCache(hProcess: HANDLE, lpBaseAddress: LPCVOID, dwSize: SIZE_T): BOOL;
+
+@foreign
+func GetThreadTimes(hThread: HANDLE, lpCreationTime: LPFILETIME, lpExitTime: LPFILETIME, lpKernelTime: LPFILETIME, lpUserTime: LPFILETIME): BOOL;
+
+@foreign
+func OpenProcess(dwDesiredAccess: DWORD, bInheritHandle: BOOL, dwProcessId: DWORD): HANDLE;
+
+@foreign
+func IsProcessorFeaturePresent(ProcessorFeature: DWORD): BOOL;
+
+@foreign
+func GetProcessHandleCount(hProcess: HANDLE, pdwHandleCount: PDWORD): BOOL;
+
+@foreign
+func GetCurrentProcessorNumber(): DWORD;
+
+@foreign
+func SetThreadIdealProcessorEx(hThread: HANDLE, lpIdealProcessor: PPROCESSOR_NUMBER, lpPreviousIdealProcessor: PPROCESSOR_NUMBER): BOOL;
+
+@foreign
+func GetThreadIdealProcessorEx(hThread: HANDLE, lpIdealProcessor: PPROCESSOR_NUMBER): BOOL;
+
+@foreign
+func GetCurrentProcessorNumberEx(ProcNumber: PPROCESSOR_NUMBER);
+
+@foreign
+func GetProcessPriorityBoost(hProcess: HANDLE, pDisablePriorityBoost: PBOOL): BOOL;
+
+@foreign
+func SetProcessPriorityBoost(hProcess: HANDLE, bDisablePriorityBoost: BOOL): BOOL;
+
+@foreign
+func GetThreadIOPendingFlag(hThread: HANDLE, lpIOIsPending: PBOOL): BOOL;
+
+@foreign
+func GetSystemTimes(lpIdleTime: PFILETIME, lpKernelTime: PFILETIME, lpUserTime: PFILETIME): BOOL;
+
+@foreign
+enum _THREAD_INFORMATION_CLASS {
+    ThreadMemoryPriority,
+    ThreadAbsoluteCpuPriority,
+    ThreadDynamicCodePolicy,
+    ThreadPowerThrottling,
+    ThreadInformationClassMax,
+}
+
+@foreign
+typedef THREAD_INFORMATION_CLASS = _THREAD_INFORMATION_CLASS;
+
+@foreign
+struct _MEMORY_PRIORITY_INFORMATION {
+    MemoryPriority: ULONG;
+}
+
+@foreign
+typedef MEMORY_PRIORITY_INFORMATION = _MEMORY_PRIORITY_INFORMATION;
+
+@foreign
+typedef PMEMORY_PRIORITY_INFORMATION = _MEMORY_PRIORITY_INFORMATION*;
+
+@foreign
+func GetThreadInformation(hThread: HANDLE, ThreadInformationClass: THREAD_INFORMATION_CLASS, ThreadInformation: LPVOID, ThreadInformationSize: DWORD): BOOL;
+
+@foreign
+func SetThreadInformation(hThread: HANDLE, ThreadInformationClass: THREAD_INFORMATION_CLASS, ThreadInformation: LPVOID, ThreadInformationSize: DWORD): BOOL;
+
+@foreign
+struct _THREAD_POWER_THROTTLING_STATE {
+    Version: ULONG;
+    ControlMask: ULONG;
+    StateMask: ULONG;
+}
+
+@foreign
+typedef THREAD_POWER_THROTTLING_STATE = _THREAD_POWER_THROTTLING_STATE;
+
+@foreign
+func IsProcessCritical(hProcess: HANDLE, Critical: PBOOL): BOOL;
+
+@foreign
+func SetProtectedPolicy(PolicyGuid: LPCGUID, PolicyValue: ULONG_PTR, OldPolicyValue: PULONG_PTR): BOOL;
+
+@foreign
+func QueryProtectedPolicy(PolicyGuid: LPCGUID, PolicyValue: PULONG_PTR): BOOL;
+
+@foreign
+func SetThreadIdealProcessor(hThread: HANDLE, dwIdealProcessor: DWORD): DWORD;
+
+@foreign
+enum _PROCESS_INFORMATION_CLASS {
+    ProcessMemoryPriority,
+    ProcessMemoryExhaustionInfo,
+    ProcessAppMemoryInfo,
+    ProcessInPrivateInfo,
+    ProcessPowerThrottling,
+    ProcessReservedValue1,
+    ProcessTelemetryCoverageInfo,
+    ProcessProtectionLevelInfo,
+    ProcessInformationClassMax,
+}
+
+@foreign
+typedef PROCESS_INFORMATION_CLASS = _PROCESS_INFORMATION_CLASS;
+
+@foreign
+struct _APP_MEMORY_INFORMATION {
+    AvailableCommit: ULONG64;
+    PrivateCommitUsage: ULONG64;
+    PeakPrivateCommitUsage: ULONG64;
+    TotalCommitUsage: ULONG64;
+}
+
+@foreign
+typedef APP_MEMORY_INFORMATION = _APP_MEMORY_INFORMATION;
+
+@foreign
+typedef PAPP_MEMORY_INFORMATION = _APP_MEMORY_INFORMATION*;
+
+@foreign
+enum _PROCESS_MEMORY_EXHAUSTION_TYPE {
+    PMETypeFailFastOnCommitFailure,
+    PMETypeMax,
+}
+
+@foreign
+typedef PROCESS_MEMORY_EXHAUSTION_TYPE = _PROCESS_MEMORY_EXHAUSTION_TYPE;
+
+@foreign
+typedef PPROCESS_MEMORY_EXHAUSTION_TYPE = _PROCESS_MEMORY_EXHAUSTION_TYPE*;
+
+@foreign
+struct _PROCESS_MEMORY_EXHAUSTION_INFO {
+    Version: USHORT;
+    Reserved: USHORT;
+    Type: PROCESS_MEMORY_EXHAUSTION_TYPE;
+    Value: ULONG_PTR;
+}
+
+@foreign
+typedef PROCESS_MEMORY_EXHAUSTION_INFO = _PROCESS_MEMORY_EXHAUSTION_INFO;
+
+@foreign
+typedef PPROCESS_MEMORY_EXHAUSTION_INFO = _PROCESS_MEMORY_EXHAUSTION_INFO*;
+
+@foreign
+struct _PROCESS_POWER_THROTTLING_STATE {
+    Version: ULONG;
+    ControlMask: ULONG;
+    StateMask: ULONG;
+}
+
+@foreign
+typedef PROCESS_POWER_THROTTLING_STATE = _PROCESS_POWER_THROTTLING_STATE;
+
+@foreign
+typedef PPROCESS_POWER_THROTTLING_STATE = _PROCESS_POWER_THROTTLING_STATE*;
+
+@foreign
+struct PROCESS_PROTECTION_LEVEL_INFORMATION {
+    ProtectionLevel: DWORD;
+}
+
+@foreign
+func SetProcessInformation(hProcess: HANDLE, ProcessInformationClass: PROCESS_INFORMATION_CLASS, ProcessInformation: LPVOID, ProcessInformationSize: DWORD): BOOL;
+
+@foreign
+func GetProcessInformation(hProcess: HANDLE, ProcessInformationClass: PROCESS_INFORMATION_CLASS, ProcessInformation: LPVOID, ProcessInformationSize: DWORD): BOOL;
+
+@foreign
+func GetSystemCpuSetInformation(Information: PSYSTEM_CPU_SET_INFORMATION, BufferLength: ULONG, ReturnedLength: PULONG, Process: HANDLE, Flags: ULONG): BOOL;
+
+@foreign
+func GetProcessDefaultCpuSets(Process: HANDLE, CpuSetIds: PULONG, CpuSetIdCount: ULONG, RequiredIdCount: PULONG): BOOL;
+
+@foreign
+func SetProcessDefaultCpuSets(Process: HANDLE, CpuSetIds: ULONG*, CpuSetIdCount: ULONG): BOOL;
+
+@foreign
+func GetThreadSelectedCpuSets(Thread: HANDLE, CpuSetIds: PULONG, CpuSetIdCount: ULONG, RequiredIdCount: PULONG): BOOL;
+
+@foreign
+func SetThreadSelectedCpuSets(Thread: HANDLE, CpuSetIds: ULONG*, CpuSetIdCount: ULONG): BOOL;
+
+@foreign
+func CreateProcessAsUser(hToken: HANDLE, lpApplicationName: LPCSTR, lpCommandLine: LPSTR, lpProcessAttributes: LPSECURITY_ATTRIBUTES, lpThreadAttributes: LPSECURITY_ATTRIBUTES, bInheritHandles: BOOL, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCSTR, lpStartupInfo: LPSTARTUPINFOA, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func CreateProcessAsUserA(hToken: HANDLE, lpApplicationName: LPCSTR, lpCommandLine: LPSTR, lpProcessAttributes: LPSECURITY_ATTRIBUTES, lpThreadAttributes: LPSECURITY_ATTRIBUTES, bInheritHandles: BOOL, dwCreationFlags: DWORD, lpEnvironment: LPVOID, lpCurrentDirectory: LPCSTR, lpStartupInfo: LPSTARTUPINFOA, lpProcessInformation: LPPROCESS_INFORMATION): BOOL;
+
+@foreign
+func GetProcessShutdownParameters(lpdwLevel: LPDWORD, lpdwFlags: LPDWORD): BOOL;
+
+@foreign
+func SetThreadDescription(hThread: HANDLE, lpThreadDescription: PCWSTR): HRESULT;
+
+@foreign
+func GetThreadDescription(hThread: HANDLE, ppszThreadDescription: PWSTR*): HRESULT;
+
+@foreign
+struct _PROC_THREAD_ATTRIBUTE_LIST;
+

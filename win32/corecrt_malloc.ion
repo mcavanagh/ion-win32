@@ -1,0 +1,56 @@
+#foreign(header = "<corecrt_malloc.h>")
+
+@foreign
+func _calloc_base(_Count: usize, _Size: usize): void*;
+
+@foreign
+func _callnewh(_Size: usize): int;
+
+@foreign
+func _expand(_Block: void*, _Size: usize): void*;
+
+@foreign
+func _free_base(_Block: void*);
+
+@foreign
+func _malloc_base(_Size: usize): void*;
+
+@foreign
+func _msize_base(_Block: void*): usize;
+
+@foreign
+func _msize(_Block: void*): usize;
+
+@foreign
+func _realloc_base(_Block: void*, _Size: usize): void*;
+
+@foreign
+func _recalloc_base(_Block: void*, _Count: usize, _Size: usize): void*;
+
+@foreign
+func _recalloc(_Block: void*, _Count: usize, _Size: usize): void*;
+
+@foreign
+func _aligned_free(_Block: void*);
+
+@foreign
+func _aligned_malloc(_Size: usize, _Alignment: usize): void*;
+
+@foreign
+func _aligned_offset_malloc(_Size: usize, _Alignment: usize, _Offset: usize): void*;
+
+@foreign
+func _aligned_msize(_Block: void*, _Alignment: usize, _Offset: usize): usize;
+
+@foreign
+func _aligned_offset_realloc(_Block: void*, _Size: usize, _Alignment: usize, _Offset: usize): void*;
+
+@foreign
+func _aligned_offset_recalloc(_Block: void*, _Count: usize, _Size: usize, _Alignment: usize, _Offset: usize): void*;
+
+@foreign
+func _aligned_realloc(_Block: void*, _Size: usize, _Alignment: usize): void*;
+
+@foreign
+func _aligned_recalloc(_Block: void*, _Count: usize, _Size: usize, _Alignment: usize): void*;
+

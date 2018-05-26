@@ -1,0 +1,32 @@
+#foreign(header = "<enclaveapi.h>")
+
+@foreign
+func IsEnclaveTypeSupported(flEnclaveType: DWORD): BOOL;
+
+@foreign
+func CreateEnclave(hProcess: HANDLE, lpAddress: LPVOID, dwSize: SIZE_T, dwInitialCommitment: SIZE_T, flEnclaveType: DWORD, lpEnclaveInformation: LPCVOID, dwInfoLength: DWORD, lpEnclaveError: LPDWORD): LPVOID;
+
+@foreign
+func LoadEnclaveData(hProcess: HANDLE, lpAddress: LPVOID, lpBuffer: LPCVOID, nSize: SIZE_T, flProtect: DWORD, lpPageInformation: LPCVOID, dwInfoLength: DWORD, lpNumberOfBytesWritten: PSIZE_T, lpEnclaveError: LPDWORD): BOOL;
+
+@foreign
+func InitializeEnclave(hProcess: HANDLE, lpAddress: LPVOID, lpEnclaveInformation: LPCVOID, dwInfoLength: DWORD, lpEnclaveError: LPDWORD): BOOL;
+
+@foreign
+func LoadEnclaveImageA(lpEnclaveAddress: LPVOID, lpImageName: LPCSTR): BOOL;
+
+@foreign
+func LoadEnclaveImage(lpEnclaveAddress: LPVOID, lpImageName: LPCSTR): BOOL;
+
+@foreign
+func LoadEnclaveImageW(lpEnclaveAddress: LPVOID, lpImageName: LPCWSTR): BOOL;
+
+@foreign
+func CallEnclave(lpRoutine: LPENCLAVE_ROUTINE, lpParameter: LPVOID, fWaitForThread: BOOL, lpReturnValue: LPVOID*): BOOL;
+
+@foreign
+func TerminateEnclave(lpAddress: LPVOID, fWait: BOOL): BOOL;
+
+@foreign
+func DeleteEnclave(lpAddress: LPVOID): BOOL;
+

@@ -1,0 +1,153 @@
+#foreign(header = "<objbase.h>")
+
+@foreign
+enum tagCOINIT {
+    COINIT_MULTITHREADED = 0,
+    COINIT_APARTMENTTHREADED = 2,
+    COINIT_DISABLE_OLE1DDE = 4,
+    COINIT_SPEED_OVER_MEMORY = 8,
+}
+
+@foreign
+typedef COINIT = tagCOINIT;
+
+@foreign
+func CoBuildVersion(): DWORD;
+
+@foreign
+func CoInitialize(pvReserved: LPVOID): HRESULT;
+
+@foreign
+func CoRegisterMallocSpy(pMallocSpy: LPMALLOCSPY): HRESULT;
+
+@foreign
+func CoRevokeMallocSpy(): HRESULT;
+
+@foreign
+func CoCreateStandardMalloc(memctx: DWORD, ppMalloc: IMalloc**): HRESULT;
+
+@foreign
+func CoRegisterInitializeSpy(pSpy: IInitializeSpy*, puliCookie: ULARGE_INTEGER*): HRESULT;
+
+@foreign
+func CoRevokeInitializeSpy(uliCookie: ULARGE_INTEGER): HRESULT;
+
+@foreign
+enum tagCOMSD {
+    SD_LAUNCHPERMISSIONS = 0,
+    SD_ACCESSPERMISSIONS = 1,
+    SD_LAUNCHRESTRICTIONS = 2,
+    SD_ACCESSRESTRICTIONS = 3,
+}
+
+@foreign
+typedef COMSD = tagCOMSD;
+
+@foreign
+func CoGetSystemSecurityPermissions(comSDType: COMSD, ppSD: PSECURITY_DESCRIPTOR*): HRESULT;
+
+@foreign
+func CoLoadLibrary(lpszLibName: LPOLESTR, bAutoFree: BOOL): HINSTANCE;
+
+@foreign
+func CoFreeLibrary(hInst: HINSTANCE);
+
+@foreign
+func CoFreeAllLibraries();
+
+@foreign
+func CoGetInstanceFromFile(pServerInfo: COSERVERINFO*, pClsid: CLSID*, punkOuter: IUnknown*, dwClsCtx: DWORD, grfMode: DWORD, pwszName: OLECHAR*, dwCount: DWORD, pResults: MULTI_QI*): HRESULT;
+
+@foreign
+func CoGetInstanceFromIStorage(pServerInfo: COSERVERINFO*, pClsid: CLSID*, punkOuter: IUnknown*, dwClsCtx: DWORD, pstg: IStorage*, dwCount: DWORD, pResults: MULTI_QI*): HRESULT;
+
+@foreign
+func CoAllowSetForegroundWindow(pUnk: IUnknown*, lpvReserved: LPVOID): HRESULT;
+
+@foreign
+func DcomChannelSetHResult(pvReserved: LPVOID, pulReserved: ULONG*, appsHR: HRESULT): HRESULT;
+
+@foreign
+func CoIsOle1Class(rclsid: IID* const): BOOL;
+
+@foreign
+func CoFileTimeToDosDateTime(lpFileTime: FILETIME*, lpDosDate: LPWORD, lpDosTime: LPWORD): BOOL;
+
+@foreign
+func CoDosDateTimeToFileTime(nDosDate: WORD, nDosTime: WORD, lpFileTime: FILETIME*): BOOL;
+
+@foreign
+func CoRegisterMessageFilter(lpMessageFilter: LPMESSAGEFILTER, lplpMessageFilter: LPMESSAGEFILTER*): HRESULT;
+
+@foreign
+func CoRegisterChannelHook(ExtensionUuid: GUID* const, pChannelHook: IChannelHook*): HRESULT;
+
+@foreign
+func CoTreatAsClass(clsidOld: IID* const, clsidNew: IID* const): HRESULT;
+
+@foreign
+func CreateDataCache(pUnkOuter: LPUNKNOWN, rclsid: IID* const, iid: IID* const, ppv: LPVOID*): HRESULT;
+
+@foreign
+func StgOpenAsyncDocfileOnIFillLockBytes(pflb: IFillLockBytes*, grfMode: DWORD, asyncFlags: DWORD, ppstgOpen: IStorage**): HRESULT;
+
+@foreign
+func StgGetIFillLockBytesOnILockBytes(pilb: ILockBytes*, ppflb: IFillLockBytes**): HRESULT;
+
+@foreign
+func StgGetIFillLockBytesOnFile(pwcsName: OLECHAR*, ppflb: IFillLockBytes**): HRESULT;
+
+@foreign
+func StgOpenLayoutDocfile(pwcsDfName: OLECHAR*, grfMode: DWORD, reserved: DWORD, ppstgOpen: IStorage**): HRESULT;
+
+@foreign
+func CoInstall(pbc: IBindCtx*, dwFlags: DWORD, pClassSpec: uCLSSPEC*, pQuery: QUERYCONTEXT*, pszCodeBase: LPWSTR): HRESULT;
+
+@foreign
+func BindMoniker(pmk: LPMONIKER, grfOpt: DWORD, iidResult: IID* const, ppvResult: LPVOID*): HRESULT;
+
+@foreign
+func CoGetObject(pszName: LPCWSTR, pBindOptions: BIND_OPTS*, riid: IID* const, ppv: void**): HRESULT;
+
+@foreign
+func MkParseDisplayName(pbc: LPBC, szUserName: LPCOLESTR, pchEaten: ULONG*, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func MonikerRelativePathTo(pmkSrc: LPMONIKER, pmkDest: LPMONIKER, ppmkRelPath: LPMONIKER*, dwReserved: BOOL): HRESULT;
+
+@foreign
+func MonikerCommonPrefixWith(pmkThis: LPMONIKER, pmkOther: LPMONIKER, ppmkCommon: LPMONIKER*): HRESULT;
+
+@foreign
+func CreateBindCtx(reserved: DWORD, ppbc: LPBC*): HRESULT;
+
+@foreign
+func CreateGenericComposite(pmkFirst: LPMONIKER, pmkRest: LPMONIKER, ppmkComposite: LPMONIKER*): HRESULT;
+
+@foreign
+func GetClassFile(szFilename: LPCOLESTR, pclsid: CLSID*): HRESULT;
+
+@foreign
+func CreateClassMoniker(rclsid: IID* const, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func CreateFileMoniker(lpszPathName: LPCOLESTR, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func CreateItemMoniker(lpszDelim: LPCOLESTR, lpszItem: LPCOLESTR, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func CreateAntiMoniker(ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func CreatePointerMoniker(punk: LPUNKNOWN, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func CreateObjrefMoniker(punk: LPUNKNOWN, ppmk: LPMONIKER*): HRESULT;
+
+@foreign
+func GetRunningObjectTable(reserved: DWORD, pprot: LPRUNNINGOBJECTTABLE*): HRESULT;
+
+@foreign
+func CreateStdProgressIndicator(hwndParent: HWND, pszTitle: LPCOLESTR, pIbscCaller: IBindStatusCallback*, ppIbsc: IBindStatusCallback**): HRESULT;
+

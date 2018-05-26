@@ -1,0 +1,727 @@
+#foreign(header = "<winnls.h>")
+
+@foreign
+typedef LGRPID = DWORD;
+
+@foreign
+typedef LCTYPE = DWORD;
+
+@foreign
+typedef CALTYPE = DWORD;
+
+@foreign
+typedef CALID = DWORD;
+
+@foreign
+struct _cpinfo {
+    MaxCharSize: UINT;
+    DefaultChar: BYTE[2];
+    LeadByte: BYTE[12];
+}
+
+@foreign
+typedef CPINFO = _cpinfo;
+
+@foreign
+typedef LPCPINFO = _cpinfo*;
+
+@foreign
+struct _cpinfoexA {
+    MaxCharSize: UINT;
+    DefaultChar: BYTE[2];
+    LeadByte: BYTE[12];
+    UnicodeDefaultChar: WCHAR;
+    CodePage: UINT;
+    CodePageName: CHAR[260];
+}
+
+@foreign
+typedef CPINFOEXA = _cpinfoexA;
+
+@foreign
+typedef LPCPINFOEXA = _cpinfoexA*;
+
+@foreign
+struct _cpinfoexW {
+    MaxCharSize: UINT;
+    DefaultChar: BYTE[2];
+    LeadByte: BYTE[12];
+    UnicodeDefaultChar: WCHAR;
+    CodePage: UINT;
+    CodePageName: WCHAR[260];
+}
+
+@foreign
+typedef CPINFOEXW = _cpinfoexW;
+
+@foreign
+typedef LPCPINFOEXW = _cpinfoexW*;
+
+@foreign
+typedef CPINFOEX = CPINFOEXA;
+
+@foreign
+typedef LPCPINFOEX = LPCPINFOEXA;
+
+@foreign
+struct _numberfmtA {
+    NumDigits: UINT;
+    LeadingZero: UINT;
+    Grouping: UINT;
+    lpDecimalSep: LPSTR;
+    lpThousandSep: LPSTR;
+    NegativeOrder: UINT;
+}
+
+@foreign
+typedef NUMBERFMTA = _numberfmtA;
+
+@foreign
+typedef LPNUMBERFMTA = _numberfmtA*;
+
+@foreign
+struct _numberfmtW {
+    NumDigits: UINT;
+    LeadingZero: UINT;
+    Grouping: UINT;
+    lpDecimalSep: LPWSTR;
+    lpThousandSep: LPWSTR;
+    NegativeOrder: UINT;
+}
+
+@foreign
+typedef NUMBERFMTW = _numberfmtW;
+
+@foreign
+typedef LPNUMBERFMTW = _numberfmtW*;
+
+@foreign
+typedef NUMBERFMT = NUMBERFMTA;
+
+@foreign
+typedef LPNUMBERFMT = LPNUMBERFMTA;
+
+@foreign
+struct _currencyfmtA {
+    NumDigits: UINT;
+    LeadingZero: UINT;
+    Grouping: UINT;
+    lpDecimalSep: LPSTR;
+    lpThousandSep: LPSTR;
+    NegativeOrder: UINT;
+    PositiveOrder: UINT;
+    lpCurrencySymbol: LPSTR;
+}
+
+@foreign
+typedef CURRENCYFMTA = _currencyfmtA;
+
+@foreign
+typedef LPCURRENCYFMTA = _currencyfmtA*;
+
+@foreign
+struct _currencyfmtW {
+    NumDigits: UINT;
+    LeadingZero: UINT;
+    Grouping: UINT;
+    lpDecimalSep: LPWSTR;
+    lpThousandSep: LPWSTR;
+    NegativeOrder: UINT;
+    PositiveOrder: UINT;
+    lpCurrencySymbol: LPWSTR;
+}
+
+@foreign
+typedef CURRENCYFMTW = _currencyfmtW;
+
+@foreign
+typedef LPCURRENCYFMTW = _currencyfmtW*;
+
+@foreign
+typedef CURRENCYFMT = CURRENCYFMTA;
+
+@foreign
+typedef LPCURRENCYFMT = LPCURRENCYFMTA;
+
+@foreign
+enum SYSNLS_FUNCTION {
+    COMPARE_STRING = 1,
+}
+
+@foreign
+typedef NLS_FUNCTION = DWORD;
+
+@foreign
+struct _nlsversioninfo {
+    dwNLSVersionInfoSize: DWORD;
+    dwNLSVersion: DWORD;
+    dwDefinedVersion: DWORD;
+    dwEffectiveId: DWORD;
+    guidCustomVersion: GUID;
+}
+
+@foreign
+typedef NLSVERSIONINFO = _nlsversioninfo;
+
+@foreign
+typedef LPNLSVERSIONINFO = _nlsversioninfo*;
+
+@foreign
+struct _nlsversioninfoex {
+    dwNLSVersionInfoSize: DWORD;
+    dwNLSVersion: DWORD;
+    dwDefinedVersion: DWORD;
+    dwEffectiveId: DWORD;
+    guidCustomVersion: GUID;
+}
+
+@foreign
+typedef NLSVERSIONINFOEX = _nlsversioninfoex;
+
+@foreign
+typedef LPNLSVERSIONINFOEX = _nlsversioninfoex*;
+
+@foreign
+typedef GEOTYPE = DWORD;
+
+@foreign
+typedef GEOCLASS = DWORD;
+
+@foreign
+typedef GEOID = LONG;
+
+@foreign
+enum SYSGEOTYPE {
+    GEO_NATION = 1,
+    GEO_LATITUDE = 2,
+    GEO_LONGITUDE = 3,
+    GEO_ISO2 = 4,
+    GEO_ISO3 = 5,
+    GEO_RFC1766 = 6,
+    GEO_LCID = 7,
+    GEO_FRIENDLYNAME = 8,
+    GEO_OFFICIALNAME = 9,
+    GEO_TIMEZONES = 10,
+    GEO_OFFICIALLANGUAGES = 11,
+    GEO_ISO_UN_NUMBER = 12,
+    GEO_PARENT = 13,
+    GEO_DIALINGCODE = 14,
+    GEO_CURRENCYCODE = 15,
+    GEO_CURRENCYSYMBOL = 16,
+    GEO_NAME = 17,
+    GEO_ID = 18,
+}
+
+@foreign
+enum SYSGEOCLASS {
+    GEOCLASS_ALL = 0,
+    GEOCLASS_REGION = 14,
+    GEOCLASS_NATION = 16,
+}
+
+@foreign
+enum _NORM_FORM {
+    NormalizationOther = 0,
+    NormalizationC = 1,
+    NormalizationD = 2,
+    NormalizationKC = 5,
+    NormalizationKD = 6,
+}
+
+@foreign
+typedef NORM_FORM = _NORM_FORM;
+
+@foreign
+typedef LANGUAGEGROUP_ENUMPROCA = func(arg0: LGRPID, arg1: LPSTR, arg2: LPSTR, arg3: DWORD, arg4: LONG_PTR): BOOL;
+
+@foreign
+typedef LANGGROUPLOCALE_ENUMPROCA = func(arg0: LGRPID, arg1: LCID, arg2: LPSTR, arg3: LONG_PTR): BOOL;
+
+@foreign
+typedef UILANGUAGE_ENUMPROCA = func(arg0: LPSTR, arg1: LONG_PTR): BOOL;
+
+@foreign
+typedef CODEPAGE_ENUMPROCA = func(arg0: LPSTR): BOOL;
+
+@foreign
+typedef DATEFMT_ENUMPROCA = func(arg0: LPSTR): BOOL;
+
+@foreign
+typedef DATEFMT_ENUMPROCEXA = func(arg0: LPSTR, arg1: CALID): BOOL;
+
+@foreign
+typedef TIMEFMT_ENUMPROCA = func(arg0: LPSTR): BOOL;
+
+@foreign
+typedef CALINFO_ENUMPROCA = func(arg0: LPSTR): BOOL;
+
+@foreign
+typedef CALINFO_ENUMPROCEXA = func(arg0: LPSTR, arg1: CALID): BOOL;
+
+@foreign
+typedef LOCALE_ENUMPROCA = func(arg0: LPSTR): BOOL;
+
+@foreign
+typedef LOCALE_ENUMPROCW = func(arg0: LPWSTR): BOOL;
+
+@foreign
+typedef LANGUAGEGROUP_ENUMPROCW = func(arg0: LGRPID, arg1: LPWSTR, arg2: LPWSTR, arg3: DWORD, arg4: LONG_PTR): BOOL;
+
+@foreign
+typedef LANGGROUPLOCALE_ENUMPROCW = func(arg0: LGRPID, arg1: LCID, arg2: LPWSTR, arg3: LONG_PTR): BOOL;
+
+@foreign
+typedef UILANGUAGE_ENUMPROCW = func(arg0: LPWSTR, arg1: LONG_PTR): BOOL;
+
+@foreign
+typedef CODEPAGE_ENUMPROCW = func(arg0: LPWSTR): BOOL;
+
+@foreign
+typedef DATEFMT_ENUMPROCW = func(arg0: LPWSTR): BOOL;
+
+@foreign
+typedef DATEFMT_ENUMPROCEXW = func(arg0: LPWSTR, arg1: CALID): BOOL;
+
+@foreign
+typedef TIMEFMT_ENUMPROCW = func(arg0: LPWSTR): BOOL;
+
+@foreign
+typedef CALINFO_ENUMPROCW = func(arg0: LPWSTR): BOOL;
+
+@foreign
+typedef CALINFO_ENUMPROCEXW = func(arg0: LPWSTR, arg1: CALID): BOOL;
+
+@foreign
+typedef GEO_ENUMPROC = func(arg0: GEOID): BOOL;
+
+@foreign
+typedef GEO_ENUMNAMEPROC = func(arg0: PWSTR, arg1: LPARAM): BOOL;
+
+@foreign
+struct _FILEMUIINFO {
+    dwSize: DWORD;
+    dwVersion: DWORD;
+    dwFileType: DWORD;
+    pChecksum: BYTE[16];
+    pServiceChecksum: BYTE[16];
+    dwLanguageNameOffset: DWORD;
+    dwTypeIDMainSize: DWORD;
+    dwTypeIDMainOffset: DWORD;
+    dwTypeNameMainOffset: DWORD;
+    dwTypeIDMUISize: DWORD;
+    dwTypeIDMUIOffset: DWORD;
+    dwTypeNameMUIOffset: DWORD;
+    abBuffer: BYTE[8];
+}
+
+@foreign
+typedef FILEMUIINFO = _FILEMUIINFO;
+
+@foreign
+typedef PFILEMUIINFO = _FILEMUIINFO*;
+
+@foreign
+func IsValidCodePage(CodePage: UINT): BOOL;
+
+@foreign
+func GetACP(): UINT;
+
+@foreign
+func GetOEMCP(): UINT;
+
+@foreign
+func GetCPInfo(CodePage: UINT, lpCPInfo: LPCPINFO): BOOL;
+
+@foreign
+func GetCPInfoExA(CodePage: UINT, dwFlags: DWORD, lpCPInfoEx: LPCPINFOEXA): BOOL;
+
+@foreign
+func GetCPInfoEx(CodePage: UINT, dwFlags: DWORD, lpCPInfoEx: LPCPINFOEXA): BOOL;
+
+@foreign
+func GetCPInfoExW(CodePage: UINT, dwFlags: DWORD, lpCPInfoEx: LPCPINFOEXW): BOOL;
+
+@foreign
+func CompareString(Locale: LCID, dwCmpFlags: DWORD, lpString1: PCNZCH, cchCount1: int, lpString2: PCNZCH, cchCount2: int): int;
+
+@foreign
+func CompareStringA(Locale: LCID, dwCmpFlags: DWORD, lpString1: PCNZCH, cchCount1: int, lpString2: PCNZCH, cchCount2: int): int;
+
+@foreign
+func FindNLSString(Locale: LCID, dwFindNLSStringFlags: DWORD, lpStringSource: LPCWSTR, cchSource: int, lpStringValue: LPCWSTR, cchValue: int, pcchFound: LPINT): int;
+
+@foreign
+func LCMapStringW(Locale: LCID, dwMapFlags: DWORD, lpSrcStr: LPCWSTR, cchSrc: int, lpDestStr: LPWSTR, cchDest: int): int;
+
+@foreign
+func LCMapString(Locale: LCID, dwMapFlags: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpDestStr: LPSTR, cchDest: int): int;
+
+@foreign
+func LCMapStringA(Locale: LCID, dwMapFlags: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpDestStr: LPSTR, cchDest: int): int;
+
+@foreign
+func GetLocaleInfoW(Locale: LCID, LCType: LCTYPE, lpLCData: LPWSTR, cchData: int): int;
+
+@foreign
+func GetLocaleInfo(Locale: LCID, LCType: LCTYPE, lpLCData: LPSTR, cchData: int): int;
+
+@foreign
+func GetLocaleInfoA(Locale: LCID, LCType: LCTYPE, lpLCData: LPSTR, cchData: int): int;
+
+@foreign
+func SetLocaleInfoA(Locale: LCID, LCType: LCTYPE, lpLCData: LPCSTR): BOOL;
+
+@foreign
+func SetLocaleInfo(Locale: LCID, LCType: LCTYPE, lpLCData: LPCSTR): BOOL;
+
+@foreign
+func SetLocaleInfoW(Locale: LCID, LCType: LCTYPE, lpLCData: LPCWSTR): BOOL;
+
+@foreign
+func GetCalendarInfoA(Locale: LCID, Calendar: CALID, CalType: CALTYPE, lpCalData: LPSTR, cchData: int, lpValue: LPDWORD): int;
+
+@foreign
+func GetCalendarInfo(Locale: LCID, Calendar: CALID, CalType: CALTYPE, lpCalData: LPSTR, cchData: int, lpValue: LPDWORD): int;
+
+@foreign
+func GetCalendarInfoW(Locale: LCID, Calendar: CALID, CalType: CALTYPE, lpCalData: LPWSTR, cchData: int, lpValue: LPDWORD): int;
+
+@foreign
+func SetCalendarInfoA(Locale: LCID, Calendar: CALID, CalType: CALTYPE, lpCalData: LPCSTR): BOOL;
+
+@foreign
+func SetCalendarInfo(Locale: LCID, Calendar: CALID, CalType: CALTYPE, lpCalData: LPCSTR): BOOL;
+
+@foreign
+func SetCalendarInfoW(Locale: LCID, Calendar: CALID, CalType: CALTYPE, lpCalData: LPCWSTR): BOOL;
+
+@foreign
+func LoadStringByReference(Flags: DWORD, Language: PCWSTR, SourceString: PCWSTR, Buffer: PWSTR, cchBuffer: ULONG, Directory: PCWSTR, pcchBufferOut: PULONG): BOOL;
+
+@foreign
+func IsDBCSLeadByte(TestChar: BYTE): BOOL;
+
+@foreign
+func IsDBCSLeadByteEx(CodePage: UINT, TestChar: BYTE): BOOL;
+
+@foreign
+func LCIDToLocaleName(Locale: LCID, lpName: LPWSTR, cchName: int, dwFlags: DWORD): int;
+
+@foreign
+func LocaleNameToLCID(lpName: LPCWSTR, dwFlags: DWORD): LCID;
+
+@foreign
+func GetDurationFormat(Locale: LCID, dwFlags: DWORD, lpDuration: SYSTEMTIME*, ullDuration: ULONGLONG, lpFormat: LPCWSTR, lpDurationStr: LPWSTR, cchDuration: int): int;
+
+@foreign
+func GetNumberFormatA(Locale: LCID, dwFlags: DWORD, lpValue: LPCSTR, lpFormat: NUMBERFMTA*, lpNumberStr: LPSTR, cchNumber: int): int;
+
+@foreign
+func GetNumberFormat(Locale: LCID, dwFlags: DWORD, lpValue: LPCSTR, lpFormat: NUMBERFMTA*, lpNumberStr: LPSTR, cchNumber: int): int;
+
+@foreign
+func GetNumberFormatW(Locale: LCID, dwFlags: DWORD, lpValue: LPCWSTR, lpFormat: NUMBERFMTW*, lpNumberStr: LPWSTR, cchNumber: int): int;
+
+@foreign
+func GetCurrencyFormatA(Locale: LCID, dwFlags: DWORD, lpValue: LPCSTR, lpFormat: CURRENCYFMTA*, lpCurrencyStr: LPSTR, cchCurrency: int): int;
+
+@foreign
+func GetCurrencyFormat(Locale: LCID, dwFlags: DWORD, lpValue: LPCSTR, lpFormat: CURRENCYFMTA*, lpCurrencyStr: LPSTR, cchCurrency: int): int;
+
+@foreign
+func GetCurrencyFormatW(Locale: LCID, dwFlags: DWORD, lpValue: LPCWSTR, lpFormat: CURRENCYFMTW*, lpCurrencyStr: LPWSTR, cchCurrency: int): int;
+
+@foreign
+func EnumCalendarInfoA(lpCalInfoEnumProc: CALINFO_ENUMPROCA, Locale: LCID, Calendar: CALID, CalType: CALTYPE): BOOL;
+
+@foreign
+func EnumCalendarInfo(lpCalInfoEnumProc: CALINFO_ENUMPROCA, Locale: LCID, Calendar: CALID, CalType: CALTYPE): BOOL;
+
+@foreign
+func EnumCalendarInfoW(lpCalInfoEnumProc: CALINFO_ENUMPROCW, Locale: LCID, Calendar: CALID, CalType: CALTYPE): BOOL;
+
+@foreign
+func EnumCalendarInfoExA(lpCalInfoEnumProcEx: CALINFO_ENUMPROCEXA, Locale: LCID, Calendar: CALID, CalType: CALTYPE): BOOL;
+
+@foreign
+func EnumCalendarInfoEx(lpCalInfoEnumProcEx: CALINFO_ENUMPROCEXA, Locale: LCID, Calendar: CALID, CalType: CALTYPE): BOOL;
+
+@foreign
+func EnumCalendarInfoExW(lpCalInfoEnumProcEx: CALINFO_ENUMPROCEXW, Locale: LCID, Calendar: CALID, CalType: CALTYPE): BOOL;
+
+@foreign
+func EnumTimeFormatsA(lpTimeFmtEnumProc: TIMEFMT_ENUMPROCA, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumTimeFormats(lpTimeFmtEnumProc: TIMEFMT_ENUMPROCA, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumTimeFormatsW(lpTimeFmtEnumProc: TIMEFMT_ENUMPROCW, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDateFormatsA(lpDateFmtEnumProc: DATEFMT_ENUMPROCA, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDateFormats(lpDateFmtEnumProc: DATEFMT_ENUMPROCA, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDateFormatsW(lpDateFmtEnumProc: DATEFMT_ENUMPROCW, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDateFormatsExA(lpDateFmtEnumProcEx: DATEFMT_ENUMPROCEXA, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDateFormatsEx(lpDateFmtEnumProcEx: DATEFMT_ENUMPROCEXA, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDateFormatsExW(lpDateFmtEnumProcEx: DATEFMT_ENUMPROCEXW, Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func IsValidLanguageGroup(LanguageGroup: LGRPID, dwFlags: DWORD): BOOL;
+
+@foreign
+func GetNLSVersion(Function: NLS_FUNCTION, Locale: LCID, lpVersionInformation: LPNLSVERSIONINFO): BOOL;
+
+@foreign
+func IsNLSDefinedString(Function: NLS_FUNCTION, dwFlags: DWORD, lpVersionInformation: LPNLSVERSIONINFO, lpString: LPCWSTR, cchStr: INT): BOOL;
+
+@foreign
+func IsValidLocale(Locale: LCID, dwFlags: DWORD): BOOL;
+
+@foreign
+func GetGeoInfoA(Location: GEOID, GeoType: GEOTYPE, lpGeoData: LPSTR, cchData: int, LangId: LANGID): int;
+
+@foreign
+func GetGeoInfo(Location: GEOID, GeoType: GEOTYPE, lpGeoData: LPSTR, cchData: int, LangId: LANGID): int;
+
+@foreign
+func GetGeoInfoW(Location: GEOID, GeoType: GEOTYPE, lpGeoData: LPWSTR, cchData: int, LangId: LANGID): int;
+
+@foreign
+func GetGeoInfoEx(location: PWSTR, geoType: GEOTYPE, geoData: PWSTR, geoDataCount: int): int;
+
+@foreign
+func EnumSystemGeoID(GeoClass: GEOCLASS, ParentGeoId: GEOID, lpGeoEnumProc: GEO_ENUMPROC): BOOL;
+
+@foreign
+func EnumSystemGeoNames(geoClass: GEOCLASS, geoEnumProc: GEO_ENUMNAMEPROC, data: LPARAM): BOOL;
+
+@foreign
+func GetUserGeoID(GeoClass: GEOCLASS): GEOID;
+
+@foreign
+func GetUserDefaultGeoName(geoName: LPWSTR, geoNameCount: int): int;
+
+@foreign
+func SetUserGeoID(GeoId: GEOID): BOOL;
+
+@foreign
+func SetUserGeoName(geoName: PWSTR): BOOL;
+
+@foreign
+func ConvertDefaultLocale(Locale: LCID): LCID;
+
+@foreign
+func GetThreadLocale(): LCID;
+
+@foreign
+func SetThreadLocale(Locale: LCID): BOOL;
+
+@foreign
+func GetSystemDefaultUILanguage(): LANGID;
+
+@foreign
+func GetUserDefaultUILanguage(): LANGID;
+
+@foreign
+func GetUserDefaultLangID(): LANGID;
+
+@foreign
+func GetSystemDefaultLangID(): LANGID;
+
+@foreign
+func GetSystemDefaultLCID(): LCID;
+
+@foreign
+func GetUserDefaultLCID(): LCID;
+
+@foreign
+func SetThreadUILanguage(LangId: LANGID): LANGID;
+
+@foreign
+func GetThreadUILanguage(): LANGID;
+
+@foreign
+func GetProcessPreferredUILanguages(dwFlags: DWORD, pulNumLanguages: PULONG, pwszLanguagesBuffer: PZZWSTR, pcchLanguagesBuffer: PULONG): BOOL;
+
+@foreign
+func SetProcessPreferredUILanguages(dwFlags: DWORD, pwszLanguagesBuffer: PCZZWSTR, pulNumLanguages: PULONG): BOOL;
+
+@foreign
+func GetUserPreferredUILanguages(dwFlags: DWORD, pulNumLanguages: PULONG, pwszLanguagesBuffer: PZZWSTR, pcchLanguagesBuffer: PULONG): BOOL;
+
+@foreign
+func GetSystemPreferredUILanguages(dwFlags: DWORD, pulNumLanguages: PULONG, pwszLanguagesBuffer: PZZWSTR, pcchLanguagesBuffer: PULONG): BOOL;
+
+@foreign
+func GetThreadPreferredUILanguages(dwFlags: DWORD, pulNumLanguages: PULONG, pwszLanguagesBuffer: PZZWSTR, pcchLanguagesBuffer: PULONG): BOOL;
+
+@foreign
+func SetThreadPreferredUILanguages(dwFlags: DWORD, pwszLanguagesBuffer: PCZZWSTR, pulNumLanguages: PULONG): BOOL;
+
+@foreign
+func GetFileMUIInfo(dwFlags: DWORD, pcwszFilePath: PCWSTR, pFileMUIInfo: PFILEMUIINFO, pcbFileMUIInfo: DWORD*): BOOL;
+
+@foreign
+func GetFileMUIPath(dwFlags: DWORD, pcwszFilePath: PCWSTR, pwszLanguage: PWSTR, pcchLanguage: PULONG, pwszFileMUIPath: PWSTR, pcchFileMUIPath: PULONG, pululEnumerator: PULONGLONG): BOOL;
+
+@foreign
+func GetUILanguageInfo(dwFlags: DWORD, pwmszLanguage: PCZZWSTR, pwszFallbackLanguages: PZZWSTR, pcchFallbackLanguages: PDWORD, pAttributes: PDWORD): BOOL;
+
+@foreign
+func NotifyUILanguageChange(dwFlags: DWORD, pcwstrNewLanguage: PCWSTR, pcwstrPreviousLanguage: PCWSTR, dwReserved: DWORD, pdwStatusRtrn: PDWORD): BOOL;
+
+@foreign
+func GetStringTypeEx(Locale: LCID, dwInfoType: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpCharType: LPWORD): BOOL;
+
+@foreign
+func GetStringTypeExA(Locale: LCID, dwInfoType: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpCharType: LPWORD): BOOL;
+
+@foreign
+func GetStringType(Locale: LCID, dwInfoType: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpCharType: LPWORD): BOOL;
+
+@foreign
+func GetStringTypeA(Locale: LCID, dwInfoType: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpCharType: LPWORD): BOOL;
+
+@foreign
+func FoldString(dwMapFlags: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpDestStr: LPSTR, cchDest: int): int;
+
+@foreign
+func FoldStringA(dwMapFlags: DWORD, lpSrcStr: LPCSTR, cchSrc: int, lpDestStr: LPSTR, cchDest: int): int;
+
+@foreign
+func EnumSystemLocalesA(lpLocaleEnumProc: LOCALE_ENUMPROCA, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumSystemLocales(lpLocaleEnumProc: LOCALE_ENUMPROCA, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumSystemLocalesW(lpLocaleEnumProc: LOCALE_ENUMPROCW, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumSystemLanguageGroupsA(lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCA, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumSystemLanguageGroups(lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCA, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumSystemLanguageGroupsW(lpLanguageGroupEnumProc: LANGUAGEGROUP_ENUMPROCW, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumLanguageGroupLocalesA(lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCA, LanguageGroup: LGRPID, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumLanguageGroupLocales(lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCA, LanguageGroup: LGRPID, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumLanguageGroupLocalesW(lpLangGroupLocaleEnumProc: LANGGROUPLOCALE_ENUMPROCW, LanguageGroup: LGRPID, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumUILanguagesA(lpUILanguageEnumProc: UILANGUAGE_ENUMPROCA, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumUILanguages(lpUILanguageEnumProc: UILANGUAGE_ENUMPROCA, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumUILanguagesW(lpUILanguageEnumProc: UILANGUAGE_ENUMPROCW, dwFlags: DWORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+func EnumSystemCodePagesA(lpCodePageEnumProc: CODEPAGE_ENUMPROCA, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumSystemCodePages(lpCodePageEnumProc: CODEPAGE_ENUMPROCA, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumSystemCodePagesW(lpCodePageEnumProc: CODEPAGE_ENUMPROCW, dwFlags: DWORD): BOOL;
+
+@foreign
+func NormalizeString(NormForm: NORM_FORM, lpSrcString: LPCWSTR, cwSrcLength: int, lpDstString: LPWSTR, cwDstLength: int): int;
+
+@foreign
+func IsNormalizedString(NormForm: NORM_FORM, lpString: LPCWSTR, cwLength: int): BOOL;
+
+@foreign
+func IdnToAscii(dwFlags: DWORD, lpUnicodeCharStr: LPCWSTR, cchUnicodeChar: int, lpASCIICharStr: LPWSTR, cchASCIIChar: int): int;
+
+@foreign
+func IdnToNameprepUnicode(dwFlags: DWORD, lpUnicodeCharStr: LPCWSTR, cchUnicodeChar: int, lpNameprepCharStr: LPWSTR, cchNameprepChar: int): int;
+
+@foreign
+func IdnToUnicode(dwFlags: DWORD, lpASCIICharStr: LPCWSTR, cchASCIIChar: int, lpUnicodeCharStr: LPWSTR, cchUnicodeChar: int): int;
+
+@foreign
+func VerifyScripts(dwFlags: DWORD, lpLocaleScripts: LPCWSTR, cchLocaleScripts: int, lpTestScripts: LPCWSTR, cchTestScripts: int): BOOL;
+
+@foreign
+func GetStringScripts(dwFlags: DWORD, lpString: LPCWSTR, cchString: int, lpScripts: LPWSTR, cchScripts: int): int;
+
+@foreign
+func GetLocaleInfoEx(lpLocaleName: LPCWSTR, LCType: LCTYPE, lpLCData: LPWSTR, cchData: int): int;
+
+@foreign
+func GetCalendarInfoEx(lpLocaleName: LPCWSTR, Calendar: CALID, lpReserved: LPCWSTR, CalType: CALTYPE, lpCalData: LPWSTR, cchData: int, lpValue: LPDWORD): int;
+
+@foreign
+func GetNumberFormatEx(lpLocaleName: LPCWSTR, dwFlags: DWORD, lpValue: LPCWSTR, lpFormat: NUMBERFMTW*, lpNumberStr: LPWSTR, cchNumber: int): int;
+
+@foreign
+func GetCurrencyFormatEx(lpLocaleName: LPCWSTR, dwFlags: DWORD, lpValue: LPCWSTR, lpFormat: CURRENCYFMTW*, lpCurrencyStr: LPWSTR, cchCurrency: int): int;
+
+@foreign
+func GetUserDefaultLocaleName(lpLocaleName: LPWSTR, cchLocaleName: int): int;
+
+@foreign
+func GetSystemDefaultLocaleName(lpLocaleName: LPWSTR, cchLocaleName: int): int;
+
+@foreign
+func GetNLSVersionEx(function: NLS_FUNCTION, lpLocaleName: LPCWSTR, lpVersionInformation: LPNLSVERSIONINFOEX): BOOL;
+
+@foreign
+func IsValidNLSVersion(function: NLS_FUNCTION, lpLocaleName: LPCWSTR, lpVersionInformation: LPNLSVERSIONINFOEX): DWORD;
+
+@foreign
+func FindNLSStringEx(lpLocaleName: LPCWSTR, dwFindNLSStringFlags: DWORD, lpStringSource: LPCWSTR, cchSource: int, lpStringValue: LPCWSTR, cchValue: int, pcchFound: LPINT, lpVersionInformation: LPNLSVERSIONINFO, lpReserved: LPVOID, sortHandle: LPARAM): int;
+
+@foreign
+func LCMapStringEx(lpLocaleName: LPCWSTR, dwMapFlags: DWORD, lpSrcStr: LPCWSTR, cchSrc: int, lpDestStr: LPWSTR, cchDest: int, lpVersionInformation: LPNLSVERSIONINFO, lpReserved: LPVOID, sortHandle: LPARAM): int;
+
+@foreign
+func IsValidLocaleName(lpLocaleName: LPCWSTR): BOOL;
+
+@foreign
+typedef CALINFO_ENUMPROCEXEX = func(arg0: LPWSTR, arg1: CALID, arg2: LPWSTR, arg3: LPARAM): BOOL;
+
+@foreign
+func EnumCalendarInfoExEx(pCalInfoEnumProcExEx: CALINFO_ENUMPROCEXEX, lpLocaleName: LPCWSTR, Calendar: CALID, lpReserved: LPCWSTR, CalType: CALTYPE, lParam: LPARAM): BOOL;
+
+@foreign
+typedef DATEFMT_ENUMPROCEXEX = func(arg0: LPWSTR, arg1: CALID, arg2: LPARAM): BOOL;
+
+@foreign
+func EnumDateFormatsExEx(lpDateFmtEnumProcExEx: DATEFMT_ENUMPROCEXEX, lpLocaleName: LPCWSTR, dwFlags: DWORD, lParam: LPARAM): BOOL;
+
+@foreign
+typedef TIMEFMT_ENUMPROCEX = func(arg0: LPWSTR, arg1: LPARAM): BOOL;
+
+@foreign
+func EnumTimeFormatsEx(lpTimeFmtEnumProcEx: TIMEFMT_ENUMPROCEX, lpLocaleName: LPCWSTR, dwFlags: DWORD, lParam: LPARAM): BOOL;
+
+@foreign
+typedef LOCALE_ENUMPROCEX = func(arg0: LPWSTR, arg1: DWORD, arg2: LPARAM): BOOL;
+
+@foreign
+func EnumSystemLocalesEx(lpLocaleEnumProcEx: LOCALE_ENUMPROCEX, dwFlags: DWORD, lParam: LPARAM, lpReserved: LPVOID): BOOL;
+
+@foreign
+func ResolveLocaleName(lpNameToResolve: LPCWSTR, lpLocaleName: LPWSTR, cchLocaleName: int): int;
+

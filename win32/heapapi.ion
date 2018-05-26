@@ -1,0 +1,68 @@
+#foreign(header = "<heapapi.h>")
+
+@foreign
+struct _HEAP_SUMMARY {
+    cb: DWORD;
+    cbAllocated: SIZE_T;
+    cbCommitted: SIZE_T;
+    cbReserved: SIZE_T;
+    cbMaxReserve: SIZE_T;
+}
+
+@foreign
+typedef HEAP_SUMMARY = _HEAP_SUMMARY;
+
+@foreign
+typedef PHEAP_SUMMARY = _HEAP_SUMMARY*;
+
+@foreign
+typedef LPHEAP_SUMMARY = PHEAP_SUMMARY;
+
+@foreign
+func HeapCreate(flOptions: DWORD, dwInitialSize: SIZE_T, dwMaximumSize: SIZE_T): HANDLE;
+
+@foreign
+func HeapDestroy(hHeap: HANDLE): BOOL;
+
+@foreign
+func HeapAlloc(hHeap: HANDLE, dwFlags: DWORD, dwBytes: SIZE_T): LPVOID;
+
+@foreign
+func HeapReAlloc(hHeap: HANDLE, dwFlags: DWORD, lpMem: LPVOID, dwBytes: SIZE_T): LPVOID;
+
+@foreign
+func HeapFree(hHeap: HANDLE, dwFlags: DWORD, lpMem: LPVOID): BOOL;
+
+@foreign
+func HeapSize(hHeap: HANDLE, dwFlags: DWORD, lpMem: LPCVOID): SIZE_T;
+
+@foreign
+func GetProcessHeap(): HANDLE;
+
+@foreign
+func HeapCompact(hHeap: HANDLE, dwFlags: DWORD): SIZE_T;
+
+@foreign
+func HeapSetInformation(HeapHandle: HANDLE, HeapInformationClass: HEAP_INFORMATION_CLASS, HeapInformation: PVOID, HeapInformationLength: SIZE_T): BOOL;
+
+@foreign
+func HeapValidate(hHeap: HANDLE, dwFlags: DWORD, lpMem: LPCVOID): BOOL;
+
+@foreign
+func HeapSummary(hHeap: HANDLE, dwFlags: DWORD, lpSummary: LPHEAP_SUMMARY): BOOL;
+
+@foreign
+func GetProcessHeaps(NumberOfHeaps: DWORD, ProcessHeaps: PHANDLE): DWORD;
+
+@foreign
+func HeapLock(hHeap: HANDLE): BOOL;
+
+@foreign
+func HeapUnlock(hHeap: HANDLE): BOOL;
+
+@foreign
+func HeapWalk(hHeap: HANDLE, lpEntry: LPPROCESS_HEAP_ENTRY): BOOL;
+
+@foreign
+func HeapQueryInformation(HeapHandle: HANDLE, HeapInformationClass: HEAP_INFORMATION_CLASS, HeapInformation: PVOID, HeapInformationLength: SIZE_T, ReturnLength: PSIZE_T): BOOL;
+

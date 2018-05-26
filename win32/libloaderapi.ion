@@ -1,0 +1,171 @@
+#foreign(header = "<libloaderapi.h>")
+
+@foreign
+struct tagENUMUILANG {
+    NumOfEnumUILang: ULONG;
+    SizeOfEnumUIBuffer: ULONG;
+    pEnumUIBuffer: LANGID*;
+}
+
+@foreign
+typedef ENUMUILANG = tagENUMUILANG;
+
+@foreign
+typedef PENUMUILANG = tagENUMUILANG*;
+
+@foreign
+typedef ENUMRESLANGPROCA = func(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, wLanguage: WORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+typedef ENUMRESLANGPROCW = func(hModule: HMODULE, lpType: LPCWSTR, lpName: LPCWSTR, wLanguage: WORD, lParam: LONG_PTR): BOOL;
+
+@foreign
+typedef ENUMRESNAMEPROCA = func(hModule: HMODULE, lpType: LPCSTR, lpName: LPSTR, lParam: LONG_PTR): BOOL;
+
+@foreign
+typedef ENUMRESNAMEPROCW = func(hModule: HMODULE, lpType: LPCWSTR, lpName: LPWSTR, lParam: LONG_PTR): BOOL;
+
+@foreign
+typedef ENUMRESTYPEPROCA = func(hModule: HMODULE, lpType: LPSTR, lParam: LONG_PTR): BOOL;
+
+@foreign
+typedef ENUMRESTYPEPROCW = func(hModule: HMODULE, lpType: LPWSTR, lParam: LONG_PTR): BOOL;
+
+@foreign
+func DisableThreadLibraryCalls(hLibModule: HMODULE): BOOL;
+
+@foreign
+func FindResourceExW(hModule: HMODULE, lpType: LPCWSTR, lpName: LPCWSTR, wLanguage: WORD): HRSRC;
+
+@foreign
+func FindStringOrdinal(dwFindStringOrdinalFlags: DWORD, lpStringSource: LPCWSTR, cchSource: int, lpStringValue: LPCWSTR, cchValue: int, bIgnoreCase: BOOL): int;
+
+@foreign
+func FreeLibrary(hLibModule: HMODULE): BOOL;
+
+@foreign
+func FreeLibraryAndExitThread(hLibModule: HMODULE, dwExitCode: DWORD);
+
+@foreign
+func FreeResource(hResData: HGLOBAL): BOOL;
+
+@foreign
+func GetModuleFileNameA(hModule: HMODULE, lpFilename: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetModuleFileName(hModule: HMODULE, lpFilename: LPSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetModuleFileNameW(hModule: HMODULE, lpFilename: LPWSTR, nSize: DWORD): DWORD;
+
+@foreign
+func GetModuleHandleA(lpModuleName: LPCSTR): HMODULE;
+
+@foreign
+func GetModuleHandle(lpModuleName: LPCSTR): HMODULE;
+
+@foreign
+func GetModuleHandleW(lpModuleName: LPCWSTR): HMODULE;
+
+@foreign
+typedef PGET_MODULE_HANDLE_EXA = func(dwFlags: DWORD, lpModuleName: LPCSTR, phModule: HMODULE*): BOOL;
+
+@foreign
+typedef PGET_MODULE_HANDLE_EXW = func(dwFlags: DWORD, lpModuleName: LPCWSTR, phModule: HMODULE*): BOOL;
+
+@foreign
+func GetModuleHandleExA(dwFlags: DWORD, lpModuleName: LPCSTR, phModule: HMODULE*): BOOL;
+
+@foreign
+func GetModuleHandleEx(dwFlags: DWORD, lpModuleName: LPCSTR, phModule: HMODULE*): BOOL;
+
+@foreign
+func GetModuleHandleExW(dwFlags: DWORD, lpModuleName: LPCWSTR, phModule: HMODULE*): BOOL;
+
+@foreign
+func GetProcAddress(hModule: HMODULE, lpProcName: LPCSTR): FARPROC;
+
+@foreign
+func LoadLibraryExA(lpLibFileName: LPCSTR, hFile: HANDLE, dwFlags: DWORD): HMODULE;
+
+@foreign
+func LoadLibraryEx(lpLibFileName: LPCSTR, hFile: HANDLE, dwFlags: DWORD): HMODULE;
+
+@foreign
+func LoadLibraryExW(lpLibFileName: LPCWSTR, hFile: HANDLE, dwFlags: DWORD): HMODULE;
+
+@foreign
+func LoadResource(hModule: HMODULE, hResInfo: HRSRC): HGLOBAL;
+
+@foreign
+func LoadStringA(hInstance: HINSTANCE, uID: UINT, lpBuffer: LPSTR, cchBufferMax: int): int;
+
+@foreign
+func LoadString(hInstance: HINSTANCE, uID: UINT, lpBuffer: LPSTR, cchBufferMax: int): int;
+
+@foreign
+func LoadStringW(hInstance: HINSTANCE, uID: UINT, lpBuffer: LPWSTR, cchBufferMax: int): int;
+
+@foreign
+func LockResource(hResData: HGLOBAL): LPVOID;
+
+@foreign
+func SizeofResource(hModule: HMODULE, hResInfo: HRSRC): DWORD;
+
+@foreign
+typedef DLL_DIRECTORY_COOKIE = PVOID;
+
+@foreign
+typedef PDLL_DIRECTORY_COOKIE = PVOID*;
+
+@foreign
+func AddDllDirectory(NewDirectory: PCWSTR): DLL_DIRECTORY_COOKIE;
+
+@foreign
+func RemoveDllDirectory(Cookie: DLL_DIRECTORY_COOKIE): BOOL;
+
+@foreign
+func SetDefaultDllDirectories(DirectoryFlags: DWORD): BOOL;
+
+@foreign
+func EnumResourceLanguagesExA(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, lpEnumFunc: ENUMRESLANGPROCA, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceLanguagesEx(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, lpEnumFunc: ENUMRESLANGPROCA, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceLanguagesExW(hModule: HMODULE, lpType: LPCWSTR, lpName: LPCWSTR, lpEnumFunc: ENUMRESLANGPROCW, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceNamesExA(hModule: HMODULE, lpType: LPCSTR, lpEnumFunc: ENUMRESNAMEPROCA, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceNamesEx(hModule: HMODULE, lpType: LPCSTR, lpEnumFunc: ENUMRESNAMEPROCA, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceNamesExW(hModule: HMODULE, lpType: LPCWSTR, lpEnumFunc: ENUMRESNAMEPROCW, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceTypesExA(hModule: HMODULE, lpEnumFunc: ENUMRESTYPEPROCA, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceTypesEx(hModule: HMODULE, lpEnumFunc: ENUMRESTYPEPROCA, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func EnumResourceTypesExW(hModule: HMODULE, lpEnumFunc: ENUMRESTYPEPROCW, lParam: LONG_PTR, dwFlags: DWORD, LangId: LANGID): BOOL;
+
+@foreign
+func FindResourceW(hModule: HMODULE, lpName: LPCWSTR, lpType: LPCWSTR): HRSRC;
+
+@foreign
+func LoadLibraryA(lpLibFileName: LPCSTR): HMODULE;
+
+@foreign
+func LoadLibrary(lpLibFileName: LPCSTR): HMODULE;
+
+@foreign
+func LoadLibraryW(lpLibFileName: LPCWSTR): HMODULE;
+
+@foreign
+func EnumResourceNamesW(hModule: HMODULE, lpType: LPCWSTR, lpEnumFunc: ENUMRESNAMEPROCW, lParam: LONG_PTR): BOOL;
+

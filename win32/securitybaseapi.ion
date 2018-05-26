@@ -1,0 +1,314 @@
+#foreign(header = "<securitybaseapi.h>")
+
+@foreign
+func AccessCheck(pSecurityDescriptor: PSECURITY_DESCRIPTOR, ClientToken: HANDLE, DesiredAccess: DWORD, GenericMapping: PGENERIC_MAPPING, PrivilegeSet: PPRIVILEGE_SET, PrivilegeSetLength: LPDWORD, GrantedAccess: LPDWORD, AccessStatus: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckAndAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, ObjectTypeName: LPWSTR, ObjectName: LPWSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, DesiredAccess: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccess: LPDWORD, AccessStatus: LPBOOL, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByType(pSecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, ClientToken: HANDLE, DesiredAccess: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, PrivilegeSet: PPRIVILEGE_SET, PrivilegeSetLength: LPDWORD, GrantedAccess: LPDWORD, AccessStatus: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByTypeResultList(pSecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, ClientToken: HANDLE, DesiredAccess: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, PrivilegeSet: PPRIVILEGE_SET, PrivilegeSetLength: LPDWORD, GrantedAccessList: LPDWORD, AccessStatusList: LPDWORD): BOOL;
+
+@foreign
+func AccessCheckByTypeAndAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, ObjectTypeName: LPCWSTR, ObjectName: LPCWSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, DesiredAccess: DWORD, AuditType: AUDIT_EVENT_TYPE, Flags: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccess: LPDWORD, AccessStatus: LPBOOL, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByTypeResultListAndAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, ObjectTypeName: LPCWSTR, ObjectName: LPCWSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, DesiredAccess: DWORD, AuditType: AUDIT_EVENT_TYPE, Flags: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccessList: LPDWORD, AccessStatusList: LPDWORD, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AccessCheckByTypeResultListAndAuditAlarmByHandleW(SubsystemName: LPCWSTR, HandleId: LPVOID, ClientToken: HANDLE, ObjectTypeName: LPCWSTR, ObjectName: LPCWSTR, SecurityDescriptor: PSECURITY_DESCRIPTOR, PrincipalSelfSid: PSID, DesiredAccess: DWORD, AuditType: AUDIT_EVENT_TYPE, Flags: DWORD, ObjectTypeList: POBJECT_TYPE_LIST, ObjectTypeListLength: DWORD, GenericMapping: PGENERIC_MAPPING, ObjectCreation: BOOL, GrantedAccessList: LPDWORD, AccessStatusList: LPDWORD, pfGenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func AddAccessAllowedAce(pAcl: PACL, dwAceRevision: DWORD, AccessMask: DWORD, pSid: PSID): BOOL;
+
+@foreign
+func AddAccessAllowedAceEx(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, pSid: PSID): BOOL;
+
+@foreign
+func AddAccessAllowedObjectAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, ObjectTypeGuid: GUID*, InheritedObjectTypeGuid: GUID*, pSid: PSID): BOOL;
+
+@foreign
+func AddAccessDeniedAce(pAcl: PACL, dwAceRevision: DWORD, AccessMask: DWORD, pSid: PSID): BOOL;
+
+@foreign
+func AddAccessDeniedAceEx(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, pSid: PSID): BOOL;
+
+@foreign
+func AddAccessDeniedObjectAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, ObjectTypeGuid: GUID*, InheritedObjectTypeGuid: GUID*, pSid: PSID): BOOL;
+
+@foreign
+func AddAce(pAcl: PACL, dwAceRevision: DWORD, dwStartingAceIndex: DWORD, pAceList: LPVOID, nAceListLength: DWORD): BOOL;
+
+@foreign
+func AddAuditAccessAce(pAcl: PACL, dwAceRevision: DWORD, dwAccessMask: DWORD, pSid: PSID, bAuditSuccess: BOOL, bAuditFailure: BOOL): BOOL;
+
+@foreign
+func AddAuditAccessAceEx(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, dwAccessMask: DWORD, pSid: PSID, bAuditSuccess: BOOL, bAuditFailure: BOOL): BOOL;
+
+@foreign
+func AddAuditAccessObjectAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, ObjectTypeGuid: GUID*, InheritedObjectTypeGuid: GUID*, pSid: PSID, bAuditSuccess: BOOL, bAuditFailure: BOOL): BOOL;
+
+@foreign
+func AddMandatoryAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, MandatoryPolicy: DWORD, pLabelSid: PSID): BOOL;
+
+@foreign
+func AddResourceAttributeAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, pSid: PSID, pAttributeInfo: PCLAIM_SECURITY_ATTRIBUTES_INFORMATION, pReturnLength: PDWORD): BOOL;
+
+@foreign
+func AddScopedPolicyIDAce(pAcl: PACL, dwAceRevision: DWORD, AceFlags: DWORD, AccessMask: DWORD, pSid: PSID): BOOL;
+
+@foreign
+func AdjustTokenGroups(TokenHandle: HANDLE, ResetToDefault: BOOL, NewState: PTOKEN_GROUPS, BufferLength: DWORD, PreviousState: PTOKEN_GROUPS, ReturnLength: PDWORD): BOOL;
+
+@foreign
+func AdjustTokenPrivileges(TokenHandle: HANDLE, DisableAllPrivileges: BOOL, NewState: PTOKEN_PRIVILEGES, BufferLength: DWORD, PreviousState: PTOKEN_PRIVILEGES, ReturnLength: PDWORD): BOOL;
+
+@foreign
+func AllocateAndInitializeSid(pIdentifierAuthority: PSID_IDENTIFIER_AUTHORITY, nSubAuthorityCount: BYTE, nSubAuthority0: DWORD, nSubAuthority1: DWORD, nSubAuthority2: DWORD, nSubAuthority3: DWORD, nSubAuthority4: DWORD, nSubAuthority5: DWORD, nSubAuthority6: DWORD, nSubAuthority7: DWORD, pSid: PSID*): BOOL;
+
+@foreign
+func AllocateLocallyUniqueId(Luid: PLUID): BOOL;
+
+@foreign
+func AreAllAccessesGranted(GrantedAccess: DWORD, DesiredAccess: DWORD): BOOL;
+
+@foreign
+func AreAnyAccessesGranted(GrantedAccess: DWORD, DesiredAccess: DWORD): BOOL;
+
+@foreign
+func CheckTokenMembership(TokenHandle: HANDLE, SidToCheck: PSID, IsMember: PBOOL): BOOL;
+
+@foreign
+func CheckTokenCapability(TokenHandle: HANDLE, CapabilitySidToCheck: PSID, HasCapability: PBOOL): BOOL;
+
+@foreign
+func GetAppContainerAce(Acl: PACL, StartingAceIndex: DWORD, AppContainerAce: PVOID*, AppContainerAceIndex: DWORD*): BOOL;
+
+@foreign
+func CheckTokenMembershipEx(TokenHandle: HANDLE, SidToCheck: PSID, Flags: DWORD, IsMember: PBOOL): BOOL;
+
+@foreign
+func ConvertToAutoInheritPrivateObjectSecurity(ParentDescriptor: PSECURITY_DESCRIPTOR, CurrentSecurityDescriptor: PSECURITY_DESCRIPTOR, NewSecurityDescriptor: PSECURITY_DESCRIPTOR*, ObjectType: GUID*, IsDirectoryObject: BOOLEAN, GenericMapping: PGENERIC_MAPPING): BOOL;
+
+@foreign
+func CopySid(nDestinationSidLength: DWORD, pDestinationSid: PSID, pSourceSid: PSID): BOOL;
+
+@foreign
+func CreatePrivateObjectSecurity(ParentDescriptor: PSECURITY_DESCRIPTOR, CreatorDescriptor: PSECURITY_DESCRIPTOR, NewDescriptor: PSECURITY_DESCRIPTOR*, IsDirectoryObject: BOOL, Token: HANDLE, GenericMapping: PGENERIC_MAPPING): BOOL;
+
+@foreign
+func CreatePrivateObjectSecurityEx(ParentDescriptor: PSECURITY_DESCRIPTOR, CreatorDescriptor: PSECURITY_DESCRIPTOR, NewDescriptor: PSECURITY_DESCRIPTOR*, ObjectType: GUID*, IsContainerObject: BOOL, AutoInheritFlags: ULONG, Token: HANDLE, GenericMapping: PGENERIC_MAPPING): BOOL;
+
+@foreign
+func CreatePrivateObjectSecurityWithMultipleInheritance(ParentDescriptor: PSECURITY_DESCRIPTOR, CreatorDescriptor: PSECURITY_DESCRIPTOR, NewDescriptor: PSECURITY_DESCRIPTOR*, ObjectTypes: GUID**, GuidCount: ULONG, IsContainerObject: BOOL, AutoInheritFlags: ULONG, Token: HANDLE, GenericMapping: PGENERIC_MAPPING): BOOL;
+
+@foreign
+func CreateRestrictedToken(ExistingTokenHandle: HANDLE, Flags: DWORD, DisableSidCount: DWORD, SidsToDisable: PSID_AND_ATTRIBUTES, DeletePrivilegeCount: DWORD, PrivilegesToDelete: PLUID_AND_ATTRIBUTES, RestrictedSidCount: DWORD, SidsToRestrict: PSID_AND_ATTRIBUTES, NewTokenHandle: PHANDLE): BOOL;
+
+@foreign
+func CreateWellKnownSid(WellKnownSidType: WELL_KNOWN_SID_TYPE, DomainSid: PSID, pSid: PSID, cbSid: DWORD*): BOOL;
+
+@foreign
+func EqualDomainSid(pSid1: PSID, pSid2: PSID, pfEqual: BOOL*): BOOL;
+
+@foreign
+func DeleteAce(pAcl: PACL, dwAceIndex: DWORD): BOOL;
+
+@foreign
+func DestroyPrivateObjectSecurity(ObjectDescriptor: PSECURITY_DESCRIPTOR*): BOOL;
+
+@foreign
+func DuplicateToken(ExistingTokenHandle: HANDLE, ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL, DuplicateTokenHandle: PHANDLE): BOOL;
+
+@foreign
+func DuplicateTokenEx(hExistingToken: HANDLE, dwDesiredAccess: DWORD, lpTokenAttributes: LPSECURITY_ATTRIBUTES, ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL, TokenType: TOKEN_TYPE, phNewToken: PHANDLE): BOOL;
+
+@foreign
+func EqualPrefixSid(pSid1: PSID, pSid2: PSID): BOOL;
+
+@foreign
+func EqualSid(pSid1: PSID, pSid2: PSID): BOOL;
+
+@foreign
+func FindFirstFreeAce(pAcl: PACL, pAce: LPVOID*): BOOL;
+
+@foreign
+func FreeSid(pSid: PSID): PVOID;
+
+@foreign
+func GetAce(pAcl: PACL, dwAceIndex: DWORD, pAce: LPVOID*): BOOL;
+
+@foreign
+func GetAclInformation(pAcl: PACL, pAclInformation: LPVOID, nAclInformationLength: DWORD, dwAclInformationClass: ACL_INFORMATION_CLASS): BOOL;
+
+@foreign
+func GetFileSecurityW(lpFileName: LPCWSTR, RequestedInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+func GetKernelObjectSecurity(Handle: HANDLE, RequestedInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+func GetLengthSid(pSid: PSID): DWORD;
+
+@foreign
+func GetPrivateObjectSecurity(ObjectDescriptor: PSECURITY_DESCRIPTOR, SecurityInformation: SECURITY_INFORMATION, ResultantDescriptor: PSECURITY_DESCRIPTOR, DescriptorLength: DWORD, ReturnLength: PDWORD): BOOL;
+
+@foreign
+func GetSecurityDescriptorControl(pSecurityDescriptor: PSECURITY_DESCRIPTOR, pControl: PSECURITY_DESCRIPTOR_CONTROL, lpdwRevision: LPDWORD): BOOL;
+
+@foreign
+func GetSecurityDescriptorDacl(pSecurityDescriptor: PSECURITY_DESCRIPTOR, lpbDaclPresent: LPBOOL, pDacl: PACL*, lpbDaclDefaulted: LPBOOL): BOOL;
+
+@foreign
+func GetSecurityDescriptorGroup(pSecurityDescriptor: PSECURITY_DESCRIPTOR, pGroup: PSID*, lpbGroupDefaulted: LPBOOL): BOOL;
+
+@foreign
+func GetSecurityDescriptorLength(pSecurityDescriptor: PSECURITY_DESCRIPTOR): DWORD;
+
+@foreign
+func GetSecurityDescriptorOwner(pSecurityDescriptor: PSECURITY_DESCRIPTOR, pOwner: PSID*, lpbOwnerDefaulted: LPBOOL): BOOL;
+
+@foreign
+func GetSecurityDescriptorRMControl(SecurityDescriptor: PSECURITY_DESCRIPTOR, RMControl: PUCHAR): DWORD;
+
+@foreign
+func GetSecurityDescriptorSacl(pSecurityDescriptor: PSECURITY_DESCRIPTOR, lpbSaclPresent: LPBOOL, pSacl: PACL*, lpbSaclDefaulted: LPBOOL): BOOL;
+
+@foreign
+func GetSidIdentifierAuthority(pSid: PSID): PSID_IDENTIFIER_AUTHORITY;
+
+@foreign
+func GetSidLengthRequired(nSubAuthorityCount: UCHAR): DWORD;
+
+@foreign
+func GetSidSubAuthority(pSid: PSID, nSubAuthority: DWORD): PDWORD;
+
+@foreign
+func GetSidSubAuthorityCount(pSid: PSID): PUCHAR;
+
+@foreign
+func GetTokenInformation(TokenHandle: HANDLE, TokenInformationClass: TOKEN_INFORMATION_CLASS, TokenInformation: LPVOID, TokenInformationLength: DWORD, ReturnLength: PDWORD): BOOL;
+
+@foreign
+func GetWindowsAccountDomainSid(pSid: PSID, pDomainSid: PSID, cbDomainSid: DWORD*): BOOL;
+
+@foreign
+func ImpersonateAnonymousToken(ThreadHandle: HANDLE): BOOL;
+
+@foreign
+func ImpersonateLoggedOnUser(hToken: HANDLE): BOOL;
+
+@foreign
+func ImpersonateSelf(ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL): BOOL;
+
+@foreign
+func InitializeAcl(pAcl: PACL, nAclLength: DWORD, dwAclRevision: DWORD): BOOL;
+
+@foreign
+func InitializeSecurityDescriptor(pSecurityDescriptor: PSECURITY_DESCRIPTOR, dwRevision: DWORD): BOOL;
+
+@foreign
+func InitializeSid(Sid: PSID, pIdentifierAuthority: PSID_IDENTIFIER_AUTHORITY, nSubAuthorityCount: BYTE): BOOL;
+
+@foreign
+func IsTokenRestricted(TokenHandle: HANDLE): BOOL;
+
+@foreign
+func IsValidAcl(pAcl: PACL): BOOL;
+
+@foreign
+func IsValidSecurityDescriptor(pSecurityDescriptor: PSECURITY_DESCRIPTOR): BOOL;
+
+@foreign
+func IsValidSid(pSid: PSID): BOOL;
+
+@foreign
+func IsWellKnownSid(pSid: PSID, WellKnownSidType: WELL_KNOWN_SID_TYPE): BOOL;
+
+@foreign
+func MakeAbsoluteSD(pSelfRelativeSecurityDescriptor: PSECURITY_DESCRIPTOR, pAbsoluteSecurityDescriptor: PSECURITY_DESCRIPTOR, lpdwAbsoluteSecurityDescriptorSize: LPDWORD, pDacl: PACL, lpdwDaclSize: LPDWORD, pSacl: PACL, lpdwSaclSize: LPDWORD, pOwner: PSID, lpdwOwnerSize: LPDWORD, pPrimaryGroup: PSID, lpdwPrimaryGroupSize: LPDWORD): BOOL;
+
+@foreign
+func MakeSelfRelativeSD(pAbsoluteSecurityDescriptor: PSECURITY_DESCRIPTOR, pSelfRelativeSecurityDescriptor: PSECURITY_DESCRIPTOR, lpdwBufferLength: LPDWORD): BOOL;
+
+@foreign
+func MapGenericMask(AccessMask: PDWORD, GenericMapping: PGENERIC_MAPPING);
+
+@foreign
+func ObjectCloseAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, GenerateOnClose: BOOL): BOOL;
+
+@foreign
+func ObjectDeleteAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, GenerateOnClose: BOOL): BOOL;
+
+@foreign
+func ObjectOpenAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, ObjectTypeName: LPWSTR, ObjectName: LPWSTR, pSecurityDescriptor: PSECURITY_DESCRIPTOR, ClientToken: HANDLE, DesiredAccess: DWORD, GrantedAccess: DWORD, Privileges: PPRIVILEGE_SET, ObjectCreation: BOOL, AccessGranted: BOOL, GenerateOnClose: LPBOOL): BOOL;
+
+@foreign
+func ObjectPrivilegeAuditAlarmW(SubsystemName: LPCWSTR, HandleId: LPVOID, ClientToken: HANDLE, DesiredAccess: DWORD, Privileges: PPRIVILEGE_SET, AccessGranted: BOOL): BOOL;
+
+@foreign
+func PrivilegeCheck(ClientToken: HANDLE, RequiredPrivileges: PPRIVILEGE_SET, pfResult: LPBOOL): BOOL;
+
+@foreign
+func PrivilegedServiceAuditAlarmW(SubsystemName: LPCWSTR, ServiceName: LPCWSTR, ClientToken: HANDLE, Privileges: PPRIVILEGE_SET, AccessGranted: BOOL): BOOL;
+
+@foreign
+func QuerySecurityAccessMask(SecurityInformation: SECURITY_INFORMATION, DesiredAccess: LPDWORD);
+
+@foreign
+func RevertToSelf(): BOOL;
+
+@foreign
+func SetAclInformation(pAcl: PACL, pAclInformation: LPVOID, nAclInformationLength: DWORD, dwAclInformationClass: ACL_INFORMATION_CLASS): BOOL;
+
+@foreign
+func SetFileSecurityW(lpFileName: LPCWSTR, SecurityInformation: SECURITY_INFORMATION, pSecurityDescriptor: PSECURITY_DESCRIPTOR): BOOL;
+
+@foreign
+func SetKernelObjectSecurity(Handle: HANDLE, SecurityInformation: SECURITY_INFORMATION, SecurityDescriptor: PSECURITY_DESCRIPTOR): BOOL;
+
+@foreign
+func SetPrivateObjectSecurity(SecurityInformation: SECURITY_INFORMATION, ModificationDescriptor: PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor: PSECURITY_DESCRIPTOR*, GenericMapping: PGENERIC_MAPPING, Token: HANDLE): BOOL;
+
+@foreign
+func SetPrivateObjectSecurityEx(SecurityInformation: SECURITY_INFORMATION, ModificationDescriptor: PSECURITY_DESCRIPTOR, ObjectsSecurityDescriptor: PSECURITY_DESCRIPTOR*, AutoInheritFlags: ULONG, GenericMapping: PGENERIC_MAPPING, Token: HANDLE): BOOL;
+
+@foreign
+func SetSecurityAccessMask(SecurityInformation: SECURITY_INFORMATION, DesiredAccess: LPDWORD);
+
+@foreign
+func SetSecurityDescriptorControl(pSecurityDescriptor: PSECURITY_DESCRIPTOR, ControlBitsOfInterest: SECURITY_DESCRIPTOR_CONTROL, ControlBitsToSet: SECURITY_DESCRIPTOR_CONTROL): BOOL;
+
+@foreign
+func SetSecurityDescriptorDacl(pSecurityDescriptor: PSECURITY_DESCRIPTOR, bDaclPresent: BOOL, pDacl: PACL, bDaclDefaulted: BOOL): BOOL;
+
+@foreign
+func SetSecurityDescriptorGroup(pSecurityDescriptor: PSECURITY_DESCRIPTOR, pGroup: PSID, bGroupDefaulted: BOOL): BOOL;
+
+@foreign
+func SetSecurityDescriptorOwner(pSecurityDescriptor: PSECURITY_DESCRIPTOR, pOwner: PSID, bOwnerDefaulted: BOOL): BOOL;
+
+@foreign
+func SetSecurityDescriptorRMControl(SecurityDescriptor: PSECURITY_DESCRIPTOR, RMControl: PUCHAR): DWORD;
+
+@foreign
+func SetSecurityDescriptorSacl(pSecurityDescriptor: PSECURITY_DESCRIPTOR, bSaclPresent: BOOL, pSacl: PACL, bSaclDefaulted: BOOL): BOOL;
+
+@foreign
+func SetTokenInformation(TokenHandle: HANDLE, TokenInformationClass: TOKEN_INFORMATION_CLASS, TokenInformation: LPVOID, TokenInformationLength: DWORD): BOOL;
+
+@foreign
+func SetCachedSigningLevel(SourceFiles: PHANDLE, SourceFileCount: ULONG, Flags: ULONG, TargetFile: HANDLE): BOOL;
+
+@foreign
+func GetCachedSigningLevel(File: HANDLE, Flags: PULONG, SigningLevel: PULONG, Thumbprint: PUCHAR, ThumbprintSize: PULONG, ThumbprintAlgorithm: PULONG): BOOL;
+
+@foreign
+func CveEventWrite(CveId: PCWSTR, AdditionalDetails: PCWSTR): LONG;
+
+@foreign
+func DeriveCapabilitySidsFromName(CapName: LPCWSTR, CapabilityGroupSids: PSID**, CapabilityGroupSidCount: DWORD*, CapabilitySids: PSID**, CapabilitySidCount: DWORD*): BOOL;
+

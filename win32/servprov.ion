@@ -1,0 +1,30 @@
+#foreign(header = "<servprov.h>")
+
+@foreign
+typedef LPSERVICEPROVIDER = IServiceProvider*;
+
+@foreign
+struct IServiceProviderVtbl {
+    QueryInterface: func(This: IServiceProvider*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IServiceProvider*): ULONG;
+    Release: func(This: IServiceProvider*): ULONG;
+    QueryService: func(This: IServiceProvider*, guidService: GUID* const, riid: IID* const, ppvObject: void**): HRESULT;
+}
+
+@foreign
+struct IServiceProvider {
+    lpVtbl: IServiceProviderVtbl*;
+}
+
+@foreign
+func IServiceProvider_RemoteQueryService_Proxy(This: IServiceProvider*, guidService: GUID* const, riid: IID* const, ppvObject: IUnknown**): HRESULT;
+
+@foreign
+func IServiceProvider_RemoteQueryService_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IServiceProvider_QueryService_Proxy(This: IServiceProvider*, guidService: GUID* const, riid: IID* const, ppvObject: void**): HRESULT;
+
+@foreign
+func IServiceProvider_QueryService_Stub(This: IServiceProvider*, guidService: GUID* const, riid: IID* const, ppvObject: IUnknown**): HRESULT;
+

@@ -1,0 +1,5269 @@
+#foreign(header = "<winuser.h>")
+
+@foreign
+typedef HDWP = HANDLE;
+
+@foreign
+typedef MENUTEMPLATEA = void;
+
+@foreign
+typedef MENUTEMPLATEW = void;
+
+@foreign
+typedef MENUTEMPLATE = MENUTEMPLATEA;
+
+@foreign
+typedef LPMENUTEMPLATEA = PVOID;
+
+@foreign
+typedef LPMENUTEMPLATEW = PVOID;
+
+@foreign
+typedef LPMENUTEMPLATE = LPMENUTEMPLATEA;
+
+@foreign
+typedef WNDPROC = func(arg0: HWND, arg1: UINT, arg2: WPARAM, arg3: LPARAM): LRESULT;
+
+@foreign
+typedef DLGPROC = func(arg0: HWND, arg1: UINT, arg2: WPARAM, arg3: LPARAM): INT_PTR;
+
+@foreign
+typedef TIMERPROC = func(arg0: HWND, arg1: UINT, arg2: UINT_PTR, arg3: DWORD);
+
+@foreign
+typedef GRAYSTRINGPROC = func(arg0: HDC, arg1: LPARAM, arg2: int): BOOL;
+
+@foreign
+typedef WNDENUMPROC = func(arg0: HWND, arg1: LPARAM): BOOL;
+
+@foreign
+typedef HOOKPROC = func(code: int, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+typedef SENDASYNCPROC = func(arg0: HWND, arg1: UINT, arg2: ULONG_PTR, arg3: LRESULT);
+
+@foreign
+typedef PROPENUMPROCA = func(arg0: HWND, arg1: LPCSTR, arg2: HANDLE): BOOL;
+
+@foreign
+typedef PROPENUMPROCW = func(arg0: HWND, arg1: LPCWSTR, arg2: HANDLE): BOOL;
+
+@foreign
+typedef PROPENUMPROCEXA = func(arg0: HWND, arg1: LPSTR, arg2: HANDLE, arg3: ULONG_PTR): BOOL;
+
+@foreign
+typedef PROPENUMPROCEXW = func(arg0: HWND, arg1: LPWSTR, arg2: HANDLE, arg3: ULONG_PTR): BOOL;
+
+@foreign
+typedef EDITWORDBREAKPROCA = func(lpch: LPSTR, ichCurrent: int, cch: int, code: int): int;
+
+@foreign
+typedef EDITWORDBREAKPROCW = func(lpch: LPWSTR, ichCurrent: int, cch: int, code: int): int;
+
+@foreign
+typedef DRAWSTATEPROC = func(hdc: HDC, lData: LPARAM, wData: WPARAM, cx: int, cy: int): BOOL;
+
+@foreign
+typedef PROPENUMPROC = PROPENUMPROCA;
+
+@foreign
+typedef PROPENUMPROCEX = PROPENUMPROCEXA;
+
+@foreign
+typedef EDITWORDBREAKPROC = EDITWORDBREAKPROCA;
+
+@foreign
+typedef NAMEENUMPROCA = func(arg0: LPSTR, arg1: LPARAM): BOOL;
+
+@foreign
+typedef NAMEENUMPROCW = func(arg0: LPWSTR, arg1: LPARAM): BOOL;
+
+@foreign
+typedef WINSTAENUMPROCA = NAMEENUMPROCA;
+
+@foreign
+typedef DESKTOPENUMPROCA = NAMEENUMPROCA;
+
+@foreign
+typedef WINSTAENUMPROCW = NAMEENUMPROCW;
+
+@foreign
+typedef DESKTOPENUMPROCW = NAMEENUMPROCW;
+
+@foreign
+typedef WINSTAENUMPROC = WINSTAENUMPROCA;
+
+@foreign
+typedef DESKTOPENUMPROC = DESKTOPENUMPROCA;
+
+@foreign
+func wvsprintfA(arg0: LPSTR, arg1: LPCSTR, arglist: va_list): int;
+
+@foreign
+func wvsprintf(arg0: LPSTR, arg1: LPCSTR, arglist: va_list): int;
+
+@foreign
+func wvsprintfW(arg0: LPWSTR, arg1: LPCWSTR, arglist: va_list): int;
+
+@foreign
+func wsprintfA(arg0: LPSTR, arg1: LPCSTR, ...): int;
+
+@foreign
+func wsprintf(arg0: LPSTR, arg1: LPCSTR, ...): int;
+
+@foreign
+func wsprintfW(arg0: LPWSTR, arg1: LPCWSTR, ...): int;
+
+@foreign
+struct tagCBT_CREATEWNDA {
+    lpcs: tagCREATESTRUCTA*;
+    hwndInsertAfter: HWND;
+}
+
+@foreign
+typedef CBT_CREATEWNDA = tagCBT_CREATEWNDA;
+
+@foreign
+typedef LPCBT_CREATEWNDA = tagCBT_CREATEWNDA*;
+
+@foreign
+struct tagCBT_CREATEWNDW {
+    lpcs: tagCREATESTRUCTW*;
+    hwndInsertAfter: HWND;
+}
+
+@foreign
+typedef CBT_CREATEWNDW = tagCBT_CREATEWNDW;
+
+@foreign
+typedef LPCBT_CREATEWNDW = tagCBT_CREATEWNDW*;
+
+@foreign
+typedef CBT_CREATEWND = CBT_CREATEWNDA;
+
+@foreign
+typedef LPCBT_CREATEWND = LPCBT_CREATEWNDA;
+
+@foreign
+struct tagCBTACTIVATESTRUCT {
+    fMouse: BOOL;
+    hWndActive: HWND;
+}
+
+@foreign
+typedef CBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT;
+
+@foreign
+typedef LPCBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT*;
+
+@foreign
+struct tagWTSSESSION_NOTIFICATION {
+    cbSize: DWORD;
+    dwSessionId: DWORD;
+}
+
+@foreign
+typedef WTSSESSION_NOTIFICATION = tagWTSSESSION_NOTIFICATION;
+
+@foreign
+typedef PWTSSESSION_NOTIFICATION = tagWTSSESSION_NOTIFICATION*;
+
+@foreign
+struct SHELLHOOKINFO {
+    hwnd: HWND;
+    rc: RECT;
+}
+
+@foreign
+typedef LPSHELLHOOKINFO = SHELLHOOKINFO;
+
+@foreign
+struct tagEVENTMSG {
+    message: UINT;
+    paramL: UINT;
+    paramH: UINT;
+    time: DWORD;
+    hwnd: HWND;
+}
+
+@foreign
+typedef EVENTMSG = tagEVENTMSG;
+
+@foreign
+typedef PEVENTMSGMSG = tagEVENTMSG*;
+
+@foreign
+typedef NPEVENTMSGMSG = tagEVENTMSG*;
+
+@foreign
+typedef LPEVENTMSGMSG = tagEVENTMSG*;
+
+@foreign
+typedef PEVENTMSG = tagEVENTMSG*;
+
+@foreign
+typedef NPEVENTMSG = tagEVENTMSG*;
+
+@foreign
+typedef LPEVENTMSG = tagEVENTMSG*;
+
+@foreign
+struct tagCWPSTRUCT {
+    lParam: LPARAM;
+    wParam: WPARAM;
+    message: UINT;
+    hwnd: HWND;
+}
+
+@foreign
+typedef CWPSTRUCT = tagCWPSTRUCT;
+
+@foreign
+typedef PCWPSTRUCT = tagCWPSTRUCT*;
+
+@foreign
+typedef NPCWPSTRUCT = tagCWPSTRUCT*;
+
+@foreign
+typedef LPCWPSTRUCT = tagCWPSTRUCT*;
+
+@foreign
+struct tagCWPRETSTRUCT {
+    lResult: LRESULT;
+    lParam: LPARAM;
+    wParam: WPARAM;
+    message: UINT;
+    hwnd: HWND;
+}
+
+@foreign
+typedef CWPRETSTRUCT = tagCWPRETSTRUCT;
+
+@foreign
+typedef PCWPRETSTRUCT = tagCWPRETSTRUCT*;
+
+@foreign
+typedef NPCWPRETSTRUCT = tagCWPRETSTRUCT*;
+
+@foreign
+typedef LPCWPRETSTRUCT = tagCWPRETSTRUCT*;
+
+@foreign
+struct tagKBDLLHOOKSTRUCT {
+    vkCode: DWORD;
+    scanCode: DWORD;
+    flags: DWORD;
+    time: DWORD;
+    dwExtraInfo: ULONG_PTR;
+}
+
+@foreign
+typedef KBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT;
+
+@foreign
+typedef LPKBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT*;
+
+@foreign
+typedef PKBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT*;
+
+@foreign
+struct tagMSLLHOOKSTRUCT {
+    pt: POINT;
+    mouseData: DWORD;
+    flags: DWORD;
+    time: DWORD;
+    dwExtraInfo: ULONG_PTR;
+}
+
+@foreign
+typedef MSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT;
+
+@foreign
+typedef LPMSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT*;
+
+@foreign
+typedef PMSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT*;
+
+@foreign
+struct tagDEBUGHOOKINFO {
+    idThread: DWORD;
+    idThreadInstaller: DWORD;
+    lParam: LPARAM;
+    wParam: WPARAM;
+    code: int;
+}
+
+@foreign
+typedef DEBUGHOOKINFO = tagDEBUGHOOKINFO;
+
+@foreign
+typedef PDEBUGHOOKINFO = tagDEBUGHOOKINFO*;
+
+@foreign
+typedef NPDEBUGHOOKINFO = tagDEBUGHOOKINFO*;
+
+@foreign
+typedef LPDEBUGHOOKINFO = tagDEBUGHOOKINFO*;
+
+@foreign
+struct tagMOUSEHOOKSTRUCT {
+    pt: POINT;
+    hwnd: HWND;
+    wHitTestCode: UINT;
+    dwExtraInfo: ULONG_PTR;
+}
+
+@foreign
+typedef MOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT;
+
+@foreign
+typedef LPMOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT*;
+
+@foreign
+typedef PMOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT*;
+
+@foreign
+struct tagMOUSEHOOKSTRUCTEX {
+    s: MOUSEHOOKSTRUCT;
+    mouseData: DWORD;
+}
+
+@foreign
+typedef MOUSEHOOKSTRUCTEX = tagMOUSEHOOKSTRUCTEX;
+
+@foreign
+typedef LPMOUSEHOOKSTRUCTEX = tagMOUSEHOOKSTRUCTEX*;
+
+@foreign
+typedef PMOUSEHOOKSTRUCTEX = tagMOUSEHOOKSTRUCTEX*;
+
+@foreign
+struct tagHARDWAREHOOKSTRUCT {
+    hwnd: HWND;
+    message: UINT;
+    wParam: WPARAM;
+    lParam: LPARAM;
+}
+
+@foreign
+typedef HARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT;
+
+@foreign
+typedef LPHARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT*;
+
+@foreign
+typedef PHARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT*;
+
+@foreign
+func LoadKeyboardLayoutA(pwszKLID: LPCSTR, Flags: UINT): HKL;
+
+@foreign
+func LoadKeyboardLayout(pwszKLID: LPCSTR, Flags: UINT): HKL;
+
+@foreign
+func LoadKeyboardLayoutW(pwszKLID: LPCWSTR, Flags: UINT): HKL;
+
+@foreign
+func ActivateKeyboardLayout(hkl: HKL, Flags: UINT): HKL;
+
+@foreign
+func ToUnicodeEx(wVirtKey: UINT, wScanCode: UINT, lpKeyState: BYTE*, pwszBuff: LPWSTR, cchBuff: int, wFlags: UINT, dwhkl: HKL): int;
+
+@foreign
+func UnloadKeyboardLayout(hkl: HKL): BOOL;
+
+@foreign
+func GetKeyboardLayoutNameA(pwszKLID: LPSTR): BOOL;
+
+@foreign
+func GetKeyboardLayoutName(pwszKLID: LPSTR): BOOL;
+
+@foreign
+func GetKeyboardLayoutNameW(pwszKLID: LPWSTR): BOOL;
+
+@foreign
+func GetKeyboardLayoutList(nBuff: int, lpList: HKL*): int;
+
+@foreign
+func GetKeyboardLayout(idThread: DWORD): HKL;
+
+@foreign
+struct tagMOUSEMOVEPOINT {
+    x: int;
+    y: int;
+    time: DWORD;
+    dwExtraInfo: ULONG_PTR;
+}
+
+@foreign
+typedef MOUSEMOVEPOINT = tagMOUSEMOVEPOINT;
+
+@foreign
+typedef PMOUSEMOVEPOINT = tagMOUSEMOVEPOINT*;
+
+@foreign
+typedef LPMOUSEMOVEPOINT = tagMOUSEMOVEPOINT*;
+
+@foreign
+func GetMouseMovePointsEx(cbSize: UINT, lppt: LPMOUSEMOVEPOINT, lpptBuf: LPMOUSEMOVEPOINT, nBufPoints: int, resolution: DWORD): int;
+
+@foreign
+func CreateDesktopA(lpszDesktop: LPCSTR, lpszDevice: LPCSTR, pDevmode: DEVMODEA*, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES): HDESK;
+
+@foreign
+func CreateDesktop(lpszDesktop: LPCSTR, lpszDevice: LPCSTR, pDevmode: DEVMODEA*, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES): HDESK;
+
+@foreign
+func CreateDesktopW(lpszDesktop: LPCWSTR, lpszDevice: LPCWSTR, pDevmode: DEVMODEW*, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES): HDESK;
+
+@foreign
+func CreateDesktopExA(lpszDesktop: LPCSTR, lpszDevice: LPCSTR, pDevmode: DEVMODEA*, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES, ulHeapSize: ULONG, pvoid: PVOID): HDESK;
+
+@foreign
+func CreateDesktopEx(lpszDesktop: LPCSTR, lpszDevice: LPCSTR, pDevmode: DEVMODEA*, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES, ulHeapSize: ULONG, pvoid: PVOID): HDESK;
+
+@foreign
+func CreateDesktopExW(lpszDesktop: LPCWSTR, lpszDevice: LPCWSTR, pDevmode: DEVMODEW*, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES, ulHeapSize: ULONG, pvoid: PVOID): HDESK;
+
+@foreign
+func OpenDesktopA(lpszDesktop: LPCSTR, dwFlags: DWORD, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HDESK;
+
+@foreign
+func OpenDesktop(lpszDesktop: LPCSTR, dwFlags: DWORD, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HDESK;
+
+@foreign
+func OpenDesktopW(lpszDesktop: LPCWSTR, dwFlags: DWORD, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HDESK;
+
+@foreign
+func OpenInputDesktop(dwFlags: DWORD, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HDESK;
+
+@foreign
+func EnumDesktopsA(hwinsta: HWINSTA, lpEnumFunc: DESKTOPENUMPROCA, lParam: LPARAM): BOOL;
+
+@foreign
+func EnumDesktops(hwinsta: HWINSTA, lpEnumFunc: DESKTOPENUMPROCA, lParam: LPARAM): BOOL;
+
+@foreign
+func EnumDesktopsW(hwinsta: HWINSTA, lpEnumFunc: DESKTOPENUMPROCW, lParam: LPARAM): BOOL;
+
+@foreign
+func EnumDesktopWindows(hDesktop: HDESK, lpfn: WNDENUMPROC, lParam: LPARAM): BOOL;
+
+@foreign
+func SwitchDesktop(hDesktop: HDESK): BOOL;
+
+@foreign
+func SetThreadDesktop(hDesktop: HDESK): BOOL;
+
+@foreign
+func CloseDesktop(hDesktop: HDESK): BOOL;
+
+@foreign
+func GetThreadDesktop(dwThreadId: DWORD): HDESK;
+
+@foreign
+func CreateWindowStationA(lpwinsta: LPCSTR, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES): HWINSTA;
+
+@foreign
+func CreateWindowStation(lpwinsta: LPCSTR, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES): HWINSTA;
+
+@foreign
+func CreateWindowStationW(lpwinsta: LPCWSTR, dwFlags: DWORD, dwDesiredAccess: ACCESS_MASK, lpsa: LPSECURITY_ATTRIBUTES): HWINSTA;
+
+@foreign
+func OpenWindowStationA(lpszWinSta: LPCSTR, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HWINSTA;
+
+@foreign
+func OpenWindowStation(lpszWinSta: LPCSTR, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HWINSTA;
+
+@foreign
+func OpenWindowStationW(lpszWinSta: LPCWSTR, fInherit: BOOL, dwDesiredAccess: ACCESS_MASK): HWINSTA;
+
+@foreign
+func EnumWindowStationsA(lpEnumFunc: WINSTAENUMPROCA, lParam: LPARAM): BOOL;
+
+@foreign
+func EnumWindowStations(lpEnumFunc: WINSTAENUMPROCA, lParam: LPARAM): BOOL;
+
+@foreign
+func EnumWindowStationsW(lpEnumFunc: WINSTAENUMPROCW, lParam: LPARAM): BOOL;
+
+@foreign
+func CloseWindowStation(hWinSta: HWINSTA): BOOL;
+
+@foreign
+func SetProcessWindowStation(hWinSta: HWINSTA): BOOL;
+
+@foreign
+func GetProcessWindowStation(): HWINSTA;
+
+@foreign
+func SetUserObjectSecurity(hObj: HANDLE, pSIRequested: PSECURITY_INFORMATION, pSID: PSECURITY_DESCRIPTOR): BOOL;
+
+@foreign
+func GetUserObjectSecurity(hObj: HANDLE, pSIRequested: PSECURITY_INFORMATION, pSID: PSECURITY_DESCRIPTOR, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+struct tagUSEROBJECTFLAGS {
+    fInherit: BOOL;
+    fReserved: BOOL;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef USEROBJECTFLAGS = tagUSEROBJECTFLAGS;
+
+@foreign
+typedef PUSEROBJECTFLAGS = tagUSEROBJECTFLAGS*;
+
+@foreign
+func GetUserObjectInformationA(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+func GetUserObjectInformation(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+func GetUserObjectInformationW(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
+
+@foreign
+func SetUserObjectInformationA(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD): BOOL;
+
+@foreign
+func SetUserObjectInformation(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD): BOOL;
+
+@foreign
+func SetUserObjectInformationW(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD): BOOL;
+
+@foreign
+struct tagWNDCLASSEXA {
+    cbSize: UINT;
+    style: UINT;
+    lpfnWndProc: WNDPROC;
+    cbClsExtra: int;
+    cbWndExtra: int;
+    hInstance: HINSTANCE;
+    hIcon: HICON;
+    hCursor: HCURSOR;
+    hbrBackground: HBRUSH;
+    lpszMenuName: LPCSTR;
+    lpszClassName: LPCSTR;
+    hIconSm: HICON;
+}
+
+@foreign
+typedef WNDCLASSEXA = tagWNDCLASSEXA;
+
+@foreign
+typedef PWNDCLASSEXA = tagWNDCLASSEXA*;
+
+@foreign
+typedef NPWNDCLASSEXA = tagWNDCLASSEXA*;
+
+@foreign
+typedef LPWNDCLASSEXA = tagWNDCLASSEXA*;
+
+@foreign
+struct tagWNDCLASSEXW {
+    cbSize: UINT;
+    style: UINT;
+    lpfnWndProc: WNDPROC;
+    cbClsExtra: int;
+    cbWndExtra: int;
+    hInstance: HINSTANCE;
+    hIcon: HICON;
+    hCursor: HCURSOR;
+    hbrBackground: HBRUSH;
+    lpszMenuName: LPCWSTR;
+    lpszClassName: LPCWSTR;
+    hIconSm: HICON;
+}
+
+@foreign
+typedef WNDCLASSEXW = tagWNDCLASSEXW;
+
+@foreign
+typedef PWNDCLASSEXW = tagWNDCLASSEXW*;
+
+@foreign
+typedef NPWNDCLASSEXW = tagWNDCLASSEXW*;
+
+@foreign
+typedef LPWNDCLASSEXW = tagWNDCLASSEXW*;
+
+@foreign
+typedef WNDCLASSEX = WNDCLASSEXA;
+
+@foreign
+typedef PWNDCLASSEX = PWNDCLASSEXA;
+
+@foreign
+typedef NPWNDCLASSEX = NPWNDCLASSEXA;
+
+@foreign
+typedef LPWNDCLASSEX = LPWNDCLASSEXA;
+
+@foreign
+struct tagWNDCLASSA {
+    style: UINT;
+    lpfnWndProc: WNDPROC;
+    cbClsExtra: int;
+    cbWndExtra: int;
+    hInstance: HINSTANCE;
+    hIcon: HICON;
+    hCursor: HCURSOR;
+    hbrBackground: HBRUSH;
+    lpszMenuName: LPCSTR;
+    lpszClassName: LPCSTR;
+}
+
+@foreign
+typedef WNDCLASSA = tagWNDCLASSA;
+
+@foreign
+typedef PWNDCLASSA = tagWNDCLASSA*;
+
+@foreign
+typedef NPWNDCLASSA = tagWNDCLASSA*;
+
+@foreign
+typedef LPWNDCLASSA = tagWNDCLASSA*;
+
+@foreign
+struct tagWNDCLASSW {
+    style: UINT;
+    lpfnWndProc: WNDPROC;
+    cbClsExtra: int;
+    cbWndExtra: int;
+    hInstance: HINSTANCE;
+    hIcon: HICON;
+    hCursor: HCURSOR;
+    hbrBackground: HBRUSH;
+    lpszMenuName: LPCWSTR;
+    lpszClassName: LPCWSTR;
+}
+
+@foreign
+typedef WNDCLASSW = tagWNDCLASSW;
+
+@foreign
+typedef PWNDCLASSW = tagWNDCLASSW*;
+
+@foreign
+typedef NPWNDCLASSW = tagWNDCLASSW*;
+
+@foreign
+typedef LPWNDCLASSW = tagWNDCLASSW*;
+
+@foreign
+typedef WNDCLASS = WNDCLASSA;
+
+@foreign
+typedef PWNDCLASS = PWNDCLASSA;
+
+@foreign
+typedef NPWNDCLASS = NPWNDCLASSA;
+
+@foreign
+typedef LPWNDCLASS = LPWNDCLASSA;
+
+@foreign
+func IsHungAppWindow(hwnd: HWND): BOOL;
+
+@foreign
+func DisableProcessWindowsGhosting();
+
+@foreign
+struct tagMSG {
+    hwnd: HWND;
+    message: UINT;
+    wParam: WPARAM;
+    lParam: LPARAM;
+    time: DWORD;
+    pt: POINT;
+}
+
+@foreign
+typedef MSG = tagMSG;
+
+@foreign
+typedef PMSG = tagMSG*;
+
+@foreign
+typedef NPMSG = tagMSG*;
+
+@foreign
+typedef LPMSG = tagMSG*;
+
+@foreign
+struct tagMINMAXINFO {
+    ptReserved: POINT;
+    ptMaxSize: POINT;
+    ptMaxPosition: POINT;
+    ptMinTrackSize: POINT;
+    ptMaxTrackSize: POINT;
+}
+
+@foreign
+typedef MINMAXINFO = tagMINMAXINFO;
+
+@foreign
+typedef PMINMAXINFO = tagMINMAXINFO*;
+
+@foreign
+typedef LPMINMAXINFO = tagMINMAXINFO*;
+
+@foreign
+struct tagCOPYDATASTRUCT {
+    dwData: ULONG_PTR;
+    cbData: DWORD;
+    lpData: PVOID;
+}
+
+@foreign
+typedef COPYDATASTRUCT = tagCOPYDATASTRUCT;
+
+@foreign
+typedef PCOPYDATASTRUCT = tagCOPYDATASTRUCT*;
+
+@foreign
+struct tagMDINEXTMENU {
+    hmenuIn: HMENU;
+    hmenuNext: HMENU;
+    hwndNext: HWND;
+}
+
+@foreign
+typedef MDINEXTMENU = tagMDINEXTMENU;
+
+@foreign
+typedef PMDINEXTMENU = tagMDINEXTMENU*;
+
+@foreign
+typedef LPMDINEXTMENU = tagMDINEXTMENU*;
+
+@foreign
+struct POWERBROADCAST_SETTING {
+    PowerSetting: GUID;
+    DataLength: DWORD;
+    Data: UCHAR[1];
+}
+
+@foreign
+typedef PPOWERBROADCAST_SETTING = POWERBROADCAST_SETTING;
+
+@foreign
+func RegisterWindowMessageA(lpString: LPCSTR): UINT;
+
+@foreign
+func RegisterWindowMessage(lpString: LPCSTR): UINT;
+
+@foreign
+func RegisterWindowMessageW(lpString: LPCWSTR): UINT;
+
+@foreign
+struct tagWINDOWPOS {
+    hwnd: HWND;
+    hwndInsertAfter: HWND;
+    x: int;
+    y: int;
+    cx: int;
+    cy: int;
+    flags: UINT;
+}
+
+@foreign
+typedef WINDOWPOS = tagWINDOWPOS;
+
+@foreign
+typedef LPWINDOWPOS = tagWINDOWPOS*;
+
+@foreign
+typedef PWINDOWPOS = tagWINDOWPOS*;
+
+@foreign
+struct tagNCCALCSIZE_PARAMS {
+    rgrc: RECT[3];
+    lppos: PWINDOWPOS;
+}
+
+@foreign
+typedef NCCALCSIZE_PARAMS = tagNCCALCSIZE_PARAMS;
+
+@foreign
+typedef LPNCCALCSIZE_PARAMS = tagNCCALCSIZE_PARAMS*;
+
+@foreign
+struct tagTRACKMOUSEEVENT {
+    cbSize: DWORD;
+    dwFlags: DWORD;
+    hwndTrack: HWND;
+    dwHoverTime: DWORD;
+}
+
+@foreign
+typedef TRACKMOUSEEVENT = tagTRACKMOUSEEVENT;
+
+@foreign
+typedef LPTRACKMOUSEEVENT = tagTRACKMOUSEEVENT*;
+
+@foreign
+func TrackMouseEvent(lpEventTrack: LPTRACKMOUSEEVENT): BOOL;
+
+@foreign
+func DrawEdge(hdc: HDC, qrc: LPRECT, edge: UINT, grfFlags: UINT): BOOL;
+
+@foreign
+func DrawFrameControl(arg0: HDC, arg1: LPRECT, arg2: UINT, arg3: UINT): BOOL;
+
+@foreign
+func DrawCaption(hwnd: HWND, hdc: HDC, lprect: RECT*, flags: UINT): BOOL;
+
+@foreign
+func DrawAnimatedRects(hwnd: HWND, idAni: int, lprcFrom: RECT*, lprcTo: RECT*): BOOL;
+
+@foreign
+struct tagACCEL {
+    fVirt: BYTE;
+    key: WORD;
+    cmd: WORD;
+}
+
+@foreign
+typedef ACCEL = tagACCEL;
+
+@foreign
+typedef LPACCEL = tagACCEL*;
+
+@foreign
+struct tagPAINTSTRUCT {
+    hdc: HDC;
+    fErase: BOOL;
+    rcPaint: RECT;
+    fRestore: BOOL;
+    fIncUpdate: BOOL;
+    rgbReserved: BYTE[32];
+}
+
+@foreign
+typedef PAINTSTRUCT = tagPAINTSTRUCT;
+
+@foreign
+typedef PPAINTSTRUCT = tagPAINTSTRUCT*;
+
+@foreign
+typedef NPPAINTSTRUCT = tagPAINTSTRUCT*;
+
+@foreign
+typedef LPPAINTSTRUCT = tagPAINTSTRUCT*;
+
+@foreign
+struct tagCREATESTRUCTA {
+    lpCreateParams: LPVOID;
+    hInstance: HINSTANCE;
+    hMenu: HMENU;
+    hwndParent: HWND;
+    cy: int;
+    cx: int;
+    y: int;
+    x: int;
+    style: LONG;
+    lpszName: LPCSTR;
+    lpszClass: LPCSTR;
+    dwExStyle: DWORD;
+}
+
+@foreign
+typedef CREATESTRUCTA = tagCREATESTRUCTA;
+
+@foreign
+typedef LPCREATESTRUCTA = tagCREATESTRUCTA*;
+
+@foreign
+struct tagCREATESTRUCTW {
+    lpCreateParams: LPVOID;
+    hInstance: HINSTANCE;
+    hMenu: HMENU;
+    hwndParent: HWND;
+    cy: int;
+    cx: int;
+    y: int;
+    x: int;
+    style: LONG;
+    lpszName: LPCWSTR;
+    lpszClass: LPCWSTR;
+    dwExStyle: DWORD;
+}
+
+@foreign
+typedef CREATESTRUCTW = tagCREATESTRUCTW;
+
+@foreign
+typedef LPCREATESTRUCTW = tagCREATESTRUCTW*;
+
+@foreign
+typedef CREATESTRUCT = CREATESTRUCTA;
+
+@foreign
+typedef LPCREATESTRUCT = LPCREATESTRUCTA;
+
+@foreign
+struct tagWINDOWPLACEMENT {
+    length: UINT;
+    flags: UINT;
+    showCmd: UINT;
+    ptMinPosition: POINT;
+    ptMaxPosition: POINT;
+    rcNormalPosition: RECT;
+}
+
+@foreign
+typedef WINDOWPLACEMENT = tagWINDOWPLACEMENT;
+
+@foreign
+typedef PWINDOWPLACEMENT = WINDOWPLACEMENT*;
+
+@foreign
+typedef LPWINDOWPLACEMENT = WINDOWPLACEMENT*;
+
+@foreign
+struct tagNMHDR {
+    hwndFrom: HWND;
+    idFrom: UINT_PTR;
+    code: UINT;
+}
+
+@foreign
+typedef NMHDR = tagNMHDR;
+
+@foreign
+typedef LPNMHDR = NMHDR*;
+
+@foreign
+struct tagSTYLESTRUCT {
+    styleOld: DWORD;
+    styleNew: DWORD;
+}
+
+@foreign
+typedef STYLESTRUCT = tagSTYLESTRUCT;
+
+@foreign
+typedef LPSTYLESTRUCT = tagSTYLESTRUCT*;
+
+@foreign
+struct tagMEASUREITEMSTRUCT {
+    CtlType: UINT;
+    CtlID: UINT;
+    itemID: UINT;
+    itemWidth: UINT;
+    itemHeight: UINT;
+    itemData: ULONG_PTR;
+}
+
+@foreign
+typedef MEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT;
+
+@foreign
+typedef PMEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT*;
+
+@foreign
+typedef LPMEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT*;
+
+@foreign
+struct tagDRAWITEMSTRUCT {
+    CtlType: UINT;
+    CtlID: UINT;
+    itemID: UINT;
+    itemAction: UINT;
+    itemState: UINT;
+    hwndItem: HWND;
+    hDC: HDC;
+    rcItem: RECT;
+    itemData: ULONG_PTR;
+}
+
+@foreign
+typedef DRAWITEMSTRUCT = tagDRAWITEMSTRUCT;
+
+@foreign
+typedef PDRAWITEMSTRUCT = tagDRAWITEMSTRUCT*;
+
+@foreign
+typedef LPDRAWITEMSTRUCT = tagDRAWITEMSTRUCT*;
+
+@foreign
+struct tagDELETEITEMSTRUCT {
+    CtlType: UINT;
+    CtlID: UINT;
+    itemID: UINT;
+    hwndItem: HWND;
+    itemData: ULONG_PTR;
+}
+
+@foreign
+typedef DELETEITEMSTRUCT = tagDELETEITEMSTRUCT;
+
+@foreign
+typedef PDELETEITEMSTRUCT = tagDELETEITEMSTRUCT*;
+
+@foreign
+typedef LPDELETEITEMSTRUCT = tagDELETEITEMSTRUCT*;
+
+@foreign
+struct tagCOMPAREITEMSTRUCT {
+    CtlType: UINT;
+    CtlID: UINT;
+    hwndItem: HWND;
+    itemID1: UINT;
+    itemData1: ULONG_PTR;
+    itemID2: UINT;
+    itemData2: ULONG_PTR;
+    dwLocaleId: DWORD;
+}
+
+@foreign
+typedef COMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT;
+
+@foreign
+typedef PCOMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT*;
+
+@foreign
+typedef LPCOMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT*;
+
+@foreign
+func GetMessageA(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT): BOOL;
+
+@foreign
+func GetMessage(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT): BOOL;
+
+@foreign
+func GetMessageW(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT): BOOL;
+
+@foreign
+func TranslateMessage(lpMsg: MSG*): BOOL;
+
+@foreign
+func DispatchMessageA(lpMsg: MSG*): LRESULT;
+
+@foreign
+func DispatchMessage(lpMsg: MSG*): LRESULT;
+
+@foreign
+func DispatchMessageW(lpMsg: MSG*): LRESULT;
+
+@foreign
+func SetMessageQueue(cMessagesMax: int): BOOL;
+
+@foreign
+func PeekMessageA(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT, wRemoveMsg: UINT): BOOL;
+
+@foreign
+func PeekMessage(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT, wRemoveMsg: UINT): BOOL;
+
+@foreign
+func PeekMessageW(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT, wRemoveMsg: UINT): BOOL;
+
+@foreign
+func RegisterHotKey(hWnd: HWND, id: int, fsModifiers: UINT, vk: UINT): BOOL;
+
+@foreign
+func UnregisterHotKey(hWnd: HWND, id: int): BOOL;
+
+@foreign
+func ExitWindowsEx(uFlags: UINT, dwReason: DWORD): BOOL;
+
+@foreign
+func SwapMouseButton(fSwap: BOOL): BOOL;
+
+@foreign
+func GetMessagePos(): DWORD;
+
+@foreign
+func GetMessageTime(): LONG;
+
+@foreign
+func GetMessageExtraInfo(): LPARAM;
+
+@foreign
+func GetUnpredictedMessagePos(): DWORD;
+
+@foreign
+func IsWow64Message(): BOOL;
+
+@foreign
+func SetMessageExtraInfo(lParam: LPARAM): LPARAM;
+
+@foreign
+func SendMessageA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SendMessage(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SendMessageW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SendMessageTimeoutA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM, fuFlags: UINT, uTimeout: UINT, lpdwResult: PDWORD_PTR): LRESULT;
+
+@foreign
+func SendMessageTimeout(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM, fuFlags: UINT, uTimeout: UINT, lpdwResult: PDWORD_PTR): LRESULT;
+
+@foreign
+func SendMessageTimeoutW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM, fuFlags: UINT, uTimeout: UINT, lpdwResult: PDWORD_PTR): LRESULT;
+
+@foreign
+func SendNotifyMessageA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func SendNotifyMessage(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func SendNotifyMessageW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func SendMessageCallbackA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM, lpResultCallBack: SENDASYNCPROC, dwData: ULONG_PTR): BOOL;
+
+@foreign
+func SendMessageCallback(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM, lpResultCallBack: SENDASYNCPROC, dwData: ULONG_PTR): BOOL;
+
+@foreign
+func SendMessageCallbackW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM, lpResultCallBack: SENDASYNCPROC, dwData: ULONG_PTR): BOOL;
+
+@foreign
+struct BSMINFO {
+    cbSize: UINT;
+    hdesk: HDESK;
+    hwnd: HWND;
+    luid: LUID;
+}
+
+@foreign
+typedef PBSMINFO = BSMINFO;
+
+@foreign
+func BroadcastSystemMessageExA(flags: DWORD, lpInfo: LPDWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM, pbsmInfo: PBSMINFO): long;
+
+@foreign
+func BroadcastSystemMessageEx(flags: DWORD, lpInfo: LPDWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM, pbsmInfo: PBSMINFO): long;
+
+@foreign
+func BroadcastSystemMessageExW(flags: DWORD, lpInfo: LPDWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM, pbsmInfo: PBSMINFO): long;
+
+@foreign
+func BroadcastSystemMessageA(flags: DWORD, lpInfo: LPDWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM): long;
+
+@foreign
+func BroadcastSystemMessage(flags: DWORD, lpInfo: LPDWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM): long;
+
+@foreign
+func BroadcastSystemMessageW(flags: DWORD, lpInfo: LPDWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM): long;
+
+@foreign
+typedef HDEVNOTIFY = PVOID;
+
+@foreign
+typedef PHDEVNOTIFY = HDEVNOTIFY*;
+
+@foreign
+func RegisterDeviceNotificationA(hRecipient: HANDLE, NotificationFilter: LPVOID, Flags: DWORD): HDEVNOTIFY;
+
+@foreign
+func RegisterDeviceNotification(hRecipient: HANDLE, NotificationFilter: LPVOID, Flags: DWORD): HDEVNOTIFY;
+
+@foreign
+func RegisterDeviceNotificationW(hRecipient: HANDLE, NotificationFilter: LPVOID, Flags: DWORD): HDEVNOTIFY;
+
+@foreign
+func UnregisterDeviceNotification(Handle: HDEVNOTIFY): BOOL;
+
+@foreign
+typedef HPOWERNOTIFY = PVOID;
+
+@foreign
+typedef PHPOWERNOTIFY = HPOWERNOTIFY*;
+
+@foreign
+func RegisterPowerSettingNotification(hRecipient: HANDLE, PowerSettingGuid: LPCGUID, Flags: DWORD): HPOWERNOTIFY;
+
+@foreign
+func UnregisterPowerSettingNotification(Handle: HPOWERNOTIFY): BOOL;
+
+@foreign
+func RegisterSuspendResumeNotification(hRecipient: HANDLE, Flags: DWORD): HPOWERNOTIFY;
+
+@foreign
+func UnregisterSuspendResumeNotification(Handle: HPOWERNOTIFY): BOOL;
+
+@foreign
+func PostMessageA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func PostMessage(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func PostMessageW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func PostThreadMessageA(idThread: DWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func PostThreadMessage(idThread: DWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func PostThreadMessageW(idThread: DWORD, Msg: UINT, wParam: WPARAM, lParam: LPARAM): BOOL;
+
+@foreign
+func AttachThreadInput(idAttach: DWORD, idAttachTo: DWORD, fAttach: BOOL): BOOL;
+
+@foreign
+func ReplyMessage(lResult: LRESULT): BOOL;
+
+@foreign
+func WaitMessage(): BOOL;
+
+@foreign
+func WaitForInputIdle(hProcess: HANDLE, dwMilliseconds: DWORD): DWORD;
+
+@foreign
+func DefWindowProcA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefWindowProc(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefWindowProcW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func PostQuitMessage(nExitCode: int);
+
+@foreign
+func CallWindowProcA(lpPrevWndFunc: WNDPROC, hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func CallWindowProc(lpPrevWndFunc: WNDPROC, hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func CallWindowProcW(lpPrevWndFunc: WNDPROC, hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func InSendMessage(): BOOL;
+
+@foreign
+func InSendMessageEx(lpReserved: LPVOID): DWORD;
+
+@foreign
+func GetDoubleClickTime(): UINT;
+
+@foreign
+func SetDoubleClickTime(arg0: UINT): BOOL;
+
+@foreign
+func RegisterClassA(lpWndClass: WNDCLASSA*): ATOM;
+
+@foreign
+func RegisterClass(lpWndClass: WNDCLASSA*): ATOM;
+
+@foreign
+func RegisterClassW(lpWndClass: WNDCLASSW*): ATOM;
+
+@foreign
+func UnregisterClassA(lpClassName: LPCSTR, hInstance: HINSTANCE): BOOL;
+
+@foreign
+func UnregisterClass(lpClassName: LPCSTR, hInstance: HINSTANCE): BOOL;
+
+@foreign
+func UnregisterClassW(lpClassName: LPCWSTR, hInstance: HINSTANCE): BOOL;
+
+@foreign
+func GetClassInfoA(hInstance: HINSTANCE, lpClassName: LPCSTR, lpWndClass: LPWNDCLASSA): BOOL;
+
+@foreign
+func GetClassInfo(hInstance: HINSTANCE, lpClassName: LPCSTR, lpWndClass: LPWNDCLASSA): BOOL;
+
+@foreign
+func GetClassInfoW(hInstance: HINSTANCE, lpClassName: LPCWSTR, lpWndClass: LPWNDCLASSW): BOOL;
+
+@foreign
+func RegisterClassExA(arg0: WNDCLASSEXA*): ATOM;
+
+@foreign
+func RegisterClassEx(arg0: WNDCLASSEXA*): ATOM;
+
+@foreign
+func RegisterClassExW(arg0: WNDCLASSEXW*): ATOM;
+
+@foreign
+func GetClassInfoExA(hInstance: HINSTANCE, lpszClass: LPCSTR, lpwcx: LPWNDCLASSEXA): BOOL;
+
+@foreign
+func GetClassInfoEx(hInstance: HINSTANCE, lpszClass: LPCSTR, lpwcx: LPWNDCLASSEXA): BOOL;
+
+@foreign
+func GetClassInfoExW(hInstance: HINSTANCE, lpszClass: LPCWSTR, lpwcx: LPWNDCLASSEXW): BOOL;
+
+@foreign
+typedef PREGISTERCLASSNAMEW = func(arg0: LPCWSTR): BOOLEAN;
+
+@foreign
+func CreateWindowExA(dwExStyle: DWORD, lpClassName: LPCSTR, lpWindowName: LPCSTR, dwStyle: DWORD, X: int, Y: int, nWidth: int, nHeight: int, hWndParent: HWND, hMenu: HMENU, hInstance: HINSTANCE, lpParam: LPVOID): HWND;
+
+@foreign
+func CreateWindowEx(dwExStyle: DWORD, lpClassName: LPCSTR, lpWindowName: LPCSTR, dwStyle: DWORD, X: int, Y: int, nWidth: int, nHeight: int, hWndParent: HWND, hMenu: HMENU, hInstance: HINSTANCE, lpParam: LPVOID): HWND;
+
+@foreign
+func CreateWindowExW(dwExStyle: DWORD, lpClassName: LPCWSTR, lpWindowName: LPCWSTR, dwStyle: DWORD, X: int, Y: int, nWidth: int, nHeight: int, hWndParent: HWND, hMenu: HMENU, hInstance: HINSTANCE, lpParam: LPVOID): HWND;
+
+@foreign
+func IsWindow(hWnd: HWND): BOOL;
+
+@foreign
+func IsMenu(hMenu: HMENU): BOOL;
+
+@foreign
+func IsChild(hWndParent: HWND, hWnd: HWND): BOOL;
+
+@foreign
+func DestroyWindow(hWnd: HWND): BOOL;
+
+@foreign
+func ShowWindow(hWnd: HWND, nCmdShow: int): BOOL;
+
+@foreign
+func AnimateWindow(hWnd: HWND, dwTime: DWORD, dwFlags: DWORD): BOOL;
+
+@foreign
+func UpdateLayeredWindow(hWnd: HWND, hdcDst: HDC, pptDst: POINT*, psize: SIZE*, hdcSrc: HDC, pptSrc: POINT*, crKey: COLORREF, pblend: BLENDFUNCTION*, dwFlags: DWORD): BOOL;
+
+@foreign
+struct tagUPDATELAYEREDWINDOWINFO {
+    cbSize: DWORD;
+    hdcDst: HDC;
+    pptDst: POINT*;
+    psize: SIZE*;
+    hdcSrc: HDC;
+    pptSrc: POINT*;
+    crKey: COLORREF;
+    pblend: BLENDFUNCTION*;
+    dwFlags: DWORD;
+    prcDirty: RECT*;
+}
+
+@foreign
+typedef UPDATELAYEREDWINDOWINFO = tagUPDATELAYEREDWINDOWINFO;
+
+@foreign
+typedef PUPDATELAYEREDWINDOWINFO = tagUPDATELAYEREDWINDOWINFO*;
+
+@foreign
+func UpdateLayeredWindowIndirect(hWnd: HWND, pULWInfo: UPDATELAYEREDWINDOWINFO*): BOOL;
+
+@foreign
+func GetLayeredWindowAttributes(hwnd: HWND, pcrKey: COLORREF*, pbAlpha: BYTE*, pdwFlags: DWORD*): BOOL;
+
+@foreign
+func PrintWindow(hwnd: HWND, hdcBlt: HDC, nFlags: UINT): BOOL;
+
+@foreign
+func SetLayeredWindowAttributes(hwnd: HWND, crKey: COLORREF, bAlpha: BYTE, dwFlags: DWORD): BOOL;
+
+@foreign
+func ShowWindowAsync(hWnd: HWND, nCmdShow: int): BOOL;
+
+@foreign
+func FlashWindow(hWnd: HWND, bInvert: BOOL): BOOL;
+
+@foreign
+struct FLASHWINFO {
+    cbSize: UINT;
+    hwnd: HWND;
+    dwFlags: DWORD;
+    uCount: UINT;
+    dwTimeout: DWORD;
+}
+
+@foreign
+typedef PFLASHWINFO = FLASHWINFO;
+
+@foreign
+func FlashWindowEx(pfwi: PFLASHWINFO): BOOL;
+
+@foreign
+func ShowOwnedPopups(hWnd: HWND, fShow: BOOL): BOOL;
+
+@foreign
+func OpenIcon(hWnd: HWND): BOOL;
+
+@foreign
+func CloseWindow(hWnd: HWND): BOOL;
+
+@foreign
+func MoveWindow(hWnd: HWND, X: int, Y: int, nWidth: int, nHeight: int, bRepaint: BOOL): BOOL;
+
+@foreign
+func SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: int, Y: int, cx: int, cy: int, uFlags: UINT): BOOL;
+
+@foreign
+func GetWindowPlacement(hWnd: HWND, lpwndpl: WINDOWPLACEMENT*): BOOL;
+
+@foreign
+func SetWindowPlacement(hWnd: HWND, lpwndpl: WINDOWPLACEMENT*): BOOL;
+
+@foreign
+func GetWindowDisplayAffinity(hWnd: HWND, pdwAffinity: DWORD*): BOOL;
+
+@foreign
+func SetWindowDisplayAffinity(hWnd: HWND, dwAffinity: DWORD): BOOL;
+
+@foreign
+func BeginDeferWindowPos(nNumWindows: int): HDWP;
+
+@foreign
+func DeferWindowPos(hWinPosInfo: HDWP, hWnd: HWND, hWndInsertAfter: HWND, x: int, y: int, cx: int, cy: int, uFlags: UINT): HDWP;
+
+@foreign
+func EndDeferWindowPos(hWinPosInfo: HDWP): BOOL;
+
+@foreign
+func IsWindowVisible(hWnd: HWND): BOOL;
+
+@foreign
+func IsIconic(hWnd: HWND): BOOL;
+
+@foreign
+func AnyPopup(): BOOL;
+
+@foreign
+func BringWindowToTop(hWnd: HWND): BOOL;
+
+@foreign
+func IsZoomed(hWnd: HWND): BOOL;
+
+@foreign
+struct DLGTEMPLATE {
+    style: DWORD;
+    dwExtendedStyle: DWORD;
+    cdit: WORD;
+    x: short;
+    y: short;
+    cx: short;
+    cy: short;
+}
+
+@foreign
+typedef LPDLGTEMPLATEA = DLGTEMPLATE*;
+
+@foreign
+typedef LPDLGTEMPLATEW = DLGTEMPLATE*;
+
+@foreign
+typedef LPDLGTEMPLATE = LPDLGTEMPLATEA;
+
+@foreign
+typedef LPCDLGTEMPLATEA = DLGTEMPLATE*;
+
+@foreign
+typedef LPCDLGTEMPLATEW = DLGTEMPLATE*;
+
+@foreign
+typedef LPCDLGTEMPLATE = LPCDLGTEMPLATEA;
+
+@foreign
+struct DLGITEMTEMPLATE {
+    style: DWORD;
+    dwExtendedStyle: DWORD;
+    x: short;
+    y: short;
+    cx: short;
+    cy: short;
+    id: WORD;
+}
+
+@foreign
+typedef PDLGITEMTEMPLATEA = DLGITEMTEMPLATE*;
+
+@foreign
+typedef PDLGITEMTEMPLATEW = DLGITEMTEMPLATE*;
+
+@foreign
+typedef PDLGITEMTEMPLATE = PDLGITEMTEMPLATEA;
+
+@foreign
+typedef LPDLGITEMTEMPLATEA = DLGITEMTEMPLATE*;
+
+@foreign
+typedef LPDLGITEMTEMPLATEW = DLGITEMTEMPLATE*;
+
+@foreign
+typedef LPDLGITEMTEMPLATE = LPDLGITEMTEMPLATEA;
+
+@foreign
+func CreateDialogParamA(hInstance: HINSTANCE, lpTemplateName: LPCSTR, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): HWND;
+
+@foreign
+func CreateDialogParam(hInstance: HINSTANCE, lpTemplateName: LPCSTR, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): HWND;
+
+@foreign
+func CreateDialogParamW(hInstance: HINSTANCE, lpTemplateName: LPCWSTR, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): HWND;
+
+@foreign
+func CreateDialogIndirectParamA(hInstance: HINSTANCE, lpTemplate: LPCDLGTEMPLATEA, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): HWND;
+
+@foreign
+func CreateDialogIndirectParam(hInstance: HINSTANCE, lpTemplate: LPCDLGTEMPLATEA, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): HWND;
+
+@foreign
+func CreateDialogIndirectParamW(hInstance: HINSTANCE, lpTemplate: LPCDLGTEMPLATEW, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): HWND;
+
+@foreign
+func DialogBoxParamA(hInstance: HINSTANCE, lpTemplateName: LPCSTR, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): INT_PTR;
+
+@foreign
+func DialogBoxParam(hInstance: HINSTANCE, lpTemplateName: LPCSTR, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): INT_PTR;
+
+@foreign
+func DialogBoxParamW(hInstance: HINSTANCE, lpTemplateName: LPCWSTR, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): INT_PTR;
+
+@foreign
+func DialogBoxIndirectParamA(hInstance: HINSTANCE, hDialogTemplate: LPCDLGTEMPLATEA, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): INT_PTR;
+
+@foreign
+func DialogBoxIndirectParam(hInstance: HINSTANCE, hDialogTemplate: LPCDLGTEMPLATEA, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): INT_PTR;
+
+@foreign
+func DialogBoxIndirectParamW(hInstance: HINSTANCE, hDialogTemplate: LPCDLGTEMPLATEW, hWndParent: HWND, lpDialogFunc: DLGPROC, dwInitParam: LPARAM): INT_PTR;
+
+@foreign
+func EndDialog(hDlg: HWND, nResult: INT_PTR): BOOL;
+
+@foreign
+func GetDlgItem(hDlg: HWND, nIDDlgItem: int): HWND;
+
+@foreign
+func SetDlgItemInt(hDlg: HWND, nIDDlgItem: int, uValue: UINT, bSigned: BOOL): BOOL;
+
+@foreign
+func GetDlgItemInt(hDlg: HWND, nIDDlgItem: int, lpTranslated: BOOL*, bSigned: BOOL): UINT;
+
+@foreign
+func SetDlgItemTextA(hDlg: HWND, nIDDlgItem: int, lpString: LPCSTR): BOOL;
+
+@foreign
+func SetDlgItemText(hDlg: HWND, nIDDlgItem: int, lpString: LPCSTR): BOOL;
+
+@foreign
+func SetDlgItemTextW(hDlg: HWND, nIDDlgItem: int, lpString: LPCWSTR): BOOL;
+
+@foreign
+func GetDlgItemTextA(hDlg: HWND, nIDDlgItem: int, lpString: LPSTR, cchMax: int): UINT;
+
+@foreign
+func GetDlgItemText(hDlg: HWND, nIDDlgItem: int, lpString: LPSTR, cchMax: int): UINT;
+
+@foreign
+func GetDlgItemTextW(hDlg: HWND, nIDDlgItem: int, lpString: LPWSTR, cchMax: int): UINT;
+
+@foreign
+func CheckDlgButton(hDlg: HWND, nIDButton: int, uCheck: UINT): BOOL;
+
+@foreign
+func CheckRadioButton(hDlg: HWND, nIDFirstButton: int, nIDLastButton: int, nIDCheckButton: int): BOOL;
+
+@foreign
+func IsDlgButtonChecked(hDlg: HWND, nIDButton: int): UINT;
+
+@foreign
+func SendDlgItemMessageA(hDlg: HWND, nIDDlgItem: int, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SendDlgItemMessage(hDlg: HWND, nIDDlgItem: int, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func SendDlgItemMessageW(hDlg: HWND, nIDDlgItem: int, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func GetNextDlgGroupItem(hDlg: HWND, hCtl: HWND, bPrevious: BOOL): HWND;
+
+@foreign
+func GetNextDlgTabItem(hDlg: HWND, hCtl: HWND, bPrevious: BOOL): HWND;
+
+@foreign
+func GetDlgCtrlID(hWnd: HWND): int;
+
+@foreign
+func GetDialogBaseUnits(): long;
+
+@foreign
+func DefDlgProcA(hDlg: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefDlgProc(hDlg: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefDlgProcW(hDlg: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+enum DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS {
+    DCDC_DEFAULT = 0,
+    DCDC_DISABLE_FONT_UPDATE = 1,
+    DCDC_DISABLE_RELAYOUT = 2,
+}
+
+@foreign
+func SetDialogControlDpiChangeBehavior(hWnd: HWND, mask: DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS, values: DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS): BOOL;
+
+@foreign
+func GetDialogControlDpiChangeBehavior(hWnd: HWND): DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS;
+
+@foreign
+enum DIALOG_DPI_CHANGE_BEHAVIORS {
+    DDC_DEFAULT = 0,
+    DDC_DISABLE_ALL = 1,
+    DDC_DISABLE_RESIZE = 2,
+    DDC_DISABLE_CONTROL_RELAYOUT = 4,
+}
+
+@foreign
+func SetDialogDpiChangeBehavior(hDlg: HWND, mask: DIALOG_DPI_CHANGE_BEHAVIORS, values: DIALOG_DPI_CHANGE_BEHAVIORS): BOOL;
+
+@foreign
+func GetDialogDpiChangeBehavior(hDlg: HWND): DIALOG_DPI_CHANGE_BEHAVIORS;
+
+@foreign
+func CallMsgFilterA(lpMsg: LPMSG, nCode: int): BOOL;
+
+@foreign
+func CallMsgFilter(lpMsg: LPMSG, nCode: int): BOOL;
+
+@foreign
+func CallMsgFilterW(lpMsg: LPMSG, nCode: int): BOOL;
+
+@foreign
+func OpenClipboard(hWndNewOwner: HWND): BOOL;
+
+@foreign
+func CloseClipboard(): BOOL;
+
+@foreign
+func GetClipboardSequenceNumber(): DWORD;
+
+@foreign
+func GetClipboardOwner(): HWND;
+
+@foreign
+func SetClipboardViewer(hWndNewViewer: HWND): HWND;
+
+@foreign
+func GetClipboardViewer(): HWND;
+
+@foreign
+func ChangeClipboardChain(hWndRemove: HWND, hWndNewNext: HWND): BOOL;
+
+@foreign
+func SetClipboardData(uFormat: UINT, hMem: HANDLE): HANDLE;
+
+@foreign
+func GetClipboardData(uFormat: UINT): HANDLE;
+
+@foreign
+func RegisterClipboardFormatA(lpszFormat: LPCSTR): UINT;
+
+@foreign
+func RegisterClipboardFormat(lpszFormat: LPCSTR): UINT;
+
+@foreign
+func RegisterClipboardFormatW(lpszFormat: LPCWSTR): UINT;
+
+@foreign
+func CountClipboardFormats(): int;
+
+@foreign
+func EnumClipboardFormats(format: UINT): UINT;
+
+@foreign
+func GetClipboardFormatNameA(format: UINT, lpszFormatName: LPSTR, cchMaxCount: int): int;
+
+@foreign
+func GetClipboardFormatName(format: UINT, lpszFormatName: LPSTR, cchMaxCount: int): int;
+
+@foreign
+func GetClipboardFormatNameW(format: UINT, lpszFormatName: LPWSTR, cchMaxCount: int): int;
+
+@foreign
+func EmptyClipboard(): BOOL;
+
+@foreign
+func IsClipboardFormatAvailable(format: UINT): BOOL;
+
+@foreign
+func GetPriorityClipboardFormat(paFormatPriorityList: UINT*, cFormats: int): int;
+
+@foreign
+func GetOpenClipboardWindow(): HWND;
+
+@foreign
+func AddClipboardFormatListener(hwnd: HWND): BOOL;
+
+@foreign
+func RemoveClipboardFormatListener(hwnd: HWND): BOOL;
+
+@foreign
+func GetUpdatedClipboardFormats(lpuiFormats: PUINT, cFormats: UINT, pcFormatsOut: PUINT): BOOL;
+
+@foreign
+func CharToOemA(pSrc: LPCSTR, pDst: LPSTR): BOOL;
+
+@foreign
+func CharToOem(pSrc: LPCSTR, pDst: LPSTR): BOOL;
+
+@foreign
+func CharToOemW(pSrc: LPCWSTR, pDst: LPSTR): BOOL;
+
+@foreign
+func OemToCharA(pSrc: LPCSTR, pDst: LPSTR): BOOL;
+
+@foreign
+func OemToChar(pSrc: LPCSTR, pDst: LPSTR): BOOL;
+
+@foreign
+func OemToCharW(pSrc: LPCSTR, pDst: LPWSTR): BOOL;
+
+@foreign
+func CharToOemBuffA(lpszSrc: LPCSTR, lpszDst: LPSTR, cchDstLength: DWORD): BOOL;
+
+@foreign
+func CharToOemBuff(lpszSrc: LPCSTR, lpszDst: LPSTR, cchDstLength: DWORD): BOOL;
+
+@foreign
+func CharToOemBuffW(lpszSrc: LPCWSTR, lpszDst: LPSTR, cchDstLength: DWORD): BOOL;
+
+@foreign
+func OemToCharBuffA(lpszSrc: LPCSTR, lpszDst: LPSTR, cchDstLength: DWORD): BOOL;
+
+@foreign
+func OemToCharBuff(lpszSrc: LPCSTR, lpszDst: LPSTR, cchDstLength: DWORD): BOOL;
+
+@foreign
+func OemToCharBuffW(lpszSrc: LPCSTR, lpszDst: LPWSTR, cchDstLength: DWORD): BOOL;
+
+@foreign
+func CharUpperA(lpsz: LPSTR): LPSTR;
+
+@foreign
+func CharUpper(lpsz: LPSTR): LPSTR;
+
+@foreign
+func CharUpperW(lpsz: LPWSTR): LPWSTR;
+
+@foreign
+func CharUpperBuffA(lpsz: LPSTR, cchLength: DWORD): DWORD;
+
+@foreign
+func CharUpperBuff(lpsz: LPSTR, cchLength: DWORD): DWORD;
+
+@foreign
+func CharUpperBuffW(lpsz: LPWSTR, cchLength: DWORD): DWORD;
+
+@foreign
+func CharLowerA(lpsz: LPSTR): LPSTR;
+
+@foreign
+func CharLower(lpsz: LPSTR): LPSTR;
+
+@foreign
+func CharLowerW(lpsz: LPWSTR): LPWSTR;
+
+@foreign
+func CharLowerBuffA(lpsz: LPSTR, cchLength: DWORD): DWORD;
+
+@foreign
+func CharLowerBuff(lpsz: LPSTR, cchLength: DWORD): DWORD;
+
+@foreign
+func CharLowerBuffW(lpsz: LPWSTR, cchLength: DWORD): DWORD;
+
+@foreign
+func CharNextA(lpsz: LPCSTR): LPSTR;
+
+@foreign
+func CharNext(lpsz: LPCSTR): LPSTR;
+
+@foreign
+func CharNextW(lpsz: LPCWSTR): LPWSTR;
+
+@foreign
+func CharPrevA(lpszStart: LPCSTR, lpszCurrent: LPCSTR): LPSTR;
+
+@foreign
+func CharPrev(lpszStart: LPCSTR, lpszCurrent: LPCSTR): LPSTR;
+
+@foreign
+func CharPrevW(lpszStart: LPCWSTR, lpszCurrent: LPCWSTR): LPWSTR;
+
+@foreign
+func CharNextExA(CodePage: WORD, lpCurrentChar: LPCSTR, dwFlags: DWORD): LPSTR;
+
+@foreign
+func CharPrevExA(CodePage: WORD, lpStart: LPCSTR, lpCurrentChar: LPCSTR, dwFlags: DWORD): LPSTR;
+
+@foreign
+func IsCharAlphaA(ch: CHAR): BOOL;
+
+@foreign
+func IsCharAlpha(ch: CHAR): BOOL;
+
+@foreign
+func IsCharAlphaW(ch: WCHAR): BOOL;
+
+@foreign
+func IsCharAlphaNumericA(ch: CHAR): BOOL;
+
+@foreign
+func IsCharAlphaNumeric(ch: CHAR): BOOL;
+
+@foreign
+func IsCharAlphaNumericW(ch: WCHAR): BOOL;
+
+@foreign
+func IsCharUpperA(ch: CHAR): BOOL;
+
+@foreign
+func IsCharUpper(ch: CHAR): BOOL;
+
+@foreign
+func IsCharUpperW(ch: WCHAR): BOOL;
+
+@foreign
+func IsCharLowerA(ch: CHAR): BOOL;
+
+@foreign
+func IsCharLower(ch: CHAR): BOOL;
+
+@foreign
+func IsCharLowerW(ch: WCHAR): BOOL;
+
+@foreign
+func SetFocus(hWnd: HWND): HWND;
+
+@foreign
+func GetActiveWindow(): HWND;
+
+@foreign
+func GetFocus(): HWND;
+
+@foreign
+func GetKBCodePage(): UINT;
+
+@foreign
+func GetKeyState(nVirtKey: int): SHORT;
+
+@foreign
+func GetAsyncKeyState(vKey: int): SHORT;
+
+@foreign
+func GetKeyboardState(lpKeyState: PBYTE): BOOL;
+
+@foreign
+func SetKeyboardState(lpKeyState: LPBYTE): BOOL;
+
+@foreign
+func GetKeyNameTextA(lParam: LONG, lpString: LPSTR, cchSize: int): int;
+
+@foreign
+func GetKeyNameText(lParam: LONG, lpString: LPSTR, cchSize: int): int;
+
+@foreign
+func GetKeyNameTextW(lParam: LONG, lpString: LPWSTR, cchSize: int): int;
+
+@foreign
+func GetKeyboardType(nTypeFlag: int): int;
+
+@foreign
+func ToAscii(uVirtKey: UINT, uScanCode: UINT, lpKeyState: BYTE*, lpChar: LPWORD, uFlags: UINT): int;
+
+@foreign
+func ToAsciiEx(uVirtKey: UINT, uScanCode: UINT, lpKeyState: BYTE*, lpChar: LPWORD, uFlags: UINT, dwhkl: HKL): int;
+
+@foreign
+func ToUnicode(wVirtKey: UINT, wScanCode: UINT, lpKeyState: BYTE*, pwszBuff: LPWSTR, cchBuff: int, wFlags: UINT): int;
+
+@foreign
+func OemKeyScan(wOemChar: WORD): DWORD;
+
+@foreign
+func VkKeyScanA(ch: CHAR): SHORT;
+
+@foreign
+func VkKeyScan(ch: CHAR): SHORT;
+
+@foreign
+func VkKeyScanW(ch: WCHAR): SHORT;
+
+@foreign
+func VkKeyScanExA(ch: CHAR, dwhkl: HKL): SHORT;
+
+@foreign
+func VkKeyScanEx(ch: CHAR, dwhkl: HKL): SHORT;
+
+@foreign
+func VkKeyScanExW(ch: WCHAR, dwhkl: HKL): SHORT;
+
+@foreign
+func keybd_event(bVk: BYTE, bScan: BYTE, dwFlags: DWORD, dwExtraInfo: ULONG_PTR);
+
+@foreign
+func mouse_event(dwFlags: DWORD, dx: DWORD, dy: DWORD, dwData: DWORD, dwExtraInfo: ULONG_PTR);
+
+@foreign
+struct tagMOUSEINPUT {
+    dx: LONG;
+    dy: LONG;
+    mouseData: DWORD;
+    dwFlags: DWORD;
+    time: DWORD;
+    dwExtraInfo: ULONG_PTR;
+}
+
+@foreign
+typedef MOUSEINPUT = tagMOUSEINPUT;
+
+@foreign
+typedef PMOUSEINPUT = tagMOUSEINPUT*;
+
+@foreign
+typedef LPMOUSEINPUT = tagMOUSEINPUT*;
+
+@foreign
+struct tagKEYBDINPUT {
+    wVk: WORD;
+    wScan: WORD;
+    dwFlags: DWORD;
+    time: DWORD;
+    dwExtraInfo: ULONG_PTR;
+}
+
+@foreign
+typedef KEYBDINPUT = tagKEYBDINPUT;
+
+@foreign
+typedef PKEYBDINPUT = tagKEYBDINPUT*;
+
+@foreign
+typedef LPKEYBDINPUT = tagKEYBDINPUT*;
+
+@foreign
+struct tagHARDWAREINPUT {
+    uMsg: DWORD;
+    wParamL: WORD;
+    wParamH: WORD;
+}
+
+@foreign
+typedef HARDWAREINPUT = tagHARDWAREINPUT;
+
+@foreign
+typedef PHARDWAREINPUT = tagHARDWAREINPUT*;
+
+@foreign
+typedef LPHARDWAREINPUT = tagHARDWAREINPUT*;
+
+/*
+@PROBLEM Nested struct def at line 5979, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+@foreign
+struct tagINPUT {
+    type: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 5979, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+tagINPUT
+*/
+
+@foreign
+typedef PINPUT = tagINPUT*;
+
+@foreign
+typedef LPINPUT = tagINPUT*;
+
+@foreign
+func SendInput(cInputs: UINT, pInputs: LPINPUT, cbSize: int): UINT;
+
+@foreign
+struct HTOUCHINPUT__ {
+    unused: int;
+}
+
+@foreign
+typedef HTOUCHINPUT = HTOUCHINPUT__*;
+
+@foreign
+struct tagTOUCHINPUT {
+    x: LONG;
+    y: LONG;
+    hSource: HANDLE;
+    dwID: DWORD;
+    dwFlags: DWORD;
+    dwMask: DWORD;
+    dwTime: DWORD;
+    dwExtraInfo: ULONG_PTR;
+    cxContact: DWORD;
+    cyContact: DWORD;
+}
+
+@foreign
+typedef TOUCHINPUT = tagTOUCHINPUT;
+
+@foreign
+typedef PTOUCHINPUT = tagTOUCHINPUT*;
+
+@foreign
+typedef PCTOUCHINPUT = TOUCHINPUT*;
+
+@foreign
+func GetTouchInputInfo(hTouchInput: HTOUCHINPUT, cInputs: UINT, pInputs: PTOUCHINPUT, cbSize: int): BOOL;
+
+@foreign
+func CloseTouchInputHandle(hTouchInput: HTOUCHINPUT): BOOL;
+
+@foreign
+func RegisterTouchWindow(hwnd: HWND, ulFlags: ULONG): BOOL;
+
+@foreign
+func UnregisterTouchWindow(hwnd: HWND): BOOL;
+
+@foreign
+func IsTouchWindow(hwnd: HWND, pulFlags: PULONG): BOOL;
+
+@foreign
+enum tagPOINTER_INPUT_TYPE {
+    PT_POINTER = 1,
+    PT_TOUCH = 2,
+    PT_PEN = 3,
+    PT_MOUSE = 4,
+    PT_TOUCHPAD = 5,
+}
+
+@foreign
+typedef POINTER_INPUT_TYPE = DWORD;
+
+@foreign
+typedef POINTER_FLAGS = UINT32;
+
+@foreign
+enum tagPOINTER_BUTTON_CHANGE_TYPE {
+    POINTER_CHANGE_NONE,
+    POINTER_CHANGE_FIRSTBUTTON_DOWN,
+    POINTER_CHANGE_FIRSTBUTTON_UP,
+    POINTER_CHANGE_SECONDBUTTON_DOWN,
+    POINTER_CHANGE_SECONDBUTTON_UP,
+    POINTER_CHANGE_THIRDBUTTON_DOWN,
+    POINTER_CHANGE_THIRDBUTTON_UP,
+    POINTER_CHANGE_FOURTHBUTTON_DOWN,
+    POINTER_CHANGE_FOURTHBUTTON_UP,
+    POINTER_CHANGE_FIFTHBUTTON_DOWN,
+    POINTER_CHANGE_FIFTHBUTTON_UP,
+}
+
+@foreign
+typedef POINTER_BUTTON_CHANGE_TYPE = tagPOINTER_BUTTON_CHANGE_TYPE;
+
+@foreign
+struct tagPOINTER_INFO {
+    pointerType: POINTER_INPUT_TYPE;
+    pointerId: UINT32;
+    frameId: UINT32;
+    pointerFlags: POINTER_FLAGS;
+    sourceDevice: HANDLE;
+    hwndTarget: HWND;
+    ptPixelLocation: POINT;
+    ptHimetricLocation: POINT;
+    ptPixelLocationRaw: POINT;
+    ptHimetricLocationRaw: POINT;
+    dwTime: DWORD;
+    historyCount: UINT32;
+    InputData: INT32;
+    dwKeyStates: DWORD;
+    PerformanceCount: UINT64;
+    ButtonChangeType: POINTER_BUTTON_CHANGE_TYPE;
+}
+
+@foreign
+typedef POINTER_INFO = tagPOINTER_INFO;
+
+@foreign
+typedef TOUCH_FLAGS = UINT32;
+
+@foreign
+typedef TOUCH_MASK = UINT32;
+
+@foreign
+struct tagPOINTER_TOUCH_INFO {
+    pointerInfo: POINTER_INFO;
+    touchFlags: TOUCH_FLAGS;
+    touchMask: TOUCH_MASK;
+    rcContact: RECT;
+    rcContactRaw: RECT;
+    orientation: UINT32;
+    pressure: UINT32;
+}
+
+@foreign
+typedef POINTER_TOUCH_INFO = tagPOINTER_TOUCH_INFO;
+
+@foreign
+typedef PEN_FLAGS = UINT32;
+
+@foreign
+typedef PEN_MASK = UINT32;
+
+@foreign
+struct tagPOINTER_PEN_INFO {
+    pointerInfo: POINTER_INFO;
+    penFlags: PEN_FLAGS;
+    penMask: PEN_MASK;
+    pressure: UINT32;
+    rotation: UINT32;
+    tiltX: INT32;
+    tiltY: INT32;
+}
+
+@foreign
+typedef POINTER_PEN_INFO = tagPOINTER_PEN_INFO;
+
+@foreign
+func InitializeTouchInjection(maxCount: UINT32, dwMode: DWORD): BOOL;
+
+@foreign
+func InjectTouchInput(count: UINT32, contacts: POINTER_TOUCH_INFO*): BOOL;
+
+@foreign
+struct tagUSAGE_PROPERTIES {
+    level: USHORT;
+    page: USHORT;
+    usage: USHORT;
+    logicalMinimum: INT32;
+    logicalMaximum: INT32;
+    unit: USHORT;
+    exponent: USHORT;
+    count: BYTE;
+    physicalMinimum: INT32;
+    physicalMaximum: INT32;
+}
+
+@foreign
+typedef USAGE_PROPERTIES = tagUSAGE_PROPERTIES;
+
+@foreign
+typedef PUSAGE_PROPERTIES = tagUSAGE_PROPERTIES*;
+
+/*
+@PROBLEM Nested struct def at line 6325, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+@foreign
+struct tagPOINTER_TYPE_INFO {
+    type: POINTER_INPUT_TYPE;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 6325, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+tagPOINTER_TYPE_INFO
+*/
+
+@foreign
+typedef PPOINTER_TYPE_INFO = tagPOINTER_TYPE_INFO*;
+
+@foreign
+struct tagINPUT_INJECTION_VALUE {
+    page: USHORT;
+    usage: USHORT;
+    value: INT32;
+    index: USHORT;
+}
+
+@foreign
+typedef INPUT_INJECTION_VALUE = tagINPUT_INJECTION_VALUE;
+
+@foreign
+typedef PINPUT_INJECTION_VALUE = tagINPUT_INJECTION_VALUE*;
+
+@foreign
+func GetPointerType(pointerId: UINT32, pointerType: POINTER_INPUT_TYPE*): BOOL;
+
+@foreign
+func GetPointerCursorId(pointerId: UINT32, cursorId: UINT32*): BOOL;
+
+@foreign
+func GetPointerInfo(pointerId: UINT32, pointerInfo: POINTER_INFO*): BOOL;
+
+@foreign
+func GetPointerInfoHistory(pointerId: UINT32, entriesCount: UINT32*, pointerInfo: POINTER_INFO*): BOOL;
+
+@foreign
+func GetPointerFrameInfo(pointerId: UINT32, pointerCount: UINT32*, pointerInfo: POINTER_INFO*): BOOL;
+
+@foreign
+func GetPointerFrameInfoHistory(pointerId: UINT32, entriesCount: UINT32*, pointerCount: UINT32*, pointerInfo: POINTER_INFO*): BOOL;
+
+@foreign
+func GetPointerTouchInfo(pointerId: UINT32, touchInfo: POINTER_TOUCH_INFO*): BOOL;
+
+@foreign
+func GetPointerTouchInfoHistory(pointerId: UINT32, entriesCount: UINT32*, touchInfo: POINTER_TOUCH_INFO*): BOOL;
+
+@foreign
+func GetPointerFrameTouchInfo(pointerId: UINT32, pointerCount: UINT32*, touchInfo: POINTER_TOUCH_INFO*): BOOL;
+
+@foreign
+func GetPointerFrameTouchInfoHistory(pointerId: UINT32, entriesCount: UINT32*, pointerCount: UINT32*, touchInfo: POINTER_TOUCH_INFO*): BOOL;
+
+@foreign
+func GetPointerPenInfo(pointerId: UINT32, penInfo: POINTER_PEN_INFO*): BOOL;
+
+@foreign
+func GetPointerPenInfoHistory(pointerId: UINT32, entriesCount: UINT32*, penInfo: POINTER_PEN_INFO*): BOOL;
+
+@foreign
+func GetPointerFramePenInfo(pointerId: UINT32, pointerCount: UINT32*, penInfo: POINTER_PEN_INFO*): BOOL;
+
+@foreign
+func GetPointerFramePenInfoHistory(pointerId: UINT32, entriesCount: UINT32*, pointerCount: UINT32*, penInfo: POINTER_PEN_INFO*): BOOL;
+
+@foreign
+func SkipPointerFrameMessages(pointerId: UINT32): BOOL;
+
+@foreign
+func RegisterPointerInputTarget(hwnd: HWND, pointerType: POINTER_INPUT_TYPE): BOOL;
+
+@foreign
+func UnregisterPointerInputTarget(hwnd: HWND, pointerType: POINTER_INPUT_TYPE): BOOL;
+
+@foreign
+func RegisterPointerInputTargetEx(hwnd: HWND, pointerType: POINTER_INPUT_TYPE, fObserve: BOOL): BOOL;
+
+@foreign
+func UnregisterPointerInputTargetEx(hwnd: HWND, pointerType: POINTER_INPUT_TYPE): BOOL;
+
+@foreign
+func EnableMouseInPointer(fEnable: BOOL): BOOL;
+
+@foreign
+func IsMouseInPointerEnabled(): BOOL;
+
+@foreign
+func EnableMouseInPointerForThread(): BOOL;
+
+@foreign
+func RegisterTouchHitTestingWindow(hwnd: HWND, value: ULONG): BOOL;
+
+@foreign
+struct tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION {
+    score: UINT16;
+    adjustedPoint: POINT;
+}
+
+@foreign
+typedef TOUCH_HIT_TESTING_PROXIMITY_EVALUATION = tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION;
+
+@foreign
+typedef PTOUCH_HIT_TESTING_PROXIMITY_EVALUATION = tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION*;
+
+@foreign
+struct tagTOUCH_HIT_TESTING_INPUT {
+    pointerId: UINT32;
+    point: POINT;
+    boundingBox: RECT;
+    nonOccludedBoundingBox: RECT;
+    orientation: UINT32;
+}
+
+@foreign
+typedef TOUCH_HIT_TESTING_INPUT = tagTOUCH_HIT_TESTING_INPUT;
+
+@foreign
+typedef PTOUCH_HIT_TESTING_INPUT = tagTOUCH_HIT_TESTING_INPUT*;
+
+@foreign
+func EvaluateProximityToRect(controlBoundingBox: RECT*, pHitTestingInput: TOUCH_HIT_TESTING_INPUT*, pProximityEval: TOUCH_HIT_TESTING_PROXIMITY_EVALUATION*): BOOL;
+
+@foreign
+func EvaluateProximityToPolygon(numVertices: UINT32, controlPolygon: POINT*, pHitTestingInput: TOUCH_HIT_TESTING_INPUT*, pProximityEval: TOUCH_HIT_TESTING_PROXIMITY_EVALUATION*): BOOL;
+
+@foreign
+func PackTouchHitTestingProximityEvaluation(pHitTestingInput: TOUCH_HIT_TESTING_INPUT*, pProximityEval: TOUCH_HIT_TESTING_PROXIMITY_EVALUATION*): LRESULT;
+
+@foreign
+enum tagFEEDBACK_TYPE {
+    FEEDBACK_MAX = -1,
+    FEEDBACK_TOUCH_CONTACTVISUALIZATION = 1,
+    FEEDBACK_PEN_BARRELVISUALIZATION = 2,
+    FEEDBACK_PEN_TAP = 3,
+    FEEDBACK_PEN_DOUBLETAP = 4,
+    FEEDBACK_PEN_PRESSANDHOLD = 5,
+    FEEDBACK_PEN_RIGHTTAP = 6,
+    FEEDBACK_TOUCH_TAP = 7,
+    FEEDBACK_TOUCH_DOUBLETAP = 8,
+    FEEDBACK_TOUCH_PRESSANDHOLD = 9,
+    FEEDBACK_TOUCH_RIGHTTAP = 10,
+    FEEDBACK_GESTURE_PRESSANDTAP = 11,
+}
+
+@foreign
+typedef FEEDBACK_TYPE = tagFEEDBACK_TYPE;
+
+@foreign
+func GetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWORD, pSize: UINT32*, config: void*): BOOL;
+
+@foreign
+func SetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWORD, size: UINT32, configuration: void const*): BOOL;
+
+/*
+@PROBLEM Nested struct def at line 6620, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+@foreign
+struct tagINPUT_TRANSFORM {
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 6620, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+tagINPUT_TRANSFORM
+*/
+
+@foreign
+func GetPointerInputTransform(pointerId: UINT32, historyCount: UINT32, inputTransform: INPUT_TRANSFORM*): BOOL;
+
+@foreign
+struct tagLASTINPUTINFO {
+    cbSize: UINT;
+    dwTime: DWORD;
+}
+
+@foreign
+typedef LASTINPUTINFO = tagLASTINPUTINFO;
+
+@foreign
+typedef PLASTINPUTINFO = tagLASTINPUTINFO*;
+
+@foreign
+func GetLastInputInfo(plii: PLASTINPUTINFO): BOOL;
+
+@foreign
+func MapVirtualKeyA(uCode: UINT, uMapType: UINT): UINT;
+
+@foreign
+func MapVirtualKey(uCode: UINT, uMapType: UINT): UINT;
+
+@foreign
+func MapVirtualKeyW(uCode: UINT, uMapType: UINT): UINT;
+
+@foreign
+func MapVirtualKeyExA(uCode: UINT, uMapType: UINT, dwhkl: HKL): UINT;
+
+@foreign
+func MapVirtualKeyEx(uCode: UINT, uMapType: UINT, dwhkl: HKL): UINT;
+
+@foreign
+func MapVirtualKeyExW(uCode: UINT, uMapType: UINT, dwhkl: HKL): UINT;
+
+@foreign
+func GetInputState(): BOOL;
+
+@foreign
+func GetQueueStatus(flags: UINT): DWORD;
+
+@foreign
+func GetCapture(): HWND;
+
+@foreign
+func SetCapture(hWnd: HWND): HWND;
+
+@foreign
+func ReleaseCapture(): BOOL;
+
+@foreign
+func MsgWaitForMultipleObjects(nCount: DWORD, pHandles: HANDLE*, fWaitAll: BOOL, dwMilliseconds: DWORD, dwWakeMask: DWORD): DWORD;
+
+@foreign
+func MsgWaitForMultipleObjectsEx(nCount: DWORD, pHandles: HANDLE*, dwMilliseconds: DWORD, dwWakeMask: DWORD, dwFlags: DWORD): DWORD;
+
+@foreign
+func SetTimer(hWnd: HWND, nIDEvent: UINT_PTR, uElapse: UINT, lpTimerFunc: TIMERPROC): UINT_PTR;
+
+@foreign
+func SetCoalescableTimer(hWnd: HWND, nIDEvent: UINT_PTR, uElapse: UINT, lpTimerFunc: TIMERPROC, uToleranceDelay: ULONG): UINT_PTR;
+
+@foreign
+func KillTimer(hWnd: HWND, uIDEvent: UINT_PTR): BOOL;
+
+@foreign
+func IsWindowUnicode(hWnd: HWND): BOOL;
+
+@foreign
+func EnableWindow(hWnd: HWND, bEnable: BOOL): BOOL;
+
+@foreign
+func IsWindowEnabled(hWnd: HWND): BOOL;
+
+@foreign
+func LoadAcceleratorsA(hInstance: HINSTANCE, lpTableName: LPCSTR): HACCEL;
+
+@foreign
+func LoadAccelerators(hInstance: HINSTANCE, lpTableName: LPCSTR): HACCEL;
+
+@foreign
+func LoadAcceleratorsW(hInstance: HINSTANCE, lpTableName: LPCWSTR): HACCEL;
+
+@foreign
+func CreateAcceleratorTableA(paccel: LPACCEL, cAccel: int): HACCEL;
+
+@foreign
+func CreateAcceleratorTable(paccel: LPACCEL, cAccel: int): HACCEL;
+
+@foreign
+func CreateAcceleratorTableW(paccel: LPACCEL, cAccel: int): HACCEL;
+
+@foreign
+func DestroyAcceleratorTable(hAccel: HACCEL): BOOL;
+
+@foreign
+func CopyAcceleratorTableA(hAccelSrc: HACCEL, lpAccelDst: LPACCEL, cAccelEntries: int): int;
+
+@foreign
+func CopyAcceleratorTable(hAccelSrc: HACCEL, lpAccelDst: LPACCEL, cAccelEntries: int): int;
+
+@foreign
+func CopyAcceleratorTableW(hAccelSrc: HACCEL, lpAccelDst: LPACCEL, cAccelEntries: int): int;
+
+@foreign
+func TranslateAcceleratorA(hWnd: HWND, hAccTable: HACCEL, lpMsg: LPMSG): int;
+
+@foreign
+func TranslateAccelerator(hWnd: HWND, hAccTable: HACCEL, lpMsg: LPMSG): int;
+
+@foreign
+func TranslateAcceleratorW(hWnd: HWND, hAccTable: HACCEL, lpMsg: LPMSG): int;
+
+@foreign
+func GetSystemMetrics(nIndex: int): int;
+
+@foreign
+func GetSystemMetricsForDpi(nIndex: int, dpi: UINT): int;
+
+@foreign
+func LoadMenuA(hInstance: HINSTANCE, lpMenuName: LPCSTR): HMENU;
+
+@foreign
+func LoadMenu(hInstance: HINSTANCE, lpMenuName: LPCSTR): HMENU;
+
+@foreign
+func LoadMenuW(hInstance: HINSTANCE, lpMenuName: LPCWSTR): HMENU;
+
+@foreign
+func LoadMenuIndirectA(lpMenuTemplate: MENUTEMPLATEA*): HMENU;
+
+@foreign
+func LoadMenuIndirect(lpMenuTemplate: MENUTEMPLATEA*): HMENU;
+
+@foreign
+func LoadMenuIndirectW(lpMenuTemplate: MENUTEMPLATEW*): HMENU;
+
+@foreign
+func GetMenu(hWnd: HWND): HMENU;
+
+@foreign
+func SetMenu(hWnd: HWND, hMenu: HMENU): BOOL;
+
+@foreign
+func ChangeMenuA(hMenu: HMENU, cmd: UINT, lpszNewItem: LPCSTR, cmdInsert: UINT, flags: UINT): BOOL;
+
+@foreign
+func ChangeMenu(hMenu: HMENU, cmd: UINT, lpszNewItem: LPCSTR, cmdInsert: UINT, flags: UINT): BOOL;
+
+@foreign
+func ChangeMenuW(hMenu: HMENU, cmd: UINT, lpszNewItem: LPCWSTR, cmdInsert: UINT, flags: UINT): BOOL;
+
+@foreign
+func HiliteMenuItem(hWnd: HWND, hMenu: HMENU, uIDHiliteItem: UINT, uHilite: UINT): BOOL;
+
+@foreign
+func GetMenuStringA(hMenu: HMENU, uIDItem: UINT, lpString: LPSTR, cchMax: int, flags: UINT): int;
+
+@foreign
+func GetMenuString(hMenu: HMENU, uIDItem: UINT, lpString: LPSTR, cchMax: int, flags: UINT): int;
+
+@foreign
+func GetMenuStringW(hMenu: HMENU, uIDItem: UINT, lpString: LPWSTR, cchMax: int, flags: UINT): int;
+
+@foreign
+func GetMenuState(hMenu: HMENU, uId: UINT, uFlags: UINT): UINT;
+
+@foreign
+func DrawMenuBar(hWnd: HWND): BOOL;
+
+@foreign
+func GetSystemMenu(hWnd: HWND, bRevert: BOOL): HMENU;
+
+@foreign
+func CreateMenu(): HMENU;
+
+@foreign
+func CreatePopupMenu(): HMENU;
+
+@foreign
+func DestroyMenu(hMenu: HMENU): BOOL;
+
+@foreign
+func CheckMenuItem(hMenu: HMENU, uIDCheckItem: UINT, uCheck: UINT): DWORD;
+
+@foreign
+func EnableMenuItem(hMenu: HMENU, uIDEnableItem: UINT, uEnable: UINT): BOOL;
+
+@foreign
+func GetSubMenu(hMenu: HMENU, nPos: int): HMENU;
+
+@foreign
+func GetMenuItemID(hMenu: HMENU, nPos: int): UINT;
+
+@foreign
+func GetMenuItemCount(hMenu: HMENU): int;
+
+@foreign
+func InsertMenuA(hMenu: HMENU, uPosition: UINT, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCSTR): BOOL;
+
+@foreign
+func InsertMenu(hMenu: HMENU, uPosition: UINT, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCSTR): BOOL;
+
+@foreign
+func InsertMenuW(hMenu: HMENU, uPosition: UINT, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCWSTR): BOOL;
+
+@foreign
+func AppendMenuA(hMenu: HMENU, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCSTR): BOOL;
+
+@foreign
+func AppendMenu(hMenu: HMENU, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCSTR): BOOL;
+
+@foreign
+func AppendMenuW(hMenu: HMENU, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCWSTR): BOOL;
+
+@foreign
+func ModifyMenuA(hMnu: HMENU, uPosition: UINT, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCSTR): BOOL;
+
+@foreign
+func ModifyMenu(hMnu: HMENU, uPosition: UINT, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCSTR): BOOL;
+
+@foreign
+func ModifyMenuW(hMnu: HMENU, uPosition: UINT, uFlags: UINT, uIDNewItem: UINT_PTR, lpNewItem: LPCWSTR): BOOL;
+
+@foreign
+func RemoveMenu(hMenu: HMENU, uPosition: UINT, uFlags: UINT): BOOL;
+
+@foreign
+func DeleteMenu(hMenu: HMENU, uPosition: UINT, uFlags: UINT): BOOL;
+
+@foreign
+func SetMenuItemBitmaps(hMenu: HMENU, uPosition: UINT, uFlags: UINT, hBitmapUnchecked: HBITMAP, hBitmapChecked: HBITMAP): BOOL;
+
+@foreign
+func GetMenuCheckMarkDimensions(): LONG;
+
+@foreign
+func TrackPopupMenu(hMenu: HMENU, uFlags: UINT, x: int, y: int, nReserved: int, hWnd: HWND, prcRect: RECT*): BOOL;
+
+@foreign
+struct tagTPMPARAMS {
+    cbSize: UINT;
+    rcExclude: RECT;
+}
+
+@foreign
+typedef TPMPARAMS = tagTPMPARAMS;
+
+@foreign
+typedef LPTPMPARAMS = TPMPARAMS*;
+
+@foreign
+func TrackPopupMenuEx(hMenu: HMENU, uFlags: UINT, x: int, y: int, hwnd: HWND, lptpm: LPTPMPARAMS): BOOL;
+
+@foreign
+func CalculatePopupWindowPosition(anchorPoint: POINT*, windowSize: SIZE*, flags: UINT, excludeRect: RECT*, popupWindowPosition: RECT*): BOOL;
+
+@foreign
+struct tagMENUINFO {
+    cbSize: DWORD;
+    fMask: DWORD;
+    dwStyle: DWORD;
+    cyMax: UINT;
+    hbrBack: HBRUSH;
+    dwContextHelpID: DWORD;
+    dwMenuData: ULONG_PTR;
+}
+
+@foreign
+typedef MENUINFO = tagMENUINFO;
+
+@foreign
+typedef LPMENUINFO = tagMENUINFO*;
+
+@foreign
+typedef LPCMENUINFO = MENUINFO*;
+
+@foreign
+func GetMenuInfo(arg0: HMENU, arg1: LPMENUINFO): BOOL;
+
+@foreign
+func SetMenuInfo(arg0: HMENU, arg1: LPCMENUINFO): BOOL;
+
+@foreign
+func EndMenu(): BOOL;
+
+@foreign
+struct tagMENUGETOBJECTINFO {
+    dwFlags: DWORD;
+    uPos: UINT;
+    hmenu: HMENU;
+    riid: PVOID;
+    pvObj: PVOID;
+}
+
+@foreign
+typedef MENUGETOBJECTINFO = tagMENUGETOBJECTINFO;
+
+@foreign
+typedef PMENUGETOBJECTINFO = tagMENUGETOBJECTINFO*;
+
+@foreign
+struct tagMENUITEMINFOA {
+    cbSize: UINT;
+    fMask: UINT;
+    fType: UINT;
+    fState: UINT;
+    wID: UINT;
+    hSubMenu: HMENU;
+    hbmpChecked: HBITMAP;
+    hbmpUnchecked: HBITMAP;
+    dwItemData: ULONG_PTR;
+    dwTypeData: LPSTR;
+    cch: UINT;
+    hbmpItem: HBITMAP;
+}
+
+@foreign
+typedef MENUITEMINFOA = tagMENUITEMINFOA;
+
+@foreign
+typedef LPMENUITEMINFOA = tagMENUITEMINFOA*;
+
+@foreign
+struct tagMENUITEMINFOW {
+    cbSize: UINT;
+    fMask: UINT;
+    fType: UINT;
+    fState: UINT;
+    wID: UINT;
+    hSubMenu: HMENU;
+    hbmpChecked: HBITMAP;
+    hbmpUnchecked: HBITMAP;
+    dwItemData: ULONG_PTR;
+    dwTypeData: LPWSTR;
+    cch: UINT;
+    hbmpItem: HBITMAP;
+}
+
+@foreign
+typedef MENUITEMINFOW = tagMENUITEMINFOW;
+
+@foreign
+typedef LPMENUITEMINFOW = tagMENUITEMINFOW*;
+
+@foreign
+typedef MENUITEMINFO = MENUITEMINFOA;
+
+@foreign
+typedef LPMENUITEMINFO = LPMENUITEMINFOA;
+
+@foreign
+typedef LPCMENUITEMINFOA = MENUITEMINFOA*;
+
+@foreign
+typedef LPCMENUITEMINFOW = MENUITEMINFOW*;
+
+@foreign
+typedef LPCMENUITEMINFO = LPCMENUITEMINFOA;
+
+@foreign
+func InsertMenuItemA(hmenu: HMENU, item: UINT, fByPosition: BOOL, lpmi: LPCMENUITEMINFOA): BOOL;
+
+@foreign
+func InsertMenuItem(hmenu: HMENU, item: UINT, fByPosition: BOOL, lpmi: LPCMENUITEMINFOA): BOOL;
+
+@foreign
+func InsertMenuItemW(hmenu: HMENU, item: UINT, fByPosition: BOOL, lpmi: LPCMENUITEMINFOW): BOOL;
+
+@foreign
+func GetMenuItemInfoA(hmenu: HMENU, item: UINT, fByPosition: BOOL, lpmii: LPMENUITEMINFOA): BOOL;
+
+@foreign
+func GetMenuItemInfo(hmenu: HMENU, item: UINT, fByPosition: BOOL, lpmii: LPMENUITEMINFOA): BOOL;
+
+@foreign
+func GetMenuItemInfoW(hmenu: HMENU, item: UINT, fByPosition: BOOL, lpmii: LPMENUITEMINFOW): BOOL;
+
+@foreign
+func SetMenuItemInfoA(hmenu: HMENU, item: UINT, fByPositon: BOOL, lpmii: LPCMENUITEMINFOA): BOOL;
+
+@foreign
+func SetMenuItemInfo(hmenu: HMENU, item: UINT, fByPositon: BOOL, lpmii: LPCMENUITEMINFOA): BOOL;
+
+@foreign
+func SetMenuItemInfoW(hmenu: HMENU, item: UINT, fByPositon: BOOL, lpmii: LPCMENUITEMINFOW): BOOL;
+
+@foreign
+func GetMenuDefaultItem(hMenu: HMENU, fByPos: UINT, gmdiFlags: UINT): UINT;
+
+@foreign
+func SetMenuDefaultItem(hMenu: HMENU, uItem: UINT, fByPos: UINT): BOOL;
+
+@foreign
+func GetMenuItemRect(hWnd: HWND, hMenu: HMENU, uItem: UINT, lprcItem: LPRECT): BOOL;
+
+@foreign
+func MenuItemFromPoint(hWnd: HWND, hMenu: HMENU, ptScreen: POINT): int;
+
+@foreign
+struct tagDROPSTRUCT {
+    hwndSource: HWND;
+    hwndSink: HWND;
+    wFmt: DWORD;
+    dwData: ULONG_PTR;
+    ptDrop: POINT;
+    dwControlData: DWORD;
+}
+
+@foreign
+typedef DROPSTRUCT = tagDROPSTRUCT;
+
+@foreign
+typedef PDROPSTRUCT = tagDROPSTRUCT*;
+
+@foreign
+typedef LPDROPSTRUCT = tagDROPSTRUCT*;
+
+@foreign
+func DragObject(hwndParent: HWND, hwndFrom: HWND, fmt: UINT, data: ULONG_PTR, hcur: HCURSOR): DWORD;
+
+@foreign
+func DragDetect(hwnd: HWND, pt: POINT): BOOL;
+
+@foreign
+func DrawIcon(hDC: HDC, X: int, Y: int, hIcon: HICON): BOOL;
+
+@foreign
+struct tagDRAWTEXTPARAMS {
+    cbSize: UINT;
+    iTabLength: int;
+    iLeftMargin: int;
+    iRightMargin: int;
+    uiLengthDrawn: UINT;
+}
+
+@foreign
+typedef DRAWTEXTPARAMS = tagDRAWTEXTPARAMS;
+
+@foreign
+typedef LPDRAWTEXTPARAMS = tagDRAWTEXTPARAMS*;
+
+@foreign
+func DrawTextA(hdc: HDC, lpchText: LPCSTR, cchText: int, lprc: LPRECT, format: UINT): int;
+
+@foreign
+func DrawText(hdc: HDC, lpchText: LPCSTR, cchText: int, lprc: LPRECT, format: UINT): int;
+
+@foreign
+func DrawTextW(hdc: HDC, lpchText: LPCWSTR, cchText: int, lprc: LPRECT, format: UINT): int;
+
+@foreign
+func DrawTextExA(hdc: HDC, lpchText: LPSTR, cchText: int, lprc: LPRECT, format: UINT, lpdtp: LPDRAWTEXTPARAMS): int;
+
+@foreign
+func DrawTextEx(hdc: HDC, lpchText: LPSTR, cchText: int, lprc: LPRECT, format: UINT, lpdtp: LPDRAWTEXTPARAMS): int;
+
+@foreign
+func DrawTextExW(hdc: HDC, lpchText: LPWSTR, cchText: int, lprc: LPRECT, format: UINT, lpdtp: LPDRAWTEXTPARAMS): int;
+
+@foreign
+func GrayStringA(hDC: HDC, hBrush: HBRUSH, lpOutputFunc: GRAYSTRINGPROC, lpData: LPARAM, nCount: int, X: int, Y: int, nWidth: int, nHeight: int): BOOL;
+
+@foreign
+func GrayString(hDC: HDC, hBrush: HBRUSH, lpOutputFunc: GRAYSTRINGPROC, lpData: LPARAM, nCount: int, X: int, Y: int, nWidth: int, nHeight: int): BOOL;
+
+@foreign
+func GrayStringW(hDC: HDC, hBrush: HBRUSH, lpOutputFunc: GRAYSTRINGPROC, lpData: LPARAM, nCount: int, X: int, Y: int, nWidth: int, nHeight: int): BOOL;
+
+@foreign
+func DrawStateA(hdc: HDC, hbrFore: HBRUSH, qfnCallBack: DRAWSTATEPROC, lData: LPARAM, wData: WPARAM, x: int, y: int, cx: int, cy: int, uFlags: UINT): BOOL;
+
+@foreign
+func DrawState(hdc: HDC, hbrFore: HBRUSH, qfnCallBack: DRAWSTATEPROC, lData: LPARAM, wData: WPARAM, x: int, y: int, cx: int, cy: int, uFlags: UINT): BOOL;
+
+@foreign
+func DrawStateW(hdc: HDC, hbrFore: HBRUSH, qfnCallBack: DRAWSTATEPROC, lData: LPARAM, wData: WPARAM, x: int, y: int, cx: int, cy: int, uFlags: UINT): BOOL;
+
+@foreign
+func TabbedTextOutA(hdc: HDC, x: int, y: int, lpString: LPCSTR, chCount: int, nTabPositions: int, lpnTabStopPositions: INT*, nTabOrigin: int): LONG;
+
+@foreign
+func TabbedTextOut(hdc: HDC, x: int, y: int, lpString: LPCSTR, chCount: int, nTabPositions: int, lpnTabStopPositions: INT*, nTabOrigin: int): LONG;
+
+@foreign
+func TabbedTextOutW(hdc: HDC, x: int, y: int, lpString: LPCWSTR, chCount: int, nTabPositions: int, lpnTabStopPositions: INT*, nTabOrigin: int): LONG;
+
+@foreign
+func GetTabbedTextExtentA(hdc: HDC, lpString: LPCSTR, chCount: int, nTabPositions: int, lpnTabStopPositions: INT*): DWORD;
+
+@foreign
+func GetTabbedTextExtent(hdc: HDC, lpString: LPCSTR, chCount: int, nTabPositions: int, lpnTabStopPositions: INT*): DWORD;
+
+@foreign
+func GetTabbedTextExtentW(hdc: HDC, lpString: LPCWSTR, chCount: int, nTabPositions: int, lpnTabStopPositions: INT*): DWORD;
+
+@foreign
+func UpdateWindow(hWnd: HWND): BOOL;
+
+@foreign
+func SetActiveWindow(hWnd: HWND): HWND;
+
+@foreign
+func GetForegroundWindow(): HWND;
+
+@foreign
+func PaintDesktop(hdc: HDC): BOOL;
+
+@foreign
+func SwitchToThisWindow(hwnd: HWND, fUnknown: BOOL);
+
+@foreign
+func SetForegroundWindow(hWnd: HWND): BOOL;
+
+@foreign
+func AllowSetForegroundWindow(dwProcessId: DWORD): BOOL;
+
+@foreign
+func LockSetForegroundWindow(uLockCode: UINT): BOOL;
+
+@foreign
+func WindowFromDC(hDC: HDC): HWND;
+
+@foreign
+func GetDC(hWnd: HWND): HDC;
+
+@foreign
+func GetDCEx(hWnd: HWND, hrgnClip: HRGN, flags: DWORD): HDC;
+
+@foreign
+func GetWindowDC(hWnd: HWND): HDC;
+
+@foreign
+func ReleaseDC(hWnd: HWND, hDC: HDC): int;
+
+@foreign
+func BeginPaint(hWnd: HWND, lpPaint: LPPAINTSTRUCT): HDC;
+
+@foreign
+func EndPaint(hWnd: HWND, lpPaint: PAINTSTRUCT*): BOOL;
+
+@foreign
+func GetUpdateRect(hWnd: HWND, lpRect: LPRECT, bErase: BOOL): BOOL;
+
+@foreign
+func GetUpdateRgn(hWnd: HWND, hRgn: HRGN, bErase: BOOL): int;
+
+@foreign
+func SetWindowRgn(hWnd: HWND, hRgn: HRGN, bRedraw: BOOL): int;
+
+@foreign
+func GetWindowRgn(hWnd: HWND, hRgn: HRGN): int;
+
+@foreign
+func GetWindowRgnBox(hWnd: HWND, lprc: LPRECT): int;
+
+@foreign
+func ExcludeUpdateRgn(hDC: HDC, hWnd: HWND): int;
+
+@foreign
+func InvalidateRect(hWnd: HWND, lpRect: RECT*, bErase: BOOL): BOOL;
+
+@foreign
+func ValidateRect(hWnd: HWND, lpRect: RECT*): BOOL;
+
+@foreign
+func InvalidateRgn(hWnd: HWND, hRgn: HRGN, bErase: BOOL): BOOL;
+
+@foreign
+func ValidateRgn(hWnd: HWND, hRgn: HRGN): BOOL;
+
+@foreign
+func RedrawWindow(hWnd: HWND, lprcUpdate: RECT*, hrgnUpdate: HRGN, flags: UINT): BOOL;
+
+@foreign
+func LockWindowUpdate(hWndLock: HWND): BOOL;
+
+@foreign
+func ScrollWindow(hWnd: HWND, XAmount: int, YAmount: int, lpRect: RECT*, lpClipRect: RECT*): BOOL;
+
+@foreign
+func ScrollDC(hDC: HDC, dx: int, dy: int, lprcScroll: RECT*, lprcClip: RECT*, hrgnUpdate: HRGN, lprcUpdate: LPRECT): BOOL;
+
+@foreign
+func ScrollWindowEx(hWnd: HWND, dx: int, dy: int, prcScroll: RECT*, prcClip: RECT*, hrgnUpdate: HRGN, prcUpdate: LPRECT, flags: UINT): int;
+
+@foreign
+func SetScrollPos(hWnd: HWND, nBar: int, nPos: int, bRedraw: BOOL): int;
+
+@foreign
+func GetScrollPos(hWnd: HWND, nBar: int): int;
+
+@foreign
+func SetScrollRange(hWnd: HWND, nBar: int, nMinPos: int, nMaxPos: int, bRedraw: BOOL): BOOL;
+
+@foreign
+func GetScrollRange(hWnd: HWND, nBar: int, lpMinPos: LPINT, lpMaxPos: LPINT): BOOL;
+
+@foreign
+func ShowScrollBar(hWnd: HWND, wBar: int, bShow: BOOL): BOOL;
+
+@foreign
+func EnableScrollBar(hWnd: HWND, wSBflags: UINT, wArrows: UINT): BOOL;
+
+@foreign
+func SetPropA(hWnd: HWND, lpString: LPCSTR, hData: HANDLE): BOOL;
+
+@foreign
+func SetProp(hWnd: HWND, lpString: LPCSTR, hData: HANDLE): BOOL;
+
+@foreign
+func SetPropW(hWnd: HWND, lpString: LPCWSTR, hData: HANDLE): BOOL;
+
+@foreign
+func GetPropA(hWnd: HWND, lpString: LPCSTR): HANDLE;
+
+@foreign
+func GetProp(hWnd: HWND, lpString: LPCSTR): HANDLE;
+
+@foreign
+func GetPropW(hWnd: HWND, lpString: LPCWSTR): HANDLE;
+
+@foreign
+func RemovePropA(hWnd: HWND, lpString: LPCSTR): HANDLE;
+
+@foreign
+func RemoveProp(hWnd: HWND, lpString: LPCSTR): HANDLE;
+
+@foreign
+func RemovePropW(hWnd: HWND, lpString: LPCWSTR): HANDLE;
+
+@foreign
+func EnumPropsExA(hWnd: HWND, lpEnumFunc: PROPENUMPROCEXA, lParam: LPARAM): int;
+
+@foreign
+func EnumPropsEx(hWnd: HWND, lpEnumFunc: PROPENUMPROCEXA, lParam: LPARAM): int;
+
+@foreign
+func EnumPropsExW(hWnd: HWND, lpEnumFunc: PROPENUMPROCEXW, lParam: LPARAM): int;
+
+@foreign
+func EnumPropsA(hWnd: HWND, lpEnumFunc: PROPENUMPROCA): int;
+
+@foreign
+func EnumProps(hWnd: HWND, lpEnumFunc: PROPENUMPROCA): int;
+
+@foreign
+func EnumPropsW(hWnd: HWND, lpEnumFunc: PROPENUMPROCW): int;
+
+@foreign
+func SetWindowTextA(hWnd: HWND, lpString: LPCSTR): BOOL;
+
+@foreign
+func SetWindowText(hWnd: HWND, lpString: LPCSTR): BOOL;
+
+@foreign
+func SetWindowTextW(hWnd: HWND, lpString: LPCWSTR): BOOL;
+
+@foreign
+func GetWindowTextA(hWnd: HWND, lpString: LPSTR, nMaxCount: int): int;
+
+@foreign
+func GetWindowText(hWnd: HWND, lpString: LPSTR, nMaxCount: int): int;
+
+@foreign
+func GetWindowTextW(hWnd: HWND, lpString: LPWSTR, nMaxCount: int): int;
+
+@foreign
+func GetWindowTextLengthA(hWnd: HWND): int;
+
+@foreign
+func GetWindowTextLength(hWnd: HWND): int;
+
+@foreign
+func GetWindowTextLengthW(hWnd: HWND): int;
+
+@foreign
+func GetClientRect(hWnd: HWND, lpRect: LPRECT): BOOL;
+
+@foreign
+func GetWindowRect(hWnd: HWND, lpRect: LPRECT): BOOL;
+
+@foreign
+func AdjustWindowRect(lpRect: LPRECT, dwStyle: DWORD, bMenu: BOOL): BOOL;
+
+@foreign
+func AdjustWindowRectEx(lpRect: LPRECT, dwStyle: DWORD, bMenu: BOOL, dwExStyle: DWORD): BOOL;
+
+@foreign
+func AdjustWindowRectExForDpi(lpRect: LPRECT, dwStyle: DWORD, bMenu: BOOL, dwExStyle: DWORD, dpi: UINT): BOOL;
+
+@foreign
+struct tagHELPINFO {
+    cbSize: UINT;
+    iContextType: int;
+    iCtrlId: int;
+    hItemHandle: HANDLE;
+    dwContextId: DWORD_PTR;
+    MousePos: POINT;
+}
+
+@foreign
+typedef HELPINFO = tagHELPINFO;
+
+@foreign
+typedef LPHELPINFO = tagHELPINFO*;
+
+@foreign
+func SetWindowContextHelpId(arg0: HWND, arg1: DWORD): BOOL;
+
+@foreign
+func GetWindowContextHelpId(arg0: HWND): DWORD;
+
+@foreign
+func SetMenuContextHelpId(arg0: HMENU, arg1: DWORD): BOOL;
+
+@foreign
+func GetMenuContextHelpId(arg0: HMENU): DWORD;
+
+@foreign
+func MessageBoxA(hWnd: HWND, lpText: LPCSTR, lpCaption: LPCSTR, uType: UINT): int;
+
+@foreign
+func MessageBox(hWnd: HWND, lpText: LPCSTR, lpCaption: LPCSTR, uType: UINT): int;
+
+@foreign
+func MessageBoxW(hWnd: HWND, lpText: LPCWSTR, lpCaption: LPCWSTR, uType: UINT): int;
+
+@foreign
+func MessageBoxExA(hWnd: HWND, lpText: LPCSTR, lpCaption: LPCSTR, uType: UINT, wLanguageId: WORD): int;
+
+@foreign
+func MessageBoxEx(hWnd: HWND, lpText: LPCSTR, lpCaption: LPCSTR, uType: UINT, wLanguageId: WORD): int;
+
+@foreign
+func MessageBoxExW(hWnd: HWND, lpText: LPCWSTR, lpCaption: LPCWSTR, uType: UINT, wLanguageId: WORD): int;
+
+@foreign
+typedef MSGBOXCALLBACK = func(lpHelpInfo: LPHELPINFO);
+
+@foreign
+struct tagMSGBOXPARAMSA {
+    cbSize: UINT;
+    hwndOwner: HWND;
+    hInstance: HINSTANCE;
+    lpszText: LPCSTR;
+    lpszCaption: LPCSTR;
+    dwStyle: DWORD;
+    lpszIcon: LPCSTR;
+    dwContextHelpId: DWORD_PTR;
+    lpfnMsgBoxCallback: MSGBOXCALLBACK;
+    dwLanguageId: DWORD;
+}
+
+@foreign
+typedef MSGBOXPARAMSA = tagMSGBOXPARAMSA;
+
+@foreign
+typedef PMSGBOXPARAMSA = tagMSGBOXPARAMSA*;
+
+@foreign
+typedef LPMSGBOXPARAMSA = tagMSGBOXPARAMSA*;
+
+@foreign
+struct tagMSGBOXPARAMSW {
+    cbSize: UINT;
+    hwndOwner: HWND;
+    hInstance: HINSTANCE;
+    lpszText: LPCWSTR;
+    lpszCaption: LPCWSTR;
+    dwStyle: DWORD;
+    lpszIcon: LPCWSTR;
+    dwContextHelpId: DWORD_PTR;
+    lpfnMsgBoxCallback: MSGBOXCALLBACK;
+    dwLanguageId: DWORD;
+}
+
+@foreign
+typedef MSGBOXPARAMSW = tagMSGBOXPARAMSW;
+
+@foreign
+typedef PMSGBOXPARAMSW = tagMSGBOXPARAMSW*;
+
+@foreign
+typedef LPMSGBOXPARAMSW = tagMSGBOXPARAMSW*;
+
+@foreign
+typedef MSGBOXPARAMS = MSGBOXPARAMSA;
+
+@foreign
+typedef PMSGBOXPARAMS = PMSGBOXPARAMSA;
+
+@foreign
+typedef LPMSGBOXPARAMS = LPMSGBOXPARAMSA;
+
+@foreign
+func MessageBoxIndirectA(lpmbp: MSGBOXPARAMSA*): int;
+
+@foreign
+func MessageBoxIndirect(lpmbp: MSGBOXPARAMSA*): int;
+
+@foreign
+func MessageBoxIndirectW(lpmbp: MSGBOXPARAMSW*): int;
+
+@foreign
+func MessageBeep(uType: UINT): BOOL;
+
+@foreign
+func ShowCursor(bShow: BOOL): int;
+
+@foreign
+func SetCursorPos(X: int, Y: int): BOOL;
+
+@foreign
+func SetPhysicalCursorPos(X: int, Y: int): BOOL;
+
+@foreign
+func SetCursor(hCursor: HCURSOR): HCURSOR;
+
+@foreign
+func GetCursorPos(lpPoint: LPPOINT): BOOL;
+
+@foreign
+func GetPhysicalCursorPos(lpPoint: LPPOINT): BOOL;
+
+@foreign
+func GetClipCursor(lpRect: LPRECT): BOOL;
+
+@foreign
+func GetCursor(): HCURSOR;
+
+@foreign
+func CreateCaret(hWnd: HWND, hBitmap: HBITMAP, nWidth: int, nHeight: int): BOOL;
+
+@foreign
+func GetCaretBlinkTime(): UINT;
+
+@foreign
+func SetCaretBlinkTime(uMSeconds: UINT): BOOL;
+
+@foreign
+func DestroyCaret(): BOOL;
+
+@foreign
+func HideCaret(hWnd: HWND): BOOL;
+
+@foreign
+func ShowCaret(hWnd: HWND): BOOL;
+
+@foreign
+func SetCaretPos(X: int, Y: int): BOOL;
+
+@foreign
+func GetCaretPos(lpPoint: LPPOINT): BOOL;
+
+@foreign
+func ClientToScreen(hWnd: HWND, lpPoint: LPPOINT): BOOL;
+
+@foreign
+func ScreenToClient(hWnd: HWND, lpPoint: LPPOINT): BOOL;
+
+@foreign
+func LogicalToPhysicalPoint(hWnd: HWND, lpPoint: LPPOINT): BOOL;
+
+@foreign
+func PhysicalToLogicalPoint(hWnd: HWND, lpPoint: LPPOINT): BOOL;
+
+@foreign
+func LogicalToPhysicalPointForPerMonitorDPI(hWnd: HWND, lpPoint: LPPOINT): BOOL;
+
+@foreign
+func PhysicalToLogicalPointForPerMonitorDPI(hWnd: HWND, lpPoint: LPPOINT): BOOL;
+
+@foreign
+func MapWindowPoints(hWndFrom: HWND, hWndTo: HWND, lpPoints: LPPOINT, cPoints: UINT): int;
+
+@foreign
+func WindowFromPoint(Point: POINT): HWND;
+
+@foreign
+func WindowFromPhysicalPoint(Point: POINT): HWND;
+
+@foreign
+func ChildWindowFromPoint(hWndParent: HWND, Point: POINT): HWND;
+
+@foreign
+func ClipCursor(lpRect: RECT*): BOOL;
+
+@foreign
+func ChildWindowFromPointEx(hwnd: HWND, pt: POINT, flags: UINT): HWND;
+
+@foreign
+func GetSysColor(nIndex: int): DWORD;
+
+@foreign
+func GetSysColorBrush(nIndex: int): HBRUSH;
+
+@foreign
+func SetSysColors(cElements: int, lpaElements: INT*, lpaRgbValues: COLORREF*): BOOL;
+
+@foreign
+func DrawFocusRect(hDC: HDC, lprc: RECT*): BOOL;
+
+@foreign
+func FillRect(hDC: HDC, lprc: RECT*, hbr: HBRUSH): int;
+
+@foreign
+func FrameRect(hDC: HDC, lprc: RECT*, hbr: HBRUSH): int;
+
+@foreign
+func InvertRect(hDC: HDC, lprc: RECT*): BOOL;
+
+@foreign
+func SetRect(lprc: LPRECT, xLeft: int, yTop: int, xRight: int, yBottom: int): BOOL;
+
+@foreign
+func SetRectEmpty(lprc: LPRECT): BOOL;
+
+@foreign
+func CopyRect(lprcDst: LPRECT, lprcSrc: RECT*): BOOL;
+
+@foreign
+func InflateRect(lprc: LPRECT, dx: int, dy: int): BOOL;
+
+@foreign
+func IntersectRect(lprcDst: LPRECT, lprcSrc1: RECT*, lprcSrc2: RECT*): BOOL;
+
+@foreign
+func UnionRect(lprcDst: LPRECT, lprcSrc1: RECT*, lprcSrc2: RECT*): BOOL;
+
+@foreign
+func SubtractRect(lprcDst: LPRECT, lprcSrc1: RECT*, lprcSrc2: RECT*): BOOL;
+
+@foreign
+func OffsetRect(lprc: LPRECT, dx: int, dy: int): BOOL;
+
+@foreign
+func IsRectEmpty(lprc: RECT*): BOOL;
+
+@foreign
+func EqualRect(lprc1: RECT*, lprc2: RECT*): BOOL;
+
+@foreign
+func PtInRect(lprc: RECT*, pt: POINT): BOOL;
+
+@foreign
+func GetWindowWord(hWnd: HWND, nIndex: int): WORD;
+
+@foreign
+func SetWindowWord(hWnd: HWND, nIndex: int, wNewWord: WORD): WORD;
+
+@foreign
+func GetWindowLongA(hWnd: HWND, nIndex: int): LONG;
+
+@foreign
+func GetWindowLong(hWnd: HWND, nIndex: int): LONG;
+
+@foreign
+func GetWindowLongW(hWnd: HWND, nIndex: int): LONG;
+
+@foreign
+func SetWindowLongA(hWnd: HWND, nIndex: int, dwNewLong: LONG): LONG;
+
+@foreign
+func SetWindowLong(hWnd: HWND, nIndex: int, dwNewLong: LONG): LONG;
+
+@foreign
+func SetWindowLongW(hWnd: HWND, nIndex: int, dwNewLong: LONG): LONG;
+
+@foreign
+func GetWindowLongPtrA(hWnd: HWND, nIndex: int): LONG_PTR;
+
+@foreign
+func GetWindowLongPtr(hWnd: HWND, nIndex: int): LONG_PTR;
+
+@foreign
+func GetWindowLongPtrW(hWnd: HWND, nIndex: int): LONG_PTR;
+
+@foreign
+func SetWindowLongPtrA(hWnd: HWND, nIndex: int, dwNewLong: LONG_PTR): LONG_PTR;
+
+@foreign
+func SetWindowLongPtr(hWnd: HWND, nIndex: int, dwNewLong: LONG_PTR): LONG_PTR;
+
+@foreign
+func SetWindowLongPtrW(hWnd: HWND, nIndex: int, dwNewLong: LONG_PTR): LONG_PTR;
+
+@foreign
+func GetClassWord(hWnd: HWND, nIndex: int): WORD;
+
+@foreign
+func SetClassWord(hWnd: HWND, nIndex: int, wNewWord: WORD): WORD;
+
+@foreign
+func GetClassLongA(hWnd: HWND, nIndex: int): DWORD;
+
+@foreign
+func GetClassLong(hWnd: HWND, nIndex: int): DWORD;
+
+@foreign
+func GetClassLongW(hWnd: HWND, nIndex: int): DWORD;
+
+@foreign
+func SetClassLongA(hWnd: HWND, nIndex: int, dwNewLong: LONG): DWORD;
+
+@foreign
+func SetClassLong(hWnd: HWND, nIndex: int, dwNewLong: LONG): DWORD;
+
+@foreign
+func SetClassLongW(hWnd: HWND, nIndex: int, dwNewLong: LONG): DWORD;
+
+@foreign
+func GetClassLongPtrA(hWnd: HWND, nIndex: int): ULONG_PTR;
+
+@foreign
+func GetClassLongPtr(hWnd: HWND, nIndex: int): ULONG_PTR;
+
+@foreign
+func GetClassLongPtrW(hWnd: HWND, nIndex: int): ULONG_PTR;
+
+@foreign
+func SetClassLongPtrA(hWnd: HWND, nIndex: int, dwNewLong: LONG_PTR): ULONG_PTR;
+
+@foreign
+func SetClassLongPtr(hWnd: HWND, nIndex: int, dwNewLong: LONG_PTR): ULONG_PTR;
+
+@foreign
+func SetClassLongPtrW(hWnd: HWND, nIndex: int, dwNewLong: LONG_PTR): ULONG_PTR;
+
+@foreign
+func GetProcessDefaultLayout(pdwDefaultLayout: DWORD*): BOOL;
+
+@foreign
+func SetProcessDefaultLayout(dwDefaultLayout: DWORD): BOOL;
+
+@foreign
+func GetDesktopWindow(): HWND;
+
+@foreign
+func GetParent(hWnd: HWND): HWND;
+
+@foreign
+func SetParent(hWndChild: HWND, hWndNewParent: HWND): HWND;
+
+@foreign
+func EnumChildWindows(hWndParent: HWND, lpEnumFunc: WNDENUMPROC, lParam: LPARAM): BOOL;
+
+@foreign
+func FindWindowA(lpClassName: LPCSTR, lpWindowName: LPCSTR): HWND;
+
+@foreign
+func FindWindow(lpClassName: LPCSTR, lpWindowName: LPCSTR): HWND;
+
+@foreign
+func FindWindowW(lpClassName: LPCWSTR, lpWindowName: LPCWSTR): HWND;
+
+@foreign
+func FindWindowExA(hWndParent: HWND, hWndChildAfter: HWND, lpszClass: LPCSTR, lpszWindow: LPCSTR): HWND;
+
+@foreign
+func FindWindowEx(hWndParent: HWND, hWndChildAfter: HWND, lpszClass: LPCSTR, lpszWindow: LPCSTR): HWND;
+
+@foreign
+func FindWindowExW(hWndParent: HWND, hWndChildAfter: HWND, lpszClass: LPCWSTR, lpszWindow: LPCWSTR): HWND;
+
+@foreign
+func GetShellWindow(): HWND;
+
+@foreign
+func RegisterShellHookWindow(hwnd: HWND): BOOL;
+
+@foreign
+func DeregisterShellHookWindow(hwnd: HWND): BOOL;
+
+@foreign
+func EnumWindows(lpEnumFunc: WNDENUMPROC, lParam: LPARAM): BOOL;
+
+@foreign
+func EnumThreadWindows(dwThreadId: DWORD, lpfn: WNDENUMPROC, lParam: LPARAM): BOOL;
+
+@foreign
+func GetClassNameA(hWnd: HWND, lpClassName: LPSTR, nMaxCount: int): int;
+
+@foreign
+func GetClassName(hWnd: HWND, lpClassName: LPSTR, nMaxCount: int): int;
+
+@foreign
+func GetClassNameW(hWnd: HWND, lpClassName: LPWSTR, nMaxCount: int): int;
+
+@foreign
+func GetTopWindow(hWnd: HWND): HWND;
+
+@foreign
+func GetWindowThreadProcessId(hWnd: HWND, lpdwProcessId: LPDWORD): DWORD;
+
+@foreign
+func IsGUIThread(bConvert: BOOL): BOOL;
+
+@foreign
+func GetLastActivePopup(hWnd: HWND): HWND;
+
+@foreign
+func GetWindow(hWnd: HWND, uCmd: UINT): HWND;
+
+@foreign
+func SetWindowsHookA(nFilterType: int, pfnFilterProc: HOOKPROC): HHOOK;
+
+@foreign
+func SetWindowsHook(nFilterType: int, pfnFilterProc: HOOKPROC): HHOOK;
+
+@foreign
+func SetWindowsHookW(nFilterType: int, pfnFilterProc: HOOKPROC): HHOOK;
+
+@foreign
+func UnhookWindowsHook(nCode: int, pfnFilterProc: HOOKPROC): BOOL;
+
+@foreign
+func SetWindowsHookExA(idHook: int, lpfn: HOOKPROC, hmod: HINSTANCE, dwThreadId: DWORD): HHOOK;
+
+@foreign
+func SetWindowsHookEx(idHook: int, lpfn: HOOKPROC, hmod: HINSTANCE, dwThreadId: DWORD): HHOOK;
+
+@foreign
+func SetWindowsHookExW(idHook: int, lpfn: HOOKPROC, hmod: HINSTANCE, dwThreadId: DWORD): HHOOK;
+
+@foreign
+func UnhookWindowsHookEx(hhk: HHOOK): BOOL;
+
+@foreign
+func CallNextHookEx(hhk: HHOOK, nCode: int, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func CheckMenuRadioItem(hmenu: HMENU, first: UINT, last: UINT, check: UINT, flags: UINT): BOOL;
+
+@foreign
+struct MENUITEMTEMPLATEHEADER {
+    versionNumber: WORD;
+    offset: WORD;
+}
+
+@foreign
+typedef PMENUITEMTEMPLATEHEADER = MENUITEMTEMPLATEHEADER;
+
+@foreign
+struct MENUITEMTEMPLATE {
+    mtOption: WORD;
+    mtID: WORD;
+    mtString: WCHAR[1];
+}
+
+@foreign
+typedef PMENUITEMTEMPLATE = MENUITEMTEMPLATE;
+
+@foreign
+func LoadBitmapA(hInstance: HINSTANCE, lpBitmapName: LPCSTR): HBITMAP;
+
+@foreign
+func LoadBitmap(hInstance: HINSTANCE, lpBitmapName: LPCSTR): HBITMAP;
+
+@foreign
+func LoadBitmapW(hInstance: HINSTANCE, lpBitmapName: LPCWSTR): HBITMAP;
+
+@foreign
+func LoadCursorA(hInstance: HINSTANCE, lpCursorName: LPCSTR): HCURSOR;
+
+@foreign
+func LoadCursor(hInstance: HINSTANCE, lpCursorName: LPCSTR): HCURSOR;
+
+@foreign
+func LoadCursorW(hInstance: HINSTANCE, lpCursorName: LPCWSTR): HCURSOR;
+
+@foreign
+func LoadCursorFromFileA(lpFileName: LPCSTR): HCURSOR;
+
+@foreign
+func LoadCursorFromFile(lpFileName: LPCSTR): HCURSOR;
+
+@foreign
+func LoadCursorFromFileW(lpFileName: LPCWSTR): HCURSOR;
+
+@foreign
+func CreateCursor(hInst: HINSTANCE, xHotSpot: int, yHotSpot: int, nWidth: int, nHeight: int, pvANDPlane: void const*, pvXORPlane: void const*): HCURSOR;
+
+@foreign
+func DestroyCursor(hCursor: HCURSOR): BOOL;
+
+@foreign
+func SetSystemCursor(hcur: HCURSOR, id: DWORD): BOOL;
+
+@foreign
+struct _ICONINFO {
+    fIcon: BOOL;
+    xHotspot: DWORD;
+    yHotspot: DWORD;
+    hbmMask: HBITMAP;
+    hbmColor: HBITMAP;
+}
+
+@foreign
+typedef ICONINFO = _ICONINFO;
+
+@foreign
+typedef PICONINFO = ICONINFO*;
+
+@foreign
+func LoadIconA(hInstance: HINSTANCE, lpIconName: LPCSTR): HICON;
+
+@foreign
+func LoadIcon(hInstance: HINSTANCE, lpIconName: LPCSTR): HICON;
+
+@foreign
+func LoadIconW(hInstance: HINSTANCE, lpIconName: LPCWSTR): HICON;
+
+@foreign
+func PrivateExtractIconsA(szFileName: LPCSTR, nIconIndex: int, cxIcon: int, cyIcon: int, phicon: HICON*, piconid: UINT*, nIcons: UINT, flags: UINT): UINT;
+
+@foreign
+func PrivateExtractIcons(szFileName: LPCSTR, nIconIndex: int, cxIcon: int, cyIcon: int, phicon: HICON*, piconid: UINT*, nIcons: UINT, flags: UINT): UINT;
+
+@foreign
+func PrivateExtractIconsW(szFileName: LPCWSTR, nIconIndex: int, cxIcon: int, cyIcon: int, phicon: HICON*, piconid: UINT*, nIcons: UINT, flags: UINT): UINT;
+
+@foreign
+func CreateIcon(hInstance: HINSTANCE, nWidth: int, nHeight: int, cPlanes: BYTE, cBitsPixel: BYTE, lpbANDbits: BYTE*, lpbXORbits: BYTE*): HICON;
+
+@foreign
+func DestroyIcon(hIcon: HICON): BOOL;
+
+@foreign
+func LookupIconIdFromDirectory(presbits: PBYTE, fIcon: BOOL): int;
+
+@foreign
+func LookupIconIdFromDirectoryEx(presbits: PBYTE, fIcon: BOOL, cxDesired: int, cyDesired: int, Flags: UINT): int;
+
+@foreign
+func CreateIconFromResource(presbits: PBYTE, dwResSize: DWORD, fIcon: BOOL, dwVer: DWORD): HICON;
+
+@foreign
+func CreateIconFromResourceEx(presbits: PBYTE, dwResSize: DWORD, fIcon: BOOL, dwVer: DWORD, cxDesired: int, cyDesired: int, Flags: UINT): HICON;
+
+@foreign
+struct tagCURSORSHAPE {
+    xHotSpot: int;
+    yHotSpot: int;
+    cx: int;
+    cy: int;
+    cbWidth: int;
+    Planes: BYTE;
+    BitsPixel: BYTE;
+}
+
+@foreign
+typedef CURSORSHAPE = tagCURSORSHAPE;
+
+@foreign
+typedef LPCURSORSHAPE = tagCURSORSHAPE*;
+
+@foreign
+func LoadImageA(hInst: HINSTANCE, name: LPCSTR, type: UINT, cx: int, cy: int, fuLoad: UINT): HANDLE;
+
+@foreign
+func LoadImage(hInst: HINSTANCE, name: LPCSTR, type: UINT, cx: int, cy: int, fuLoad: UINT): HANDLE;
+
+@foreign
+func LoadImageW(hInst: HINSTANCE, name: LPCWSTR, type: UINT, cx: int, cy: int, fuLoad: UINT): HANDLE;
+
+@foreign
+func CopyImage(h: HANDLE, type: UINT, cx: int, cy: int, flags: UINT): HANDLE;
+
+@foreign
+func DrawIconEx(hdc: HDC, xLeft: int, yTop: int, hIcon: HICON, cxWidth: int, cyWidth: int, istepIfAniCur: UINT, hbrFlickerFreeDraw: HBRUSH, diFlags: UINT): BOOL;
+
+@foreign
+func CreateIconIndirect(piconinfo: PICONINFO): HICON;
+
+@foreign
+func CopyIcon(hIcon: HICON): HICON;
+
+@foreign
+func GetIconInfo(hIcon: HICON, piconinfo: PICONINFO): BOOL;
+
+@foreign
+struct _ICONINFOEXA {
+    cbSize: DWORD;
+    fIcon: BOOL;
+    xHotspot: DWORD;
+    yHotspot: DWORD;
+    hbmMask: HBITMAP;
+    hbmColor: HBITMAP;
+    wResID: WORD;
+    szModName: CHAR[260];
+    szResName: CHAR[260];
+}
+
+@foreign
+typedef ICONINFOEXA = _ICONINFOEXA;
+
+@foreign
+typedef PICONINFOEXA = _ICONINFOEXA*;
+
+@foreign
+struct _ICONINFOEXW {
+    cbSize: DWORD;
+    fIcon: BOOL;
+    xHotspot: DWORD;
+    yHotspot: DWORD;
+    hbmMask: HBITMAP;
+    hbmColor: HBITMAP;
+    wResID: WORD;
+    szModName: WCHAR[260];
+    szResName: WCHAR[260];
+}
+
+@foreign
+typedef ICONINFOEXW = _ICONINFOEXW;
+
+@foreign
+typedef PICONINFOEXW = _ICONINFOEXW*;
+
+@foreign
+typedef ICONINFOEX = ICONINFOEXA;
+
+@foreign
+typedef PICONINFOEX = PICONINFOEXA;
+
+@foreign
+func GetIconInfoExA(hicon: HICON, piconinfo: PICONINFOEXA): BOOL;
+
+@foreign
+func GetIconInfoEx(hicon: HICON, piconinfo: PICONINFOEXA): BOOL;
+
+@foreign
+func GetIconInfoExW(hicon: HICON, piconinfo: PICONINFOEXW): BOOL;
+
+@foreign
+enum EDIT_CONTROL_FEATURE {
+    EDIT_CONTROL_FEATURE_ENTERPRISE_DATA_PROTECTION_PASTE_SUPPORT = 0,
+    EDIT_CONTROL_FEATURE_PASTE_NOTIFICATIONS = 1,
+}
+
+@foreign
+func IsDialogMessageA(hDlg: HWND, lpMsg: LPMSG): BOOL;
+
+@foreign
+func IsDialogMessage(hDlg: HWND, lpMsg: LPMSG): BOOL;
+
+@foreign
+func IsDialogMessageW(hDlg: HWND, lpMsg: LPMSG): BOOL;
+
+@foreign
+func MapDialogRect(hDlg: HWND, lpRect: LPRECT): BOOL;
+
+@foreign
+func DlgDirListA(hDlg: HWND, lpPathSpec: LPSTR, nIDListBox: int, nIDStaticPath: int, uFileType: UINT): int;
+
+@foreign
+func DlgDirList(hDlg: HWND, lpPathSpec: LPSTR, nIDListBox: int, nIDStaticPath: int, uFileType: UINT): int;
+
+@foreign
+func DlgDirListW(hDlg: HWND, lpPathSpec: LPWSTR, nIDListBox: int, nIDStaticPath: int, uFileType: UINT): int;
+
+@foreign
+func DlgDirSelectExA(hwndDlg: HWND, lpString: LPSTR, chCount: int, idListBox: int): BOOL;
+
+@foreign
+func DlgDirSelectEx(hwndDlg: HWND, lpString: LPSTR, chCount: int, idListBox: int): BOOL;
+
+@foreign
+func DlgDirSelectExW(hwndDlg: HWND, lpString: LPWSTR, chCount: int, idListBox: int): BOOL;
+
+@foreign
+func DlgDirListComboBoxA(hDlg: HWND, lpPathSpec: LPSTR, nIDComboBox: int, nIDStaticPath: int, uFiletype: UINT): int;
+
+@foreign
+func DlgDirListComboBox(hDlg: HWND, lpPathSpec: LPSTR, nIDComboBox: int, nIDStaticPath: int, uFiletype: UINT): int;
+
+@foreign
+func DlgDirListComboBoxW(hDlg: HWND, lpPathSpec: LPWSTR, nIDComboBox: int, nIDStaticPath: int, uFiletype: UINT): int;
+
+@foreign
+func DlgDirSelectComboBoxExA(hwndDlg: HWND, lpString: LPSTR, cchOut: int, idComboBox: int): BOOL;
+
+@foreign
+func DlgDirSelectComboBoxEx(hwndDlg: HWND, lpString: LPSTR, cchOut: int, idComboBox: int): BOOL;
+
+@foreign
+func DlgDirSelectComboBoxExW(hwndDlg: HWND, lpString: LPWSTR, cchOut: int, idComboBox: int): BOOL;
+
+@foreign
+struct tagSCROLLINFO {
+    cbSize: UINT;
+    fMask: UINT;
+    nMin: int;
+    nMax: int;
+    nPage: UINT;
+    nPos: int;
+    nTrackPos: int;
+}
+
+@foreign
+typedef SCROLLINFO = tagSCROLLINFO;
+
+@foreign
+typedef LPSCROLLINFO = tagSCROLLINFO*;
+
+@foreign
+typedef LPCSCROLLINFO = SCROLLINFO*;
+
+@foreign
+func SetScrollInfo(hwnd: HWND, nBar: int, lpsi: LPCSCROLLINFO, redraw: BOOL): int;
+
+@foreign
+func GetScrollInfo(hwnd: HWND, nBar: int, lpsi: LPSCROLLINFO): BOOL;
+
+@foreign
+struct tagMDICREATESTRUCTA {
+    szClass: LPCSTR;
+    szTitle: LPCSTR;
+    hOwner: HANDLE;
+    x: int;
+    y: int;
+    cx: int;
+    cy: int;
+    style: DWORD;
+    lParam: LPARAM;
+}
+
+@foreign
+typedef MDICREATESTRUCTA = tagMDICREATESTRUCTA;
+
+@foreign
+typedef LPMDICREATESTRUCTA = tagMDICREATESTRUCTA*;
+
+@foreign
+struct tagMDICREATESTRUCTW {
+    szClass: LPCWSTR;
+    szTitle: LPCWSTR;
+    hOwner: HANDLE;
+    x: int;
+    y: int;
+    cx: int;
+    cy: int;
+    style: DWORD;
+    lParam: LPARAM;
+}
+
+@foreign
+typedef MDICREATESTRUCTW = tagMDICREATESTRUCTW;
+
+@foreign
+typedef LPMDICREATESTRUCTW = tagMDICREATESTRUCTW*;
+
+@foreign
+typedef MDICREATESTRUCT = MDICREATESTRUCTA;
+
+@foreign
+typedef LPMDICREATESTRUCT = LPMDICREATESTRUCTA;
+
+@foreign
+struct tagCLIENTCREATESTRUCT {
+    hWindowMenu: HANDLE;
+    idFirstChild: UINT;
+}
+
+@foreign
+typedef CLIENTCREATESTRUCT = tagCLIENTCREATESTRUCT;
+
+@foreign
+typedef LPCLIENTCREATESTRUCT = tagCLIENTCREATESTRUCT*;
+
+@foreign
+func DefFrameProcA(hWnd: HWND, hWndMDIClient: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefFrameProc(hWnd: HWND, hWndMDIClient: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefFrameProcW(hWnd: HWND, hWndMDIClient: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefMDIChildProcA(hWnd: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefMDIChildProc(hWnd: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func DefMDIChildProcW(hWnd: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
+
+@foreign
+func TranslateMDISysAccel(hWndClient: HWND, lpMsg: LPMSG): BOOL;
+
+@foreign
+func ArrangeIconicWindows(hWnd: HWND): UINT;
+
+@foreign
+func CreateMDIWindowA(lpClassName: LPCSTR, lpWindowName: LPCSTR, dwStyle: DWORD, X: int, Y: int, nWidth: int, nHeight: int, hWndParent: HWND, hInstance: HINSTANCE, lParam: LPARAM): HWND;
+
+@foreign
+func CreateMDIWindow(lpClassName: LPCSTR, lpWindowName: LPCSTR, dwStyle: DWORD, X: int, Y: int, nWidth: int, nHeight: int, hWndParent: HWND, hInstance: HINSTANCE, lParam: LPARAM): HWND;
+
+@foreign
+func CreateMDIWindowW(lpClassName: LPCWSTR, lpWindowName: LPCWSTR, dwStyle: DWORD, X: int, Y: int, nWidth: int, nHeight: int, hWndParent: HWND, hInstance: HINSTANCE, lParam: LPARAM): HWND;
+
+@foreign
+func TileWindows(hwndParent: HWND, wHow: UINT, lpRect: RECT*, cKids: UINT, lpKids: HWND*): WORD;
+
+@foreign
+func CascadeWindows(hwndParent: HWND, wHow: UINT, lpRect: RECT*, cKids: UINT, lpKids: HWND*): WORD;
+
+@foreign
+typedef HELPPOLY = DWORD;
+
+@foreign
+struct tagMULTIKEYHELPA {
+    mkSize: DWORD;
+    mkKeylist: CHAR;
+    szKeyphrase: CHAR[1];
+}
+
+@foreign
+typedef MULTIKEYHELPA = tagMULTIKEYHELPA;
+
+@foreign
+typedef PMULTIKEYHELPA = tagMULTIKEYHELPA*;
+
+@foreign
+typedef LPMULTIKEYHELPA = tagMULTIKEYHELPA*;
+
+@foreign
+struct tagMULTIKEYHELPW {
+    mkSize: DWORD;
+    mkKeylist: WCHAR;
+    szKeyphrase: WCHAR[1];
+}
+
+@foreign
+typedef MULTIKEYHELPW = tagMULTIKEYHELPW;
+
+@foreign
+typedef PMULTIKEYHELPW = tagMULTIKEYHELPW*;
+
+@foreign
+typedef LPMULTIKEYHELPW = tagMULTIKEYHELPW*;
+
+@foreign
+typedef MULTIKEYHELP = MULTIKEYHELPA;
+
+@foreign
+typedef PMULTIKEYHELP = PMULTIKEYHELPA;
+
+@foreign
+typedef LPMULTIKEYHELP = LPMULTIKEYHELPA;
+
+@foreign
+struct tagHELPWININFOA {
+    wStructSize: int;
+    x: int;
+    y: int;
+    dx: int;
+    dy: int;
+    wMax: int;
+    rgchMember: CHAR[2];
+}
+
+@foreign
+typedef HELPWININFOA = tagHELPWININFOA;
+
+@foreign
+typedef PHELPWININFOA = tagHELPWININFOA*;
+
+@foreign
+typedef LPHELPWININFOA = tagHELPWININFOA*;
+
+@foreign
+struct tagHELPWININFOW {
+    wStructSize: int;
+    x: int;
+    y: int;
+    dx: int;
+    dy: int;
+    wMax: int;
+    rgchMember: WCHAR[2];
+}
+
+@foreign
+typedef HELPWININFOW = tagHELPWININFOW;
+
+@foreign
+typedef PHELPWININFOW = tagHELPWININFOW*;
+
+@foreign
+typedef LPHELPWININFOW = tagHELPWININFOW*;
+
+@foreign
+typedef HELPWININFO = HELPWININFOA;
+
+@foreign
+typedef PHELPWININFO = PHELPWININFOA;
+
+@foreign
+typedef LPHELPWININFO = LPHELPWININFOA;
+
+@foreign
+func WinHelpA(hWndMain: HWND, lpszHelp: LPCSTR, uCommand: UINT, dwData: ULONG_PTR): BOOL;
+
+@foreign
+func WinHelp(hWndMain: HWND, lpszHelp: LPCSTR, uCommand: UINT, dwData: ULONG_PTR): BOOL;
+
+@foreign
+func WinHelpW(hWndMain: HWND, lpszHelp: LPCWSTR, uCommand: UINT, dwData: ULONG_PTR): BOOL;
+
+@foreign
+func GetGuiResources(hProcess: HANDLE, uiFlags: DWORD): DWORD;
+
+@foreign
+struct tagTouchPredictionParameters {
+    cbSize: UINT;
+    dwLatency: UINT;
+    dwSampleTime: UINT;
+    bUseHWTimeStamp: UINT;
+}
+
+@foreign
+typedef TOUCHPREDICTIONPARAMETERS = tagTouchPredictionParameters;
+
+@foreign
+typedef PTOUCHPREDICTIONPARAMETERS = tagTouchPredictionParameters*;
+
+@foreign
+struct tagNONCLIENTMETRICSA {
+    cbSize: UINT;
+    iBorderWidth: int;
+    iScrollWidth: int;
+    iScrollHeight: int;
+    iCaptionWidth: int;
+    iCaptionHeight: int;
+    lfCaptionFont: LOGFONTA;
+    iSmCaptionWidth: int;
+    iSmCaptionHeight: int;
+    lfSmCaptionFont: LOGFONTA;
+    iMenuWidth: int;
+    iMenuHeight: int;
+    lfMenuFont: LOGFONTA;
+    lfStatusFont: LOGFONTA;
+    lfMessageFont: LOGFONTA;
+    iPaddedBorderWidth: int;
+}
+
+@foreign
+typedef NONCLIENTMETRICSA = tagNONCLIENTMETRICSA;
+
+@foreign
+typedef PNONCLIENTMETRICSA = tagNONCLIENTMETRICSA*;
+
+@foreign
+typedef LPNONCLIENTMETRICSA = tagNONCLIENTMETRICSA*;
+
+@foreign
+struct tagNONCLIENTMETRICSW {
+    cbSize: UINT;
+    iBorderWidth: int;
+    iScrollWidth: int;
+    iScrollHeight: int;
+    iCaptionWidth: int;
+    iCaptionHeight: int;
+    lfCaptionFont: LOGFONTW;
+    iSmCaptionWidth: int;
+    iSmCaptionHeight: int;
+    lfSmCaptionFont: LOGFONTW;
+    iMenuWidth: int;
+    iMenuHeight: int;
+    lfMenuFont: LOGFONTW;
+    lfStatusFont: LOGFONTW;
+    lfMessageFont: LOGFONTW;
+    iPaddedBorderWidth: int;
+}
+
+@foreign
+typedef NONCLIENTMETRICSW = tagNONCLIENTMETRICSW;
+
+@foreign
+typedef PNONCLIENTMETRICSW = tagNONCLIENTMETRICSW*;
+
+@foreign
+typedef LPNONCLIENTMETRICSW = tagNONCLIENTMETRICSW*;
+
+@foreign
+typedef NONCLIENTMETRICS = NONCLIENTMETRICSA;
+
+@foreign
+typedef PNONCLIENTMETRICS = PNONCLIENTMETRICSA;
+
+@foreign
+typedef LPNONCLIENTMETRICS = LPNONCLIENTMETRICSA;
+
+@foreign
+struct tagMINIMIZEDMETRICS {
+    cbSize: UINT;
+    iWidth: int;
+    iHorzGap: int;
+    iVertGap: int;
+    iArrange: int;
+}
+
+@foreign
+typedef MINIMIZEDMETRICS = tagMINIMIZEDMETRICS;
+
+@foreign
+typedef PMINIMIZEDMETRICS = tagMINIMIZEDMETRICS*;
+
+@foreign
+typedef LPMINIMIZEDMETRICS = tagMINIMIZEDMETRICS*;
+
+@foreign
+struct tagICONMETRICSA {
+    cbSize: UINT;
+    iHorzSpacing: int;
+    iVertSpacing: int;
+    iTitleWrap: int;
+    lfFont: LOGFONTA;
+}
+
+@foreign
+typedef ICONMETRICSA = tagICONMETRICSA;
+
+@foreign
+typedef PICONMETRICSA = tagICONMETRICSA*;
+
+@foreign
+typedef LPICONMETRICSA = tagICONMETRICSA*;
+
+@foreign
+struct tagICONMETRICSW {
+    cbSize: UINT;
+    iHorzSpacing: int;
+    iVertSpacing: int;
+    iTitleWrap: int;
+    lfFont: LOGFONTW;
+}
+
+@foreign
+typedef ICONMETRICSW = tagICONMETRICSW;
+
+@foreign
+typedef PICONMETRICSW = tagICONMETRICSW*;
+
+@foreign
+typedef LPICONMETRICSW = tagICONMETRICSW*;
+
+@foreign
+typedef ICONMETRICS = ICONMETRICSA;
+
+@foreign
+typedef PICONMETRICS = PICONMETRICSA;
+
+@foreign
+typedef LPICONMETRICS = LPICONMETRICSA;
+
+@foreign
+struct tagANIMATIONINFO {
+    cbSize: UINT;
+    iMinAnimate: int;
+}
+
+@foreign
+typedef ANIMATIONINFO = tagANIMATIONINFO;
+
+@foreign
+typedef LPANIMATIONINFO = tagANIMATIONINFO*;
+
+@foreign
+struct tagSERIALKEYSA {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    lpszActivePort: LPSTR;
+    lpszPort: LPSTR;
+    iBaudRate: UINT;
+    iPortState: UINT;
+    iActive: UINT;
+}
+
+@foreign
+typedef SERIALKEYSA = tagSERIALKEYSA;
+
+@foreign
+typedef LPSERIALKEYSA = tagSERIALKEYSA*;
+
+@foreign
+struct tagSERIALKEYSW {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    lpszActivePort: LPWSTR;
+    lpszPort: LPWSTR;
+    iBaudRate: UINT;
+    iPortState: UINT;
+    iActive: UINT;
+}
+
+@foreign
+typedef SERIALKEYSW = tagSERIALKEYSW;
+
+@foreign
+typedef LPSERIALKEYSW = tagSERIALKEYSW*;
+
+@foreign
+typedef SERIALKEYS = SERIALKEYSA;
+
+@foreign
+typedef LPSERIALKEYS = LPSERIALKEYSA;
+
+@foreign
+struct tagHIGHCONTRASTA {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    lpszDefaultScheme: LPSTR;
+}
+
+@foreign
+typedef HIGHCONTRASTA = tagHIGHCONTRASTA;
+
+@foreign
+typedef LPHIGHCONTRASTA = tagHIGHCONTRASTA*;
+
+@foreign
+struct tagHIGHCONTRASTW {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    lpszDefaultScheme: LPWSTR;
+}
+
+@foreign
+typedef HIGHCONTRASTW = tagHIGHCONTRASTW;
+
+@foreign
+typedef LPHIGHCONTRASTW = tagHIGHCONTRASTW*;
+
+@foreign
+typedef HIGHCONTRAST = HIGHCONTRASTA;
+
+@foreign
+typedef LPHIGHCONTRAST = LPHIGHCONTRASTA;
+
+@foreign
+func ChangeDisplaySettingsA(lpDevMode: DEVMODEA*, dwFlags: DWORD): LONG;
+
+@foreign
+func ChangeDisplaySettings(lpDevMode: DEVMODEA*, dwFlags: DWORD): LONG;
+
+@foreign
+func ChangeDisplaySettingsW(lpDevMode: DEVMODEW*, dwFlags: DWORD): LONG;
+
+@foreign
+func ChangeDisplaySettingsExA(lpszDeviceName: LPCSTR, lpDevMode: DEVMODEA*, hwnd: HWND, dwflags: DWORD, lParam: LPVOID): LONG;
+
+@foreign
+func ChangeDisplaySettingsEx(lpszDeviceName: LPCSTR, lpDevMode: DEVMODEA*, hwnd: HWND, dwflags: DWORD, lParam: LPVOID): LONG;
+
+@foreign
+func ChangeDisplaySettingsExW(lpszDeviceName: LPCWSTR, lpDevMode: DEVMODEW*, hwnd: HWND, dwflags: DWORD, lParam: LPVOID): LONG;
+
+@foreign
+func EnumDisplaySettingsA(lpszDeviceName: LPCSTR, iModeNum: DWORD, lpDevMode: DEVMODEA*): BOOL;
+
+@foreign
+func EnumDisplaySettings(lpszDeviceName: LPCSTR, iModeNum: DWORD, lpDevMode: DEVMODEA*): BOOL;
+
+@foreign
+func EnumDisplaySettingsW(lpszDeviceName: LPCWSTR, iModeNum: DWORD, lpDevMode: DEVMODEW*): BOOL;
+
+@foreign
+func EnumDisplaySettingsExA(lpszDeviceName: LPCSTR, iModeNum: DWORD, lpDevMode: DEVMODEA*, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDisplaySettingsEx(lpszDeviceName: LPCSTR, iModeNum: DWORD, lpDevMode: DEVMODEA*, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDisplaySettingsExW(lpszDeviceName: LPCWSTR, iModeNum: DWORD, lpDevMode: DEVMODEW*, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDisplayDevicesA(lpDevice: LPCSTR, iDevNum: DWORD, lpDisplayDevice: PDISPLAY_DEVICEA, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDisplayDevices(lpDevice: LPCSTR, iDevNum: DWORD, lpDisplayDevice: PDISPLAY_DEVICEA, dwFlags: DWORD): BOOL;
+
+@foreign
+func EnumDisplayDevicesW(lpDevice: LPCWSTR, iDevNum: DWORD, lpDisplayDevice: PDISPLAY_DEVICEW, dwFlags: DWORD): BOOL;
+
+@foreign
+func GetDisplayConfigBufferSizes(flags: UINT32, numPathArrayElements: UINT32*, numModeInfoArrayElements: UINT32*): LONG;
+
+@foreign
+func SetDisplayConfig(numPathArrayElements: UINT32, pathArray: DISPLAYCONFIG_PATH_INFO*, numModeInfoArrayElements: UINT32, modeInfoArray: DISPLAYCONFIG_MODE_INFO*, flags: UINT32): LONG;
+
+@foreign
+func QueryDisplayConfig(flags: UINT32, numPathArrayElements: UINT32*, pathArray: DISPLAYCONFIG_PATH_INFO*, numModeInfoArrayElements: UINT32*, modeInfoArray: DISPLAYCONFIG_MODE_INFO*, currentTopologyId: DISPLAYCONFIG_TOPOLOGY_ID*): LONG;
+
+@foreign
+func DisplayConfigGetDeviceInfo(requestPacket: DISPLAYCONFIG_DEVICE_INFO_HEADER*): LONG;
+
+@foreign
+func DisplayConfigSetDeviceInfo(setPacket: DISPLAYCONFIG_DEVICE_INFO_HEADER*): LONG;
+
+@foreign
+func SystemParametersInfoA(uiAction: UINT, uiParam: UINT, pvParam: PVOID, fWinIni: UINT): BOOL;
+
+@foreign
+func SystemParametersInfo(uiAction: UINT, uiParam: UINT, pvParam: PVOID, fWinIni: UINT): BOOL;
+
+@foreign
+func SystemParametersInfoW(uiAction: UINT, uiParam: UINT, pvParam: PVOID, fWinIni: UINT): BOOL;
+
+@foreign
+func SystemParametersInfoForDpi(uiAction: UINT, uiParam: UINT, pvParam: PVOID, fWinIni: UINT, dpi: UINT): BOOL;
+
+@foreign
+struct tagFILTERKEYS {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    iWaitMSec: DWORD;
+    iDelayMSec: DWORD;
+    iRepeatMSec: DWORD;
+    iBounceMSec: DWORD;
+}
+
+@foreign
+typedef FILTERKEYS = tagFILTERKEYS;
+
+@foreign
+typedef LPFILTERKEYS = tagFILTERKEYS*;
+
+@foreign
+struct tagSTICKYKEYS {
+    cbSize: UINT;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef STICKYKEYS = tagSTICKYKEYS;
+
+@foreign
+typedef LPSTICKYKEYS = tagSTICKYKEYS*;
+
+@foreign
+struct tagMOUSEKEYS {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    iMaxSpeed: DWORD;
+    iTimeToMaxSpeed: DWORD;
+    iCtrlSpeed: DWORD;
+    dwReserved1: DWORD;
+    dwReserved2: DWORD;
+}
+
+@foreign
+typedef MOUSEKEYS = tagMOUSEKEYS;
+
+@foreign
+typedef LPMOUSEKEYS = tagMOUSEKEYS*;
+
+@foreign
+struct tagACCESSTIMEOUT {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    iTimeOutMSec: DWORD;
+}
+
+@foreign
+typedef ACCESSTIMEOUT = tagACCESSTIMEOUT;
+
+@foreign
+typedef LPACCESSTIMEOUT = tagACCESSTIMEOUT*;
+
+@foreign
+struct tagSOUNDSENTRYA {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    iFSTextEffect: DWORD;
+    iFSTextEffectMSec: DWORD;
+    iFSTextEffectColorBits: DWORD;
+    iFSGrafEffect: DWORD;
+    iFSGrafEffectMSec: DWORD;
+    iFSGrafEffectColor: DWORD;
+    iWindowsEffect: DWORD;
+    iWindowsEffectMSec: DWORD;
+    lpszWindowsEffectDLL: LPSTR;
+    iWindowsEffectOrdinal: DWORD;
+}
+
+@foreign
+typedef SOUNDSENTRYA = tagSOUNDSENTRYA;
+
+@foreign
+typedef LPSOUNDSENTRYA = tagSOUNDSENTRYA*;
+
+@foreign
+struct tagSOUNDSENTRYW {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    iFSTextEffect: DWORD;
+    iFSTextEffectMSec: DWORD;
+    iFSTextEffectColorBits: DWORD;
+    iFSGrafEffect: DWORD;
+    iFSGrafEffectMSec: DWORD;
+    iFSGrafEffectColor: DWORD;
+    iWindowsEffect: DWORD;
+    iWindowsEffectMSec: DWORD;
+    lpszWindowsEffectDLL: LPWSTR;
+    iWindowsEffectOrdinal: DWORD;
+}
+
+@foreign
+typedef SOUNDSENTRYW = tagSOUNDSENTRYW;
+
+@foreign
+typedef LPSOUNDSENTRYW = tagSOUNDSENTRYW*;
+
+@foreign
+typedef SOUNDSENTRY = SOUNDSENTRYA;
+
+@foreign
+typedef LPSOUNDSENTRY = LPSOUNDSENTRYA;
+
+@foreign
+func SoundSentry(): BOOL;
+
+@foreign
+struct tagTOGGLEKEYS {
+    cbSize: UINT;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef TOGGLEKEYS = tagTOGGLEKEYS;
+
+@foreign
+typedef LPTOGGLEKEYS = tagTOGGLEKEYS*;
+
+@foreign
+struct tagAUDIODESCRIPTION {
+    cbSize: UINT;
+    Enabled: BOOL;
+    Locale: LCID;
+}
+
+@foreign
+typedef AUDIODESCRIPTION = tagAUDIODESCRIPTION;
+
+@foreign
+typedef LPAUDIODESCRIPTION = tagAUDIODESCRIPTION*;
+
+@foreign
+func SetDebugErrorLevel(dwLevel: DWORD);
+
+@foreign
+func SetLastErrorEx(dwErrCode: DWORD, dwType: DWORD);
+
+@foreign
+func InternalGetWindowText(hWnd: HWND, pString: LPWSTR, cchMaxCount: int): int;
+
+@foreign
+func CancelShutdown(): BOOL;
+
+@foreign
+func MonitorFromPoint(pt: POINT, dwFlags: DWORD): HMONITOR;
+
+@foreign
+func MonitorFromRect(lprc: LPCRECT, dwFlags: DWORD): HMONITOR;
+
+@foreign
+func MonitorFromWindow(hwnd: HWND, dwFlags: DWORD): HMONITOR;
+
+@foreign
+struct tagMONITORINFO {
+    cbSize: DWORD;
+    rcMonitor: RECT;
+    rcWork: RECT;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef MONITORINFO = tagMONITORINFO;
+
+@foreign
+typedef LPMONITORINFO = tagMONITORINFO*;
+
+@foreign
+struct tagMONITORINFOEXA {
+    s: MONITORINFO;
+    szDevice: CHAR[32];
+}
+
+@foreign
+typedef MONITORINFOEXA = tagMONITORINFOEXA;
+
+@foreign
+typedef LPMONITORINFOEXA = tagMONITORINFOEXA*;
+
+@foreign
+struct tagMONITORINFOEXW {
+    s: MONITORINFO;
+    szDevice: WCHAR[32];
+}
+
+@foreign
+typedef MONITORINFOEXW = tagMONITORINFOEXW;
+
+@foreign
+typedef LPMONITORINFOEXW = tagMONITORINFOEXW*;
+
+@foreign
+typedef MONITORINFOEX = MONITORINFOEXA;
+
+@foreign
+typedef LPMONITORINFOEX = LPMONITORINFOEXA;
+
+@foreign
+func GetMonitorInfoA(hMonitor: HMONITOR, lpmi: LPMONITORINFO): BOOL;
+
+@foreign
+func GetMonitorInfo(hMonitor: HMONITOR, lpmi: LPMONITORINFO): BOOL;
+
+@foreign
+func GetMonitorInfoW(hMonitor: HMONITOR, lpmi: LPMONITORINFO): BOOL;
+
+@foreign
+typedef MONITORENUMPROC = func(arg0: HMONITOR, arg1: HDC, arg2: LPRECT, arg3: LPARAM): BOOL;
+
+@foreign
+func EnumDisplayMonitors(hdc: HDC, lprcClip: LPCRECT, lpfnEnum: MONITORENUMPROC, dwData: LPARAM): BOOL;
+
+@foreign
+func NotifyWinEvent(event: DWORD, hwnd: HWND, idObject: LONG, idChild: LONG);
+
+@foreign
+typedef WINEVENTPROC = func(hWinEventHook: HWINEVENTHOOK, event: DWORD, hwnd: HWND, idObject: LONG, idChild: LONG, idEventThread: DWORD, dwmsEventTime: DWORD);
+
+@foreign
+func SetWinEventHook(eventMin: DWORD, eventMax: DWORD, hmodWinEventProc: HMODULE, pfnWinEventProc: WINEVENTPROC, idProcess: DWORD, idThread: DWORD, dwFlags: DWORD): HWINEVENTHOOK;
+
+@foreign
+func IsWinEventHookInstalled(event: DWORD): BOOL;
+
+@foreign
+func UnhookWinEvent(hWinEventHook: HWINEVENTHOOK): BOOL;
+
+@foreign
+struct tagGUITHREADINFO {
+    cbSize: DWORD;
+    flags: DWORD;
+    hwndActive: HWND;
+    hwndFocus: HWND;
+    hwndCapture: HWND;
+    hwndMenuOwner: HWND;
+    hwndMoveSize: HWND;
+    hwndCaret: HWND;
+    rcCaret: RECT;
+}
+
+@foreign
+typedef GUITHREADINFO = tagGUITHREADINFO;
+
+@foreign
+typedef PGUITHREADINFO = tagGUITHREADINFO*;
+
+@foreign
+typedef LPGUITHREADINFO = tagGUITHREADINFO*;
+
+@foreign
+func GetGUIThreadInfo(idThread: DWORD, pgui: PGUITHREADINFO): BOOL;
+
+@foreign
+func BlockInput(fBlockIt: BOOL): BOOL;
+
+@foreign
+func SetProcessDPIAware(): BOOL;
+
+@foreign
+func IsProcessDPIAware(): BOOL;
+
+@foreign
+func SetThreadDpiAwarenessContext(dpiContext: DPI_AWARENESS_CONTEXT): DPI_AWARENESS_CONTEXT;
+
+@foreign
+func GetThreadDpiAwarenessContext(): DPI_AWARENESS_CONTEXT;
+
+@foreign
+func GetWindowDpiAwarenessContext(hwnd: HWND): DPI_AWARENESS_CONTEXT;
+
+@foreign
+func GetAwarenessFromDpiAwarenessContext(value: DPI_AWARENESS_CONTEXT): DPI_AWARENESS;
+
+@foreign
+func AreDpiAwarenessContextsEqual(dpiContextA: DPI_AWARENESS_CONTEXT, dpiContextB: DPI_AWARENESS_CONTEXT): BOOL;
+
+@foreign
+func IsValidDpiAwarenessContext(value: DPI_AWARENESS_CONTEXT): BOOL;
+
+@foreign
+func GetDpiForWindow(hwnd: HWND): UINT;
+
+@foreign
+func GetDpiForSystem(): UINT;
+
+@foreign
+func EnableNonClientDpiScaling(hwnd: HWND): BOOL;
+
+@foreign
+func InheritWindowMonitor(hwnd: HWND, hwndInherit: HWND): BOOL;
+
+@foreign
+func SetProcessDpiAwarenessContext(value: DPI_AWARENESS_CONTEXT): BOOL;
+
+@foreign
+func GetWindowModuleFileNameA(hwnd: HWND, pszFileName: LPSTR, cchFileNameMax: UINT): UINT;
+
+@foreign
+func GetWindowModuleFileName(hwnd: HWND, pszFileName: LPSTR, cchFileNameMax: UINT): UINT;
+
+@foreign
+func GetWindowModuleFileNameW(hwnd: HWND, pszFileName: LPWSTR, cchFileNameMax: UINT): UINT;
+
+@foreign
+struct tagCURSORINFO {
+    cbSize: DWORD;
+    flags: DWORD;
+    hCursor: HCURSOR;
+    ptScreenPos: POINT;
+}
+
+@foreign
+typedef CURSORINFO = tagCURSORINFO;
+
+@foreign
+typedef PCURSORINFO = tagCURSORINFO*;
+
+@foreign
+typedef LPCURSORINFO = tagCURSORINFO*;
+
+@foreign
+func GetCursorInfo(pci: PCURSORINFO): BOOL;
+
+@foreign
+struct tagWINDOWINFO {
+    cbSize: DWORD;
+    rcWindow: RECT;
+    rcClient: RECT;
+    dwStyle: DWORD;
+    dwExStyle: DWORD;
+    dwWindowStatus: DWORD;
+    cxWindowBorders: UINT;
+    cyWindowBorders: UINT;
+    atomWindowType: ATOM;
+    wCreatorVersion: WORD;
+}
+
+@foreign
+typedef WINDOWINFO = tagWINDOWINFO;
+
+@foreign
+typedef PWINDOWINFO = tagWINDOWINFO*;
+
+@foreign
+typedef LPWINDOWINFO = tagWINDOWINFO*;
+
+@foreign
+func GetWindowInfo(hwnd: HWND, pwi: PWINDOWINFO): BOOL;
+
+@foreign
+struct tagTITLEBARINFO {
+    cbSize: DWORD;
+    rcTitleBar: RECT;
+    rgstate: DWORD[6];
+}
+
+@foreign
+typedef TITLEBARINFO = tagTITLEBARINFO;
+
+@foreign
+typedef PTITLEBARINFO = tagTITLEBARINFO*;
+
+@foreign
+typedef LPTITLEBARINFO = tagTITLEBARINFO*;
+
+@foreign
+func GetTitleBarInfo(hwnd: HWND, pti: PTITLEBARINFO): BOOL;
+
+@foreign
+struct tagTITLEBARINFOEX {
+    cbSize: DWORD;
+    rcTitleBar: RECT;
+    rgstate: DWORD[6];
+    rgrect: RECT[6];
+}
+
+@foreign
+typedef TITLEBARINFOEX = tagTITLEBARINFOEX;
+
+@foreign
+typedef PTITLEBARINFOEX = tagTITLEBARINFOEX*;
+
+@foreign
+typedef LPTITLEBARINFOEX = tagTITLEBARINFOEX*;
+
+@foreign
+struct tagMENUBARINFO {
+    cbSize: DWORD;
+    rcBar: RECT;
+    hMenu: HMENU;
+    hwndMenu: HWND;
+    fBarFocused: BOOL;
+    fFocused: BOOL;
+}
+
+@foreign
+typedef MENUBARINFO = tagMENUBARINFO;
+
+@foreign
+typedef PMENUBARINFO = tagMENUBARINFO*;
+
+@foreign
+typedef LPMENUBARINFO = tagMENUBARINFO*;
+
+@foreign
+func GetMenuBarInfo(hwnd: HWND, idObject: LONG, idItem: LONG, pmbi: PMENUBARINFO): BOOL;
+
+@foreign
+struct tagSCROLLBARINFO {
+    cbSize: DWORD;
+    rcScrollBar: RECT;
+    dxyLineButton: int;
+    xyThumbTop: int;
+    xyThumbBottom: int;
+    reserved: int;
+    rgstate: DWORD[6];
+}
+
+@foreign
+typedef SCROLLBARINFO = tagSCROLLBARINFO;
+
+@foreign
+typedef PSCROLLBARINFO = tagSCROLLBARINFO*;
+
+@foreign
+typedef LPSCROLLBARINFO = tagSCROLLBARINFO*;
+
+@foreign
+func GetScrollBarInfo(hwnd: HWND, idObject: LONG, psbi: PSCROLLBARINFO): BOOL;
+
+@foreign
+struct tagCOMBOBOXINFO {
+    cbSize: DWORD;
+    rcItem: RECT;
+    rcButton: RECT;
+    stateButton: DWORD;
+    hwndCombo: HWND;
+    hwndItem: HWND;
+    hwndList: HWND;
+}
+
+@foreign
+typedef COMBOBOXINFO = tagCOMBOBOXINFO;
+
+@foreign
+typedef PCOMBOBOXINFO = tagCOMBOBOXINFO*;
+
+@foreign
+typedef LPCOMBOBOXINFO = tagCOMBOBOXINFO*;
+
+@foreign
+func GetComboBoxInfo(hwndCombo: HWND, pcbi: PCOMBOBOXINFO): BOOL;
+
+@foreign
+func GetAncestor(hwnd: HWND, gaFlags: UINT): HWND;
+
+@foreign
+func RealChildWindowFromPoint(hwndParent: HWND, ptParentClientCoords: POINT): HWND;
+
+@foreign
+func RealGetWindowClassA(hwnd: HWND, ptszClassName: LPSTR, cchClassNameMax: UINT): UINT;
+
+@foreign
+func RealGetWindowClass(hwnd: HWND, ptszClassName: LPSTR, cchClassNameMax: UINT): UINT;
+
+@foreign
+func RealGetWindowClassW(hwnd: HWND, ptszClassName: LPWSTR, cchClassNameMax: UINT): UINT;
+
+@foreign
+struct tagALTTABINFO {
+    cbSize: DWORD;
+    cItems: int;
+    cColumns: int;
+    cRows: int;
+    iColFocus: int;
+    iRowFocus: int;
+    cxItem: int;
+    cyItem: int;
+    ptStart: POINT;
+}
+
+@foreign
+typedef ALTTABINFO = tagALTTABINFO;
+
+@foreign
+typedef PALTTABINFO = tagALTTABINFO*;
+
+@foreign
+typedef LPALTTABINFO = tagALTTABINFO*;
+
+@foreign
+func GetAltTabInfoA(hwnd: HWND, iItem: int, pati: PALTTABINFO, pszItemText: LPSTR, cchItemText: UINT): BOOL;
+
+@foreign
+func GetAltTabInfo(hwnd: HWND, iItem: int, pati: PALTTABINFO, pszItemText: LPSTR, cchItemText: UINT): BOOL;
+
+@foreign
+func GetAltTabInfoW(hwnd: HWND, iItem: int, pati: PALTTABINFO, pszItemText: LPWSTR, cchItemText: UINT): BOOL;
+
+@foreign
+func GetListBoxInfo(hwnd: HWND): DWORD;
+
+@foreign
+func LockWorkStation(): BOOL;
+
+@foreign
+func UserHandleGrantAccess(hUserHandle: HANDLE, hJob: HANDLE, bGrant: BOOL): BOOL;
+
+@foreign
+struct HRAWINPUT__ {
+    unused: int;
+}
+
+@foreign
+typedef HRAWINPUT = HRAWINPUT__*;
+
+@foreign
+struct tagRAWINPUTHEADER {
+    dwType: DWORD;
+    dwSize: DWORD;
+    hDevice: HANDLE;
+    wParam: WPARAM;
+}
+
+@foreign
+typedef RAWINPUTHEADER = tagRAWINPUTHEADER;
+
+@foreign
+typedef PRAWINPUTHEADER = tagRAWINPUTHEADER*;
+
+@foreign
+typedef LPRAWINPUTHEADER = tagRAWINPUTHEADER*;
+
+/*
+@PROBLEM Nested struct def at line 14540, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+@foreign
+struct tagRAWMOUSE {
+    usFlags: USHORT;
+    u: (null);
+    ulRawButtons: ULONG;
+    lLastX: LONG;
+    lLastY: LONG;
+    ulExtraInformation: ULONG;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 14540, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+tagRAWMOUSE
+*/
+
+@foreign
+typedef PRAWMOUSE = tagRAWMOUSE*;
+
+@foreign
+typedef LPRAWMOUSE = tagRAWMOUSE*;
+
+@foreign
+struct tagRAWKEYBOARD {
+    MakeCode: USHORT;
+    Flags: USHORT;
+    Reserved: USHORT;
+    VKey: USHORT;
+    Message: UINT;
+    ExtraInformation: ULONG;
+}
+
+@foreign
+typedef RAWKEYBOARD = tagRAWKEYBOARD;
+
+@foreign
+typedef PRAWKEYBOARD = tagRAWKEYBOARD*;
+
+@foreign
+typedef LPRAWKEYBOARD = tagRAWKEYBOARD*;
+
+@foreign
+struct tagRAWHID {
+    dwSizeHid: DWORD;
+    dwCount: DWORD;
+    bRawData: BYTE[1];
+}
+
+@foreign
+typedef RAWHID = tagRAWHID;
+
+@foreign
+typedef PRAWHID = tagRAWHID*;
+
+@foreign
+typedef LPRAWHID = tagRAWHID*;
+
+/*
+@PROBLEM Nested struct def at line 14705, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+@foreign
+struct tagRAWINPUT {
+    header: RAWINPUTHEADER;
+    data: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 14705, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+tagRAWINPUT
+*/
+
+@foreign
+typedef PRAWINPUT = tagRAWINPUT*;
+
+@foreign
+typedef LPRAWINPUT = tagRAWINPUT*;
+
+@foreign
+func GetRawInputData(hRawInput: HRAWINPUT, uiCommand: UINT, pData: LPVOID, pcbSize: PUINT, cbSizeHeader: UINT): UINT;
+
+@foreign
+struct tagRID_DEVICE_INFO_MOUSE {
+    dwId: DWORD;
+    dwNumberOfButtons: DWORD;
+    dwSampleRate: DWORD;
+    fHasHorizontalWheel: BOOL;
+}
+
+@foreign
+typedef RID_DEVICE_INFO_MOUSE = tagRID_DEVICE_INFO_MOUSE;
+
+@foreign
+typedef PRID_DEVICE_INFO_MOUSE = tagRID_DEVICE_INFO_MOUSE*;
+
+@foreign
+struct tagRID_DEVICE_INFO_KEYBOARD {
+    dwType: DWORD;
+    dwSubType: DWORD;
+    dwKeyboardMode: DWORD;
+    dwNumberOfFunctionKeys: DWORD;
+    dwNumberOfIndicators: DWORD;
+    dwNumberOfKeysTotal: DWORD;
+}
+
+@foreign
+typedef RID_DEVICE_INFO_KEYBOARD = tagRID_DEVICE_INFO_KEYBOARD;
+
+@foreign
+typedef PRID_DEVICE_INFO_KEYBOARD = tagRID_DEVICE_INFO_KEYBOARD*;
+
+@foreign
+struct tagRID_DEVICE_INFO_HID {
+    dwVendorId: DWORD;
+    dwProductId: DWORD;
+    dwVersionNumber: DWORD;
+    usUsagePage: USHORT;
+    usUsage: USHORT;
+}
+
+@foreign
+typedef RID_DEVICE_INFO_HID = tagRID_DEVICE_INFO_HID;
+
+@foreign
+typedef PRID_DEVICE_INFO_HID = tagRID_DEVICE_INFO_HID*;
+
+/*
+@PROBLEM Nested struct def at line 14786, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+@foreign
+struct tagRID_DEVICE_INFO {
+    cbSize: DWORD;
+    dwType: DWORD;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 14786, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+
+tagRID_DEVICE_INFO
+*/
+
+@foreign
+typedef PRID_DEVICE_INFO = tagRID_DEVICE_INFO*;
+
+@foreign
+typedef LPRID_DEVICE_INFO = tagRID_DEVICE_INFO*;
+
+@foreign
+func GetRawInputDeviceInfoA(hDevice: HANDLE, uiCommand: UINT, pData: LPVOID, pcbSize: PUINT): UINT;
+
+@foreign
+func GetRawInputDeviceInfo(hDevice: HANDLE, uiCommand: UINT, pData: LPVOID, pcbSize: PUINT): UINT;
+
+@foreign
+func GetRawInputDeviceInfoW(hDevice: HANDLE, uiCommand: UINT, pData: LPVOID, pcbSize: PUINT): UINT;
+
+@foreign
+func GetRawInputBuffer(pData: PRAWINPUT, pcbSize: PUINT, cbSizeHeader: UINT): UINT;
+
+@foreign
+struct tagRAWINPUTDEVICE {
+    usUsagePage: USHORT;
+    usUsage: USHORT;
+    dwFlags: DWORD;
+    hwndTarget: HWND;
+}
+
+@foreign
+typedef RAWINPUTDEVICE = tagRAWINPUTDEVICE;
+
+@foreign
+typedef PRAWINPUTDEVICE = tagRAWINPUTDEVICE*;
+
+@foreign
+typedef LPRAWINPUTDEVICE = tagRAWINPUTDEVICE*;
+
+@foreign
+typedef PCRAWINPUTDEVICE = RAWINPUTDEVICE*;
+
+@foreign
+func RegisterRawInputDevices(pRawInputDevices: PCRAWINPUTDEVICE, uiNumDevices: UINT, cbSize: UINT): BOOL;
+
+@foreign
+func GetRegisteredRawInputDevices(pRawInputDevices: PRAWINPUTDEVICE, puiNumDevices: PUINT, cbSize: UINT): UINT;
+
+@foreign
+struct tagRAWINPUTDEVICELIST {
+    hDevice: HANDLE;
+    dwType: DWORD;
+}
+
+@foreign
+typedef RAWINPUTDEVICELIST = tagRAWINPUTDEVICELIST;
+
+@foreign
+typedef PRAWINPUTDEVICELIST = tagRAWINPUTDEVICELIST*;
+
+@foreign
+func GetRawInputDeviceList(pRawInputDeviceList: PRAWINPUTDEVICELIST, puiNumDevices: PUINT, cbSize: UINT): UINT;
+
+@foreign
+func DefRawInputProc(paRawInput: PRAWINPUT*, nInput: INT, cbSizeHeader: UINT): LRESULT;
+
+@foreign
+enum tagPOINTER_DEVICE_TYPE {
+    POINTER_DEVICE_TYPE_MAX = -1,
+    POINTER_DEVICE_TYPE_INTEGRATED_PEN = 1,
+    POINTER_DEVICE_TYPE_EXTERNAL_PEN = 2,
+    POINTER_DEVICE_TYPE_TOUCH = 3,
+    POINTER_DEVICE_TYPE_TOUCH_PAD = 4,
+}
+
+@foreign
+typedef POINTER_DEVICE_TYPE = tagPOINTER_DEVICE_TYPE;
+
+@foreign
+struct tagPOINTER_DEVICE_INFO {
+    displayOrientation: DWORD;
+    device: HANDLE;
+    pointerDeviceType: POINTER_DEVICE_TYPE;
+    monitor: HMONITOR;
+    startingCursorId: ULONG;
+    maxActiveContacts: USHORT;
+    productString: WCHAR[520];
+}
+
+@foreign
+typedef POINTER_DEVICE_INFO = tagPOINTER_DEVICE_INFO;
+
+@foreign
+struct tagPOINTER_DEVICE_PROPERTY {
+    logicalMin: INT32;
+    logicalMax: INT32;
+    physicalMin: INT32;
+    physicalMax: INT32;
+    unit: UINT32;
+    unitExponent: UINT32;
+    usagePageId: USHORT;
+    usageId: USHORT;
+}
+
+@foreign
+typedef POINTER_DEVICE_PROPERTY = tagPOINTER_DEVICE_PROPERTY;
+
+@foreign
+enum tagPOINTER_DEVICE_CURSOR_TYPE {
+    POINTER_DEVICE_CURSOR_TYPE_MAX = -1,
+    POINTER_DEVICE_CURSOR_TYPE_UNKNOWN = 0,
+    POINTER_DEVICE_CURSOR_TYPE_TIP = 1,
+    POINTER_DEVICE_CURSOR_TYPE_ERASER = 2,
+}
+
+@foreign
+typedef POINTER_DEVICE_CURSOR_TYPE = tagPOINTER_DEVICE_CURSOR_TYPE;
+
+@foreign
+struct tagPOINTER_DEVICE_CURSOR_INFO {
+    cursorId: UINT32;
+    cursor: POINTER_DEVICE_CURSOR_TYPE;
+}
+
+@foreign
+typedef POINTER_DEVICE_CURSOR_INFO = tagPOINTER_DEVICE_CURSOR_INFO;
+
+@foreign
+func GetPointerDevices(deviceCount: UINT32*, pointerDevices: POINTER_DEVICE_INFO*): BOOL;
+
+@foreign
+func GetPointerDevice(device: HANDLE, pointerDevice: POINTER_DEVICE_INFO*): BOOL;
+
+@foreign
+func GetPointerDeviceProperties(device: HANDLE, propertyCount: UINT32*, pointerProperties: POINTER_DEVICE_PROPERTY*): BOOL;
+
+@foreign
+func RegisterPointerDeviceNotifications(window: HWND, notifyRange: BOOL): BOOL;
+
+@foreign
+func GetPointerDeviceRects(device: HANDLE, pointerDeviceRect: RECT*, displayRect: RECT*): BOOL;
+
+@foreign
+func GetPointerDeviceCursors(device: HANDLE, cursorCount: UINT32*, deviceCursors: POINTER_DEVICE_CURSOR_INFO*): BOOL;
+
+@foreign
+func GetRawPointerDeviceData(pointerId: UINT32, historyCount: UINT32, propertiesCount: UINT32, pProperties: POINTER_DEVICE_PROPERTY*, pValues: LONG*): BOOL;
+
+@foreign
+func ChangeWindowMessageFilter(message: UINT, dwFlag: DWORD): BOOL;
+
+@foreign
+struct tagCHANGEFILTERSTRUCT {
+    cbSize: DWORD;
+    ExtStatus: DWORD;
+}
+
+@foreign
+typedef CHANGEFILTERSTRUCT = tagCHANGEFILTERSTRUCT;
+
+@foreign
+typedef PCHANGEFILTERSTRUCT = tagCHANGEFILTERSTRUCT*;
+
+@foreign
+func ChangeWindowMessageFilterEx(hwnd: HWND, message: UINT, action: DWORD, pChangeFilterStruct: PCHANGEFILTERSTRUCT): BOOL;
+
+@foreign
+struct HGESTUREINFO__ {
+    unused: int;
+}
+
+@foreign
+typedef HGESTUREINFO = HGESTUREINFO__*;
+
+@foreign
+struct tagGESTUREINFO {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    dwID: DWORD;
+    hwndTarget: HWND;
+    ptsLocation: POINTS;
+    dwInstanceID: DWORD;
+    dwSequenceID: DWORD;
+    ullArguments: ULONGLONG;
+    cbExtraArgs: UINT;
+}
+
+@foreign
+typedef GESTUREINFO = tagGESTUREINFO;
+
+@foreign
+typedef PGESTUREINFO = tagGESTUREINFO*;
+
+@foreign
+typedef PCGESTUREINFO = GESTUREINFO*;
+
+@foreign
+struct tagGESTURENOTIFYSTRUCT {
+    cbSize: UINT;
+    dwFlags: DWORD;
+    hwndTarget: HWND;
+    ptsLocation: POINTS;
+    dwInstanceID: DWORD;
+}
+
+@foreign
+typedef GESTURENOTIFYSTRUCT = tagGESTURENOTIFYSTRUCT;
+
+@foreign
+typedef PGESTURENOTIFYSTRUCT = tagGESTURENOTIFYSTRUCT*;
+
+@foreign
+func GetGestureInfo(hGestureInfo: HGESTUREINFO, pGestureInfo: PGESTUREINFO): BOOL;
+
+@foreign
+func GetGestureExtraArgs(hGestureInfo: HGESTUREINFO, cbExtraArgs: UINT, pExtraArgs: PBYTE): BOOL;
+
+@foreign
+func CloseGestureInfoHandle(hGestureInfo: HGESTUREINFO): BOOL;
+
+@foreign
+struct tagGESTURECONFIG {
+    dwID: DWORD;
+    dwWant: DWORD;
+    dwBlock: DWORD;
+}
+
+@foreign
+typedef GESTURECONFIG = tagGESTURECONFIG;
+
+@foreign
+typedef PGESTURECONFIG = tagGESTURECONFIG*;
+
+@foreign
+func SetGestureConfig(hwnd: HWND, dwReserved: DWORD, cIDs: UINT, pGestureConfig: PGESTURECONFIG, cbSize: UINT): BOOL;
+
+@foreign
+func GetGestureConfig(hwnd: HWND, dwReserved: DWORD, dwFlags: DWORD, pcIDs: PUINT, pGestureConfig: PGESTURECONFIG, cbSize: UINT): BOOL;
+
+@foreign
+func ShutdownBlockReasonCreate(hWnd: HWND, pwszReason: LPCWSTR): BOOL;
+
+@foreign
+func ShutdownBlockReasonQuery(hWnd: HWND, pwszBuff: LPWSTR, pcchBuff: DWORD*): BOOL;
+
+@foreign
+func ShutdownBlockReasonDestroy(hWnd: HWND): BOOL;
+
+@foreign
+enum tagINPUT_MESSAGE_DEVICE_TYPE {
+    IMDT_UNAVAILABLE = 0,
+    IMDT_KEYBOARD = 1,
+    IMDT_MOUSE = 2,
+    IMDT_TOUCH = 4,
+    IMDT_PEN = 8,
+    IMDT_TOUCHPAD = 16,
+}
+
+@foreign
+typedef INPUT_MESSAGE_DEVICE_TYPE = tagINPUT_MESSAGE_DEVICE_TYPE;
+
+@foreign
+enum tagINPUT_MESSAGE_ORIGIN_ID {
+    IMO_UNAVAILABLE = 0,
+    IMO_HARDWARE = 1,
+    IMO_INJECTED = 2,
+    IMO_SYSTEM = 4,
+}
+
+@foreign
+typedef INPUT_MESSAGE_ORIGIN_ID = tagINPUT_MESSAGE_ORIGIN_ID;
+
+@foreign
+struct tagINPUT_MESSAGE_SOURCE {
+    deviceType: INPUT_MESSAGE_DEVICE_TYPE;
+    originId: INPUT_MESSAGE_ORIGIN_ID;
+}
+
+@foreign
+typedef INPUT_MESSAGE_SOURCE = tagINPUT_MESSAGE_SOURCE;
+
+@foreign
+func GetCurrentInputMessageSource(inputMessageSource: INPUT_MESSAGE_SOURCE*): BOOL;
+
+@foreign
+func GetCIMSSM(inputMessageSource: INPUT_MESSAGE_SOURCE*): BOOL;
+
+@foreign
+enum tagAR_STATE {
+    AR_ENABLED = 0,
+    AR_DISABLED = 1,
+    AR_SUPPRESSED = 2,
+    AR_REMOTESESSION = 4,
+    AR_MULTIMON = 8,
+    AR_NOSENSOR = 16,
+    AR_NOT_SUPPORTED = 32,
+    AR_DOCKED = 64,
+    AR_LAPTOP = 128,
+}
+
+@foreign
+typedef AR_STATE = tagAR_STATE;
+
+@foreign
+typedef PAR_STATE = tagAR_STATE*;
+
+@foreign
+enum ORIENTATION_PREFERENCE {
+    ORIENTATION_PREFERENCE_NONE = 0,
+    ORIENTATION_PREFERENCE_LANDSCAPE = 1,
+    ORIENTATION_PREFERENCE_PORTRAIT = 2,
+    ORIENTATION_PREFERENCE_LANDSCAPE_FLIPPED = 4,
+    ORIENTATION_PREFERENCE_PORTRAIT_FLIPPED = 8,
+}
+
+@foreign
+func GetAutoRotationState(pState: PAR_STATE): BOOL;
+
+@foreign
+func GetDisplayAutoRotationPreferences(pOrientation: ORIENTATION_PREFERENCE*): BOOL;
+
+@foreign
+func GetDisplayAutoRotationPreferencesByProcessId(dwProcessId: DWORD, pOrientation: ORIENTATION_PREFERENCE*, fRotateScreen: BOOL*): BOOL;
+
+@foreign
+func SetDisplayAutoRotationPreferences(orientation: ORIENTATION_PREFERENCE): BOOL;
+
+@foreign
+func IsImmersiveProcess(hProcess: HANDLE): BOOL;
+
+@foreign
+func SetProcessRestrictionExemption(fEnableExemption: BOOL): BOOL;
+

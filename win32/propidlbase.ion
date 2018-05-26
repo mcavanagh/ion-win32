@@ -1,0 +1,408 @@
+#foreign(header = "<propidlbase.h>")
+
+@foreign
+struct tagVersionedStream {
+    guidVersion: GUID;
+    pStream: IStream*;
+}
+
+@foreign
+typedef VERSIONEDSTREAM = tagVersionedStream;
+
+@foreign
+typedef LPVERSIONEDSTREAM = tagVersionedStream*;
+
+@foreign
+typedef PROPVARIANT = tagPROPVARIANT;
+
+@foreign
+struct tagCAC {
+    cElems: ULONG;
+    pElems: CHAR*;
+}
+
+@foreign
+typedef CAC = tagCAC;
+
+@foreign
+struct tagCAUB {
+    cElems: ULONG;
+    pElems: UCHAR*;
+}
+
+@foreign
+typedef CAUB = tagCAUB;
+
+@foreign
+struct tagCAI {
+    cElems: ULONG;
+    pElems: SHORT*;
+}
+
+@foreign
+typedef CAI = tagCAI;
+
+@foreign
+struct tagCAUI {
+    cElems: ULONG;
+    pElems: USHORT*;
+}
+
+@foreign
+typedef CAUI = tagCAUI;
+
+@foreign
+struct tagCAL {
+    cElems: ULONG;
+    pElems: LONG*;
+}
+
+@foreign
+typedef CAL = tagCAL;
+
+@foreign
+struct tagCAUL {
+    cElems: ULONG;
+    pElems: ULONG*;
+}
+
+@foreign
+typedef CAUL = tagCAUL;
+
+@foreign
+struct tagCAFLT {
+    cElems: ULONG;
+    pElems: FLOAT*;
+}
+
+@foreign
+typedef CAFLT = tagCAFLT;
+
+@foreign
+struct tagCADBL {
+    cElems: ULONG;
+    pElems: DOUBLE*;
+}
+
+@foreign
+typedef CADBL = tagCADBL;
+
+@foreign
+struct tagCACY {
+    cElems: ULONG;
+    pElems: CY*;
+}
+
+@foreign
+typedef CACY = tagCACY;
+
+@foreign
+struct tagCADATE {
+    cElems: ULONG;
+    pElems: DATE*;
+}
+
+@foreign
+typedef CADATE = tagCADATE;
+
+@foreign
+struct tagCABSTR {
+    cElems: ULONG;
+    pElems: BSTR*;
+}
+
+@foreign
+typedef CABSTR = tagCABSTR;
+
+@foreign
+struct tagCABSTRBLOB {
+    cElems: ULONG;
+    pElems: BSTRBLOB*;
+}
+
+@foreign
+typedef CABSTRBLOB = tagCABSTRBLOB;
+
+@foreign
+struct tagCABOOL {
+    cElems: ULONG;
+    pElems: VARIANT_BOOL*;
+}
+
+@foreign
+typedef CABOOL = tagCABOOL;
+
+@foreign
+struct tagCASCODE {
+    cElems: ULONG;
+    pElems: SCODE*;
+}
+
+@foreign
+typedef CASCODE = tagCASCODE;
+
+@foreign
+struct tagCAPROPVARIANT {
+    cElems: ULONG;
+    pElems: PROPVARIANT*;
+}
+
+@foreign
+typedef CAPROPVARIANT = tagCAPROPVARIANT;
+
+@foreign
+struct tagCAH {
+    cElems: ULONG;
+    pElems: LARGE_INTEGER*;
+}
+
+@foreign
+typedef CAH = tagCAH;
+
+@foreign
+struct tagCAUH {
+    cElems: ULONG;
+    pElems: ULARGE_INTEGER*;
+}
+
+@foreign
+typedef CAUH = tagCAUH;
+
+@foreign
+struct tagCALPSTR {
+    cElems: ULONG;
+    pElems: LPSTR*;
+}
+
+@foreign
+typedef CALPSTR = tagCALPSTR;
+
+@foreign
+struct tagCALPWSTR {
+    cElems: ULONG;
+    pElems: LPWSTR*;
+}
+
+@foreign
+typedef CALPWSTR = tagCALPWSTR;
+
+@foreign
+struct tagCAFILETIME {
+    cElems: ULONG;
+    pElems: FILETIME*;
+}
+
+@foreign
+typedef CAFILETIME = tagCAFILETIME;
+
+@foreign
+struct tagCACLIPDATA {
+    cElems: ULONG;
+    pElems: CLIPDATA*;
+}
+
+@foreign
+typedef CACLIPDATA = tagCACLIPDATA;
+
+@foreign
+struct tagCACLSID {
+    cElems: ULONG;
+    pElems: CLSID*;
+}
+
+@foreign
+typedef CACLSID = tagCACLSID;
+
+@foreign
+typedef PROPVAR_PAD1 = WORD;
+
+@foreign
+typedef PROPVAR_PAD2 = WORD;
+
+@foreign
+typedef PROPVAR_PAD3 = WORD;
+
+/*
+@PROBLEM Nested struct def at line 294, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\propidlbase.h
+
+@foreign
+struct tagPROPVARIANT {
+    (null): (null);
+}
+*/
+
+@foreign
+typedef LPPROPVARIANT = tagPROPVARIANT*;
+
+/*
+@PROBLEM Nested struct def at line 441, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\propidlbase.h
+
+@foreign
+struct tagPROPSPEC {
+    ulKind: ULONG;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 441, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\propidlbase.h
+
+tagPROPSPEC
+*/
+
+@foreign
+struct tagSTATPROPSTG {
+    lpwstrName: LPOLESTR;
+    propid: PROPID;
+    vt: VARTYPE;
+}
+
+@foreign
+typedef STATPROPSTG = tagSTATPROPSTG;
+
+@foreign
+struct tagSTATPROPSETSTG {
+    fmtid: FMTID;
+    clsid: CLSID;
+    grfFlags: DWORD;
+    mtime: FILETIME;
+    ctime: FILETIME;
+    atime: FILETIME;
+    dwOSVersion: DWORD;
+}
+
+@foreign
+typedef STATPROPSETSTG = tagSTATPROPSETSTG;
+
+@foreign
+struct IPropertyStorageVtbl {
+    QueryInterface: func(This: IPropertyStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPropertyStorage*): ULONG;
+    Release: func(This: IPropertyStorage*): ULONG;
+    ReadMultiple: func(This: IPropertyStorage*, cpspec: ULONG, rgpspec: PROPSPEC*, rgpropvar: PROPVARIANT*): HRESULT;
+    WriteMultiple: func(This: IPropertyStorage*, cpspec: ULONG, rgpspec: PROPSPEC*, rgpropvar: PROPVARIANT*, propidNameFirst: PROPID): HRESULT;
+    DeleteMultiple: func(This: IPropertyStorage*, cpspec: ULONG, rgpspec: PROPSPEC*): HRESULT;
+    ReadPropertyNames: func(This: IPropertyStorage*, cpropid: ULONG, rgpropid: PROPID*, rglpwstrName: LPOLESTR*): HRESULT;
+    WritePropertyNames: func(This: IPropertyStorage*, cpropid: ULONG, rgpropid: PROPID*, rglpwstrName: LPOLESTR*): HRESULT;
+    DeletePropertyNames: func(This: IPropertyStorage*, cpropid: ULONG, rgpropid: PROPID*): HRESULT;
+    Commit: func(This: IPropertyStorage*, grfCommitFlags: DWORD): HRESULT;
+    Revert: func(This: IPropertyStorage*): HRESULT;
+    Enum: func(This: IPropertyStorage*, ppenum: IEnumSTATPROPSTG**): HRESULT;
+    SetTimes: func(This: IPropertyStorage*, pctime: FILETIME*, patime: FILETIME*, pmtime: FILETIME*): HRESULT;
+    SetClass: func(This: IPropertyStorage*, clsid: IID* const): HRESULT;
+    Stat: func(This: IPropertyStorage*, pstatpsstg: STATPROPSETSTG*): HRESULT;
+}
+
+@foreign
+struct IPropertyStorage {
+    lpVtbl: IPropertyStorageVtbl*;
+}
+
+@foreign
+typedef LPPROPERTYSETSTORAGE = IPropertySetStorage*;
+
+@foreign
+struct IPropertySetStorageVtbl {
+    QueryInterface: func(This: IPropertySetStorage*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IPropertySetStorage*): ULONG;
+    Release: func(This: IPropertySetStorage*): ULONG;
+    Create: func(This: IPropertySetStorage*, rfmtid: IID* const, pclsid: CLSID*, grfFlags: DWORD, grfMode: DWORD, ppprstg: IPropertyStorage**): HRESULT;
+    Open: func(This: IPropertySetStorage*, rfmtid: IID* const, grfMode: DWORD, ppprstg: IPropertyStorage**): HRESULT;
+    Delete: func(This: IPropertySetStorage*, rfmtid: IID* const): HRESULT;
+    Enum: func(This: IPropertySetStorage*, ppenum: IEnumSTATPROPSETSTG**): HRESULT;
+}
+
+@foreign
+struct IPropertySetStorage {
+    lpVtbl: IPropertySetStorageVtbl*;
+}
+
+@foreign
+typedef LPENUMSTATPROPSTG = IEnumSTATPROPSTG*;
+
+@foreign
+struct IEnumSTATPROPSTGVtbl {
+    QueryInterface: func(This: IEnumSTATPROPSTG*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumSTATPROPSTG*): ULONG;
+    Release: func(This: IEnumSTATPROPSTG*): ULONG;
+    Next: func(This: IEnumSTATPROPSTG*, celt: ULONG, rgelt: STATPROPSTG*, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumSTATPROPSTG*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumSTATPROPSTG*): HRESULT;
+    Clone: func(This: IEnumSTATPROPSTG*, ppenum: IEnumSTATPROPSTG**): HRESULT;
+}
+
+@foreign
+struct IEnumSTATPROPSTG {
+    lpVtbl: IEnumSTATPROPSTGVtbl*;
+}
+
+@foreign
+func IEnumSTATPROPSTG_RemoteNext_Proxy(This: IEnumSTATPROPSTG*, celt: ULONG, rgelt: STATPROPSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATPROPSTG_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPENUMSTATPROPSETSTG = IEnumSTATPROPSETSTG*;
+
+@foreign
+struct IEnumSTATPROPSETSTGVtbl {
+    QueryInterface: func(This: IEnumSTATPROPSETSTG*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IEnumSTATPROPSETSTG*): ULONG;
+    Release: func(This: IEnumSTATPROPSETSTG*): ULONG;
+    Next: func(This: IEnumSTATPROPSETSTG*, celt: ULONG, rgelt: STATPROPSETSTG*, pceltFetched: ULONG*): HRESULT;
+    Skip: func(This: IEnumSTATPROPSETSTG*, celt: ULONG): HRESULT;
+    Reset: func(This: IEnumSTATPROPSETSTG*): HRESULT;
+    Clone: func(This: IEnumSTATPROPSETSTG*, ppenum: IEnumSTATPROPSETSTG**): HRESULT;
+}
+
+@foreign
+struct IEnumSTATPROPSETSTG {
+    lpVtbl: IEnumSTATPROPSETSTGVtbl*;
+}
+
+@foreign
+func IEnumSTATPROPSETSTG_RemoteNext_Proxy(This: IEnumSTATPROPSETSTG*, celt: ULONG, rgelt: STATPROPSETSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATPROPSETSTG_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+typedef LPPROPERTYSTORAGE = IPropertyStorage*;
+
+@foreign
+func LPSAFEARRAY_UserSize(arg0: ulong*, arg1: ulong, arg2: LPSAFEARRAY*): ulong;
+
+@foreign
+func LPSAFEARRAY_UserMarshal(arg0: ulong*, arg1: uchar*, arg2: LPSAFEARRAY*): uchar*;
+
+@foreign
+func LPSAFEARRAY_UserUnmarshal(arg0: ulong*, arg1: uchar*, arg2: LPSAFEARRAY*): uchar*;
+
+@foreign
+func LPSAFEARRAY_UserFree(arg0: ulong*, arg1: LPSAFEARRAY*);
+
+@foreign
+func LPSAFEARRAY_UserSize64(arg0: ulong*, arg1: ulong, arg2: LPSAFEARRAY*): ulong;
+
+@foreign
+func LPSAFEARRAY_UserMarshal64(arg0: ulong*, arg1: uchar*, arg2: LPSAFEARRAY*): uchar*;
+
+@foreign
+func LPSAFEARRAY_UserUnmarshal64(arg0: ulong*, arg1: uchar*, arg2: LPSAFEARRAY*): uchar*;
+
+@foreign
+func LPSAFEARRAY_UserFree64(arg0: ulong*, arg1: LPSAFEARRAY*);
+
+@foreign
+func IEnumSTATPROPSTG_Next_Proxy(This: IEnumSTATPROPSTG*, celt: ULONG, rgelt: STATPROPSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATPROPSTG_Next_Stub(This: IEnumSTATPROPSTG*, celt: ULONG, rgelt: STATPROPSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATPROPSETSTG_Next_Proxy(This: IEnumSTATPROPSETSTG*, celt: ULONG, rgelt: STATPROPSETSTG*, pceltFetched: ULONG*): HRESULT;
+
+@foreign
+func IEnumSTATPROPSETSTG_Next_Stub(This: IEnumSTATPROPSETSTG*, celt: ULONG, rgelt: STATPROPSETSTG*, pceltFetched: ULONG*): HRESULT;
+

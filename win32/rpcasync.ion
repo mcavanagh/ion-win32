@@ -1,0 +1,437 @@
+#foreign(header = "<rpcasync.h>")
+
+@foreign
+enum _RPC_NOTIFICATION_TYPES {
+    RpcNotificationTypeNone,
+    RpcNotificationTypeEvent,
+    RpcNotificationTypeApc,
+    RpcNotificationTypeIoc,
+    RpcNotificationTypeHwnd,
+    RpcNotificationTypeCallback,
+}
+
+@foreign
+typedef RPC_NOTIFICATION_TYPES = _RPC_NOTIFICATION_TYPES;
+
+@foreign
+enum _RPC_ASYNC_EVENT {
+    RpcCallComplete,
+    RpcSendComplete,
+    RpcReceiveComplete,
+    RpcClientDisconnect,
+    RpcClientCancel,
+}
+
+@foreign
+typedef RPC_ASYNC_EVENT = _RPC_ASYNC_EVENT;
+
+@foreign
+typedef RPCNOTIFICATION_ROUTINE = func(pAsync: _RPC_ASYNC_STATE*, Context: void*, Event: RPC_ASYNC_EVENT);
+
+@foreign
+typedef PFN_RPCNOTIFICATION_ROUTINE = RPCNOTIFICATION_ROUTINE*;
+
+/*
+@PROBLEM Nested struct def at line 101, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+
+@foreign
+union _RPC_ASYNC_NOTIFICATION_INFO {
+    APC: (null);
+    IOC: (null);
+    (null): (null);
+    hEvent: HANDLE;
+    NotificationRoutine: PFN_RPCNOTIFICATION_ROUTINE;
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 101, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+
+_RPC_ASYNC_NOTIFICATION_INFO
+*/
+
+@foreign
+typedef PRPC_ASYNC_NOTIFICATION_INFO = _RPC_ASYNC_NOTIFICATION_INFO*;
+
+@foreign
+struct _RPC_ASYNC_STATE {
+    Size: uint;
+    Signature: ulong;
+    Lock: long;
+    Flags: ulong;
+    StubInfo: void*;
+    UserInfo: void*;
+    RuntimeInfo: void*;
+    Event: RPC_ASYNC_EVENT;
+    NotificationType: RPC_NOTIFICATION_TYPES;
+    u: RPC_ASYNC_NOTIFICATION_INFO;
+    Reserved: LONG_PTR[4];
+}
+
+@foreign
+typedef RPC_ASYNC_STATE = _RPC_ASYNC_STATE;
+
+@foreign
+typedef PRPC_ASYNC_STATE = _RPC_ASYNC_STATE*;
+
+@foreign
+func RpcAsyncRegisterInfo(pAsync: PRPC_ASYNC_STATE): RPC_STATUS;
+
+@foreign
+func RpcAsyncInitializeHandle(pAsync: PRPC_ASYNC_STATE, Size: uint): RPC_STATUS;
+
+@foreign
+func RpcAsyncGetCallStatus(pAsync: PRPC_ASYNC_STATE): RPC_STATUS;
+
+@foreign
+func RpcAsyncCompleteCall(pAsync: PRPC_ASYNC_STATE, Reply: void*): RPC_STATUS;
+
+@foreign
+func RpcAsyncAbortCall(pAsync: PRPC_ASYNC_STATE, ExceptionCode: ulong): RPC_STATUS;
+
+@foreign
+func RpcAsyncCancelCall(pAsync: PRPC_ASYNC_STATE, fAbort: BOOL): RPC_STATUS;
+
+@foreign
+enum tagExtendedErrorParamTypes {
+    eeptAnsiString = 1,
+    eeptUnicodeString,
+    eeptLongVal,
+    eeptShortVal,
+    eeptPointerVal,
+    eeptNone,
+    eeptBinary,
+}
+
+@foreign
+typedef ExtendedErrorParamTypes = tagExtendedErrorParamTypes;
+
+@foreign
+struct tagBinaryParam {
+    Buffer: void*;
+    Size: short;
+}
+
+@foreign
+typedef BinaryParam = tagBinaryParam;
+
+/*
+@PROBLEM Nested struct def at line 259, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+
+@foreign
+struct tagRPC_EE_INFO_PARAM {
+    ParameterType: ExtendedErrorParamTypes;
+    u: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 259, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+
+tagRPC_EE_INFO_PARAM
+*/
+
+/*
+@PROBLEM Nested struct def at line 282, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+
+@foreign
+struct tagRPC_EXTENDED_ERROR_INFO {
+    Version: ULONG;
+    ComputerName: LPWSTR;
+    ProcessID: ULONG;
+    u: (null);
+    GeneratingComponent: ULONG;
+    Status: ULONG;
+    DetectionLocation: USHORT;
+    Flags: USHORT;
+    NumberOfParameters: int;
+    Parameters: RPC_EE_INFO_PARAM[4];
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 282, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+
+tagRPC_EXTENDED_ERROR_INFO
+*/
+
+@foreign
+struct tagRPC_ERROR_ENUM_HANDLE {
+    Signature: ULONG;
+    CurrentPos: void*;
+    Head: void*;
+}
+
+@foreign
+typedef RPC_ERROR_ENUM_HANDLE = tagRPC_ERROR_ENUM_HANDLE;
+
+@foreign
+func RpcErrorStartEnumeration(EnumHandle: RPC_ERROR_ENUM_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcErrorGetNextRecord(EnumHandle: RPC_ERROR_ENUM_HANDLE*, CopyStrings: BOOL, ErrorInfo: RPC_EXTENDED_ERROR_INFO*): RPC_STATUS;
+
+@foreign
+func RpcErrorEndEnumeration(EnumHandle: RPC_ERROR_ENUM_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcErrorResetEnumeration(EnumHandle: RPC_ERROR_ENUM_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcErrorGetNumberOfRecords(EnumHandle: RPC_ERROR_ENUM_HANDLE*, Records: int*): RPC_STATUS;
+
+@foreign
+func RpcErrorSaveErrorInfo(EnumHandle: RPC_ERROR_ENUM_HANDLE*, ErrorBlob: PVOID*, BlobSize: usize*): RPC_STATUS;
+
+@foreign
+func RpcErrorLoadErrorInfo(ErrorBlob: PVOID, BlobSize: usize, EnumHandle: RPC_ERROR_ENUM_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcErrorAddRecord(ErrorInfo: RPC_EXTENDED_ERROR_INFO*): RPC_STATUS;
+
+@foreign
+func RpcErrorClearInformation();
+
+@foreign
+func RpcAsyncCleanupThread(dwTimeout: DWORD): RPC_STATUS;
+
+@foreign
+func RpcGetAuthorizationContextForClient(ClientBinding: RPC_BINDING_HANDLE, ImpersonateOnReturn: BOOL, Reserved1: PVOID, pExpirationTime: PLARGE_INTEGER, Reserved2: LUID, Reserved3: DWORD, Reserved4: PVOID, pAuthzClientContext: PVOID*): RPC_STATUS;
+
+@foreign
+func RpcFreeAuthorizationContext(pAuthzClientContext: PVOID*): RPC_STATUS;
+
+@foreign
+func RpcSsContextLockExclusive(ServerBindingHandle: RPC_BINDING_HANDLE, UserContext: PVOID): RPC_STATUS;
+
+@foreign
+func RpcSsContextLockShared(ServerBindingHandle: RPC_BINDING_HANDLE, UserContext: PVOID): RPC_STATUS;
+
+@foreign
+enum tagRpcLocalAddressFormat {
+    rlafInvalid = 0,
+    rlafIPv4,
+    rlafIPv6,
+}
+
+@foreign
+typedef RpcLocalAddressFormat = tagRpcLocalAddressFormat;
+
+@foreign
+struct _RPC_CALL_LOCAL_ADDRESS_V1 {
+    Version: uint;
+    Buffer: void*;
+    BufferSize: ulong;
+    AddressFormat: RpcLocalAddressFormat;
+}
+
+@foreign
+typedef RPC_CALL_LOCAL_ADDRESS_V1 = _RPC_CALL_LOCAL_ADDRESS_V1;
+
+@foreign
+typedef PRPC_CALL_LOCAL_ADDRESS_V1 = _RPC_CALL_LOCAL_ADDRESS_V1*;
+
+@foreign
+struct tagRPC_CALL_ATTRIBUTES_V1_W {
+    Version: uint;
+    Flags: ulong;
+    ServerPrincipalNameBufferLength: ulong;
+    ServerPrincipalName: ushort*;
+    ClientPrincipalNameBufferLength: ulong;
+    ClientPrincipalName: ushort*;
+    AuthenticationLevel: ulong;
+    AuthenticationService: ulong;
+    NullSession: BOOL;
+}
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES_V1_W = tagRPC_CALL_ATTRIBUTES_V1_W;
+
+@foreign
+struct tagRPC_CALL_ATTRIBUTES_V1_A {
+    Version: uint;
+    Flags: ulong;
+    ServerPrincipalNameBufferLength: ulong;
+    ServerPrincipalName: uchar*;
+    ClientPrincipalNameBufferLength: ulong;
+    ClientPrincipalName: uchar*;
+    AuthenticationLevel: ulong;
+    AuthenticationService: ulong;
+    NullSession: BOOL;
+}
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES_V1_A = tagRPC_CALL_ATTRIBUTES_V1_A;
+
+@foreign
+enum tagRpcCallType {
+    rctInvalid = 0,
+    rctNormal,
+    rctTraining,
+    rctGuaranteed,
+}
+
+@foreign
+typedef RpcCallType = tagRpcCallType;
+
+@foreign
+enum tagRpcCallClientLocality {
+    rcclInvalid = 0,
+    rcclLocal,
+    rcclRemote,
+    rcclClientUnknownLocality,
+}
+
+@foreign
+typedef RpcCallClientLocality = tagRpcCallClientLocality;
+
+@foreign
+struct tagRPC_CALL_ATTRIBUTES_V2_W {
+    Version: uint;
+    Flags: ulong;
+    ServerPrincipalNameBufferLength: ulong;
+    ServerPrincipalName: ushort*;
+    ClientPrincipalNameBufferLength: ulong;
+    ClientPrincipalName: ushort*;
+    AuthenticationLevel: ulong;
+    AuthenticationService: ulong;
+    NullSession: BOOL;
+    KernelModeCaller: BOOL;
+    ProtocolSequence: ulong;
+    IsClientLocal: RpcCallClientLocality;
+    ClientPID: HANDLE;
+    CallStatus: ulong;
+    CallType: RpcCallType;
+    CallLocalAddress: RPC_CALL_LOCAL_ADDRESS_V1*;
+    OpNum: ushort;
+    InterfaceUuid: UUID;
+}
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES_V2_W = tagRPC_CALL_ATTRIBUTES_V2_W;
+
+@foreign
+struct tagRPC_CALL_ATTRIBUTES_V2_A {
+    Version: uint;
+    Flags: ulong;
+    ServerPrincipalNameBufferLength: ulong;
+    ServerPrincipalName: uchar*;
+    ClientPrincipalNameBufferLength: ulong;
+    ClientPrincipalName: uchar*;
+    AuthenticationLevel: ulong;
+    AuthenticationService: ulong;
+    NullSession: BOOL;
+    KernelModeCaller: BOOL;
+    ProtocolSequence: ulong;
+    IsClientLocal: ulong;
+    ClientPID: HANDLE;
+    CallStatus: ulong;
+    CallType: RpcCallType;
+    CallLocalAddress: RPC_CALL_LOCAL_ADDRESS_V1*;
+    OpNum: ushort;
+    InterfaceUuid: UUID;
+}
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES_V2_A = tagRPC_CALL_ATTRIBUTES_V2_A;
+
+@foreign
+struct tagRPC_CALL_ATTRIBUTES_V3_W {
+    Version: uint;
+    Flags: ulong;
+    ServerPrincipalNameBufferLength: ulong;
+    ServerPrincipalName: ushort*;
+    ClientPrincipalNameBufferLength: ulong;
+    ClientPrincipalName: ushort*;
+    AuthenticationLevel: ulong;
+    AuthenticationService: ulong;
+    NullSession: BOOL;
+    KernelModeCaller: BOOL;
+    ProtocolSequence: ulong;
+    IsClientLocal: RpcCallClientLocality;
+    ClientPID: HANDLE;
+    CallStatus: ulong;
+    CallType: RpcCallType;
+    CallLocalAddress: RPC_CALL_LOCAL_ADDRESS_V1*;
+    OpNum: ushort;
+    InterfaceUuid: UUID;
+    ClientIdentifierBufferLength: ulong;
+    ClientIdentifier: uchar*;
+}
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES_V3_W = tagRPC_CALL_ATTRIBUTES_V3_W;
+
+@foreign
+struct tagRPC_CALL_ATTRIBUTES_V3_A {
+    Version: uint;
+    Flags: ulong;
+    ServerPrincipalNameBufferLength: ulong;
+    ServerPrincipalName: uchar*;
+    ClientPrincipalNameBufferLength: ulong;
+    ClientPrincipalName: uchar*;
+    AuthenticationLevel: ulong;
+    AuthenticationService: ulong;
+    NullSession: BOOL;
+    KernelModeCaller: BOOL;
+    ProtocolSequence: ulong;
+    IsClientLocal: ulong;
+    ClientPID: HANDLE;
+    CallStatus: ulong;
+    CallType: RpcCallType;
+    CallLocalAddress: RPC_CALL_LOCAL_ADDRESS_V1*;
+    OpNum: ushort;
+    InterfaceUuid: UUID;
+    ClientIdentifierBufferLength: ulong;
+    ClientIdentifier: uchar*;
+}
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES_V3_A = tagRPC_CALL_ATTRIBUTES_V3_A;
+
+@foreign
+func RpcServerInqCallAttributesW(ClientBinding: RPC_BINDING_HANDLE, RpcCallAttributes: void*): RPC_STATUS;
+
+@foreign
+func RpcServerInqCallAttributes(ClientBinding: RPC_BINDING_HANDLE, RpcCallAttributes: void*): RPC_STATUS;
+
+@foreign
+func RpcServerInqCallAttributesA(ClientBinding: RPC_BINDING_HANDLE, RpcCallAttributes: void*): RPC_STATUS;
+
+@foreign
+typedef RPC_CALL_ATTRIBUTES = RPC_CALL_ATTRIBUTES_V3_A;
+
+@foreign
+enum _RPC_NOTIFICATIONS {
+    RpcNotificationCallNone = 0,
+    RpcNotificationClientDisconnect = 1,
+    RpcNotificationCallCancel = 2,
+}
+
+@foreign
+typedef RPC_NOTIFICATIONS = _RPC_NOTIFICATIONS;
+
+@foreign
+func RpcServerSubscribeForNotification(Binding: RPC_BINDING_HANDLE, Notification: RPC_NOTIFICATIONS, NotificationType: RPC_NOTIFICATION_TYPES, NotificationInfo: RPC_ASYNC_NOTIFICATION_INFO*): RPC_STATUS;
+
+@foreign
+func RpcServerUnsubscribeForNotification(Binding: RPC_BINDING_HANDLE, Notification: RPC_NOTIFICATIONS, NotificationsQueued: ulong*): RPC_STATUS;
+
+@foreign
+func RpcBindingBind(pAsync: PRPC_ASYNC_STATE, Binding: RPC_BINDING_HANDLE, IfSpec: RPC_IF_HANDLE): RPC_STATUS;
+
+@foreign
+func RpcBindingUnbind(Binding: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func I_RpcAsyncSetHandle(Message: PRPC_MESSAGE, pAsync: PRPC_ASYNC_STATE): RPC_STATUS;
+
+@foreign
+func I_RpcAsyncAbortCall(pAsync: PRPC_ASYNC_STATE, ExceptionCode: ulong): RPC_STATUS;
+
+@foreign
+func I_RpcExceptionFilter(ExceptionCode: ulong): int;
+
+@foreign
+func I_RpcBindingInqClientTokenAttributes(Binding: RPC_BINDING_HANDLE, TokenId: LUID*, AuthenticationId: LUID*, ModifiedId: LUID*): RPC_STATUS;
+

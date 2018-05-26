@@ -1,0 +1,61 @@
+#foreign(header = "<corecrt.h>")
+
+@foreign
+typedef __crt_bool = int;
+
+@foreign
+func _invalid_parameter_noinfo();
+
+@foreign
+func _invalid_parameter_noinfo_noreturn();
+
+@foreign
+func _invoke_watson(_Expression: wchar*, _FunctionName: wchar*, _FileName: wchar*, _LineNo: uint, _Reserved: uintptr);
+
+@foreign
+typedef errno_t = int;
+
+@foreign
+typedef wint_t = ushort;
+
+@foreign
+typedef wctype_t = ushort;
+
+@foreign
+typedef __time32_t = long;
+
+@foreign
+typedef __time64_t = llong;
+
+@foreign
+struct __crt_locale_data_public {
+    _locale_pctype: ushort const*;
+    _locale_mb_cur_max: int;
+    _locale_lc_codepage: uint;
+}
+
+@foreign
+struct __crt_locale_pointers {
+    locinfo: __crt_locale_data*;
+    mbcinfo: __crt_multibyte_data*;
+}
+
+@foreign
+typedef _locale_t = __crt_locale_pointers*;
+
+@foreign
+struct _Mbstatet {
+    _Wchar: ulong;
+    _Byte: ushort;
+    _State: ushort;
+}
+
+@foreign
+typedef mbstate_t = _Mbstatet;
+
+@foreign
+typedef rsize_t = usize;
+
+@foreign
+func __pctype_func(): ushort const*;
+

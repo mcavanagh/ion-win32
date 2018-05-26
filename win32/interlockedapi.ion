@@ -1,0 +1,20 @@
+#foreign(header = "<interlockedapi.h>")
+
+@foreign
+func InitializeSListHead(ListHead: PSLIST_HEADER);
+
+@foreign
+func InterlockedPopEntrySList(ListHead: PSLIST_HEADER): PSLIST_ENTRY;
+
+@foreign
+func InterlockedPushEntrySList(ListHead: PSLIST_HEADER, ListEntry: PSLIST_ENTRY): PSLIST_ENTRY;
+
+@foreign
+func InterlockedPushListSListEx(ListHead: PSLIST_HEADER, List: PSLIST_ENTRY, ListEnd: PSLIST_ENTRY, Count: ULONG): PSLIST_ENTRY;
+
+@foreign
+func InterlockedFlushSList(ListHead: PSLIST_HEADER): PSLIST_ENTRY;
+
+@foreign
+func QueryDepthSList(ListHead: PSLIST_HEADER): USHORT;
+

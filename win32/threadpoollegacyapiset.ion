@@ -1,0 +1,23 @@
+#foreign(header = "<threadpoollegacyapiset.h>")
+
+@foreign
+func QueueUserWorkItem(Function: LPTHREAD_START_ROUTINE, Context: PVOID, Flags: ULONG): BOOL;
+
+@foreign
+func UnregisterWaitEx(WaitHandle: HANDLE, CompletionEvent: HANDLE): BOOL;
+
+@foreign
+func CreateTimerQueue(): HANDLE;
+
+@foreign
+func CreateTimerQueueTimer(phNewTimer: PHANDLE, TimerQueue: HANDLE, Callback: WAITORTIMERCALLBACK, Parameter: PVOID, DueTime: DWORD, Period: DWORD, Flags: ULONG): BOOL;
+
+@foreign
+func ChangeTimerQueueTimer(TimerQueue: HANDLE, Timer: HANDLE, DueTime: ULONG, Period: ULONG): BOOL;
+
+@foreign
+func DeleteTimerQueueTimer(TimerQueue: HANDLE, Timer: HANDLE, CompletionEvent: HANDLE): BOOL;
+
+@foreign
+func DeleteTimerQueueEx(TimerQueue: HANDLE, CompletionEvent: HANDLE): BOOL;
+

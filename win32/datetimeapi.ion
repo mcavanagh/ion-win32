@@ -1,0 +1,29 @@
+#foreign(header = "<datetimeapi.h>")
+
+@foreign
+func GetDateFormatA(Locale: LCID, dwFlags: DWORD, lpDate: SYSTEMTIME*, lpFormat: LPCSTR, lpDateStr: LPSTR, cchDate: int): int;
+
+@foreign
+func GetDateFormat(Locale: LCID, dwFlags: DWORD, lpDate: SYSTEMTIME*, lpFormat: LPCSTR, lpDateStr: LPSTR, cchDate: int): int;
+
+@foreign
+func GetDateFormatW(Locale: LCID, dwFlags: DWORD, lpDate: SYSTEMTIME*, lpFormat: LPCWSTR, lpDateStr: LPWSTR, cchDate: int): int;
+
+@foreign
+func GetTimeFormatA(Locale: LCID, dwFlags: DWORD, lpTime: SYSTEMTIME*, lpFormat: LPCSTR, lpTimeStr: LPSTR, cchTime: int): int;
+
+@foreign
+func GetTimeFormat(Locale: LCID, dwFlags: DWORD, lpTime: SYSTEMTIME*, lpFormat: LPCSTR, lpTimeStr: LPSTR, cchTime: int): int;
+
+@foreign
+func GetTimeFormatW(Locale: LCID, dwFlags: DWORD, lpTime: SYSTEMTIME*, lpFormat: LPCWSTR, lpTimeStr: LPWSTR, cchTime: int): int;
+
+@foreign
+func GetTimeFormatEx(lpLocaleName: LPCWSTR, dwFlags: DWORD, lpTime: SYSTEMTIME*, lpFormat: LPCWSTR, lpTimeStr: LPWSTR, cchTime: int): int;
+
+@foreign
+func GetDateFormatEx(lpLocaleName: LPCWSTR, dwFlags: DWORD, lpDate: SYSTEMTIME*, lpFormat: LPCWSTR, lpDateStr: LPWSTR, cchDate: int, lpCalendar: LPCWSTR): int;
+
+@foreign
+func GetDurationFormatEx(lpLocaleName: LPCWSTR, dwFlags: DWORD, lpDuration: SYSTEMTIME*, ullDuration: ULONGLONG, lpFormat: LPCWSTR, lpDurationStr: LPWSTR, cchDuration: int): int;
+

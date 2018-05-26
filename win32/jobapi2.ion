@@ -1,0 +1,39 @@
+#foreign(header = "<jobapi2.h>")
+
+@foreign
+struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
+    MaxIops: LONG64;
+    MaxBandwidth: LONG64;
+    ReservationIops: LONG64;
+    VolumeName: PCWSTR;
+    BaseIoSize: ULONG;
+    ControlFlags: ULONG;
+}
+
+@foreign
+func CreateJobObjectW(lpJobAttributes: LPSECURITY_ATTRIBUTES, lpName: LPCWSTR): HANDLE;
+
+@foreign
+func FreeMemoryJobObject(Buffer: void*);
+
+@foreign
+func OpenJobObjectW(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpName: LPCWSTR): HANDLE;
+
+@foreign
+func AssignProcessToJobObject(hJob: HANDLE, hProcess: HANDLE): BOOL;
+
+@foreign
+func TerminateJobObject(hJob: HANDLE, uExitCode: UINT): BOOL;
+
+@foreign
+func SetInformationJobObject(hJob: HANDLE, JobObjectInformationClass: JOBOBJECTINFOCLASS, lpJobObjectInformation: LPVOID, cbJobObjectInformationLength: DWORD): BOOL;
+
+@foreign
+func SetIoRateControlInformationJobObject(hJob: HANDLE, IoRateControlInfo: JOBOBJECT_IO_RATE_CONTROL_INFORMATION*): DWORD;
+
+@foreign
+func QueryInformationJobObject(hJob: HANDLE, JobObjectInformationClass: JOBOBJECTINFOCLASS, lpJobObjectInformation: LPVOID, cbJobObjectInformationLength: DWORD, lpReturnLength: LPDWORD): BOOL;
+
+@foreign
+func QueryIoRateControlInformationJobObject(hJob: HANDLE, VolumeName: PCWSTR, InfoBlocks: JOBOBJECT_IO_RATE_CONTROL_INFORMATION**, InfoBlockCount: ULONG*): DWORD;
+

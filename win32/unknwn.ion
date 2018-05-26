@@ -1,0 +1,94 @@
+#foreign(header = "<unknwn.h>")
+
+@foreign
+typedef LPUNKNOWN = IUnknown*;
+
+@foreign
+struct IUnknownVtbl {
+    QueryInterface: func(This: IUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IUnknown*): ULONG;
+    Release: func(This: IUnknown*): ULONG;
+}
+
+@foreign
+struct IUnknown {
+    lpVtbl: IUnknownVtbl*;
+}
+
+@foreign
+func IUnknown_QueryInterface_Proxy(This: IUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+
+@foreign
+func IUnknown_QueryInterface_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IUnknown_AddRef_Proxy(This: IUnknown*): ULONG;
+
+@foreign
+func IUnknown_AddRef_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IUnknown_Release_Proxy(This: IUnknown*): ULONG;
+
+@foreign
+func IUnknown_Release_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+struct AsyncIUnknownVtbl {
+    QueryInterface: func(This: AsyncIUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: AsyncIUnknown*): ULONG;
+    Release: func(This: AsyncIUnknown*): ULONG;
+    Begin_QueryInterface: func(This: AsyncIUnknown*, riid: IID* const): HRESULT;
+    Finish_QueryInterface: func(This: AsyncIUnknown*, ppvObject: void**): HRESULT;
+    Begin_AddRef: func(This: AsyncIUnknown*): HRESULT;
+    Finish_AddRef: func(This: AsyncIUnknown*): ULONG;
+    Begin_Release: func(This: AsyncIUnknown*): HRESULT;
+    Finish_Release: func(This: AsyncIUnknown*): ULONG;
+}
+
+@foreign
+struct AsyncIUnknown {
+    lpVtbl: AsyncIUnknownVtbl*;
+}
+
+@foreign
+typedef LPCLASSFACTORY = IClassFactory*;
+
+@foreign
+struct IClassFactoryVtbl {
+    QueryInterface: func(This: IClassFactory*, riid: IID* const, ppvObject: void**): HRESULT;
+    AddRef: func(This: IClassFactory*): ULONG;
+    Release: func(This: IClassFactory*): ULONG;
+    CreateInstance: func(This: IClassFactory*, pUnkOuter: IUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+    LockServer: func(This: IClassFactory*, fLock: BOOL): HRESULT;
+}
+
+@foreign
+struct IClassFactory {
+    lpVtbl: IClassFactoryVtbl*;
+}
+
+@foreign
+func IClassFactory_RemoteCreateInstance_Proxy(This: IClassFactory*, riid: IID* const, ppvObject: IUnknown**): HRESULT;
+
+@foreign
+func IClassFactory_RemoteCreateInstance_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IClassFactory_RemoteLockServer_Proxy(This: IClassFactory*, fLock: BOOL): HRESULT;
+
+@foreign
+func IClassFactory_RemoteLockServer_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcChannelBuffer*, _pRpcMessage: PRPC_MESSAGE, _pdwStubPhase: DWORD*);
+
+@foreign
+func IClassFactory_CreateInstance_Proxy(This: IClassFactory*, pUnkOuter: IUnknown*, riid: IID* const, ppvObject: void**): HRESULT;
+
+@foreign
+func IClassFactory_CreateInstance_Stub(This: IClassFactory*, riid: IID* const, ppvObject: IUnknown**): HRESULT;
+
+@foreign
+func IClassFactory_LockServer_Proxy(This: IClassFactory*, fLock: BOOL): HRESULT;
+
+@foreign
+func IClassFactory_LockServer_Stub(This: IClassFactory*, fLock: BOOL): HRESULT;
+

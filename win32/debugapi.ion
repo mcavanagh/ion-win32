@@ -1,0 +1,35 @@
+#foreign(header = "<debugapi.h>")
+
+@foreign
+func IsDebuggerPresent(): BOOL;
+
+@foreign
+func DebugBreak();
+
+@foreign
+func OutputDebugStringA(lpOutputString: LPCSTR);
+
+@foreign
+func OutputDebugString(lpOutputString: LPCSTR);
+
+@foreign
+func OutputDebugStringW(lpOutputString: LPCWSTR);
+
+@foreign
+func ContinueDebugEvent(dwProcessId: DWORD, dwThreadId: DWORD, dwContinueStatus: DWORD): BOOL;
+
+@foreign
+func WaitForDebugEvent(lpDebugEvent: LPDEBUG_EVENT, dwMilliseconds: DWORD): BOOL;
+
+@foreign
+func DebugActiveProcess(dwProcessId: DWORD): BOOL;
+
+@foreign
+func DebugActiveProcessStop(dwProcessId: DWORD): BOOL;
+
+@foreign
+func CheckRemoteDebuggerPresent(hProcess: HANDLE, pbDebuggerPresent: PBOOL): BOOL;
+
+@foreign
+func WaitForDebugEventEx(lpDebugEvent: LPDEBUG_EVENT, dwMilliseconds: DWORD): BOOL;
+

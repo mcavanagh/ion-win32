@@ -1,0 +1,239 @@
+#foreign(header = "<rpcnsi.h>")
+
+@foreign
+typedef RPC_NS_HANDLE = void*;
+
+@foreign
+func RpcNsBindingExportA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, BindingVec: RPC_BINDING_VECTOR*, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingUnexportA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingExport(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, BindingVec: RPC_BINDING_VECTOR*, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingExportW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfSpec: RPC_IF_HANDLE, BindingVec: RPC_BINDING_VECTOR*, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingUnexport(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingUnexportW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfSpec: RPC_IF_HANDLE, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingExportPnPA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjectVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingUnexportPnPA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjectVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingExportPnP(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjectVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingExportPnPW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfSpec: RPC_IF_HANDLE, ObjectVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingUnexportPnP(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjectVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingUnexportPnPW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfSpec: RPC_IF_HANDLE, ObjectVector: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingLookupBeginA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjUuid: UUID*, BindingMaxCount: ulong, LookupContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingLookupBegin(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjUuid: UUID*, BindingMaxCount: ulong, LookupContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingLookupBeginW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfSpec: RPC_IF_HANDLE, ObjUuid: UUID*, BindingMaxCount: ulong, LookupContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingLookupNext(LookupContext: RPC_NS_HANDLE, BindingVec: RPC_BINDING_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcNsBindingLookupDone(LookupContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupDeleteA(GroupNameSyntax: ulong, GroupName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrAddA(GroupNameSyntax: ulong, GroupName: RPC_CSTR, MemberNameSyntax: ulong, MemberName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrRemoveA(GroupNameSyntax: ulong, GroupName: RPC_CSTR, MemberNameSyntax: ulong, MemberName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqBeginA(GroupNameSyntax: ulong, GroupName: RPC_CSTR, MemberNameSyntax: ulong, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqNextA(InquiryContext: RPC_NS_HANDLE, MemberName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupDelete(GroupNameSyntax: ulong, GroupName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupDeleteW(GroupNameSyntax: ulong, GroupName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrAdd(GroupNameSyntax: ulong, GroupName: RPC_CSTR, MemberNameSyntax: ulong, MemberName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrAddW(GroupNameSyntax: ulong, GroupName: RPC_WSTR, MemberNameSyntax: ulong, MemberName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrRemove(GroupNameSyntax: ulong, GroupName: RPC_CSTR, MemberNameSyntax: ulong, MemberName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrRemoveW(GroupNameSyntax: ulong, GroupName: RPC_WSTR, MemberNameSyntax: ulong, MemberName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqBegin(GroupNameSyntax: ulong, GroupName: RPC_CSTR, MemberNameSyntax: ulong, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqBeginW(GroupNameSyntax: ulong, GroupName: RPC_WSTR, MemberNameSyntax: ulong, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqNext(InquiryContext: RPC_NS_HANDLE, MemberName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqNextW(InquiryContext: RPC_NS_HANDLE, MemberName: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsGroupMbrInqDone(InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileDeleteA(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltAddA(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR, IfId: RPC_IF_ID*, MemberNameSyntax: ulong, MemberName: RPC_CSTR, Priority: ulong, Annotation: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltRemoveA(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR, IfId: RPC_IF_ID*, MemberNameSyntax: ulong, MemberName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqBeginA(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR, InquiryType: ulong, IfId: RPC_IF_ID*, VersOption: ulong, MemberNameSyntax: ulong, MemberName: RPC_CSTR, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqNextA(InquiryContext: RPC_NS_HANDLE, IfId: RPC_IF_ID*, MemberName: RPC_CSTR*, Priority: ulong*, Annotation: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileDelete(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileDeleteW(ProfileNameSyntax: ulong, ProfileName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltAdd(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR, IfId: RPC_IF_ID*, MemberNameSyntax: ulong, MemberName: RPC_CSTR, Priority: ulong, Annotation: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltAddW(ProfileNameSyntax: ulong, ProfileName: RPC_WSTR, IfId: RPC_IF_ID*, MemberNameSyntax: ulong, MemberName: RPC_WSTR, Priority: ulong, Annotation: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltRemove(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR, IfId: RPC_IF_ID*, MemberNameSyntax: ulong, MemberName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltRemoveW(ProfileNameSyntax: ulong, ProfileName: RPC_WSTR, IfId: RPC_IF_ID*, MemberNameSyntax: ulong, MemberName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqBegin(ProfileNameSyntax: ulong, ProfileName: RPC_CSTR, InquiryType: ulong, IfId: RPC_IF_ID*, VersOption: ulong, MemberNameSyntax: ulong, MemberName: RPC_CSTR, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqBeginW(ProfileNameSyntax: ulong, ProfileName: RPC_WSTR, InquiryType: ulong, IfId: RPC_IF_ID*, VersOption: ulong, MemberNameSyntax: ulong, MemberName: RPC_WSTR, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqNext(InquiryContext: RPC_NS_HANDLE, IfId: RPC_IF_ID*, MemberName: RPC_CSTR*, Priority: ulong*, Annotation: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqNextW(InquiryContext: RPC_NS_HANDLE, IfId: RPC_IF_ID*, MemberName: RPC_WSTR*, Priority: ulong*, Annotation: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsProfileEltInqDone(InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryObjectInqBeginA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryObjectInqBegin(EntryNameSyntax: ulong, EntryName: RPC_CSTR, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryObjectInqBeginW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryObjectInqNext(InquiryContext: RPC_NS_HANDLE, ObjUuid: UUID*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryObjectInqDone(InquiryContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryExpandNameA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, ExpandedName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtBindingUnexportA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfId: RPC_IF_ID*, VersOption: ulong, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryCreateA(EntryNameSyntax: ulong, EntryName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryDeleteA(EntryNameSyntax: ulong, EntryName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryInqIfIdsA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfIdVec: RPC_IF_ID_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtHandleSetExpAge(NsHandle: RPC_NS_HANDLE, ExpirationAge: ulong): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtInqExpAge(ExpirationAge: ulong*): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtSetExpAge(ExpirationAge: ulong): RPC_STATUS;
+
+@foreign
+func RpcNsEntryExpandName(EntryNameSyntax: ulong, EntryName: RPC_CSTR, ExpandedName: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsEntryExpandNameW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, ExpandedName: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtBindingUnexport(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfId: RPC_IF_ID*, VersOption: ulong, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtBindingUnexportW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfId: RPC_IF_ID*, VersOption: ulong, ObjectUuidVec: UUID_VECTOR*): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryCreate(EntryNameSyntax: ulong, EntryName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryCreateW(EntryNameSyntax: ulong, EntryName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryDelete(EntryNameSyntax: ulong, EntryName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryDeleteW(EntryNameSyntax: ulong, EntryName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryInqIfIds(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfIdVec: RPC_IF_ID_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcNsMgmtEntryInqIfIdsW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfIdVec: RPC_IF_ID_VECTOR**): RPC_STATUS;
+
+@foreign
+func RpcNsBindingImportBeginA(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjUuid: UUID*, ImportContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingImportBegin(EntryNameSyntax: ulong, EntryName: RPC_CSTR, IfSpec: RPC_IF_HANDLE, ObjUuid: UUID*, ImportContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingImportBeginW(EntryNameSyntax: ulong, EntryName: RPC_WSTR, IfSpec: RPC_IF_HANDLE, ObjUuid: UUID*, ImportContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingImportNext(ImportContext: RPC_NS_HANDLE, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingImportDone(ImportContext: RPC_NS_HANDLE*): RPC_STATUS;
+
+@foreign
+func RpcNsBindingSelect(BindingVec: RPC_BINDING_VECTOR*, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+

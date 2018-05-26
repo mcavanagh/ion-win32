@@ -1,0 +1,32 @@
+#foreign(header = "<stralign.h>")
+
+@foreign
+func uaw_CharUpperW(String: LPUWSTR): LPUWSTR;
+
+@foreign
+func uaw_lstrcmpW(String1: PCUWSTR, String2: PCUWSTR): int;
+
+@foreign
+func uaw_lstrcmpiW(String1: PCUWSTR, String2: PCUWSTR): int;
+
+@foreign
+func uaw_lstrlenW(String: LPCUWSTR): int;
+
+@foreign
+func uaw_wcschr(String: PCUWSTR, Character: WCHAR): PUWSTR;
+
+@foreign
+func uaw_wcscpy(Destination: PUWSTR, Source: PCUWSTR): PUWSTR;
+
+@foreign
+func uaw_wcsicmp(String1: PCUWSTR, String2: PCUWSTR): int;
+
+@foreign
+func uaw_wcslen(String: PCUWSTR): usize;
+
+@foreign
+func uaw_wcsrchr(String: PCUWSTR, Character: WCHAR): PUWSTR;
+
+@foreign
+typedef PUWSTR_C = WCHAR*;
+

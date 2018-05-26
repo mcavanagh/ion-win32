@@ -1,0 +1,79 @@
+#foreign(header = "<coml2api.h>")
+
+@foreign
+typedef STGFMT = DWORD;
+
+@foreign
+func StgCreateDocfile(pwcsName: WCHAR*, grfMode: DWORD, reserved: DWORD, ppstgOpen: IStorage**): HRESULT;
+
+@foreign
+func StgCreateDocfileOnILockBytes(plkbyt: ILockBytes*, grfMode: DWORD, reserved: DWORD, ppstgOpen: IStorage**): HRESULT;
+
+@foreign
+func StgOpenStorage(pwcsName: WCHAR*, pstgPriority: IStorage*, grfMode: DWORD, snbExclude: SNB, reserved: DWORD, ppstgOpen: IStorage**): HRESULT;
+
+@foreign
+func StgOpenStorageOnILockBytes(plkbyt: ILockBytes*, pstgPriority: IStorage*, grfMode: DWORD, snbExclude: SNB, reserved: DWORD, ppstgOpen: IStorage**): HRESULT;
+
+@foreign
+func StgIsStorageFile(pwcsName: WCHAR*): HRESULT;
+
+@foreign
+func StgIsStorageILockBytes(plkbyt: ILockBytes*): HRESULT;
+
+@foreign
+func StgSetTimes(lpszName: WCHAR*, pctime: FILETIME*, patime: FILETIME*, pmtime: FILETIME*): HRESULT;
+
+@foreign
+struct tagSTGOPTIONS {
+    usVersion: USHORT;
+    reserved: USHORT;
+    ulSectorSize: ULONG;
+    pwcsTemplateFile: WCHAR*;
+}
+
+@foreign
+typedef STGOPTIONS = tagSTGOPTIONS;
+
+@foreign
+func StgCreateStorageEx(pwcsName: WCHAR*, grfMode: DWORD, stgfmt: DWORD, grfAttrs: DWORD, pStgOptions: STGOPTIONS*, pSecurityDescriptor: PSECURITY_DESCRIPTOR, riid: IID* const, ppObjectOpen: void**): HRESULT;
+
+@foreign
+func StgOpenStorageEx(pwcsName: WCHAR*, grfMode: DWORD, stgfmt: DWORD, grfAttrs: DWORD, pStgOptions: STGOPTIONS*, pSecurityDescriptor: PSECURITY_DESCRIPTOR, riid: IID* const, ppObjectOpen: void**): HRESULT;
+
+@foreign
+func StgCreatePropStg(pUnk: IUnknown*, fmtid: IID* const, pclsid: CLSID*, grfFlags: DWORD, dwReserved: DWORD, ppPropStg: IPropertyStorage**): HRESULT;
+
+@foreign
+func StgOpenPropStg(pUnk: IUnknown*, fmtid: IID* const, grfFlags: DWORD, dwReserved: DWORD, ppPropStg: IPropertyStorage**): HRESULT;
+
+@foreign
+func StgCreatePropSetStg(pStorage: IStorage*, dwReserved: DWORD, ppPropSetStg: IPropertySetStorage**): HRESULT;
+
+@foreign
+func FmtIdToPropStgName(pfmtid: FMTID*, oszName: LPOLESTR): HRESULT;
+
+@foreign
+func PropStgNameToFmtId(oszName: LPOLESTR, pfmtid: FMTID*): HRESULT;
+
+@foreign
+func ReadClassStg(pStg: LPSTORAGE, pclsid: CLSID*): HRESULT;
+
+@foreign
+func WriteClassStg(pStg: LPSTORAGE, rclsid: IID* const): HRESULT;
+
+@foreign
+func ReadClassStm(pStm: LPSTREAM, pclsid: CLSID*): HRESULT;
+
+@foreign
+func WriteClassStm(pStm: LPSTREAM, rclsid: IID* const): HRESULT;
+
+@foreign
+func GetHGlobalFromILockBytes(plkbyt: LPLOCKBYTES, phglobal: HGLOBAL*): HRESULT;
+
+@foreign
+func CreateILockBytesOnHGlobal(hGlobal: HGLOBAL, fDeleteOnRelease: BOOL, pplkbyt: LPLOCKBYTES*): HRESULT;
+
+@foreign
+func GetConvertStg(pStg: LPSTORAGE): HRESULT;
+

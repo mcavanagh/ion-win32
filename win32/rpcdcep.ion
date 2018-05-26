@@ -1,0 +1,529 @@
+#foreign(header = "<rpcdcep.h>")
+
+@foreign
+struct _RPC_VERSION {
+    MajorVersion: ushort;
+    MinorVersion: ushort;
+}
+
+@foreign
+typedef RPC_VERSION = _RPC_VERSION;
+
+@foreign
+struct _RPC_SYNTAX_IDENTIFIER {
+    SyntaxGUID: GUID;
+    SyntaxVersion: RPC_VERSION;
+}
+
+@foreign
+typedef RPC_SYNTAX_IDENTIFIER = _RPC_SYNTAX_IDENTIFIER;
+
+@foreign
+typedef PRPC_SYNTAX_IDENTIFIER = _RPC_SYNTAX_IDENTIFIER*;
+
+@foreign
+struct _RPC_MESSAGE {
+    Handle: RPC_BINDING_HANDLE;
+    DataRepresentation: ulong;
+    Buffer: void*;
+    BufferLength: uint;
+    ProcNum: uint;
+    TransferSyntax: PRPC_SYNTAX_IDENTIFIER;
+    RpcInterfaceInformation: void*;
+    ReservedForRuntime: void*;
+    ManagerEpv: void*;
+    ImportContext: void*;
+    RpcFlags: ulong;
+}
+
+@foreign
+typedef RPC_MESSAGE = _RPC_MESSAGE;
+
+@foreign
+typedef PRPC_MESSAGE = _RPC_MESSAGE*;
+
+@foreign
+typedef RPC_FORWARD_FUNCTION = func(InterfaceId: UUID*, InterfaceVersion: RPC_VERSION*, ObjectId: UUID*, Rpcpro: uchar*, ppDestEndpoint: void**): RPC_STATUS;
+
+@foreign
+enum RPC_ADDRESS_CHANGE_TYPE {
+    PROTOCOL_NOT_LOADED = 1,
+    PROTOCOL_LOADED,
+    PROTOCOL_ADDRESS_CHANGE,
+}
+
+@foreign
+typedef RPC_ADDRESS_CHANGE_FN = func(arg: void*);
+
+@foreign
+typedef RPC_DISPATCH_FUNCTION = func(Message: PRPC_MESSAGE);
+
+@foreign
+struct RPC_DISPATCH_TABLE {
+    DispatchTableCount: uint;
+    DispatchTable: RPC_DISPATCH_FUNCTION*;
+    Reserved: LONG_PTR;
+}
+
+@foreign
+typedef PRPC_DISPATCH_TABLE = RPC_DISPATCH_TABLE;
+
+@foreign
+struct _RPC_PROTSEQ_ENDPOINT {
+    RpcProtocolSequence: uchar*;
+    Endpoint: uchar*;
+}
+
+@foreign
+typedef RPC_PROTSEQ_ENDPOINT = _RPC_PROTSEQ_ENDPOINT;
+
+@foreign
+typedef PRPC_PROTSEQ_ENDPOINT = _RPC_PROTSEQ_ENDPOINT*;
+
+@foreign
+struct _RPC_SERVER_INTERFACE {
+    Length: uint;
+    InterfaceId: RPC_SYNTAX_IDENTIFIER;
+    TransferSyntax: RPC_SYNTAX_IDENTIFIER;
+    DispatchTable: PRPC_DISPATCH_TABLE;
+    RpcProtseqEndpointCount: uint;
+    RpcProtseqEndpoint: PRPC_PROTSEQ_ENDPOINT;
+    DefaultManagerEpv: void*;
+    InterpreterInfo: void const*;
+    Flags: uint;
+}
+
+@foreign
+typedef RPC_SERVER_INTERFACE = _RPC_SERVER_INTERFACE;
+
+@foreign
+typedef PRPC_SERVER_INTERFACE = _RPC_SERVER_INTERFACE*;
+
+@foreign
+struct _RPC_CLIENT_INTERFACE {
+    Length: uint;
+    InterfaceId: RPC_SYNTAX_IDENTIFIER;
+    TransferSyntax: RPC_SYNTAX_IDENTIFIER;
+    DispatchTable: PRPC_DISPATCH_TABLE;
+    RpcProtseqEndpointCount: uint;
+    RpcProtseqEndpoint: PRPC_PROTSEQ_ENDPOINT;
+    Reserved: ULONG_PTR;
+    InterpreterInfo: void const*;
+    Flags: uint;
+}
+
+@foreign
+typedef RPC_CLIENT_INTERFACE = _RPC_CLIENT_INTERFACE;
+
+@foreign
+typedef PRPC_CLIENT_INTERFACE = _RPC_CLIENT_INTERFACE*;
+
+@foreign
+func I_RpcNegotiateTransferSyntax(Message: RPC_MESSAGE*): RPC_STATUS;
+
+@foreign
+func I_RpcGetBuffer(Message: RPC_MESSAGE*): RPC_STATUS;
+
+@foreign
+func I_RpcGetBufferWithObject(Message: RPC_MESSAGE*, ObjectUuid: UUID*): RPC_STATUS;
+
+@foreign
+func I_RpcSendReceive(Message: RPC_MESSAGE*): RPC_STATUS;
+
+@foreign
+func I_RpcFreeBuffer(Message: RPC_MESSAGE*): RPC_STATUS;
+
+@foreign
+func I_RpcSend(Message: PRPC_MESSAGE): RPC_STATUS;
+
+@foreign
+func I_RpcReceive(Message: PRPC_MESSAGE, Size: uint): RPC_STATUS;
+
+@foreign
+func I_RpcFreePipeBuffer(Message: RPC_MESSAGE*): RPC_STATUS;
+
+@foreign
+func I_RpcReallocPipeBuffer(Message: PRPC_MESSAGE, NewSize: uint): RPC_STATUS;
+
+@foreign
+typedef I_RPC_MUTEX = void*;
+
+@foreign
+func I_RpcRequestMutex(Mutex: I_RPC_MUTEX*);
+
+@foreign
+func I_RpcClearMutex(Mutex: I_RPC_MUTEX);
+
+@foreign
+func I_RpcDeleteMutex(Mutex: I_RPC_MUTEX);
+
+@foreign
+func I_RpcAllocate(Size: uint): void*;
+
+@foreign
+func I_RpcFree(Object: void*);
+
+@foreign
+func I_RpcFreeSystemHandleCollection(CallObj: void*, FreeFlags: ulong): ulong;
+
+@foreign
+func I_RpcSetSystemHandle(Handle: void*, Type: uchar, AccessMask: ulong, CallObj: void*, HandleIndex: ulong*): RPC_STATUS;
+
+@foreign
+func I_RpcGetSystemHandle(pMemory: uchar*, Type: uchar, AccessMask: ulong, HandleIndex: ulong, CallObj: void*): RPC_STATUS;
+
+@foreign
+func I_RpcFreeSystemHandle(Type: uchar, Handle: void*);
+
+@foreign
+func I_RpcPauseExecution(Milliseconds: ulong);
+
+@foreign
+func I_RpcGetExtendedError(): RPC_STATUS;
+
+@foreign
+enum _LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION {
+    MarshalDirectionMarshal,
+    MarshalDirectionUnmarshal,
+}
+
+@foreign
+typedef LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION = _LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION;
+
+@foreign
+func I_RpcSystemHandleTypeSpecificWork(Handle: void*, ActualType: uchar, IdlType: uchar, MarshalDirection: LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION): RPC_STATUS;
+
+@foreign
+typedef PRPC_RUNDOWN = func(AssociationContext: void*);
+
+@foreign
+func I_RpcMonitorAssociation(Handle: RPC_BINDING_HANDLE, RundownRoutine: PRPC_RUNDOWN, Context: void*): RPC_STATUS;
+
+@foreign
+func I_RpcStopMonitorAssociation(Handle: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func I_RpcGetCurrentCallHandle(): RPC_BINDING_HANDLE;
+
+@foreign
+func I_RpcGetAssociationContext(BindingHandle: RPC_BINDING_HANDLE, AssociationContext: void**): RPC_STATUS;
+
+@foreign
+func I_RpcGetServerContextList(BindingHandle: RPC_BINDING_HANDLE): void*;
+
+@foreign
+func I_RpcSetServerContextList(BindingHandle: RPC_BINDING_HANDLE, ServerContextList: void*);
+
+@foreign
+func I_RpcNsInterfaceExported(EntryNameSyntax: ulong, EntryName: ushort*, RpcInterfaceInformation: RPC_SERVER_INTERFACE*): RPC_STATUS;
+
+@foreign
+func I_RpcNsInterfaceUnexported(EntryNameSyntax: ulong, EntryName: ushort*, RpcInterfaceInformation: RPC_SERVER_INTERFACE*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingToStaticStringBindingW(Binding: RPC_BINDING_HANDLE, StringBinding: ushort**): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqSecurityContext(Binding: RPC_BINDING_HANDLE, SecurityContextHandle: void**): RPC_STATUS;
+
+@foreign
+struct _RPC_SEC_CONTEXT_KEY_INFO {
+    EncryptAlgorithm: ulong;
+    KeySize: ulong;
+    SignatureAlgorithm: ulong;
+}
+
+@foreign
+typedef RPC_SEC_CONTEXT_KEY_INFO = _RPC_SEC_CONTEXT_KEY_INFO;
+
+@foreign
+typedef PRPC_SEC_CONTEXT_KEY_INFO = _RPC_SEC_CONTEXT_KEY_INFO*;
+
+@foreign
+func I_RpcBindingInqSecurityContextKeyInfo(Binding: RPC_BINDING_HANDLE, KeyInfo: void*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqWireIdForSnego(Binding: RPC_BINDING_HANDLE, WireId: uchar*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqMarshalledTargetInfo(Binding: RPC_BINDING_HANDLE, MarshalledTargetInfoSize: ulong*, MarshalledTargetInfo: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqLocalClientPID(Binding: RPC_BINDING_HANDLE, Pid: ulong*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingHandleToAsyncHandle(Binding: RPC_BINDING_HANDLE, AsyncHandle: void**): RPC_STATUS;
+
+@foreign
+func I_RpcNsBindingSetEntryNameW(Binding: RPC_BINDING_HANDLE, EntryNameSyntax: ulong, EntryName: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func I_RpcNsBindingSetEntryName(Binding: RPC_BINDING_HANDLE, EntryNameSyntax: ulong, EntryName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func I_RpcNsBindingSetEntryNameA(Binding: RPC_BINDING_HANDLE, EntryNameSyntax: ulong, EntryName: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func I_RpcServerUseProtseqEp2A(NetworkAddress: RPC_CSTR, Protseq: RPC_CSTR, MaxCalls: uint, Endpoint: RPC_CSTR, SecurityDescriptor: void*, Policy: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerUseProtseqEp2(NetworkAddress: RPC_CSTR, Protseq: RPC_CSTR, MaxCalls: uint, Endpoint: RPC_CSTR, SecurityDescriptor: void*, Policy: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerUseProtseqEp2W(NetworkAddress: RPC_WSTR, Protseq: RPC_WSTR, MaxCalls: uint, Endpoint: RPC_WSTR, SecurityDescriptor: void*, Policy: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerUseProtseq2W(NetworkAddress: RPC_WSTR, Protseq: RPC_WSTR, MaxCalls: uint, SecurityDescriptor: void*, Policy: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerUseProtseq2(NetworkAddress: RPC_CSTR, Protseq: RPC_CSTR, MaxCalls: uint, SecurityDescriptor: void*, Policy: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerUseProtseq2A(NetworkAddress: RPC_CSTR, Protseq: RPC_CSTR, MaxCalls: uint, SecurityDescriptor: void*, Policy: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerStartService(Protseq: RPC_WSTR, Endpoint: RPC_WSTR, IfSpec: RPC_IF_HANDLE): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqDynamicEndpointW(Binding: RPC_BINDING_HANDLE, DynamicEndpoint: RPC_WSTR*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqDynamicEndpoint(Binding: RPC_BINDING_HANDLE, DynamicEndpoint: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqDynamicEndpointA(Binding: RPC_BINDING_HANDLE, DynamicEndpoint: RPC_CSTR*): RPC_STATUS;
+
+@foreign
+func I_RpcServerCheckClientRestriction(Context: RPC_BINDING_HANDLE): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqTransportType(Binding: RPC_BINDING_HANDLE, Type: uint*): RPC_STATUS;
+
+@foreign
+struct _RPC_TRANSFER_SYNTAX {
+    Uuid: UUID;
+    VersMajor: ushort;
+    VersMinor: ushort;
+}
+
+@foreign
+typedef RPC_TRANSFER_SYNTAX = _RPC_TRANSFER_SYNTAX;
+
+@foreign
+func I_RpcIfInqTransferSyntaxes(RpcIfHandle: RPC_IF_HANDLE, TransferSyntaxes: RPC_TRANSFER_SYNTAX*, TransferSyntaxSize: uint, TransferSyntaxCount: uint*): RPC_STATUS;
+
+@foreign
+func I_UuidCreate(Uuid: UUID*): RPC_STATUS;
+
+@foreign
+func I_RpcUninitializeNdrOle();
+
+@foreign
+func I_RpcBindingCopy(SourceBinding: RPC_BINDING_HANDLE, DestinationBinding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingIsClientLocal(BindingHandle: RPC_BINDING_HANDLE, ClientLocalFlag: uint*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingInqConnId(Binding: RPC_BINDING_HANDLE, ConnId: void**, pfFirstCall: int*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingCreateNP(ServerName: RPC_WSTR, ServiceName: RPC_WSTR, NetworkOptions: RPC_WSTR, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func I_RpcSsDontSerializeContext();
+
+@foreign
+func I_RpcLaunchDatagramReceiveThread(pAddress: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerRegisterForwardFunction(pForwardFunction: RPC_FORWARD_FUNCTION*): RPC_STATUS;
+
+@foreign
+func I_RpcServerInqAddressChangeFn(): RPC_ADDRESS_CHANGE_FN*;
+
+@foreign
+func I_RpcServerSetAddressChangeFn(pAddressChangeFn: RPC_ADDRESS_CHANGE_FN*): RPC_STATUS;
+
+@foreign
+func I_RpcServerInqLocalConnAddress(Binding: RPC_BINDING_HANDLE, Buffer: void*, BufferSize: ulong*, AddressFormat: ulong*): RPC_STATUS;
+
+@foreign
+func I_RpcServerInqRemoteConnAddress(Binding: RPC_BINDING_HANDLE, Buffer: void*, BufferSize: ulong*, AddressFormat: ulong*): RPC_STATUS;
+
+@foreign
+func I_RpcSessionStrictContextHandle();
+
+@foreign
+func I_RpcTurnOnEEInfoPropagation(): RPC_STATUS;
+
+@foreign
+func I_RpcConnectionInqSockBuffSize(RecvBuffSize: ulong*, SendBuffSize: ulong*): RPC_STATUS;
+
+@foreign
+func I_RpcConnectionSetSockBuffSize(RecvBuffSize: ulong, SendBuffSize: ulong): RPC_STATUS;
+
+@foreign
+typedef RPCLT_PDU_FILTER_FUNC = func(Buffer: void*, BufferLength: uint, fDatagram: int);
+
+@foreign
+typedef RPC_SETFILTER_FUNC = func(pfnFilter: RPCLT_PDU_FILTER_FUNC);
+
+@foreign
+func I_RpcServerStartListening(hWnd: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerStopListening(): RPC_STATUS;
+
+@foreign
+typedef RPC_BLOCKING_FN = func(hWnd: void*, Context: void*, hSyncEvent: void*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingSetAsync(Binding: RPC_BINDING_HANDLE, BlockingFn: RPC_BLOCKING_FN, ServerTid: ulong): RPC_STATUS;
+
+@foreign
+func I_RpcSetThreadParams(fClientFree: int, Context: void*, hWndClient: void*): RPC_STATUS;
+
+@foreign
+func I_RpcWindowProc(hWnd: void*, Message: uint, wParam: uint, lParam: ulong): uint;
+
+@foreign
+func I_RpcServerUnregisterEndpointA(Protseq: RPC_CSTR, Endpoint: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func I_RpcServerUnregisterEndpoint(Protseq: RPC_CSTR, Endpoint: RPC_CSTR): RPC_STATUS;
+
+@foreign
+func I_RpcServerUnregisterEndpointW(Protseq: RPC_WSTR, Endpoint: RPC_WSTR): RPC_STATUS;
+
+@foreign
+func I_RpcServerInqTransportType(Type: uint*): RPC_STATUS;
+
+@foreign
+func I_RpcMapWin32Status(Status: RPC_STATUS): long;
+
+@foreign
+struct _RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR {
+    BufferSize: ulong;
+    Buffer: char*;
+}
+
+@foreign
+typedef RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR = _RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR;
+
+@foreign
+struct _RDR_CALLOUT_STATE {
+    LastError: RPC_STATUS;
+    LastEEInfo: void*;
+    LastCalledStage: RPC_HTTP_REDIRECTOR_STAGE;
+    ServerName: ushort*;
+    ServerPort: ushort*;
+    RemoteUser: ushort*;
+    AuthType: ushort*;
+    ResourceTypePresent: uchar;
+    SessionIdPresent: uchar;
+    InterfacePresent: uchar;
+    ResourceType: UUID;
+    SessionId: UUID;
+    Interface: RPC_SYNTAX_IDENTIFIER;
+    CertContext: void*;
+}
+
+@foreign
+typedef RDR_CALLOUT_STATE = _RDR_CALLOUT_STATE;
+
+@foreign
+typedef I_RpcProxyIsValidMachineFn = func(Machine: RPC_WSTR, DotMachine: RPC_WSTR, PortNumber: ulong): RPC_STATUS;
+
+@foreign
+typedef I_RpcProxyGetClientAddressFn = func(Context: void*, Buffer: char*, BufferLength: ulong*): RPC_STATUS;
+
+@foreign
+typedef I_RpcProxyGetConnectionTimeoutFn = func(ConnectionTimeout: ulong*): RPC_STATUS;
+
+@foreign
+typedef I_RpcPerformCalloutFn = func(Context: void*, CallOutState: RDR_CALLOUT_STATE*, Stage: RPC_HTTP_REDIRECTOR_STAGE): RPC_STATUS;
+
+@foreign
+typedef I_RpcFreeCalloutStateFn = func(CallOutState: RDR_CALLOUT_STATE*);
+
+@foreign
+typedef I_RpcProxyGetClientSessionAndResourceUUID = func(Context: void*, SessionIdPresent: int*, SessionId: UUID*, ResourceIdPresent: int*, ResourceId: UUID*): RPC_STATUS;
+
+@foreign
+typedef I_RpcProxyFilterIfFn = func(Context: void*, IfUuid: UUID*, IfMajorVersion: ushort, fAllow: int*): RPC_STATUS;
+
+@foreign
+enum RpcProxyPerfCounters {
+    RpcCurrentUniqueUser = 1,
+    RpcBackEndConnectionAttempts,
+    RpcBackEndConnectionFailed,
+    RpcRequestsPerSecond,
+    RpcIncomingConnections,
+    RpcIncomingBandwidth,
+    RpcOutgoingBandwidth,
+    RpcAttemptedLbsDecisions,
+    RpcFailedLbsDecisions,
+    RpcAttemptedLbsMessages,
+    RpcFailedLbsMessages,
+    RpcLastCounter,
+}
+
+@foreign
+typedef RpcPerfCounters = RpcProxyPerfCounters;
+
+@foreign
+typedef I_RpcProxyUpdatePerfCounterFn = func(Counter: RpcPerfCounters, ModifyTrend: int, Size: ulong);
+
+@foreign
+typedef I_RpcProxyUpdatePerfCounterBackendServerFn = func(MachineName: ushort*, IsConnectEvent: int);
+
+@foreign
+struct tagI_RpcProxyCallbackInterface {
+    IsValidMachineFn: I_RpcProxyIsValidMachineFn;
+    GetClientAddressFn: I_RpcProxyGetClientAddressFn;
+    GetConnectionTimeoutFn: I_RpcProxyGetConnectionTimeoutFn;
+    PerformCalloutFn: I_RpcPerformCalloutFn;
+    FreeCalloutStateFn: I_RpcFreeCalloutStateFn;
+    GetClientSessionAndResourceUUIDFn: I_RpcProxyGetClientSessionAndResourceUUID;
+    ProxyFilterIfFn: I_RpcProxyFilterIfFn;
+    RpcProxyUpdatePerfCounterFn: I_RpcProxyUpdatePerfCounterFn;
+    RpcProxyUpdatePerfCounterBackendServerFn: I_RpcProxyUpdatePerfCounterBackendServerFn;
+}
+
+@foreign
+typedef I_RpcProxyCallbackInterface = tagI_RpcProxyCallbackInterface;
+
+@foreign
+func I_RpcProxyNewConnection(ConnectionType: ulong, ServerAddress: ushort*, ServerPort: ushort*, MinConnTimeout: ushort*, ConnectionParameter: void*, CallOutState: RDR_CALLOUT_STATE*, ProxyCallbackInterface: I_RpcProxyCallbackInterface*): RPC_STATUS;
+
+@foreign
+func I_RpcReplyToClientWithStatus(ConnectionParameter: void*, RpcStatus: RPC_STATUS): RPC_STATUS;
+
+@foreign
+func I_RpcRecordCalloutFailure(RpcStatus: RPC_STATUS, CallOutState: RDR_CALLOUT_STATE*, DllName: ushort*);
+
+@foreign
+func I_RpcMgmtEnableDedicatedThreadPool(): RPC_STATUS;
+
+@foreign
+func I_RpcGetDefaultSD(ppSecurityDescriptor: void**): RPC_STATUS;
+
+@foreign
+func I_RpcOpenClientProcess(Binding: RPC_BINDING_HANDLE, DesiredAccess: ulong, ClientProcess: void**): RPC_STATUS;
+
+@foreign
+func I_RpcBindingIsServerLocal(Binding: RPC_BINDING_HANDLE, ServerLocalFlag: uint*): RPC_STATUS;
+
+@foreign
+func I_RpcBindingSetPrivateOption(hBinding: RPC_BINDING_HANDLE, option: ulong, optionValue: ULONG_PTR): RPC_STATUS;
+
+@foreign
+func I_RpcServerSubscribeForDisconnectNotification(Binding: RPC_BINDING_HANDLE, hEvent: void*): RPC_STATUS;
+
+@foreign
+func I_RpcServerGetAssociationID(Binding: RPC_BINDING_HANDLE, AssociationID: ulong*): RPC_STATUS;
+
+@foreign
+func I_RpcServerDisableExceptionFilter(): long;
+

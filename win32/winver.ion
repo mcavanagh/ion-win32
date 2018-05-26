@@ -1,0 +1,74 @@
+#foreign(header = "<winver.h>")
+
+@foreign
+func VerFindFileA(uFlags: DWORD, szFileName: LPCSTR, szWinDir: LPCSTR, szAppDir: LPCSTR, szCurDir: LPSTR, puCurDirLen: PUINT, szDestDir: LPSTR, puDestDirLen: PUINT): DWORD;
+
+@foreign
+func VerFindFile(uFlags: DWORD, szFileName: LPCSTR, szWinDir: LPCSTR, szAppDir: LPCSTR, szCurDir: LPSTR, puCurDirLen: PUINT, szDestDir: LPSTR, puDestDirLen: PUINT): DWORD;
+
+@foreign
+func VerFindFileW(uFlags: DWORD, szFileName: LPCWSTR, szWinDir: LPCWSTR, szAppDir: LPCWSTR, szCurDir: LPWSTR, puCurDirLen: PUINT, szDestDir: LPWSTR, puDestDirLen: PUINT): DWORD;
+
+@foreign
+func VerInstallFileA(uFlags: DWORD, szSrcFileName: LPCSTR, szDestFileName: LPCSTR, szSrcDir: LPCSTR, szDestDir: LPCSTR, szCurDir: LPCSTR, szTmpFile: LPSTR, puTmpFileLen: PUINT): DWORD;
+
+@foreign
+func VerInstallFile(uFlags: DWORD, szSrcFileName: LPCSTR, szDestFileName: LPCSTR, szSrcDir: LPCSTR, szDestDir: LPCSTR, szCurDir: LPCSTR, szTmpFile: LPSTR, puTmpFileLen: PUINT): DWORD;
+
+@foreign
+func VerInstallFileW(uFlags: DWORD, szSrcFileName: LPCWSTR, szDestFileName: LPCWSTR, szSrcDir: LPCWSTR, szDestDir: LPCWSTR, szCurDir: LPCWSTR, szTmpFile: LPWSTR, puTmpFileLen: PUINT): DWORD;
+
+@foreign
+func GetFileVersionInfoSizeA(lptstrFilename: LPCSTR, lpdwHandle: LPDWORD): DWORD;
+
+@foreign
+func GetFileVersionInfoSize(lptstrFilename: LPCSTR, lpdwHandle: LPDWORD): DWORD;
+
+@foreign
+func GetFileVersionInfoSizeW(lptstrFilename: LPCWSTR, lpdwHandle: LPDWORD): DWORD;
+
+@foreign
+func GetFileVersionInfoA(lptstrFilename: LPCSTR, dwHandle: DWORD, dwLen: DWORD, lpData: LPVOID): BOOL;
+
+@foreign
+func GetFileVersionInfo(lptstrFilename: LPCSTR, dwHandle: DWORD, dwLen: DWORD, lpData: LPVOID): BOOL;
+
+@foreign
+func GetFileVersionInfoW(lptstrFilename: LPCWSTR, dwHandle: DWORD, dwLen: DWORD, lpData: LPVOID): BOOL;
+
+@foreign
+func GetFileVersionInfoSizeExA(dwFlags: DWORD, lpwstrFilename: LPCSTR, lpdwHandle: LPDWORD): DWORD;
+
+@foreign
+func GetFileVersionInfoSizeEx(dwFlags: DWORD, lpwstrFilename: LPCSTR, lpdwHandle: LPDWORD): DWORD;
+
+@foreign
+func GetFileVersionInfoSizeExW(dwFlags: DWORD, lpwstrFilename: LPCWSTR, lpdwHandle: LPDWORD): DWORD;
+
+@foreign
+func GetFileVersionInfoExA(dwFlags: DWORD, lpwstrFilename: LPCSTR, dwHandle: DWORD, dwLen: DWORD, lpData: LPVOID): BOOL;
+
+@foreign
+func GetFileVersionInfoEx(dwFlags: DWORD, lpwstrFilename: LPCSTR, dwHandle: DWORD, dwLen: DWORD, lpData: LPVOID): BOOL;
+
+@foreign
+func GetFileVersionInfoExW(dwFlags: DWORD, lpwstrFilename: LPCWSTR, dwHandle: DWORD, dwLen: DWORD, lpData: LPVOID): BOOL;
+
+@foreign
+func VerLanguageNameA(wLang: DWORD, szLang: LPSTR, cchLang: DWORD): DWORD;
+
+@foreign
+func VerLanguageName(wLang: DWORD, szLang: LPSTR, cchLang: DWORD): DWORD;
+
+@foreign
+func VerLanguageNameW(wLang: DWORD, szLang: LPWSTR, cchLang: DWORD): DWORD;
+
+@foreign
+func VerQueryValueA(pBlock: LPCVOID, lpSubBlock: LPCSTR, lplpBuffer: LPVOID*, puLen: PUINT): BOOL;
+
+@foreign
+func VerQueryValue(pBlock: LPCVOID, lpSubBlock: LPCSTR, lplpBuffer: LPVOID*, puLen: PUINT): BOOL;
+
+@foreign
+func VerQueryValueW(pBlock: LPCVOID, lpSubBlock: LPCWSTR, lplpBuffer: LPVOID*, puLen: PUINT): BOOL;
+

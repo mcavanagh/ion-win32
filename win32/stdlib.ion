@@ -1,0 +1,368 @@
+#foreign(header = "<stdlib.h>")
+
+@foreign
+func _exit(_Code: int);
+
+@foreign
+func quick_exit(_Code: int);
+
+@foreign
+func _set_abort_behavior(_Flags: uint, _Mask: uint): uint;
+
+@foreign
+typedef _onexit_t = func(): int;
+
+@foreign
+func _onexit(_Func: _onexit_t): _onexit_t;
+
+@foreign
+func at_quick_exit(arg0: func()): int;
+
+@foreign
+typedef _purecall_handler = func();
+
+@foreign
+typedef _invalid_parameter_handler = func(arg0: wchar*, arg1: wchar*, arg2: wchar*, arg3: uint, arg4: uintptr);
+
+@foreign
+func _set_purecall_handler(_Handler: _purecall_handler): _purecall_handler;
+
+@foreign
+func _get_purecall_handler(): _purecall_handler;
+
+@foreign
+func _set_invalid_parameter_handler(_Handler: _invalid_parameter_handler): _invalid_parameter_handler;
+
+@foreign
+func _get_invalid_parameter_handler(): _invalid_parameter_handler;
+
+@foreign
+func _set_thread_local_invalid_parameter_handler(_Handler: _invalid_parameter_handler): _invalid_parameter_handler;
+
+@foreign
+func _get_thread_local_invalid_parameter_handler(): _invalid_parameter_handler;
+
+@foreign
+func _set_error_mode(_Mode: int): int;
+
+@foreign
+func __sys_errlist(): char**;
+
+@foreign
+func __sys_nerr(): int*;
+
+@foreign
+func __p__pgmptr(): char**;
+
+@foreign
+func __p__wpgmptr(): wchar**;
+
+@foreign
+func __p__fmode(): int*;
+
+@foreign
+func _get_pgmptr(_Value: char**): errno_t;
+
+@foreign
+func _get_wpgmptr(_Value: wchar**): errno_t;
+
+@foreign
+func _set_fmode(_Mode: int): errno_t;
+
+@foreign
+func _get_fmode(_PMode: int*): errno_t;
+
+@foreign
+func _abs64(_Number: llong): llong;
+
+@foreign
+func _byteswap_ushort(_Number: ushort): ushort;
+
+@foreign
+func _byteswap_ulong(_Number: ulong): ulong;
+
+@foreign
+func _byteswap_uint64(_Number: ullong): ullong;
+
+@foreign
+func _lrotl(_Value: ulong, _Shift: int): ulong;
+
+@foreign
+func _lrotr(_Value: ulong, _Shift: int): ulong;
+
+@foreign
+struct _LDOUBLE {
+    ld: uchar[10];
+}
+
+@foreign
+struct _CRT_DOUBLE {
+    x: double;
+}
+
+@foreign
+struct _CRT_FLOAT {
+    f: float;
+}
+
+@foreign
+struct _LDBL12 {
+    ld12: uchar[12];
+}
+
+@foreign
+func _atoi64(_String: char const*): llong;
+
+@foreign
+func _atof_l(_String: char const*, _Locale: _locale_t): double;
+
+@foreign
+func _atoi_l(_String: char const*, _Locale: _locale_t): int;
+
+@foreign
+func _atol_l(_String: char const*, _Locale: _locale_t): long;
+
+@foreign
+func _atoll_l(_String: char const*, _Locale: _locale_t): llong;
+
+@foreign
+func _atoi64_l(_String: char const*, _Locale: _locale_t): llong;
+
+@foreign
+func _atoflt(_Result: _CRT_FLOAT*, _String: char const*): int;
+
+@foreign
+func _atodbl(_Result: _CRT_DOUBLE*, _String: char*): int;
+
+@foreign
+func _atoldbl(_Result: _LDOUBLE*, _String: char*): int;
+
+@foreign
+func _atoflt_l(_Result: _CRT_FLOAT*, _String: char const*, _Locale: _locale_t): int;
+
+@foreign
+func _atodbl_l(_Result: _CRT_DOUBLE*, _String: char*, _Locale: _locale_t): int;
+
+@foreign
+func _atoldbl_l(_Result: _LDOUBLE*, _String: char*, _Locale: _locale_t): int;
+
+@foreign
+func _strtof_l(_String: char const*, _EndPtr: char**, _Locale: _locale_t): float;
+
+@foreign
+func _strtod_l(_String: char const*, _EndPtr: char**, _Locale: _locale_t): double;
+
+@foreign
+func _strtol_l(_String: char const*, _EndPtr: char**, _Radix: int, _Locale: _locale_t): long;
+
+@foreign
+func _strtoll_l(_String: char const*, _EndPtr: char**, _Radix: int, _Locale: _locale_t): llong;
+
+@foreign
+func _strtoul_l(_String: char const*, _EndPtr: char**, _Radix: int, _Locale: _locale_t): ulong;
+
+@foreign
+func _strtoull_l(_String: char const*, _EndPtr: char**, _Radix: int, _Locale: _locale_t): ullong;
+
+@foreign
+func _strtoi64(_String: char const*, _EndPtr: char**, _Radix: int): llong;
+
+@foreign
+func _strtoi64_l(_String: char const*, _EndPtr: char**, _Radix: int, _Locale: _locale_t): llong;
+
+@foreign
+func _strtoui64(_String: char const*, _EndPtr: char**, _Radix: int): ullong;
+
+@foreign
+func _strtoui64_l(_String: char const*, _EndPtr: char**, _Radix: int, _Locale: _locale_t): ullong;
+
+@foreign
+func _itoa_s(_Value: int, _Buffer: char*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _itoa(_Value: int, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func _ltoa_s(_Value: long, _Buffer: char*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _ltoa(_Value: long, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func _ultoa_s(_Value: ulong, _Buffer: char*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _ultoa(_Value: ulong, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func _i64toa_s(_Value: llong, _Buffer: char*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _i64toa(_Value: llong, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func _ui64toa_s(_Value: ullong, _Buffer: char*, _BufferCount: usize, _Radix: int): errno_t;
+
+@foreign
+func _ui64toa(_Value: ullong, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func _ecvt_s(_Buffer: char*, _BufferCount: usize, _Value: double, _DigitCount: int, _PtDec: int*, _PtSign: int*): errno_t;
+
+@foreign
+func _ecvt(_Value: double, _DigitCount: int, _PtDec: int*, _PtSign: int*): char*;
+
+@foreign
+func _fcvt_s(_Buffer: char*, _BufferCount: usize, _Value: double, _FractionalDigitCount: int, _PtDec: int*, _PtSign: int*): errno_t;
+
+@foreign
+func _fcvt(_Value: double, _FractionalDigitCount: int, _PtDec: int*, _PtSign: int*): char*;
+
+@foreign
+func _gcvt_s(_Buffer: char*, _BufferCount: usize, _Value: double, _DigitCount: int): errno_t;
+
+@foreign
+func _gcvt(_Value: double, _DigitCount: int, _Buffer: char*): char*;
+
+@foreign
+func _mblen_l(_Ch: char const*, _MaxCount: usize, _Locale: _locale_t): int;
+
+@foreign
+func _mbstrlen(_String: char const*): usize;
+
+@foreign
+func _mbstrlen_l(_String: char const*, _Locale: _locale_t): usize;
+
+@foreign
+func _mbstrnlen(_String: char const*, _MaxCount: usize): usize;
+
+@foreign
+func _mbstrnlen_l(_String: char const*, _MaxCount: usize, _Locale: _locale_t): usize;
+
+@foreign
+func _mbtowc_l(_DstCh: wchar*, _SrcCh: char const*, _SrcSizeInBytes: usize, _Locale: _locale_t): int;
+
+@foreign
+func mbstowcs_s(_PtNumOfCharConverted: usize*, _DstBuf: wchar*, _SizeInWords: usize, _SrcBuf: char const*, _MaxCount: usize): errno_t;
+
+@foreign
+func _mbstowcs_s_l(_PtNumOfCharConverted: usize*, _DstBuf: wchar*, _SizeInWords: usize, _SrcBuf: char const*, _MaxCount: usize, _Locale: _locale_t): errno_t;
+
+@foreign
+func _mbstowcs_l(_Dest: wchar*, _Source: char const*, _MaxCount: usize, _Locale: _locale_t): usize;
+
+@foreign
+func _wctomb_l(_MbCh: char*, _WCh: wchar, _Locale: _locale_t): int;
+
+@foreign
+func wctomb_s(_SizeConverted: int*, _MbCh: char*, _SizeInBytes: rsize_t, _WCh: wchar): errno_t;
+
+@foreign
+func _wctomb_s_l(_SizeConverted: int*, _MbCh: char*, _SizeInBytes: usize, _WCh: wchar, _Locale: _locale_t): errno_t;
+
+@foreign
+func wcstombs_s(_PtNumOfCharConverted: usize*, _Dst: char*, _DstSizeInBytes: usize, _Src: wchar*, _MaxCountInBytes: usize): errno_t;
+
+@foreign
+func _wcstombs_s_l(_PtNumOfCharConverted: usize*, _Dst: char*, _DstSizeInBytes: usize, _Src: wchar*, _MaxCountInBytes: usize, _Locale: _locale_t): errno_t;
+
+@foreign
+func _wcstombs_l(_Dest: char*, _Source: wchar*, _MaxCount: usize, _Locale: _locale_t): usize;
+
+@foreign
+func _fullpath(_Buffer: char*, _Path: char const*, _BufferCount: usize): char*;
+
+@foreign
+func _makepath_s(_Buffer: char*, _BufferCount: usize, _Drive: char const*, _Dir: char const*, _Filename: char const*, _Ext: char const*): errno_t;
+
+@foreign
+func _makepath(_Buffer: char*, _Drive: char const*, _Dir: char const*, _Filename: char const*, _Ext: char const*);
+
+@foreign
+func _splitpath(_FullPath: char const*, _Drive: char*, _Dir: char*, _Filename: char*, _Ext: char*);
+
+@foreign
+func _splitpath_s(_FullPath: char const*, _Drive: char*, _DriveCount: usize, _Dir: char*, _DirCount: usize, _Filename: char*, _FilenameCount: usize, _Ext: char*, _ExtCount: usize): errno_t;
+
+@foreign
+func getenv_s(_RequiredCount: usize*, _Buffer: char*, _BufferCount: rsize_t, _VarName: char const*): errno_t;
+
+@foreign
+func __p___argc(): int*;
+
+@foreign
+func __p___argv(): char***;
+
+@foreign
+func __p___wargv(): wchar***;
+
+@foreign
+func __p__environ(): char***;
+
+@foreign
+func __p__wenviron(): wchar***;
+
+@foreign
+func _dupenv_s(_Buffer: char**, _BufferCount: usize*, _VarName: char const*): errno_t;
+
+@foreign
+func _putenv(_EnvString: char const*): int;
+
+@foreign
+func _putenv_s(_Name: char const*, _Value: char const*): errno_t;
+
+@foreign
+func _searchenv_s(_Filename: char const*, _VarName: char const*, _Buffer: char*, _BufferCount: usize): errno_t;
+
+@foreign
+func _searchenv(_Filename: char const*, _VarName: char const*, _Buffer: char*);
+
+@foreign
+func _seterrormode(_Mode: int);
+
+@foreign
+func _beep(_Frequency: uint, _Duration: uint);
+
+@foreign
+func _sleep(_Duration: ulong);
+
+@foreign
+func ecvt(_Value: double, _DigitCount: int, _PtDec: int*, _PtSign: int*): char*;
+
+@foreign
+func fcvt(_Value: double, _FractionalDigitCount: int, _PtDec: int*, _PtSign: int*): char*;
+
+@foreign
+func gcvt(_Value: double, _DigitCount: int, _DstBuf: char*): char*;
+
+@foreign
+func itoa(_Value: int, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func ltoa(_Value: long, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func swab(_Buf1: char*, _Buf2: char*, _SizeInBytes: int);
+
+@foreign
+func ultoa(_Value: ulong, _Buffer: char*, _Radix: int): char*;
+
+@foreign
+func putenv(_EnvString: char const*): int;
+
+@foreign
+func onexit(_Func: _onexit_t): _onexit_t;
+
+@foreign
+enum tagREGCLS {
+    REGCLS_SINGLEUSE = 0,
+    REGCLS_MULTIPLEUSE = 1,
+    REGCLS_MULTI_SEPARATE = 2,
+    REGCLS_SUSPENDED = 4,
+    REGCLS_SURROGATE = 8,
+    REGCLS_AGILE = 16,
+}
+
+@foreign
+typedef REGCLS = tagREGCLS;
+

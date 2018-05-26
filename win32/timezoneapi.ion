@@ -1,0 +1,80 @@
+#foreign(header = "<timezoneapi.h>")
+
+@foreign
+struct _TIME_ZONE_INFORMATION {
+    Bias: LONG;
+    StandardName: WCHAR[32];
+    StandardDate: SYSTEMTIME;
+    StandardBias: LONG;
+    DaylightName: WCHAR[32];
+    DaylightDate: SYSTEMTIME;
+    DaylightBias: LONG;
+}
+
+@foreign
+typedef TIME_ZONE_INFORMATION = _TIME_ZONE_INFORMATION;
+
+@foreign
+typedef PTIME_ZONE_INFORMATION = _TIME_ZONE_INFORMATION*;
+
+@foreign
+typedef LPTIME_ZONE_INFORMATION = _TIME_ZONE_INFORMATION*;
+
+@foreign
+struct _TIME_DYNAMIC_ZONE_INFORMATION {
+    Bias: LONG;
+    StandardName: WCHAR[32];
+    StandardDate: SYSTEMTIME;
+    StandardBias: LONG;
+    DaylightName: WCHAR[32];
+    DaylightDate: SYSTEMTIME;
+    DaylightBias: LONG;
+    TimeZoneKeyName: WCHAR[128];
+    DynamicDaylightTimeDisabled: BOOLEAN;
+}
+
+@foreign
+typedef DYNAMIC_TIME_ZONE_INFORMATION = _TIME_DYNAMIC_ZONE_INFORMATION;
+
+@foreign
+typedef PDYNAMIC_TIME_ZONE_INFORMATION = _TIME_DYNAMIC_ZONE_INFORMATION*;
+
+@foreign
+func SystemTimeToTzSpecificLocalTime(lpTimeZoneInformation: TIME_ZONE_INFORMATION*, lpUniversalTime: SYSTEMTIME*, lpLocalTime: LPSYSTEMTIME): BOOL;
+
+@foreign
+func TzSpecificLocalTimeToSystemTime(lpTimeZoneInformation: TIME_ZONE_INFORMATION*, lpLocalTime: SYSTEMTIME*, lpUniversalTime: LPSYSTEMTIME): BOOL;
+
+@foreign
+func FileTimeToSystemTime(lpFileTime: FILETIME*, lpSystemTime: LPSYSTEMTIME): BOOL;
+
+@foreign
+func SystemTimeToFileTime(lpSystemTime: SYSTEMTIME*, lpFileTime: LPFILETIME): BOOL;
+
+@foreign
+func GetTimeZoneInformation(lpTimeZoneInformation: LPTIME_ZONE_INFORMATION): DWORD;
+
+@foreign
+func SetTimeZoneInformation(lpTimeZoneInformation: TIME_ZONE_INFORMATION*): BOOL;
+
+@foreign
+func SetDynamicTimeZoneInformation(lpTimeZoneInformation: DYNAMIC_TIME_ZONE_INFORMATION*): BOOL;
+
+@foreign
+func GetDynamicTimeZoneInformation(pTimeZoneInformation: PDYNAMIC_TIME_ZONE_INFORMATION): DWORD;
+
+@foreign
+func GetTimeZoneInformationForYear(wYear: USHORT, pdtzi: PDYNAMIC_TIME_ZONE_INFORMATION, ptzi: LPTIME_ZONE_INFORMATION): BOOL;
+
+@foreign
+func EnumDynamicTimeZoneInformation(dwIndex: DWORD, lpTimeZoneInformation: PDYNAMIC_TIME_ZONE_INFORMATION): DWORD;
+
+@foreign
+func GetDynamicTimeZoneInformationEffectiveYears(lpTimeZoneInformation: PDYNAMIC_TIME_ZONE_INFORMATION, FirstYear: LPDWORD, LastYear: LPDWORD): DWORD;
+
+@foreign
+func SystemTimeToTzSpecificLocalTimeEx(lpTimeZoneInformation: DYNAMIC_TIME_ZONE_INFORMATION*, lpUniversalTime: SYSTEMTIME*, lpLocalTime: LPSYSTEMTIME): BOOL;
+
+@foreign
+func TzSpecificLocalTimeToSystemTimeEx(lpTimeZoneInformation: DYNAMIC_TIME_ZONE_INFORMATION*, lpLocalTime: SYSTEMTIME*, lpUniversalTime: LPSYSTEMTIME): BOOL;
+

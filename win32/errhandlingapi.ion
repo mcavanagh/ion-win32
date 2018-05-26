@@ -1,0 +1,62 @@
+#foreign(header = "<errhandlingapi.h>")
+
+@foreign
+typedef PTOP_LEVEL_EXCEPTION_FILTER = func(ExceptionInfo: _EXCEPTION_POINTERS*): LONG;
+
+@foreign
+typedef LPTOP_LEVEL_EXCEPTION_FILTER = PTOP_LEVEL_EXCEPTION_FILTER;
+
+@foreign
+func RaiseException(dwExceptionCode: DWORD, dwExceptionFlags: DWORD, nNumberOfArguments: DWORD, lpArguments: ULONG_PTR*);
+
+@foreign
+func UnhandledExceptionFilter(ExceptionInfo: _EXCEPTION_POINTERS*): LONG;
+
+@foreign
+func SetUnhandledExceptionFilter(lpTopLevelExceptionFilter: LPTOP_LEVEL_EXCEPTION_FILTER): LPTOP_LEVEL_EXCEPTION_FILTER;
+
+@foreign
+func GetLastError(): DWORD;
+
+@foreign
+func SetLastError(dwErrCode: DWORD);
+
+@foreign
+func GetErrorMode(): UINT;
+
+@foreign
+func SetErrorMode(uMode: UINT): UINT;
+
+@foreign
+func AddVectoredExceptionHandler(First: ULONG, Handler: PVECTORED_EXCEPTION_HANDLER): PVOID;
+
+@foreign
+func RemoveVectoredExceptionHandler(Handle: PVOID): ULONG;
+
+@foreign
+func AddVectoredContinueHandler(First: ULONG, Handler: PVECTORED_EXCEPTION_HANDLER): PVOID;
+
+@foreign
+func RemoveVectoredContinueHandler(Handle: PVOID): ULONG;
+
+@foreign
+func RaiseFailFastException(pExceptionRecord: PEXCEPTION_RECORD, pContextRecord: PCONTEXT, dwFlags: DWORD);
+
+@foreign
+func FatalAppExitA(uAction: UINT, lpMessageText: LPCSTR);
+
+@foreign
+func FatalAppExit(uAction: UINT, lpMessageText: LPCSTR);
+
+@foreign
+func FatalAppExitW(uAction: UINT, lpMessageText: LPCWSTR);
+
+@foreign
+func GetThreadErrorMode(): DWORD;
+
+@foreign
+func SetThreadErrorMode(dwNewMode: DWORD, lpOldMode: LPDWORD): BOOL;
+
+@foreign
+func TerminateProcessOnMemoryExhaustion(FailedAllocationSize: SIZE_T);
+

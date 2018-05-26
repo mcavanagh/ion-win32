@@ -1,0 +1,38 @@
+#foreign(header = "<wow64apiset.h>")
+
+@foreign
+func Wow64DisableWow64FsRedirection(OldValue: PVOID*): BOOL;
+
+@foreign
+func Wow64RevertWow64FsRedirection(OlValue: PVOID): BOOL;
+
+@foreign
+func IsWow64Process(hProcess: HANDLE, Wow64Process: PBOOL): BOOL;
+
+@foreign
+func GetSystemWow64DirectoryA(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemWow64Directory(lpBuffer: LPSTR, uSize: UINT): UINT;
+
+@foreign
+func GetSystemWow64DirectoryW(lpBuffer: LPWSTR, uSize: UINT): UINT;
+
+@foreign
+func Wow64SetThreadDefaultGuestMachine(Machine: USHORT): USHORT;
+
+@foreign
+func IsWow64Process2(hProcess: HANDLE, pProcessMachine: USHORT*, pNativeMachine: USHORT*): BOOL;
+
+@foreign
+func GetSystemWow64Directory2A(lpBuffer: LPSTR, uSize: UINT, ImageFileMachineType: WORD): UINT;
+
+@foreign
+func GetSystemWow64Directory2(lpBuffer: LPSTR, uSize: UINT, ImageFileMachineType: WORD): UINT;
+
+@foreign
+func GetSystemWow64Directory2W(lpBuffer: LPWSTR, uSize: UINT, ImageFileMachineType: WORD): UINT;
+
+@foreign
+func IsWow64GuestMachineSupported(WowGuestMachine: USHORT, MachineIsSupported: BOOL*): HRESULT;
+

@@ -1,0 +1,414 @@
+#foreign(header = "<fileapi.h>")
+
+@foreign
+func CompareFileTime(lpFileTime1: FILETIME*, lpFileTime2: FILETIME*): LONG;
+
+@foreign
+func CreateDirectoryA(lpPathName: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateDirectory(lpPathName: LPCSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateDirectoryW(lpPathName: LPCWSTR, lpSecurityAttributes: LPSECURITY_ATTRIBUTES): BOOL;
+
+@foreign
+func CreateFileA(lpFileName: LPCSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwCreationDisposition: DWORD, dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE): HANDLE;
+
+@foreign
+func CreateFile(lpFileName: LPCSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwCreationDisposition: DWORD, dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE): HANDLE;
+
+@foreign
+func CreateFileW(lpFileName: LPCWSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: LPSECURITY_ATTRIBUTES, dwCreationDisposition: DWORD, dwFlagsAndAttributes: DWORD, hTemplateFile: HANDLE): HANDLE;
+
+@foreign
+func DefineDosDeviceW(dwFlags: DWORD, lpDeviceName: LPCWSTR, lpTargetPath: LPCWSTR): BOOL;
+
+@foreign
+func DeleteFileA(lpFileName: LPCSTR): BOOL;
+
+@foreign
+func DeleteFile(lpFileName: LPCSTR): BOOL;
+
+@foreign
+func DeleteFileW(lpFileName: LPCWSTR): BOOL;
+
+@foreign
+func DeleteVolumeMountPointW(lpszVolumeMountPoint: LPCWSTR): BOOL;
+
+@foreign
+func FileTimeToLocalFileTime(lpFileTime: FILETIME*, lpLocalFileTime: LPFILETIME): BOOL;
+
+@foreign
+func FindClose(hFindFile: HANDLE): BOOL;
+
+@foreign
+func FindCloseChangeNotification(hChangeHandle: HANDLE): BOOL;
+
+@foreign
+func FindFirstChangeNotificationA(lpPathName: LPCSTR, bWatchSubtree: BOOL, dwNotifyFilter: DWORD): HANDLE;
+
+@foreign
+func FindFirstChangeNotification(lpPathName: LPCSTR, bWatchSubtree: BOOL, dwNotifyFilter: DWORD): HANDLE;
+
+@foreign
+func FindFirstChangeNotificationW(lpPathName: LPCWSTR, bWatchSubtree: BOOL, dwNotifyFilter: DWORD): HANDLE;
+
+@foreign
+func FindFirstFileA(lpFileName: LPCSTR, lpFindFileData: LPWIN32_FIND_DATAA): HANDLE;
+
+@foreign
+func FindFirstFile(lpFileName: LPCSTR, lpFindFileData: LPWIN32_FIND_DATAA): HANDLE;
+
+@foreign
+func FindFirstFileW(lpFileName: LPCWSTR, lpFindFileData: LPWIN32_FIND_DATAW): HANDLE;
+
+@foreign
+func FindFirstFileExA(lpFileName: LPCSTR, fInfoLevelId: FINDEX_INFO_LEVELS, lpFindFileData: LPVOID, fSearchOp: FINDEX_SEARCH_OPS, lpSearchFilter: LPVOID, dwAdditionalFlags: DWORD): HANDLE;
+
+@foreign
+func FindFirstFileEx(lpFileName: LPCSTR, fInfoLevelId: FINDEX_INFO_LEVELS, lpFindFileData: LPVOID, fSearchOp: FINDEX_SEARCH_OPS, lpSearchFilter: LPVOID, dwAdditionalFlags: DWORD): HANDLE;
+
+@foreign
+func FindFirstFileExW(lpFileName: LPCWSTR, fInfoLevelId: FINDEX_INFO_LEVELS, lpFindFileData: LPVOID, fSearchOp: FINDEX_SEARCH_OPS, lpSearchFilter: LPVOID, dwAdditionalFlags: DWORD): HANDLE;
+
+@foreign
+func FindFirstVolumeW(lpszVolumeName: LPWSTR, cchBufferLength: DWORD): HANDLE;
+
+@foreign
+func FindNextChangeNotification(hChangeHandle: HANDLE): BOOL;
+
+@foreign
+func FindNextFileA(hFindFile: HANDLE, lpFindFileData: LPWIN32_FIND_DATAA): BOOL;
+
+@foreign
+func FindNextFile(hFindFile: HANDLE, lpFindFileData: LPWIN32_FIND_DATAA): BOOL;
+
+@foreign
+func FindNextFileW(hFindFile: HANDLE, lpFindFileData: LPWIN32_FIND_DATAW): BOOL;
+
+@foreign
+func FindNextVolumeW(hFindVolume: HANDLE, lpszVolumeName: LPWSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func FindVolumeClose(hFindVolume: HANDLE): BOOL;
+
+@foreign
+func FlushFileBuffers(hFile: HANDLE): BOOL;
+
+@foreign
+func GetDiskFreeSpaceA(lpRootPathName: LPCSTR, lpSectorsPerCluster: LPDWORD, lpBytesPerSector: LPDWORD, lpNumberOfFreeClusters: LPDWORD, lpTotalNumberOfClusters: LPDWORD): BOOL;
+
+@foreign
+func GetDiskFreeSpace(lpRootPathName: LPCSTR, lpSectorsPerCluster: LPDWORD, lpBytesPerSector: LPDWORD, lpNumberOfFreeClusters: LPDWORD, lpTotalNumberOfClusters: LPDWORD): BOOL;
+
+@foreign
+func GetDiskFreeSpaceW(lpRootPathName: LPCWSTR, lpSectorsPerCluster: LPDWORD, lpBytesPerSector: LPDWORD, lpNumberOfFreeClusters: LPDWORD, lpTotalNumberOfClusters: LPDWORD): BOOL;
+
+@foreign
+func GetDiskFreeSpaceExA(lpDirectoryName: LPCSTR, lpFreeBytesAvailableToCaller: PULARGE_INTEGER, lpTotalNumberOfBytes: PULARGE_INTEGER, lpTotalNumberOfFreeBytes: PULARGE_INTEGER): BOOL;
+
+@foreign
+func GetDiskFreeSpaceEx(lpDirectoryName: LPCSTR, lpFreeBytesAvailableToCaller: PULARGE_INTEGER, lpTotalNumberOfBytes: PULARGE_INTEGER, lpTotalNumberOfFreeBytes: PULARGE_INTEGER): BOOL;
+
+@foreign
+func GetDiskFreeSpaceExW(lpDirectoryName: LPCWSTR, lpFreeBytesAvailableToCaller: PULARGE_INTEGER, lpTotalNumberOfBytes: PULARGE_INTEGER, lpTotalNumberOfFreeBytes: PULARGE_INTEGER): BOOL;
+
+@foreign
+func GetDriveTypeA(lpRootPathName: LPCSTR): UINT;
+
+@foreign
+func GetDriveType(lpRootPathName: LPCSTR): UINT;
+
+@foreign
+func GetDriveTypeW(lpRootPathName: LPCWSTR): UINT;
+
+@foreign
+struct _WIN32_FILE_ATTRIBUTE_DATA {
+    dwFileAttributes: DWORD;
+    ftCreationTime: FILETIME;
+    ftLastAccessTime: FILETIME;
+    ftLastWriteTime: FILETIME;
+    nFileSizeHigh: DWORD;
+    nFileSizeLow: DWORD;
+}
+
+@foreign
+typedef WIN32_FILE_ATTRIBUTE_DATA = _WIN32_FILE_ATTRIBUTE_DATA;
+
+@foreign
+typedef LPWIN32_FILE_ATTRIBUTE_DATA = _WIN32_FILE_ATTRIBUTE_DATA*;
+
+@foreign
+func GetFileAttributesA(lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetFileAttributes(lpFileName: LPCSTR): DWORD;
+
+@foreign
+func GetFileAttributesW(lpFileName: LPCWSTR): DWORD;
+
+@foreign
+func GetFileAttributesExA(lpFileName: LPCSTR, fInfoLevelId: GET_FILEEX_INFO_LEVELS, lpFileInformation: LPVOID): BOOL;
+
+@foreign
+func GetFileAttributesEx(lpFileName: LPCSTR, fInfoLevelId: GET_FILEEX_INFO_LEVELS, lpFileInformation: LPVOID): BOOL;
+
+@foreign
+func GetFileAttributesExW(lpFileName: LPCWSTR, fInfoLevelId: GET_FILEEX_INFO_LEVELS, lpFileInformation: LPVOID): BOOL;
+
+@foreign
+struct _BY_HANDLE_FILE_INFORMATION {
+    dwFileAttributes: DWORD;
+    ftCreationTime: FILETIME;
+    ftLastAccessTime: FILETIME;
+    ftLastWriteTime: FILETIME;
+    dwVolumeSerialNumber: DWORD;
+    nFileSizeHigh: DWORD;
+    nFileSizeLow: DWORD;
+    nNumberOfLinks: DWORD;
+    nFileIndexHigh: DWORD;
+    nFileIndexLow: DWORD;
+}
+
+@foreign
+typedef BY_HANDLE_FILE_INFORMATION = _BY_HANDLE_FILE_INFORMATION;
+
+@foreign
+typedef PBY_HANDLE_FILE_INFORMATION = _BY_HANDLE_FILE_INFORMATION*;
+
+@foreign
+typedef LPBY_HANDLE_FILE_INFORMATION = _BY_HANDLE_FILE_INFORMATION*;
+
+@foreign
+func GetFileInformationByHandle(hFile: HANDLE, lpFileInformation: LPBY_HANDLE_FILE_INFORMATION): BOOL;
+
+@foreign
+func GetFileSize(hFile: HANDLE, lpFileSizeHigh: LPDWORD): DWORD;
+
+@foreign
+func GetFileSizeEx(hFile: HANDLE, lpFileSize: PLARGE_INTEGER): BOOL;
+
+@foreign
+func GetFileType(hFile: HANDLE): DWORD;
+
+@foreign
+func GetFinalPathNameByHandleA(hFile: HANDLE, lpszFilePath: LPSTR, cchFilePath: DWORD, dwFlags: DWORD): DWORD;
+
+@foreign
+func GetFinalPathNameByHandle(hFile: HANDLE, lpszFilePath: LPSTR, cchFilePath: DWORD, dwFlags: DWORD): DWORD;
+
+@foreign
+func GetFinalPathNameByHandleW(hFile: HANDLE, lpszFilePath: LPWSTR, cchFilePath: DWORD, dwFlags: DWORD): DWORD;
+
+@foreign
+func GetFileTime(hFile: HANDLE, lpCreationTime: LPFILETIME, lpLastAccessTime: LPFILETIME, lpLastWriteTime: LPFILETIME): BOOL;
+
+@foreign
+func GetFullPathNameW(lpFileName: LPCWSTR, nBufferLength: DWORD, lpBuffer: LPWSTR, lpFilePart: LPWSTR*): DWORD;
+
+@foreign
+func GetFullPathName(lpFileName: LPCSTR, nBufferLength: DWORD, lpBuffer: LPSTR, lpFilePart: LPSTR*): DWORD;
+
+@foreign
+func GetFullPathNameA(lpFileName: LPCSTR, nBufferLength: DWORD, lpBuffer: LPSTR, lpFilePart: LPSTR*): DWORD;
+
+@foreign
+func GetLogicalDrives(): DWORD;
+
+@foreign
+func GetLogicalDriveStringsW(nBufferLength: DWORD, lpBuffer: LPWSTR): DWORD;
+
+@foreign
+func GetLongPathNameA(lpszShortPath: LPCSTR, lpszLongPath: LPSTR, cchBuffer: DWORD): DWORD;
+
+@foreign
+func GetLongPathName(lpszShortPath: LPCSTR, lpszLongPath: LPSTR, cchBuffer: DWORD): DWORD;
+
+@foreign
+func GetLongPathNameW(lpszShortPath: LPCWSTR, lpszLongPath: LPWSTR, cchBuffer: DWORD): DWORD;
+
+@foreign
+func GetShortPathNameW(lpszLongPath: LPCWSTR, lpszShortPath: LPWSTR, cchBuffer: DWORD): DWORD;
+
+@foreign
+func GetTempFileNameW(lpPathName: LPCWSTR, lpPrefixString: LPCWSTR, uUnique: UINT, lpTempFileName: LPWSTR): UINT;
+
+@foreign
+func GetVolumeInformationByHandleW(hFile: HANDLE, lpVolumeNameBuffer: LPWSTR, nVolumeNameSize: DWORD, lpVolumeSerialNumber: LPDWORD, lpMaximumComponentLength: LPDWORD, lpFileSystemFlags: LPDWORD, lpFileSystemNameBuffer: LPWSTR, nFileSystemNameSize: DWORD): BOOL;
+
+@foreign
+func GetVolumeInformationW(lpRootPathName: LPCWSTR, lpVolumeNameBuffer: LPWSTR, nVolumeNameSize: DWORD, lpVolumeSerialNumber: LPDWORD, lpMaximumComponentLength: LPDWORD, lpFileSystemFlags: LPDWORD, lpFileSystemNameBuffer: LPWSTR, nFileSystemNameSize: DWORD): BOOL;
+
+@foreign
+func GetVolumePathNameW(lpszFileName: LPCWSTR, lpszVolumePathName: LPWSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func LocalFileTimeToFileTime(lpLocalFileTime: FILETIME*, lpFileTime: LPFILETIME): BOOL;
+
+@foreign
+func LockFile(hFile: HANDLE, dwFileOffsetLow: DWORD, dwFileOffsetHigh: DWORD, nNumberOfBytesToLockLow: DWORD, nNumberOfBytesToLockHigh: DWORD): BOOL;
+
+@foreign
+func LockFileEx(hFile: HANDLE, dwFlags: DWORD, dwReserved: DWORD, nNumberOfBytesToLockLow: DWORD, nNumberOfBytesToLockHigh: DWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func QueryDosDeviceW(lpDeviceName: LPCWSTR, lpTargetPath: LPWSTR, ucchMax: DWORD): DWORD;
+
+@foreign
+func ReadFile(hFile: HANDLE, lpBuffer: LPVOID, nNumberOfBytesToRead: DWORD, lpNumberOfBytesRead: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func ReadFileEx(hFile: HANDLE, lpBuffer: LPVOID, nNumberOfBytesToRead: DWORD, lpOverlapped: LPOVERLAPPED, lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE): BOOL;
+
+@foreign
+func ReadFileScatter(hFile: HANDLE, aSegmentArray: FILE_SEGMENT_ELEMENT*, nNumberOfBytesToRead: DWORD, lpReserved: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func RemoveDirectoryA(lpPathName: LPCSTR): BOOL;
+
+@foreign
+func RemoveDirectory(lpPathName: LPCSTR): BOOL;
+
+@foreign
+func RemoveDirectoryW(lpPathName: LPCWSTR): BOOL;
+
+@foreign
+func SetEndOfFile(hFile: HANDLE): BOOL;
+
+@foreign
+func SetFileAttributesA(lpFileName: LPCSTR, dwFileAttributes: DWORD): BOOL;
+
+@foreign
+func SetFileAttributes(lpFileName: LPCSTR, dwFileAttributes: DWORD): BOOL;
+
+@foreign
+func SetFileAttributesW(lpFileName: LPCWSTR, dwFileAttributes: DWORD): BOOL;
+
+@foreign
+func SetFileInformationByHandle(hFile: HANDLE, FileInformationClass: FILE_INFO_BY_HANDLE_CLASS, lpFileInformation: LPVOID, dwBufferSize: DWORD): BOOL;
+
+@foreign
+func SetFilePointer(hFile: HANDLE, lDistanceToMove: LONG, lpDistanceToMoveHigh: PLONG, dwMoveMethod: DWORD): DWORD;
+
+@foreign
+func SetFilePointerEx(hFile: HANDLE, liDistanceToMove: LARGE_INTEGER, lpNewFilePointer: PLARGE_INTEGER, dwMoveMethod: DWORD): BOOL;
+
+@foreign
+func SetFileTime(hFile: HANDLE, lpCreationTime: FILETIME*, lpLastAccessTime: FILETIME*, lpLastWriteTime: FILETIME*): BOOL;
+
+@foreign
+func SetFileValidData(hFile: HANDLE, ValidDataLength: LONGLONG): BOOL;
+
+@foreign
+func UnlockFile(hFile: HANDLE, dwFileOffsetLow: DWORD, dwFileOffsetHigh: DWORD, nNumberOfBytesToUnlockLow: DWORD, nNumberOfBytesToUnlockHigh: DWORD): BOOL;
+
+@foreign
+func UnlockFileEx(hFile: HANDLE, dwReserved: DWORD, nNumberOfBytesToUnlockLow: DWORD, nNumberOfBytesToUnlockHigh: DWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func WriteFile(hFile: HANDLE, lpBuffer: LPCVOID, nNumberOfBytesToWrite: DWORD, lpNumberOfBytesWritten: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func WriteFileEx(hFile: HANDLE, lpBuffer: LPCVOID, nNumberOfBytesToWrite: DWORD, lpOverlapped: LPOVERLAPPED, lpCompletionRoutine: LPOVERLAPPED_COMPLETION_ROUTINE): BOOL;
+
+@foreign
+func WriteFileGather(hFile: HANDLE, aSegmentArray: FILE_SEGMENT_ELEMENT*, nNumberOfBytesToWrite: DWORD, lpReserved: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func GetTempPathW(nBufferLength: DWORD, lpBuffer: LPWSTR): DWORD;
+
+@foreign
+func GetVolumeNameForVolumeMountPointW(lpszVolumeMountPoint: LPCWSTR, lpszVolumeName: LPWSTR, cchBufferLength: DWORD): BOOL;
+
+@foreign
+func GetVolumePathNamesForVolumeNameW(lpszVolumeName: LPCWSTR, lpszVolumePathNames: LPWCH, cchBufferLength: DWORD, lpcchReturnLength: PDWORD): BOOL;
+
+@foreign
+struct _CREATEFILE2_EXTENDED_PARAMETERS {
+    dwSize: DWORD;
+    dwFileAttributes: DWORD;
+    dwFileFlags: DWORD;
+    dwSecurityQosFlags: DWORD;
+    lpSecurityAttributes: LPSECURITY_ATTRIBUTES;
+    hTemplateFile: HANDLE;
+}
+
+@foreign
+typedef CREATEFILE2_EXTENDED_PARAMETERS = _CREATEFILE2_EXTENDED_PARAMETERS;
+
+@foreign
+typedef PCREATEFILE2_EXTENDED_PARAMETERS = _CREATEFILE2_EXTENDED_PARAMETERS*;
+
+@foreign
+typedef LPCREATEFILE2_EXTENDED_PARAMETERS = _CREATEFILE2_EXTENDED_PARAMETERS*;
+
+@foreign
+func CreateFile2(lpFileName: LPCWSTR, dwDesiredAccess: DWORD, dwShareMode: DWORD, dwCreationDisposition: DWORD, pCreateExParams: LPCREATEFILE2_EXTENDED_PARAMETERS): HANDLE;
+
+@foreign
+func SetFileIoOverlappedRange(FileHandle: HANDLE, OverlappedRangeStart: PUCHAR, Length: ULONG): BOOL;
+
+@foreign
+func GetCompressedFileSizeA(lpFileName: LPCSTR, lpFileSizeHigh: LPDWORD): DWORD;
+
+@foreign
+func GetCompressedFileSize(lpFileName: LPCSTR, lpFileSizeHigh: LPDWORD): DWORD;
+
+@foreign
+func GetCompressedFileSizeW(lpFileName: LPCWSTR, lpFileSizeHigh: LPDWORD): DWORD;
+
+@foreign
+enum _STREAM_INFO_LEVELS {
+    FindStreamInfoStandard,
+    FindStreamInfoMaxInfoLevel,
+}
+
+@foreign
+typedef STREAM_INFO_LEVELS = _STREAM_INFO_LEVELS;
+
+@foreign
+struct _WIN32_FIND_STREAM_DATA {
+    StreamSize: LARGE_INTEGER;
+    cStreamName: WCHAR[296];
+}
+
+@foreign
+typedef WIN32_FIND_STREAM_DATA = _WIN32_FIND_STREAM_DATA;
+
+@foreign
+typedef PWIN32_FIND_STREAM_DATA = _WIN32_FIND_STREAM_DATA*;
+
+@foreign
+func FindFirstStreamW(lpFileName: LPCWSTR, InfoLevel: STREAM_INFO_LEVELS, lpFindStreamData: LPVOID, dwFlags: DWORD): HANDLE;
+
+@foreign
+func FindNextStreamW(hFindStream: HANDLE, lpFindStreamData: LPVOID): BOOL;
+
+@foreign
+func AreFileApisANSI(): BOOL;
+
+@foreign
+func GetTempPathA(nBufferLength: DWORD, lpBuffer: LPSTR): DWORD;
+
+@foreign
+func FindFirstFileNameW(lpFileName: LPCWSTR, dwFlags: DWORD, StringLength: LPDWORD, LinkName: PWSTR): HANDLE;
+
+@foreign
+func FindNextFileNameW(hFindStream: HANDLE, StringLength: LPDWORD, LinkName: PWSTR): BOOL;
+
+@foreign
+func GetVolumeInformationA(lpRootPathName: LPCSTR, lpVolumeNameBuffer: LPSTR, nVolumeNameSize: DWORD, lpVolumeSerialNumber: LPDWORD, lpMaximumComponentLength: LPDWORD, lpFileSystemFlags: LPDWORD, lpFileSystemNameBuffer: LPSTR, nFileSystemNameSize: DWORD): BOOL;
+
+@foreign
+func GetTempFileName(lpPathName: LPCSTR, lpPrefixString: LPCSTR, uUnique: UINT, lpTempFileName: LPSTR): UINT;
+
+@foreign
+func GetTempFileNameA(lpPathName: LPCSTR, lpPrefixString: LPCSTR, uUnique: UINT, lpTempFileName: LPSTR): UINT;
+
+@foreign
+func SetFileApisToOEM();
+
+@foreign
+func SetFileApisToANSI();
+

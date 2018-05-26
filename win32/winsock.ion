@@ -1,0 +1,352 @@
+#foreign(header = "<winsock.h>")
+
+@foreign
+typedef u_char = uchar;
+
+@foreign
+typedef u_short = ushort;
+
+@foreign
+typedef u_int = uint;
+
+@foreign
+typedef u_long = ulong;
+
+@foreign
+typedef SOCKET = UINT_PTR;
+
+@foreign
+struct fd_set {
+    fd_count: u_int;
+    fd_array: SOCKET[64];
+}
+
+@foreign
+func __WSAFDIsSet(arg0: SOCKET, arg1: fd_set*): int;
+
+@foreign
+struct timeval {
+    tv_sec: long;
+    tv_usec: long;
+}
+
+@foreign
+struct hostent {
+    h_name: char*;
+    h_aliases: char**;
+    h_addrtype: short;
+    h_length: short;
+    h_addr_list: char**;
+}
+
+@foreign
+struct netent {
+    n_name: char*;
+    n_aliases: char**;
+    n_addrtype: short;
+    n_net: u_long;
+}
+
+@foreign
+struct servent {
+    s_name: char*;
+    s_aliases: char**;
+    s_proto: char*;
+    s_port: short;
+}
+
+@foreign
+struct protoent {
+    p_name: char*;
+    p_aliases: char**;
+    p_proto: short;
+}
+
+@foreign
+struct sockaddr_in {
+    sin_family: short;
+    sin_port: u_short;
+    sin_addr: in_addr;
+    sin_zero: char[8];
+}
+
+@foreign
+struct WSAData {
+    wVersion: WORD;
+    wHighVersion: WORD;
+    iMaxSockets: ushort;
+    iMaxUdpDg: ushort;
+    lpVendorInfo: char*;
+    szDescription: char[257];
+    szSystemStatus: char[129];
+}
+
+@foreign
+typedef WSADATA = WSAData;
+
+@foreign
+typedef LPWSADATA = WSADATA*;
+
+@foreign
+struct ip_mreq {
+    imr_multiaddr: in_addr;
+    imr_interface: in_addr;
+}
+
+@foreign
+struct sockaddr {
+    sa_family: u_short;
+    sa_data: char[14];
+}
+
+@foreign
+struct sockproto {
+    sp_family: u_short;
+    sp_protocol: u_short;
+}
+
+@foreign
+struct linger {
+    l_onoff: u_short;
+    l_linger: u_short;
+}
+
+@foreign
+func accept(s: SOCKET, addr: sockaddr*, addrlen: int*): SOCKET;
+
+@foreign
+func bind(s: SOCKET, addr: sockaddr const*, namelen: int): int;
+
+@foreign
+func closesocket(s: SOCKET): int;
+
+@foreign
+func connect(s: SOCKET, name: sockaddr const*, namelen: int): int;
+
+@foreign
+func ioctlsocket(s: SOCKET, cmd: long, argp: u_long*): int;
+
+@foreign
+func getpeername(s: SOCKET, name: sockaddr*, namelen: int*): int;
+
+@foreign
+func getsockname(s: SOCKET, name: sockaddr*, namelen: int*): int;
+
+@foreign
+func getsockopt(s: SOCKET, level: int, optname: int, optval: char*, optlen: int*): int;
+
+@foreign
+func htonl(hostlong: u_long): u_long;
+
+@foreign
+func htons(hostshort: u_short): u_short;
+
+@foreign
+func inet_addr(cp: char const*): ulong;
+
+@foreign
+func inet_ntoa(in: in_addr): char*;
+
+@foreign
+func listen(s: SOCKET, backlog: int): int;
+
+@foreign
+func ntohl(netlong: u_long): u_long;
+
+@foreign
+func ntohs(netshort: u_short): u_short;
+
+@foreign
+func recv(s: SOCKET, buf: char*, len: int, flags: int): int;
+
+@foreign
+func recvfrom(s: SOCKET, buf: char*, len: int, flags: int, from: sockaddr*, fromlen: int*): int;
+
+@foreign
+func select(nfds: int, readfds: fd_set*, writefds: fd_set*, exceptfds: fd_set*, timeout: timeval const*): int;
+
+@foreign
+func send(s: SOCKET, buf: char const*, len: int, flags: int): int;
+
+@foreign
+func sendto(s: SOCKET, buf: char const*, len: int, flags: int, to: sockaddr const*, tolen: int): int;
+
+@foreign
+func setsockopt(s: SOCKET, level: int, optname: int, optval: char const*, optlen: int): int;
+
+@foreign
+func shutdown(s: SOCKET, how: int): int;
+
+@foreign
+func socket(af: int, type: int, protocol: int): SOCKET;
+
+@foreign
+func gethostbyaddr(addr: char const*, len: int, type: int): hostent*;
+
+@foreign
+func gethostbyname(name: char const*): hostent*;
+
+@foreign
+func gethostname(name: char*, namelen: int): int;
+
+@foreign
+func getservbyport(port: int, proto: char const*): servent*;
+
+@foreign
+func getservbyname(name: char const*, proto: char const*): servent*;
+
+@foreign
+func getprotobynumber(proto: int): protoent*;
+
+@foreign
+func getprotobyname(name: char const*): protoent*;
+
+@foreign
+func WSAStartup(wVersionRequired: WORD, lpWSAData: LPWSADATA): int;
+
+@foreign
+func WSACleanup(): int;
+
+@foreign
+func WSASetLastError(iError: int);
+
+@foreign
+func WSAGetLastError(): int;
+
+@foreign
+func WSAIsBlocking(): BOOL;
+
+@foreign
+func WSAUnhookBlockingHook(): int;
+
+@foreign
+func WSASetBlockingHook(lpBlockFunc: FARPROC): FARPROC;
+
+@foreign
+func WSACancelBlockingCall(): int;
+
+@foreign
+func WSAAsyncGetServByName(hWnd: HWND, wMsg: u_int, name: char const*, proto: char const*, buf: char*, buflen: int): HANDLE;
+
+@foreign
+func WSAAsyncGetServByPort(hWnd: HWND, wMsg: u_int, port: int, proto: char const*, buf: char*, buflen: int): HANDLE;
+
+@foreign
+func WSAAsyncGetProtoByName(hWnd: HWND, wMsg: u_int, name: char const*, buf: char*, buflen: int): HANDLE;
+
+@foreign
+func WSAAsyncGetProtoByNumber(hWnd: HWND, wMsg: u_int, number: int, buf: char*, buflen: int): HANDLE;
+
+@foreign
+func WSAAsyncGetHostByName(hWnd: HWND, wMsg: u_int, name: char const*, buf: char*, buflen: int): HANDLE;
+
+@foreign
+func WSAAsyncGetHostByAddr(hWnd: HWND, wMsg: u_int, addr: char const*, len: int, type: int, buf: char*, buflen: int): HANDLE;
+
+@foreign
+func WSACancelAsyncRequest(hAsyncTaskHandle: HANDLE): int;
+
+@foreign
+func WSAAsyncSelect(s: SOCKET, hWnd: HWND, wMsg: u_int, lEvent: long): int;
+
+@foreign
+func WSARecvEx(s: SOCKET, buf: char*, len: int, flags: int*): int;
+
+@foreign
+struct _TRANSMIT_FILE_BUFFERS {
+    Head: PVOID;
+    HeadLength: DWORD;
+    Tail: PVOID;
+    TailLength: DWORD;
+}
+
+@foreign
+typedef TRANSMIT_FILE_BUFFERS = _TRANSMIT_FILE_BUFFERS;
+
+@foreign
+typedef PTRANSMIT_FILE_BUFFERS = _TRANSMIT_FILE_BUFFERS*;
+
+@foreign
+typedef LPTRANSMIT_FILE_BUFFERS = _TRANSMIT_FILE_BUFFERS*;
+
+@foreign
+func TransmitFile(hSocket: SOCKET, hFile: HANDLE, nNumberOfBytesToWrite: DWORD, nNumberOfBytesPerSend: DWORD, lpOverlapped: LPOVERLAPPED, lpTransmitBuffers: LPTRANSMIT_FILE_BUFFERS, dwReserved: DWORD): BOOL;
+
+@foreign
+func AcceptEx(sListenSocket: SOCKET, sAcceptSocket: SOCKET, lpOutputBuffer: PVOID, dwReceiveDataLength: DWORD, dwLocalAddressLength: DWORD, dwRemoteAddressLength: DWORD, lpdwBytesReceived: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func GetAcceptExSockaddrs(lpOutputBuffer: PVOID, dwReceiveDataLength: DWORD, dwLocalAddressLength: DWORD, dwRemoteAddressLength: DWORD, LocalSockaddr: sockaddr**, LocalSockaddrLength: LPINT, RemoteSockaddr: sockaddr**, RemoteSockaddrLength: LPINT);
+
+@foreign
+typedef SOCKADDR = sockaddr;
+
+@foreign
+typedef PSOCKADDR = sockaddr*;
+
+@foreign
+typedef LPSOCKADDR = sockaddr*;
+
+@foreign
+typedef SOCKADDR_IN = sockaddr_in;
+
+@foreign
+typedef PSOCKADDR_IN = sockaddr_in*;
+
+@foreign
+typedef LPSOCKADDR_IN = sockaddr_in*;
+
+@foreign
+typedef LINGER = linger;
+
+@foreign
+typedef PLINGER = linger*;
+
+@foreign
+typedef LPLINGER = linger*;
+
+@foreign
+typedef FD_SET = fd_set;
+
+@foreign
+typedef PFD_SET = fd_set*;
+
+@foreign
+typedef LPFD_SET = fd_set*;
+
+@foreign
+typedef HOSTENT = hostent;
+
+@foreign
+typedef PHOSTENT = hostent*;
+
+@foreign
+typedef LPHOSTENT = hostent*;
+
+@foreign
+typedef SERVENT = servent;
+
+@foreign
+typedef PSERVENT = servent*;
+
+@foreign
+typedef LPSERVENT = servent*;
+
+@foreign
+typedef PROTOENT = protoent;
+
+@foreign
+typedef PPROTOENT = protoent*;
+
+@foreign
+typedef LPPROTOENT = protoent*;
+
+@foreign
+typedef TIMEVAL = timeval;
+
+@foreign
+typedef PTIMEVAL = timeval*;
+
+@foreign
+typedef LPTIMEVAL = timeval*;
+

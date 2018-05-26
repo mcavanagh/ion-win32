@@ -1,0 +1,33 @@
+#foreign(header = "<rpcnsip.h>")
+
+@foreign
+struct RPC_IMPORT_CONTEXT_P {
+    LookupContext: RPC_NS_HANDLE;
+    ProposedHandle: RPC_BINDING_HANDLE;
+    Bindings: RPC_BINDING_VECTOR*;
+}
+
+@foreign
+typedef PRPC_IMPORT_CONTEXT_P = RPC_IMPORT_CONTEXT_P;
+
+@foreign
+func I_RpcNsGetBuffer(Message: PRPC_MESSAGE): RPC_STATUS;
+
+@foreign
+func I_RpcNsSendReceive(Message: PRPC_MESSAGE, Handle: RPC_BINDING_HANDLE*): RPC_STATUS;
+
+@foreign
+func I_RpcNsRaiseException(Message: PRPC_MESSAGE, Status: RPC_STATUS);
+
+@foreign
+func I_RpcReBindBuffer(Message: PRPC_MESSAGE): RPC_STATUS;
+
+@foreign
+func I_NsServerBindSearch(): RPC_STATUS;
+
+@foreign
+func I_NsClientBindSearch(): RPC_STATUS;
+
+@foreign
+func I_NsClientBindDone();
+

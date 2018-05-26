@@ -1,0 +1,217 @@
+#foreign(header = "<ole2.h>")
+
+@foreign
+func CreateDataAdviseHolder(ppDAHolder: LPDATAADVISEHOLDER*): HRESULT;
+
+@foreign
+func OleBuildVersion(): DWORD;
+
+@foreign
+func WriteFmtUserTypeStg(pstg: LPSTORAGE, cf: CLIPFORMAT, lpszUserType: LPOLESTR): HRESULT;
+
+@foreign
+func ReadFmtUserTypeStg(pstg: LPSTORAGE, pcf: CLIPFORMAT*, lplpszUserType: LPOLESTR*): HRESULT;
+
+@foreign
+func OleInitialize(pvReserved: LPVOID): HRESULT;
+
+@foreign
+func OleUninitialize();
+
+@foreign
+func OleQueryLinkFromData(pSrcDataObject: LPDATAOBJECT): HRESULT;
+
+@foreign
+func OleQueryCreateFromData(pSrcDataObject: LPDATAOBJECT): HRESULT;
+
+@foreign
+func OleCreate(rclsid: IID* const, riid: IID* const, renderopt: DWORD, pFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateEx(rclsid: IID* const, riid: IID* const, dwFlags: DWORD, renderopt: DWORD, cFormats: ULONG, rgAdvf: DWORD*, rgFormatEtc: LPFORMATETC, lpAdviseSink: IAdviseSink*, rgdwConnection: DWORD*, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateFromData(pSrcDataObj: LPDATAOBJECT, riid: IID* const, renderopt: DWORD, pFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateFromDataEx(pSrcDataObj: LPDATAOBJECT, riid: IID* const, dwFlags: DWORD, renderopt: DWORD, cFormats: ULONG, rgAdvf: DWORD*, rgFormatEtc: LPFORMATETC, lpAdviseSink: IAdviseSink*, rgdwConnection: DWORD*, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateLinkFromData(pSrcDataObj: LPDATAOBJECT, riid: IID* const, renderopt: DWORD, pFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateLinkFromDataEx(pSrcDataObj: LPDATAOBJECT, riid: IID* const, dwFlags: DWORD, renderopt: DWORD, cFormats: ULONG, rgAdvf: DWORD*, rgFormatEtc: LPFORMATETC, lpAdviseSink: IAdviseSink*, rgdwConnection: DWORD*, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateStaticFromData(pSrcDataObj: LPDATAOBJECT, iid: IID* const, renderopt: DWORD, pFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateLink(pmkLinkSrc: LPMONIKER, riid: IID* const, renderopt: DWORD, lpFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateLinkEx(pmkLinkSrc: LPMONIKER, riid: IID* const, dwFlags: DWORD, renderopt: DWORD, cFormats: ULONG, rgAdvf: DWORD*, rgFormatEtc: LPFORMATETC, lpAdviseSink: IAdviseSink*, rgdwConnection: DWORD*, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateLinkToFile(lpszFileName: LPCOLESTR, riid: IID* const, renderopt: DWORD, lpFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateLinkToFileEx(lpszFileName: LPCOLESTR, riid: IID* const, dwFlags: DWORD, renderopt: DWORD, cFormats: ULONG, rgAdvf: DWORD*, rgFormatEtc: LPFORMATETC, lpAdviseSink: IAdviseSink*, rgdwConnection: DWORD*, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateFromFile(rclsid: IID* const, lpszFileName: LPCOLESTR, riid: IID* const, renderopt: DWORD, lpFormatEtc: LPFORMATETC, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateFromFileEx(rclsid: IID* const, lpszFileName: LPCOLESTR, riid: IID* const, dwFlags: DWORD, renderopt: DWORD, cFormats: ULONG, rgAdvf: DWORD*, rgFormatEtc: LPFORMATETC, lpAdviseSink: IAdviseSink*, rgdwConnection: DWORD*, pClientSite: LPOLECLIENTSITE, pStg: LPSTORAGE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleLoad(pStg: LPSTORAGE, riid: IID* const, pClientSite: LPOLECLIENTSITE, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleSave(pPS: LPPERSISTSTORAGE, pStg: LPSTORAGE, fSameAsLoad: BOOL): HRESULT;
+
+@foreign
+func OleLoadFromStream(pStm: LPSTREAM, iidInterface: IID* const, ppvObj: LPVOID*): HRESULT;
+
+@foreign
+func OleSaveToStream(pPStm: LPPERSISTSTREAM, pStm: LPSTREAM): HRESULT;
+
+@foreign
+func OleSetContainedObject(pUnknown: LPUNKNOWN, fContained: BOOL): HRESULT;
+
+@foreign
+func OleNoteObjectVisible(pUnknown: LPUNKNOWN, fVisible: BOOL): HRESULT;
+
+@foreign
+func RegisterDragDrop(hwnd: HWND, pDropTarget: LPDROPTARGET): HRESULT;
+
+@foreign
+func RevokeDragDrop(hwnd: HWND): HRESULT;
+
+@foreign
+func DoDragDrop(pDataObj: LPDATAOBJECT, pDropSource: LPDROPSOURCE, dwOKEffects: DWORD, pdwEffect: LPDWORD): HRESULT;
+
+@foreign
+func OleSetClipboard(pDataObj: LPDATAOBJECT): HRESULT;
+
+@foreign
+func OleGetClipboard(ppDataObj: LPDATAOBJECT*): HRESULT;
+
+@foreign
+func OleGetClipboardWithEnterpriseInfo(dataObject: IDataObject**, dataEnterpriseId: PWSTR*, sourceDescription: PWSTR*, targetDescription: PWSTR*, dataDescription: PWSTR*): HRESULT;
+
+@foreign
+func OleFlushClipboard(): HRESULT;
+
+@foreign
+func OleIsCurrentClipboard(pDataObj: LPDATAOBJECT): HRESULT;
+
+@foreign
+func OleCreateMenuDescriptor(hmenuCombined: HMENU, lpMenuWidths: LPOLEMENUGROUPWIDTHS): HOLEMENU;
+
+@foreign
+func OleSetMenuDescriptor(holemenu: HOLEMENU, hwndFrame: HWND, hwndActiveObject: HWND, lpFrame: LPOLEINPLACEFRAME, lpActiveObj: LPOLEINPLACEACTIVEOBJECT): HRESULT;
+
+@foreign
+func OleDestroyMenuDescriptor(holemenu: HOLEMENU): HRESULT;
+
+@foreign
+func OleTranslateAccelerator(lpFrame: LPOLEINPLACEFRAME, lpFrameInfo: LPOLEINPLACEFRAMEINFO, lpmsg: LPMSG): HRESULT;
+
+@foreign
+func OleDuplicateData(hSrc: HANDLE, cfFormat: CLIPFORMAT, uiFlags: UINT): HANDLE;
+
+@foreign
+func OleDraw(pUnknown: LPUNKNOWN, dwAspect: DWORD, hdcDraw: HDC, lprcBounds: LPCRECT): HRESULT;
+
+@foreign
+func OleRun(pUnknown: LPUNKNOWN): HRESULT;
+
+@foreign
+func OleIsRunning(pObject: LPOLEOBJECT): BOOL;
+
+@foreign
+func OleLockRunning(pUnknown: LPUNKNOWN, fLock: BOOL, fLastUnlockCloses: BOOL): HRESULT;
+
+@foreign
+func ReleaseStgMedium(arg0: LPSTGMEDIUM);
+
+@foreign
+func CreateOleAdviseHolder(ppOAHolder: LPOLEADVISEHOLDER*): HRESULT;
+
+@foreign
+func OleCreateDefaultHandler(clsid: IID* const, pUnkOuter: LPUNKNOWN, riid: IID* const, lplpObj: LPVOID*): HRESULT;
+
+@foreign
+func OleCreateEmbeddingHelper(clsid: IID* const, pUnkOuter: LPUNKNOWN, flags: DWORD, pCF: LPCLASSFACTORY, riid: IID* const, lplpObj: LPVOID*): HRESULT;
+
+@foreign
+func IsAccelerator(hAccel: HACCEL, cAccelEntries: int, lpMsg: LPMSG, lpwCmd: WORD*): BOOL;
+
+@foreign
+func OleGetIconOfFile(lpszPath: LPOLESTR, fUseFileAsLabel: BOOL): HGLOBAL;
+
+@foreign
+func OleGetIconOfClass(rclsid: IID* const, lpszLabel: LPOLESTR, fUseTypeAsLabel: BOOL): HGLOBAL;
+
+@foreign
+func OleMetafilePictFromIconAndLabel(hIcon: HICON, lpszLabel: LPOLESTR, lpszSourceFile: LPOLESTR, iIconIndex: UINT): HGLOBAL;
+
+@foreign
+func OleRegGetUserType(clsid: IID* const, dwFormOfType: DWORD, pszUserType: LPOLESTR*): HRESULT;
+
+@foreign
+func OleRegGetMiscStatus(clsid: IID* const, dwAspect: DWORD, pdwStatus: DWORD*): HRESULT;
+
+@foreign
+func OleRegEnumFormatEtc(clsid: IID* const, dwDirection: DWORD, ppenum: LPENUMFORMATETC*): HRESULT;
+
+@foreign
+func OleRegEnumVerbs(clsid: IID* const, ppenum: LPENUMOLEVERB*): HRESULT;
+
+@foreign
+typedef LPOLESTREAM = _OLESTREAM*;
+
+@foreign
+struct _OLESTREAMVTBL {
+    Get: func(arg0: LPOLESTREAM, arg1: void*, arg2: DWORD): DWORD;
+    Put: func(arg0: LPOLESTREAM, arg1: void const*, arg2: DWORD): DWORD;
+}
+
+@foreign
+typedef OLESTREAMVTBL = _OLESTREAMVTBL;
+
+@foreign
+typedef LPOLESTREAMVTBL = OLESTREAMVTBL*;
+
+@foreign
+struct _OLESTREAM {
+    lpstbl: LPOLESTREAMVTBL;
+}
+
+@foreign
+typedef OLESTREAM = _OLESTREAM;
+
+@foreign
+func OleConvertOLESTREAMToIStorage(lpolestream: LPOLESTREAM, pstg: LPSTORAGE, ptd: DVTARGETDEVICE*): HRESULT;
+
+@foreign
+func OleConvertIStorageToOLESTREAM(pstg: LPSTORAGE, lpolestream: LPOLESTREAM): HRESULT;
+
+@foreign
+func OleDoAutoConvert(pStg: LPSTORAGE, pClsidNew: LPCLSID): HRESULT;
+
+@foreign
+func OleGetAutoConvert(clsidOld: IID* const, pClsidNew: LPCLSID): HRESULT;
+
+@foreign
+func OleSetAutoConvert(clsidOld: IID* const, clsidNew: IID* const): HRESULT;
+
+@foreign
+func SetConvertStg(pStg: LPSTORAGE, fConvert: BOOL): HRESULT;
+
+@foreign
+func OleConvertIStorageToOLESTREAMEx(pstg: LPSTORAGE, cfFormat: CLIPFORMAT, lWidth: LONG, lHeight: LONG, dwSize: DWORD, pmedium: LPSTGMEDIUM, polestm: LPOLESTREAM): HRESULT;
+
+@foreign
+func OleConvertOLESTREAMToIStorageEx(polestm: LPOLESTREAM, pstg: LPSTORAGE, pcfFormat: CLIPFORMAT*, plwWidth: LONG*, plHeight: LONG*, pdwSize: DWORD*, pmedium: LPSTGMEDIUM): HRESULT;
+

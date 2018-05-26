@@ -1,0 +1,32 @@
+#foreign(header = "<ioapiset.h>")
+
+@foreign
+func CreateIoCompletionPort(FileHandle: HANDLE, ExistingCompletionPort: HANDLE, CompletionKey: ULONG_PTR, NumberOfConcurrentThreads: DWORD): HANDLE;
+
+@foreign
+func GetQueuedCompletionStatus(CompletionPort: HANDLE, lpNumberOfBytesTransferred: LPDWORD, lpCompletionKey: PULONG_PTR, lpOverlapped: LPOVERLAPPED*, dwMilliseconds: DWORD): BOOL;
+
+@foreign
+func GetQueuedCompletionStatusEx(CompletionPort: HANDLE, lpCompletionPortEntries: LPOVERLAPPED_ENTRY, ulCount: ULONG, ulNumEntriesRemoved: PULONG, dwMilliseconds: DWORD, fAlertable: BOOL): BOOL;
+
+@foreign
+func PostQueuedCompletionStatus(CompletionPort: HANDLE, dwNumberOfBytesTransferred: DWORD, dwCompletionKey: ULONG_PTR, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func DeviceIoControl(hDevice: HANDLE, dwIoControlCode: DWORD, lpInBuffer: LPVOID, nInBufferSize: DWORD, lpOutBuffer: LPVOID, nOutBufferSize: DWORD, lpBytesReturned: LPDWORD, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func GetOverlappedResult(hFile: HANDLE, lpOverlapped: LPOVERLAPPED, lpNumberOfBytesTransferred: LPDWORD, bWait: BOOL): BOOL;
+
+@foreign
+func CancelIoEx(hFile: HANDLE, lpOverlapped: LPOVERLAPPED): BOOL;
+
+@foreign
+func CancelIo(hFile: HANDLE): BOOL;
+
+@foreign
+func GetOverlappedResultEx(hFile: HANDLE, lpOverlapped: LPOVERLAPPED, lpNumberOfBytesTransferred: LPDWORD, dwMilliseconds: DWORD, bAlertable: BOOL): BOOL;
+
+@foreign
+func CancelSynchronousIo(hThread: HANDLE): BOOL;
+

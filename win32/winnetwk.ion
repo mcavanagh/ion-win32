@@ -1,0 +1,392 @@
+#foreign(header = "<winnetwk.h>")
+
+@foreign
+struct _NETRESOURCEA {
+    dwScope: DWORD;
+    dwType: DWORD;
+    dwDisplayType: DWORD;
+    dwUsage: DWORD;
+    lpLocalName: LPSTR;
+    lpRemoteName: LPSTR;
+    lpComment: LPSTR;
+    lpProvider: LPSTR;
+}
+
+@foreign
+typedef NETRESOURCEA = _NETRESOURCEA;
+
+@foreign
+typedef LPNETRESOURCEA = _NETRESOURCEA*;
+
+@foreign
+struct _NETRESOURCEW {
+    dwScope: DWORD;
+    dwType: DWORD;
+    dwDisplayType: DWORD;
+    dwUsage: DWORD;
+    lpLocalName: LPWSTR;
+    lpRemoteName: LPWSTR;
+    lpComment: LPWSTR;
+    lpProvider: LPWSTR;
+}
+
+@foreign
+typedef NETRESOURCEW = _NETRESOURCEW;
+
+@foreign
+typedef LPNETRESOURCEW = _NETRESOURCEW*;
+
+@foreign
+typedef NETRESOURCE = NETRESOURCEA;
+
+@foreign
+typedef LPNETRESOURCE = LPNETRESOURCEA;
+
+@foreign
+func WNetAddConnectionA(lpRemoteName: LPCSTR, lpPassword: LPCSTR, lpLocalName: LPCSTR): DWORD;
+
+@foreign
+func WNetAddConnection(lpRemoteName: LPCSTR, lpPassword: LPCSTR, lpLocalName: LPCSTR): DWORD;
+
+@foreign
+func WNetAddConnectionW(lpRemoteName: LPCWSTR, lpPassword: LPCWSTR, lpLocalName: LPCWSTR): DWORD;
+
+@foreign
+func WNetAddConnection2A(lpNetResource: LPNETRESOURCEA, lpPassword: LPCSTR, lpUserName: LPCSTR, dwFlags: DWORD): DWORD;
+
+@foreign
+func WNetAddConnection2(lpNetResource: LPNETRESOURCEA, lpPassword: LPCSTR, lpUserName: LPCSTR, dwFlags: DWORD): DWORD;
+
+@foreign
+func WNetAddConnection2W(lpNetResource: LPNETRESOURCEW, lpPassword: LPCWSTR, lpUserName: LPCWSTR, dwFlags: DWORD): DWORD;
+
+@foreign
+func WNetAddConnection3A(hwndOwner: HWND, lpNetResource: LPNETRESOURCEA, lpPassword: LPCSTR, lpUserName: LPCSTR, dwFlags: DWORD): DWORD;
+
+@foreign
+func WNetAddConnection3(hwndOwner: HWND, lpNetResource: LPNETRESOURCEA, lpPassword: LPCSTR, lpUserName: LPCSTR, dwFlags: DWORD): DWORD;
+
+@foreign
+func WNetAddConnection3W(hwndOwner: HWND, lpNetResource: LPNETRESOURCEW, lpPassword: LPCWSTR, lpUserName: LPCWSTR, dwFlags: DWORD): DWORD;
+
+@foreign
+func WNetCancelConnectionA(lpName: LPCSTR, fForce: BOOL): DWORD;
+
+@foreign
+func WNetCancelConnection(lpName: LPCSTR, fForce: BOOL): DWORD;
+
+@foreign
+func WNetCancelConnectionW(lpName: LPCWSTR, fForce: BOOL): DWORD;
+
+@foreign
+func WNetCancelConnection2A(lpName: LPCSTR, dwFlags: DWORD, fForce: BOOL): DWORD;
+
+@foreign
+func WNetCancelConnection2(lpName: LPCSTR, dwFlags: DWORD, fForce: BOOL): DWORD;
+
+@foreign
+func WNetCancelConnection2W(lpName: LPCWSTR, dwFlags: DWORD, fForce: BOOL): DWORD;
+
+@foreign
+func WNetGetConnectionA(lpLocalName: LPCSTR, lpRemoteName: LPSTR, lpnLength: LPDWORD): DWORD;
+
+@foreign
+func WNetGetConnection(lpLocalName: LPCSTR, lpRemoteName: LPSTR, lpnLength: LPDWORD): DWORD;
+
+@foreign
+func WNetGetConnectionW(lpLocalName: LPCWSTR, lpRemoteName: LPWSTR, lpnLength: LPDWORD): DWORD;
+
+@foreign
+func WNetRestoreSingleConnectionW(hwndParent: HWND, lpDevice: LPCWSTR, fUseUI: BOOL): DWORD;
+
+@foreign
+func WNetUseConnectionA(hwndOwner: HWND, lpNetResource: LPNETRESOURCEA, lpPassword: LPCSTR, lpUserId: LPCSTR, dwFlags: DWORD, lpAccessName: LPSTR, lpBufferSize: LPDWORD, lpResult: LPDWORD): DWORD;
+
+@foreign
+func WNetUseConnection(hwndOwner: HWND, lpNetResource: LPNETRESOURCEA, lpPassword: LPCSTR, lpUserId: LPCSTR, dwFlags: DWORD, lpAccessName: LPSTR, lpBufferSize: LPDWORD, lpResult: LPDWORD): DWORD;
+
+@foreign
+func WNetUseConnectionW(hwndOwner: HWND, lpNetResource: LPNETRESOURCEW, lpPassword: LPCWSTR, lpUserId: LPCWSTR, dwFlags: DWORD, lpAccessName: LPWSTR, lpBufferSize: LPDWORD, lpResult: LPDWORD): DWORD;
+
+@foreign
+func WNetConnectionDialog(hwnd: HWND, dwType: DWORD): DWORD;
+
+@foreign
+func WNetDisconnectDialog(hwnd: HWND, dwType: DWORD): DWORD;
+
+@foreign
+struct _CONNECTDLGSTRUCTA {
+    cbStructure: DWORD;
+    hwndOwner: HWND;
+    lpConnRes: LPNETRESOURCEA;
+    dwFlags: DWORD;
+    dwDevNum: DWORD;
+}
+
+@foreign
+typedef CONNECTDLGSTRUCTA = _CONNECTDLGSTRUCTA;
+
+@foreign
+typedef LPCONNECTDLGSTRUCTA = _CONNECTDLGSTRUCTA*;
+
+@foreign
+struct _CONNECTDLGSTRUCTW {
+    cbStructure: DWORD;
+    hwndOwner: HWND;
+    lpConnRes: LPNETRESOURCEW;
+    dwFlags: DWORD;
+    dwDevNum: DWORD;
+}
+
+@foreign
+typedef CONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW;
+
+@foreign
+typedef LPCONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW*;
+
+@foreign
+typedef CONNECTDLGSTRUCT = CONNECTDLGSTRUCTA;
+
+@foreign
+typedef LPCONNECTDLGSTRUCT = LPCONNECTDLGSTRUCTA;
+
+@foreign
+func WNetConnectionDialog1A(lpConnDlgStruct: LPCONNECTDLGSTRUCTA): DWORD;
+
+@foreign
+func WNetConnectionDialog1(lpConnDlgStruct: LPCONNECTDLGSTRUCTA): DWORD;
+
+@foreign
+func WNetConnectionDialog1W(lpConnDlgStruct: LPCONNECTDLGSTRUCTW): DWORD;
+
+@foreign
+struct _DISCDLGSTRUCTA {
+    cbStructure: DWORD;
+    hwndOwner: HWND;
+    lpLocalName: LPSTR;
+    lpRemoteName: LPSTR;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef DISCDLGSTRUCTA = _DISCDLGSTRUCTA;
+
+@foreign
+typedef LPDISCDLGSTRUCTA = _DISCDLGSTRUCTA*;
+
+@foreign
+struct _DISCDLGSTRUCTW {
+    cbStructure: DWORD;
+    hwndOwner: HWND;
+    lpLocalName: LPWSTR;
+    lpRemoteName: LPWSTR;
+    dwFlags: DWORD;
+}
+
+@foreign
+typedef DISCDLGSTRUCTW = _DISCDLGSTRUCTW;
+
+@foreign
+typedef LPDISCDLGSTRUCTW = _DISCDLGSTRUCTW*;
+
+@foreign
+typedef DISCDLGSTRUCT = DISCDLGSTRUCTA;
+
+@foreign
+typedef LPDISCDLGSTRUCT = LPDISCDLGSTRUCTA;
+
+@foreign
+func WNetDisconnectDialog1A(lpConnDlgStruct: LPDISCDLGSTRUCTA): DWORD;
+
+@foreign
+func WNetDisconnectDialog1(lpConnDlgStruct: LPDISCDLGSTRUCTA): DWORD;
+
+@foreign
+func WNetDisconnectDialog1W(lpConnDlgStruct: LPDISCDLGSTRUCTW): DWORD;
+
+@foreign
+func WNetOpenEnumA(dwScope: DWORD, dwType: DWORD, dwUsage: DWORD, lpNetResource: LPNETRESOURCEA, lphEnum: LPHANDLE): DWORD;
+
+@foreign
+func WNetOpenEnum(dwScope: DWORD, dwType: DWORD, dwUsage: DWORD, lpNetResource: LPNETRESOURCEA, lphEnum: LPHANDLE): DWORD;
+
+@foreign
+func WNetOpenEnumW(dwScope: DWORD, dwType: DWORD, dwUsage: DWORD, lpNetResource: LPNETRESOURCEW, lphEnum: LPHANDLE): DWORD;
+
+@foreign
+func WNetEnumResourceA(hEnum: HANDLE, lpcCount: LPDWORD, lpBuffer: LPVOID, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetEnumResource(hEnum: HANDLE, lpcCount: LPDWORD, lpBuffer: LPVOID, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetEnumResourceW(hEnum: HANDLE, lpcCount: LPDWORD, lpBuffer: LPVOID, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetCloseEnum(hEnum: HANDLE): DWORD;
+
+@foreign
+func WNetGetResourceParentA(lpNetResource: LPNETRESOURCEA, lpBuffer: LPVOID, lpcbBuffer: LPDWORD): DWORD;
+
+@foreign
+func WNetGetResourceParent(lpNetResource: LPNETRESOURCEA, lpBuffer: LPVOID, lpcbBuffer: LPDWORD): DWORD;
+
+@foreign
+func WNetGetResourceParentW(lpNetResource: LPNETRESOURCEW, lpBuffer: LPVOID, lpcbBuffer: LPDWORD): DWORD;
+
+@foreign
+func WNetGetResourceInformationA(lpNetResource: LPNETRESOURCEA, lpBuffer: LPVOID, lpcbBuffer: LPDWORD, lplpSystem: LPSTR*): DWORD;
+
+@foreign
+func WNetGetResourceInformation(lpNetResource: LPNETRESOURCEA, lpBuffer: LPVOID, lpcbBuffer: LPDWORD, lplpSystem: LPSTR*): DWORD;
+
+@foreign
+func WNetGetResourceInformationW(lpNetResource: LPNETRESOURCEW, lpBuffer: LPVOID, lpcbBuffer: LPDWORD, lplpSystem: LPWSTR*): DWORD;
+
+@foreign
+struct _UNIVERSAL_NAME_INFOA {
+    lpUniversalName: LPSTR;
+}
+
+@foreign
+typedef UNIVERSAL_NAME_INFOA = _UNIVERSAL_NAME_INFOA;
+
+@foreign
+typedef LPUNIVERSAL_NAME_INFOA = _UNIVERSAL_NAME_INFOA*;
+
+@foreign
+struct _UNIVERSAL_NAME_INFOW {
+    lpUniversalName: LPWSTR;
+}
+
+@foreign
+typedef UNIVERSAL_NAME_INFOW = _UNIVERSAL_NAME_INFOW;
+
+@foreign
+typedef LPUNIVERSAL_NAME_INFOW = _UNIVERSAL_NAME_INFOW*;
+
+@foreign
+typedef UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
+
+@foreign
+typedef LPUNIVERSAL_NAME_INFO = LPUNIVERSAL_NAME_INFOA;
+
+@foreign
+struct _REMOTE_NAME_INFOA {
+    lpUniversalName: LPSTR;
+    lpConnectionName: LPSTR;
+    lpRemainingPath: LPSTR;
+}
+
+@foreign
+typedef REMOTE_NAME_INFOA = _REMOTE_NAME_INFOA;
+
+@foreign
+typedef LPREMOTE_NAME_INFOA = _REMOTE_NAME_INFOA*;
+
+@foreign
+struct _REMOTE_NAME_INFOW {
+    lpUniversalName: LPWSTR;
+    lpConnectionName: LPWSTR;
+    lpRemainingPath: LPWSTR;
+}
+
+@foreign
+typedef REMOTE_NAME_INFOW = _REMOTE_NAME_INFOW;
+
+@foreign
+typedef LPREMOTE_NAME_INFOW = _REMOTE_NAME_INFOW*;
+
+@foreign
+typedef REMOTE_NAME_INFO = REMOTE_NAME_INFOA;
+
+@foreign
+typedef LPREMOTE_NAME_INFO = LPREMOTE_NAME_INFOA;
+
+@foreign
+func WNetGetUniversalNameA(lpLocalPath: LPCSTR, dwInfoLevel: DWORD, lpBuffer: LPVOID, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetGetUniversalName(lpLocalPath: LPCSTR, dwInfoLevel: DWORD, lpBuffer: LPVOID, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetGetUniversalNameW(lpLocalPath: LPCWSTR, dwInfoLevel: DWORD, lpBuffer: LPVOID, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetGetUserA(lpName: LPCSTR, lpUserName: LPSTR, lpnLength: LPDWORD): DWORD;
+
+@foreign
+func WNetGetUser(lpName: LPCSTR, lpUserName: LPSTR, lpnLength: LPDWORD): DWORD;
+
+@foreign
+func WNetGetUserW(lpName: LPCWSTR, lpUserName: LPWSTR, lpnLength: LPDWORD): DWORD;
+
+@foreign
+func WNetGetProviderNameA(dwNetType: DWORD, lpProviderName: LPSTR, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetGetProviderName(dwNetType: DWORD, lpProviderName: LPSTR, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+func WNetGetProviderNameW(dwNetType: DWORD, lpProviderName: LPWSTR, lpBufferSize: LPDWORD): DWORD;
+
+@foreign
+struct _NETINFOSTRUCT {
+    cbStructure: DWORD;
+    dwProviderVersion: DWORD;
+    dwStatus: DWORD;
+    dwCharacteristics: DWORD;
+    dwHandle: ULONG_PTR;
+    wNetType: WORD;
+    dwPrinters: DWORD;
+    dwDrives: DWORD;
+}
+
+@foreign
+typedef NETINFOSTRUCT = _NETINFOSTRUCT;
+
+@foreign
+typedef LPNETINFOSTRUCT = _NETINFOSTRUCT*;
+
+@foreign
+func WNetGetNetworkInformationA(lpProvider: LPCSTR, lpNetInfoStruct: LPNETINFOSTRUCT): DWORD;
+
+@foreign
+func WNetGetNetworkInformation(lpProvider: LPCSTR, lpNetInfoStruct: LPNETINFOSTRUCT): DWORD;
+
+@foreign
+func WNetGetNetworkInformationW(lpProvider: LPCWSTR, lpNetInfoStruct: LPNETINFOSTRUCT): DWORD;
+
+@foreign
+func WNetGetLastErrorA(lpError: LPDWORD, lpErrorBuf: LPSTR, nErrorBufSize: DWORD, lpNameBuf: LPSTR, nNameBufSize: DWORD): DWORD;
+
+@foreign
+func WNetGetLastError(lpError: LPDWORD, lpErrorBuf: LPSTR, nErrorBufSize: DWORD, lpNameBuf: LPSTR, nNameBufSize: DWORD): DWORD;
+
+@foreign
+func WNetGetLastErrorW(lpError: LPDWORD, lpErrorBuf: LPWSTR, nErrorBufSize: DWORD, lpNameBuf: LPWSTR, nNameBufSize: DWORD): DWORD;
+
+@foreign
+struct _NETCONNECTINFOSTRUCT {
+    cbStructure: DWORD;
+    dwFlags: DWORD;
+    dwSpeed: DWORD;
+    dwDelay: DWORD;
+    dwOptDataSize: DWORD;
+}
+
+@foreign
+typedef NETCONNECTINFOSTRUCT = _NETCONNECTINFOSTRUCT;
+
+@foreign
+typedef LPNETCONNECTINFOSTRUCT = _NETCONNECTINFOSTRUCT*;
+
+@foreign
+func MultinetGetConnectionPerformanceA(lpNetResource: LPNETRESOURCEA, lpNetConnectInfoStruct: LPNETCONNECTINFOSTRUCT): DWORD;
+
+@foreign
+func MultinetGetConnectionPerformance(lpNetResource: LPNETRESOURCEA, lpNetConnectInfoStruct: LPNETCONNECTINFOSTRUCT): DWORD;
+
+@foreign
+func MultinetGetConnectionPerformanceW(lpNetResource: LPNETRESOURCEW, lpNetConnectInfoStruct: LPNETCONNECTINFOSTRUCT): DWORD;
+

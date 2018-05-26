@@ -1,0 +1,205 @@
+#foreign(header = "<memoryapi.h>")
+
+@foreign
+func VirtualAlloc(lpAddress: LPVOID, dwSize: SIZE_T, flAllocationType: DWORD, flProtect: DWORD): LPVOID;
+
+@foreign
+func VirtualProtect(lpAddress: LPVOID, dwSize: SIZE_T, flNewProtect: DWORD, lpflOldProtect: PDWORD): BOOL;
+
+@foreign
+func VirtualFree(lpAddress: LPVOID, dwSize: SIZE_T, dwFreeType: DWORD): BOOL;
+
+@foreign
+func VirtualQuery(lpAddress: LPCVOID, lpBuffer: PMEMORY_BASIC_INFORMATION, dwLength: SIZE_T): SIZE_T;
+
+@foreign
+func VirtualAllocEx(hProcess: HANDLE, lpAddress: LPVOID, dwSize: SIZE_T, flAllocationType: DWORD, flProtect: DWORD): LPVOID;
+
+@foreign
+func VirtualFreeEx(hProcess: HANDLE, lpAddress: LPVOID, dwSize: SIZE_T, dwFreeType: DWORD): BOOL;
+
+@foreign
+func VirtualProtectEx(hProcess: HANDLE, lpAddress: LPVOID, dwSize: SIZE_T, flNewProtect: DWORD, lpflOldProtect: PDWORD): BOOL;
+
+@foreign
+func VirtualQueryEx(hProcess: HANDLE, lpAddress: LPCVOID, lpBuffer: PMEMORY_BASIC_INFORMATION, dwLength: SIZE_T): SIZE_T;
+
+@foreign
+func ReadProcessMemory(hProcess: HANDLE, lpBaseAddress: LPCVOID, lpBuffer: LPVOID, nSize: SIZE_T, lpNumberOfBytesRead: SIZE_T*): BOOL;
+
+@foreign
+func WriteProcessMemory(hProcess: HANDLE, lpBaseAddress: LPVOID, lpBuffer: LPCVOID, nSize: SIZE_T, lpNumberOfBytesWritten: SIZE_T*): BOOL;
+
+@foreign
+func CreateFileMappingW(hFile: HANDLE, lpFileMappingAttributes: LPSECURITY_ATTRIBUTES, flProtect: DWORD, dwMaximumSizeHigh: DWORD, dwMaximumSizeLow: DWORD, lpName: LPCWSTR): HANDLE;
+
+@foreign
+func OpenFileMappingW(dwDesiredAccess: DWORD, bInheritHandle: BOOL, lpName: LPCWSTR): HANDLE;
+
+@foreign
+func MapViewOfFile(hFileMappingObject: HANDLE, dwDesiredAccess: DWORD, dwFileOffsetHigh: DWORD, dwFileOffsetLow: DWORD, dwNumberOfBytesToMap: SIZE_T): LPVOID;
+
+@foreign
+func MapViewOfFileEx(hFileMappingObject: HANDLE, dwDesiredAccess: DWORD, dwFileOffsetHigh: DWORD, dwFileOffsetLow: DWORD, dwNumberOfBytesToMap: SIZE_T, lpBaseAddress: LPVOID): LPVOID;
+
+@foreign
+func FlushViewOfFile(lpBaseAddress: LPCVOID, dwNumberOfBytesToFlush: SIZE_T): BOOL;
+
+@foreign
+func UnmapViewOfFile(lpBaseAddress: LPCVOID): BOOL;
+
+@foreign
+func GetLargePageMinimum(): SIZE_T;
+
+@foreign
+func GetProcessWorkingSetSizeEx(hProcess: HANDLE, lpMinimumWorkingSetSize: PSIZE_T, lpMaximumWorkingSetSize: PSIZE_T, Flags: PDWORD): BOOL;
+
+@foreign
+func SetProcessWorkingSetSizeEx(hProcess: HANDLE, dwMinimumWorkingSetSize: SIZE_T, dwMaximumWorkingSetSize: SIZE_T, Flags: DWORD): BOOL;
+
+@foreign
+func VirtualLock(lpAddress: LPVOID, dwSize: SIZE_T): BOOL;
+
+@foreign
+func VirtualUnlock(lpAddress: LPVOID, dwSize: SIZE_T): BOOL;
+
+@foreign
+func GetWriteWatch(dwFlags: DWORD, lpBaseAddress: PVOID, dwRegionSize: SIZE_T, lpAddresses: PVOID*, lpdwCount: ULONG_PTR*, lpdwGranularity: LPDWORD): UINT;
+
+@foreign
+func ResetWriteWatch(lpBaseAddress: LPVOID, dwRegionSize: SIZE_T): UINT;
+
+@foreign
+enum _MEMORY_RESOURCE_NOTIFICATION_TYPE {
+    LowMemoryResourceNotification,
+    HighMemoryResourceNotification,
+}
+
+@foreign
+typedef MEMORY_RESOURCE_NOTIFICATION_TYPE = _MEMORY_RESOURCE_NOTIFICATION_TYPE;
+
+@foreign
+func CreateMemoryResourceNotification(NotificationType: MEMORY_RESOURCE_NOTIFICATION_TYPE): HANDLE;
+
+@foreign
+func QueryMemoryResourceNotification(ResourceNotificationHandle: HANDLE, ResourceState: PBOOL): BOOL;
+
+@foreign
+func GetSystemFileCacheSize(lpMinimumFileCacheSize: PSIZE_T, lpMaximumFileCacheSize: PSIZE_T, lpFlags: PDWORD): BOOL;
+
+@foreign
+func SetSystemFileCacheSize(MinimumFileCacheSize: SIZE_T, MaximumFileCacheSize: SIZE_T, Flags: DWORD): BOOL;
+
+@foreign
+func CreateFileMappingNumaW(hFile: HANDLE, lpFileMappingAttributes: LPSECURITY_ATTRIBUTES, flProtect: DWORD, dwMaximumSizeHigh: DWORD, dwMaximumSizeLow: DWORD, lpName: LPCWSTR, nndPreferred: DWORD): HANDLE;
+
+@foreign
+struct _WIN32_MEMORY_RANGE_ENTRY {
+    VirtualAddress: PVOID;
+    NumberOfBytes: SIZE_T;
+}
+
+@foreign
+typedef WIN32_MEMORY_RANGE_ENTRY = _WIN32_MEMORY_RANGE_ENTRY;
+
+@foreign
+typedef PWIN32_MEMORY_RANGE_ENTRY = _WIN32_MEMORY_RANGE_ENTRY*;
+
+@foreign
+func PrefetchVirtualMemory(hProcess: HANDLE, NumberOfEntries: ULONG_PTR, VirtualAddresses: PWIN32_MEMORY_RANGE_ENTRY, Flags: ULONG): BOOL;
+
+@foreign
+func CreateFileMappingFromApp(hFile: HANDLE, SecurityAttributes: PSECURITY_ATTRIBUTES, PageProtection: ULONG, MaximumSize: ULONG64, Name: PCWSTR): HANDLE;
+
+@foreign
+func MapViewOfFileFromApp(hFileMappingObject: HANDLE, DesiredAccess: ULONG, FileOffset: ULONG64, NumberOfBytesToMap: SIZE_T): PVOID;
+
+@foreign
+func UnmapViewOfFileEx(BaseAddress: PVOID, UnmapFlags: ULONG): BOOL;
+
+@foreign
+func AllocateUserPhysicalPages(hProcess: HANDLE, NumberOfPages: PULONG_PTR, PageArray: PULONG_PTR): BOOL;
+
+@foreign
+func FreeUserPhysicalPages(hProcess: HANDLE, NumberOfPages: PULONG_PTR, PageArray: PULONG_PTR): BOOL;
+
+@foreign
+func MapUserPhysicalPages(VirtualAddress: PVOID, NumberOfPages: ULONG_PTR, PageArray: PULONG_PTR): BOOL;
+
+@foreign
+func AllocateUserPhysicalPagesNuma(hProcess: HANDLE, NumberOfPages: PULONG_PTR, PageArray: PULONG_PTR, nndPreferred: DWORD): BOOL;
+
+@foreign
+func VirtualAllocExNuma(hProcess: HANDLE, lpAddress: LPVOID, dwSize: SIZE_T, flAllocationType: DWORD, flProtect: DWORD, nndPreferred: DWORD): LPVOID;
+
+@foreign
+func GetMemoryErrorHandlingCapabilities(Capabilities: PULONG): BOOL;
+
+@foreign
+typedef BAD_MEMORY_CALLBACK_ROUTINE = func();
+
+@foreign
+typedef PBAD_MEMORY_CALLBACK_ROUTINE = BAD_MEMORY_CALLBACK_ROUTINE*;
+
+@foreign
+func RegisterBadMemoryNotification(Callback: PBAD_MEMORY_CALLBACK_ROUTINE): PVOID;
+
+@foreign
+func UnregisterBadMemoryNotification(RegistrationHandle: PVOID): BOOL;
+
+@foreign
+enum OFFER_PRIORITY {
+    VmOfferPriorityVeryLow = 1,
+    VmOfferPriorityLow,
+    VmOfferPriorityBelowNormal,
+    VmOfferPriorityNormal,
+}
+
+@foreign
+func OfferVirtualMemory(VirtualAddress: PVOID, Size: SIZE_T, Priority: OFFER_PRIORITY): DWORD;
+
+@foreign
+func ReclaimVirtualMemory(VirtualAddress: void const*, Size: SIZE_T): DWORD;
+
+@foreign
+func DiscardVirtualMemory(VirtualAddress: PVOID, Size: SIZE_T): DWORD;
+
+@foreign
+func SetProcessValidCallTargets(hProcess: HANDLE, VirtualAddress: PVOID, RegionSize: SIZE_T, NumberOfOffsets: ULONG, OffsetInformation: PCFG_CALL_TARGET_INFO): BOOL;
+
+@foreign
+func VirtualAllocFromApp(BaseAddress: PVOID, Size: SIZE_T, AllocationType: ULONG, Protection: ULONG): PVOID;
+
+@foreign
+func VirtualProtectFromApp(Address: PVOID, Size: SIZE_T, NewProtection: ULONG, OldProtection: PULONG): BOOL;
+
+@foreign
+func OpenFileMappingFromApp(DesiredAccess: ULONG, InheritHandle: BOOL, Name: PCWSTR): HANDLE;
+
+@foreign
+enum WIN32_MEMORY_INFORMATION_CLASS {
+    MemoryRegionInfo,
+}
+
+/*
+@PROBLEM Nested struct def at line 973, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\memoryapi.h
+
+@foreign
+struct WIN32_MEMORY_REGION_INFORMATION {
+    AllocationBase: PVOID;
+    AllocationProtect: ULONG;
+    u: (null);
+    RegionSize: SIZE_T;
+    CommitSize: SIZE_T;
+}
+*/
+
+@foreign
+func QueryVirtualMemoryInformation(Process: HANDLE, VirtualAddress: void const*, MemoryInformationClass: WIN32_MEMORY_INFORMATION_CLASS, MemoryInformation: PVOID, MemoryInformationSize: SIZE_T, ReturnSize: PSIZE_T): BOOL;
+
+@foreign
+func MapViewOfFileNuma2(FileMappingHandle: HANDLE, ProcessHandle: HANDLE, Offset: ULONG64, BaseAddress: PVOID, ViewSize: SIZE_T, AllocationType: ULONG, PageProtection: ULONG, PreferredNode: ULONG): PVOID;
+
+@foreign
+func UnmapViewOfFile2(ProcessHandle: HANDLE, BaseAddress: PVOID, UnmapFlags: ULONG): BOOL;
+

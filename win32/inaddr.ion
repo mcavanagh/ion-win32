@@ -1,0 +1,23 @@
+#foreign(header = "<inaddr.h>")
+
+/*
+@PROBLEM Nested struct def at line 25, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\inaddr.h
+
+@foreign
+struct in_addr {
+    S_un: (null);
+}
+*/
+
+/*
+@PROBLEM Nested struct def at line 25, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\inaddr.h
+
+in_addr
+*/
+
+@foreign
+typedef PIN_ADDR = in_addr*;
+
+@foreign
+typedef LPIN_ADDR = in_addr*;
+

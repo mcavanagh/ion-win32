@@ -1,0 +1,14 @@
+#foreign(header = "<corecrt_memory.h>")
+
+@foreign
+func _memicmp_l(_Buf1: void const*, _Buf2: void const*, _Size: usize, _Locale: _locale_t): int;
+
+@foreign
+func memccpy(_Dst: void*, _Src: void const*, _Val: int, _Size: usize): void*;
+
+@foreign
+func memicmp(_Buf1: void const*, _Buf2: void const*, _Size: usize): int;
+
+@foreign
+func wcscat_s(_Destination: wchar*, _SizeInWords: rsize_t, _Source: wchar*): errno_t;
+

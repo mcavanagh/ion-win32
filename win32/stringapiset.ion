@@ -1,0 +1,26 @@
+#foreign(header = "<stringapiset.h>")
+
+@foreign
+func CompareStringEx(lpLocaleName: LPCWSTR, dwCmpFlags: DWORD, lpString1: LPCWCH, cchCount1: int, lpString2: LPCWCH, cchCount2: int, lpVersionInformation: LPNLSVERSIONINFO, lpReserved: LPVOID, lParam: LPARAM): int;
+
+@foreign
+func CompareStringOrdinal(lpString1: LPCWCH, cchCount1: int, lpString2: LPCWCH, cchCount2: int, bIgnoreCase: BOOL): int;
+
+@foreign
+func CompareStringW(Locale: LCID, dwCmpFlags: DWORD, lpString1: PCNZWCH, cchCount1: int, lpString2: PCNZWCH, cchCount2: int): int;
+
+@foreign
+func FoldStringW(dwMapFlags: DWORD, lpSrcStr: LPCWCH, cchSrc: int, lpDestStr: LPWSTR, cchDest: int): int;
+
+@foreign
+func GetStringTypeExW(Locale: LCID, dwInfoType: DWORD, lpSrcStr: LPCWCH, cchSrc: int, lpCharType: LPWORD): BOOL;
+
+@foreign
+func GetStringTypeW(dwInfoType: DWORD, lpSrcStr: LPCWCH, cchSrc: int, lpCharType: LPWORD): BOOL;
+
+@foreign
+func MultiByteToWideChar(CodePage: UINT, dwFlags: DWORD, lpMultiByteStr: LPCCH, cbMultiByte: int, lpWideCharStr: LPWSTR, cchWideChar: int): int;
+
+@foreign
+func WideCharToMultiByte(CodePage: UINT, dwFlags: DWORD, lpWideCharStr: LPCWCH, cchWideChar: int, lpMultiByteStr: LPSTR, cbMultiByte: int, lpDefaultChar: LPCCH, lpUsedDefaultChar: LPBOOL): int;
+
