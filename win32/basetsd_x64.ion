@@ -1,0 +1,9 @@
+@foreign typedef INT_PTR    = int64;
+@foreign typedef PINT_PTR   = int64*;
+@foreign typedef UINT_PTR   = uint64;
+@foreign typedef PUINT_PTR  = uint64*;
+@foreign typedef LONG_PTR   = int64;
+@foreign typedef PLONG_PTR  = int64*;
+@foreign typedef ULONG_PTR  = uint64;
+@foreign typedef PULONG_PTR = uint64*;
+

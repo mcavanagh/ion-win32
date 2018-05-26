@@ -1,0 +1,3 @@
+@foreign typedef FARPROC  = func(): int;
+@foreign typedef NEARPROC = func(): int;
+@foreign typedef PROC     = func(): int;

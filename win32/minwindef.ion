@@ -112,15 +112,6 @@ typedef GLOBALHANDLE = HANDLE;
 typedef LOCALHANDLE = HANDLE;
 
 @foreign
-typedef FARPROC = func(): INT_PTR;
-
-@foreign
-typedef NEARPROC = func(): INT_PTR;
-
-@foreign
-typedef PROC = func(): INT_PTR;
-
-@foreign
 typedef ATOM = WORD;
 
 @foreign

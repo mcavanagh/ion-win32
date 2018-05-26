@@ -67,30 +67,6 @@ typedef DWORD32 = uint;
 typedef PDWORD32 = uint*;
 
 @foreign
-typedef INT_PTR = llong;
-
-@foreign
-typedef PINT_PTR = llong*;
-
-@foreign
-typedef UINT_PTR = ullong;
-
-@foreign
-typedef PUINT_PTR = ullong*;
-
-@foreign
-typedef LONG_PTR = llong;
-
-@foreign
-typedef PLONG_PTR = llong*;
-
-@foreign
-typedef ULONG_PTR = ullong;
-
-@foreign
-typedef PULONG_PTR = ullong*;
-
-@foreign
 typedef SHANDLE_PTR = llong;
 
 @foreign
