@@ -16,23 +16,25 @@ typedef PSECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES*;
 @foreign
 typedef LPSECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES*;
 
-/*
-@PROBLEM Nested struct def at line 52, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+@foreign
+struct _OVERLAPPED___inner_s {
+    Offset: DWORD;
+    OffsetHigh: DWORD;
+}
+
+@foreign
+union _OVERLAPPED___inner_u {
+    s: _OVERLAPPED___inner_s;
+    Pointer: PVOID;
+}
 
 @foreign
 struct _OVERLAPPED {
     Internal: ULONG_PTR;
     InternalHigh: ULONG_PTR;
-    u: (null);
+    u: _OVERLAPPED___inner_u;
     hEvent: HANDLE;
 }
-*/
-
-/*
-@PROBLEM Nested struct def at line 52, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
-
-_OVERLAPPED
-*/
 
 @foreign
 typedef LPOVERLAPPED = _OVERLAPPED*;
@@ -224,8 +226,25 @@ typedef LPCRITICAL_SECTION_DEBUG = PRTL_CRITICAL_SECTION_DEBUG;
 @foreign
 typedef LPOVERLAPPED_COMPLETION_ROUTINE = func(dwErrorCode: DWORD, dwNumberOfBytesTransfered: DWORD, lpOverlapped: LPOVERLAPPED);
 
-/*
-@PROBLEM Nested struct def at line 231, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+@foreign
+struct _PROCESS_HEAP_ENTRY___inner_s1 {
+    hMem: HANDLE;
+    dwReserved: DWORD[3];
+}
+
+@foreign
+struct _PROCESS_HEAP_ENTRY___inner_s2 {
+    dwCommittedSize: DWORD;
+    dwUnCommittedSize: DWORD;
+    lpFirstBlock: LPVOID;
+    lpLastBlock: LPVOID;
+}
+
+@foreign
+union _PROCESS_HEAP_ENTRY___inner_u {
+    Block: _PROCESS_HEAP_ENTRY___inner_s1;
+    Region: _PROCESS_HEAP_ENTRY___inner_s2;
+}
 
 @foreign
 struct _PROCESS_HEAP_ENTRY {
@@ -234,15 +253,8 @@ struct _PROCESS_HEAP_ENTRY {
     cbOverhead: BYTE;
     iRegionIndex: BYTE;
     wFlags: WORD;
-    u: (null);
+    u: _PROCESS_HEAP_ENTRY___inner_u;
 }
-*/
-
-/*
-@PROBLEM Nested struct def at line 231, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
-
-_PROCESS_HEAP_ENTRY
-*/
 
 @foreign
 typedef LPPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
@@ -250,22 +262,29 @@ typedef LPPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
 @foreign
 typedef PPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
 
-/*
-@PROBLEM Nested struct def at line 258, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+@foreign
+struct _REASON_CONTEXT___inner_s {
+    LocalizedReasonModule: HMODULE;
+    LocalizedReasonId: ULONG;
+    ReasonStringCount: ULONG;
+    ReasonStrings: LPWSTR*;
+}
+
+@foreign
+union _REASON_CONTEXT___inner_u {
+    Detailed: _REASON_CONTEXT___inner_s;
+    SimpleReasonString: LPWSTR;
+}
 
 @foreign
 struct _REASON_CONTEXT {
     Version: ULONG;
     Flags: DWORD;
-    Reason: (null);
+    Reason: _REASON_CONTEXT___inner_u;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 258, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
-
-_REASON_CONTEXT
-*/
+@foreign
+typedef REASON_CONTEXT = _REASON_CONTEXT;
 
 @foreign
 typedef PREASON_CONTEXT = _REASON_CONTEXT*;
@@ -401,23 +420,26 @@ typedef RIP_INFO = _RIP_INFO;
 @foreign
 typedef LPRIP_INFO = _RIP_INFO*;
 
-/*
-@PROBLEM Nested struct def at line 354, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+@foreign
+union _DEBUG_EVENT___inner {
+    Exception: EXCEPTION_DEBUG_INFO;
+    CreateThread: CREATE_THREAD_DEBUG_INFO;
+    CreateProcessInfo: CREATE_PROCESS_DEBUG_INFO;
+    ExitThread: EXIT_THREAD_DEBUG_INFO;
+    ExitProcess: EXIT_PROCESS_DEBUG_INFO;
+    LoadDll: LOAD_DLL_DEBUG_INFO;
+    UnloadDll: UNLOAD_DLL_DEBUG_INFO;
+    DebugString: OUTPUT_DEBUG_STRING_INFO;
+    RipInfo: RIP_INFO;
+}
 
 @foreign
 struct _DEBUG_EVENT {
     dwDebugEventCode: DWORD;
     dwProcessId: DWORD;
     dwThreadId: DWORD;
-    u: (null);
+    u: _DEBUG_EVENT___inner;
 }
-*/
-
-/*
-@PROBLEM Nested struct def at line 354, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
-
-_DEBUG_EVENT
-*/
 
 @foreign
 typedef LPDEBUG_EVENT = _DEBUG_EVENT*;

@@ -474,42 +474,40 @@ typedef PULONGLONG = ULONGLONG*;
 @foreign
 typedef USN = LONGLONG;
 
-/*
-@PROBLEM Nested struct def at line 823, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+struct _LARGE_INTEGER___inner_s {
+    LowPart: DWORD;
+    HighPart: LONG;
+}
 
 @foreign
 union _LARGE_INTEGER {
-    s: (null);
-    u: (null);
+    s: _LARGE_INTEGER___inner_s;
+    u: _LARGE_INTEGER___inner_s;
     QuadPart: LONGLONG;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 823, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_LARGE_INTEGER
-*/
+@foreign
+typedef LARGE_INTEGER = _LARGE_INTEGER;
 
 @foreign
 typedef PLARGE_INTEGER = LARGE_INTEGER*;
 
-/*
-@PROBLEM Nested struct def at line 843, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+struct _ULARGE_INTEGER___inner_s {
+    LowPart: DWORD;
+    HighPart: DWORD;
+}
 
 @foreign
 union _ULARGE_INTEGER {
-    s: (null);
-    u: (null);
+    s: _ULARGE_INTEGER___inner_s;
+    u: _ULARGE_INTEGER___inner_s;
     QuadPart: ULONGLONG;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 843, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_ULARGE_INTEGER
-*/
+@foreign
+typedef ULARGE_INTEGER = _ULARGE_INTEGER;
 
 @foreign
 typedef PULARGE_INTEGER = ULARGE_INTEGER*;
@@ -1008,8 +1006,33 @@ typedef XMM_SAVE_AREA32 = XSAVE_FORMAT;
 @foreign
 typedef PXMM_SAVE_AREA32 = XSAVE_FORMAT*;
 
-/*
-@PROBLEM Nested struct def at line 3820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+struct _CONTEXT___inner_s {
+    Header: M128A[2];
+    Legacy: M128A[8];
+    Xmm0: M128A;
+    Xmm1: M128A;
+    Xmm2: M128A;
+    Xmm3: M128A;
+    Xmm4: M128A;
+    Xmm5: M128A;
+    Xmm6: M128A;
+    Xmm7: M128A;
+    Xmm8: M128A;
+    Xmm9: M128A;
+    Xmm10: M128A;
+    Xmm11: M128A;
+    Xmm12: M128A;
+    Xmm13: M128A;
+    Xmm14: M128A;
+    Xmm15: M128A;
+}
+
+@foreign
+union _CONTEXT___inner_u {
+    FltSave: XMM_SAVE_AREA32;
+    s: _CONTEXT___inner_s;
+}
 
 @foreign
 struct _CONTEXT {
@@ -1051,7 +1074,7 @@ struct _CONTEXT {
     R14: DWORD64;
     R15: DWORD64;
     Rip: DWORD64;
-    u: (null);
+    u: _CONTEXT___inner_u;
     VectorRegister: M128A[26];
     VectorControl: DWORD64;
     DebugControl: DWORD64;
@@ -1060,13 +1083,9 @@ struct _CONTEXT {
     LastExceptionToRip: DWORD64;
     LastExceptionFromRip: DWORD64;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 3820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_CONTEXT
-*/
+@foreign
+typedef CONTEXT = _CONTEXT;
 
 @foreign
 typedef PCONTEXT = _CONTEXT*;
@@ -2680,8 +2699,10 @@ _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1*;
 
-/*
-@PROBLEM Nested struct def at line 11121, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _CLAIM_SECURITY_ATTRIBUTES_INFORMATION___inner {
+    pAttributeV1: PCLAIM_SECURITY_ATTRIBUTE_V1;
+}
 
 @foreign
 struct _CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
@@ -2690,13 +2711,9 @@ struct _CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
     AttributeCount: DWORD;
     Attribute: (null);
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11121, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_CLAIM_SECURITY_ATTRIBUTES_INFORMATION
-*/
+@foreign
+typedef CLAIM_SECURITY_ATTRIBUTES_INFORMATION = _CLAIM_SECURITY_ATTRIBUTES_INFORMATION;
 
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTES_INFORMATION = _CLAIM_SECURITY_ATTRIBUTES_INFORMATION*;
@@ -3911,16 +3928,9 @@ typedef CPU_SET_INFORMATION_TYPE = _CPU_SET_INFORMATION_TYPE;
 @foreign
 typedef PCPU_SET_INFORMATION_TYPE = _CPU_SET_INFORMATION_TYPE*;
 
-/*
-@PROBLEM Nested struct def at line 12330, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
+// _SYSTEM_CPU_SET_INFORMATION contains bitfields
 @foreign
-struct _SYSTEM_CPU_SET_INFORMATION {
-    Size: DWORD;
-    Type: CPU_SET_INFORMATION_TYPE;
-    u: (null);
-}
-*/
+struct _SYSTEM_CPU_SET_INFORMATION;
 
 @foreign
 typedef SYSTEM_CPU_SET_INFORMATION = _SYSTEM_CPU_SET_INFORMATION;
@@ -6839,21 +6849,11 @@ typedef SLIST_ENTRY = _SLIST_ENTRY;
 @foreign
 typedef PSLIST_ENTRY = _SLIST_ENTRY*;
 
-/*
-@PROBLEM Nested struct def at line 19146, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+struct _SLIST_HEADER;
 
 @foreign
-union _SLIST_HEADER {
-    s: (null);
-    HeaderX64: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 19146, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_SLIST_HEADER
-*/
+typedef SLIST_HEADER = _SLIST_HEADER;
 
 @foreign
 typedef PSLIST_HEADER = _SLIST_HEADER*;

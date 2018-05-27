@@ -1,19 +1,29 @@
 #foreign(header = "<inaddr.h>")
 
-/*
-@PROBLEM Nested struct def at line 25, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\inaddr.h
+@foreign
+struct in_addr___inner_s1 {
+	s_b1, s_b2, s_b3, s_b4: UCHAR;
+}
+
+@foreign
+struct in_addr___inner_s2 {
+	s_w1, s_w2: USHORT;
+}
+
+@foreign
+union in_addr___inner_u {
+	S_un_b: in_addr___inner_s1;
+	S_un_w: in_addr___inner_s2;
+	S_addr: ULONG;
+}
 
 @foreign
 struct in_addr {
-    S_un: (null);
+    S_un: in_addr___inner_u;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 25, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\inaddr.h
-
-in_addr
-*/
+@foreign
+typedef IN_ADDR = in_addr;
 
 @foreign
 typedef PIN_ADDR = in_addr*;

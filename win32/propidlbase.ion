@@ -222,6 +222,8 @@ typedef PROPVAR_PAD2 = WORD;
 @foreign
 typedef PROPVAR_PAD3 = WORD;
 
+@foreign struct tagPROPVARIANT;
+
 /*
 @PROBLEM Nested struct def at line 294, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\propidlbase.h
 

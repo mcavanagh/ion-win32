@@ -24,11 +24,14 @@ func I_RpcDefaultFree(bh: handle_t, arg1: void*, RealFree: func(arg0: void*));
 @foreign
 typedef NDR_CCONTEXT = void*;
 
-/*
-@PROBLEM Derived typedef to anonymous struct at line 275, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+@foreign
+struct tagNDR_SCONTEXT {
+    pad: (void*)[2];
+    userContext: void*;
+}
 
-
-*/
+@foreign
+typedef NDR_SCONTEXT = tagNDR_SCONTEXT*;
 
 @foreign
 typedef NDR_RUNDOWN = func(context: void*);
@@ -379,15 +382,19 @@ struct _NDR_EXPR_DESC {
 @foreign
 typedef NDR_EXPR_DESC = _NDR_EXPR_DESC;
 
-/*
-@PROBLEM Nested struct def at line 1018, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+@foreign
+union _MIDL_STUB_DESC___inner {
+    pAutoHandle: handle_t*;
+    pPrimitiveHandle: handle_t*;
+    pGenericBindingInfo: PGENERIC_BINDING_INFO; 
+}
 
 @foreign
 struct _MIDL_STUB_DESC {
     RpcInterfaceInformation: void*;
     pfnAllocate: func(arg0: usize): void*;
     pfnFree: func(arg0: void*);
-    IMPLICIT_HANDLE_INFO: (null);
+    IMPLICIT_HANDLE_INFO: _MIDL_STUB_DESC___inner;
     apfnNdrRundownRoutines: NDR_RUNDOWN*;
     aGenericBindingRoutinePairs: GENERIC_BINDING_ROUTINE_PAIR*;
     apfnExprEval: EXPR_EVAL*;
@@ -405,13 +412,9 @@ struct _MIDL_STUB_DESC {
     ProxyServerInfo: void*;
     pExprInfo: NDR_EXPR_DESC*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1018, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
-
-_MIDL_STUB_DESC
-*/
+@foreign
+typedef MIDL_STUB_DESC = _MIDL_STUB_DESC;
 
 @foreign
 typedef PMIDL_STUB_DESC = MIDL_STUB_DESC*;
@@ -1159,21 +1162,19 @@ struct _NDR_USER_MARSHAL_INFO_LEVEL1 {
 @foreign
 typedef NDR_USER_MARSHAL_INFO_LEVEL1 = _NDR_USER_MARSHAL_INFO_LEVEL1;
 
-/*
-@PROBLEM Nested struct def at line 3094, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
+@foreign
+union _NDR_USER_MARSHAL_INFO___inner {
+    Level1: NDR_USER_MARSHAL_INFO_LEVEL1;
+}
 
 @foreign
 struct _NDR_USER_MARSHAL_INFO {
     InformationLevel: ulong;
-    u: (null);
+    u: _NDR_USER_MARSHAL_INFO___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 3094, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcndr.h
-
-_NDR_USER_MARSHAL_INFO
-*/
+@foreign
+typedef NDR_USER_MARSHAL_INFO = _NDR_USER_MARSHAL_INFO;
 
 @foreign
 func NdrGetUserMarshalInfo(pFlags: ulong*, InformationLevel: ulong, pMarshalInfo: NDR_USER_MARSHAL_INFO*): RPC_STATUS;

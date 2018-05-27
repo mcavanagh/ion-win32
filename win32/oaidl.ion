@@ -143,16 +143,83 @@ typedef SAFEARRAY = tagSAFEARRAY;
 typedef LPSAFEARRAY = SAFEARRAY*;
 
 @foreign
-typedef VARIANT = tagVARIANT;
+union tagVARIANT___inner_u {
+    __VARIANT_NAME_2: __tagVARIANT;
+    decVal: DECIMAL;
+}
 
-/*
-@PROBLEM Nested struct def at line 468, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+@foreign
+struct __tagBRECORD {
+    pvRecord: PVOID;
+    pRecInfo: IRecordInfo*;
+}
+
+@foreign
+struct __tagVARIANT {
+    vt: VARTYPE;
+    wReserved1: WORD;
+    wReserved2: WORD;
+    wReserved3: WORD;
+    __VARIANT_NAME_3: __tagVARIANT___inner_u;
+}
+
+@foreign
+union __tagVARIANT___inner_u {
+    llVal: LONGLONG;
+    lVal: LONG;
+    bVal: BYTE;
+    iVal: SHORT;
+    fltVal: FLOAT;
+    dblVal: DOUBLE;
+    boolVal: VARIANT_BOOL;
+    bool: _VARIANT_BOOL;
+    scode: SCODE;
+    cyVal: CY;
+    date: DATE;
+    bstrVal: BSTR;
+    punkVal: IUnknown*;
+    pdispVal: IDispatch*;
+    parray: SAFEARRAY*;
+    pbVal: BYTE*;
+    piVal: SHORT*;
+    plVal: LONG*;
+    pllVal: LONGLONG*;
+    pfltVal: FLOAT*;
+    pdblVal: DOUBLE*;
+    pboolVal: VARIANT_BOOL*;
+    pbool: _VARIANT_BOOL*;
+    pscode: SCODE*;
+    pcyVal: CY*;
+    pdate: DATE*;
+    pbstrVal: BSTR*;
+    ppunkVal: IUnknown**;
+    ppdispVal: IDispatch**;
+    pparray: SAFEARRAY**;
+    pvarVal: VARIANT*;
+    byref: PVOID;
+    cVal: CHAR;
+    uiVal: USHORT;
+    ulVal: ULONG;
+    ullVal: ULONGLONG;
+    intVal: INT;
+    uintVal: UINT;
+    pdecVal: DECIMAL*;
+    pcVal: CHAR*;
+    puiVal: USHORT*;
+    pulVal: ULONG*;
+    pullVal: ULONGLONG*;
+    pintVal: INT*;
+    puintVal: UINT*;
+    __VARIANT_NAME_4: __tagBRECORD;
+}
 
 @foreign
 struct tagVARIANT {
-    n1: (null);
+  __VARIANT_NAME_1: tagVARIANT___inner_u;
 }
-*/
+
+@foreign
+typedef VARIANT = tagVARIANT;
 
 @foreign
 typedef LPVARIANT = VARIANT*;
@@ -424,25 +491,24 @@ enum tagVARKIND {
 @foreign
 typedef VARKIND = tagVARKIND;
 
-/*
-@PROBLEM Nested struct def at line 868, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+@foreign
+union tagVARDESC___inner {
+    oInst: ULONG;
+    lpvarValue: VARIANT*;
+}
 
 @foreign
 struct tagVARDESC {
     memid: MEMBERID;
     lpstrSchema: LPOLESTR;
-    u: (null);
+    u: tagVARDESC___inner;
     elemdescVar: ELEMDESC;
     wVarFlags: WORD;
     varkind: VARKIND;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 868, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
-
-tagVARDESC
-*/
+@foreign
+typedef VARDESC = tagVARDESC;
 
 @foreign
 typedef LPVARDESC = tagVARDESC*;

@@ -51,21 +51,21 @@ enum tagSTRRET_TYPE {
 @foreign
 typedef STRRET_TYPE = tagSTRRET_TYPE;
 
-/*
-@PROBLEM Nested struct def at line 274, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\shtypes.h
+@foreign
+union _STRRET___inner {
+    pOleStr: LPWSTR;
+    uOffset: UINT;
+    cStr: char[260];
+}
 
 @foreign
 struct _STRRET {
     uType: UINT;
-    u: (null);
+    u: _STRRET___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 274, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\shtypes.h
-
-_STRRET
-*/
+@foreign
+typedef STRRET = _STRRET;
 
 @foreign
 typedef LPSTRRET = STRRET*;

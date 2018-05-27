@@ -331,42 +331,61 @@ typedef HMETAFILEPICT = void*;
 @foreign
 typedef DATE = double;
 
+
 /*
-@PROBLEM Nested struct def at line 670, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+renamed member 'int64' to 'int64_' as 'int64' is a reserved keyword in Ion
+*/
+
+@foreign
+struct tagCY___inner {
+    Lo: ULONG;
+    Hi: LONG;
+}
 
 @foreign
 union tagCY {
-    s: (null);
-    int64: LONGLONG;
+    s: tagCY___inner;
+    int64_: LONGLONG;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 670, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-tagCY
-*/
+@foreign
+typedef CY = tagCY;
 
 @foreign
 typedef LPCY = CY*;
 
-/*
-@PROBLEM Nested struct def at line 695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+struct tagDEC___inner_s1 {
+    scale, sign: BYTE;
+}
+
+@foreign
+struct tagDEC___inner_s2 {
+    Lo32, Mid32: ULONG;
+}
+
+@foreign
+union tagDEC___inner_u1 {
+    s: tagDEC___inner_s1;
+    signscale: USHORT;
+}
+
+@foreign
+union tagDEC___inner_u2 {
+    s: tagDEC___inner_s2;
+    Lo64: ULONGLONG;
+}
 
 @foreign
 struct tagDEC {
     wReserved: USHORT;
-    u: (null);
+    u: tagDEC___inner_u1;
     Hi32: ULONG;
-    u2: (null);
+    u2: tagDEC___inner_u2;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-tagDEC
-*/
+@foreign
+typedef DECIMAL = tagDEC;
 
 @foreign
 typedef LPDECIMAL = DECIMAL*;

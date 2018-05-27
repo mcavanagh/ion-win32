@@ -545,8 +545,10 @@ typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3
 @foreign
 typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A*;
 
-/*
-@PROBLEM Nested struct def at line 1793, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V2_W___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V2_W {
@@ -555,21 +557,19 @@ struct _RPC_SECURITY_QOS_V2_W {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V2_W___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1793, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V2_W
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V2_W = _RPC_SECURITY_QOS_V2_W;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V2_W = _RPC_SECURITY_QOS_V2_W*;
 
-/*
-@PROBLEM Nested struct def at line 1805, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V2_A___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V2_A {
@@ -578,21 +578,19 @@ struct _RPC_SECURITY_QOS_V2_A {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V2_A___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1805, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V2_A
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V2_A = _RPC_SECURITY_QOS_V2_A;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V2_A = _RPC_SECURITY_QOS_V2_A*;
 
-/*
-@PROBLEM Nested struct def at line 1820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V3_W___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V3_W {
@@ -601,22 +599,20 @@ struct _RPC_SECURITY_QOS_V3_W {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V3_W___inner;
     Sid: void*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V3_W
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V3_W = _RPC_SECURITY_QOS_V3_W;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V3_W = _RPC_SECURITY_QOS_V3_W*;
 
-/*
-@PROBLEM Nested struct def at line 1833, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V3_A___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V3_A {
@@ -625,22 +621,20 @@ struct _RPC_SECURITY_QOS_V3_A {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V3_A___inner;
     Sid: void*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1833, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V3_A
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V3_A = _RPC_SECURITY_QOS_V3_A;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V3_A = _RPC_SECURITY_QOS_V3_A*;
 
-/*
-@PROBLEM Nested struct def at line 1851, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V4_W___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V4_W {
@@ -649,23 +643,21 @@ struct _RPC_SECURITY_QOS_V4_W {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V4_W___inner;
     Sid: void*;
     EffectiveOnly: uint;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1851, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V4_W
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V4_W = _RPC_SECURITY_QOS_V4_W;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V4_W = _RPC_SECURITY_QOS_V4_W*;
 
-/*
-@PROBLEM Nested struct def at line 1865, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V4_A___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V4_A {
@@ -674,24 +666,21 @@ struct _RPC_SECURITY_QOS_V4_A {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V4_A;
     Sid: void*;
     EffectiveOnly: uint;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1865, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V4_A
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V4_A = _RPC_SECURITY_QOS_V4_A;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V4_A = _RPC_SECURITY_QOS_V4_A*;
 
-/*
-@PROBLEM Nested struct def at line 1884, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
+@foreign
+union _RPC_SECURITY_QOS_V5_W___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
+}
 @foreign
 struct _RPC_SECURITY_QOS_V5_W {
     Version: ulong;
@@ -699,24 +688,22 @@ struct _RPC_SECURITY_QOS_V5_W {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V5_W___inner;
     Sid: void*;
     EffectiveOnly: uint;
     ServerSecurityDescriptor: void*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1884, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V5_W
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V5_W = _RPC_SECURITY_QOS_V5_W;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V5_W = _RPC_SECURITY_QOS_V5_W*;
 
-/*
-@PROBLEM Nested struct def at line 1899, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_SECURITY_QOS_V5_A___inner {
+    HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
+}
 
 @foreign
 struct _RPC_SECURITY_QOS_V5_A {
@@ -725,24 +712,22 @@ struct _RPC_SECURITY_QOS_V5_A {
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: (null);
+    u: _RPC_SECURITY_QOS_V5_A___inner;
     Sid: void*;
     EffectiveOnly: uint;
     ServerSecurityDescriptor: void*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 1899, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_SECURITY_QOS_V5_A
-*/
+@foreign
+typedef RPC_SECURITY_QOS_V5_A = _RPC_SECURITY_QOS_V5_A;
 
 @foreign
 typedef PRPC_SECURITY_QOS_V5_A = _RPC_SECURITY_QOS_V5_A*;
 
-/*
-@PROBLEM Nested struct def at line 2029, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_BINDING_HANDLE_TEMPLATE_V1_W___inner {
+    Reserved: uchar;
+}
 
 @foreign
 struct _RPC_BINDING_HANDLE_TEMPLATE_V1_W {
@@ -751,22 +736,20 @@ struct _RPC_BINDING_HANDLE_TEMPLATE_V1_W {
     ProtocolSequence: ulong;
     NetworkAddress: ushort*;
     StringEndpoint: ushort*;
-    u1: (null);
+    u1: _RPC_BINDING_HANDLE_TEMPLATE_V1_W___inner;
     ObjectUuid: UUID;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 2029, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_BINDING_HANDLE_TEMPLATE_V1_W
-*/
+@foreign
+typedef RPC_BINDING_HANDLE_TEMPLATE_V1_W = _RPC_BINDING_HANDLE_TEMPLATE_V1_W;
 
 @foreign
 typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_W = _RPC_BINDING_HANDLE_TEMPLATE_V1_W*;
 
-/*
-@PROBLEM Nested struct def at line 2042, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
+@foreign
+union _RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner {
+    Reserved: uchar;
+}
 
 @foreign
 struct _RPC_BINDING_HANDLE_TEMPLATE_V1_A {
@@ -775,16 +758,12 @@ struct _RPC_BINDING_HANDLE_TEMPLATE_V1_A {
     ProtocolSequence: ulong;
     NetworkAddress: uchar*;
     StringEndpoint: uchar*;
-    u1: (null);
+    u1: _RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner;
     ObjectUuid: UUID;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 2042, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcdce.h
-
-_RPC_BINDING_HANDLE_TEMPLATE_V1_A
-*/
+@foreign
+typedef RPC_BINDING_HANDLE_TEMPLATE_V1_A = _RPC_BINDING_HANDLE_TEMPLATE_V1_A;
 
 @foreign
 typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_A = _RPC_BINDING_HANDLE_TEMPLATE_V1_A*;

@@ -2,9 +2,18 @@
 
 import libc { va_list }
 
+@foreign const FILE_TYPE_UNKNOWN = 0x0000;
+@foreign const FILE_TYPE_DISK    = 0x0001;
+@foreign const FILE_TYPE_CHAR    = 0x0002;
+@foreign const FILE_TYPE_PIPE    = 0x0003;
+@foreign const FILE_TYPE_REMOTE  = 0x8000;
+
 @foreign const STD_INPUT_HANDLE     = DWORD(-10);
 @foreign const STD_OUTPUT_HANDLE    = DWORD(-11);
 @foreign const STD_ERROR_HANDLE     = DWORD(-12);
+
+@foreign const IGNORE   = 0;
+@foreign const INFINITE = 0xFFFFFFFF;
 
 @foreign const FORMAT_MESSAGE_ALLOCATE_BUFFER = 0x00000100;
 @foreign const FORMAT_MESSAGE_IGNORE_INSERTS  = 0x00000200;

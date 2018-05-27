@@ -1880,54 +1880,67 @@ struct tagRemSTGMEDIUM {
 @foreign
 typedef RemSTGMEDIUM = tagRemSTGMEDIUM;
 
-/*
-@PROBLEM Nested struct def at line 11243, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+
+@foreign
+union tagSTDMEDIUM___inner {
+    hBitmap: HBITMAP;
+    hMetaFilePict: HMETAFILEPICT;
+    hEnhMetaFile: HENHMETAFILE;
+    hGlobal: HGLOBAL;
+    lpszFileName: LPOLESTR;
+    pstm: IStream*;
+    pstg: IStorage*;
+}
 
 @foreign
 struct tagSTGMEDIUM {
     tymed: DWORD;
-    u: (null);
+    u: tagSTGMEDIUM___inner;
     pUnkForRelease: IUnknown*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11243, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+@foreign
+typedef uSTGMEDIUM = tagSTGMEDIUM;
 
-tagSTGMEDIUM
-*/
-
-/*
-@PROBLEM Nested struct def at line 11275, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+@foreign
+union __MIDL_IAdviseSink_0002 {
+    hBitmap: wireHBITMAP;
+    hPalette: wireHPALETTE;
+    hGeneric: wireHGLOBAL;
+}
 
 @foreign
 struct _GDI_OBJECT {
     ObjectType: DWORD;
     u: __MIDL_IAdviseSink_0002;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11275, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
+@foreign
+union __MIDL_IAdviseSink_0003 {
+    hMetaFilePict: wireHMETAFILEPICT;
+    hHEnhMetaFile: wireHENHMETAFILE;
+    hGdiHandle: GDI_OBJECT*;
+    hGlobal: wireHGLOBAL;
+    lpszFileName: LPOLESTR;
+    pstm: BYTE_BLOB*;
+    pstg: BYTE_BLOB*;
+}
 
-_GDI_OBJECT
-*/
+@foreign
+struct _STGMEDIUM_UNION {
+    typed: DWORD;
+    u: __MIDL_IAdviseSink_0003;
+}
 
-/*
-@PROBLEM Nested struct def at line 11286, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
 
 @foreign
 struct _userSTGMEDIUM {
     u: _STGMEDIUM_UNION;
     pUnkForRelease: IUnknown*;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11286, c:\program files (x86)\windows kits\10\include\10.0.16299.0\um\objidl.h
-
-_userSTGMEDIUM
-*/
+@foreign
+typedef userSTGMEDIUM = _userSTGMEDIUM;
 
 @foreign
 typedef wireSTGMEDIUM = userSTGMEDIUM*;

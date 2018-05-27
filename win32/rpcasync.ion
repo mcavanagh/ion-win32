@@ -1,5 +1,8 @@
 #foreign(header = "<rpcasync.h>")
 
+@foreign const RPC_C_NOTIFY_ON_SEND_COMPLETE = 0x1;
+@foreign const RPC_C_INFINITE_TIMEOUT        = INFINITE;
+
 @foreign
 enum _RPC_NOTIFICATION_TYPES {
     RpcNotificationTypeNone,
@@ -31,24 +34,15 @@ typedef RPCNOTIFICATION_ROUTINE = func(pAsync: _RPC_ASYNC_STATE*, Context: void*
 @foreign
 typedef PFN_RPCNOTIFICATION_ROUTINE = RPCNOTIFICATION_ROUTINE*;
 
-/*
-@PROBLEM Nested struct def at line 101, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+// union _RPC_ASYNC_NOTIFICATION_INFO has a lot of conditional compilation
+// leaving as opaque type for now.  Only used via pointer in RpcServerSubscribeForNotification
+// as far as I can tell
 
 @foreign
-union _RPC_ASYNC_NOTIFICATION_INFO {
-    APC: (null);
-    IOC: (null);
-    (null): (null);
-    hEvent: HANDLE;
-    NotificationRoutine: PFN_RPCNOTIFICATION_ROUTINE;
-}
-*/
+union _RPC_ASYNC_NOTIFICATION_INFO;
 
-/*
-@PROBLEM Nested struct def at line 101, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
-
-_RPC_ASYNC_NOTIFICATION_INFO
-*/
+@foreign
+typedef RPC_ASYNC_NOTIFICATION_INFO = _RPC_ASYNC_NOTIFICATION_INFO;
 
 @foreign
 typedef PRPC_ASYNC_NOTIFICATION_INFO = _RPC_ASYNC_NOTIFICATION_INFO*;
@@ -131,15 +125,18 @@ struct tagRPC_EE_INFO_PARAM {
 tagRPC_EE_INFO_PARAM
 */
 
-/*
-@PROBLEM Nested struct def at line 282, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
+@foreign
+union tagRPC_EXTENDED_ERROR_INFO___inner {
+    SystemTime: SYSTEMTIME;
+    FileTime: FILETIME;
+}
 
 @foreign
 struct tagRPC_EXTENDED_ERROR_INFO {
     Version: ULONG;
     ComputerName: LPWSTR;
     ProcessID: ULONG;
-    u: (null);
+    u: tagRPC_EXTENDED_ERROR_INFO___inner;
     GeneratingComponent: ULONG;
     Status: ULONG;
     DetectionLocation: USHORT;
@@ -147,13 +144,9 @@ struct tagRPC_EXTENDED_ERROR_INFO {
     NumberOfParameters: int;
     Parameters: RPC_EE_INFO_PARAM[4];
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 282, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
-
-tagRPC_EXTENDED_ERROR_INFO
-*/
+@foreign
+typedef RPC_EXTENDED_ERROR_INFO = tagRPC_EXTENDED_ERROR_INFO;
 
 @foreign
 struct tagRPC_ERROR_ENUM_HANDLE {
