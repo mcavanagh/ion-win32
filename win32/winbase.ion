@@ -412,21 +412,9 @@ typedef UMS_SCHEDULER_STARTUP_INFO = _UMS_SCHEDULER_STARTUP_INFO;
 @foreign
 typedef PUMS_SCHEDULER_STARTUP_INFO = _UMS_SCHEDULER_STARTUP_INFO*;
 
-/*
-@PROBLEM Nested struct def at line 1508, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
-
+// @PROBLEM bitfields
 @foreign
-struct _UMS_SYSTEM_THREAD_INFORMATION {
-    UmsVersion: ULONG;
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 1508, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
-
-_UMS_SYSTEM_THREAD_INFORMATION
-*/
+struct _UMS_SYSTEM_THREAD_INFORMATION;
 
 @foreign
 typedef PUMS_SYSTEM_THREAD_INFORMATION = _UMS_SYSTEM_THREAD_INFORMATION*;
@@ -1461,16 +1449,88 @@ enum _COPYFILE2_COPY_PHASE {
 @foreign
 typedef COPYFILE2_COPY_PHASE = _COPYFILE2_COPY_PHASE;
 
-/*
-@PROBLEM Nested struct def at line 5440, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+@foreign
+struct COPYFILE2_MESSAGE___inner_s1 {
+    dwStreamNumber: DWORD;
+    dwReserved: DWORD;
+    hSourceFile: HANDLE;
+    hDestinationFile: HANDLE;
+    uliChunkNumber: ULARGE_INTEGER;
+    uliChunkSize: ULARGE_INTEGER;
+    uliStreamSize: ULARGE_INTEGER;
+    uliTotalFileSize: ULARGE_INTEGER;
+}
+
+@foreign
+struct COPYFILE2_MESSAGE___inner_s2 {
+    dwStreamNumber: DWORD;
+    dwFlags: DWORD;
+    hSourceFile: HANDLE;
+    hDestinationFile: HANDLE;
+    uliChunkNumber: ULARGE_INTEGER;
+    uliChunkSize: ULARGE_INTEGER;
+    uliStreamSize: ULARGE_INTEGER;
+    uliStreamBytesTransferred: ULARGE_INTEGER;
+    uliTotalFileSize: ULARGE_INTEGER;
+    uliTotalBytesTransferred: ULARGE_INTEGER;
+}
+
+@foreign
+struct COPYFILE2_MESSAGE___inner_s3 {
+    dwStreamNumber: DWORD;
+    dwReserved: DWORD;
+    hSourceFile: HANDLE;
+    hDestinationFile: HANDLE;
+    uliStreamSize: ULARGE_INTEGER;
+    uliTotalFileSize: ULARGE_INTEGER;
+}
+
+@foreign
+struct COPYFILE2_MESSAGE___inner_s4 {
+    dwStreamNumber: DWORD;
+    dwReserved: DWORD;
+    hSourceFile: HANDLE;
+    hDestinationFile: HANDLE;
+    uliStreamSize: ULARGE_INTEGER;
+    uliStreamBytesTransferred: ULARGE_INTEGER;
+    uliTotalFileSize: ULARGE_INTEGER;
+    uliTotalBytesTransferred: ULARGE_INTEGER;
+}
+
+@foreign
+struct COPYFILE2_MESSAGE___inner_s5 {
+    dwReserved: DWORD;
+}
+
+@foreign
+struct COPYFILE2_MESSAGE___inner_s6 {
+    CopyPhase: COPYFILE2_COPY_PHASE;
+    dwStreamNumber: DWORD;
+    hrFailure: HRESULT;
+    dwReserved: DWORD;
+    uliChunkNumber: ULARGE_INTEGER;
+    uliStreamSize: ULARGE_INTEGER;
+    uliStreamBytesTransferred: ULARGE_INTEGER;
+    uliTotalFileSize: ULARGE_INTEGER;
+    uliTotalBytesTransferred: ULARGE_INTEGER;
+}
+
+@foreign
+union COPYFILE2_MESSAGE___inner_u {
+    ChunkStarted: COPYFILE2_MESSAGE___inner_s1;
+    ChunkFinished: COPYFILE2_MESSAGE___inner_s2;
+    StreamStarted: COPYFILE2_MESSAGE___inner_s3;
+    StreamFinished: COPYFILE2_MESSAGE___inner_s4;
+    PollContinue: COPYFILE2_MESSAGE___inner_s5;
+    Error: COPYFILE2_MESSAGE___inner_s6;
+}
 
 @foreign
 struct COPYFILE2_MESSAGE {
     Type: COPYFILE2_MESSAGE_TYPE;
     dwPadding: DWORD;
-    Info: (null);
+    Info: COPYFILE2_MESSAGE___inner_u;
 }
-*/
 
 @foreign
 typedef PCOPYFILE2_PROGRESS_ROUTINE = func(pMessage: COPYFILE2_MESSAGE*, pvCallbackContext: PVOID): COPYFILE2_MESSAGE_ACTION;
@@ -2408,23 +2468,22 @@ typedef FILE_NAME_INFO = _FILE_NAME_INFO;
 @foreign
 typedef PFILE_NAME_INFO = _FILE_NAME_INFO*;
 
-/*
-@PROBLEM Nested struct def at line 8513, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+@foreign
+union _FILE_RENAME_INFO___inner {
+    ReplaceIfExists: BOOLEAN;
+    Flags: DWORD;
+}
 
 @foreign
 struct _FILE_RENAME_INFO {
-    u: (null);
+    u: _FILE_RENAME_INFO___inner;
     RootDirectory: HANDLE;
     FileNameLength: DWORD;
     FileName: WCHAR[1];
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 8513, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
-
-_FILE_RENAME_INFO
-*/
+@foreign
+typedef FILE_RENAME_INFO = _FILE_RENAME_INFO;
 
 @foreign
 typedef PFILE_RENAME_INFO = _FILE_RENAME_INFO*;
@@ -2649,8 +2708,33 @@ typedef FILE_ID_EXTD_DIR_INFO = _FILE_ID_EXTD_DIR_INFO;
 @foreign
 typedef PFILE_ID_EXTD_DIR_INFO = _FILE_ID_EXTD_DIR_INFO*;
 
-/*
-@PROBLEM Nested struct def at line 8718, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+@foreign
+struct _FILE_REMOTE_PROTOCOL_INFO___inner_s1 {
+    Reserved: ULONG[8];
+}
+
+@foreign
+struct _FILE_REMOTE_PROTOCOL_INFO___inner_s3 {
+    Capabilities: ULONG;
+}
+
+@foreign
+struct _FILE_REMOTE_PROTOCOL_INFO___inner_s4 {
+    Capabilities: ULONG;
+    CachingFlags: ULONG;
+}
+
+@foreign
+struct _FILE_REMOTE_PROTOCOL_INFO___inner_s2 {
+    Server:_FILE_REMOTE_PROTOCOL_INFO___inner_s3;
+    Share: _FILE_REMOTE_PROTOCOL_INFO___inner_s4;
+}
+
+@foreign
+union _FILE_REMOTE_PROTOCOL_INFO___inner_u {
+    Smb2: _FILE_REMOTE_PROTOCOL_INFO___inner_s2;
+    Reserved: ULONG[16];
+}
 
 @foreign
 struct _FILE_REMOTE_PROTOCOL_INFO {
@@ -2662,16 +2746,12 @@ struct _FILE_REMOTE_PROTOCOL_INFO {
     ProtocolRevision: USHORT;
     Reserved: USHORT;
     Flags: ULONG;
-    GenericReserved: (null);
-    ProtocolSpecific: (null);
+    GenericReserved: _FILE_REMOTE_PROTOCOL_INFO___inner_s1;
+    ProtocolSpecific: _FILE_REMOTE_PROTOCOL_INFO___inner_u;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 8718, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
-
-_FILE_REMOTE_PROTOCOL_INFO
-*/
+@foreign
+typedef FILE_REMOTE_PROTOCOL_INFO = _FILE_REMOTE_PROTOCOL_INFO;
 
 @foreign
 typedef PFILE_REMOTE_PROTOCOL_INFO = _FILE_REMOTE_PROTOCOL_INFO*;
@@ -2693,16 +2773,19 @@ typedef FILE_ID_TYPE = _FILE_ID_TYPE;
 @foreign
 typedef PFILE_ID_TYPE = _FILE_ID_TYPE*;
 
-/*
-@PROBLEM Nested struct def at line 8795, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+@foreign
+union FILE_ID_DESCRIPTOR___inner {
+    FileId: LARGE_INTEGER;
+    ObjectId: GUID;
+    ExtendedFileId: FILE_ID_128;
+}
 
 @foreign
 struct FILE_ID_DESCRIPTOR {
     dwSize: DWORD;
     Type: FILE_ID_TYPE;
-    u: (null);
+    u: FILE_ID_DESCRIPTOR___inner;
 }
-*/
 
 @foreign
 typedef LPFILE_ID_DESCRIPTOR = FILE_ID_DESCRIPTOR*;

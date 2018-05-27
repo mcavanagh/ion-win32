@@ -1171,21 +1171,66 @@ typedef PEXCEPTION_FILTER = func(ExceptionPointers: _EXCEPTION_POINTERS*, Establ
 @foreign
 typedef PTERMINATION_HANDLER = func(_abnormal_termination: BOOLEAN, EstablisherFrame: PVOID);
 
-/*
-@PROBLEM Nested struct def at line 4051, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+struct _KNONVOLATILE_CONTEXT_POINTERS___inner_s1 {
+    Xmm0: PM128A;
+    Xmm1: PM128A;
+    Xmm2: PM128A;
+    Xmm3: PM128A;
+    Xmm4: PM128A;
+    Xmm5: PM128A;
+    Xmm6: PM128A;
+    Xmm7: PM128A;
+    Xmm8: PM128A;
+    Xmm9: PM128A;
+    Xmm10: PM128A;
+    Xmm11: PM128A;
+    Xmm12: PM128A;
+    Xmm13: PM128A;
+    Xmm14: PM128A;
+    Xmm15: PM128A;
+}
+
+@foreign
+struct _KNONVOLATILE_CONTEXT_POINTERS___inner_s2 {
+    Rax: PDWORD64;
+    Rcx: PDWORD64;
+    Rdx: PDWORD64;
+    Rbx: PDWORD64;
+    Rsp: PDWORD64;
+    Rbp: PDWORD64;
+    Rsi: PDWORD64;
+    Rdi: PDWORD64;
+    R8: PDWORD64;
+    R9: PDWORD64;
+    R10: PDWORD64;
+    R11: PDWORD64;
+    R12: PDWORD64;
+    R13: PDWORD64;
+    R14: PDWORD64;
+    R15: PDWORD64;
+}
+
+@foreign
+union _KNONVOLATILE_CONTEXT_POINTERS___inner_u1 {
+    FloatingContext: PM128A[16];
+    s: _KNONVOLATILE_CONTEXT_POINTERS___inner_s1;
+}
+
+@foreign
+union _KNONVOLATILE_CONTEXT_POINTERS___inner_u2 {
+    IntegerContext: PDWORD64[16];
+    s: _KNONVOLATILE_CONTEXT_POINTERS___inner_s2;
+}
 
 @foreign
 struct _KNONVOLATILE_CONTEXT_POINTERS {
-    u: (null);
-    u2: (null);
+    u: _KNONVOLATILE_CONTEXT_POINTERS___inner_u1;
+    u2: _KNONVOLATILE_CONTEXT_POINTERS___inner_u2;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 4051, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_KNONVOLATILE_CONTEXT_POINTERS
-*/
+@foreign
+typedef KNONVOLATILE_CONTEXT_POINTERS = _KNONVOLATILE_CONTEXT_POINTERS;
 
 @foreign
 typedef PKNONVOLATILE_CONTEXT_POINTERS = _KNONVOLATILE_CONTEXT_POINTERS*;
@@ -1247,22 +1292,12 @@ typedef PKNONVOLATILE_CONTEXT_POINTERS_ARM64 = _KNONVOLATILE_CONTEXT_POINTERS_AR
 @foreign
 func __int2c();
 
-/*
-@PROBLEM Nested struct def at line 7617, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+// @PROBLEM bitfields
+@foreign
+struct _LDT_ENTRY;
 
 @foreign
-struct _LDT_ENTRY {
-    LimitLow: WORD;
-    BaseLow: WORD;
-    HighWord: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 7617, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_LDT_ENTRY
-*/
+typedef LDT_ENTRY = _LDT_ENTRY;
 
 @foreign
 typedef PLDT_ENTRY = _LDT_ENTRY*;
@@ -1321,22 +1356,9 @@ typedef WOW64_CONTEXT = _WOW64_CONTEXT;
 @foreign
 typedef PWOW64_CONTEXT = WOW64_CONTEXT*;
 
-/*
-@PROBLEM Nested struct def at line 8695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
+// @PROBLEM bitfields
 @foreign
-struct _WOW64_LDT_ENTRY {
-    LimitLow: WORD;
-    BaseLow: WORD;
-    HighWord: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 8695, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_WOW64_LDT_ENTRY
-*/
+struct _WOW64_LDT_ENTRY;
 
 @foreign
 typedef PWOW64_LDT_ENTRY = _WOW64_LDT_ENTRY*;
@@ -2322,21 +2344,26 @@ typedef TOKEN_USER = _TOKEN_USER;
 @foreign
 typedef PTOKEN_USER = _TOKEN_USER*;
 
-/*
-@PROBLEM Nested struct def at line 10701, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _SE_TOKEN_USER___inner_u1 {
+    TokenUser: TOKEN_USER;
+    User: SID_AND_ATTRIBUTES;
+}
+
+@foreign
+union _SE_TOKEN_USER___inner_u2 {
+    Sid: SID;
+    Buffer: BYTE[68];
+}
 
 @foreign
 struct _SE_TOKEN_USER {
-    u: (null);
-    u2: (null);
+    u: _SE_TOKEN_USER___inner_u1;
+    u2: _SE_TOKEN_USER___inner_u2;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 10701, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_SE_TOKEN_USER
-*/
+@foreign
+typedef SE_TOKEN_USER = _SE_TOKEN_USER;
 
 @foreign
 typedef PSE_TOKEN_USER = _SE_TOKEN_USER;
@@ -2653,8 +2680,14 @@ typedef CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = _CLAIM_SECURITY_ATTRIBUTE_
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE*;
 
-/*
-@PROBLEM Nested struct def at line 11002, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _CLAIM_SECURITY_ATTRIBUTE_V1___inner {
+    pInt64: PLONG64;
+    pUint64: PDWORD64;
+    ppString: PWSTR*;
+    pFqbn: PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE;
+    pOctetString: PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE;
+}
 
 @foreign
 struct _CLAIM_SECURITY_ATTRIBUTE_V1 {
@@ -2663,21 +2696,23 @@ struct _CLAIM_SECURITY_ATTRIBUTE_V1 {
     Reserved: WORD;
     Flags: DWORD;
     ValueCount: DWORD;
-    Values: (null);
+    Values: _CLAIM_SECURITY_ATTRIBUTE_V1___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11002, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_CLAIM_SECURITY_ATTRIBUTE_V1
-*/
+@foreign
+typedef CLAIM_SECURITY_ATTRIBUTE_V1 = _CLAIM_SECURITY_ATTRIBUTE_V1;
 
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_V1 = _CLAIM_SECURITY_ATTRIBUTE_V1*;
 
-/*
-@PROBLEM Nested struct def at line 11054, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner {
+    pInt64: DWORD[1];
+    pUint64: DWORD[1];
+    ppString: DWORD[1];
+    pFqbn: DWORD[1];
+    pOctetString: DWORD[1];
+}
 
 @foreign
 struct _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 {
@@ -2686,15 +2721,11 @@ struct _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 {
     Reserved: WORD;
     Flags: DWORD;
     ValueCount: DWORD;
-    Values: (null);
+    Values: _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11054, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1
-*/
+@foreign
+typedef CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1;
 
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1*;
@@ -2833,8 +2864,11 @@ typedef EXCEPTION_REGISTRATION_RECORD = _EXCEPTION_REGISTRATION_RECORD;
 @foreign
 typedef PEXCEPTION_REGISTRATION_RECORD = EXCEPTION_REGISTRATION_RECORD*;
 
-/*
-@PROBLEM Nested struct def at line 11334, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _NT_TIB___inner {
+    FiberData: PVOID;
+    Version: DWORD;
+}
 
 @foreign
 struct _NT_TIB {
@@ -2842,23 +2876,22 @@ struct _NT_TIB {
     StackBase: PVOID;
     StackLimit: PVOID;
     SubSystemTib: PVOID;
-    (null): (null);
+    u: _NT_TIB___inner;
     ArbitraryUserPointer: PVOID;
     Self: _NT_TIB*;
 }
-*/
-
-/*
-@PROBLEM Nested struct def at line 11334, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_NT_TIB
-*/
 
 @foreign
-typedef PNT_TIB = NT_TIB*;
+typedef NT_TIB = _NT_TIB;
 
-/*
-@PROBLEM Nested struct def at line 11355, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+typedef PNT_TIB = _NT_TIB*;
+
+@foreign
+union _NT_TIB32___inner {
+    FiberData: DWORD;
+    Version: DWORD;
+}
 
 @foreign
 struct _NT_TIB32 {
@@ -2866,23 +2899,22 @@ struct _NT_TIB32 {
     StackBase: DWORD;
     StackLimit: DWORD;
     SubSystemTib: DWORD;
-    (null): (null);
+    u: _NT_TIB32___inner;
     ArbitraryUserPointer: DWORD;
     Self: DWORD;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11355, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_NT_TIB32
-*/
+@foreign
+typedef NT_TIB32 = _NT_TIB32;
 
 @foreign
 typedef PNT_TIB32 = _NT_TIB32*;
 
-/*
-@PROBLEM Nested struct def at line 11374, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _NT_TIB64___inner {
+    FiberData: DWORD64;
+    Version: DWORD;
+}
 
 @foreign
 struct _NT_TIB64 {
@@ -2890,17 +2922,13 @@ struct _NT_TIB64 {
     StackBase: DWORD64;
     StackLimit: DWORD64;
     SubSystemTib: DWORD64;
-    (null): (null);
+    u: _NT_TIB64___inner;
     ArbitraryUserPointer: DWORD64;
     Self: DWORD64;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 11374, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_NT_TIB64
-*/
+@foreign
+typedef NT_TIB64 = _NT_TIB64;
 
 @foreign
 typedef PNT_TIB64 = _NT_TIB64*;
@@ -2947,21 +2975,12 @@ typedef QUOTA_LIMITS = _QUOTA_LIMITS;
 @foreign
 typedef PQUOTA_LIMITS = _QUOTA_LIMITS*;
 
-/*
-@PROBLEM Nested struct def at line 11446, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+// @PROBLEM bitfields
+@foreign
+struct _RATE_QUOTA_LIMIT;
 
 @foreign
-union _RATE_QUOTA_LIMIT {
-    RateData: DWORD;
-    s: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11446, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_RATE_QUOTA_LIMIT
-*/
+typedef RATE_QUOTA_LIMIT = _RATE_QUOTA_LIMIT;
 
 @foreign
 typedef PRATE_QUOTA_LIMIT = _RATE_QUOTA_LIMIT*;
@@ -3041,237 +3060,142 @@ typedef PROCESS_MITIGATION_POLICY = _PROCESS_MITIGATION_POLICY;
 @foreign
 typedef PPROCESS_MITIGATION_POLICY = _PROCESS_MITIGATION_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11509, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_ASLR_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_ASLR_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11509, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_ASLR_POLICY
-*/
+typedef PROCESS_MITIGATION_ASLR_POLICY = _PROCESS_MITIGATION_ASLR_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_ASLR_POLICY = _PROCESS_MITIGATION_ASLR_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11522, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_DEP_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_DEP_POLICY {
-    u: (null);
-    Permanent: BOOLEAN;
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11522, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_DEP_POLICY
-*/
+typedef PROCESS_MITIGATION_DEP_POLICY = _PROCESS_MITIGATION_DEP_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_DEP_POLICY = _PROCESS_MITIGATION_DEP_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11534, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11534, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY
-*/
+typedef PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11545, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11545, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY
-*/
+typedef PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11556, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11556, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY
-*/
+typedef PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11566, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11566, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_DYNAMIC_CODE_POLICY
-*/
+typedef PROCESS_MITIGATION_DYNAMIC_CODE_POLICY = _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY = _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11579, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11579, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY
-*/
+typedef PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11591, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11591, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY
-*/
+typedef PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11605, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_FONT_DISABLE_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_FONT_DISABLE_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11605, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_FONT_DISABLE_POLICY
-*/
+typedef PROCESS_MITIGATION_FONT_DISABLE_POLICY = _PROCESS_MITIGATION_FONT_DISABLE_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_FONT_DISABLE_POLICY = _PROCESS_MITIGATION_FONT_DISABLE_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11616, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_IMAGE_LOAD_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_IMAGE_LOAD_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11616, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_IMAGE_LOAD_POLICY
-*/
+typedef PROCESS_MITIGATION_IMAGE_LOAD_POLICY = _PROCESS_MITIGATION_IMAGE_LOAD_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_IMAGE_LOAD_POLICY = _PROCESS_MITIGATION_IMAGE_LOAD_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11630, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11630, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY
-*/
+typedef PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11640, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11640, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY
-*/
+typedef PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY*;
 
-/*
-@PROBLEM Nested struct def at line 11667, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+
+// @PROBLEM: bitfields
+@foreign
+struct _PROCESS_MITIGATION_CHILD_PROCESS_POLICY;
 
 @foreign
-struct _PROCESS_MITIGATION_CHILD_PROCESS_POLICY {
-    u: (null);
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 11667, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_PROCESS_MITIGATION_CHILD_PROCESS_POLICY
-*/
+typedef PROCESS_MITIGATION_CHILD_PROCESS_POLICY = _PROCESS_MITIGATION_CHILD_PROCESS_POLICY;
 
 @foreign
 typedef PPROCESS_MITIGATION_CHILD_PROCESS_POLICY = _PROCESS_MITIGATION_CHILD_PROCESS_POLICY*;
@@ -3807,22 +3731,33 @@ typedef CACHE_DESCRIPTOR = _CACHE_DESCRIPTOR;
 @foreign
 typedef PCACHE_DESCRIPTOR = _CACHE_DESCRIPTOR*;
 
-/*
-@PROBLEM Nested struct def at line 12260, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1 {
+    Flags: BYTE;
+}
+
+@foreign
+struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2 {
+    NodeNumber: DWORD;
+}
+
+@foreign
+union _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u {
+    ProcessorCore: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1;
+    NumaNode: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2;
+    Cache: CACHE_DESCRIPTOR;
+    Reserved: ULONGLONG[2];
+}
 
 @foreign
 struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
     ProcessorMask: ULONG_PTR;
     Relationship: LOGICAL_PROCESSOR_RELATIONSHIP;
-    u: (null);
+    u: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 12260, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_SYSTEM_LOGICAL_PROCESSOR_INFORMATION
-*/
+@foreign
+typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION;
 
 @foreign
 typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION*;
@@ -3900,16 +3835,20 @@ typedef GROUP_RELATIONSHIP = _GROUP_RELATIONSHIP;
 @foreign
 typedef PGROUP_RELATIONSHIP = _GROUP_RELATIONSHIP*;
 
-/*
-@PROBLEM Nested struct def at line 12313, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner {
+    Processor: PROCESSOR_RELATIONSHIP;
+    NumaNode: NUMA_NODE_RELATIONSHIP;
+    Cache: CACHE_RELATIONSHIP;
+    Group: GROUP_RELATIONSHIP;
+}
 
 @foreign
 struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
     Relationship: LOGICAL_PROCESSOR_RELATIONSHIP;
     Size: DWORD;
-    u: (null);
+    u: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner;
 }
-*/
 
 @foreign
 typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
@@ -6454,16 +6393,18 @@ typedef IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY
 @foreign
 typedef PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY*;
 
-/*
-@PROBLEM Nested struct def at line 18039, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+@foreign
+union _IMAGE_RUNTIME_FUNCTION_ENTRY___inner {
+    UnwindInfoAddress: DWORD;
+    UnwindData: DWORD;
+}
 
 @foreign
 struct _IMAGE_RUNTIME_FUNCTION_ENTRY {
     BeginAddress: DWORD;
     EndAddress: DWORD;
-    u: (null);
+    u: _IMAGE_RUNTIME_FUNCTION_ENTRY___inner;
 }
-*/
 
 @foreign
 typedef _PIMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY*;
@@ -8194,29 +8135,9 @@ typedef PTP_CLEANUP_GROUP = _TP_CLEANUP_GROUP*;
 @foreign
 typedef PTP_CLEANUP_GROUP_CANCEL_CALLBACK = func(ObjectContext: PVOID, CleanupContext: PVOID);
 
-/*
-@PROBLEM Nested struct def at line 21666, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
+// @PROBLEM bitfields
 @foreign
-struct _TP_CALLBACK_ENVIRON_V3 {
-    Version: TP_VERSION;
-    Pool: PTP_POOL;
-    CleanupGroup: PTP_CLEANUP_GROUP;
-    CleanupGroupCancelCallback: PTP_CLEANUP_GROUP_CANCEL_CALLBACK;
-    RaceDll: PVOID;
-    ActivationContext: _ACTIVATION_CONTEXT*;
-    FinalizationCallback: PTP_SIMPLE_CALLBACK;
-    u: (null);
-    CallbackPriority: TP_CALLBACK_PRIORITY;
-    Size: DWORD;
-}
-*/
-
-/*
-@PROBLEM Nested struct def at line 21666, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
-
-_TP_CALLBACK_ENVIRON_V3
-*/
+struct TP_CALLBACK_ENVIRON_V3;
 
 @foreign
 typedef TP_CALLBACK_ENVIRON = TP_CALLBACK_ENVIRON_V3;

@@ -238,8 +238,53 @@ struct _wireBRECORD {
     pRecord: byte*;
 }
 
-/*
-@PROBLEM Nested struct def at line 565, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+@foreign
+union _wireVARIANT___inner {
+    llVal: LONGLONG;
+    lVal: LONG;
+    bVal: BYTE;
+    iVal: SHORT;
+    fltVal: FLOAT;
+    dblVal: DOUBLE;
+    boolVal: VARIANT_BOOL;
+    scode: SCODE;
+    cyVal: CY;
+    date: DATE;
+    bstrVal: wireBSTR;
+    punkVal: IUnknown*;
+    pdispVal: IDispatch*;
+    parray: wirePSAFEARRAY;
+    brecVal: wireBRECORD;
+    pbVal: BYTE*;
+    piVal: SHORT*;
+    plVal: LONG*;
+    pllVal: LONGLONG*;
+    pfltVal: FLOAT*;
+    pdblVal: DOUBLE*;
+    pboolVal: VARIANT_BOOL*;
+    pscode: SCODE*;
+    pcyVal: CY*;
+    pdate: DATE*;
+    pbstrVal: wireBSTR*;
+    ppunkVal: IUnknown**;
+    ppdispVal: IDispatch**;
+    pparray: wirePSAFEARRAY*;
+    pvarVal: wireVARIANT*;
+    cVal: CHAR;
+    uiVal: USHORT;
+    ulVal: ULONG;
+    ullVal: ULONGLONG;
+    intVal: INT;
+    uintVal: UINT;
+    decVal: DECIMAL;
+    pdecVal: DECIMAL*;
+    pcVal: CHAR*;
+    puiVal: USHORT*;
+    pulVal: ULONG*;
+    pullVal: ULONGLONG*;
+    pintVal: INT*;
+    puintVal: UINT*;
+}
 
 @foreign
 struct _wireVARIANT {
@@ -249,9 +294,8 @@ struct _wireVARIANT {
     wReserved1: USHORT;
     wReserved2: USHORT;
     wReserved3: USHORT;
-    u: (null);
+    u: _wireVARIANT___inner;
 }
-*/
 
 @foreign
 typedef DISPID = LONG;
@@ -340,21 +384,20 @@ typedef IDLDESC = tagIDLDESC;
 @foreign
 typedef LPIDLDESC = tagIDLDESC*;
 
-/*
-@PROBLEM Nested struct def at line 723, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
+@foreign
+union tagELEMDESC___inner {
+    idldesc: IDLDESC;
+    paramdesc: PARAMDESC;
+}
 
 @foreign
 struct tagELEMDESC {
     tdesc: TYPEDESC;
-    u: (null);
+    u: tagELEMDESC___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 723, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\oaidl.h
-
-tagELEMDESC
-*/
+@foreign
+typedef ELEMDESC = tagELEMDESC;
 
 @foreign
 typedef LPELEMDESC = tagELEMDESC*;

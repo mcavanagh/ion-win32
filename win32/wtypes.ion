@@ -532,19 +532,36 @@ enum tagTYSPEC {
 @foreign
 typedef TYSPEC = tagTYSPEC;
 
-/*
-@PROBLEM Nested struct def at line 928, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+struct __MIDL___MIDL_itf_wtypes_0000_0001_0005___inner_s1 {
+    pPackageName: LPOLESTR;
+    PolicyId: GUID;
+}
+
+@foreign
+struct __MIDL___MIDL_itf_wtypes_0000_0001_0005___inner_s2 {
+    ObjectId: GUID;
+    PolicyId: GUID;
+}
+
+@foreign
+union __MIDL___MIDL_itf_wtypes_0000_0001_0005 {
+    clsid: CLSID;
+    pFileExt: LPOLESTR;
+    pMimeType: LPOLESTR;
+    pProgId: LPOLESTR;
+    pFileName: LPOLESTR;
+    ByName: __MIDL___MIDL_itf_wtypes_0000_0001_0005___inner_s1;
+    ByObjectId: __MIDL___MIDL_itf_wtypes_0000_0001_0005___inner_s2;
+}
 
 @foreign
 struct __MIDL___MIDL_itf_wtypes_0000_0001_0001 {
     tyspec: DWORD;
     tagged_union: __MIDL___MIDL_itf_wtypes_0000_0001_0005;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 928, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+typedef uCLSSPEC = __MIDL___MIDL_itf_wtypes_0000_0001_0001;
 
-__MIDL___MIDL_itf_wtypes_0000_0001_0001
-*/
 

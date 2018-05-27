@@ -168,6 +168,9 @@ struct _INPUT_RECORD {
 }
 
 @foreign
+typedef INPUT_RECORD = _INPUT_RECORD;
+
+@foreign
 typedef PINPUT_RECORD = _INPUT_RECORD*;
 
 @foreign
@@ -181,6 +184,9 @@ struct _CHAR_INFO {
     Char: _CHAR_INFO___inner;
     Attributes: WORD;
 }
+
+@foreign
+typedef CHAR_INFO = _CHAR_INFO;
 
 @foreign
 typedef PCHAR_INFO = _CHAR_INFO*;

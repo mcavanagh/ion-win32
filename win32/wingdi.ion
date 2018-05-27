@@ -1129,8 +1129,36 @@ typedef NPEXTLOGFONT = NPEXTLOGFONTA;
 @foreign
 typedef LPEXTLOGFONT = LPEXTLOGFONTA;
 
-/*
-@PROBLEM Nested struct def at line 2195, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
+@foreign
+struct _devicemodeA___inner_s1 {
+    dmOrientation: short;
+    dmPaperSize: short;
+    dmPaperLength: short;
+    dmPaperWidth: short;
+    dmScale: short;
+    dmCopies: short;
+    dmDefaultSource: short;
+    dmPrintQuality: short;
+}
+
+@foreign
+struct _devicemodeA___inner_s2 {
+    dmPosition: POINTL;
+    dmDisplayOrientation: DWORD;
+    dmDisplayFixedOutput: DWORD;
+}
+
+@foreign
+union _devicemodeA___inner_u1 {
+    s: _devicemodeA___inner_s1;
+    s2: _devicemodeA___inner_s2;
+}
+
+@foreign
+union _devicemodeA___inner_u2 {
+    dmDisplayFlags: DWORD;
+    dmNup: DWORD;
+}
 
 @foreign
 struct _devicemodeA {
@@ -1140,7 +1168,7 @@ struct _devicemodeA {
     dmSize: WORD;
     dmDriverExtra: WORD;
     dmFields: DWORD;
-    u: (null);
+    u: _devicemodeA___inner_u1;
     dmColor: short;
     dmDuplex: short;
     dmYResolution: short;
@@ -1151,7 +1179,7 @@ struct _devicemodeA {
     dmBitsPerPel: DWORD;
     dmPelsWidth: DWORD;
     dmPelsHeight: DWORD;
-    u2: (null);
+    u2: _devicemodeA___inner_u2;
     dmDisplayFrequency: DWORD;
     dmICMMethod: DWORD;
     dmICMIntent: DWORD;
@@ -1162,13 +1190,9 @@ struct _devicemodeA {
     dmPanningWidth: DWORD;
     dmPanningHeight: DWORD;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 2195, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
-
-_devicemodeA
-*/
+@foreign
+typedef DEVMODEA = _devicemodeA;
 
 @foreign
 typedef PDEVMODEA = _devicemodeA*;
@@ -1179,8 +1203,36 @@ typedef NPDEVMODEA = _devicemodeA*;
 @foreign
 typedef LPDEVMODEA = _devicemodeA*;
 
-/*
-@PROBLEM Nested struct def at line 2249, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
+@foreign
+struct _devicemodeW___inner_s1 {
+    dmOrientation: short;
+    dmPaperSize: short;
+    dmPaperLength: short;
+    dmPaperWidth: short;
+    dmScale: short;
+    dmCopies: short;
+    dmDefaultSource: short;
+    dmPrintQuality: short;
+}
+
+@foreign
+struct _devicemodeW___inner_s2 {
+    dmPosition: POINTL;
+    dmDisplayOrientation: DWORD;
+    dmDisplayFixedOutput: DWORD;
+}
+
+@foreign
+union _devicemodeW___inner_u1 {
+    s: _devicemodeW___inner_s1;
+    s2: _devicemodeW___inner_s2;
+}
+
+@foreign
+union _devicemodeW___inner_u2 {
+    dmDisplayFlags: DWORD;
+    dmNup: DWORD;
+}
 
 @foreign
 struct _devicemodeW {
@@ -1190,7 +1242,7 @@ struct _devicemodeW {
     dmSize: WORD;
     dmDriverExtra: WORD;
     dmFields: DWORD;
-    u: (null);
+    u: _devicemodeW___inner_u1;
     dmColor: short;
     dmDuplex: short;
     dmYResolution: short;
@@ -1201,7 +1253,7 @@ struct _devicemodeW {
     dmBitsPerPel: DWORD;
     dmPelsWidth: DWORD;
     dmPelsHeight: DWORD;
-    u2: (null);
+    u2: _devicemodeW___inner_u2;
     dmDisplayFrequency: DWORD;
     dmICMMethod: DWORD;
     dmICMIntent: DWORD;
@@ -1212,13 +1264,9 @@ struct _devicemodeW {
     dmPanningWidth: DWORD;
     dmPanningHeight: DWORD;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 2249, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
-
-_devicemodeW
-*/
+@foreign
+typedef DEVMODEW = _devicemodeW;
 
 @foreign
 typedef PDEVMODEW = _devicemodeW*;
