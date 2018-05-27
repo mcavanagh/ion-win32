@@ -1,5 +1,3 @@
-#foreign(header = "<verrsrc.h>")
-
 @foreign
 struct tagVS_FIXEDFILEINFO {
     dwSignature: DWORD;

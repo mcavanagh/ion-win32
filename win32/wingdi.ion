@@ -1454,47 +1454,28 @@ struct DISPLAYCONFIG_DESKTOP_IMAGE_INFO {
     DesktopImageClip: RECTL;
 }
 
-/*
-@PROBLEM Nested struct def at line 2926, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
+@foreign
+union DISPLAYCONFIG_MODE_INFO___inner {
+    targetMode: DISPLAYCONFIG_TARGET_MODE;
+    sourceMode: DISPLAYCONFIG_SOURCE_MODE;
+    desktopImageInfo: DISPLAYCONFIG_DESKTOP_IMAGE_INFO;
+}
 
 @foreign
 struct DISPLAYCONFIG_MODE_INFO {
     infoType: DISPLAYCONFIG_MODE_INFO_TYPE;
     id: UINT32;
     adapterId: LUID;
-    u: (null);
+    u: DISPLAYCONFIG_MODE_INFO___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 2945, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
-
+// @PROBLEM: bitfields
 @foreign
-struct DISPLAYCONFIG_PATH_SOURCE_INFO {
-    adapterId: LUID;
-    id: UINT32;
-    u: (null);
-    statusFlags: UINT32;
-}
-*/
+struct DISPLAYCONFIG_PATH_SOURCE_INFO;
 
-/*
-@PROBLEM Nested struct def at line 2968, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
-
+// @PROBLEM bitfields
 @foreign
-struct DISPLAYCONFIG_PATH_TARGET_INFO {
-    adapterId: LUID;
-    id: UINT32;
-    u: (null);
-    outputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY;
-    rotation: DISPLAYCONFIG_ROTATION;
-    scaling: DISPLAYCONFIG_SCALING;
-    refreshRate: DISPLAYCONFIG_RATIONAL;
-    scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING;
-    targetAvailable: BOOL;
-    statusFlags: UINT32;
-}
-*/
+struct DISPLAYCONFIG_PATH_TARGET_INFO;
 
 @foreign
 struct DISPLAYCONFIG_PATH_INFO {

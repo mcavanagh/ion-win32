@@ -5,20 +5,26 @@ struct SERVICE_TRIGGER_CUSTOM_STATE_ID {
     Data: DWORD[2];
 }
 
-/*
-@PROBLEM Nested struct def at line 477, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winsvc.h
+@foreign
+struct _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_s1 {
+    DataOffset: DWORD;
+    Data: BYTE[1];
+}
+
+@foreign
+union _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_u1 {
+    CustomStateId: SERVICE_TRIGGER_CUSTOM_STATE_ID;
+    s: _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_s1;
+}
+
 
 @foreign
 struct _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM {
-    u: (null);
+    u: _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_u1;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 477, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winsvc.h
-
-_SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM
-*/
+@foreign
+typedef SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM;
 
 @foreign
 typedef LPSERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = _SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM*;

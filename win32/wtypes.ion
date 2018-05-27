@@ -104,21 +104,20 @@ typedef STATFLAG = tagSTATFLAG;
 @foreign
 typedef HCONTEXT = void*;
 
-/*
-@PROBLEM Nested struct def at line 398, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0001 {
+    dwValue: DWORD;
+    pwszName: wchar*;
+}
 
 @foreign
 struct _userCLIPFORMAT {
     fContext: LONG;
     u: __MIDL_IWinTypes_0001;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 398, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-_userCLIPFORMAT
-*/
+@foreign
+typedef userCLIPFORMAT = _userCLIPFORMAT;
 
 @foreign
 typedef wireCLIPFORMAT = userCLIPFORMAT*;
@@ -142,40 +141,40 @@ struct _GDI_NONREMOTE {
 _GDI_NONREMOTE
 */
 
-/*
-@PROBLEM Nested struct def at line 422, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0003 {
+    hInproc: LONG;
+    hRemote: FLAGGED_BYTE_BLOB*;
+    hInproc64: int64;
+}
 
 @foreign
 struct _userHGLOBAL {
     fContext: LONG;
     u: __MIDL_IWinTypes_0003;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 422, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-_userHGLOBAL
-*/
+@foreign
+typedef userHGLOBAL = _userHGLOBAL;
 
 @foreign
 typedef wireHGLOBAL = userHGLOBAL*;
 
-/*
-@PROBLEM Nested struct def at line 435, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0004 {
+    hInproc: LONG;
+    hRemote: BYTE_BLOB*;
+    hInproc64: int64;
+}
 
 @foreign
 struct _userHMETAFILE {
     fContext: LONG;
     u: __MIDL_IWinTypes_0004;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 435, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-_userHMETAFILE
-*/
+@foreign
+typedef userHMETAFILE = _userHMETAFILE;
 
 @foreign
 struct _remoteMETAFILEPICT {
@@ -188,37 +187,36 @@ struct _remoteMETAFILEPICT {
 @foreign
 typedef remoteMETAFILEPICT = _remoteMETAFILEPICT;
 
-/*
-@PROBLEM Nested struct def at line 454, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+union __MIDL_IWinTypes_0005 {
+    hInproc: LONG;
+    hRemote: remoteMETAFILEPICT*;
+    hInproc64: int64;
+}
 
 @foreign
 struct _userHMETAFILEPICT {
     fContext: LONG;
     u: __MIDL_IWinTypes_0005;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 454, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+typedef userHMETAFILEPICT = _userHMETAFILEPICT;
 
-_userHMETAFILEPICT
-*/
-
-/*
-@PROBLEM Nested struct def at line 465, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0006 {
+    hInproc: LONG;
+    hRemote: BYTE_BLOB*;
+    hInproc64: int64;
+}
 
 @foreign
 struct _userHENHMETAFILE {
     fContext: LONG;
     u: __MIDL_IWinTypes_0006;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 465, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-_userHENHMETAFILE
-*/
+@foreign
+typedef userHENHMETAFILE = _userHENHMETAFILE;
 
 @foreign
 struct _userBITMAP {
@@ -235,53 +233,52 @@ struct _userBITMAP {
 @foreign
 typedef userBITMAP = _userBITMAP;
 
-/*
-@PROBLEM Nested struct def at line 488, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0007 {
+    hInproc: LONG;
+    hRemote: userBITMAP*;
+    hInproc64: int64;
+}
 
 @foreign
 struct _userHBITMAP {
     fContext: LONG;
     u: __MIDL_IWinTypes_0007;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 488, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+typedef userHBITMAP = _userHBITMAP;
 
-_userHBITMAP
-*/
-
-/*
-@PROBLEM Nested struct def at line 499, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0008 {
+    hInproc: LONG;
+    hRemote: LOGPALETTE*;
+    hInproc64: int64;
+}
 
 @foreign
 struct _userHPALETTE {
     fContext: LONG;
     u: __MIDL_IWinTypes_0008;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 499, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+typedef userHPALETTE = _userHPALETTE;
 
-_userHPALETTE
-*/
-
-/*
-@PROBLEM Nested struct def at line 510, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
+@foreign
+union __MIDL_IWinTypes_0009 {
+    hInproc: LONG;
+    hRemote: LONG;
+}
 
 @foreign
 struct _RemotableHandle {
     fContext: LONG;
     u: __MIDL_IWinTypes_0009;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 510, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
-
-_RemotableHandle
-*/
+@foreign
+typedef RemotableHandle = _RemotableHandle;
 
 @foreign
 typedef wireHWND = RemotableHandle*;

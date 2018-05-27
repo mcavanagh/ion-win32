@@ -1967,21 +1967,22 @@ typedef PHARDWAREINPUT = tagHARDWAREINPUT*;
 @foreign
 typedef LPHARDWAREINPUT = tagHARDWAREINPUT*;
 
-/*
-@PROBLEM Nested struct def at line 5979, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+@foreign
+union tagINPUT___inner {
+    mi: MOUSEINPUT;
+    ki: KEYBDINPUT;
+    hi: HARDWAREINPUT;
+}
+
 
 @foreign
 struct tagINPUT {
     type: DWORD;
-    u: (null);
+    u: tagINPUT___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 5979, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
-
-tagINPUT
-*/
+@foreign
+typedef INPUT = tagINPUT;
 
 @foreign
 typedef PINPUT = tagINPUT*;
@@ -2160,21 +2161,20 @@ typedef USAGE_PROPERTIES = tagUSAGE_PROPERTIES;
 @foreign
 typedef PUSAGE_PROPERTIES = tagUSAGE_PROPERTIES*;
 
-/*
-@PROBLEM Nested struct def at line 6325, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+@foreign
+union tagPOINTER_TYPE_INFO___inner {
+    touchInfo: POINTER_TOUCH_INFO;
+    penInfo: POINTER_PEN_INFO;
+}
 
 @foreign
 struct tagPOINTER_TYPE_INFO {
     type: POINTER_INPUT_TYPE;
-    u: (null);
+    u: tagPOINTER_TYPE_INFO___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 6325, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
-
-tagPOINTER_TYPE_INFO
-*/
+@foreign
+typedef POINTER_TYPE_INFO = tagPOINTER_TYPE_INFO;
 
 @foreign
 typedef PPOINTER_TYPE_INFO = tagPOINTER_TYPE_INFO*;
@@ -2323,20 +2323,27 @@ func GetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWOR
 @foreign
 func SetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWORD, size: UINT32, configuration: void const*): BOOL;
 
-/*
-@PROBLEM Nested struct def at line 6620, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+@foreign
+struct tagINPUT_TRANSFORM___inner_s1 {
+    _11, _12, _13, _14: float;
+    _21, _22, _23, _24: float;
+    _31, _32, _33, _34: float;
+    _41, _42, _43, _44: float;
+}
+
+@foreign
+union tagINPUT_TRANSFORM___inner_u1 {
+    s: tagINPUT_TRANSFORM___inner_s1;
+    m: float[4][4];
+}
 
 @foreign
 struct tagINPUT_TRANSFORM {
-    u: (null);
+    u: tagINPUT_TRANSFORM___inner_u1;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 6620, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
-
-tagINPUT_TRANSFORM
-*/
+@foreign
+typedef INPUT_TRANSFORM = tagINPUT_TRANSFORM;
 
 @foreign
 func GetPointerInputTransform(pointerId: UINT32, historyCount: UINT32, inputTransform: INPUT_TRANSFORM*): BOOL;
@@ -4790,25 +4797,30 @@ typedef PRAWINPUTHEADER = tagRAWINPUTHEADER*;
 @foreign
 typedef LPRAWINPUTHEADER = tagRAWINPUTHEADER*;
 
-/*
-@PROBLEM Nested struct def at line 14540, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+@foreign
+struct tagRAWMOUSE___inner_s1 {
+    usButtonFlags: USHORT;
+    usButtonData: USHORT;
+}
+
+@foreign
+union tagRAWMOUSE___inner_u1 {
+    ulButtons: ULONG;
+    s: tagRAWMOUSE___inner_s1;
+}
 
 @foreign
 struct tagRAWMOUSE {
     usFlags: USHORT;
-    u: (null);
+    u: tagRAWMOUSE___inner_u1;
     ulRawButtons: ULONG;
     lLastX: LONG;
     lLastY: LONG;
     ulExtraInformation: ULONG;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 14540, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
-
-tagRAWMOUSE
-*/
+@foreign
+typedef RAWMOUSE = tagRAWMOUSE;
 
 @foreign
 typedef PRAWMOUSE = tagRAWMOUSE*;
@@ -4851,21 +4863,21 @@ typedef PRAWHID = tagRAWHID*;
 @foreign
 typedef LPRAWHID = tagRAWHID*;
 
-/*
-@PROBLEM Nested struct def at line 14705, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+@foreign
+union tagRAWINPUT___inner {
+    mouse: RAWMOUSE;
+    keyboard: RAWKEYBOARD;
+    hid: RAWHID;
+}
 
 @foreign
 struct tagRAWINPUT {
     header: RAWINPUTHEADER;
-    data: (null);
+    data: tagRAWINPUT___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 14705, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
-
-tagRAWINPUT
-*/
+@foreign
+typedef RAWINPUT = tagRAWINPUT;
 
 @foreign
 typedef PRAWINPUT = tagRAWINPUT*;
@@ -4921,22 +4933,22 @@ typedef RID_DEVICE_INFO_HID = tagRID_DEVICE_INFO_HID;
 @foreign
 typedef PRID_DEVICE_INFO_HID = tagRID_DEVICE_INFO_HID*;
 
-/*
-@PROBLEM Nested struct def at line 14786, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+@foreign
+union tagRID_DEVICE_INFO___inner {
+    mouse: RID_DEVICE_INFO_MOUSE;
+    keyboard: RID_DEVICE_INFO_KEYBOARD;
+    hid: RID_DEVICE_INFO_HID;
+}
 
 @foreign
 struct tagRID_DEVICE_INFO {
     cbSize: DWORD;
     dwType: DWORD;
-    u: (null);
+    u: tagRID_DEVICE_INFO___inner;
 }
-*/
 
-/*
-@PROBLEM Nested struct def at line 14786, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
-
-tagRID_DEVICE_INFO
-*/
+@foreign
+typedef RID_DEVICE_INFO = tagRID_DEVICE_INFO;
 
 @foreign
 typedef PRID_DEVICE_INFO = tagRID_DEVICE_INFO*;
