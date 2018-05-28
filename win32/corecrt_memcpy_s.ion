@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt_memcpy_s.h>")
-
 @foreign
 func _memicmp(_Buf1: void const*, _Buf2: void const*, _Size: usize): int;
 

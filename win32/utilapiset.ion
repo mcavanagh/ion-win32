@@ -1,5 +1,3 @@
-#foreign(header = "<utilapiset.h>")
-
 @foreign
 func EncodePointer(Ptr: PVOID): PVOID;
 

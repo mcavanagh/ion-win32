@@ -1,5 +1,3 @@
-#foreign(header = "<ctype.h>")
-
 @foreign
 func _isctype_l(_C: int, _Type: int, _Locale: _locale_t): int;
 

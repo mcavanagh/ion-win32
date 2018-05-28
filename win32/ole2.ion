@@ -1,5 +1,3 @@
-#foreign(header = "<ole2.h>")
-
 @foreign
 func CreateDataAdviseHolder(ppDAHolder: LPDATAADVISEHOLDER*): HRESULT;
 
@@ -169,27 +167,21 @@ func OleRegEnumFormatEtc(clsid: IID* const, dwDirection: DWORD, ppenum: LPENUMFO
 func OleRegEnumVerbs(clsid: IID* const, ppenum: LPENUMOLEVERB*): HRESULT;
 
 @foreign
-typedef LPOLESTREAM = _OLESTREAM*;
+typedef LPOLESTREAM = OLESTREAM*;
 
 @foreign
-struct _OLESTREAMVTBL {
+struct OLESTREAMVTBL {
     Get: func(arg0: LPOLESTREAM, arg1: void*, arg2: DWORD): DWORD;
     Put: func(arg0: LPOLESTREAM, arg1: void const*, arg2: DWORD): DWORD;
 }
 
 @foreign
-typedef OLESTREAMVTBL = _OLESTREAMVTBL;
-
-@foreign
 typedef LPOLESTREAMVTBL = OLESTREAMVTBL*;
 
 @foreign
-struct _OLESTREAM {
+struct OLESTREAM {
     lpstbl: LPOLESTREAMVTBL;
 }
-
-@foreign
-typedef OLESTREAM = _OLESTREAM;
 
 @foreign
 func OleConvertOLESTREAMToIStorage(lpolestream: LPOLESTREAM, pstg: LPSTORAGE, ptd: DVTARGETDEVICE*): HRESULT;

@@ -1,5 +1,3 @@
-#foreign(header = "<winreg.h>")
-
 @foreign
 typedef LSTATUS = LONG;
 
@@ -17,7 +15,7 @@ struct val_context {
 typedef PVALCONTEXT = val_context*;
 
 @foreign
-struct pvalueA {
+struct PVALUEA {
     pv_valuename: LPSTR;
     pv_valuelen: int;
     pv_value_context: LPVOID;
@@ -25,13 +23,10 @@ struct pvalueA {
 }
 
 @foreign
-typedef PVALUEA = pvalueA;
+typedef PPVALUEA = PVALUEA*;
 
 @foreign
-typedef PPVALUEA = pvalueA*;
-
-@foreign
-struct pvalueW {
+struct PVALUEW {
     pv_valuename: LPWSTR;
     pv_valuelen: int;
     pv_value_context: LPVOID;
@@ -39,10 +34,7 @@ struct pvalueW {
 }
 
 @foreign
-typedef PVALUEW = pvalueW;
-
-@foreign
-typedef PPVALUEW = pvalueW*;
+typedef PPVALUEW = PVALUEW*;
 
 @foreign
 typedef PVALUE = PVALUEA;
@@ -57,7 +49,7 @@ typedef QUERYHANDLER = func(keycontext: LPVOID, val_list: PVALCONTEXT, num_vals:
 typedef PQUERYHANDLER = QUERYHANDLER*;
 
 @foreign
-struct provider_info {
+struct REG_PROVIDER {
     pi_R0_1val: PQUERYHANDLER;
     pi_R0_allvals: PQUERYHANDLER;
     pi_R3_1val: PQUERYHANDLER;
@@ -67,13 +59,10 @@ struct provider_info {
 }
 
 @foreign
-typedef REG_PROVIDER = provider_info;
+typedef PPROVIDER = REG_PROVIDER*;
 
 @foreign
-typedef PPROVIDER = provider_info*;
-
-@foreign
-struct value_entA {
+struct VALENTA {
     ve_valuename: LPSTR;
     ve_valuelen: DWORD;
     ve_valueptr: DWORD_PTR;
@@ -81,13 +70,10 @@ struct value_entA {
 }
 
 @foreign
-typedef VALENTA = value_entA;
+typedef PVALENTA = VALENTA*;
 
 @foreign
-typedef PVALENTA = value_entA*;
-
-@foreign
-struct value_entW {
+struct VALENTW {
     ve_valuename: LPWSTR;
     ve_valuelen: DWORD;
     ve_valueptr: DWORD_PTR;
@@ -95,10 +81,7 @@ struct value_entW {
 }
 
 @foreign
-typedef VALENTW = value_entW;
-
-@foreign
-typedef PVALENTW = value_entW*;
+typedef PVALENTW = VALENTW*;
 
 @foreign
 typedef VALENT = VALENTA;

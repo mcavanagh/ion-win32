@@ -1,7 +1,5 @@
-#foreign(header = "<tvout.h>")
-
 @foreign
-struct _VIDEOPARAMETERS {
+struct VIDEOPARAMETERS {
     Guid: GUID;
     dwOffset: ULONG;
     dwCommand: ULONG;
@@ -28,11 +26,8 @@ struct _VIDEOPARAMETERS {
 }
 
 @foreign
-typedef VIDEOPARAMETERS = _VIDEOPARAMETERS;
+typedef PVIDEOPARAMETERS = VIDEOPARAMETERS*;
 
 @foreign
-typedef PVIDEOPARAMETERS = _VIDEOPARAMETERS*;
-
-@foreign
-typedef LPVIDEOPARAMETERS = _VIDEOPARAMETERS*;
+typedef LPVIDEOPARAMETERS = VIDEOPARAMETERS*;
 

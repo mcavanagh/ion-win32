@@ -1,5 +1,3 @@
-#foreign(header = "<jobapi.h>")
-
 @foreign
 func IsProcessInJob(ProcessHandle: HANDLE, JobHandle: HANDLE, Result: PBOOL): BOOL;
 

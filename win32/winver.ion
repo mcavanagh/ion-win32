@@ -1,5 +1,3 @@
-#foreign(header = "<winver.h>")
-
 @foreign
 func VerFindFileA(uFlags: DWORD, szFileName: LPCSTR, szWinDir: LPCSTR, szAppDir: LPCSTR, szCurDir: LPSTR, puCurDirLen: PUINT, szDestDir: LPSTR, puDestDirLen: PUINT): DWORD;
 

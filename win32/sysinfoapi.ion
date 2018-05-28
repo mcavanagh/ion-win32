@@ -1,20 +1,18 @@
-#foreign(header = "<sysinfoapi.h>")
-
 @foreign
-struct _SYSTEM_INFO___inner_s1 {
+struct SYSTEM_INFO___inner_s1 {
     wProcessorArchitecture: WORD;
     wReserved: WORD;
 }
 
 @foreign
-union _SYSTEM_INFO___inner_u1 {
+union SYSTEM_INFO___inner_u1 {
     dwOemId: DWORD;
     s: _SYSTEM_INFO___inner_s1;
 }
 
 @foreign
-struct _SYSTEM_INFO {
-    u: _SYSTEM_INFO___inner_u1;
+struct SYSTEM_INFO {
+    u: SYSTEM_INFO___inner_u1;
     dwPageSize: DWORD;
     lpMinimumApplicationAddress: LPVOID;
     lpMaximumApplicationAddress: LPVOID;
@@ -27,13 +25,10 @@ struct _SYSTEM_INFO {
 }
 
 @foreign
-typedef SYSTEM_INFO = _SYSTEM_INFO;
+typedef LPSYSTEM_INFO = SYSTEM_INFO*;
 
 @foreign
-typedef LPSYSTEM_INFO = _SYSTEM_INFO*;
-
-@foreign
-struct _MEMORYSTATUSEX {
+struct MEMORYSTATUSEX {
     dwLength: DWORD;
     dwMemoryLoad: DWORD;
     ullTotalPhys: DWORDLONG;
@@ -46,10 +41,7 @@ struct _MEMORYSTATUSEX {
 }
 
 @foreign
-typedef MEMORYSTATUSEX = _MEMORYSTATUSEX;
-
-@foreign
-typedef LPMEMORYSTATUSEX = _MEMORYSTATUSEX*;
+typedef LPMEMORYSTATUSEX = MEMORYSTATUSEX*;
 
 @foreign
 func GlobalMemoryStatusEx(lpBuffer: LPMEMORYSTATUSEX): BOOL;
@@ -109,7 +101,7 @@ func GetSystemWindowsDirectory(lpBuffer: LPSTR, uSize: UINT): UINT;
 func GetSystemWindowsDirectoryW(lpBuffer: LPWSTR, uSize: UINT): UINT;
 
 @foreign
-enum _COMPUTER_NAME_FORMAT {
+enum COMPUTER_NAME_FORMAT {
     ComputerNameNetBIOS,
     ComputerNameDnsHostname,
     ComputerNameDnsDomain,
@@ -120,9 +112,6 @@ enum _COMPUTER_NAME_FORMAT {
     ComputerNamePhysicalDnsFullyQualified,
     ComputerNameMax,
 }
-
-@foreign
-typedef COMPUTER_NAME_FORMAT = _COMPUTER_NAME_FORMAT;
 
 @foreign
 func GetComputerNameExA(NameType: COMPUTER_NAME_FORMAT, lpBuffer: LPSTR, nSize: LPDWORD): BOOL;

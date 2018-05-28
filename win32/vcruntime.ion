@@ -1,19 +1,5 @@
-#foreign(header = "<vcruntime.h>")
-
-@foreign
-typedef size_t = ullong;
-
-@foreign
-typedef ptrdiff_t = llong;
-
-@foreign
-typedef intptr_t = llong;
-
 @foreign
 typedef __vcrt_bool = int;
-
-@foreign
-typedef wchar_t = ushort;
 
 @foreign
 func __security_init_cookie();
@@ -25,13 +11,9 @@ func __security_check_cookie(_StackCookie: uintptr);
 func __report_gsfailure(_StackCookie: uintptr);
 
 @foreign
-enum _EXCEPTION_DISPOSITION {
+enum EXCEPTION_DISPOSITION {
     ExceptionContinueExecution,
     ExceptionContinueSearch,
     ExceptionNestedException,
     ExceptionCollidedUnwind,
 }
-
-@foreign
-typedef EXCEPTION_DISPOSITION = _EXCEPTION_DISPOSITION;
-

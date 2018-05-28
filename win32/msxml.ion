@@ -1,7 +1,5 @@
-#foreign(header = "<msxml.h>")
-
 @foreign
-struct _xml_error {
+struct XML_ERROR {
     _nLine: uint;
     _pchBuf: BSTR;
     _cchBuf: uint;
@@ -13,10 +11,7 @@ struct _xml_error {
 }
 
 @foreign
-typedef XML_ERROR = _xml_error;
-
-@foreign
-enum tagDOMNodeType {
+enum DOMNodeType {
     NODE_INVALID = 0,
     NODE_ELEMENT = 1,
     NODE_ATTRIBUTE = 2,
@@ -33,10 +28,7 @@ enum tagDOMNodeType {
 }
 
 @foreign
-typedef DOMNodeType = tagDOMNodeType;
-
-@foreign
-enum tagXMLEMEM_TYPE {
+enum XMLELEM_TYPE {
     XMLELEMTYPE_ELEMENT = 0,
     XMLELEMTYPE_TEXT = 1,
     XMLELEMTYPE_COMMENT = 2,
@@ -45,9 +37,6 @@ enum tagXMLEMEM_TYPE {
     XMLELEMTYPE_PI = 5,
     XMLELEMTYPE_OTHER = 6,
 }
-
-@foreign
-typedef XMLELEM_TYPE = tagXMLEMEM_TYPE;
 
 @foreign
 struct IXMLDOMImplementationVtbl {

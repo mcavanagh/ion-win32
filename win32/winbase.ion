@@ -1,5 +1,3 @@
-#foreign(header = "<winbase.h>")
-
 import libc { va_list }
 
 @foreign const FILE_TYPE_UNKNOWN = 0x0000;
@@ -49,7 +47,7 @@ typedef PFIBER_CALLOUT_ROUTINE = func(lpParameter: LPVOID): LPVOID;
 typedef LPLDT_ENTRY = LPVOID;
 
 @foreign
-struct _COMMPROP {
+struct COMMPROP {
     wPacketLength: WORD;
     wPacketVersion: WORD;
     dwServiceMask: DWORD;
@@ -71,13 +69,10 @@ struct _COMMPROP {
 }
 
 @foreign
-typedef COMMPROP = _COMMPROP;
+typedef LPCOMMPROP = COMMPROP*;
 
 @foreign
-typedef LPCOMMPROP = _COMMPROP*;
-
-@foreign
-struct _COMSTAT {
+struct COMSTAT {
     fCtsHold: DWORD;
     fDsrHold: DWORD;
     fRlsdHold: DWORD;
@@ -91,13 +86,10 @@ struct _COMSTAT {
 }
 
 @foreign
-typedef COMSTAT = _COMSTAT;
+typedef LPCOMSTAT = COMSTAT*;
 
 @foreign
-typedef LPCOMSTAT = _COMSTAT*;
-
-@foreign
-struct _DCB {
+struct DCB {
     DCBlength: DWORD;
     BaudRate: DWORD;
     fBinary: DWORD;
@@ -129,13 +121,10 @@ struct _DCB {
 }
 
 @foreign
-typedef DCB = _DCB;
+typedef LPDCB = DCB*;
 
 @foreign
-typedef LPDCB = _DCB*;
-
-@foreign
-struct _COMMTIMEOUTS {
+struct COMMTIMEOUTS {
     ReadIntervalTimeout: DWORD;
     ReadTotalTimeoutMultiplier: DWORD;
     ReadTotalTimeoutConstant: DWORD;
@@ -144,13 +133,10 @@ struct _COMMTIMEOUTS {
 }
 
 @foreign
-typedef COMMTIMEOUTS = _COMMTIMEOUTS;
+typedef LPCOMMTIMEOUTS = COMMTIMEOUTS*;
 
 @foreign
-typedef LPCOMMTIMEOUTS = _COMMTIMEOUTS*;
-
-@foreign
-struct _COMMCONFIG {
+struct COMMCONFIG {
     dwSize: DWORD;
     wVersion: WORD;
     wReserved: WORD;
@@ -162,13 +148,10 @@ struct _COMMCONFIG {
 }
 
 @foreign
-typedef COMMCONFIG = _COMMCONFIG;
+typedef LPCOMMCONFIG = COMMCONFIG*;
 
 @foreign
-typedef LPCOMMCONFIG = _COMMCONFIG*;
-
-@foreign
-struct _MEMORYSTATUS {
+struct MEMORYSTATUS {
     dwLength: DWORD;
     dwMemoryLoad: DWORD;
     dwTotalPhys: SIZE_T;
@@ -180,13 +163,10 @@ struct _MEMORYSTATUS {
 }
 
 @foreign
-typedef MEMORYSTATUS = _MEMORYSTATUS;
+typedef LPMEMORYSTATUS = MEMORYSTATUS*;
 
 @foreign
-typedef LPMEMORYSTATUS = _MEMORYSTATUS*;
-
-@foreign
-struct _JIT_DEBUG_INFO {
+struct JIT_DEBUG_INFO {
     dwSize: DWORD;
     dwProcessorArchitecture: DWORD;
     dwThreadID: DWORD;
@@ -197,10 +177,7 @@ struct _JIT_DEBUG_INFO {
 }
 
 @foreign
-typedef JIT_DEBUG_INFO = _JIT_DEBUG_INFO;
-
-@foreign
-typedef LPJIT_DEBUG_INFO = _JIT_DEBUG_INFO*;
+typedef LPJIT_DEBUG_INFO = JIT_DEBUG_INFO*;
 
 @foreign
 typedef JIT_DEBUG_INFO32 = JIT_DEBUG_INFO;
@@ -221,7 +198,7 @@ typedef LPEXCEPTION_RECORD = PEXCEPTION_RECORD;
 typedef LPEXCEPTION_POINTERS = PEXCEPTION_POINTERS;
 
 @foreign
-struct _OFSTRUCT {
+struct OFSTRUCT {
     cBytes: BYTE;
     fFixedDisk: BYTE;
     nErrCode: WORD;
@@ -231,13 +208,10 @@ struct _OFSTRUCT {
 }
 
 @foreign
-typedef OFSTRUCT = _OFSTRUCT;
+typedef LPOFSTRUCT = OFSTRUCT*;
 
 @foreign
-typedef LPOFSTRUCT = _OFSTRUCT*;
-
-@foreign
-typedef POFSTRUCT = _OFSTRUCT*;
+typedef POFSTRUCT = OFSTRUCT*;
 
 @foreign
 func WinMain(hInstance: HINSTANCE, hPrevInstance: HINSTANCE, lpCmdLine: LPSTR, nShowCmd: int): int;
@@ -387,19 +361,19 @@ typedef PUMS_CONTEXT = void*;
 typedef PUMS_COMPLETION_LIST = void*;
 
 @foreign
-typedef UMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS;
+typedef UMS_THREAD_INFO_CLASS = RTL_UMS_THREAD_INFO_CLASS;
 
 @foreign
-typedef PUMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS*;
+typedef PUMS_THREAD_INFO_CLASS = RTL_UMS_THREAD_INFO_CLASS*;
 
 @foreign
-typedef UMS_SCHEDULER_REASON = _RTL_UMS_SCHEDULER_REASON;
+typedef UMS_SCHEDULER_REASON = RTL_UMS_SCHEDULER_REASON;
 
 @foreign
 typedef PUMS_SCHEDULER_ENTRY_POINT = PRTL_UMS_SCHEDULER_ENTRY_POINT;
 
 @foreign
-struct _UMS_SCHEDULER_STARTUP_INFO {
+struct UMS_SCHEDULER_STARTUP_INFO {
     UmsVersion: ULONG;
     CompletionList: PUMS_COMPLETION_LIST;
     SchedulerProc: PUMS_SCHEDULER_ENTRY_POINT;
@@ -407,17 +381,14 @@ struct _UMS_SCHEDULER_STARTUP_INFO {
 }
 
 @foreign
-typedef UMS_SCHEDULER_STARTUP_INFO = _UMS_SCHEDULER_STARTUP_INFO;
-
-@foreign
-typedef PUMS_SCHEDULER_STARTUP_INFO = _UMS_SCHEDULER_STARTUP_INFO*;
+typedef PUMS_SCHEDULER_STARTUP_INFO = UMS_SCHEDULER_STARTUP_INFO*;
 
 // @PROBLEM bitfields
 @foreign
-struct _UMS_SYSTEM_THREAD_INFORMATION;
+struct UMS_SYSTEM_THREAD_INFORMATION;
 
 @foreign
-typedef PUMS_SYSTEM_THREAD_INFORMATION = _UMS_SYSTEM_THREAD_INFORMATION*;
+typedef PUMS_SYSTEM_THREAD_INFORMATION = UMS_SYSTEM_THREAD_INFORMATION*;
 
 @foreign
 func CreateUmsCompletionList(UmsCompletionList: PUMS_COMPLETION_LIST*): BOOL;
@@ -651,16 +622,13 @@ func SetTapeParameters(hDevice: HANDLE, dwOperation: DWORD, lpTapeInformation: L
 func MulDiv(nNumber: int, nNumerator: int, nDenominator: int): int;
 
 @foreign
-enum _DEP_SYSTEM_POLICY_TYPE {
+enum DEP_SYSTEM_POLICY_TYPE {
     DEPPolicyAlwaysOff = 0,
     DEPPolicyAlwaysOn,
     DEPPolicyOptIn,
     DEPPolicyOptOut,
     DEPTotalPolicyCount,
 }
-
-@foreign
-typedef DEP_SYSTEM_POLICY_TYPE = _DEP_SYSTEM_POLICY_TYPE;
 
 @foreign
 func GetSystemDEPPolicy(): DEP_SYSTEM_POLICY_TYPE;
@@ -843,7 +811,7 @@ func BackupSeek(hFile: HANDLE, dwLowBytesToSeek: DWORD, dwHighBytesToSeek: DWORD
 func BackupWrite(hFile: HANDLE, lpBuffer: LPBYTE, nNumberOfBytesToWrite: DWORD, lpNumberOfBytesWritten: LPDWORD, bAbort: BOOL, bProcessSecurity: BOOL, lpContext: LPVOID*): BOOL;
 
 @foreign
-struct _WIN32_STREAM_ID {
+struct WIN32_STREAM_ID {
     dwStreamId: DWORD;
     dwStreamAttributes: DWORD;
     Size: LARGE_INTEGER;
@@ -852,34 +820,25 @@ struct _WIN32_STREAM_ID {
 }
 
 @foreign
-typedef WIN32_STREAM_ID = _WIN32_STREAM_ID;
+typedef LPWIN32_STREAM_ID = WIN32_STREAM_ID*;
 
 @foreign
-typedef LPWIN32_STREAM_ID = _WIN32_STREAM_ID*;
-
-@foreign
-struct _STARTUPINFOEXA {
+struct STARTUPINFOEXA {
     StartupInfo: STARTUPINFOA;
     lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST;
 }
 
 @foreign
-typedef STARTUPINFOEXA = _STARTUPINFOEXA;
+typedef LPSTARTUPINFOEXA = STARTUPINFOEXA*;
 
 @foreign
-typedef LPSTARTUPINFOEXA = _STARTUPINFOEXA*;
-
-@foreign
-struct _STARTUPINFOEXW {
+struct STARTUPINFOEXW {
     StartupInfo: STARTUPINFOW;
     lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST;
 }
 
 @foreign
-typedef STARTUPINFOEXW = _STARTUPINFOEXW;
-
-@foreign
-typedef LPSTARTUPINFOEXW = _STARTUPINFOEXW*;
+typedef LPSTARTUPINFOEXW = STARTUPINFOEXW*;
 
 @foreign
 typedef STARTUPINFOEX = STARTUPINFOEXA;
@@ -933,7 +892,7 @@ func QueryFullProcessImageName(hProcess: HANDLE, dwFlags: DWORD, lpExeName: LPST
 func QueryFullProcessImageNameW(hProcess: HANDLE, dwFlags: DWORD, lpExeName: LPWSTR, lpdwSize: PDWORD): BOOL;
 
 @foreign
-enum _PROC_THREAD_ATTRIBUTE_NUM {
+enum PROC_THREAD_ATTRIBUTE_NUM {
     ProcThreadAttributeParentProcess = 0,
     ProcThreadAttributeHandleList = 2,
     ProcThreadAttributeGroupAffinity = 3,
@@ -950,9 +909,6 @@ enum _PROC_THREAD_ATTRIBUTE_NUM {
     ProcThreadAttributeSafeOpenPromptOriginClaim = 17,
     ProcThreadAttributeDesktopAppPolicy = 18,
 }
-
-@foreign
-typedef PROC_THREAD_ATTRIBUTE_NUM = _PROC_THREAD_ATTRIBUTE_NUM;
 
 @foreign
 func GetStartupInfoA(lpStartupInfo: LPSTARTUPINFOA);
@@ -1408,7 +1364,7 @@ func CopyFileTransacted(lpExistingFileName: LPCSTR, lpNewFileName: LPCSTR, lpPro
 func CopyFileTransactedW(lpExistingFileName: LPCWSTR, lpNewFileName: LPCWSTR, lpProgressRoutine: LPPROGRESS_ROUTINE, lpData: LPVOID, pbCancel: LPBOOL, dwCopyFlags: DWORD, hTransaction: HANDLE): BOOL;
 
 @foreign
-enum _COPYFILE2_MESSAGE_TYPE {
+enum COPYFILE2_MESSAGE_TYPE {
     COPYFILE2_CALLBACK_NONE = 0,
     COPYFILE2_CALLBACK_CHUNK_STARTED,
     COPYFILE2_CALLBACK_CHUNK_FINISHED,
@@ -1420,10 +1376,7 @@ enum _COPYFILE2_MESSAGE_TYPE {
 }
 
 @foreign
-typedef COPYFILE2_MESSAGE_TYPE = _COPYFILE2_MESSAGE_TYPE;
-
-@foreign
-enum _COPYFILE2_MESSAGE_ACTION {
+enum COPYFILE2_MESSAGE_ACTION {
     COPYFILE2_PROGRESS_CONTINUE = 0,
     COPYFILE2_PROGRESS_CANCEL,
     COPYFILE2_PROGRESS_STOP,
@@ -1432,10 +1385,7 @@ enum _COPYFILE2_MESSAGE_ACTION {
 }
 
 @foreign
-typedef COPYFILE2_MESSAGE_ACTION = _COPYFILE2_MESSAGE_ACTION;
-
-@foreign
-enum _COPYFILE2_COPY_PHASE {
+enum COPYFILE2_COPY_PHASE {
     COPYFILE2_PHASE_NONE = 0,
     COPYFILE2_PHASE_PREPARE_SOURCE,
     COPYFILE2_PHASE_PREPARE_DEST,
@@ -1445,9 +1395,6 @@ enum _COPYFILE2_COPY_PHASE {
     COPYFILE2_PHASE_NAMEGRAFT_COPY,
     COPYFILE2_PHASE_MAX,
 }
-
-@foreign
-typedef COPYFILE2_COPY_PHASE = _COPYFILE2_COPY_PHASE;
 
 @foreign
 struct COPYFILE2_MESSAGE___inner_s1 {
@@ -1737,15 +1684,12 @@ func ReportEvent(hEventLog: HANDLE, wType: WORD, wCategory: WORD, dwEventID: DWO
 func ReportEventW(hEventLog: HANDLE, wType: WORD, wCategory: WORD, dwEventID: DWORD, lpUserSid: PSID, wNumStrings: WORD, dwDataSize: DWORD, lpStrings: LPCWSTR*, lpRawData: LPVOID): BOOL;
 
 @foreign
-struct _EVENTLOG_FULL_INFORMATION {
+struct EVENTLOG_FULL_INFORMATION {
     dwFull: DWORD;
 }
 
 @foreign
-typedef EVENTLOG_FULL_INFORMATION = _EVENTLOG_FULL_INFORMATION;
-
-@foreign
-typedef LPEVENTLOG_FULL_INFORMATION = _EVENTLOG_FULL_INFORMATION*;
+typedef LPEVENTLOG_FULL_INFORMATION = EVENTLOG_FULL_INFORMATION*;
 
 @foreign
 func GetEventLogInformation(hEventLog: HANDLE, dwInfoLevel: DWORD, lpBuffer: LPVOID, cbBufSize: DWORD, pcbBytesNeeded: LPDWORD): BOOL;
@@ -1754,30 +1698,24 @@ func GetEventLogInformation(hEventLog: HANDLE, dwInfoLevel: DWORD, lpBuffer: LPV
 typedef OPERATION_ID = ULONG;
 
 @foreign
-struct _OPERATION_START_PARAMETERS {
+struct OPERATION_START_PARAMETERS {
     Version: ULONG;
     OperationId: OPERATION_ID;
     Flags: ULONG;
 }
 
 @foreign
-typedef OPERATION_START_PARAMETERS = _OPERATION_START_PARAMETERS;
+typedef POPERATION_START_PARAMETERS = OPERATION_START_PARAMETERS*;
 
 @foreign
-typedef POPERATION_START_PARAMETERS = _OPERATION_START_PARAMETERS*;
-
-@foreign
-struct _OPERATION_END_PARAMETERS {
+struct OPERATION_END_PARAMETERS {
     Version: ULONG;
     OperationId: OPERATION_ID;
     Flags: ULONG;
 }
 
 @foreign
-typedef OPERATION_END_PARAMETERS = _OPERATION_END_PARAMETERS;
-
-@foreign
-typedef POPERATION_END_PARAMETERS = _OPERATION_END_PARAMETERS*;
+typedef POPERATION_END_PARAMETERS = OPERATION_END_PARAMETERS*;
 
 @foreign
 func OperationStart(OperationStartParams: OPERATION_START_PARAMETERS*): BOOL;
@@ -2047,30 +1985,24 @@ func CreateBoundaryDescriptorA(Name: LPCSTR, Flags: ULONG): HANDLE;
 func AddIntegrityLabelToBoundaryDescriptor(BoundaryDescriptor: HANDLE*, IntegrityLabel: PSID): BOOL;
 
 @foreign
-struct tagHW_PROFILE_INFOA {
+struct HW_PROFILE_INFOA {
     dwDockInfo: DWORD;
     szHwProfileGuid: CHAR[39];
     szHwProfileName: CHAR[80];
 }
 
 @foreign
-typedef HW_PROFILE_INFOA = tagHW_PROFILE_INFOA;
+typedef LPHW_PROFILE_INFOA = HW_PROFILE_INFOA*;
 
 @foreign
-typedef LPHW_PROFILE_INFOA = tagHW_PROFILE_INFOA*;
-
-@foreign
-struct tagHW_PROFILE_INFOW {
+struct HW_PROFILE_INFOW {
     dwDockInfo: DWORD;
     szHwProfileGuid: WCHAR[39];
     szHwProfileName: WCHAR[80];
 }
 
 @foreign
-typedef HW_PROFILE_INFOW = tagHW_PROFILE_INFOW;
-
-@foreign
-typedef LPHW_PROFILE_INFOW = tagHW_PROFILE_INFOW*;
+typedef LPHW_PROFILE_INFOW = HW_PROFILE_INFOW*;
 
 @foreign
 typedef HW_PROFILE_INFO = HW_PROFILE_INFOA;
@@ -2100,7 +2032,7 @@ func VerifyVersionInfoW(lpVersionInformation: LPOSVERSIONINFOEXW, dwTypeMask: DW
 func SetSystemPowerState(fSuspend: BOOL, fForce: BOOL): BOOL;
 
 @foreign
-struct _SYSTEM_POWER_STATUS {
+struct SYSTEM_POWER_STATUS {
     ACLineStatus: BYTE;
     BatteryFlag: BYTE;
     BatteryLifePercent: BYTE;
@@ -2110,10 +2042,7 @@ struct _SYSTEM_POWER_STATUS {
 }
 
 @foreign
-typedef SYSTEM_POWER_STATUS = _SYSTEM_POWER_STATUS;
-
-@foreign
-typedef LPSYSTEM_POWER_STATUS = _SYSTEM_POWER_STATUS*;
+typedef LPSYSTEM_POWER_STATUS = SYSTEM_POWER_STATUS*;
 
 @foreign
 func GetSystemPowerStatus(lpSystemPowerStatus: LPSYSTEM_POWER_STATUS): BOOL;
@@ -2179,7 +2108,7 @@ func GetVolumePathNameA(lpszFileName: LPCSTR, lpszVolumePathName: LPSTR, cchBuff
 func GetVolumePathNamesForVolumeNameA(lpszVolumeName: LPCSTR, lpszVolumePathNames: LPCH, cchBufferLength: DWORD, lpcchReturnLength: PDWORD): BOOL;
 
 @foreign
-struct tagACTCTXA {
+struct ACTCTXA {
     cbSize: ULONG;
     dwFlags: DWORD;
     lpSource: LPCSTR;
@@ -2192,13 +2121,10 @@ struct tagACTCTXA {
 }
 
 @foreign
-typedef ACTCTXA = tagACTCTXA;
+typedef PACTCTXA = ACTCTXA*;
 
 @foreign
-typedef PACTCTXA = tagACTCTXA*;
-
-@foreign
-struct tagACTCTXW {
+struct ACTCTXW {
     cbSize: ULONG;
     dwFlags: DWORD;
     lpSource: LPCWSTR;
@@ -2211,10 +2137,7 @@ struct tagACTCTXW {
 }
 
 @foreign
-typedef ACTCTXW = tagACTCTXW;
-
-@foreign
-typedef PACTCTXW = tagACTCTXW*;
+typedef PACTCTXW = ACTCTXW*;
 
 @foreign
 typedef ACTCTX = ACTCTXA;
@@ -2259,7 +2182,7 @@ func DeactivateActCtx(dwFlags: DWORD, ulCookie: ULONG_PTR): BOOL;
 func GetCurrentActCtx(lphActCtx: HANDLE*): BOOL;
 
 @foreign
-struct tagACTCTX_SECTION_KEYED_DATA_2600 {
+struct ACTCTX_SECTION_KEYED_DATA_2600 {
     cbSize: ULONG;
     ulDataFormatVersion: ULONG;
     lpData: PVOID;
@@ -2273,16 +2196,13 @@ struct tagACTCTX_SECTION_KEYED_DATA_2600 {
 }
 
 @foreign
-typedef ACTCTX_SECTION_KEYED_DATA_2600 = tagACTCTX_SECTION_KEYED_DATA_2600;
-
-@foreign
-typedef PACTCTX_SECTION_KEYED_DATA_2600 = tagACTCTX_SECTION_KEYED_DATA_2600*;
+typedef PACTCTX_SECTION_KEYED_DATA_2600 = ACTCTX_SECTION_KEYED_DATA_2600*;
 
 @foreign
 typedef PCACTCTX_SECTION_KEYED_DATA_2600 = ACTCTX_SECTION_KEYED_DATA_2600*;
 
 @foreign
-struct tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA {
+struct ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA {
     lpInformation: PVOID;
     lpSectionBase: PVOID;
     ulSectionLength: ULONG;
@@ -2291,16 +2211,13 @@ struct tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA {
 }
 
 @foreign
-typedef ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
-
-@foreign
-typedef PACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = tagACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA*;
+typedef PACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA*;
 
 @foreign
 typedef PCACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA*;
 
 @foreign
-struct tagACTCTX_SECTION_KEYED_DATA {
+struct ACTCTX_SECTION_KEYED_DATA {
     cbSize: ULONG;
     ulDataFormatVersion: ULONG;
     lpData: PVOID;
@@ -2316,10 +2233,7 @@ struct tagACTCTX_SECTION_KEYED_DATA {
 }
 
 @foreign
-typedef ACTCTX_SECTION_KEYED_DATA = tagACTCTX_SECTION_KEYED_DATA;
-
-@foreign
-typedef PACTCTX_SECTION_KEYED_DATA = tagACTCTX_SECTION_KEYED_DATA*;
+typedef PACTCTX_SECTION_KEYED_DATA = ACTCTX_SECTION_KEYED_DATA*;
 
 @foreign
 typedef PCACTCTX_SECTION_KEYED_DATA = ACTCTX_SECTION_KEYED_DATA*;
@@ -2337,19 +2251,16 @@ func FindActCtxSectionStringW(dwFlags: DWORD, lpExtensionGuid: GUID*, ulSectionI
 func FindActCtxSectionGuid(dwFlags: DWORD, lpExtensionGuid: GUID*, ulSectionId: ULONG, lpGuidToFind: GUID*, ReturnedData: PACTCTX_SECTION_KEYED_DATA): BOOL;
 
 @foreign
-struct _ACTIVATION_CONTEXT_BASIC_INFORMATION {
+struct ACTIVATION_CONTEXT_BASIC_INFORMATION {
     hActCtx: HANDLE;
     dwFlags: DWORD;
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_BASIC_INFORMATION = _ACTIVATION_CONTEXT_BASIC_INFORMATION;
+typedef PACTIVATION_CONTEXT_BASIC_INFORMATION = ACTIVATION_CONTEXT_BASIC_INFORMATION*;
 
 @foreign
-typedef PACTIVATION_CONTEXT_BASIC_INFORMATION = _ACTIVATION_CONTEXT_BASIC_INFORMATION*;
-
-@foreign
-typedef PCACTIVATION_CONTEXT_BASIC_INFORMATION = _ACTIVATION_CONTEXT_BASIC_INFORMATION const*;
+typedef PCACTIVATION_CONTEXT_BASIC_INFORMATION = ACTIVATION_CONTEXT_BASIC_INFORMATION*;
 
 @foreign
 func QueryActCtxW(dwFlags: DWORD, hActCtx: HANDLE, pvSubInstance: PVOID, ulInfoClass: ULONG, pvBuffer: PVOID, cbBuffer: SIZE_T, pcbWrittenOrRequired: SIZE_T*): BOOL;
@@ -2427,7 +2338,7 @@ func ApplicationRecoveryInProgress(pbCancelled: PBOOL): HRESULT;
 func ApplicationRecoveryFinished(bSuccess: BOOL);
 
 @foreign
-struct _FILE_BASIC_INFO {
+struct FILE_BASIC_INFO {
     CreationTime: LARGE_INTEGER;
     LastAccessTime: LARGE_INTEGER;
     LastWriteTime: LARGE_INTEGER;
@@ -2436,13 +2347,10 @@ struct _FILE_BASIC_INFO {
 }
 
 @foreign
-typedef FILE_BASIC_INFO = _FILE_BASIC_INFO;
+typedef PFILE_BASIC_INFO = FILE_BASIC_INFO*;
 
 @foreign
-typedef PFILE_BASIC_INFO = _FILE_BASIC_INFO*;
-
-@foreign
-struct _FILE_STANDARD_INFO {
+struct FILE_STANDARD_INFO {
     AllocationSize: LARGE_INTEGER;
     EndOfFile: LARGE_INTEGER;
     NumberOfLinks: DWORD;
@@ -2451,67 +2359,52 @@ struct _FILE_STANDARD_INFO {
 }
 
 @foreign
-typedef FILE_STANDARD_INFO = _FILE_STANDARD_INFO;
+typedef PFILE_STANDARD_INFO = FILE_STANDARD_INFO*;
 
 @foreign
-typedef PFILE_STANDARD_INFO = _FILE_STANDARD_INFO*;
-
-@foreign
-struct _FILE_NAME_INFO {
+struct FILE_NAME_INFO {
     FileNameLength: DWORD;
     FileName: WCHAR[1];
 }
 
 @foreign
-typedef FILE_NAME_INFO = _FILE_NAME_INFO;
+typedef PFILE_NAME_INFO = FILE_NAME_INFO*;
 
 @foreign
-typedef PFILE_NAME_INFO = _FILE_NAME_INFO*;
-
-@foreign
-union _FILE_RENAME_INFO___inner {
+union FILE_RENAME_INFO___inner {
     ReplaceIfExists: BOOLEAN;
     Flags: DWORD;
 }
 
 @foreign
-struct _FILE_RENAME_INFO {
-    u: _FILE_RENAME_INFO___inner;
+struct FILE_RENAME_INFO {
+    u: FILE_RENAME_INFO___inner;
     RootDirectory: HANDLE;
     FileNameLength: DWORD;
     FileName: WCHAR[1];
 }
 
 @foreign
-typedef FILE_RENAME_INFO = _FILE_RENAME_INFO;
+typedef PFILE_RENAME_INFO = FILE_RENAME_INFO*;
 
 @foreign
-typedef PFILE_RENAME_INFO = _FILE_RENAME_INFO*;
-
-@foreign
-struct _FILE_ALLOCATION_INFO {
+struct FILE_ALLOCATION_INFO {
     AllocationSize: LARGE_INTEGER;
 }
 
 @foreign
-typedef FILE_ALLOCATION_INFO = _FILE_ALLOCATION_INFO;
+typedef PFILE_ALLOCATION_INFO = FILE_ALLOCATION_INFO*;
 
 @foreign
-typedef PFILE_ALLOCATION_INFO = _FILE_ALLOCATION_INFO*;
-
-@foreign
-struct _FILE_END_OF_FILE_INFO {
+struct FILE_END_OF_FILE_INFO {
     EndOfFile: LARGE_INTEGER;
 }
 
 @foreign
-typedef FILE_END_OF_FILE_INFO = _FILE_END_OF_FILE_INFO;
+typedef PFILE_END_OF_FILE_INFO = FILE_END_OF_FILE_INFO*;
 
 @foreign
-typedef PFILE_END_OF_FILE_INFO = _FILE_END_OF_FILE_INFO*;
-
-@foreign
-struct _FILE_STREAM_INFO {
+struct FILE_STREAM_INFO {
     NextEntryOffset: DWORD;
     StreamNameLength: DWORD;
     StreamSize: LARGE_INTEGER;
@@ -2520,13 +2413,10 @@ struct _FILE_STREAM_INFO {
 }
 
 @foreign
-typedef FILE_STREAM_INFO = _FILE_STREAM_INFO;
+typedef PFILE_STREAM_INFO = FILE_STREAM_INFO*;
 
 @foreign
-typedef PFILE_STREAM_INFO = _FILE_STREAM_INFO*;
-
-@foreign
-struct _FILE_COMPRESSION_INFO {
+struct FILE_COMPRESSION_INFO {
     CompressedFileSize: LARGE_INTEGER;
     CompressionFormat: WORD;
     CompressionUnitShift: UCHAR;
@@ -2536,47 +2426,35 @@ struct _FILE_COMPRESSION_INFO {
 }
 
 @foreign
-typedef FILE_COMPRESSION_INFO = _FILE_COMPRESSION_INFO;
+typedef PFILE_COMPRESSION_INFO = FILE_COMPRESSION_INFO*;
 
 @foreign
-typedef PFILE_COMPRESSION_INFO = _FILE_COMPRESSION_INFO*;
-
-@foreign
-struct _FILE_ATTRIBUTE_TAG_INFO {
+struct FILE_ATTRIBUTE_TAG_INFO {
     FileAttributes: DWORD;
     ReparseTag: DWORD;
 }
 
 @foreign
-typedef FILE_ATTRIBUTE_TAG_INFO = _FILE_ATTRIBUTE_TAG_INFO;
+typedef PFILE_ATTRIBUTE_TAG_INFO = FILE_ATTRIBUTE_TAG_INFO*;
 
 @foreign
-typedef PFILE_ATTRIBUTE_TAG_INFO = _FILE_ATTRIBUTE_TAG_INFO*;
-
-@foreign
-struct _FILE_DISPOSITION_INFO {
+struct FILE_DISPOSITION_INFO {
     DeleteFileA: BOOLEAN;
 }
 
 @foreign
-typedef FILE_DISPOSITION_INFO = _FILE_DISPOSITION_INFO;
+typedef PFILE_DISPOSITION_INFO = FILE_DISPOSITION_INFO*;
 
 @foreign
-typedef PFILE_DISPOSITION_INFO = _FILE_DISPOSITION_INFO*;
-
-@foreign
-struct _FILE_DISPOSITION_INFO_EX {
+struct FILE_DISPOSITION_INFO_EX {
     Flags: DWORD;
 }
 
 @foreign
-typedef FILE_DISPOSITION_INFO_EX = _FILE_DISPOSITION_INFO_EX;
+typedef PFILE_DISPOSITION_INFO_EX = FILE_DISPOSITION_INFO_EX*;
 
 @foreign
-typedef PFILE_DISPOSITION_INFO_EX = _FILE_DISPOSITION_INFO_EX*;
-
-@foreign
-struct _FILE_ID_BOTH_DIR_INFO {
+struct FILE_ID_BOTH_DIR_INFO {
     NextEntryOffset: DWORD;
     FileIndex: DWORD;
     CreationTime: LARGE_INTEGER;
@@ -2595,13 +2473,10 @@ struct _FILE_ID_BOTH_DIR_INFO {
 }
 
 @foreign
-typedef FILE_ID_BOTH_DIR_INFO = _FILE_ID_BOTH_DIR_INFO;
+typedef PFILE_ID_BOTH_DIR_INFO = FILE_ID_BOTH_DIR_INFO*;
 
 @foreign
-typedef PFILE_ID_BOTH_DIR_INFO = _FILE_ID_BOTH_DIR_INFO*;
-
-@foreign
-struct _FILE_FULL_DIR_INFO {
+struct FILE_FULL_DIR_INFO {
     NextEntryOffset: ULONG;
     FileIndex: ULONG;
     CreationTime: LARGE_INTEGER;
@@ -2617,13 +2492,10 @@ struct _FILE_FULL_DIR_INFO {
 }
 
 @foreign
-typedef FILE_FULL_DIR_INFO = _FILE_FULL_DIR_INFO;
+typedef PFILE_FULL_DIR_INFO = FILE_FULL_DIR_INFO*;
 
 @foreign
-typedef PFILE_FULL_DIR_INFO = _FILE_FULL_DIR_INFO*;
-
-@foreign
-enum _PRIORITY_HINT {
+enum PRIORITY_HINT {
     IoPriorityHintVeryLow = 0,
     IoPriorityHintLow,
     IoPriorityHintNormal,
@@ -2631,32 +2503,23 @@ enum _PRIORITY_HINT {
 }
 
 @foreign
-typedef PRIORITY_HINT = _PRIORITY_HINT;
-
-@foreign
-struct _FILE_IO_PRIORITY_HINT_INFO {
+struct FILE_IO_PRIORITY_HINT_INFO {
     PriorityHint: PRIORITY_HINT;
 }
 
 @foreign
-typedef FILE_IO_PRIORITY_HINT_INFO = _FILE_IO_PRIORITY_HINT_INFO;
+typedef PFILE_IO_PRIORITY_HINT_INFO = FILE_IO_PRIORITY_HINT_INFO*;
 
 @foreign
-typedef PFILE_IO_PRIORITY_HINT_INFO = _FILE_IO_PRIORITY_HINT_INFO*;
-
-@foreign
-struct _FILE_ALIGNMENT_INFO {
+struct FILE_ALIGNMENT_INFO {
     AlignmentRequirement: ULONG;
 }
 
 @foreign
-typedef FILE_ALIGNMENT_INFO = _FILE_ALIGNMENT_INFO;
+typedef PFILE_ALIGNMENT_INFO = FILE_ALIGNMENT_INFO*;
 
 @foreign
-typedef PFILE_ALIGNMENT_INFO = _FILE_ALIGNMENT_INFO*;
-
-@foreign
-struct _FILE_STORAGE_INFO {
+struct FILE_STORAGE_INFO {
     LogicalBytesPerSector: ULONG;
     PhysicalBytesPerSectorForAtomicity: ULONG;
     PhysicalBytesPerSectorForPerformance: ULONG;
@@ -2667,25 +2530,19 @@ struct _FILE_STORAGE_INFO {
 }
 
 @foreign
-typedef FILE_STORAGE_INFO = _FILE_STORAGE_INFO;
+typedef PFILE_STORAGE_INFO = FILE_STORAGE_INFO*;
 
 @foreign
-typedef PFILE_STORAGE_INFO = _FILE_STORAGE_INFO*;
-
-@foreign
-struct _FILE_ID_INFO {
+struct FILE_ID_INFO {
     VolumeSerialNumber: ULONGLONG;
     FileId: FILE_ID_128;
 }
 
 @foreign
-typedef FILE_ID_INFO = _FILE_ID_INFO;
+typedef PFILE_ID_INFO = FILE_ID_INFO*;
 
 @foreign
-typedef PFILE_ID_INFO = _FILE_ID_INFO*;
-
-@foreign
-struct _FILE_ID_EXTD_DIR_INFO {
+struct FILE_ID_EXTD_DIR_INFO {
     NextEntryOffset: ULONG;
     FileIndex: ULONG;
     CreationTime: LARGE_INTEGER;
@@ -2703,41 +2560,38 @@ struct _FILE_ID_EXTD_DIR_INFO {
 }
 
 @foreign
-typedef FILE_ID_EXTD_DIR_INFO = _FILE_ID_EXTD_DIR_INFO;
+typedef PFILE_ID_EXTD_DIR_INFO = FILE_ID_EXTD_DIR_INFO*;
 
 @foreign
-typedef PFILE_ID_EXTD_DIR_INFO = _FILE_ID_EXTD_DIR_INFO*;
-
-@foreign
-struct _FILE_REMOTE_PROTOCOL_INFO___inner_s1 {
+struct FILE_REMOTE_PROTOCOL_INFO___inner_s1 {
     Reserved: ULONG[8];
 }
 
 @foreign
-struct _FILE_REMOTE_PROTOCOL_INFO___inner_s3 {
+struct FILE_REMOTE_PROTOCOL_INFO___inner_s3 {
     Capabilities: ULONG;
 }
 
 @foreign
-struct _FILE_REMOTE_PROTOCOL_INFO___inner_s4 {
+struct FILE_REMOTE_PROTOCOL_INFO___inner_s4 {
     Capabilities: ULONG;
     CachingFlags: ULONG;
 }
 
 @foreign
-struct _FILE_REMOTE_PROTOCOL_INFO___inner_s2 {
-    Server:_FILE_REMOTE_PROTOCOL_INFO___inner_s3;
-    Share: _FILE_REMOTE_PROTOCOL_INFO___inner_s4;
+struct FILE_REMOTE_PROTOCOL_INFO___inner_s2 {
+    Server: FILE_REMOTE_PROTOCOL_INFO___inner_s3;
+    Share: FILE_REMOTE_PROTOCOL_INFO___inner_s4;
 }
 
 @foreign
-union _FILE_REMOTE_PROTOCOL_INFO___inner_u {
-    Smb2: _FILE_REMOTE_PROTOCOL_INFO___inner_s2;
+union FILE_REMOTE_PROTOCOL_INFO___inner_u {
+    Smb2: FILE_REMOTE_PROTOCOL_INFO___inner_s2;
     Reserved: ULONG[16];
 }
 
 @foreign
-struct _FILE_REMOTE_PROTOCOL_INFO {
+struct FILE_REMOTE_PROTOCOL_INFO {
     StructureVersion: USHORT;
     StructureSize: USHORT;
     Protocol: ULONG;
@@ -2746,21 +2600,18 @@ struct _FILE_REMOTE_PROTOCOL_INFO {
     ProtocolRevision: USHORT;
     Reserved: USHORT;
     Flags: ULONG;
-    GenericReserved: _FILE_REMOTE_PROTOCOL_INFO___inner_s1;
-    ProtocolSpecific: _FILE_REMOTE_PROTOCOL_INFO___inner_u;
+    GenericReserved: FILE_REMOTE_PROTOCOL_INFO___inner_s1;
+    ProtocolSpecific: FILE_REMOTE_PROTOCOL_INFO___inner_u;
 }
 
 @foreign
-typedef FILE_REMOTE_PROTOCOL_INFO = _FILE_REMOTE_PROTOCOL_INFO;
-
-@foreign
-typedef PFILE_REMOTE_PROTOCOL_INFO = _FILE_REMOTE_PROTOCOL_INFO*;
+typedef PFILE_REMOTE_PROTOCOL_INFO = FILE_REMOTE_PROTOCOL_INFO*;
 
 @foreign
 func GetFileInformationByHandleEx(hFile: HANDLE, FileInformationClass: FILE_INFO_BY_HANDLE_CLASS, lpFileInformation: LPVOID, dwBufferSize: DWORD): BOOL;
 
 @foreign
-enum _FILE_ID_TYPE {
+enum FILE_ID_TYPE {
     FileIdType,
     ObjectIdType,
     ExtendedFileIdType,
@@ -2768,10 +2619,7 @@ enum _FILE_ID_TYPE {
 }
 
 @foreign
-typedef FILE_ID_TYPE = _FILE_ID_TYPE;
-
-@foreign
-typedef PFILE_ID_TYPE = _FILE_ID_TYPE*;
+typedef PFILE_ID_TYPE = FILE_ID_TYPE*;
 
 @foreign
 union FILE_ID_DESCRIPTOR___inner {

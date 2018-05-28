@@ -1,5 +1,3 @@
-#foreign(header = "<windef.h>")
-
 @foreign
 struct HWND__ {
     unused: int;
@@ -157,7 +155,7 @@ typedef COLORREF = DWORD;
 typedef LPCOLORREF = DWORD*;
 
 @foreign
-struct tagRECT {
+struct RECT {
     left: LONG;
     top: LONG;
     right: LONG;
@@ -165,22 +163,19 @@ struct tagRECT {
 }
 
 @foreign
-typedef RECT = tagRECT;
+typedef PRECT = RECT*;
 
 @foreign
-typedef PRECT = tagRECT*;
+typedef NPRECT = RECT*;
 
 @foreign
-typedef NPRECT = tagRECT*;
-
-@foreign
-typedef LPRECT = tagRECT*;
+typedef LPRECT = RECT*;
 
 @foreign
 typedef LPCRECT = RECT*;
 
 @foreign
-struct _RECTL {
+struct RECTL {
     left: LONG;
     top: LONG;
     right: LONG;
@@ -188,61 +183,49 @@ struct _RECTL {
 }
 
 @foreign
-typedef RECTL = _RECTL;
+typedef PRECTL = RECTL*;
 
 @foreign
-typedef PRECTL = _RECTL*;
-
-@foreign
-typedef LPRECTL = _RECTL*;
+typedef LPRECTL = RECTL*;
 
 @foreign
 typedef LPCRECTL = RECTL*;
 
 @foreign
-struct tagPOINT {
+struct POINT {
     x: LONG;
     y: LONG;
 }
 
 @foreign
-typedef POINT = tagPOINT;
+typedef PPOINT = POINT*;
 
 @foreign
-typedef PPOINT = tagPOINT*;
+typedef NPPOINT = POINT*;
 
 @foreign
-typedef NPPOINT = tagPOINT*;
+typedef LPPOINT = POINT*;
 
 @foreign
-typedef LPPOINT = tagPOINT*;
-
-@foreign
-struct _POINTL {
+struct POINTL {
     x: LONG;
     y: LONG;
 }
 
 @foreign
-typedef POINTL = _POINTL;
+typedef PPOINTL = POINTL*;
 
 @foreign
-typedef PPOINTL = _POINTL*;
-
-@foreign
-struct tagSIZE {
+struct SIZE {
     cx: LONG;
     cy: LONG;
 }
 
 @foreign
-typedef SIZE = tagSIZE;
+typedef PSIZE = SIZE*;
 
 @foreign
-typedef PSIZE = tagSIZE*;
-
-@foreign
-typedef LPSIZE = tagSIZE*;
+typedef LPSIZE = SIZE*;
 
 @foreign
 typedef SIZEL = SIZE;
@@ -254,19 +237,16 @@ typedef PSIZEL = SIZE*;
 typedef LPSIZEL = SIZE*;
 
 @foreign
-struct tagPOINTS {
+struct POINTS {
     x: SHORT;
     y: SHORT;
 }
 
 @foreign
-typedef POINTS = tagPOINTS;
+typedef PPOINTS = POINTS*;
 
 @foreign
-typedef PPOINTS = tagPOINTS*;
-
-@foreign
-typedef LPPOINTS = tagPOINTS*;
+typedef LPPOINTS = POINTS*;
 
 @foreign
 struct DPI_AWARENESS_CONTEXT__ {

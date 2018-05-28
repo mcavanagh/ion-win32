@@ -1,5 +1,3 @@
-#foreign(header = "<rpcndr.h>")
-
 @foreign
 typedef byte = uchar;
 
@@ -25,13 +23,13 @@ func I_RpcDefaultFree(bh: handle_t, arg1: void*, RealFree: func(arg0: void*));
 typedef NDR_CCONTEXT = void*;
 
 @foreign
-struct tagNDR_SCONTEXT {
+struct ___NDR_SCONTEXT {
     pad: (void*)[2];
     userContext: void*;
 }
 
 @foreign
-typedef NDR_SCONTEXT = tagNDR_SCONTEXT*;
+typedef NDR_SCONTEXT = ___NDR_SCONTEXT*;
 
 @foreign
 typedef NDR_RUNDOWN = func(context: void*);
@@ -43,16 +41,13 @@ typedef NDR_NOTIFY_ROUTINE = func();
 typedef NDR_NOTIFY2_ROUTINE = func(flag: boolean);
 
 @foreign
-struct _SCONTEXT_QUEUE {
+struct SCONTEXT_QUEUE {
     NumberOfObjects: ulong;
     ArrayOfObjects: NDR_SCONTEXT*;
 }
 
 @foreign
-typedef SCONTEXT_QUEUE = _SCONTEXT_QUEUE;
-
-@foreign
-typedef PSCONTEXT_QUEUE = _SCONTEXT_QUEUE*;
+typedef PSCONTEXT_QUEUE = SCONTEXT_QUEUE*;
 
 @foreign
 func NDRCContextBinding(CContext: NDR_CCONTEXT): RPC_BINDING_HANDLE;
@@ -86,7 +81,6 @@ func NDRSContextUnmarshall2(BindingHandle: RPC_BINDING_HANDLE, pBuff: void*, Dat
 
 @foreign
 func RpcSsDestroyClientContext(ContextHandle: void**);
-
 @foreign
 typedef error_status_t = ulong;
 
@@ -97,7 +91,7 @@ typedef RPC_BUFPTR = uchar*;
 typedef RPC_LENGTH = ulong;
 
 @foreign
-typedef EXPR_EVAL = func(arg0: _MIDL_STUB_MESSAGE*);
+typedef EXPR_EVAL = func(arg0: MIDL_STUB_MESSAGE*);
 
 @foreign
 typedef PFORMAT_STRING = uchar const*;
@@ -128,7 +122,7 @@ typedef MIDL_SYNTAX_INFO = _MIDL_SYNTAX_INFO;
 typedef PMIDL_SYNTAX_INFO = _MIDL_SYNTAX_INFO*;
 
 @foreign
-struct _MIDL_STUB_MESSAGE {
+struct MIDL_STUB_MESSAGE {
     RpcMsg: PRPC_MESSAGE;
     Buffer: uchar*;
     BufferStart: uchar*;
@@ -205,10 +199,7 @@ struct _MIDL_STUB_MESSAGE {
 }
 
 @foreign
-typedef MIDL_STUB_MESSAGE = _MIDL_STUB_MESSAGE;
-
-@foreign
-typedef PMIDL_STUB_MESSAGE = _MIDL_STUB_MESSAGE*;
+typedef PMIDL_STUB_MESSAGE = MIDL_STUB_MESSAGE*;
 
 @foreign
 typedef GENERIC_BINDING_ROUTINE = func(arg0: void*): void*;
@@ -217,19 +208,16 @@ typedef GENERIC_BINDING_ROUTINE = func(arg0: void*): void*;
 typedef GENERIC_UNBIND_ROUTINE = func(arg0: void*, arg1: uchar*);
 
 @foreign
-struct _GENERIC_BINDING_ROUTINE_PAIR {
+struct GENERIC_BINDING_ROUTINE_PAIR {
     pfnBind: GENERIC_BINDING_ROUTINE;
     pfnUnbind: GENERIC_UNBIND_ROUTINE;
 }
 
 @foreign
-typedef GENERIC_BINDING_ROUTINE_PAIR = _GENERIC_BINDING_ROUTINE_PAIR;
+typedef PGENERIC_BINDING_ROUTINE_PAIR = GENERIC_BINDING_ROUTINE_PAIR*;
 
 @foreign
-typedef PGENERIC_BINDING_ROUTINE_PAIR = _GENERIC_BINDING_ROUTINE_PAIR*;
-
-@foreign
-struct __GENERIC_BINDING_INFO {
+struct GENERIC_BINDING_INFO {
     pObj: void*;
     Size: uint;
     pfnBind: GENERIC_BINDING_ROUTINE;
@@ -237,16 +225,13 @@ struct __GENERIC_BINDING_INFO {
 }
 
 @foreign
-typedef GENERIC_BINDING_INFO = __GENERIC_BINDING_INFO;
-
-@foreign
-typedef PGENERIC_BINDING_INFO = __GENERIC_BINDING_INFO*;
+typedef PGENERIC_BINDING_INFO = GENERIC_BINDING_INFO*;
 
 @foreign
 typedef XMIT_HELPER_ROUTINE = func(arg0: PMIDL_STUB_MESSAGE);
 
 @foreign
-struct _XMIT_ROUTINE_QUINTUPLE {
+struct XMIT_ROUTINE_QUINTUPLE {
     pfnTranslateToXmit: XMIT_HELPER_ROUTINE;
     pfnTranslateFromXmit: XMIT_HELPER_ROUTINE;
     pfnFreeXmit: XMIT_HELPER_ROUTINE;
@@ -254,10 +239,7 @@ struct _XMIT_ROUTINE_QUINTUPLE {
 }
 
 @foreign
-typedef XMIT_ROUTINE_QUINTUPLE = _XMIT_ROUTINE_QUINTUPLE;
-
-@foreign
-typedef PXMIT_ROUTINE_QUINTUPLE = _XMIT_ROUTINE_QUINTUPLE*;
+typedef PXMIT_ROUTINE_QUINTUPLE = XMIT_ROUTINE_QUINTUPLE*;
 
 @foreign
 typedef USER_MARSHAL_SIZING_ROUTINE = func(arg0: ulong*, arg1: ulong, arg2: void*): ulong;
@@ -272,7 +254,7 @@ typedef USER_MARSHAL_UNMARSHALLING_ROUTINE = func(arg0: ulong*, arg1: uchar*, ar
 typedef USER_MARSHAL_FREEING_ROUTINE = func(arg0: ulong*, arg1: void*);
 
 @foreign
-struct _USER_MARSHAL_ROUTINE_QUADRUPLE {
+struct USER_MARSHAL_ROUTINE_QUADRUPLE {
     pfnBufferSize: USER_MARSHAL_SIZING_ROUTINE;
     pfnMarshall: USER_MARSHAL_MARSHALLING_ROUTINE;
     pfnUnmarshall: USER_MARSHAL_UNMARSHALLING_ROUTINE;
@@ -280,10 +262,7 @@ struct _USER_MARSHAL_ROUTINE_QUADRUPLE {
 }
 
 @foreign
-typedef USER_MARSHAL_ROUTINE_QUADRUPLE = _USER_MARSHAL_ROUTINE_QUADRUPLE;
-
-@foreign
-enum _USER_MARSHAL_CB_TYPE {
+enum USER_MARSHAL_CB_TYPE {
     USER_MARSHAL_CB_BUFFER_SIZE,
     USER_MARSHAL_CB_MARSHALL,
     USER_MARSHAL_CB_UNMARSHALL,
@@ -291,10 +270,7 @@ enum _USER_MARSHAL_CB_TYPE {
 }
 
 @foreign
-typedef USER_MARSHAL_CB_TYPE = _USER_MARSHAL_CB_TYPE;
-
-@foreign
-struct _USER_MARSHAL_CB {
+struct USER_MARSHAL_CB {
     Flags: ulong;
     pStubMsg: PMIDL_STUB_MESSAGE;
     pReserve: PFORMAT_STRING;
@@ -305,35 +281,23 @@ struct _USER_MARSHAL_CB {
 }
 
 @foreign
-typedef USER_MARSHAL_CB = _USER_MARSHAL_CB;
-
-@foreign
-struct _MALLOC_FREE_STRUCT {
+struct MALLOC_FREE_STRUCT {
     pfnAllocate: func(arg0: usize): void*;
     pfnFree: func(arg0: void*);
 }
 
 @foreign
-typedef MALLOC_FREE_STRUCT = _MALLOC_FREE_STRUCT;
-
-@foreign
-struct _COMM_FAULT_OFFSETS {
+struct COMM_FAULT_OFFSETS {
     CommOffset: short;
     FaultOffset: short;
 }
 
 @foreign
-typedef COMM_FAULT_OFFSETS = _COMM_FAULT_OFFSETS;
-
-@foreign
-enum _IDL_CS_CONVERT {
+enum IDL_CS_CONVERT {
     IDL_CS_NO_CONVERT,
     IDL_CS_IN_PLACE_CONVERT,
     IDL_CS_NEW_BUFFER_CONVERT,
 }
-
-@foreign
-typedef IDL_CS_CONVERT = _IDL_CS_CONVERT;
 
 @foreign
 typedef CS_TYPE_NET_SIZE_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, ulNetworkCodeSet: ulong, ulLocalBufferSize: ulong, conversionType: IDL_CS_CONVERT*, pulNetworkBufferSize: ulong*, pStatus: error_status_t*);
@@ -354,7 +318,7 @@ typedef CS_TAG_GETTING_ROUTINE = func(hBinding: RPC_BINDING_HANDLE, fServerSide:
 func RpcCsGetTags(hBinding: RPC_BINDING_HANDLE, fServerSide: int, pulSendingTag: ulong*, pulDesiredReceivingTag: ulong*, pulReceivingTag: ulong*, pStatus: error_status_t*);
 
 @foreign
-struct _NDR_CS_SIZE_CONVERT_ROUTINES {
+struct NDR_CS_SIZE_CONVERT_ROUTINES {
     pfnNetSize: CS_TYPE_NET_SIZE_ROUTINE;
     pfnToNetCs: CS_TYPE_TO_NETCS_ROUTINE;
     pfnLocalSize: CS_TYPE_LOCAL_SIZE_ROUTINE;
@@ -362,39 +326,30 @@ struct _NDR_CS_SIZE_CONVERT_ROUTINES {
 }
 
 @foreign
-typedef NDR_CS_SIZE_CONVERT_ROUTINES = _NDR_CS_SIZE_CONVERT_ROUTINES;
-
-@foreign
-struct _NDR_CS_ROUTINES {
+struct NDR_CS_ROUTINES {
     pSizeConvertRoutines: NDR_CS_SIZE_CONVERT_ROUTINES*;
     pTagGettingRoutines: CS_TAG_GETTING_ROUTINE*;
 }
 
 @foreign
-typedef NDR_CS_ROUTINES = _NDR_CS_ROUTINES;
-
-@foreign
-struct _NDR_EXPR_DESC {
+struct NDR_EXPR_DESC {
     pOffset: ushort const*;
     pFormatExpr: PFORMAT_STRING;
 }
 
 @foreign
-typedef NDR_EXPR_DESC = _NDR_EXPR_DESC;
-
-@foreign
-union _MIDL_STUB_DESC___inner {
+union MIDL_STUB_DESC___inner {
     pAutoHandle: handle_t*;
     pPrimitiveHandle: handle_t*;
     pGenericBindingInfo: PGENERIC_BINDING_INFO; 
 }
 
 @foreign
-struct _MIDL_STUB_DESC {
+struct MIDL_STUB_DESC {
     RpcInterfaceInformation: void*;
     pfnAllocate: func(arg0: usize): void*;
     pfnFree: func(arg0: void*);
-    IMPLICIT_HANDLE_INFO: _MIDL_STUB_DESC___inner;
+    IMPLICIT_HANDLE_INFO: MIDL_STUB_DESC___inner;
     apfnNdrRundownRoutines: NDR_RUNDOWN*;
     aGenericBindingRoutinePairs: GENERIC_BINDING_ROUTINE_PAIR*;
     apfnExprEval: EXPR_EVAL*;
@@ -414,22 +369,16 @@ struct _MIDL_STUB_DESC {
 }
 
 @foreign
-typedef MIDL_STUB_DESC = _MIDL_STUB_DESC;
-
-@foreign
 typedef PMIDL_STUB_DESC = MIDL_STUB_DESC*;
 
 @foreign
 typedef PMIDL_XMIT_TYPE = void*;
 
 @foreign
-struct _MIDL_FORMAT_STRING {
+struct MIDL_FORMAT_STRING {
     Pad: short;
     Format: uchar[];
 }
-
-@foreign
-typedef MIDL_FORMAT_STRING = _MIDL_FORMAT_STRING;
 
 @foreign
 typedef STUB_THUNK = func(arg0: PMIDL_STUB_MESSAGE);
@@ -438,40 +387,31 @@ typedef STUB_THUNK = func(arg0: PMIDL_STUB_MESSAGE);
 typedef SERVER_ROUTINE = func(): long;
 
 @foreign
-struct _MIDL_METHOD_PROPERTY {
+struct MIDL_METHOD_PROPERTY {
     Id: ulong;
     Value: ULONG_PTR;
 }
 
 @foreign
-typedef MIDL_METHOD_PROPERTY = _MIDL_METHOD_PROPERTY;
+typedef PMIDL_METHOD_PROPERTY = MIDL_METHOD_PROPERTY*;
 
 @foreign
-typedef PMIDL_METHOD_PROPERTY = _MIDL_METHOD_PROPERTY*;
-
-@foreign
-struct _MIDL_METHOD_PROPERTY_MAP {
+struct MIDL_METHOD_PROPERTY_MAP {
     Count: ulong;
     Properties: MIDL_METHOD_PROPERTY*;
 }
 
 @foreign
-typedef MIDL_METHOD_PROPERTY_MAP = _MIDL_METHOD_PROPERTY_MAP;
+typedef PMIDL_METHOD_PROPERTY_MAP = MIDL_METHOD_PROPERTY_MAP*;
 
 @foreign
-typedef PMIDL_METHOD_PROPERTY_MAP = _MIDL_METHOD_PROPERTY_MAP*;
-
-@foreign
-struct _MIDL_INTERFACE_METHOD_PROPERTIES {
+struct MIDL_INTERFACE_METHOD_PROPERTIES {
     MethodCount: ushort;
     MethodProperties: MIDL_METHOD_PROPERTY_MAP* const*;
 }
 
 @foreign
-typedef MIDL_INTERFACE_METHOD_PROPERTIES = _MIDL_INTERFACE_METHOD_PROPERTIES;
-
-@foreign
-struct _MIDL_SERVER_INFO_ {
+struct MIDL_SERVER_INFO {
     pStubDesc: PMIDL_STUB_DESC;
     DispatchTable: SERVER_ROUTINE*;
     ProcString: PFORMAT_STRING;
@@ -483,13 +423,10 @@ struct _MIDL_SERVER_INFO_ {
 }
 
 @foreign
-typedef MIDL_SERVER_INFO = _MIDL_SERVER_INFO_;
+typedef PMIDL_SERVER_INFO = MIDL_SERVER_INFO*;
 
 @foreign
-typedef PMIDL_SERVER_INFO = _MIDL_SERVER_INFO_*;
-
-@foreign
-struct _MIDL_STUBLESS_PROXY_INFO {
+struct MIDL_STUBLESS_PROXY_INFO {
     pStubDesc: PMIDL_STUB_DESC;
     ProcFormatString: PFORMAT_STRING;
     FormatStringOffset: ushort const*;
@@ -497,9 +434,6 @@ struct _MIDL_STUBLESS_PROXY_INFO {
     nCount: ULONG_PTR;
     pSyntaxInfo: PMIDL_SYNTAX_INFO;
 }
-
-@foreign
-typedef MIDL_STUBLESS_PROXY_INFO = _MIDL_STUBLESS_PROXY_INFO;
 
 @foreign
 typedef PMIDL_STUBLESS_PROXY_INFO = MIDL_STUBLESS_PROXY_INFO*;
@@ -511,13 +445,10 @@ typedef PARAM_OFFSETTABLE = ushort*;
 typedef PPARAM_OFFSETTABLE = ushort*;
 
 @foreign
-union _CLIENT_CALL_RETURN {
+union CLIENT_CALL_RETURN {
     Pointer: void*;
     Simple: LONG_PTR;
 }
-
-@foreign
-typedef CLIENT_CALL_RETURN = _CLIENT_CALL_RETURN;
 
 @foreign
 enum XLAT_SIDE {
@@ -526,7 +457,7 @@ enum XLAT_SIDE {
 }
 
 @foreign
-struct _FULL_PTR_XLAT_TABLES {
+struct FULL_PTR_XLAT_TABLES {
     RefIdToPointer: void*;
     PointerToRefId: void*;
     NextRefId: ulong;
@@ -534,13 +465,10 @@ struct _FULL_PTR_XLAT_TABLES {
 }
 
 @foreign
-typedef FULL_PTR_XLAT_TABLES = _FULL_PTR_XLAT_TABLES;
+typedef PFULL_PTR_XLAT_TABLES = FULL_PTR_XLAT_TABLES*;
 
 @foreign
-typedef PFULL_PTR_XLAT_TABLES = _FULL_PTR_XLAT_TABLES*;
-
-@foreign
-enum _system_handle_t {
+enum system_handle_t {
     SYSTEM_HANDLE_FILE = 0,
     SYSTEM_HANDLE_SEMAPHORE = 1,
     SYSTEM_HANDLE_EVENT = 2,
@@ -559,9 +487,6 @@ enum _system_handle_t {
 }
 
 @foreign
-typedef system_handle_t = _system_handle_t;
-
-@foreign
 enum {
     MidlInterceptionInfoVersionOne = 1,
 }
@@ -572,7 +497,7 @@ enum {
 }
 
 @foreign
-struct _MIDL_INTERCEPTION_INFO {
+struct MIDL_INTERCEPTION_INFO {
     Version: ulong;
     ProcString: PFORMAT_STRING;
     ProcFormatOffsetTable: ushort const*;
@@ -581,13 +506,10 @@ struct _MIDL_INTERCEPTION_INFO {
 }
 
 @foreign
-typedef MIDL_INTERCEPTION_INFO = _MIDL_INTERCEPTION_INFO;
+typedef PMIDL_INTERCEPTION_INFO = MIDL_INTERCEPTION_INFO*;
 
 @foreign
-typedef PMIDL_INTERCEPTION_INFO = _MIDL_INTERCEPTION_INFO*;
-
-@foreign
-struct _MIDL_WINRT_TYPE_SERIALIZATION_INFO {
+struct MIDL_WINRT_TYPE_SERIALIZATION_INFO {
     Version: ulong;
     TypeFormatString: PFORMAT_STRING;
     FormatStringSize: ushort;
@@ -596,10 +518,7 @@ struct _MIDL_WINRT_TYPE_SERIALIZATION_INFO {
 }
 
 @foreign
-typedef MIDL_WINRT_TYPE_SERIALIZATION_INFO = _MIDL_WINRT_TYPE_SERIALIZATION_INFO;
-
-@foreign
-typedef PMIDL_WINRT_TYPE_SERIALIZATION_INFO = _MIDL_WINRT_TYPE_SERIALIZATION_INFO*;
+typedef PMIDL_WINRT_TYPE_SERIALIZATION_INFO = MIDL_WINRT_TYPE_SERIALIZATION_INFO*;
 
 @foreign
 func NdrClientGetSupportedSyntaxes(pInf: RPC_CLIENT_INTERFACE*, pCount: ulong*, pArr: MIDL_SYNTAX_INFO**): RPC_STATUS;
@@ -1150,7 +1069,7 @@ func NdrOleAllocate(Size: usize): void*;
 func NdrOleFree(NodeToFree: void*);
 
 @foreign
-struct _NDR_USER_MARSHAL_INFO_LEVEL1 {
+struct NDR_USER_MARSHAL_INFO_LEVEL1 {
     Buffer: void*;
     BufferSize: ulong;
     pfnAllocate: func(arg0: usize): void*;
@@ -1160,21 +1079,15 @@ struct _NDR_USER_MARSHAL_INFO_LEVEL1 {
 }
 
 @foreign
-typedef NDR_USER_MARSHAL_INFO_LEVEL1 = _NDR_USER_MARSHAL_INFO_LEVEL1;
-
-@foreign
-union _NDR_USER_MARSHAL_INFO___inner {
+union NDR_USER_MARSHAL_INFO___inner {
     Level1: NDR_USER_MARSHAL_INFO_LEVEL1;
 }
 
 @foreign
-struct _NDR_USER_MARSHAL_INFO {
+struct NDR_USER_MARSHAL_INFO {
     InformationLevel: ulong;
-    u: _NDR_USER_MARSHAL_INFO___inner;
+    u: NDR_USER_MARSHAL_INFO___inner;
 }
-
-@foreign
-typedef NDR_USER_MARSHAL_INFO = _NDR_USER_MARSHAL_INFO;
 
 @foreign
 func NdrGetUserMarshalInfo(pFlags: ulong*, InformationLevel: ulong, pMarshalInfo: NDR_USER_MARSHAL_INFO*): RPC_STATUS;

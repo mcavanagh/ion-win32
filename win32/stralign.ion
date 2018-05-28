@@ -1,5 +1,3 @@
-#foreign(header = "<stralign.h>")
-
 @foreign
 func uaw_CharUpperW(String: LPUWSTR): LPUWSTR;
 

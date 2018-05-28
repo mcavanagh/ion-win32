@@ -1,7 +1,5 @@
-#foreign(header = "<winnetwk.h>")
-
 @foreign
-struct _NETRESOURCEA {
+struct NETRESOURCEA {
     dwScope: DWORD;
     dwType: DWORD;
     dwDisplayType: DWORD;
@@ -13,13 +11,10 @@ struct _NETRESOURCEA {
 }
 
 @foreign
-typedef NETRESOURCEA = _NETRESOURCEA;
+typedef LPNETRESOURCEA = NETRESOURCEA*;
 
 @foreign
-typedef LPNETRESOURCEA = _NETRESOURCEA*;
-
-@foreign
-struct _NETRESOURCEW {
+struct NETRESOURCEW {
     dwScope: DWORD;
     dwType: DWORD;
     dwDisplayType: DWORD;
@@ -31,10 +26,7 @@ struct _NETRESOURCEW {
 }
 
 @foreign
-typedef NETRESOURCEW = _NETRESOURCEW;
-
-@foreign
-typedef LPNETRESOURCEW = _NETRESOURCEW*;
+typedef LPNETRESOURCEW = NETRESOURCEW*;
 
 @foreign
 typedef NETRESOURCE = NETRESOURCEA;
@@ -115,7 +107,7 @@ func WNetConnectionDialog(hwnd: HWND, dwType: DWORD): DWORD;
 func WNetDisconnectDialog(hwnd: HWND, dwType: DWORD): DWORD;
 
 @foreign
-struct _CONNECTDLGSTRUCTA {
+struct CONNECTDLGSTRUCTA {
     cbStructure: DWORD;
     hwndOwner: HWND;
     lpConnRes: LPNETRESOURCEA;
@@ -124,13 +116,10 @@ struct _CONNECTDLGSTRUCTA {
 }
 
 @foreign
-typedef CONNECTDLGSTRUCTA = _CONNECTDLGSTRUCTA;
+typedef LPCONNECTDLGSTRUCTA = CONNECTDLGSTRUCTA*;
 
 @foreign
-typedef LPCONNECTDLGSTRUCTA = _CONNECTDLGSTRUCTA*;
-
-@foreign
-struct _CONNECTDLGSTRUCTW {
+struct CONNECTDLGSTRUCTW {
     cbStructure: DWORD;
     hwndOwner: HWND;
     lpConnRes: LPNETRESOURCEW;
@@ -139,10 +128,7 @@ struct _CONNECTDLGSTRUCTW {
 }
 
 @foreign
-typedef CONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW;
-
-@foreign
-typedef LPCONNECTDLGSTRUCTW = _CONNECTDLGSTRUCTW*;
+typedef LPCONNECTDLGSTRUCTW = CONNECTDLGSTRUCTW*;
 
 @foreign
 typedef CONNECTDLGSTRUCT = CONNECTDLGSTRUCTA;
@@ -160,7 +146,7 @@ func WNetConnectionDialog1(lpConnDlgStruct: LPCONNECTDLGSTRUCTA): DWORD;
 func WNetConnectionDialog1W(lpConnDlgStruct: LPCONNECTDLGSTRUCTW): DWORD;
 
 @foreign
-struct _DISCDLGSTRUCTA {
+struct DISCDLGSTRUCTA {
     cbStructure: DWORD;
     hwndOwner: HWND;
     lpLocalName: LPSTR;
@@ -169,13 +155,10 @@ struct _DISCDLGSTRUCTA {
 }
 
 @foreign
-typedef DISCDLGSTRUCTA = _DISCDLGSTRUCTA;
+typedef LPDISCDLGSTRUCTA = DISCDLGSTRUCTA*;
 
 @foreign
-typedef LPDISCDLGSTRUCTA = _DISCDLGSTRUCTA*;
-
-@foreign
-struct _DISCDLGSTRUCTW {
+struct DISCDLGSTRUCTW {
     cbStructure: DWORD;
     hwndOwner: HWND;
     lpLocalName: LPWSTR;
@@ -184,10 +167,7 @@ struct _DISCDLGSTRUCTW {
 }
 
 @foreign
-typedef DISCDLGSTRUCTW = _DISCDLGSTRUCTW;
-
-@foreign
-typedef LPDISCDLGSTRUCTW = _DISCDLGSTRUCTW*;
+typedef LPDISCDLGSTRUCTW = DISCDLGSTRUCTW*;
 
 @foreign
 typedef DISCDLGSTRUCT = DISCDLGSTRUCTA;
@@ -244,26 +224,20 @@ func WNetGetResourceInformation(lpNetResource: LPNETRESOURCEA, lpBuffer: LPVOID,
 func WNetGetResourceInformationW(lpNetResource: LPNETRESOURCEW, lpBuffer: LPVOID, lpcbBuffer: LPDWORD, lplpSystem: LPWSTR*): DWORD;
 
 @foreign
-struct _UNIVERSAL_NAME_INFOA {
+struct UNIVERSAL_NAME_INFOA {
     lpUniversalName: LPSTR;
 }
 
 @foreign
-typedef UNIVERSAL_NAME_INFOA = _UNIVERSAL_NAME_INFOA;
+typedef LPUNIVERSAL_NAME_INFOA = UNIVERSAL_NAME_INFOA*;
 
 @foreign
-typedef LPUNIVERSAL_NAME_INFOA = _UNIVERSAL_NAME_INFOA*;
-
-@foreign
-struct _UNIVERSAL_NAME_INFOW {
+struct UNIVERSAL_NAME_INFOW {
     lpUniversalName: LPWSTR;
 }
 
 @foreign
-typedef UNIVERSAL_NAME_INFOW = _UNIVERSAL_NAME_INFOW;
-
-@foreign
-typedef LPUNIVERSAL_NAME_INFOW = _UNIVERSAL_NAME_INFOW*;
+typedef LPUNIVERSAL_NAME_INFOW = UNIVERSAL_NAME_INFOW*;
 
 @foreign
 typedef UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
@@ -272,30 +246,24 @@ typedef UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
 typedef LPUNIVERSAL_NAME_INFO = LPUNIVERSAL_NAME_INFOA;
 
 @foreign
-struct _REMOTE_NAME_INFOA {
+struct REMOTE_NAME_INFOA {
     lpUniversalName: LPSTR;
     lpConnectionName: LPSTR;
     lpRemainingPath: LPSTR;
 }
 
 @foreign
-typedef REMOTE_NAME_INFOA = _REMOTE_NAME_INFOA;
+typedef LPREMOTE_NAME_INFOA = REMOTE_NAME_INFOA*;
 
 @foreign
-typedef LPREMOTE_NAME_INFOA = _REMOTE_NAME_INFOA*;
-
-@foreign
-struct _REMOTE_NAME_INFOW {
+struct REMOTE_NAME_INFOW {
     lpUniversalName: LPWSTR;
     lpConnectionName: LPWSTR;
     lpRemainingPath: LPWSTR;
 }
 
 @foreign
-typedef REMOTE_NAME_INFOW = _REMOTE_NAME_INFOW;
-
-@foreign
-typedef LPREMOTE_NAME_INFOW = _REMOTE_NAME_INFOW*;
+typedef LPREMOTE_NAME_INFOW = REMOTE_NAME_INFOW*;
 
 @foreign
 typedef REMOTE_NAME_INFO = REMOTE_NAME_INFOA;
@@ -331,7 +299,7 @@ func WNetGetProviderName(dwNetType: DWORD, lpProviderName: LPSTR, lpBufferSize: 
 func WNetGetProviderNameW(dwNetType: DWORD, lpProviderName: LPWSTR, lpBufferSize: LPDWORD): DWORD;
 
 @foreign
-struct _NETINFOSTRUCT {
+struct NETINFOSTRUCT {
     cbStructure: DWORD;
     dwProviderVersion: DWORD;
     dwStatus: DWORD;
@@ -343,10 +311,7 @@ struct _NETINFOSTRUCT {
 }
 
 @foreign
-typedef NETINFOSTRUCT = _NETINFOSTRUCT;
-
-@foreign
-typedef LPNETINFOSTRUCT = _NETINFOSTRUCT*;
+typedef LPNETINFOSTRUCT = NETINFOSTRUCT*;
 
 @foreign
 func WNetGetNetworkInformationA(lpProvider: LPCSTR, lpNetInfoStruct: LPNETINFOSTRUCT): DWORD;
@@ -367,7 +332,7 @@ func WNetGetLastError(lpError: LPDWORD, lpErrorBuf: LPSTR, nErrorBufSize: DWORD,
 func WNetGetLastErrorW(lpError: LPDWORD, lpErrorBuf: LPWSTR, nErrorBufSize: DWORD, lpNameBuf: LPWSTR, nNameBufSize: DWORD): DWORD;
 
 @foreign
-struct _NETCONNECTINFOSTRUCT {
+struct NETCONNECTINFOSTRUCT {
     cbStructure: DWORD;
     dwFlags: DWORD;
     dwSpeed: DWORD;
@@ -376,10 +341,7 @@ struct _NETCONNECTINFOSTRUCT {
 }
 
 @foreign
-typedef NETCONNECTINFOSTRUCT = _NETCONNECTINFOSTRUCT;
-
-@foreign
-typedef LPNETCONNECTINFOSTRUCT = _NETCONNECTINFOSTRUCT*;
+typedef LPNETCONNECTINFOSTRUCT = NETCONNECTINFOSTRUCT*;
 
 @foreign
 func MultinetGetConnectionPerformanceA(lpNetResource: LPNETRESOURCEA, lpNetConnectInfoStruct: LPNETCONNECTINFOSTRUCT): DWORD;

@@ -1,5 +1,3 @@
-#foreign(header = "<oleauto.h>")
-
 @foreign
 func SysAllocString(psz: OLECHAR*): BSTR;
 
@@ -1049,14 +1047,11 @@ func LHashValOfNameSys(syskind: SYSKIND, lcid: LCID, szName: OLECHAR*): ULONG;
 func LoadTypeLib(szFile: LPCOLESTR, pptlib: ITypeLib**): HRESULT;
 
 @foreign
-enum tagREGKIND {
+enum REGKIND {
     REGKIND_DEFAULT,
     REGKIND_REGISTER,
     REGKIND_NONE,
 }
-
-@foreign
-typedef REGKIND = tagREGKIND;
 
 @foreign
 func LoadTypeLibEx(szFile: LPCOLESTR, regkind: REGKIND, pptlib: ITypeLib**): HRESULT;
@@ -1086,19 +1081,16 @@ func CreateTypeLib(syskind: SYSKIND, szFile: LPCOLESTR, ppctlib: ICreateTypeLib*
 func CreateTypeLib2(syskind: SYSKIND, szFile: LPCOLESTR, ppctlib: ICreateTypeLib2**): HRESULT;
 
 @foreign
-struct tagPARAMDATA {
+struct PARAMDATA {
     szName: OLECHAR*;
     vt: VARTYPE;
 }
 
 @foreign
-typedef PARAMDATA = tagPARAMDATA;
+typedef LPPARAMDATA = PARAMDATA*;
 
 @foreign
-typedef LPPARAMDATA = tagPARAMDATA*;
-
-@foreign
-struct tagMETHODDATA {
+struct METHODDATA {
     szName: OLECHAR*;
     ppdata: PARAMDATA*;
     dispid: DISPID;
@@ -1110,22 +1102,16 @@ struct tagMETHODDATA {
 }
 
 @foreign
-typedef METHODDATA = tagMETHODDATA;
+typedef LPMETHODDATA = METHODDATA*;
 
 @foreign
-typedef LPMETHODDATA = tagMETHODDATA*;
-
-@foreign
-struct tagINTERFACEDATA {
+struct INTERFACEDATA {
     pmethdata: METHODDATA*;
     cMembers: UINT;
 }
 
 @foreign
-typedef INTERFACEDATA = tagINTERFACEDATA;
-
-@foreign
-typedef LPINTERFACEDATA = tagINTERFACEDATA*;
+typedef LPINTERFACEDATA = INTERFACEDATA*;
 
 @foreign
 func DispGetParam(pdispparams: DISPPARAMS*, position: UINT, vtTarg: VARTYPE, pvarResult: VARIANT*, puArgErr: UINT*): HRESULT;

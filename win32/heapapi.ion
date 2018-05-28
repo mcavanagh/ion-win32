@@ -1,7 +1,5 @@
-#foreign(header = "<heapapi.h>")
-
 @foreign
-struct _HEAP_SUMMARY {
+struct HEAP_SUMMARY {
     cb: DWORD;
     cbAllocated: SIZE_T;
     cbCommitted: SIZE_T;
@@ -10,10 +8,7 @@ struct _HEAP_SUMMARY {
 }
 
 @foreign
-typedef HEAP_SUMMARY = _HEAP_SUMMARY;
-
-@foreign
-typedef PHEAP_SUMMARY = _HEAP_SUMMARY*;
+typedef PHEAP_SUMMARY = HEAP_SUMMARY*;
 
 @foreign
 typedef LPHEAP_SUMMARY = PHEAP_SUMMARY;

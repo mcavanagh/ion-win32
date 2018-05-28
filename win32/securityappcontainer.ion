@@ -1,5 +1,3 @@
-#foreign(header = "<securityappcontainer.h>")
-
 @foreign
 func GetAppContainerNamedObjectPath(Token: HANDLE, AppContainerSid: PSID, ObjectPathLength: ULONG, ObjectPath: LPWSTR, ReturnLength: PULONG): BOOL;
 

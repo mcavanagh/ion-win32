@@ -1067,7 +1067,7 @@ func HashData(pbData: BYTE*, cbData: DWORD, pbHash: BYTE*, cbHash: DWORD): HRESU
 func UrlFixupW(pcszUrl: PCWSTR, pszTranslatedUrl: PWSTR, cchMax: DWORD): HRESULT;
 
 @foreign
-struct tagPARSEDURLA {
+struct PARSEDURLA {
     cbSize: DWORD;
     pszProtocol: LPCSTR;
     cchProtocol: UINT;
@@ -1077,13 +1077,10 @@ struct tagPARSEDURLA {
 }
 
 @foreign
-typedef PARSEDURLA = tagPARSEDURLA;
+typedef PPARSEDURLA = PARSEDURLA*;
 
 @foreign
-typedef PPARSEDURLA = tagPARSEDURLA*;
-
-@foreign
-struct tagPARSEDURLW {
+struct PARSEDURLW {
     cbSize: DWORD;
     pszProtocol: LPCWSTR;
     cchProtocol: UINT;
@@ -1093,10 +1090,7 @@ struct tagPARSEDURLW {
 }
 
 @foreign
-typedef PARSEDURLW = tagPARSEDURLW;
-
-@foreign
-typedef PPARSEDURLW = tagPARSEDURLW*;
+typedef PPARSEDURLW = PARSEDURLW*;
 
 @foreign
 typedef PARSEDURL = PARSEDURLA;
@@ -1858,7 +1852,7 @@ func ColorHLSToRGB(wHue: WORD, wLuminance: WORD, wSaturation: WORD): COLORREF;
 func ColorAdjustLuma(clrRGB: COLORREF, n: int, fScale: BOOL): COLORREF;
 
 @foreign
-struct _DLLVERSIONINFO {
+struct DLLVERSIONINFO {
     cbSize: DWORD;
     dwMajorVersion: DWORD;
     dwMinorVersion: DWORD;
@@ -1867,17 +1861,11 @@ struct _DLLVERSIONINFO {
 }
 
 @foreign
-typedef DLLVERSIONINFO = _DLLVERSIONINFO;
-
-@foreign
-struct _DLLVERSIONINFO2 {
+struct DLLVERSIONINFO2 {
     info1: DLLVERSIONINFO;
     dwFlags: DWORD;
     ullVersion: ULONGLONG;
 }
-
-@foreign
-typedef DLLVERSIONINFO2 = _DLLVERSIONINFO2;
 
 @foreign
 typedef DLLGETVERSIONPROC = func(arg0: DLLVERSIONINFO*): HRESULT;

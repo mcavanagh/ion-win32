@@ -1,5 +1,3 @@
-#foreign(header = "<inaddr.h>")
-
 @foreign
 struct in_addr___inner_s1 {
 	s_b1, s_b2, s_b3, s_b4: UCHAR;
@@ -18,16 +16,16 @@ union in_addr___inner_u {
 }
 
 @foreign
-struct in_addr {
+struct IN_ADDR {
     S_un: in_addr___inner_u;
 }
 
 @foreign
-typedef IN_ADDR = in_addr;
+typedef in_addr = IN_ADDR;
 
 @foreign
-typedef PIN_ADDR = in_addr*;
+typedef PIN_ADDR = IN_ADDR*;
 
 @foreign
-typedef LPIN_ADDR = in_addr*;
+typedef LPIN_ADDR = IN_ADDR*;
 

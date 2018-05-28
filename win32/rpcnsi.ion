@@ -1,5 +1,3 @@
-#foreign(header = "<rpcnsi.h>")
-
 @foreign
 typedef RPC_NS_HANDLE = void*;
 

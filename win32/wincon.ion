@@ -1,5 +1,3 @@
-#foreign(header = "<wincon.h>")
-
 @foreign const CONSOLE_TEXTMODE_BUFFER = 1;
 
 @foreign const RIGHT_ALT_PRESSED  = 0x0001;
@@ -61,19 +59,16 @@
 @foreign const ENABLE_LVB_GRID_WORLDWIDE          = 0x0010;
 
 @foreign
-struct _COORD {
+struct COORD {
     X: SHORT;
     Y: SHORT;
 }
 
 @foreign
-typedef COORD = _COORD;
+typedef PCOORD = COORD*;
 
 @foreign
-typedef PCOORD = _COORD*;
-
-@foreign
-struct _SMALL_RECT {
+struct SMALL_RECT {
     Left: SHORT;
     Top: SHORT;
     Right: SHORT;
@@ -81,32 +76,29 @@ struct _SMALL_RECT {
 }
 
 @foreign
-typedef SMALL_RECT = _SMALL_RECT;
+typedef PSMALL_RECT = SMALL_RECT*;
 
 @foreign
-typedef PSMALL_RECT = _SMALL_RECT*;
-
-@foreign
-union _KEY_EVENT_RECORD___inner {
+union KEY_EVENT_RECORD___inner {
     UnicodeChar: WCHAR;
     AsciiChar: CHAR;
 }
 
 @foreign
-struct _KEY_EVENT_RECORD {
+struct KEY_EVENT_RECORD {
     bKeyDown: BOOL;
     wRepeatCount: WORD;
     wVirtualKeyCode: WORD;
     wVirtualScanCode: WORD;
-    uChar: _KEY_EVENT_RECORD___inner;
+    uChar: KEY_EVENT_RECORD___inner;
     dwControlKeyState: DWORD;
 }
 
 @foreign
-typedef PKEY_EVENT_RECORD = _KEY_EVENT_RECORD*;
+typedef PKEY_EVENT_RECORD = KEY_EVENT_RECORD*;
 
 @foreign
-struct _MOUSE_EVENT_RECORD {
+struct MOUSE_EVENT_RECORD {
     dwMousePosition: COORD;
     dwButtonState: DWORD;
     dwControlKeyState: DWORD;
@@ -114,46 +106,34 @@ struct _MOUSE_EVENT_RECORD {
 }
 
 @foreign
-typedef MOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD;
+typedef PMOUSE_EVENT_RECORD = MOUSE_EVENT_RECORD*;
 
 @foreign
-typedef PMOUSE_EVENT_RECORD = _MOUSE_EVENT_RECORD*;
-
-@foreign
-struct _WINDOW_BUFFER_SIZE_RECORD {
+struct WINDOW_BUFFER_SIZE_RECORD {
     dwSize: COORD;
 }
 
 @foreign
-typedef WINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD;
+typedef PWINDOW_BUFFER_SIZE_RECORD = WINDOW_BUFFER_SIZE_RECORD*;
 
 @foreign
-typedef PWINDOW_BUFFER_SIZE_RECORD = _WINDOW_BUFFER_SIZE_RECORD*;
-
-@foreign
-struct _MENU_EVENT_RECORD {
+struct MENU_EVENT_RECORD {
     dwCommandId: UINT;
 }
 
 @foreign
-typedef MENU_EVENT_RECORD = _MENU_EVENT_RECORD;
+typedef PMENU_EVENT_RECORD = MENU_EVENT_RECORD*;
 
 @foreign
-typedef PMENU_EVENT_RECORD = _MENU_EVENT_RECORD*;
-
-@foreign
-struct _FOCUS_EVENT_RECORD {
+struct FOCUS_EVENT_RECORD {
     bSetFocus: BOOL;
 }
 
 @foreign
-typedef FOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD;
+typedef PFOCUS_EVENT_RECORD = FOCUS_EVENT_RECORD*;
 
 @foreign
-typedef PFOCUS_EVENT_RECORD = _FOCUS_EVENT_RECORD*;
-
-@foreign
-union _INPUT_RECORD___inner {
+union INPUT_RECORD___inner {
     KeyEvent: KEY_EVENT_RECORD;
     MouseEvent: MOUSE_EVENT_RECORD;
     WindowBufferSizeEvent: WINDOW_BUFFER_SIZE_RECORD;
@@ -162,37 +142,31 @@ union _INPUT_RECORD___inner {
 }
 
 @foreign
-struct _INPUT_RECORD {
+struct INPUT_RECORD {
     EventType: WORD;
-    Event: _INPUT_RECORD___inner;
+    Event: INPUT_RECORD___inner;
 }
 
 @foreign
-typedef INPUT_RECORD = _INPUT_RECORD;
+typedef PINPUT_RECORD = INPUT_RECORD*;
 
 @foreign
-typedef PINPUT_RECORD = _INPUT_RECORD*;
-
-@foreign
-union _CHAR_INFO___inner {
+union CHAR_INFO___inner {
     UnicodeChar: WCHAR;
     AsciiChar: CHAR;
 }
 
 @foreign
-struct _CHAR_INFO {
-    Char: _CHAR_INFO___inner;
+struct CHAR_INFO {
+    Char: CHAR_INFO___inner;
     Attributes: WORD;
 }
 
 @foreign
-typedef CHAR_INFO = _CHAR_INFO;
+typedef PCHAR_INFO = CHAR_INFO*;
 
 @foreign
-typedef PCHAR_INFO = _CHAR_INFO*;
-
-@foreign
-struct _CONSOLE_SCREEN_BUFFER_INFO {
+struct CONSOLE_SCREEN_BUFFER_INFO {
     dwSize: COORD;
     dwCursorPosition: COORD;
     wAttributes: WORD;
@@ -201,13 +175,10 @@ struct _CONSOLE_SCREEN_BUFFER_INFO {
 }
 
 @foreign
-typedef CONSOLE_SCREEN_BUFFER_INFO = _CONSOLE_SCREEN_BUFFER_INFO;
+typedef PCONSOLE_SCREEN_BUFFER_INFO = CONSOLE_SCREEN_BUFFER_INFO*;
 
 @foreign
-typedef PCONSOLE_SCREEN_BUFFER_INFO = _CONSOLE_SCREEN_BUFFER_INFO*;
-
-@foreign
-struct _CONSOLE_SCREEN_BUFFER_INFOEX {
+struct CONSOLE_SCREEN_BUFFER_INFOEX {
     cbSize: ULONG;
     dwSize: COORD;
     dwCursorPosition: COORD;
@@ -220,37 +191,28 @@ struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 }
 
 @foreign
-typedef CONSOLE_SCREEN_BUFFER_INFOEX = _CONSOLE_SCREEN_BUFFER_INFOEX;
+typedef PCONSOLE_SCREEN_BUFFER_INFOEX = CONSOLE_SCREEN_BUFFER_INFOEX*;
 
 @foreign
-typedef PCONSOLE_SCREEN_BUFFER_INFOEX = _CONSOLE_SCREEN_BUFFER_INFOEX*;
-
-@foreign
-struct _CONSOLE_CURSOR_INFO {
+struct CONSOLE_CURSOR_INFO {
     dwSize: DWORD;
     bVisible: BOOL;
 }
 
 @foreign
-typedef CONSOLE_CURSOR_INFO = _CONSOLE_CURSOR_INFO;
+typedef PCONSOLE_CURSOR_INFO = CONSOLE_CURSOR_INFO*;
 
 @foreign
-typedef PCONSOLE_CURSOR_INFO = _CONSOLE_CURSOR_INFO*;
-
-@foreign
-struct _CONSOLE_FONT_INFO {
+struct CONSOLE_FONT_INFO {
     nFont: DWORD;
     dwFontSize: COORD;
 }
 
 @foreign
-typedef CONSOLE_FONT_INFO = _CONSOLE_FONT_INFO;
+typedef PCONSOLE_FONT_INFO = CONSOLE_FONT_INFO*;
 
 @foreign
-typedef PCONSOLE_FONT_INFO = _CONSOLE_FONT_INFO*;
-
-@foreign
-struct _CONSOLE_FONT_INFOEX {
+struct CONSOLE_FONT_INFOEX {
     cbSize: ULONG;
     nFont: DWORD;
     dwFontSize: COORD;
@@ -260,13 +222,10 @@ struct _CONSOLE_FONT_INFOEX {
 }
 
 @foreign
-typedef CONSOLE_FONT_INFOEX = _CONSOLE_FONT_INFOEX;
+typedef PCONSOLE_FONT_INFOEX = CONSOLE_FONT_INFOEX*;
 
 @foreign
-typedef PCONSOLE_FONT_INFOEX = _CONSOLE_FONT_INFOEX*;
-
-@foreign
-struct _CONSOLE_HISTORY_INFO {
+struct CONSOLE_HISTORY_INFO {
     cbSize: UINT;
     HistoryBufferSize: UINT;
     NumberOfHistoryBuffers: UINT;
@@ -274,23 +233,17 @@ struct _CONSOLE_HISTORY_INFO {
 }
 
 @foreign
-typedef CONSOLE_HISTORY_INFO = _CONSOLE_HISTORY_INFO;
+typedef PCONSOLE_HISTORY_INFO = CONSOLE_HISTORY_INFO*;
 
 @foreign
-typedef PCONSOLE_HISTORY_INFO = _CONSOLE_HISTORY_INFO*;
-
-@foreign
-struct _CONSOLE_SELECTION_INFO {
+struct CONSOLE_SELECTION_INFO {
     dwFlags: DWORD;
     dwSelectionAnchor: COORD;
     srSelection: SMALL_RECT;
 }
 
 @foreign
-typedef CONSOLE_SELECTION_INFO = _CONSOLE_SELECTION_INFO;
-
-@foreign
-typedef PCONSOLE_SELECTION_INFO = _CONSOLE_SELECTION_INFO*;
+typedef PCONSOLE_SELECTION_INFO = CONSOLE_SELECTION_INFO*;
 
 @foreign
 typedef PHANDLER_ROUTINE = func(CtrlType: DWORD): BOOL;
@@ -467,7 +420,7 @@ func SetConsoleTitle(lpConsoleTitle: LPCSTR): BOOL;
 func SetConsoleTitleW(lpConsoleTitle: LPCWSTR): BOOL;
 
 @foreign
-struct _CONSOLE_READCONSOLE_CONTROL {
+struct CONSOLE_READCONSOLE_CONTROL {
     nLength: ULONG;
     nInitialChars: ULONG;
     dwCtrlWakeupMask: ULONG;
@@ -475,10 +428,7 @@ struct _CONSOLE_READCONSOLE_CONTROL {
 }
 
 @foreign
-typedef CONSOLE_READCONSOLE_CONTROL = _CONSOLE_READCONSOLE_CONTROL;
-
-@foreign
-typedef PCONSOLE_READCONSOLE_CONTROL = _CONSOLE_READCONSOLE_CONTROL*;
+typedef PCONSOLE_READCONSOLE_CONTROL = CONSOLE_READCONSOLE_CONTROL*;
 
 @foreign
 func CreateConsoleScreenBuffer(dwDesiredAccess: DWORD, dwShareMode: DWORD, lpSecurityAttributes: SECURITY_ATTRIBUTES*, dwFlags: DWORD, lpScreenBufferData: LPVOID): HANDLE;

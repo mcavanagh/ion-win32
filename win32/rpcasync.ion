@@ -1,10 +1,8 @@
-#foreign(header = "<rpcasync.h>")
-
 @foreign const RPC_C_NOTIFY_ON_SEND_COMPLETE = 0x1;
 @foreign const RPC_C_INFINITE_TIMEOUT        = INFINITE;
 
 @foreign
-enum _RPC_NOTIFICATION_TYPES {
+enum RPC_NOTIFICATION_TYPES {
     RpcNotificationTypeNone,
     RpcNotificationTypeEvent,
     RpcNotificationTypeApc,
@@ -14,10 +12,7 @@ enum _RPC_NOTIFICATION_TYPES {
 }
 
 @foreign
-typedef RPC_NOTIFICATION_TYPES = _RPC_NOTIFICATION_TYPES;
-
-@foreign
-enum _RPC_ASYNC_EVENT {
+enum RPC_ASYNC_EVENT {
     RpcCallComplete,
     RpcSendComplete,
     RpcReceiveComplete,
@@ -26,29 +21,23 @@ enum _RPC_ASYNC_EVENT {
 }
 
 @foreign
-typedef RPC_ASYNC_EVENT = _RPC_ASYNC_EVENT;
-
-@foreign
-typedef RPCNOTIFICATION_ROUTINE = func(pAsync: _RPC_ASYNC_STATE*, Context: void*, Event: RPC_ASYNC_EVENT);
+typedef RPCNOTIFICATION_ROUTINE = func(pAsync: RPC_ASYNC_STATE*, Context: void*, Event: RPC_ASYNC_EVENT);
 
 @foreign
 typedef PFN_RPCNOTIFICATION_ROUTINE = RPCNOTIFICATION_ROUTINE*;
 
-// union _RPC_ASYNC_NOTIFICATION_INFO has a lot of conditional compilation
+// union RPC_ASYNC_NOTIFICATION_INFO has a lot of conditional compilation
 // leaving as opaque type for now.  Only used via pointer in RpcServerSubscribeForNotification
 // as far as I can tell
 
 @foreign
-union _RPC_ASYNC_NOTIFICATION_INFO;
+union RPC_ASYNC_NOTIFICATION_INFO;
 
 @foreign
-typedef RPC_ASYNC_NOTIFICATION_INFO = _RPC_ASYNC_NOTIFICATION_INFO;
+typedef PRPC_ASYNC_NOTIFICATION_INFO = RPC_ASYNC_NOTIFICATION_INFO*;
 
 @foreign
-typedef PRPC_ASYNC_NOTIFICATION_INFO = _RPC_ASYNC_NOTIFICATION_INFO*;
-
-@foreign
-struct _RPC_ASYNC_STATE {
+struct RPC_ASYNC_STATE {
     Size: uint;
     Signature: ulong;
     Lock: long;
@@ -63,10 +52,7 @@ struct _RPC_ASYNC_STATE {
 }
 
 @foreign
-typedef RPC_ASYNC_STATE = _RPC_ASYNC_STATE;
-
-@foreign
-typedef PRPC_ASYNC_STATE = _RPC_ASYNC_STATE*;
+typedef PRPC_ASYNC_STATE = RPC_ASYNC_STATE*;
 
 @foreign
 func RpcAsyncRegisterInfo(pAsync: PRPC_ASYNC_STATE): RPC_STATUS;
@@ -87,7 +73,7 @@ func RpcAsyncAbortCall(pAsync: PRPC_ASYNC_STATE, ExceptionCode: ulong): RPC_STAT
 func RpcAsyncCancelCall(pAsync: PRPC_ASYNC_STATE, fAbort: BOOL): RPC_STATUS;
 
 @foreign
-enum tagExtendedErrorParamTypes {
+enum ExtendedErrorParamTypes {
     eeptAnsiString = 1,
     eeptUnicodeString,
     eeptLongVal,
@@ -98,45 +84,33 @@ enum tagExtendedErrorParamTypes {
 }
 
 @foreign
-typedef ExtendedErrorParamTypes = tagExtendedErrorParamTypes;
-
-@foreign
-struct tagBinaryParam {
+struct BinaryParam {
     Buffer: void*;
     Size: short;
 }
-
-@foreign
-typedef BinaryParam = tagBinaryParam;
 
 /*
 @PROBLEM Nested struct def at line 259, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
 
 @foreign
-struct tagRPC_EE_INFO_PARAM {
+struct RPC_EE_INFO_PARAM {
     ParameterType: ExtendedErrorParamTypes;
     u: (null);
 }
 */
 
-/*
-@PROBLEM Nested struct def at line 259, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\rpcasync.h
-
-tagRPC_EE_INFO_PARAM
-*/
-
 @foreign
-union tagRPC_EXTENDED_ERROR_INFO___inner {
+union RPC_EXTENDED_ERROR_INFO___inner {
     SystemTime: SYSTEMTIME;
     FileTime: FILETIME;
 }
 
 @foreign
-struct tagRPC_EXTENDED_ERROR_INFO {
+struct RPC_EXTENDED_ERROR_INFO {
     Version: ULONG;
     ComputerName: LPWSTR;
     ProcessID: ULONG;
-    u: tagRPC_EXTENDED_ERROR_INFO___inner;
+    u: RPC_EXTENDED_ERROR_INFO___inner;
     GeneratingComponent: ULONG;
     Status: ULONG;
     DetectionLocation: USHORT;
@@ -146,17 +120,11 @@ struct tagRPC_EXTENDED_ERROR_INFO {
 }
 
 @foreign
-typedef RPC_EXTENDED_ERROR_INFO = tagRPC_EXTENDED_ERROR_INFO;
-
-@foreign
-struct tagRPC_ERROR_ENUM_HANDLE {
+struct RPC_ERROR_ENUM_HANDLE {
     Signature: ULONG;
     CurrentPos: void*;
     Head: void*;
 }
-
-@foreign
-typedef RPC_ERROR_ENUM_HANDLE = tagRPC_ERROR_ENUM_HANDLE;
 
 @foreign
 func RpcErrorStartEnumeration(EnumHandle: RPC_ERROR_ENUM_HANDLE*): RPC_STATUS;
@@ -201,17 +169,14 @@ func RpcSsContextLockExclusive(ServerBindingHandle: RPC_BINDING_HANDLE, UserCont
 func RpcSsContextLockShared(ServerBindingHandle: RPC_BINDING_HANDLE, UserContext: PVOID): RPC_STATUS;
 
 @foreign
-enum tagRpcLocalAddressFormat {
+enum RpcLocalAddressFormat {
     rlafInvalid = 0,
     rlafIPv4,
     rlafIPv6,
 }
 
 @foreign
-typedef RpcLocalAddressFormat = tagRpcLocalAddressFormat;
-
-@foreign
-struct _RPC_CALL_LOCAL_ADDRESS_V1 {
+struct RPC_CALL_LOCAL_ADDRESS_V1 {
     Version: uint;
     Buffer: void*;
     BufferSize: ulong;
@@ -219,13 +184,10 @@ struct _RPC_CALL_LOCAL_ADDRESS_V1 {
 }
 
 @foreign
-typedef RPC_CALL_LOCAL_ADDRESS_V1 = _RPC_CALL_LOCAL_ADDRESS_V1;
+typedef PRPC_CALL_LOCAL_ADDRESS_V1 = RPC_CALL_LOCAL_ADDRESS_V1*;
 
 @foreign
-typedef PRPC_CALL_LOCAL_ADDRESS_V1 = _RPC_CALL_LOCAL_ADDRESS_V1*;
-
-@foreign
-struct tagRPC_CALL_ATTRIBUTES_V1_W {
+struct RPC_CALL_ATTRIBUTES_V1_W {
     Version: uint;
     Flags: ulong;
     ServerPrincipalNameBufferLength: ulong;
@@ -238,10 +200,7 @@ struct tagRPC_CALL_ATTRIBUTES_V1_W {
 }
 
 @foreign
-typedef RPC_CALL_ATTRIBUTES_V1_W = tagRPC_CALL_ATTRIBUTES_V1_W;
-
-@foreign
-struct tagRPC_CALL_ATTRIBUTES_V1_A {
+struct RPC_CALL_ATTRIBUTES_V1_A {
     Version: uint;
     Flags: ulong;
     ServerPrincipalNameBufferLength: ulong;
@@ -254,10 +213,7 @@ struct tagRPC_CALL_ATTRIBUTES_V1_A {
 }
 
 @foreign
-typedef RPC_CALL_ATTRIBUTES_V1_A = tagRPC_CALL_ATTRIBUTES_V1_A;
-
-@foreign
-enum tagRpcCallType {
+enum RpcCallType {
     rctInvalid = 0,
     rctNormal,
     rctTraining,
@@ -265,10 +221,7 @@ enum tagRpcCallType {
 }
 
 @foreign
-typedef RpcCallType = tagRpcCallType;
-
-@foreign
-enum tagRpcCallClientLocality {
+enum RpcCallClientLocality {
     rcclInvalid = 0,
     rcclLocal,
     rcclRemote,
@@ -276,10 +229,7 @@ enum tagRpcCallClientLocality {
 }
 
 @foreign
-typedef RpcCallClientLocality = tagRpcCallClientLocality;
-
-@foreign
-struct tagRPC_CALL_ATTRIBUTES_V2_W {
+struct RPC_CALL_ATTRIBUTES_V2_W {
     Version: uint;
     Flags: ulong;
     ServerPrincipalNameBufferLength: ulong;
@@ -301,10 +251,7 @@ struct tagRPC_CALL_ATTRIBUTES_V2_W {
 }
 
 @foreign
-typedef RPC_CALL_ATTRIBUTES_V2_W = tagRPC_CALL_ATTRIBUTES_V2_W;
-
-@foreign
-struct tagRPC_CALL_ATTRIBUTES_V2_A {
+struct RPC_CALL_ATTRIBUTES_V2_A {
     Version: uint;
     Flags: ulong;
     ServerPrincipalNameBufferLength: ulong;
@@ -326,10 +273,7 @@ struct tagRPC_CALL_ATTRIBUTES_V2_A {
 }
 
 @foreign
-typedef RPC_CALL_ATTRIBUTES_V2_A = tagRPC_CALL_ATTRIBUTES_V2_A;
-
-@foreign
-struct tagRPC_CALL_ATTRIBUTES_V3_W {
+struct RPC_CALL_ATTRIBUTES_V3_W {
     Version: uint;
     Flags: ulong;
     ServerPrincipalNameBufferLength: ulong;
@@ -353,10 +297,7 @@ struct tagRPC_CALL_ATTRIBUTES_V3_W {
 }
 
 @foreign
-typedef RPC_CALL_ATTRIBUTES_V3_W = tagRPC_CALL_ATTRIBUTES_V3_W;
-
-@foreign
-struct tagRPC_CALL_ATTRIBUTES_V3_A {
+struct RPC_CALL_ATTRIBUTES_V3_A {
     Version: uint;
     Flags: ulong;
     ServerPrincipalNameBufferLength: ulong;
@@ -378,9 +319,6 @@ struct tagRPC_CALL_ATTRIBUTES_V3_A {
     ClientIdentifierBufferLength: ulong;
     ClientIdentifier: uchar*;
 }
-
-@foreign
-typedef RPC_CALL_ATTRIBUTES_V3_A = tagRPC_CALL_ATTRIBUTES_V3_A;
 
 @foreign
 func RpcServerInqCallAttributesW(ClientBinding: RPC_BINDING_HANDLE, RpcCallAttributes: void*): RPC_STATUS;
@@ -395,14 +333,11 @@ func RpcServerInqCallAttributesA(ClientBinding: RPC_BINDING_HANDLE, RpcCallAttri
 typedef RPC_CALL_ATTRIBUTES = RPC_CALL_ATTRIBUTES_V3_A;
 
 @foreign
-enum _RPC_NOTIFICATIONS {
+enum RPC_NOTIFICATIONS {
     RpcNotificationCallNone = 0,
     RpcNotificationClientDisconnect = 1,
     RpcNotificationCallCancel = 2,
 }
-
-@foreign
-typedef RPC_NOTIFICATIONS = _RPC_NOTIFICATIONS;
 
 @foreign
 func RpcServerSubscribeForNotification(Binding: RPC_BINDING_HANDLE, Notification: RPC_NOTIFICATIONS, NotificationType: RPC_NOTIFICATION_TYPES, NotificationInfo: RPC_ASYNC_NOTIFICATION_INFO*): RPC_STATUS;

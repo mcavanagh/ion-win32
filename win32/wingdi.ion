@@ -1,7 +1,5 @@
-#foreign(header = "<wingdi.h>")
-
 @foreign
-struct _DRAWPATRECT {
+struct DRAWPATRECT {
     ptPosition: POINT;
     ptSize: POINT;
     wStyle: WORD;
@@ -9,38 +7,29 @@ struct _DRAWPATRECT {
 }
 
 @foreign
-typedef DRAWPATRECT = _DRAWPATRECT;
+typedef PDRAWPATRECT = DRAWPATRECT*;
 
 @foreign
-typedef PDRAWPATRECT = _DRAWPATRECT*;
-
-@foreign
-struct _PSINJECTDATA {
+struct PSINJECTDATA {
     DataBytes: DWORD;
     InjectionPoint: WORD;
     PageNumber: WORD;
 }
 
 @foreign
-typedef PSINJECTDATA = _PSINJECTDATA;
+typedef PPSINJECTDATA = PSINJECTDATA*;
 
 @foreign
-typedef PPSINJECTDATA = _PSINJECTDATA*;
-
-@foreign
-struct _PSFEATURE_OUTPUT {
+struct PSFEATURE_OUTPUT {
     bPageIndependent: BOOL;
     bSetPageDevice: BOOL;
 }
 
 @foreign
-typedef PSFEATURE_OUTPUT = _PSFEATURE_OUTPUT;
+typedef PPSFEATURE_OUTPUT = PSFEATURE_OUTPUT*;
 
 @foreign
-typedef PPSFEATURE_OUTPUT = _PSFEATURE_OUTPUT*;
-
-@foreign
-struct _PSFEATURE_CUSTPAPER {
+struct PSFEATURE_CUSTPAPER {
     lOrientation: LONG;
     lWidth: LONG;
     lHeight: LONG;
@@ -49,13 +38,10 @@ struct _PSFEATURE_CUSTPAPER {
 }
 
 @foreign
-typedef PSFEATURE_CUSTPAPER = _PSFEATURE_CUSTPAPER;
+typedef PPSFEATURE_CUSTPAPER = PSFEATURE_CUSTPAPER*;
 
 @foreign
-typedef PPSFEATURE_CUSTPAPER = _PSFEATURE_CUSTPAPER*;
-
-@foreign
-struct tagXFORM {
+struct XFORM {
     eM11: FLOAT;
     eM12: FLOAT;
     eM21: FLOAT;
@@ -65,16 +51,13 @@ struct tagXFORM {
 }
 
 @foreign
-typedef XFORM = tagXFORM;
+typedef PXFORM = XFORM*;
 
 @foreign
-typedef PXFORM = tagXFORM*;
+typedef LPXFORM = XFORM*;
 
 @foreign
-typedef LPXFORM = tagXFORM*;
-
-@foreign
-struct tagBITMAP {
+struct BITMAP {
     bmType: LONG;
     bmWidth: LONG;
     bmHeight: LONG;
@@ -85,46 +68,37 @@ struct tagBITMAP {
 }
 
 @foreign
-typedef BITMAP = tagBITMAP;
+typedef PBITMAP = BITMAP*;
 
 @foreign
-typedef PBITMAP = tagBITMAP*;
+typedef NPBITMAP = BITMAP*;
 
 @foreign
-typedef NPBITMAP = tagBITMAP*;
+typedef LPBITMAP = BITMAP*;
 
 @foreign
-typedef LPBITMAP = tagBITMAP*;
-
-@foreign
-struct tagRGBTRIPLE {
+struct RGBTRIPLE {
     rgbtBlue: BYTE;
     rgbtGreen: BYTE;
     rgbtRed: BYTE;
 }
 
 @foreign
-typedef RGBTRIPLE = tagRGBTRIPLE;
+typedef PRGBTRIPLE = RGBTRIPLE*;
 
 @foreign
-typedef PRGBTRIPLE = tagRGBTRIPLE*;
+typedef NPRGBTRIPLE = RGBTRIPLE*;
 
 @foreign
-typedef NPRGBTRIPLE = tagRGBTRIPLE*;
+typedef LPRGBTRIPLE = RGBTRIPLE*;
 
 @foreign
-typedef LPRGBTRIPLE = tagRGBTRIPLE*;
-
-@foreign
-struct tagRGBQUAD {
+struct RGBQUAD {
     rgbBlue: BYTE;
     rgbGreen: BYTE;
     rgbRed: BYTE;
     rgbReserved: BYTE;
 }
-
-@foreign
-typedef RGBQUAD = tagRGBQUAD;
 
 @foreign
 typedef LPRGBQUAD = RGBQUAD*;
@@ -148,33 +122,27 @@ typedef FXPT2DOT30 = long;
 typedef LPFXPT2DOT30 = long*;
 
 @foreign
-struct tagCIEXYZ {
+struct CIEXYZ {
     ciexyzX: FXPT2DOT30;
     ciexyzY: FXPT2DOT30;
     ciexyzZ: FXPT2DOT30;
 }
 
 @foreign
-typedef CIEXYZ = tagCIEXYZ;
-
-@foreign
 typedef LPCIEXYZ = CIEXYZ*;
 
 @foreign
-struct tagICEXYZTRIPLE {
+struct CIEXYZTRIPLE {
     ciexyzRed: CIEXYZ;
     ciexyzGreen: CIEXYZ;
     ciexyzBlue: CIEXYZ;
 }
 
 @foreign
-typedef CIEXYZTRIPLE = tagICEXYZTRIPLE;
-
-@foreign
 typedef LPCIEXYZTRIPLE = CIEXYZTRIPLE*;
 
 @foreign
-struct tagLOGCOLORSPACEA {
+struct LOGCOLORSPACEA {
     lcsSignature: DWORD;
     lcsVersion: DWORD;
     lcsSize: DWORD;
@@ -188,13 +156,10 @@ struct tagLOGCOLORSPACEA {
 }
 
 @foreign
-typedef LOGCOLORSPACEA = tagLOGCOLORSPACEA;
+typedef LPLOGCOLORSPACEA = LOGCOLORSPACEA*;
 
 @foreign
-typedef LPLOGCOLORSPACEA = tagLOGCOLORSPACEA*;
-
-@foreign
-struct tagLOGCOLORSPACEW {
+struct LOGCOLORSPACEW {
     lcsSignature: DWORD;
     lcsVersion: DWORD;
     lcsSize: DWORD;
@@ -208,10 +173,7 @@ struct tagLOGCOLORSPACEW {
 }
 
 @foreign
-typedef LOGCOLORSPACEW = tagLOGCOLORSPACEW;
-
-@foreign
-typedef LPLOGCOLORSPACEW = tagLOGCOLORSPACEW*;
+typedef LPLOGCOLORSPACEW = LOGCOLORSPACEW*;
 
 @foreign
 typedef LOGCOLORSPACE = LOGCOLORSPACEA;
@@ -220,7 +182,7 @@ typedef LOGCOLORSPACE = LOGCOLORSPACEA;
 typedef LPLOGCOLORSPACE = LPLOGCOLORSPACEA;
 
 @foreign
-struct tagBITMAPCOREHEADER {
+struct BITMAPCOREHEADER {
     bcSize: DWORD;
     bcWidth: WORD;
     bcHeight: WORD;
@@ -229,16 +191,13 @@ struct tagBITMAPCOREHEADER {
 }
 
 @foreign
-typedef BITMAPCOREHEADER = tagBITMAPCOREHEADER;
+typedef LPBITMAPCOREHEADER = BITMAPCOREHEADER*;
 
 @foreign
-typedef LPBITMAPCOREHEADER = tagBITMAPCOREHEADER*;
+typedef PBITMAPCOREHEADER = BITMAPCOREHEADER*;
 
 @foreign
-typedef PBITMAPCOREHEADER = tagBITMAPCOREHEADER*;
-
-@foreign
-struct tagBITMAPINFOHEADER {
+struct BITMAPINFOHEADER {
     biSize: DWORD;
     biWidth: LONG;
     biHeight: LONG;
@@ -253,13 +212,10 @@ struct tagBITMAPINFOHEADER {
 }
 
 @foreign
-typedef BITMAPINFOHEADER = tagBITMAPINFOHEADER;
+typedef LPBITMAPINFOHEADER = BITMAPINFOHEADER*;
 
 @foreign
-typedef LPBITMAPINFOHEADER = tagBITMAPINFOHEADER*;
-
-@foreign
-typedef PBITMAPINFOHEADER = tagBITMAPINFOHEADER*;
+typedef PBITMAPINFOHEADER = BITMAPINFOHEADER*;
 
 @foreign
 struct BITMAPV4HEADER {
@@ -326,37 +282,31 @@ typedef LPBITMAPV5HEADER = BITMAPV5HEADER;
 typedef PBITMAPV5HEADER = BITMAPV5HEADER;
 
 @foreign
-struct tagBITMAPINFO {
+struct BITMAPINFO {
     bmiHeader: BITMAPINFOHEADER;
     bmiColors: RGBQUAD[1];
 }
 
 @foreign
-typedef BITMAPINFO = tagBITMAPINFO;
+typedef LPBITMAPINFO = BITMAPINFO*;
 
 @foreign
-typedef LPBITMAPINFO = tagBITMAPINFO*;
+typedef PBITMAPINFO = BITMAPINFO*;
 
 @foreign
-typedef PBITMAPINFO = tagBITMAPINFO*;
-
-@foreign
-struct tagBITMAPCOREINFO {
+struct BITMAPCOREINFO {
     bmciHeader: BITMAPCOREHEADER;
     bmciColors: RGBTRIPLE[1];
 }
 
 @foreign
-typedef BITMAPCOREINFO = tagBITMAPCOREINFO;
+typedef LPBITMAPCOREINFO = BITMAPCOREINFO*;
 
 @foreign
-typedef LPBITMAPCOREINFO = tagBITMAPCOREINFO*;
+typedef PBITMAPCOREINFO = BITMAPCOREINFO*;
 
 @foreign
-typedef PBITMAPCOREINFO = tagBITMAPCOREINFO*;
-
-@foreign
-struct tagBITMAPFILEHEADER {
+struct BITMAPFILEHEADER {
     bfType: WORD;
     bfSize: DWORD;
     bfReserved1: WORD;
@@ -365,96 +315,78 @@ struct tagBITMAPFILEHEADER {
 }
 
 @foreign
-typedef BITMAPFILEHEADER = tagBITMAPFILEHEADER;
+typedef LPBITMAPFILEHEADER = BITMAPFILEHEADER*;
 
 @foreign
-typedef LPBITMAPFILEHEADER = tagBITMAPFILEHEADER*;
+typedef PBITMAPFILEHEADER = BITMAPFILEHEADER*;
 
 @foreign
-typedef PBITMAPFILEHEADER = tagBITMAPFILEHEADER*;
-
-@foreign
-struct tagFONTSIGNATURE {
+struct FONTSIGNATURE {
     fsUsb: DWORD[4];
     fsCsb: DWORD[2];
 }
 
 @foreign
-typedef FONTSIGNATURE = tagFONTSIGNATURE;
+typedef PFONTSIGNATURE = FONTSIGNATURE*;
 
 @foreign
-typedef PFONTSIGNATURE = tagFONTSIGNATURE*;
+typedef LPFONTSIGNATURE = FONTSIGNATURE*;
 
 @foreign
-typedef LPFONTSIGNATURE = tagFONTSIGNATURE*;
-
-@foreign
-struct tagCHARSETINFO {
+struct CHARSETINFO {
     ciCharset: UINT;
     ciACP: UINT;
     fs: FONTSIGNATURE;
 }
 
 @foreign
-typedef CHARSETINFO = tagCHARSETINFO;
+typedef PCHARSETINFO = CHARSETINFO*;
 
 @foreign
-typedef PCHARSETINFO = tagCHARSETINFO*;
+typedef NPCHARSETINFO = CHARSETINFO*;
 
 @foreign
-typedef NPCHARSETINFO = tagCHARSETINFO*;
+typedef LPCHARSETINFO = CHARSETINFO*;
 
 @foreign
-typedef LPCHARSETINFO = tagCHARSETINFO*;
-
-@foreign
-struct tagLOCALESIGNATURE {
+struct LOCALESIGNATURE {
     lsUsb: DWORD[4];
     lsCsbDefault: DWORD[2];
     lsCsbSupported: DWORD[2];
 }
 
 @foreign
-typedef LOCALESIGNATURE = tagLOCALESIGNATURE;
+typedef PLOCALESIGNATURE = LOCALESIGNATURE*;
 
 @foreign
-typedef PLOCALESIGNATURE = tagLOCALESIGNATURE*;
+typedef LPLOCALESIGNATURE = LOCALESIGNATURE*;
 
 @foreign
-typedef LPLOCALESIGNATURE = tagLOCALESIGNATURE*;
-
-@foreign
-struct tagHANDLETABLE {
+struct HANDLETABLE {
     objectHandle: HGDIOBJ[1];
 }
 
 @foreign
-typedef HANDLETABLE = tagHANDLETABLE;
+typedef PHANDLETABLE = HANDLETABLE*;
 
 @foreign
-typedef PHANDLETABLE = tagHANDLETABLE*;
+typedef LPHANDLETABLE = HANDLETABLE*;
 
 @foreign
-typedef LPHANDLETABLE = tagHANDLETABLE*;
-
-@foreign
-struct tagMETARECORD {
+struct METARECORD {
     rdSize: DWORD;
     rdFunction: WORD;
     rdParm: WORD[1];
 }
 
 @foreign
-typedef METARECORD = tagMETARECORD;
+typedef PMETARECORD = METARECORD*;
 
 @foreign
-typedef PMETARECORD = tagMETARECORD*;
+typedef LPMETARECORD = METARECORD*;
 
 @foreign
-typedef LPMETARECORD = tagMETARECORD*;
-
-@foreign
-struct tagMETAFILEPICT {
+struct METAFILEPICT {
     mm: LONG;
     xExt: LONG;
     yExt: LONG;
@@ -462,13 +394,10 @@ struct tagMETAFILEPICT {
 }
 
 @foreign
-typedef METAFILEPICT = tagMETAFILEPICT;
+typedef LPMETAFILEPICT = METAFILEPICT*;
 
 @foreign
-typedef LPMETAFILEPICT = tagMETAFILEPICT*;
-
-@foreign
-struct tagMETAHEADER {
+struct METAHEADER {
     mtType: WORD;
     mtHeaderSize: WORD;
     mtVersion: WORD;
@@ -479,32 +408,26 @@ struct tagMETAHEADER {
 }
 
 @foreign
-typedef METAHEADER = tagMETAHEADER;
+typedef PMETAHEADER = METAHEADER*;
 
 @foreign
-typedef PMETAHEADER = tagMETAHEADER*;
+typedef LPMETAHEADER = METAHEADER*;
 
 @foreign
-typedef LPMETAHEADER = tagMETAHEADER*;
-
-@foreign
-struct tagENHMETARECORD {
+struct ENHMETARECORD {
     iType: DWORD;
     nSize: DWORD;
     dParm: DWORD[1];
 }
 
 @foreign
-typedef ENHMETARECORD = tagENHMETARECORD;
+typedef PENHMETARECORD = ENHMETARECORD*;
 
 @foreign
-typedef PENHMETARECORD = tagENHMETARECORD*;
+typedef LPENHMETARECORD = ENHMETARECORD*;
 
 @foreign
-typedef LPENHMETARECORD = tagENHMETARECORD*;
-
-@foreign
-struct tagENHMETAHEADER {
+struct ENHMETAHEADER {
     iType: DWORD;
     nSize: DWORD;
     rclBounds: RECTL;
@@ -527,19 +450,16 @@ struct tagENHMETAHEADER {
 }
 
 @foreign
-typedef ENHMETAHEADER = tagENHMETAHEADER;
+typedef PENHMETAHEADER = ENHMETAHEADER*;
 
 @foreign
-typedef PENHMETAHEADER = tagENHMETAHEADER*;
-
-@foreign
-typedef LPENHMETAHEADER = tagENHMETAHEADER*;
+typedef LPENHMETAHEADER = ENHMETAHEADER*;
 
 @foreign
 typedef BCHAR = BYTE;
 
 @foreign
-struct tagTEXTMETRICA {
+struct TEXTMETRICA {
     tmHeight: LONG;
     tmAscent: LONG;
     tmDescent: LONG;
@@ -563,19 +483,16 @@ struct tagTEXTMETRICA {
 }
 
 @foreign
-typedef TEXTMETRICA = tagTEXTMETRICA;
+typedef PTEXTMETRICA = TEXTMETRICA*;
 
 @foreign
-typedef PTEXTMETRICA = tagTEXTMETRICA*;
+typedef NPTEXTMETRICA = TEXTMETRICA*;
 
 @foreign
-typedef NPTEXTMETRICA = tagTEXTMETRICA*;
+typedef LPTEXTMETRICA = TEXTMETRICA*;
 
 @foreign
-typedef LPTEXTMETRICA = tagTEXTMETRICA*;
-
-@foreign
-struct tagTEXTMETRICW {
+struct TEXTMETRICW {
     tmHeight: LONG;
     tmAscent: LONG;
     tmDescent: LONG;
@@ -599,16 +516,13 @@ struct tagTEXTMETRICW {
 }
 
 @foreign
-typedef TEXTMETRICW = tagTEXTMETRICW;
+typedef PTEXTMETRICW = TEXTMETRICW*;
 
 @foreign
-typedef PTEXTMETRICW = tagTEXTMETRICW*;
+typedef NPTEXTMETRICW = TEXTMETRICW*;
 
 @foreign
-typedef NPTEXTMETRICW = tagTEXTMETRICW*;
-
-@foreign
-typedef LPTEXTMETRICW = tagTEXTMETRICW*;
+typedef LPTEXTMETRICW = TEXTMETRICW*;
 
 @foreign
 typedef TEXTMETRIC = TEXTMETRICA;
@@ -623,7 +537,7 @@ typedef NPTEXTMETRIC = NPTEXTMETRICA;
 typedef LPTEXTMETRIC = LPTEXTMETRICA;
 
 @foreign
-struct tagNEWTEXTMETRICA {
+struct NEWTEXTMETRICA {
     tmHeight: LONG;
     tmAscent: LONG;
     tmDescent: LONG;
@@ -651,19 +565,16 @@ struct tagNEWTEXTMETRICA {
 }
 
 @foreign
-typedef NEWTEXTMETRICA = tagNEWTEXTMETRICA;
+typedef PNEWTEXTMETRICA = NEWTEXTMETRICA*;
 
 @foreign
-typedef PNEWTEXTMETRICA = tagNEWTEXTMETRICA*;
+typedef NPNEWTEXTMETRICA = NEWTEXTMETRICA*;
 
 @foreign
-typedef NPNEWTEXTMETRICA = tagNEWTEXTMETRICA*;
+typedef LPNEWTEXTMETRICA = NEWTEXTMETRICA*;
 
 @foreign
-typedef LPNEWTEXTMETRICA = tagNEWTEXTMETRICA*;
-
-@foreign
-struct tagNEWTEXTMETRICW {
+struct NEWTEXTMETRICW {
     tmHeight: LONG;
     tmAscent: LONG;
     tmDescent: LONG;
@@ -691,16 +602,13 @@ struct tagNEWTEXTMETRICW {
 }
 
 @foreign
-typedef NEWTEXTMETRICW = tagNEWTEXTMETRICW;
+typedef PNEWTEXTMETRICW = NEWTEXTMETRICW*;
 
 @foreign
-typedef PNEWTEXTMETRICW = tagNEWTEXTMETRICW*;
+typedef NPNEWTEXTMETRICW = NEWTEXTMETRICW*;
 
 @foreign
-typedef NPNEWTEXTMETRICW = tagNEWTEXTMETRICW*;
-
-@foreign
-typedef LPNEWTEXTMETRICW = tagNEWTEXTMETRICW*;
+typedef LPNEWTEXTMETRICW = NEWTEXTMETRICW*;
 
 @foreign
 typedef NEWTEXTMETRIC = NEWTEXTMETRICA;
@@ -715,28 +623,22 @@ typedef NPNEWTEXTMETRIC = NPNEWTEXTMETRICA;
 typedef LPNEWTEXTMETRIC = LPNEWTEXTMETRICA;
 
 @foreign
-struct tagNEWTEXTMETRICEXA {
+struct NEWTEXTMETRICEXA {
     ntmTm: NEWTEXTMETRICA;
     ntmFontSig: FONTSIGNATURE;
 }
 
 @foreign
-typedef NEWTEXTMETRICEXA = tagNEWTEXTMETRICEXA;
-
-@foreign
-struct tagNEWTEXTMETRICEXW {
+struct NEWTEXTMETRICEXW {
     ntmTm: NEWTEXTMETRICW;
     ntmFontSig: FONTSIGNATURE;
 }
 
 @foreign
-typedef NEWTEXTMETRICEXW = tagNEWTEXTMETRICEXW;
-
-@foreign
 typedef NEWTEXTMETRICEX = NEWTEXTMETRICEXA;
 
 @foreign
-struct tagPELARRAY {
+struct PELARRAY {
     paXCount: LONG;
     paYCount: LONG;
     paXExt: LONG;
@@ -745,54 +647,45 @@ struct tagPELARRAY {
 }
 
 @foreign
-typedef PELARRAY = tagPELARRAY;
+typedef PPELARRAY = PELARRAY*;
 
 @foreign
-typedef PPELARRAY = tagPELARRAY*;
+typedef NPPELARRAY = PELARRAY*;
 
 @foreign
-typedef NPPELARRAY = tagPELARRAY*;
+typedef LPPELARRAY = PELARRAY*;
 
 @foreign
-typedef LPPELARRAY = tagPELARRAY*;
-
-@foreign
-struct tagLOGBRUSH {
+struct LOGBRUSH {
     lbStyle: UINT;
     lbColor: COLORREF;
     lbHatch: ULONG_PTR;
 }
 
 @foreign
-typedef LOGBRUSH = tagLOGBRUSH;
+typedef PLOGBRUSH = LOGBRUSH*;
 
 @foreign
-typedef PLOGBRUSH = tagLOGBRUSH*;
+typedef NPLOGBRUSH = LOGBRUSH*;
 
 @foreign
-typedef NPLOGBRUSH = tagLOGBRUSH*;
+typedef LPLOGBRUSH = LOGBRUSH*;
 
 @foreign
-typedef LPLOGBRUSH = tagLOGBRUSH*;
-
-@foreign
-struct tagLOGBRUSH32 {
+struct LOGBRUSH32 {
     lbStyle: UINT;
     lbColor: COLORREF;
     lbHatch: ULONG;
 }
 
 @foreign
-typedef LOGBRUSH32 = tagLOGBRUSH32;
+typedef PLOGBRUSH32 = LOGBRUSH32*;
 
 @foreign
-typedef PLOGBRUSH32 = tagLOGBRUSH32*;
+typedef NPLOGBRUSH32 = LOGBRUSH32*;
 
 @foreign
-typedef NPLOGBRUSH32 = tagLOGBRUSH32*;
-
-@foreign
-typedef LPLOGBRUSH32 = tagLOGBRUSH32*;
+typedef LPLOGBRUSH32 = LOGBRUSH32*;
 
 @foreign
 typedef PATTERN = LOGBRUSH;
@@ -807,26 +700,23 @@ typedef NPPATTERN = PATTERN*;
 typedef LPPATTERN = PATTERN*;
 
 @foreign
-struct tagLOGPEN {
+struct LOGPEN {
     lopnStyle: UINT;
     lopnWidth: POINT;
     lopnColor: COLORREF;
 }
 
 @foreign
-typedef LOGPEN = tagLOGPEN;
+typedef PLOGPEN = LOGPEN*;
 
 @foreign
-typedef PLOGPEN = tagLOGPEN*;
+typedef NPLOGPEN = LOGPEN*;
 
 @foreign
-typedef NPLOGPEN = tagLOGPEN*;
+typedef LPLOGPEN = LOGPEN*;
 
 @foreign
-typedef LPLOGPEN = tagLOGPEN*;
-
-@foreign
-struct tagEXTLOGPEN {
+struct EXTLOGPEN {
     elpPenStyle: DWORD;
     elpWidth: DWORD;
     elpBrushStyle: UINT;
@@ -837,19 +727,16 @@ struct tagEXTLOGPEN {
 }
 
 @foreign
-typedef EXTLOGPEN = tagEXTLOGPEN;
+typedef PEXTLOGPEN = EXTLOGPEN*;
 
 @foreign
-typedef PEXTLOGPEN = tagEXTLOGPEN*;
+typedef NPEXTLOGPEN = EXTLOGPEN*;
 
 @foreign
-typedef NPEXTLOGPEN = tagEXTLOGPEN*;
+typedef LPEXTLOGPEN = EXTLOGPEN*;
 
 @foreign
-typedef LPEXTLOGPEN = tagEXTLOGPEN*;
-
-@foreign
-struct tagEXTLOGPEN32 {
+struct EXTLOGPEN32 {
     elpPenStyle: DWORD;
     elpWidth: DWORD;
     elpBrushStyle: UINT;
@@ -860,19 +747,16 @@ struct tagEXTLOGPEN32 {
 }
 
 @foreign
-typedef EXTLOGPEN32 = tagEXTLOGPEN32;
+typedef PEXTLOGPEN32 = EXTLOGPEN32*;
 
 @foreign
-typedef PEXTLOGPEN32 = tagEXTLOGPEN32*;
+typedef NPEXTLOGPEN32 = EXTLOGPEN32*;
 
 @foreign
-typedef NPEXTLOGPEN32 = tagEXTLOGPEN32*;
+typedef LPEXTLOGPEN32 = EXTLOGPEN32*;
 
 @foreign
-typedef LPEXTLOGPEN32 = tagEXTLOGPEN32*;
-
-@foreign
-struct tagPALETTEENTRY {
+struct PALETTEENTRY {
     peRed: BYTE;
     peGreen: BYTE;
     peBlue: BYTE;
@@ -880,35 +764,29 @@ struct tagPALETTEENTRY {
 }
 
 @foreign
-typedef PALETTEENTRY = tagPALETTEENTRY;
+typedef PPALETTEENTRY = PALETTEENTRY*;
 
 @foreign
-typedef PPALETTEENTRY = tagPALETTEENTRY*;
+typedef LPPALETTEENTRY = PALETTEENTRY*;
 
 @foreign
-typedef LPPALETTEENTRY = tagPALETTEENTRY*;
-
-@foreign
-struct tagLOGPALETTE {
+struct LOGPALETTE {
     palVersion: WORD;
     palNumEntries: WORD;
     palPalEntry: PALETTEENTRY[1];
 }
 
 @foreign
-typedef LOGPALETTE = tagLOGPALETTE;
+typedef PLOGPALETTE = LOGPALETTE*;
 
 @foreign
-typedef PLOGPALETTE = tagLOGPALETTE*;
+typedef NPLOGPALETTE = LOGPALETTE*;
 
 @foreign
-typedef NPLOGPALETTE = tagLOGPALETTE*;
+typedef LPLOGPALETTE = LOGPALETTE*;
 
 @foreign
-typedef LPLOGPALETTE = tagLOGPALETTE*;
-
-@foreign
-struct tagLOGFONTA {
+struct LOGFONTA {
     lfHeight: LONG;
     lfWidth: LONG;
     lfEscapement: LONG;
@@ -926,19 +804,16 @@ struct tagLOGFONTA {
 }
 
 @foreign
-typedef LOGFONTA = tagLOGFONTA;
+typedef PLOGFONTA = LOGFONTA*;
 
 @foreign
-typedef PLOGFONTA = tagLOGFONTA*;
+typedef NPLOGFONTA = LOGFONTA*;
 
 @foreign
-typedef NPLOGFONTA = tagLOGFONTA*;
+typedef LPLOGFONTA = LOGFONTA*;
 
 @foreign
-typedef LPLOGFONTA = tagLOGFONTA*;
-
-@foreign
-struct tagLOGFONTW {
+struct LOGFONTW {
     lfHeight: LONG;
     lfWidth: LONG;
     lfEscapement: LONG;
@@ -956,16 +831,13 @@ struct tagLOGFONTW {
 }
 
 @foreign
-typedef LOGFONTW = tagLOGFONTW;
+typedef PLOGFONTW = LOGFONTW*;
 
 @foreign
-typedef PLOGFONTW = tagLOGFONTW*;
+typedef NPLOGFONTW = LOGFONTW*;
 
 @foreign
-typedef NPLOGFONTW = tagLOGFONTW*;
-
-@foreign
-typedef LPLOGFONTW = tagLOGFONTW*;
+typedef LPLOGFONTW = LOGFONTW*;
 
 @foreign
 typedef LOGFONT = LOGFONTA;
@@ -980,30 +852,24 @@ typedef NPLOGFONT = NPLOGFONTA;
 typedef LPLOGFONT = LPLOGFONTA;
 
 @foreign
-struct tagENUMLOGFONTA {
+struct ENUMLOGFONTA {
     elfLogFont: LOGFONTA;
     elfFullName: BYTE[64];
     elfStyle: BYTE[32];
 }
 
 @foreign
-typedef ENUMLOGFONTA = tagENUMLOGFONTA;
+typedef LPENUMLOGFONTA = ENUMLOGFONTA*;
 
 @foreign
-typedef LPENUMLOGFONTA = tagENUMLOGFONTA*;
-
-@foreign
-struct tagENUMLOGFONTW {
+struct ENUMLOGFONTW {
     elfLogFont: LOGFONTW;
     elfFullName: WCHAR[64];
     elfStyle: WCHAR[32];
 }
 
 @foreign
-typedef ENUMLOGFONTW = tagENUMLOGFONTW;
-
-@foreign
-typedef LPENUMLOGFONTW = tagENUMLOGFONTW*;
+typedef LPENUMLOGFONTW = ENUMLOGFONTW*;
 
 @foreign
 typedef ENUMLOGFONT = ENUMLOGFONTA;
@@ -1012,7 +878,7 @@ typedef ENUMLOGFONT = ENUMLOGFONTA;
 typedef LPENUMLOGFONT = LPENUMLOGFONTA;
 
 @foreign
-struct tagENUMLOGFONTEXA {
+struct ENUMLOGFONTEXA {
     elfLogFont: LOGFONTA;
     elfFullName: BYTE[64];
     elfStyle: BYTE[32];
@@ -1020,13 +886,10 @@ struct tagENUMLOGFONTEXA {
 }
 
 @foreign
-typedef ENUMLOGFONTEXA = tagENUMLOGFONTEXA;
+typedef LPENUMLOGFONTEXA = ENUMLOGFONTEXA*;
 
 @foreign
-typedef LPENUMLOGFONTEXA = tagENUMLOGFONTEXA*;
-
-@foreign
-struct tagENUMLOGFONTEXW {
+struct ENUMLOGFONTEXW {
     elfLogFont: LOGFONTW;
     elfFullName: WCHAR[64];
     elfStyle: WCHAR[32];
@@ -1034,10 +897,7 @@ struct tagENUMLOGFONTEXW {
 }
 
 @foreign
-typedef ENUMLOGFONTEXW = tagENUMLOGFONTEXW;
-
-@foreign
-typedef LPENUMLOGFONTEXW = tagENUMLOGFONTEXW*;
+typedef LPENUMLOGFONTEXW = ENUMLOGFONTEXW*;
 
 @foreign
 typedef ENUMLOGFONTEX = ENUMLOGFONTEXA;
@@ -1046,7 +906,7 @@ typedef ENUMLOGFONTEX = ENUMLOGFONTEXA;
 typedef LPENUMLOGFONTEX = LPENUMLOGFONTEXA;
 
 @foreign
-struct tagPANOSE {
+struct PANOSE {
     bFamilyType: BYTE;
     bSerifStyle: BYTE;
     bWeight: BYTE;
@@ -1060,13 +920,10 @@ struct tagPANOSE {
 }
 
 @foreign
-typedef PANOSE = tagPANOSE;
+typedef LPPANOSE = PANOSE*;
 
 @foreign
-typedef LPPANOSE = tagPANOSE*;
-
-@foreign
-struct tagEXTLOGFONTA {
+struct EXTLOGFONTA {
     elfLogFont: LOGFONTA;
     elfFullName: BYTE[64];
     elfStyle: BYTE[32];
@@ -1080,19 +937,16 @@ struct tagEXTLOGFONTA {
 }
 
 @foreign
-typedef EXTLOGFONTA = tagEXTLOGFONTA;
+typedef PEXTLOGFONTA = EXTLOGFONTA*;
 
 @foreign
-typedef PEXTLOGFONTA = tagEXTLOGFONTA*;
+typedef NPEXTLOGFONTA = EXTLOGFONTA*;
 
 @foreign
-typedef NPEXTLOGFONTA = tagEXTLOGFONTA*;
+typedef LPEXTLOGFONTA = EXTLOGFONTA*;
 
 @foreign
-typedef LPEXTLOGFONTA = tagEXTLOGFONTA*;
-
-@foreign
-struct tagEXTLOGFONTW {
+struct EXTLOGFONTW {
     elfLogFont: LOGFONTW;
     elfFullName: WCHAR[64];
     elfStyle: WCHAR[32];
@@ -1106,16 +960,13 @@ struct tagEXTLOGFONTW {
 }
 
 @foreign
-typedef EXTLOGFONTW = tagEXTLOGFONTW;
+typedef PEXTLOGFONTW = EXTLOGFONTW*;
 
 @foreign
-typedef PEXTLOGFONTW = tagEXTLOGFONTW*;
+typedef NPEXTLOGFONTW = EXTLOGFONTW*;
 
 @foreign
-typedef NPEXTLOGFONTW = tagEXTLOGFONTW*;
-
-@foreign
-typedef LPEXTLOGFONTW = tagEXTLOGFONTW*;
+typedef LPEXTLOGFONTW = EXTLOGFONTW*;
 
 @foreign
 typedef EXTLOGFONT = EXTLOGFONTA;
@@ -1130,7 +981,7 @@ typedef NPEXTLOGFONT = NPEXTLOGFONTA;
 typedef LPEXTLOGFONT = LPEXTLOGFONTA;
 
 @foreign
-struct _devicemodeA___inner_s1 {
+struct DEVMODEA___inner_s1 {
     dmOrientation: short;
     dmPaperSize: short;
     dmPaperLength: short;
@@ -1142,33 +993,33 @@ struct _devicemodeA___inner_s1 {
 }
 
 @foreign
-struct _devicemodeA___inner_s2 {
+struct DEVMODEA___inner_s2 {
     dmPosition: POINTL;
     dmDisplayOrientation: DWORD;
     dmDisplayFixedOutput: DWORD;
 }
 
 @foreign
-union _devicemodeA___inner_u1 {
-    s: _devicemodeA___inner_s1;
-    s2: _devicemodeA___inner_s2;
+union DEVMODEA___inner_u1 {
+    s: DEVMODEA___inner_s1;
+    s2: DEVMODEA___inner_s2;
 }
 
 @foreign
-union _devicemodeA___inner_u2 {
+union DEVMODEA___inner_u2 {
     dmDisplayFlags: DWORD;
     dmNup: DWORD;
 }
 
 @foreign
-struct _devicemodeA {
+struct DEVMODEA {
     dmDeviceName: BYTE[32];
     dmSpecVersion: WORD;
     dmDriverVersion: WORD;
     dmSize: WORD;
     dmDriverExtra: WORD;
     dmFields: DWORD;
-    u: _devicemodeA___inner_u1;
+    u: DEVMODEA___inner_u1;
     dmColor: short;
     dmDuplex: short;
     dmYResolution: short;
@@ -1179,7 +1030,7 @@ struct _devicemodeA {
     dmBitsPerPel: DWORD;
     dmPelsWidth: DWORD;
     dmPelsHeight: DWORD;
-    u2: _devicemodeA___inner_u2;
+    u2: DEVMODEA___inner_u2;
     dmDisplayFrequency: DWORD;
     dmICMMethod: DWORD;
     dmICMIntent: DWORD;
@@ -1192,19 +1043,16 @@ struct _devicemodeA {
 }
 
 @foreign
-typedef DEVMODEA = _devicemodeA;
+typedef PDEVMODEA = DEVMODEA*;
 
 @foreign
-typedef PDEVMODEA = _devicemodeA*;
+typedef NPDEVMODEA = DEVMODEA*;
 
 @foreign
-typedef NPDEVMODEA = _devicemodeA*;
+typedef LPDEVMODEA = DEVMODEA*;
 
 @foreign
-typedef LPDEVMODEA = _devicemodeA*;
-
-@foreign
-struct _devicemodeW___inner_s1 {
+struct DEVMODEW___inner_s1 {
     dmOrientation: short;
     dmPaperSize: short;
     dmPaperLength: short;
@@ -1216,33 +1064,33 @@ struct _devicemodeW___inner_s1 {
 }
 
 @foreign
-struct _devicemodeW___inner_s2 {
+struct DEVMODEW___inner_s2 {
     dmPosition: POINTL;
     dmDisplayOrientation: DWORD;
     dmDisplayFixedOutput: DWORD;
 }
 
 @foreign
-union _devicemodeW___inner_u1 {
-    s: _devicemodeW___inner_s1;
-    s2: _devicemodeW___inner_s2;
+union DEVMODEW___inner_u1 {
+    s: DEVMODEW___inner_s1;
+    s2: DEVMODEW___inner_s2;
 }
 
 @foreign
-union _devicemodeW___inner_u2 {
+union DEVMODEW___inner_u2 {
     dmDisplayFlags: DWORD;
     dmNup: DWORD;
 }
 
 @foreign
-struct _devicemodeW {
+struct DEVMODEW {
     dmDeviceName: WCHAR[32];
     dmSpecVersion: WORD;
     dmDriverVersion: WORD;
     dmSize: WORD;
     dmDriverExtra: WORD;
     dmFields: DWORD;
-    u: _devicemodeW___inner_u1;
+    u: DEVMODEW___inner_u1;
     dmColor: short;
     dmDuplex: short;
     dmYResolution: short;
@@ -1253,7 +1101,7 @@ struct _devicemodeW {
     dmBitsPerPel: DWORD;
     dmPelsWidth: DWORD;
     dmPelsHeight: DWORD;
-    u2: _devicemodeW___inner_u2;
+    u2: DEVMODEW___inner_u2;
     dmDisplayFrequency: DWORD;
     dmICMMethod: DWORD;
     dmICMIntent: DWORD;
@@ -1266,16 +1114,13 @@ struct _devicemodeW {
 }
 
 @foreign
-typedef DEVMODEW = _devicemodeW;
+typedef PDEVMODEW = DEVMODEW*;
 
 @foreign
-typedef PDEVMODEW = _devicemodeW*;
+typedef NPDEVMODEW = DEVMODEW*;
 
 @foreign
-typedef NPDEVMODEW = _devicemodeW*;
-
-@foreign
-typedef LPDEVMODEW = _devicemodeW*;
+typedef LPDEVMODEW = DEVMODEW*;
 
 @foreign
 typedef DEVMODE = DEVMODEA;
@@ -1290,7 +1135,7 @@ typedef NPDEVMODE = NPDEVMODEA;
 typedef LPDEVMODE = LPDEVMODEA;
 
 @foreign
-struct _DISPLAY_DEVICEA {
+struct DISPLAY_DEVICEA {
     cb: DWORD;
     DeviceName: CHAR[32];
     DeviceString: CHAR[128];
@@ -1300,16 +1145,13 @@ struct _DISPLAY_DEVICEA {
 }
 
 @foreign
-typedef DISPLAY_DEVICEA = _DISPLAY_DEVICEA;
+typedef PDISPLAY_DEVICEA = DISPLAY_DEVICEA*;
 
 @foreign
-typedef PDISPLAY_DEVICEA = _DISPLAY_DEVICEA*;
+typedef LPDISPLAY_DEVICEA = DISPLAY_DEVICEA*;
 
 @foreign
-typedef LPDISPLAY_DEVICEA = _DISPLAY_DEVICEA*;
-
-@foreign
-struct _DISPLAY_DEVICEW {
+struct DISPLAY_DEVICEW {
     cb: DWORD;
     DeviceName: WCHAR[32];
     DeviceString: WCHAR[128];
@@ -1319,13 +1161,10 @@ struct _DISPLAY_DEVICEW {
 }
 
 @foreign
-typedef DISPLAY_DEVICEW = _DISPLAY_DEVICEW;
+typedef PDISPLAY_DEVICEW = DISPLAY_DEVICEW*;
 
 @foreign
-typedef PDISPLAY_DEVICEW = _DISPLAY_DEVICEW*;
-
-@foreign
-typedef LPDISPLAY_DEVICEW = _DISPLAY_DEVICEW*;
+typedef LPDISPLAY_DEVICEW = DISPLAY_DEVICEW*;
 
 @foreign
 typedef DISPLAY_DEVICE = DISPLAY_DEVICEA;
@@ -1584,7 +1423,7 @@ struct DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION {
 */
 
 @foreign
-enum _DISPLAYCONFIG_COLOR_ENCODING {
+enum DISPLAYCONFIG_COLOR_ENCODING {
     DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32 = -1,
     DISPLAYCONFIG_COLOR_ENCODING_RGB = 0,
     DISPLAYCONFIG_COLOR_ENCODING_YCBCR444 = 1,
@@ -1593,14 +1432,11 @@ enum _DISPLAYCONFIG_COLOR_ENCODING {
     DISPLAYCONFIG_COLOR_ENCODING_INTENSITY = 4,
 }
 
-@foreign
-typedef DISPLAYCONFIG_COLOR_ENCODING = _DISPLAYCONFIG_COLOR_ENCODING;
-
 /*
 @PROBLEM Nested struct def at line 3152, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
 
 @foreign
-struct _DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO {
+struct DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER;
     u: (null);
     colorEncoding: DISPLAYCONFIG_COLOR_ENCODING;
@@ -1609,29 +1445,17 @@ struct _DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO {
 */
 
 /*
-@PROBLEM Nested struct def at line 3152, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
-
-_DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO
-*/
-
-/*
 @PROBLEM Nested struct def at line 3172, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
 
 @foreign
-struct _DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE {
+struct DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER;
     u: (null);
 }
 */
 
-/*
-@PROBLEM Nested struct def at line 3172, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
-
-_DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE
-*/
-
 @foreign
-struct _RGNDATAHEADER {
+struct RGNDATAHEADER {
     dwSize: DWORD;
     iType: DWORD;
     nCount: DWORD;
@@ -1640,69 +1464,57 @@ struct _RGNDATAHEADER {
 }
 
 @foreign
-typedef RGNDATAHEADER = _RGNDATAHEADER;
+typedef PRGNDATAHEADER = RGNDATAHEADER*;
 
 @foreign
-typedef PRGNDATAHEADER = _RGNDATAHEADER*;
-
-@foreign
-struct _RGNDATA {
+struct RGNDATA {
     rdh: RGNDATAHEADER;
     Buffer: char[1];
 }
 
 @foreign
-typedef RGNDATA = _RGNDATA;
+typedef PRGNDATA = RGNDATA*;
 
 @foreign
-typedef PRGNDATA = _RGNDATA*;
+typedef NPRGNDATA = RGNDATA*;
 
 @foreign
-typedef NPRGNDATA = _RGNDATA*;
+typedef LPRGNDATA = RGNDATA*;
 
 @foreign
-typedef LPRGNDATA = _RGNDATA*;
-
-@foreign
-struct _ABC {
+struct ABC {
     abcA: int;
     abcB: UINT;
     abcC: int;
 }
 
 @foreign
-typedef ABC = _ABC;
+typedef PABC = ABC*;
 
 @foreign
-typedef PABC = _ABC*;
+typedef NPABC = ABC*;
 
 @foreign
-typedef NPABC = _ABC*;
+typedef LPABC = ABC*;
 
 @foreign
-typedef LPABC = _ABC*;
-
-@foreign
-struct _ABCFLOAT {
+struct ABCFLOAT {
     abcfA: FLOAT;
     abcfB: FLOAT;
     abcfC: FLOAT;
 }
 
 @foreign
-typedef ABCFLOAT = _ABCFLOAT;
+typedef PABCFLOAT = ABCFLOAT*;
 
 @foreign
-typedef PABCFLOAT = _ABCFLOAT*;
+typedef NPABCFLOAT = ABCFLOAT*;
 
 @foreign
-typedef NPABCFLOAT = _ABCFLOAT*;
+typedef LPABCFLOAT = ABCFLOAT*;
 
 @foreign
-typedef LPABCFLOAT = _ABCFLOAT*;
-
-@foreign
-struct _OUTLINETEXTMETRICA {
+struct OUTLINETEXTMETRICA {
     otmSize: UINT;
     otmTextMetrics: TEXTMETRICA;
     otmFiller: BYTE;
@@ -1738,19 +1550,16 @@ struct _OUTLINETEXTMETRICA {
 }
 
 @foreign
-typedef OUTLINETEXTMETRICA = _OUTLINETEXTMETRICA;
+typedef POUTLINETEXTMETRICA = OUTLINETEXTMETRICA*;
 
 @foreign
-typedef POUTLINETEXTMETRICA = _OUTLINETEXTMETRICA*;
+typedef NPOUTLINETEXTMETRICA = OUTLINETEXTMETRICA*;
 
 @foreign
-typedef NPOUTLINETEXTMETRICA = _OUTLINETEXTMETRICA*;
+typedef LPOUTLINETEXTMETRICA = OUTLINETEXTMETRICA*;
 
 @foreign
-typedef LPOUTLINETEXTMETRICA = _OUTLINETEXTMETRICA*;
-
-@foreign
-struct _OUTLINETEXTMETRICW {
+struct OUTLINETEXTMETRICW {
     otmSize: UINT;
     otmTextMetrics: TEXTMETRICW;
     otmFiller: BYTE;
@@ -1786,16 +1595,13 @@ struct _OUTLINETEXTMETRICW {
 }
 
 @foreign
-typedef OUTLINETEXTMETRICW = _OUTLINETEXTMETRICW;
+typedef POUTLINETEXTMETRICW = OUTLINETEXTMETRICW*;
 
 @foreign
-typedef POUTLINETEXTMETRICW = _OUTLINETEXTMETRICW*;
+typedef NPOUTLINETEXTMETRICW = OUTLINETEXTMETRICW*;
 
 @foreign
-typedef NPOUTLINETEXTMETRICW = _OUTLINETEXTMETRICW*;
-
-@foreign
-typedef LPOUTLINETEXTMETRICW = _OUTLINETEXTMETRICW*;
+typedef LPOUTLINETEXTMETRICW = OUTLINETEXTMETRICW*;
 
 @foreign
 typedef OUTLINETEXTMETRIC = OUTLINETEXTMETRICA;
@@ -1810,7 +1616,7 @@ typedef NPOUTLINETEXTMETRIC = NPOUTLINETEXTMETRICA;
 typedef LPOUTLINETEXTMETRIC = LPOUTLINETEXTMETRICA;
 
 @foreign
-struct tagPOLYTEXTA {
+struct POLYTEXTA {
     x: int;
     y: int;
     n: UINT;
@@ -1821,19 +1627,16 @@ struct tagPOLYTEXTA {
 }
 
 @foreign
-typedef POLYTEXTA = tagPOLYTEXTA;
+typedef PPOLYTEXTA = POLYTEXTA*;
 
 @foreign
-typedef PPOLYTEXTA = tagPOLYTEXTA*;
+typedef NPPOLYTEXTA = POLYTEXTA*;
 
 @foreign
-typedef NPPOLYTEXTA = tagPOLYTEXTA*;
+typedef LPPOLYTEXTA = POLYTEXTA*;
 
 @foreign
-typedef LPPOLYTEXTA = tagPOLYTEXTA*;
-
-@foreign
-struct tagPOLYTEXTW {
+struct POLYTEXTW {
     x: int;
     y: int;
     n: UINT;
@@ -1844,16 +1647,13 @@ struct tagPOLYTEXTW {
 }
 
 @foreign
-typedef POLYTEXTW = tagPOLYTEXTW;
+typedef PPOLYTEXTW = POLYTEXTW*;
 
 @foreign
-typedef PPOLYTEXTW = tagPOLYTEXTW*;
+typedef NPPOLYTEXTW = POLYTEXTW*;
 
 @foreign
-typedef NPPOLYTEXTW = tagPOLYTEXTW*;
-
-@foreign
-typedef LPPOLYTEXTW = tagPOLYTEXTW*;
+typedef LPPOLYTEXTW = POLYTEXTW*;
 
 @foreign
 typedef POLYTEXT = POLYTEXTA;
@@ -1868,16 +1668,13 @@ typedef NPPOLYTEXT = NPPOLYTEXTA;
 typedef LPPOLYTEXT = LPPOLYTEXTA;
 
 @foreign
-struct _FIXED {
+struct FIXED {
     fract: WORD;
     value: short;
 }
 
 @foreign
-typedef FIXED = _FIXED;
-
-@foreign
-struct _MAT2 {
+struct MAT2 {
     eM11: FIXED;
     eM12: FIXED;
     eM21: FIXED;
@@ -1885,13 +1682,10 @@ struct _MAT2 {
 }
 
 @foreign
-typedef MAT2 = _MAT2;
+typedef LPMAT2 = MAT2*;
 
 @foreign
-typedef LPMAT2 = _MAT2*;
-
-@foreign
-struct _GLYPHMETRICS {
+struct GLYPHMETRICS {
     gmBlackBoxX: UINT;
     gmBlackBoxY: UINT;
     gmptGlyphOrigin: POINT;
@@ -1900,51 +1694,39 @@ struct _GLYPHMETRICS {
 }
 
 @foreign
-typedef GLYPHMETRICS = _GLYPHMETRICS;
+typedef LPGLYPHMETRICS = GLYPHMETRICS*;
 
 @foreign
-typedef LPGLYPHMETRICS = _GLYPHMETRICS*;
-
-@foreign
-struct tagPOINTFX {
+struct POINTFX {
     x: FIXED;
     y: FIXED;
 }
 
 @foreign
-typedef POINTFX = tagPOINTFX;
+typedef LPPOINTFX = POINTFX*;
 
 @foreign
-typedef LPPOINTFX = tagPOINTFX*;
-
-@foreign
-struct tagTTPOLYCURVE {
+struct TTPOLYCURVE {
     wType: WORD;
     cpfx: WORD;
     apfx: POINTFX[1];
 }
 
 @foreign
-typedef TTPOLYCURVE = tagTTPOLYCURVE;
+typedef LPTTPOLYCURVE = TTPOLYCURVE*;
 
 @foreign
-typedef LPTTPOLYCURVE = tagTTPOLYCURVE*;
-
-@foreign
-struct tagTTPOLYGONHEADER {
+struct TTPOLYGONHEADER {
     cb: DWORD;
     dwType: DWORD;
     pfxStart: POINTFX;
 }
 
 @foreign
-typedef TTPOLYGONHEADER = tagTTPOLYGONHEADER;
+typedef LPTTPOLYGONHEADER = TTPOLYGONHEADER*;
 
 @foreign
-typedef LPTTPOLYGONHEADER = tagTTPOLYGONHEADER*;
-
-@foreign
-struct tagGCP_RESULTSA {
+struct GCP_RESULTSA {
     lStructSize: DWORD;
     lpOutString: LPSTR;
     lpOrder: UINT*;
@@ -1957,13 +1739,10 @@ struct tagGCP_RESULTSA {
 }
 
 @foreign
-typedef GCP_RESULTSA = tagGCP_RESULTSA;
+typedef LPGCP_RESULTSA = GCP_RESULTSA*;
 
 @foreign
-typedef LPGCP_RESULTSA = tagGCP_RESULTSA*;
-
-@foreign
-struct tagGCP_RESULTSW {
+struct GCP_RESULTSW {
     lStructSize: DWORD;
     lpOutString: LPWSTR;
     lpOrder: UINT*;
@@ -1976,10 +1755,7 @@ struct tagGCP_RESULTSW {
 }
 
 @foreign
-typedef GCP_RESULTSW = tagGCP_RESULTSW;
-
-@foreign
-typedef LPGCP_RESULTSW = tagGCP_RESULTSW*;
+typedef LPGCP_RESULTSW = GCP_RESULTSW*;
 
 @foreign
 typedef GCP_RESULTS = GCP_RESULTSA;
@@ -1988,20 +1764,17 @@ typedef GCP_RESULTS = GCP_RESULTSA;
 typedef LPGCP_RESULTS = LPGCP_RESULTSA;
 
 @foreign
-struct _RASTERIZER_STATUS {
+struct RASTERIZER_STATUS {
     nSize: short;
     wFlags: short;
     nLanguageID: short;
 }
 
 @foreign
-typedef RASTERIZER_STATUS = _RASTERIZER_STATUS;
+typedef LPRASTERIZER_STATUS = RASTERIZER_STATUS*;
 
 @foreign
-typedef LPRASTERIZER_STATUS = _RASTERIZER_STATUS*;
-
-@foreign
-struct tagPIXELFORMATDESCRIPTOR {
+struct PIXELFORMATDESCRIPTOR {
     nSize: WORD;
     nVersion: WORD;
     dwFlags: DWORD;
@@ -2031,13 +1804,10 @@ struct tagPIXELFORMATDESCRIPTOR {
 }
 
 @foreign
-typedef PIXELFORMATDESCRIPTOR = tagPIXELFORMATDESCRIPTOR;
+typedef PPIXELFORMATDESCRIPTOR = PIXELFORMATDESCRIPTOR*;
 
 @foreign
-typedef PPIXELFORMATDESCRIPTOR = tagPIXELFORMATDESCRIPTOR*;
-
-@foreign
-typedef LPPIXELFORMATDESCRIPTOR = tagPIXELFORMATDESCRIPTOR*;
+typedef LPPIXELFORMATDESCRIPTOR = PIXELFORMATDESCRIPTOR*;
 
 @foreign
 typedef OLDFONTENUMPROCA = func(arg0: LOGFONTA*, arg1: TEXTMETRICA*, arg2: DWORD, arg3: LPARAM): int;
@@ -2547,22 +2317,19 @@ func GetCharacterPlacement(hdc: HDC, lpString: LPCSTR, nCount: int, nMexExtent: 
 func GetCharacterPlacementW(hdc: HDC, lpString: LPCWSTR, nCount: int, nMexExtent: int, lpResults: LPGCP_RESULTSW, dwFlags: DWORD): DWORD;
 
 @foreign
-struct tagWCRANGE {
+struct WCRANGE {
     wcLow: WCHAR;
     cGlyphs: USHORT;
 }
 
 @foreign
-typedef WCRANGE = tagWCRANGE;
+typedef PWCRANGE = WCRANGE*;
 
 @foreign
-typedef PWCRANGE = tagWCRANGE*;
+typedef LPWCRANGE = WCRANGE*;
 
 @foreign
-typedef LPWCRANGE = tagWCRANGE*;
-
-@foreign
-struct tagGLYPHSET {
+struct GLYPHSET {
     cbThis: DWORD;
     flAccel: DWORD;
     cGlyphsSupported: DWORD;
@@ -2571,13 +2338,10 @@ struct tagGLYPHSET {
 }
 
 @foreign
-typedef GLYPHSET = tagGLYPHSET;
+typedef PGLYPHSET = GLYPHSET*;
 
 @foreign
-typedef PGLYPHSET = tagGLYPHSET*;
-
-@foreign
-typedef LPGLYPHSET = tagGLYPHSET*;
+typedef LPGLYPHSET = GLYPHSET*;
 
 @foreign
 func GetFontUnicodeRanges(hdc: HDC, lpgs: LPGLYPHSET): DWORD;
@@ -2604,20 +2368,17 @@ func GetCharWidthI(hdc: HDC, giFirst: UINT, cgi: UINT, pgi: LPWORD, piWidths: LP
 func GetCharABCWidthsI(hdc: HDC, giFirst: UINT, cgi: UINT, pgi: LPWORD, pabc: LPABC): BOOL;
 
 @foreign
-struct tagDESIGNVECTOR {
+struct DESIGNVECTOR {
     dvReserved: DWORD;
     dvNumAxes: DWORD;
     dvValues: LONG[16];
 }
 
 @foreign
-typedef DESIGNVECTOR = tagDESIGNVECTOR;
+typedef PDESIGNVECTOR = DESIGNVECTOR*;
 
 @foreign
-typedef PDESIGNVECTOR = tagDESIGNVECTOR*;
-
-@foreign
-typedef LPDESIGNVECTOR = tagDESIGNVECTOR*;
+typedef LPDESIGNVECTOR = DESIGNVECTOR*;
 
 @foreign
 func AddFontResourceExA(name: LPCSTR, fl: DWORD, res: PVOID): int;
@@ -2644,36 +2405,30 @@ func AddFontMemResourceEx(pFileView: PVOID, cjSize: DWORD, pvResrved: PVOID, pNu
 func RemoveFontMemResourceEx(h: HANDLE): BOOL;
 
 @foreign
-struct tagAXISINFOA {
+struct AXISINFOA {
     axMinValue: LONG;
     axMaxValue: LONG;
     axAxisName: BYTE[16];
 }
 
 @foreign
-typedef AXISINFOA = tagAXISINFOA;
+typedef PAXISINFOA = AXISINFOA*;
 
 @foreign
-typedef PAXISINFOA = tagAXISINFOA*;
+typedef LPAXISINFOA = AXISINFOA*;
 
 @foreign
-typedef LPAXISINFOA = tagAXISINFOA*;
-
-@foreign
-struct tagAXISINFOW {
+struct AXISINFOW {
     axMinValue: LONG;
     axMaxValue: LONG;
     axAxisName: WCHAR[16];
 }
 
 @foreign
-typedef AXISINFOW = tagAXISINFOW;
+typedef PAXISINFOW = AXISINFOW*;
 
 @foreign
-typedef PAXISINFOW = tagAXISINFOW*;
-
-@foreign
-typedef LPAXISINFOW = tagAXISINFOW*;
+typedef LPAXISINFOW = AXISINFOW*;
 
 @foreign
 typedef AXISINFO = AXISINFOA;
@@ -2685,36 +2440,30 @@ typedef PAXISINFO = PAXISINFOA;
 typedef LPAXISINFO = LPAXISINFOA;
 
 @foreign
-struct tagAXESLISTA {
+struct AXESLISTA {
     axlReserved: DWORD;
     axlNumAxes: DWORD;
     axlAxisInfo: AXISINFOA[16];
 }
 
 @foreign
-typedef AXESLISTA = tagAXESLISTA;
+typedef PAXESLISTA = AXESLISTA*;
 
 @foreign
-typedef PAXESLISTA = tagAXESLISTA*;
+typedef LPAXESLISTA = AXESLISTA*;
 
 @foreign
-typedef LPAXESLISTA = tagAXESLISTA*;
-
-@foreign
-struct tagAXESLISTW {
+struct AXESLISTW {
     axlReserved: DWORD;
     axlNumAxes: DWORD;
     axlAxisInfo: AXISINFOW[16];
 }
 
 @foreign
-typedef AXESLISTW = tagAXESLISTW;
+typedef PAXESLISTW = AXESLISTW*;
 
 @foreign
-typedef PAXESLISTW = tagAXESLISTW*;
-
-@foreign
-typedef LPAXESLISTW = tagAXESLISTW*;
+typedef LPAXESLISTW = AXESLISTW*;
 
 @foreign
 typedef AXESLIST = AXESLISTA;
@@ -2726,34 +2475,28 @@ typedef PAXESLIST = PAXESLISTA;
 typedef LPAXESLIST = LPAXESLISTA;
 
 @foreign
-struct tagENUMLOGFONTEXDVA {
+struct ENUMLOGFONTEXDVA {
     elfEnumLogfontEx: ENUMLOGFONTEXA;
     elfDesignVector: DESIGNVECTOR;
 }
 
 @foreign
-typedef ENUMLOGFONTEXDVA = tagENUMLOGFONTEXDVA;
+typedef PENUMLOGFONTEXDVA = ENUMLOGFONTEXDVA*;
 
 @foreign
-typedef PENUMLOGFONTEXDVA = tagENUMLOGFONTEXDVA*;
+typedef LPENUMLOGFONTEXDVA = ENUMLOGFONTEXDVA*;
 
 @foreign
-typedef LPENUMLOGFONTEXDVA = tagENUMLOGFONTEXDVA*;
-
-@foreign
-struct tagENUMLOGFONTEXDVW {
+struct ENUMLOGFONTEXDVW {
     elfEnumLogfontEx: ENUMLOGFONTEXW;
     elfDesignVector: DESIGNVECTOR;
 }
 
 @foreign
-typedef ENUMLOGFONTEXDVW = tagENUMLOGFONTEXDVW;
+typedef PENUMLOGFONTEXDVW = ENUMLOGFONTEXDVW*;
 
 @foreign
-typedef PENUMLOGFONTEXDVW = tagENUMLOGFONTEXDVW*;
-
-@foreign
-typedef LPENUMLOGFONTEXDVW = tagENUMLOGFONTEXDVW*;
+typedef LPENUMLOGFONTEXDVW = ENUMLOGFONTEXDVW*;
 
 @foreign
 typedef ENUMLOGFONTEXDV = ENUMLOGFONTEXDVA;
@@ -2774,34 +2517,28 @@ func CreateFontIndirectEx(arg0: ENUMLOGFONTEXDVA*): HFONT;
 func CreateFontIndirectExW(arg0: ENUMLOGFONTEXDVW*): HFONT;
 
 @foreign
-struct tagENUMTEXTMETRICA {
+struct ENUMTEXTMETRICA {
     etmNewTextMetricEx: NEWTEXTMETRICEXA;
     etmAxesList: AXESLISTA;
 }
 
 @foreign
-typedef ENUMTEXTMETRICA = tagENUMTEXTMETRICA;
+typedef PENUMTEXTMETRICA = ENUMTEXTMETRICA*;
 
 @foreign
-typedef PENUMTEXTMETRICA = tagENUMTEXTMETRICA*;
+typedef LPENUMTEXTMETRICA = ENUMTEXTMETRICA*;
 
 @foreign
-typedef LPENUMTEXTMETRICA = tagENUMTEXTMETRICA*;
-
-@foreign
-struct tagENUMTEXTMETRICW {
+struct ENUMTEXTMETRICW {
     etmNewTextMetricEx: NEWTEXTMETRICEXW;
     etmAxesList: AXESLISTW;
 }
 
 @foreign
-typedef ENUMTEXTMETRICW = tagENUMTEXTMETRICW;
+typedef PENUMTEXTMETRICW = ENUMTEXTMETRICW*;
 
 @foreign
-typedef PENUMTEXTMETRICW = tagENUMTEXTMETRICW*;
-
-@foreign
-typedef LPENUMTEXTMETRICW = tagENUMTEXTMETRICW*;
+typedef LPENUMTEXTMETRICW = ENUMTEXTMETRICW*;
 
 @foreign
 typedef ENUMTEXTMETRIC = ENUMTEXTMETRICA;
@@ -3020,7 +2757,7 @@ func UpdateColors(hdc: HDC): BOOL;
 typedef COLOR16 = USHORT;
 
 @foreign
-struct _TRIVERTEX {
+struct TRIVERTEX {
     x: LONG;
     y: LONG;
     Red: COLOR16;
@@ -3030,47 +2767,38 @@ struct _TRIVERTEX {
 }
 
 @foreign
-typedef TRIVERTEX = _TRIVERTEX;
+typedef PTRIVERTEX = TRIVERTEX*;
 
 @foreign
-typedef PTRIVERTEX = _TRIVERTEX*;
+typedef LPTRIVERTEX = TRIVERTEX*;
 
 @foreign
-typedef LPTRIVERTEX = _TRIVERTEX*;
-
-@foreign
-struct _GRADIENT_TRIANGLE {
+struct GRADIENT_TRIANGLE {
     Vertex1: ULONG;
     Vertex2: ULONG;
     Vertex3: ULONG;
 }
 
 @foreign
-typedef GRADIENT_TRIANGLE = _GRADIENT_TRIANGLE;
+typedef PGRADIENT_TRIANGLE = GRADIENT_TRIANGLE*;
 
 @foreign
-typedef PGRADIENT_TRIANGLE = _GRADIENT_TRIANGLE*;
+typedef LPGRADIENT_TRIANGLE = GRADIENT_TRIANGLE*;
 
 @foreign
-typedef LPGRADIENT_TRIANGLE = _GRADIENT_TRIANGLE*;
-
-@foreign
-struct _GRADIENT_RECT {
+struct GRADIENT_RECT {
     UpperLeft: ULONG;
     LowerRight: ULONG;
 }
 
 @foreign
-typedef GRADIENT_RECT = _GRADIENT_RECT;
+typedef PGRADIENT_RECT = GRADIENT_RECT*;
 
 @foreign
-typedef PGRADIENT_RECT = _GRADIENT_RECT*;
+typedef LPGRADIENT_RECT = GRADIENT_RECT*;
 
 @foreign
-typedef LPGRADIENT_RECT = _GRADIENT_RECT*;
-
-@foreign
-struct _BLENDFUNCTION {
+struct BLENDFUNCTION {
     BlendOp: BYTE;
     BlendFlags: BYTE;
     SourceConstantAlpha: BYTE;
@@ -3078,10 +2806,7 @@ struct _BLENDFUNCTION {
 }
 
 @foreign
-typedef BLENDFUNCTION = _BLENDFUNCTION;
-
-@foreign
-typedef PBLENDFUNCTION = _BLENDFUNCTION*;
+typedef PBLENDFUNCTION = BLENDFUNCTION*;
 
 @foreign
 func AlphaBlend(hdcDest: HDC, xoriginDest: int, yoriginDest: int, wDest: int, hDest: int, hdcSrc: HDC, xoriginSrc: int, yoriginSrc: int, wSrc: int, hSrc: int, ftn: BLENDFUNCTION): BOOL;
@@ -3198,7 +2923,7 @@ func GetTextMetrics(hdc: HDC, lptm: LPTEXTMETRICA): BOOL;
 func GetTextMetricsW(hdc: HDC, lptm: LPTEXTMETRICW): BOOL;
 
 @foreign
-struct tagDIBSECTION {
+struct DIBSECTION {
     dsBm: BITMAP;
     dsBmih: BITMAPINFOHEADER;
     dsBitfields: DWORD[3];
@@ -3207,13 +2932,10 @@ struct tagDIBSECTION {
 }
 
 @foreign
-typedef DIBSECTION = tagDIBSECTION;
+typedef LPDIBSECTION = DIBSECTION*;
 
 @foreign
-typedef LPDIBSECTION = tagDIBSECTION*;
-
-@foreign
-typedef PDIBSECTION = tagDIBSECTION*;
+typedef PDIBSECTION = DIBSECTION*;
 
 @foreign
 func AngleArc(hdc: HDC, x: int, y: int, r: DWORD, StartAngle: FLOAT, SweepAngle: FLOAT): BOOL;
@@ -3243,7 +2965,7 @@ func GetDIBColorTable(hdc: HDC, iStart: UINT, cEntries: UINT, prgbq: RGBQUAD*): 
 func SetDIBColorTable(hdc: HDC, iStart: UINT, cEntries: UINT, prgbq: RGBQUAD*): UINT;
 
 @foreign
-struct tagCOLORADJUSTMENT {
+struct COLORADJUSTMENT {
     caSize: WORD;
     caFlags: WORD;
     caIlluminantIndex: WORD;
@@ -3259,13 +2981,10 @@ struct tagCOLORADJUSTMENT {
 }
 
 @foreign
-typedef COLORADJUSTMENT = tagCOLORADJUSTMENT;
+typedef PCOLORADJUSTMENT = COLORADJUSTMENT*;
 
 @foreign
-typedef PCOLORADJUSTMENT = tagCOLORADJUSTMENT*;
-
-@foreign
-typedef LPCOLORADJUSTMENT = tagCOLORADJUSTMENT*;
+typedef LPCOLORADJUSTMENT = COLORADJUSTMENT*;
 
 @foreign
 func SetColorAdjustment(hdc: HDC, lpca: COLORADJUSTMENT*): BOOL;
@@ -3280,7 +2999,7 @@ func CreateHalftonePalette(hdc: HDC): HPALETTE;
 typedef ABORTPROC = func(arg0: HDC, arg1: int): BOOL;
 
 @foreign
-struct _DOCINFOA {
+struct DOCINFOA {
     cbSize: int;
     lpszDocName: LPCSTR;
     lpszOutput: LPCSTR;
@@ -3289,13 +3008,10 @@ struct _DOCINFOA {
 }
 
 @foreign
-typedef DOCINFOA = _DOCINFOA;
+typedef LPDOCINFOA = DOCINFOA*;
 
 @foreign
-typedef LPDOCINFOA = _DOCINFOA*;
-
-@foreign
-struct _DOCINFOW {
+struct DOCINFOW {
     cbSize: int;
     lpszDocName: LPCWSTR;
     lpszOutput: LPCWSTR;
@@ -3304,10 +3020,7 @@ struct _DOCINFOW {
 }
 
 @foreign
-typedef DOCINFOW = _DOCINFOW;
-
-@foreign
-typedef LPDOCINFOW = _DOCINFOW*;
+typedef LPDOCINFOW = DOCINFOW*;
 
 @foreign
 typedef DOCINFO = DOCINFOA;
@@ -3499,17 +3212,14 @@ func GetTextFace(hdc: HDC, c: int, lpName: LPSTR): int;
 func GetTextFaceW(hdc: HDC, c: int, lpName: LPWSTR): int;
 
 @foreign
-struct tagKERNINGPAIR {
+struct KERNINGPAIR {
     wFirst: WORD;
     wSecond: WORD;
     iKernAmount: int;
 }
 
 @foreign
-typedef KERNINGPAIR = tagKERNINGPAIR;
-
-@foreign
-typedef LPKERNINGPAIR = tagKERNINGPAIR*;
+typedef LPKERNINGPAIR = KERNINGPAIR*;
 
 @foreign
 func GetKerningPairsA(hdc: HDC, nPairs: DWORD, lpKernPair: LPKERNINGPAIR): DWORD;
@@ -3626,19 +3336,16 @@ func UpdateICMRegKeyW(reserved: DWORD, lpszCMID: LPWSTR, lpszFileName: LPWSTR, c
 func ColorCorrectPalette(hdc: HDC, hPal: HPALETTE, deFirst: DWORD, num: DWORD): BOOL;
 
 @foreign
-struct tagEMR {
+struct EMR {
     iType: DWORD;
     nSize: DWORD;
 }
 
 @foreign
-typedef EMR = tagEMR;
+typedef PEMR = EMR*;
 
 @foreign
-typedef PEMR = tagEMR*;
-
-@foreign
-struct tagEMRTEXT {
+struct EMRTEXT {
     ptlReference: POINTL;
     nChars: DWORD;
     offString: DWORD;
@@ -3648,10 +3355,7 @@ struct tagEMRTEXT {
 }
 
 @foreign
-typedef EMRTEXT = tagEMRTEXT;
-
-@foreign
-typedef PEMRTEXT = tagEMRTEXT*;
+typedef PEMRTEXT = EMRTEXT*;
 
 @foreign
 struct tagABORTPATH {
@@ -3662,55 +3366,55 @@ struct tagABORTPATH {
 typedef EMRABORTPATH = tagABORTPATH;
 
 @foreign
-typedef PEMRABORTPATH = tagABORTPATH*;
+typedef PEMRABORTPATH = EMRABORTPATH*;
 
 @foreign
 typedef EMRBEGINPATH = tagABORTPATH;
 
 @foreign
-typedef PEMRBEGINPATH = tagABORTPATH*;
+typedef PEMRBEGINPATH = EMRABORTPATH*;
 
 @foreign
 typedef EMRENDPATH = tagABORTPATH;
 
 @foreign
-typedef PEMRENDPATH = tagABORTPATH*;
+typedef PEMRENDPATH = EMRABORTPATH*;
 
 @foreign
 typedef EMRCLOSEFIGURE = tagABORTPATH;
 
 @foreign
-typedef PEMRCLOSEFIGURE = tagABORTPATH*;
+typedef PEMRCLOSEFIGURE = EMRABORTPATH*;
 
 @foreign
 typedef EMRFLATTENPATH = tagABORTPATH;
 
 @foreign
-typedef PEMRFLATTENPATH = tagABORTPATH*;
+typedef PEMRFLATTENPATH = EMRABORTPATH*;
 
 @foreign
 typedef EMRWIDENPATH = tagABORTPATH;
 
 @foreign
-typedef PEMRWIDENPATH = tagABORTPATH*;
+typedef PEMRWIDENPATH = EMRABORTPATH*;
 
 @foreign
 typedef EMRSETMETARGN = tagABORTPATH;
 
 @foreign
-typedef PEMRSETMETARGN = tagABORTPATH*;
+typedef PEMRSETMETARGN = EMRABORTPATH*;
 
 @foreign
 typedef EMRSAVEDC = tagABORTPATH;
 
 @foreign
-typedef PEMRSAVEDC = tagABORTPATH*;
+typedef PEMRSAVEDC = EMRABORTPATH*;
 
 @foreign
 typedef EMRREALIZEPALETTE = tagABORTPATH;
 
 @foreign
-typedef PEMRREALIZEPALETTE = tagABORTPATH*;
+typedef PEMRREALIZEPALETTE = EMRABORTPATH*;
 
 @foreign
 struct tagEMRSELECTCLIPPATH {
@@ -3722,167 +3426,149 @@ struct tagEMRSELECTCLIPPATH {
 typedef EMRSELECTCLIPPATH = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSELECTCLIPPATH = tagEMRSELECTCLIPPATH*;
+typedef PEMRSELECTCLIPPATH = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETBKMODE = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETBKMODE = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETBKMODE = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETMAPMODE = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETMAPMODE = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETMAPMODE = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETLAYOUT = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETLAYOUT = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETLAYOUT = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETPOLYFILLMODE = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETPOLYFILLMODE = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETPOLYFILLMODE = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETROP2 = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETROP2 = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETROP2 = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETSTRETCHBLTMODE = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETSTRETCHBLTMODE = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETSTRETCHBLTMODE = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETICMMODE = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETICMMODE = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETICMMODE = EMRSELECTCLIPPATH*;
 
 @foreign
 typedef EMRSETTEXTALIGN = tagEMRSELECTCLIPPATH;
 
 @foreign
-typedef PEMRSETTEXTALIGN = tagEMRSELECTCLIPPATH*;
+typedef PEMRSETTEXTALIGN = EMRSELECTCLIPPATH*;
 
 @foreign
-struct tagEMRSETMITERLIMIT {
+struct EMRSETMITERLIMIT {
     emr: EMR;
     eMiterLimit: FLOAT;
 }
 
 @foreign
-typedef EMRSETMITERLIMIT = tagEMRSETMITERLIMIT;
+typedef PEMRSETMITERLIMIT = EMRSETMITERLIMIT*;
 
 @foreign
-typedef PEMRSETMITERLIMIT = tagEMRSETMITERLIMIT*;
-
-@foreign
-struct tagEMRRESTOREDC {
+struct EMRRESTOREDC {
     emr: EMR;
     iRelative: LONG;
 }
 
 @foreign
-typedef EMRRESTOREDC = tagEMRRESTOREDC;
+typedef PEMRRESTOREDC = EMRRESTOREDC*;
 
 @foreign
-typedef PEMRRESTOREDC = tagEMRRESTOREDC*;
-
-@foreign
-struct tagEMRSETARCDIRECTION {
+struct EMRSETARCDIRECTION {
     emr: EMR;
     iArcDirection: DWORD;
 }
 
 @foreign
-typedef EMRSETARCDIRECTION = tagEMRSETARCDIRECTION;
+typedef PEMRSETARCDIRECTION = EMRSETARCDIRECTION*;
 
 @foreign
-typedef PEMRSETARCDIRECTION = tagEMRSETARCDIRECTION*;
-
-@foreign
-struct tagEMRSETMAPPERFLAGS {
+struct EMRSETMAPPERFLAGS {
     emr: EMR;
     dwFlags: DWORD;
 }
 
 @foreign
-typedef EMRSETMAPPERFLAGS = tagEMRSETMAPPERFLAGS;
+typedef PEMRSETMAPPERFLAGS = EMRSETMAPPERFLAGS*;
 
 @foreign
-typedef PEMRSETMAPPERFLAGS = tagEMRSETMAPPERFLAGS*;
-
-@foreign
-struct tagEMRSETTEXTCOLOR {
+struct EMRSETBKCOLOR {
     emr: EMR;
     crColor: COLORREF;
 }
 
 @foreign
-typedef EMRSETBKCOLOR = tagEMRSETTEXTCOLOR;
+typedef tagEMRSETTEXTCOLOR = EMRSETBKCOLOR;
 
 @foreign
-typedef PEMRSETBKCOLOR = tagEMRSETTEXTCOLOR*;
+typedef PEMRSETBKCOLOR = EMRSETBKCOLOR*;
 
 @foreign
 typedef EMRSETTEXTCOLOR = tagEMRSETTEXTCOLOR;
 
 @foreign
-typedef PEMRSETTEXTCOLOR = tagEMRSETTEXTCOLOR*;
+typedef PEMRSETTEXTCOLOR = EMRSETBKCOLOR*;
 
 @foreign
-struct tagEMRSELECTOBJECT {
+struct EMRSELECTOBJECT {
     emr: EMR;
     ihObject: DWORD;
 }
 
 @foreign
-typedef EMRSELECTOBJECT = tagEMRSELECTOBJECT;
+typedef tagEMRSELECTOBJECT = EMRSELECTOBJECT;
 
 @foreign
-typedef PEMRSELECTOBJECT = tagEMRSELECTOBJECT*;
+typedef PEMRSELECTOBJECT = EMRSELECTOBJECT*;
 
 @foreign
 typedef EMRDELETEOBJECT = tagEMRSELECTOBJECT;
 
 @foreign
-typedef PEMRDELETEOBJECT = tagEMRSELECTOBJECT*;
+typedef PEMRDELETEOBJECT = EMRSELECTOBJECT*;
 
 @foreign
-struct tagEMRSELECTPALETTE {
+struct EMRSELECTPALETTE {
     emr: EMR;
     ihPal: DWORD;
 }
 
 @foreign
-typedef EMRSELECTPALETTE = tagEMRSELECTPALETTE;
+typedef PEMRSELECTPALETTE = EMRSELECTPALETTE*;
 
 @foreign
-typedef PEMRSELECTPALETTE = tagEMRSELECTPALETTE*;
-
-@foreign
-struct tagEMRRESIZEPALETTE {
+struct EMRRESIZEPALETTE {
     emr: EMR;
     ihPal: DWORD;
     cEntries: DWORD;
 }
 
 @foreign
-typedef EMRRESIZEPALETTE = tagEMRRESIZEPALETTE;
+typedef PEMRRESIZEPALETTE = EMRRESIZEPALETTE*;
 
 @foreign
-typedef PEMRRESIZEPALETTE = tagEMRRESIZEPALETTE*;
-
-@foreign
-struct tagEMRSETPALETTEENTRIES {
+struct EMRSETPALETTEENTRIES {
     emr: EMR;
     ihPal: DWORD;
     iStart: DWORD;
@@ -3891,38 +3577,29 @@ struct tagEMRSETPALETTEENTRIES {
 }
 
 @foreign
-typedef EMRSETPALETTEENTRIES = tagEMRSETPALETTEENTRIES;
+typedef PEMRSETPALETTEENTRIES = EMRSETPALETTEENTRIES*;
 
 @foreign
-typedef PEMRSETPALETTEENTRIES = tagEMRSETPALETTEENTRIES*;
-
-@foreign
-struct tagEMRSETCOLORADJUSTMENT {
+struct EMRSETCOLORADJUSTMENT {
     emr: EMR;
     ColorAdjustment: COLORADJUSTMENT;
 }
 
 @foreign
-typedef EMRSETCOLORADJUSTMENT = tagEMRSETCOLORADJUSTMENT;
+typedef PEMRSETCOLORADJUSTMENT = EMRSETCOLORADJUSTMENT*;
 
 @foreign
-typedef PEMRSETCOLORADJUSTMENT = tagEMRSETCOLORADJUSTMENT*;
-
-@foreign
-struct tagEMRGDICOMMENT {
+struct EMRGDICOMMENT {
     emr: EMR;
     cbData: DWORD;
     Data: BYTE[1];
 }
 
 @foreign
-typedef EMRGDICOMMENT = tagEMRGDICOMMENT;
+typedef PEMRGDICOMMENT = EMRGDICOMMENT*;
 
 @foreign
-typedef PEMRGDICOMMENT = tagEMRGDICOMMENT*;
-
-@foreign
-struct tagEMREOF {
+struct EMREOF {
     emr: EMR;
     nPalEntries: DWORD;
     offPalEntries: DWORD;
@@ -3930,127 +3607,112 @@ struct tagEMREOF {
 }
 
 @foreign
-typedef EMREOF = tagEMREOF;
+typedef PEMREOF = EMREOF*;
 
 @foreign
-typedef PEMREOF = tagEMREOF*;
-
-@foreign
-struct tagEMRLINETO {
+struct EMRLINETO {
     emr: EMR;
     ptl: POINTL;
 }
 
 @foreign
-typedef EMRLINETO = tagEMRLINETO;
+typedef PEMRLINETO = EMRLINETO*;
 
 @foreign
-typedef PEMRLINETO = tagEMRLINETO*;
+typedef EMRMOVETOEX = EMRLINETO;
 
 @foreign
-typedef EMRMOVETOEX = tagEMRLINETO;
+typedef PEMRMOVETOEX = EMRLINETO*;
 
 @foreign
-typedef PEMRMOVETOEX = tagEMRLINETO*;
-
-@foreign
-struct tagEMROFFSETCLIPRGN {
+struct EMROFFSETCLIPRGN {
     emr: EMR;
     ptlOffset: POINTL;
 }
 
 @foreign
-typedef EMROFFSETCLIPRGN = tagEMROFFSETCLIPRGN;
+typedef PEMROFFSETCLIPRGN = EMROFFSETCLIPRGN*;
 
 @foreign
-typedef PEMROFFSETCLIPRGN = tagEMROFFSETCLIPRGN*;
-
-@foreign
-struct tagEMRFILLPATH {
+struct EMRFILLPATH {
     emr: EMR;
     rclBounds: RECTL;
 }
 
 @foreign
-typedef EMRFILLPATH = tagEMRFILLPATH;
+typedef tagEMRFILLPATH = EMRFILLPATH;
 
 @foreign
-typedef PEMRFILLPATH = tagEMRFILLPATH*;
+typedef PEMRFILLPATH = EMRFILLPATH*;
 
 @foreign
 typedef EMRSTROKEANDFILLPATH = tagEMRFILLPATH;
 
 @foreign
-typedef PEMRSTROKEANDFILLPATH = tagEMRFILLPATH*;
+typedef PEMRSTROKEANDFILLPATH = EMRFILLPATH*;
 
 @foreign
 typedef EMRSTROKEPATH = tagEMRFILLPATH;
 
 @foreign
-typedef PEMRSTROKEPATH = tagEMRFILLPATH*;
+typedef PEMRSTROKEPATH = EMRFILLPATH*;
 
 @foreign
-struct tagEMREXCLUDECLIPRECT {
+struct EMREXCLUDECLIPRECT {
     emr: EMR;
     rclClip: RECTL;
 }
 
 @foreign
-typedef EMREXCLUDECLIPRECT = tagEMREXCLUDECLIPRECT;
+typedef PEMREXCLUDECLIPRECT = EMREXCLUDECLIPRECT*;
 
 @foreign
-typedef PEMREXCLUDECLIPRECT = tagEMREXCLUDECLIPRECT*;
+typedef EMRINTERSECTCLIPRECT = EMREXCLUDECLIPRECT;
 
 @foreign
-typedef EMRINTERSECTCLIPRECT = tagEMREXCLUDECLIPRECT;
+typedef PEMRINTERSECTCLIPRECT = EMREXCLUDECLIPRECT*;
 
 @foreign
-typedef PEMRINTERSECTCLIPRECT = tagEMREXCLUDECLIPRECT*;
-
-@foreign
-struct tagEMRSETVIEWPORTORGEX {
+struct EMRSETVIEWPORTORGEX {
     emr: EMR;
     ptlOrigin: POINTL;
 }
 
 @foreign
-typedef EMRSETVIEWPORTORGEX = tagEMRSETVIEWPORTORGEX;
+typedef tagEMRSETVIEWPORTORGEX = EMRSETVIEWPORTORGEX;
 
 @foreign
-typedef PEMRSETVIEWPORTORGEX = tagEMRSETVIEWPORTORGEX*;
+typedef PEMRSETVIEWPORTORGEX = EMRSETVIEWPORTORGEX*;
 
 @foreign
 typedef EMRSETWINDOWORGEX = tagEMRSETVIEWPORTORGEX;
 
 @foreign
-typedef PEMRSETWINDOWORGEX = tagEMRSETVIEWPORTORGEX*;
+typedef PEMRSETWINDOWORGEX = EMRSETVIEWPORTORGEX*;
 
 @foreign
 typedef EMRSETBRUSHORGEX = tagEMRSETVIEWPORTORGEX;
 
 @foreign
-typedef PEMRSETBRUSHORGEX = tagEMRSETVIEWPORTORGEX*;
+typedef PEMRSETBRUSHORGEX = EMRSETVIEWPORTORGEX*;
 
 @foreign
-struct tagEMRSETVIEWPORTEXTEX {
+struct EMRSETVIEWPORTEXTEX {
     emr: EMR;
     szlExtent: SIZEL;
 }
 
 @foreign
-typedef EMRSETVIEWPORTEXTEX = tagEMRSETVIEWPORTEXTEX;
+typedef PEMRSETVIEWPORTEXTEX = EMRSETVIEWPORTEXTEX*;
 
 @foreign
-typedef PEMRSETVIEWPORTEXTEX = tagEMRSETVIEWPORTEXTEX*;
+typedef EMRSETWINDOWEXTEX = EMRSETVIEWPORTEXTEX;
 
 @foreign
-typedef EMRSETWINDOWEXTEX = tagEMRSETVIEWPORTEXTEX;
+typedef PEMRSETWINDOWEXTEX = EMRSETVIEWPORTEXTEX*;
 
 @foreign
-typedef PEMRSETWINDOWEXTEX = tagEMRSETVIEWPORTEXTEX*;
-
-@foreign
-struct tagEMRSCALEVIEWPORTEXTEX {
+struct EMRSCALEVIEWPORTEXTEX {
     emr: EMR;
     xNum: LONG;
     xDenom: LONG;
@@ -4059,57 +3721,45 @@ struct tagEMRSCALEVIEWPORTEXTEX {
 }
 
 @foreign
-typedef EMRSCALEVIEWPORTEXTEX = tagEMRSCALEVIEWPORTEXTEX;
+typedef PEMRSCALEVIEWPORTEXTEX = EMRSCALEVIEWPORTEXTEX*;
 
 @foreign
-typedef PEMRSCALEVIEWPORTEXTEX = tagEMRSCALEVIEWPORTEXTEX*;
+typedef EMRSCALEWINDOWEXTEX = EMRSCALEVIEWPORTEXTEX;
 
 @foreign
-typedef EMRSCALEWINDOWEXTEX = tagEMRSCALEVIEWPORTEXTEX;
+typedef PEMRSCALEWINDOWEXTEX = EMRSCALEVIEWPORTEXTEX*;
 
 @foreign
-typedef PEMRSCALEWINDOWEXTEX = tagEMRSCALEVIEWPORTEXTEX*;
-
-@foreign
-struct tagEMRSETWORLDTRANSFORM {
+struct EMRSETWORLDTRANSFORM {
     emr: EMR;
     xform: XFORM;
 }
 
 @foreign
-typedef EMRSETWORLDTRANSFORM = tagEMRSETWORLDTRANSFORM;
+typedef PEMRSETWORLDTRANSFORM = EMRSETWORLDTRANSFORM*;
 
 @foreign
-typedef PEMRSETWORLDTRANSFORM = tagEMRSETWORLDTRANSFORM*;
-
-@foreign
-struct tagEMRMODIFYWORLDTRANSFORM {
+struct EMRMODIFYWORLDTRANSFORM {
     emr: EMR;
     xform: XFORM;
     iMode: DWORD;
 }
 
 @foreign
-typedef EMRMODIFYWORLDTRANSFORM = tagEMRMODIFYWORLDTRANSFORM;
+typedef PEMRMODIFYWORLDTRANSFORM = EMRMODIFYWORLDTRANSFORM*;
 
 @foreign
-typedef PEMRMODIFYWORLDTRANSFORM = tagEMRMODIFYWORLDTRANSFORM*;
-
-@foreign
-struct tagEMRSETPIXELV {
+struct EMRSETPIXELV {
     emr: EMR;
     ptlPixel: POINTL;
     crColor: COLORREF;
 }
 
 @foreign
-typedef EMRSETPIXELV = tagEMRSETPIXELV;
+typedef PEMRSETPIXELV = EMRSETPIXELV*;
 
 @foreign
-typedef PEMRSETPIXELV = tagEMRSETPIXELV*;
-
-@foreign
-struct tagEMREXTFLOODFILL {
+struct EMREXTFLOODFILL {
     emr: EMR;
     ptlStart: POINTL;
     crColor: COLORREF;
@@ -4117,44 +3767,35 @@ struct tagEMREXTFLOODFILL {
 }
 
 @foreign
-typedef EMREXTFLOODFILL = tagEMREXTFLOODFILL;
+typedef PEMREXTFLOODFILL = EMREXTFLOODFILL*;
 
 @foreign
-typedef PEMREXTFLOODFILL = tagEMREXTFLOODFILL*;
-
-@foreign
-struct tagEMRELLIPSE {
+struct EMRELLIPSE {
     emr: EMR;
     rclBox: RECTL;
 }
 
 @foreign
-typedef EMRELLIPSE = tagEMRELLIPSE;
+typedef PEMRELLIPSE = EMRELLIPSE*;
 
 @foreign
-typedef PEMRELLIPSE = tagEMRELLIPSE*;
+typedef EMRRECTANGLE = EMRELLIPSE;
 
 @foreign
-typedef EMRRECTANGLE = tagEMRELLIPSE;
+typedef PEMRRECTANGLE = EMRELLIPSE*;
 
 @foreign
-typedef PEMRRECTANGLE = tagEMRELLIPSE*;
-
-@foreign
-struct tagEMRROUNDRECT {
+struct EMRROUNDRECT {
     emr: EMR;
     rclBox: RECTL;
     szlCorner: SIZEL;
 }
 
 @foreign
-typedef EMRROUNDRECT = tagEMRROUNDRECT;
+typedef PEMRROUNDRECT = EMRROUNDRECT*;
 
 @foreign
-typedef PEMRROUNDRECT = tagEMRROUNDRECT*;
-
-@foreign
-struct tagEMRARC {
+struct EMRARC {
     emr: EMR;
     rclBox: RECTL;
     ptlStart: POINTL;
@@ -4162,31 +3803,28 @@ struct tagEMRARC {
 }
 
 @foreign
-typedef EMRARC = tagEMRARC;
+typedef PEMRARC = EMRARC*;
 
 @foreign
-typedef PEMRARC = tagEMRARC*;
+typedef EMRARCTO = EMRARC;
 
 @foreign
-typedef EMRARCTO = tagEMRARC;
+typedef PEMRARCTO = EMRARC*;
 
 @foreign
-typedef PEMRARCTO = tagEMRARC*;
+typedef EMRCHORD = EMRARC;
 
 @foreign
-typedef EMRCHORD = tagEMRARC;
+typedef PEMRCHORD = EMRARC*;
 
 @foreign
-typedef PEMRCHORD = tagEMRARC*;
+typedef EMRPIE = EMRARC;
 
 @foreign
-typedef EMRPIE = tagEMRARC;
+typedef PEMRPIE = EMRARC*;
 
 @foreign
-typedef PEMRPIE = tagEMRARC*;
-
-@foreign
-struct tagEMRANGLEARC {
+struct EMRANGLEARC {
     emr: EMR;
     ptlCenter: POINTL;
     nRadius: DWORD;
@@ -4195,13 +3833,10 @@ struct tagEMRANGLEARC {
 }
 
 @foreign
-typedef EMRANGLEARC = tagEMRANGLEARC;
+typedef PEMRANGLEARC = EMRANGLEARC*;
 
 @foreign
-typedef PEMRANGLEARC = tagEMRANGLEARC*;
-
-@foreign
-struct tagEMRPOLYLINE {
+struct EMRPOLYLINE {
     emr: EMR;
     rclBounds: RECTL;
     cptl: DWORD;
@@ -4209,37 +3844,34 @@ struct tagEMRPOLYLINE {
 }
 
 @foreign
-typedef EMRPOLYLINE = tagEMRPOLYLINE;
+typedef PEMRPOLYLINE = EMRPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYLINE = tagEMRPOLYLINE*;
+typedef EMRPOLYBEZIER = EMRPOLYLINE;
 
 @foreign
-typedef EMRPOLYBEZIER = tagEMRPOLYLINE;
+typedef PEMRPOLYBEZIER = EMRPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYBEZIER = tagEMRPOLYLINE*;
+typedef EMRPOLYGON = EMRPOLYLINE;
 
 @foreign
-typedef EMRPOLYGON = tagEMRPOLYLINE;
+typedef PEMRPOLYGON = EMRPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYGON = tagEMRPOLYLINE*;
+typedef EMRPOLYBEZIERTO = EMRPOLYLINE;
 
 @foreign
-typedef EMRPOLYBEZIERTO = tagEMRPOLYLINE;
+typedef PEMRPOLYBEZIERTO = EMRPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYBEZIERTO = tagEMRPOLYLINE*;
+typedef EMRPOLYLINETO = EMRPOLYLINE;
 
 @foreign
-typedef EMRPOLYLINETO = tagEMRPOLYLINE;
+typedef PEMRPOLYLINETO = EMRPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYLINETO = tagEMRPOLYLINE*;
-
-@foreign
-struct tagEMRPOLYLINE16 {
+struct EMRPOLYLINE16 {
     emr: EMR;
     rclBounds: RECTL;
     cpts: DWORD;
@@ -4247,37 +3879,34 @@ struct tagEMRPOLYLINE16 {
 }
 
 @foreign
-typedef EMRPOLYLINE16 = tagEMRPOLYLINE16;
+typedef PEMRPOLYLINE16 = EMRPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYLINE16 = tagEMRPOLYLINE16*;
+typedef EMRPOLYBEZIER16 = EMRPOLYLINE16;
 
 @foreign
-typedef EMRPOLYBEZIER16 = tagEMRPOLYLINE16;
+typedef PEMRPOLYBEZIER16 = EMRPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYBEZIER16 = tagEMRPOLYLINE16*;
+typedef EMRPOLYGON16 = EMRPOLYLINE16;
 
 @foreign
-typedef EMRPOLYGON16 = tagEMRPOLYLINE16;
+typedef PEMRPOLYGON16 = EMRPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYGON16 = tagEMRPOLYLINE16*;
+typedef EMRPOLYBEZIERTO16 = EMRPOLYLINE16;
 
 @foreign
-typedef EMRPOLYBEZIERTO16 = tagEMRPOLYLINE16;
+typedef PEMRPOLYBEZIERTO16 = EMRPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYBEZIERTO16 = tagEMRPOLYLINE16*;
+typedef EMRPOLYLINETO16 = EMRPOLYLINE16;
 
 @foreign
-typedef EMRPOLYLINETO16 = tagEMRPOLYLINE16;
+typedef PEMRPOLYLINETO16 = EMRPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYLINETO16 = tagEMRPOLYLINE16*;
-
-@foreign
-struct tagEMRPOLYDRAW {
+struct EMRPOLYDRAW {
     emr: EMR;
     rclBounds: RECTL;
     cptl: DWORD;
@@ -4286,13 +3915,10 @@ struct tagEMRPOLYDRAW {
 }
 
 @foreign
-typedef EMRPOLYDRAW = tagEMRPOLYDRAW;
+typedef PEMRPOLYDRAW = EMRPOLYDRAW*;
 
 @foreign
-typedef PEMRPOLYDRAW = tagEMRPOLYDRAW*;
-
-@foreign
-struct tagEMRPOLYDRAW16 {
+struct EMRPOLYDRAW16 {
     emr: EMR;
     rclBounds: RECTL;
     cpts: DWORD;
@@ -4301,13 +3927,10 @@ struct tagEMRPOLYDRAW16 {
 }
 
 @foreign
-typedef EMRPOLYDRAW16 = tagEMRPOLYDRAW16;
+typedef PEMRPOLYDRAW16 = EMRPOLYDRAW16*;
 
 @foreign
-typedef PEMRPOLYDRAW16 = tagEMRPOLYDRAW16*;
-
-@foreign
-struct tagEMRPOLYPOLYLINE {
+struct EMRPOLYPOLYLINE {
     emr: EMR;
     rclBounds: RECTL;
     nPolys: DWORD;
@@ -4317,19 +3940,16 @@ struct tagEMRPOLYPOLYLINE {
 }
 
 @foreign
-typedef EMRPOLYPOLYLINE = tagEMRPOLYPOLYLINE;
+typedef PEMRPOLYPOLYLINE = EMRPOLYPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYPOLYLINE = tagEMRPOLYPOLYLINE*;
+typedef EMRPOLYPOLYGON = EMRPOLYPOLYLINE;
 
 @foreign
-typedef EMRPOLYPOLYGON = tagEMRPOLYPOLYLINE;
+typedef PEMRPOLYPOLYGON = EMRPOLYPOLYLINE*;
 
 @foreign
-typedef PEMRPOLYPOLYGON = tagEMRPOLYPOLYLINE*;
-
-@foreign
-struct tagEMRPOLYPOLYLINE16 {
+struct EMRPOLYPOLYLINE16 {
     emr: EMR;
     rclBounds: RECTL;
     nPolys: DWORD;
@@ -4339,19 +3959,16 @@ struct tagEMRPOLYPOLYLINE16 {
 }
 
 @foreign
-typedef EMRPOLYPOLYLINE16 = tagEMRPOLYPOLYLINE16;
+typedef PEMRPOLYPOLYLINE16 = EMRPOLYPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYPOLYLINE16 = tagEMRPOLYPOLYLINE16*;
+typedef EMRPOLYPOLYGON16 = EMRPOLYPOLYLINE16;
 
 @foreign
-typedef EMRPOLYPOLYGON16 = tagEMRPOLYPOLYLINE16;
+typedef PEMRPOLYPOLYGON16 = EMRPOLYPOLYLINE16*;
 
 @foreign
-typedef PEMRPOLYPOLYGON16 = tagEMRPOLYPOLYLINE16*;
-
-@foreign
-struct tagEMRINVERTRGN {
+struct EMRINVERTRGN {
     emr: EMR;
     rclBounds: RECTL;
     cbRgnData: DWORD;
@@ -4359,19 +3976,16 @@ struct tagEMRINVERTRGN {
 }
 
 @foreign
-typedef EMRINVERTRGN = tagEMRINVERTRGN;
+typedef PEMRINVERTRGN = EMRINVERTRGN*;
 
 @foreign
-typedef PEMRINVERTRGN = tagEMRINVERTRGN*;
+typedef EMRPAINTRGN = EMRINVERTRGN;
 
 @foreign
-typedef EMRPAINTRGN = tagEMRINVERTRGN;
+typedef PEMRPAINTRGN = EMRINVERTRGN*;
 
 @foreign
-typedef PEMRPAINTRGN = tagEMRINVERTRGN*;
-
-@foreign
-struct tagEMRFILLRGN {
+struct EMRFILLRGN {
     emr: EMR;
     rclBounds: RECTL;
     cbRgnData: DWORD;
@@ -4380,13 +3994,10 @@ struct tagEMRFILLRGN {
 }
 
 @foreign
-typedef EMRFILLRGN = tagEMRFILLRGN;
+typedef PEMRFILLRGN = EMRFILLRGN*;
 
 @foreign
-typedef PEMRFILLRGN = tagEMRFILLRGN*;
-
-@foreign
-struct tagEMRFRAMERGN {
+struct EMRFRAMERGN {
     emr: EMR;
     rclBounds: RECTL;
     cbRgnData: DWORD;
@@ -4396,13 +4007,10 @@ struct tagEMRFRAMERGN {
 }
 
 @foreign
-typedef EMRFRAMERGN = tagEMRFRAMERGN;
+typedef PEMRFRAMERGN = EMRFRAMERGN*;
 
 @foreign
-typedef PEMRFRAMERGN = tagEMRFRAMERGN*;
-
-@foreign
-struct tagEMREXTSELECTCLIPRGN {
+struct EMREXTSELECTCLIPRGN {
     emr: EMR;
     cbRgnData: DWORD;
     iMode: DWORD;
@@ -4410,13 +4018,10 @@ struct tagEMREXTSELECTCLIPRGN {
 }
 
 @foreign
-typedef EMREXTSELECTCLIPRGN = tagEMREXTSELECTCLIPRGN;
+typedef PEMREXTSELECTCLIPRGN = EMREXTSELECTCLIPRGN*;
 
 @foreign
-typedef PEMREXTSELECTCLIPRGN = tagEMREXTSELECTCLIPRGN*;
-
-@foreign
-struct tagEMREXTTEXTOUTA {
+struct EMREXTTEXTOUTA {
     emr: EMR;
     rclBounds: RECTL;
     iGraphicsMode: DWORD;
@@ -4426,19 +4031,16 @@ struct tagEMREXTTEXTOUTA {
 }
 
 @foreign
-typedef EMREXTTEXTOUTA = tagEMREXTTEXTOUTA;
+typedef PEMREXTTEXTOUTA = EMREXTTEXTOUTA*;
 
 @foreign
-typedef PEMREXTTEXTOUTA = tagEMREXTTEXTOUTA*;
+typedef EMREXTTEXTOUTW = EMREXTTEXTOUTA;
 
 @foreign
-typedef EMREXTTEXTOUTW = tagEMREXTTEXTOUTA;
+typedef PEMREXTTEXTOUTW = EMREXTTEXTOUTA*;
 
 @foreign
-typedef PEMREXTTEXTOUTW = tagEMREXTTEXTOUTA*;
-
-@foreign
-struct tagEMRPOLYTEXTOUTA {
+struct EMRPOLYTEXTOUTA {
     emr: EMR;
     rclBounds: RECTL;
     iGraphicsMode: DWORD;
@@ -4449,19 +4051,16 @@ struct tagEMRPOLYTEXTOUTA {
 }
 
 @foreign
-typedef EMRPOLYTEXTOUTA = tagEMRPOLYTEXTOUTA;
+typedef PEMRPOLYTEXTOUTA = EMRPOLYTEXTOUTA*;
 
 @foreign
-typedef PEMRPOLYTEXTOUTA = tagEMRPOLYTEXTOUTA*;
+typedef EMRPOLYTEXTOUTW = EMRPOLYTEXTOUTA;
 
 @foreign
-typedef EMRPOLYTEXTOUTW = tagEMRPOLYTEXTOUTA;
+typedef PEMRPOLYTEXTOUTW = EMRPOLYTEXTOUTA*;
 
 @foreign
-typedef PEMRPOLYTEXTOUTW = tagEMRPOLYTEXTOUTA*;
-
-@foreign
-struct tagEMRBITBLT {
+struct EMRBITBLT {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4481,13 +4080,10 @@ struct tagEMRBITBLT {
 }
 
 @foreign
-typedef EMRBITBLT = tagEMRBITBLT;
+typedef PEMRBITBLT = EMRBITBLT*;
 
 @foreign
-typedef PEMRBITBLT = tagEMRBITBLT*;
-
-@foreign
-struct tagEMRSTRETCHBLT {
+struct EMRSTRETCHBLT {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4509,13 +4105,10 @@ struct tagEMRSTRETCHBLT {
 }
 
 @foreign
-typedef EMRSTRETCHBLT = tagEMRSTRETCHBLT;
+typedef PEMRSTRETCHBLT = EMRSTRETCHBLT*;
 
 @foreign
-typedef PEMRSTRETCHBLT = tagEMRSTRETCHBLT*;
-
-@foreign
-struct tagEMRMASKBLT {
+struct EMRMASKBLT {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4542,13 +4135,10 @@ struct tagEMRMASKBLT {
 }
 
 @foreign
-typedef EMRMASKBLT = tagEMRMASKBLT;
+typedef PEMRMASKBLT = EMRMASKBLT*;
 
 @foreign
-typedef PEMRMASKBLT = tagEMRMASKBLT*;
-
-@foreign
-struct tagEMRPLGBLT {
+struct EMRPLGBLT {
     emr: EMR;
     rclBounds: RECTL;
     aptlDest: POINTL[3];
@@ -4573,13 +4163,10 @@ struct tagEMRPLGBLT {
 }
 
 @foreign
-typedef EMRPLGBLT = tagEMRPLGBLT;
+typedef PEMRPLGBLT = EMRPLGBLT*;
 
 @foreign
-typedef PEMRPLGBLT = tagEMRPLGBLT*;
-
-@foreign
-struct tagEMRSETDIBITSTODEVICE {
+struct EMRSETDIBITSTODEVICE {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4598,13 +4185,10 @@ struct tagEMRSETDIBITSTODEVICE {
 }
 
 @foreign
-typedef EMRSETDIBITSTODEVICE = tagEMRSETDIBITSTODEVICE;
+typedef PEMRSETDIBITSTODEVICE = EMRSETDIBITSTODEVICE*;
 
 @foreign
-typedef PEMRSETDIBITSTODEVICE = tagEMRSETDIBITSTODEVICE*;
-
-@foreign
-struct tagEMRSTRETCHDIBITS {
+struct EMRSTRETCHDIBITS {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4624,52 +4208,40 @@ struct tagEMRSTRETCHDIBITS {
 }
 
 @foreign
-typedef EMRSTRETCHDIBITS = tagEMRSTRETCHDIBITS;
+typedef PEMRSTRETCHDIBITS = EMRSTRETCHDIBITS*;
 
 @foreign
-typedef PEMRSTRETCHDIBITS = tagEMRSTRETCHDIBITS*;
-
-@foreign
-struct tagEMREXTCREATEFONTINDIRECTW {
+struct EMREXTCREATEFONTINDIRECTW {
     emr: EMR;
     ihFont: DWORD;
     elfw: EXTLOGFONTW;
 }
 
 @foreign
-typedef EMREXTCREATEFONTINDIRECTW = tagEMREXTCREATEFONTINDIRECTW;
+typedef PEMREXTCREATEFONTINDIRECTW = EMREXTCREATEFONTINDIRECTW*;
 
 @foreign
-typedef PEMREXTCREATEFONTINDIRECTW = tagEMREXTCREATEFONTINDIRECTW*;
-
-@foreign
-struct tagEMRCREATEPALETTE {
+struct EMRCREATEPALETTE {
     emr: EMR;
     ihPal: DWORD;
     lgpl: LOGPALETTE;
 }
 
 @foreign
-typedef EMRCREATEPALETTE = tagEMRCREATEPALETTE;
+typedef PEMRCREATEPALETTE = EMRCREATEPALETTE*;
 
 @foreign
-typedef PEMRCREATEPALETTE = tagEMRCREATEPALETTE*;
-
-@foreign
-struct tagEMRCREATEPEN {
+struct EMRCREATEPEN {
     emr: EMR;
     ihPen: DWORD;
     lopn: LOGPEN;
 }
 
 @foreign
-typedef EMRCREATEPEN = tagEMRCREATEPEN;
+typedef PEMRCREATEPEN = EMRCREATEPEN*;
 
 @foreign
-typedef PEMRCREATEPEN = tagEMRCREATEPEN*;
-
-@foreign
-struct tagEMREXTCREATEPEN {
+struct EMREXTCREATEPEN {
     emr: EMR;
     ihPen: DWORD;
     offBmi: DWORD;
@@ -4680,26 +4252,20 @@ struct tagEMREXTCREATEPEN {
 }
 
 @foreign
-typedef EMREXTCREATEPEN = tagEMREXTCREATEPEN;
+typedef PEMREXTCREATEPEN = EMREXTCREATEPEN*;
 
 @foreign
-typedef PEMREXTCREATEPEN = tagEMREXTCREATEPEN*;
-
-@foreign
-struct tagEMRCREATEBRUSHINDIRECT {
+struct EMRCREATEBRUSHINDIRECT {
     emr: EMR;
     ihBrush: DWORD;
     lb: LOGBRUSH32;
 }
 
 @foreign
-typedef EMRCREATEBRUSHINDIRECT = tagEMRCREATEBRUSHINDIRECT;
+typedef PEMRCREATEBRUSHINDIRECT = EMRCREATEBRUSHINDIRECT*;
 
 @foreign
-typedef PEMRCREATEBRUSHINDIRECT = tagEMRCREATEBRUSHINDIRECT*;
-
-@foreign
-struct tagEMRCREATEMONOBRUSH {
+struct EMRCREATEMONOBRUSH {
     emr: EMR;
     ihBrush: DWORD;
     iUsage: DWORD;
@@ -4710,13 +4276,10 @@ struct tagEMRCREATEMONOBRUSH {
 }
 
 @foreign
-typedef EMRCREATEMONOBRUSH = tagEMRCREATEMONOBRUSH;
+typedef PEMRCREATEMONOBRUSH = EMRCREATEMONOBRUSH*;
 
 @foreign
-typedef PEMRCREATEMONOBRUSH = tagEMRCREATEMONOBRUSH*;
-
-@foreign
-struct tagEMRCREATEDIBPATTERNBRUSHPT {
+struct EMRCREATEDIBPATTERNBRUSHPT {
     emr: EMR;
     ihBrush: DWORD;
     iUsage: DWORD;
@@ -4727,13 +4290,10 @@ struct tagEMRCREATEDIBPATTERNBRUSHPT {
 }
 
 @foreign
-typedef EMRCREATEDIBPATTERNBRUSHPT = tagEMRCREATEDIBPATTERNBRUSHPT;
+typedef PEMRCREATEDIBPATTERNBRUSHPT = EMRCREATEDIBPATTERNBRUSHPT*;
 
 @foreign
-typedef PEMRCREATEDIBPATTERNBRUSHPT = tagEMRCREATEDIBPATTERNBRUSHPT*;
-
-@foreign
-struct tagEMRFORMAT {
+struct EMRFORMAT {
     dSignature: DWORD;
     nVersion: DWORD;
     cbData: DWORD;
@@ -4741,26 +4301,20 @@ struct tagEMRFORMAT {
 }
 
 @foreign
-typedef EMRFORMAT = tagEMRFORMAT;
+typedef PEMRFORMAT = EMRFORMAT*;
 
 @foreign
-typedef PEMRFORMAT = tagEMRFORMAT*;
-
-@foreign
-struct tagEMRGLSRECORD {
+struct EMRGLSRECORD {
     emr: EMR;
     cbData: DWORD;
     Data: BYTE[1];
 }
 
 @foreign
-typedef EMRGLSRECORD = tagEMRGLSRECORD;
+typedef PEMRGLSRECORD = EMRGLSRECORD*;
 
 @foreign
-typedef PEMRGLSRECORD = tagEMRGLSRECORD*;
-
-@foreign
-struct tagEMRGLSBOUNDEDRECORD {
+struct EMRGLSBOUNDEDRECORD {
     emr: EMR;
     rclBounds: RECTL;
     cbData: DWORD;
@@ -4768,62 +4322,50 @@ struct tagEMRGLSBOUNDEDRECORD {
 }
 
 @foreign
-typedef EMRGLSBOUNDEDRECORD = tagEMRGLSBOUNDEDRECORD;
+typedef PEMRGLSBOUNDEDRECORD = EMRGLSBOUNDEDRECORD*;
 
 @foreign
-typedef PEMRGLSBOUNDEDRECORD = tagEMRGLSBOUNDEDRECORD*;
-
-@foreign
-struct tagEMRPIXELFORMAT {
+struct EMRPIXELFORMAT {
     emr: EMR;
     pfd: PIXELFORMATDESCRIPTOR;
 }
 
 @foreign
-typedef EMRPIXELFORMAT = tagEMRPIXELFORMAT;
+typedef PEMRPIXELFORMAT = EMRPIXELFORMAT*;
 
 @foreign
-typedef PEMRPIXELFORMAT = tagEMRPIXELFORMAT*;
-
-@foreign
-struct tagEMRCREATECOLORSPACE {
+struct EMRCREATECOLORSPACE {
     emr: EMR;
     ihCS: DWORD;
     lcs: LOGCOLORSPACEA;
 }
 
 @foreign
-typedef EMRCREATECOLORSPACE = tagEMRCREATECOLORSPACE;
+typedef PEMRCREATECOLORSPACE = EMRCREATECOLORSPACE*;
 
 @foreign
-typedef PEMRCREATECOLORSPACE = tagEMRCREATECOLORSPACE*;
-
-@foreign
-struct tagEMRSETCOLORSPACE {
+struct EMRSETCOLORSPACE {
     emr: EMR;
     ihCS: DWORD;
 }
 
 @foreign
-typedef EMRSETCOLORSPACE = tagEMRSETCOLORSPACE;
+typedef PEMRSETCOLORSPACE = EMRSETCOLORSPACE*;
 
 @foreign
-typedef PEMRSETCOLORSPACE = tagEMRSETCOLORSPACE*;
+typedef EMRSELECTCOLORSPACE = EMRSETCOLORSPACE;
 
 @foreign
-typedef EMRSELECTCOLORSPACE = tagEMRSETCOLORSPACE;
+typedef PEMRSELECTCOLORSPACE = EMRSETCOLORSPACE*;
 
 @foreign
-typedef PEMRSELECTCOLORSPACE = tagEMRSETCOLORSPACE*;
+typedef EMRDELETECOLORSPACE = EMRSETCOLORSPACE;
 
 @foreign
-typedef EMRDELETECOLORSPACE = tagEMRSETCOLORSPACE;
+typedef PEMRDELETECOLORSPACE = EMRSETCOLORSPACE*;
 
 @foreign
-typedef PEMRDELETECOLORSPACE = tagEMRSETCOLORSPACE*;
-
-@foreign
-struct tagEMREXTESCAPE {
+struct EMREXTESCAPE {
     emr: EMR;
     iEscape: INT;
     cbEscData: INT;
@@ -4831,19 +4373,16 @@ struct tagEMREXTESCAPE {
 }
 
 @foreign
-typedef EMREXTESCAPE = tagEMREXTESCAPE;
+typedef PEMREXTESCAPE = EMREXTESCAPE*;
 
 @foreign
-typedef PEMREXTESCAPE = tagEMREXTESCAPE*;
+typedef EMRDRAWESCAPE = EMREXTESCAPE;
 
 @foreign
-typedef EMRDRAWESCAPE = tagEMREXTESCAPE;
+typedef PEMRDRAWESCAPE = EMREXTESCAPE*;
 
 @foreign
-typedef PEMRDRAWESCAPE = tagEMREXTESCAPE*;
-
-@foreign
-struct tagEMRNAMEDESCAPE {
+struct EMRNAMEDESCAPE {
     emr: EMR;
     iEscape: INT;
     cbDriver: INT;
@@ -4852,13 +4391,10 @@ struct tagEMRNAMEDESCAPE {
 }
 
 @foreign
-typedef EMRNAMEDESCAPE = tagEMRNAMEDESCAPE;
+typedef PEMRNAMEDESCAPE = EMRNAMEDESCAPE*;
 
 @foreign
-typedef PEMRNAMEDESCAPE = tagEMRNAMEDESCAPE*;
-
-@foreign
-struct tagEMRSETICMPROFILE {
+struct EMRSETICMPROFILE {
     emr: EMR;
     dwFlags: DWORD;
     cbName: DWORD;
@@ -4867,25 +4403,22 @@ struct tagEMRSETICMPROFILE {
 }
 
 @foreign
-typedef EMRSETICMPROFILE = tagEMRSETICMPROFILE;
+typedef PEMRSETICMPROFILE = EMRSETICMPROFILE*;
 
 @foreign
-typedef PEMRSETICMPROFILE = tagEMRSETICMPROFILE*;
+typedef EMRSETICMPROFILEA = EMRSETICMPROFILE;
 
 @foreign
-typedef EMRSETICMPROFILEA = tagEMRSETICMPROFILE;
+typedef PEMRSETICMPROFILEA = EMRSETICMPROFILE*;
 
 @foreign
-typedef PEMRSETICMPROFILEA = tagEMRSETICMPROFILE*;
+typedef EMRSETICMPROFILEW = EMRSETICMPROFILE;
 
 @foreign
-typedef EMRSETICMPROFILEW = tagEMRSETICMPROFILE;
+typedef PEMRSETICMPROFILEW = EMRSETICMPROFILE*;
 
 @foreign
-typedef PEMRSETICMPROFILEW = tagEMRSETICMPROFILE*;
-
-@foreign
-struct tagEMRCREATECOLORSPACEW {
+struct EMRCREATECOLORSPACEW {
     emr: EMR;
     ihCS: DWORD;
     lcs: LOGCOLORSPACEW;
@@ -4895,13 +4428,10 @@ struct tagEMRCREATECOLORSPACEW {
 }
 
 @foreign
-typedef EMRCREATECOLORSPACEW = tagEMRCREATECOLORSPACEW;
+typedef PEMRCREATECOLORSPACEW = EMRCREATECOLORSPACEW*;
 
 @foreign
-typedef PEMRCREATECOLORSPACEW = tagEMRCREATECOLORSPACEW*;
-
-@foreign
-struct tagCOLORMATCHTOTARGET {
+struct EMRCOLORMATCHTOTARGET {
     emr: EMR;
     dwAction: DWORD;
     dwFlags: DWORD;
@@ -4911,13 +4441,10 @@ struct tagCOLORMATCHTOTARGET {
 }
 
 @foreign
-typedef EMRCOLORMATCHTOTARGET = tagCOLORMATCHTOTARGET;
+typedef PEMRCOLORMATCHTOTARGET = EMRCOLORMATCHTOTARGET*;
 
 @foreign
-typedef PEMRCOLORMATCHTOTARGET = tagCOLORMATCHTOTARGET*;
-
-@foreign
-struct tagCOLORCORRECTPALETTE {
+struct EMRCOLORCORRECTPALETTE {
     emr: EMR;
     ihPalette: DWORD;
     nFirstEntry: DWORD;
@@ -4926,13 +4453,10 @@ struct tagCOLORCORRECTPALETTE {
 }
 
 @foreign
-typedef EMRCOLORCORRECTPALETTE = tagCOLORCORRECTPALETTE;
+typedef PEMRCOLORCORRECTPALETTE = EMRCOLORCORRECTPALETTE*;
 
 @foreign
-typedef PEMRCOLORCORRECTPALETTE = tagCOLORCORRECTPALETTE*;
-
-@foreign
-struct tagEMRALPHABLEND {
+struct EMRALPHABLEND {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4954,13 +4478,10 @@ struct tagEMRALPHABLEND {
 }
 
 @foreign
-typedef EMRALPHABLEND = tagEMRALPHABLEND;
+typedef PEMRALPHABLEND = EMRALPHABLEND*;
 
 @foreign
-typedef PEMRALPHABLEND = tagEMRALPHABLEND*;
-
-@foreign
-struct tagEMRGRADIENTFILL {
+struct EMRGRADIENTFILL {
     emr: EMR;
     rclBounds: RECTL;
     nVer: DWORD;
@@ -4970,13 +4491,10 @@ struct tagEMRGRADIENTFILL {
 }
 
 @foreign
-typedef EMRGRADIENTFILL = tagEMRGRADIENTFILL;
+typedef PEMRGRADIENTFILL = EMRGRADIENTFILL*;
 
 @foreign
-typedef PEMRGRADIENTFILL = tagEMRGRADIENTFILL*;
-
-@foreign
-struct tagEMRTRANSPARENTBLT {
+struct EMRTRANSPARENTBLT {
     emr: EMR;
     rclBounds: RECTL;
     xDest: LONG;
@@ -4998,10 +4516,7 @@ struct tagEMRTRANSPARENTBLT {
 }
 
 @foreign
-typedef EMRTRANSPARENTBLT = tagEMRTRANSPARENTBLT;
-
-@foreign
-typedef PEMRTRANSPARENTBLT = tagEMRTRANSPARENTBLT*;
+typedef PEMRTRANSPARENTBLT = EMRTRANSPARENTBLT*;
 
 @foreign
 func wglCopyContext(arg0: HGLRC, arg1: HGLRC, arg2: UINT): BOOL;
@@ -5043,19 +4558,16 @@ func wglUseFontBitmapsW(arg0: HDC, arg1: DWORD, arg2: DWORD, arg3: DWORD): BOOL;
 func SwapBuffers(arg0: HDC): BOOL;
 
 @foreign
-struct _POINTFLOAT {
+struct POINTFLOAT {
     x: FLOAT;
     y: FLOAT;
 }
 
 @foreign
-typedef POINTFLOAT = _POINTFLOAT;
+typedef PPOINTFLOAT = POINTFLOAT*;
 
 @foreign
-typedef PPOINTFLOAT = _POINTFLOAT*;
-
-@foreign
-struct _GLYPHMETRICSFLOAT {
+struct GLYPHMETRICSFLOAT {
     gmfBlackBoxX: FLOAT;
     gmfBlackBoxY: FLOAT;
     gmfptGlyphOrigin: POINTFLOAT;
@@ -5064,13 +4576,10 @@ struct _GLYPHMETRICSFLOAT {
 }
 
 @foreign
-typedef GLYPHMETRICSFLOAT = _GLYPHMETRICSFLOAT;
+typedef PGLYPHMETRICSFLOAT = GLYPHMETRICSFLOAT*;
 
 @foreign
-typedef PGLYPHMETRICSFLOAT = _GLYPHMETRICSFLOAT*;
-
-@foreign
-typedef LPGLYPHMETRICSFLOAT = _GLYPHMETRICSFLOAT*;
+typedef LPGLYPHMETRICSFLOAT = GLYPHMETRICSFLOAT*;
 
 @foreign
 func wglUseFontOutlinesA(arg0: HDC, arg1: DWORD, arg2: DWORD, arg3: DWORD, arg4: FLOAT, arg5: FLOAT, arg6: int, arg7: LPGLYPHMETRICSFLOAT): BOOL;
@@ -5082,7 +4591,7 @@ func wglUseFontOutlines(arg0: HDC, arg1: DWORD, arg2: DWORD, arg3: DWORD, arg4: 
 func wglUseFontOutlinesW(arg0: HDC, arg1: DWORD, arg2: DWORD, arg3: DWORD, arg4: FLOAT, arg5: FLOAT, arg6: int, arg7: LPGLYPHMETRICSFLOAT): BOOL;
 
 @foreign
-struct tagLAYERPLANEDESCRIPTOR {
+struct LAYERPLANEDESCRIPTOR {
     nSize: WORD;
     nVersion: WORD;
     dwFlags: DWORD;
@@ -5110,13 +4619,10 @@ struct tagLAYERPLANEDESCRIPTOR {
 }
 
 @foreign
-typedef LAYERPLANEDESCRIPTOR = tagLAYERPLANEDESCRIPTOR;
+typedef PLAYERPLANEDESCRIPTOR = LAYERPLANEDESCRIPTOR*;
 
 @foreign
-typedef PLAYERPLANEDESCRIPTOR = tagLAYERPLANEDESCRIPTOR*;
-
-@foreign
-typedef LPLAYERPLANEDESCRIPTOR = tagLAYERPLANEDESCRIPTOR*;
+typedef LPLAYERPLANEDESCRIPTOR = LAYERPLANEDESCRIPTOR*;
 
 @foreign
 func wglDescribeLayerPlane(arg0: HDC, arg1: int, arg2: int, arg3: UINT, arg4: LPLAYERPLANEDESCRIPTOR): BOOL;
@@ -5134,20 +4640,16 @@ func wglRealizeLayerPalette(arg0: HDC, arg1: int, arg2: BOOL): BOOL;
 func wglSwapLayerBuffers(arg0: HDC, arg1: UINT): BOOL;
 
 @foreign
-struct _WGLSWAP {
+struct WGLSWAP {
     hdc: HDC;
     uiFlags: UINT;
 }
 
 @foreign
-typedef WGLSWAP = _WGLSWAP;
+typedef PWGLSWAP = WGLSWAP*;
 
 @foreign
-typedef PWGLSWAP = _WGLSWAP*;
-
-@foreign
-typedef LPWGLSWAP = _WGLSWAP*;
+typedef LPWGLSWAP = WGLSWAP*;
 
 @foreign
 func wglSwapMultipleBuffers(arg0: UINT, arg1: WGLSWAP*): DWORD;
-

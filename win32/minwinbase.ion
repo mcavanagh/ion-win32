@@ -1,46 +1,41 @@
-#foreign(header = "<minwinbase.h>")
-
 @foreign
-struct _SECURITY_ATTRIBUTES {
+struct SECURITY_ATTRIBUTES {
     nLength: DWORD;
     lpSecurityDescriptor: LPVOID;
     bInheritHandle: BOOL;
 }
 
 @foreign
-typedef SECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES;
+typedef PSECURITY_ATTRIBUTES = SECURITY_ATTRIBUTES*;
 
 @foreign
-typedef PSECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES*;
+typedef LPSECURITY_ATTRIBUTES = SECURITY_ATTRIBUTES*;
 
 @foreign
-typedef LPSECURITY_ATTRIBUTES = _SECURITY_ATTRIBUTES*;
-
-@foreign
-struct _OVERLAPPED___inner_s {
+struct OVERLAPPED___inner_s {
     Offset: DWORD;
     OffsetHigh: DWORD;
 }
 
 @foreign
-union _OVERLAPPED___inner_u {
-    s: _OVERLAPPED___inner_s;
+union OVERLAPPED___inner_u {
+    s: OVERLAPPED___inner_s;
     Pointer: PVOID;
 }
 
 @foreign
-struct _OVERLAPPED {
+struct OVERLAPPED {
     Internal: ULONG_PTR;
     InternalHigh: ULONG_PTR;
-    u: _OVERLAPPED___inner_u;
+    u: OVERLAPPED___inner_u;
     hEvent: HANDLE;
 }
 
 @foreign
-typedef LPOVERLAPPED = _OVERLAPPED*;
+typedef LPOVERLAPPED = OVERLAPPED*;
 
 @foreign
-struct _OVERLAPPED_ENTRY {
+struct OVERLAPPED_ENTRY {
     lpCompletionKey: ULONG_PTR;
     lpOverlapped: LPOVERLAPPED;
     Internal: ULONG_PTR;
@@ -48,13 +43,10 @@ struct _OVERLAPPED_ENTRY {
 }
 
 @foreign
-typedef OVERLAPPED_ENTRY = _OVERLAPPED_ENTRY;
+typedef LPOVERLAPPED_ENTRY = OVERLAPPED_ENTRY*;
 
 @foreign
-typedef LPOVERLAPPED_ENTRY = _OVERLAPPED_ENTRY*;
-
-@foreign
-struct _SYSTEMTIME {
+struct SYSTEMTIME {
     wYear: WORD;
     wMonth: WORD;
     wDayOfWeek: WORD;
@@ -66,16 +58,13 @@ struct _SYSTEMTIME {
 }
 
 @foreign
-typedef SYSTEMTIME = _SYSTEMTIME;
+typedef PSYSTEMTIME = SYSTEMTIME*;
 
 @foreign
-typedef PSYSTEMTIME = _SYSTEMTIME*;
+typedef LPSYSTEMTIME = SYSTEMTIME*;
 
 @foreign
-typedef LPSYSTEMTIME = _SYSTEMTIME*;
-
-@foreign
-struct _WIN32_FIND_DATAA {
+struct WIN32_FIND_DATAA {
     dwFileAttributes: DWORD;
     ftCreationTime: FILETIME;
     ftLastAccessTime: FILETIME;
@@ -89,16 +78,13 @@ struct _WIN32_FIND_DATAA {
 }
 
 @foreign
-typedef WIN32_FIND_DATAA = _WIN32_FIND_DATAA;
+typedef PWIN32_FIND_DATAA = WIN32_FIND_DATAA*;
 
 @foreign
-typedef PWIN32_FIND_DATAA = _WIN32_FIND_DATAA*;
+typedef LPWIN32_FIND_DATAA = WIN32_FIND_DATAA*;
 
 @foreign
-typedef LPWIN32_FIND_DATAA = _WIN32_FIND_DATAA*;
-
-@foreign
-struct _WIN32_FIND_DATAW {
+struct WIN32_FIND_DATAW {
     dwFileAttributes: DWORD;
     ftCreationTime: FILETIME;
     ftLastAccessTime: FILETIME;
@@ -112,13 +98,10 @@ struct _WIN32_FIND_DATAW {
 }
 
 @foreign
-typedef WIN32_FIND_DATAW = _WIN32_FIND_DATAW;
+typedef PWIN32_FIND_DATAW = WIN32_FIND_DATAW*;
 
 @foreign
-typedef PWIN32_FIND_DATAW = _WIN32_FIND_DATAW*;
-
-@foreign
-typedef LPWIN32_FIND_DATAW = _WIN32_FIND_DATAW*;
+typedef LPWIN32_FIND_DATAW = WIN32_FIND_DATAW*;
 
 @foreign
 typedef WIN32_FIND_DATA = WIN32_FIND_DATAA;
@@ -130,17 +113,14 @@ typedef PWIN32_FIND_DATA = PWIN32_FIND_DATAA;
 typedef LPWIN32_FIND_DATA = LPWIN32_FIND_DATAA;
 
 @foreign
-enum _FINDEX_INFO_LEVELS {
+enum FINDEX_INFO_LEVELS {
     FindExInfoStandard,
     FindExInfoBasic,
     FindExInfoMaxInfoLevel,
 }
 
 @foreign
-typedef FINDEX_INFO_LEVELS = _FINDEX_INFO_LEVELS;
-
-@foreign
-enum _FINDEX_SEARCH_OPS {
+enum FINDEX_SEARCH_OPS {
     FindExSearchNameMatch,
     FindExSearchLimitToDirectories,
     FindExSearchLimitToDevices,
@@ -148,31 +128,22 @@ enum _FINDEX_SEARCH_OPS {
 }
 
 @foreign
-typedef FINDEX_SEARCH_OPS = _FINDEX_SEARCH_OPS;
-
-@foreign
-enum _READ_DIRECTORY_NOTIFY_INFORMATION_CLASS {
+enum READ_DIRECTORY_NOTIFY_INFORMATION_CLASS {
     ReadDirectoryNotifyInformation = 1,
     ReadDirectoryNotifyExtendedInformation,
 }
 
 @foreign
-typedef READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = _READ_DIRECTORY_NOTIFY_INFORMATION_CLASS;
+typedef PREAD_DIRECTORY_NOTIFY_INFORMATION_CLASS = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS*;
 
 @foreign
-typedef PREAD_DIRECTORY_NOTIFY_INFORMATION_CLASS = _READ_DIRECTORY_NOTIFY_INFORMATION_CLASS*;
-
-@foreign
-enum _GET_FILEEX_INFO_LEVELS {
+enum GET_FILEEX_INFO_LEVELS {
     GetFileExInfoStandard,
     GetFileExMaxInfoLevel,
 }
 
 @foreign
-typedef GET_FILEEX_INFO_LEVELS = _GET_FILEEX_INFO_LEVELS;
-
-@foreign
-enum _FILE_INFO_BY_HANDLE_CLASS {
+enum FILE_INFO_BY_HANDLE_CLASS {
     FileBasicInfo,
     FileStandardInfo,
     FileNameInfo,
@@ -200,10 +171,7 @@ enum _FILE_INFO_BY_HANDLE_CLASS {
 }
 
 @foreign
-typedef FILE_INFO_BY_HANDLE_CLASS = _FILE_INFO_BY_HANDLE_CLASS;
-
-@foreign
-typedef PFILE_INFO_BY_HANDLE_CLASS = _FILE_INFO_BY_HANDLE_CLASS*;
+typedef PFILE_INFO_BY_HANDLE_CLASS = FILE_INFO_BY_HANDLE_CLASS*;
 
 @foreign
 typedef CRITICAL_SECTION = RTL_CRITICAL_SECTION;
@@ -226,14 +194,15 @@ typedef LPCRITICAL_SECTION_DEBUG = PRTL_CRITICAL_SECTION_DEBUG;
 @foreign
 typedef LPOVERLAPPED_COMPLETION_ROUTINE = func(dwErrorCode: DWORD, dwNumberOfBytesTransfered: DWORD, lpOverlapped: LPOVERLAPPED);
 
+
 @foreign
-struct _PROCESS_HEAP_ENTRY___inner_s1 {
+struct PROCESS_HEAP_ENTRY___inner_s1 {
     hMem: HANDLE;
     dwReserved: DWORD[3];
 }
 
 @foreign
-struct _PROCESS_HEAP_ENTRY___inner_s2 {
+struct PROCESS_HEAP_ENTRY___inner_s2 {
     dwCommittedSize: DWORD;
     dwUnCommittedSize: DWORD;
     lpFirstBlock: LPVOID;
@@ -241,29 +210,29 @@ struct _PROCESS_HEAP_ENTRY___inner_s2 {
 }
 
 @foreign
-union _PROCESS_HEAP_ENTRY___inner_u {
-    Block: _PROCESS_HEAP_ENTRY___inner_s1;
-    Region: _PROCESS_HEAP_ENTRY___inner_s2;
+union PROCESS_HEAP_ENTRY___inner_u {
+    Block: PROCESS_HEAP_ENTRY___inner_s1;
+    Region: PROCESS_HEAP_ENTRY___inner_s2;
 }
 
 @foreign
-struct _PROCESS_HEAP_ENTRY {
+struct PROCESS_HEAP_ENTRY {
     lpData: PVOID;
     cbData: DWORD;
     cbOverhead: BYTE;
     iRegionIndex: BYTE;
     wFlags: WORD;
-    u: _PROCESS_HEAP_ENTRY___inner_u;
+    u: PROCESS_HEAP_ENTRY___inner_u;
 }
 
 @foreign
-typedef LPPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
+typedef LPPROCESS_HEAP_ENTRY = PROCESS_HEAP_ENTRY*;
 
 @foreign
-typedef PPROCESS_HEAP_ENTRY = _PROCESS_HEAP_ENTRY*;
+typedef PPROCESS_HEAP_ENTRY = PROCESS_HEAP_ENTRY*;
 
 @foreign
-struct _REASON_CONTEXT___inner_s {
+struct REASON_CONTEXT___inner_s {
     LocalizedReasonModule: HMODULE;
     LocalizedReasonId: ULONG;
     ReasonStringCount: ULONG;
@@ -271,23 +240,20 @@ struct _REASON_CONTEXT___inner_s {
 }
 
 @foreign
-union _REASON_CONTEXT___inner_u {
-    Detailed: _REASON_CONTEXT___inner_s;
+union REASON_CONTEXT___inner_u {
+    Detailed: REASON_CONTEXT___inner_s;
     SimpleReasonString: LPWSTR;
 }
 
 @foreign
-struct _REASON_CONTEXT {
+struct REASON_CONTEXT {
     Version: ULONG;
     Flags: DWORD;
-    Reason: _REASON_CONTEXT___inner_u;
+    Reason: REASON_CONTEXT___inner_u;
 }
 
 @foreign
-typedef REASON_CONTEXT = _REASON_CONTEXT;
-
-@foreign
-typedef PREASON_CONTEXT = _REASON_CONTEXT*;
+typedef PREASON_CONTEXT = REASON_CONTEXT*;
 
 @foreign
 typedef PTHREAD_START_ROUTINE = func(lpThreadParameter: LPVOID): DWORD;
@@ -302,32 +268,26 @@ typedef PENCLAVE_ROUTINE = func(lpThreadParameter: LPVOID): LPVOID;
 typedef LPENCLAVE_ROUTINE = PENCLAVE_ROUTINE;
 
 @foreign
-struct _EXCEPTION_DEBUG_INFO {
+struct EXCEPTION_DEBUG_INFO {
     ExceptionRecord: EXCEPTION_RECORD;
     dwFirstChance: DWORD;
 }
 
 @foreign
-typedef EXCEPTION_DEBUG_INFO = _EXCEPTION_DEBUG_INFO;
+typedef LPEXCEPTION_DEBUG_INFO = EXCEPTION_DEBUG_INFO*;
 
 @foreign
-typedef LPEXCEPTION_DEBUG_INFO = _EXCEPTION_DEBUG_INFO*;
-
-@foreign
-struct _CREATE_THREAD_DEBUG_INFO {
+struct CREATE_THREAD_DEBUG_INFO {
     hThread: HANDLE;
     lpThreadLocalBase: LPVOID;
     lpStartAddress: LPTHREAD_START_ROUTINE;
 }
 
 @foreign
-typedef CREATE_THREAD_DEBUG_INFO = _CREATE_THREAD_DEBUG_INFO;
+typedef LPCREATE_THREAD_DEBUG_INFO = CREATE_THREAD_DEBUG_INFO*;
 
 @foreign
-typedef LPCREATE_THREAD_DEBUG_INFO = _CREATE_THREAD_DEBUG_INFO*;
-
-@foreign
-struct _CREATE_PROCESS_DEBUG_INFO {
+struct CREATE_PROCESS_DEBUG_INFO {
     hFile: HANDLE;
     hProcess: HANDLE;
     hThread: HANDLE;
@@ -341,35 +301,26 @@ struct _CREATE_PROCESS_DEBUG_INFO {
 }
 
 @foreign
-typedef CREATE_PROCESS_DEBUG_INFO = _CREATE_PROCESS_DEBUG_INFO;
+typedef LPCREATE_PROCESS_DEBUG_INFO = CREATE_PROCESS_DEBUG_INFO*;
 
 @foreign
-typedef LPCREATE_PROCESS_DEBUG_INFO = _CREATE_PROCESS_DEBUG_INFO*;
-
-@foreign
-struct _EXIT_THREAD_DEBUG_INFO {
+struct EXIT_THREAD_DEBUG_INFO {
     dwExitCode: DWORD;
 }
 
 @foreign
-typedef EXIT_THREAD_DEBUG_INFO = _EXIT_THREAD_DEBUG_INFO;
+typedef LPEXIT_THREAD_DEBUG_INFO = EXIT_THREAD_DEBUG_INFO*;
 
 @foreign
-typedef LPEXIT_THREAD_DEBUG_INFO = _EXIT_THREAD_DEBUG_INFO*;
-
-@foreign
-struct _EXIT_PROCESS_DEBUG_INFO {
+struct EXIT_PROCESS_DEBUG_INFO {
     dwExitCode: DWORD;
 }
 
 @foreign
-typedef EXIT_PROCESS_DEBUG_INFO = _EXIT_PROCESS_DEBUG_INFO;
+typedef LPEXIT_PROCESS_DEBUG_INFO = EXIT_PROCESS_DEBUG_INFO*;
 
 @foreign
-typedef LPEXIT_PROCESS_DEBUG_INFO = _EXIT_PROCESS_DEBUG_INFO*;
-
-@foreign
-struct _LOAD_DLL_DEBUG_INFO {
+struct LOAD_DLL_DEBUG_INFO {
     hFile: HANDLE;
     lpBaseOfDll: LPVOID;
     dwDebugInfoFileOffset: DWORD;
@@ -379,49 +330,37 @@ struct _LOAD_DLL_DEBUG_INFO {
 }
 
 @foreign
-typedef LOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO;
+typedef LPLOAD_DLL_DEBUG_INFO = LOAD_DLL_DEBUG_INFO*;
 
 @foreign
-typedef LPLOAD_DLL_DEBUG_INFO = _LOAD_DLL_DEBUG_INFO*;
-
-@foreign
-struct _UNLOAD_DLL_DEBUG_INFO {
+struct UNLOAD_DLL_DEBUG_INFO {
     lpBaseOfDll: LPVOID;
 }
 
 @foreign
-typedef UNLOAD_DLL_DEBUG_INFO = _UNLOAD_DLL_DEBUG_INFO;
+typedef LPUNLOAD_DLL_DEBUG_INFO = UNLOAD_DLL_DEBUG_INFO*;
 
 @foreign
-typedef LPUNLOAD_DLL_DEBUG_INFO = _UNLOAD_DLL_DEBUG_INFO*;
-
-@foreign
-struct _OUTPUT_DEBUG_STRING_INFO {
+struct OUTPUT_DEBUG_STRING_INFO {
     lpDebugStringData: LPSTR;
     fUnicode: WORD;
     nDebugStringLength: WORD;
 }
 
 @foreign
-typedef OUTPUT_DEBUG_STRING_INFO = _OUTPUT_DEBUG_STRING_INFO;
+typedef LPOUTPUT_DEBUG_STRING_INFO = OUTPUT_DEBUG_STRING_INFO*;
 
 @foreign
-typedef LPOUTPUT_DEBUG_STRING_INFO = _OUTPUT_DEBUG_STRING_INFO*;
-
-@foreign
-struct _RIP_INFO {
+struct RIP_INFO {
     dwError: DWORD;
     dwType: DWORD;
 }
 
 @foreign
-typedef RIP_INFO = _RIP_INFO;
+typedef LPRIP_INFO = RIP_INFO*;
 
 @foreign
-typedef LPRIP_INFO = _RIP_INFO*;
-
-@foreign
-union _DEBUG_EVENT___inner {
+union DEBUG_EVENT___inner {
     Exception: EXCEPTION_DEBUG_INFO;
     CreateThread: CREATE_THREAD_DEBUG_INFO;
     CreateProcessInfo: CREATE_PROCESS_DEBUG_INFO;
@@ -434,15 +373,15 @@ union _DEBUG_EVENT___inner {
 }
 
 @foreign
-struct _DEBUG_EVENT {
+struct DEBUG_EVENT {
     dwDebugEventCode: DWORD;
     dwProcessId: DWORD;
     dwThreadId: DWORD;
-    u: _DEBUG_EVENT___inner;
+    u: DEBUG_EVENT___inner;
 }
 
 @foreign
-typedef LPDEBUG_EVENT = _DEBUG_EVENT*;
+typedef LPDEBUG_EVENT = DEBUG_EVENT*;
 
 @foreign
 typedef LPCONTEXT = PCONTEXT;

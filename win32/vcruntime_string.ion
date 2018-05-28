@@ -1,5 +1,3 @@
-#foreign(header = "<vcruntime_string.h>")
-
 @foreign
 func wcschr(_Str: wchar*, _Ch: wchar): wchar*;
 

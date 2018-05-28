@@ -1,5 +1,3 @@
-#foreign(header = "<rpcnsip.h>")
-
 @foreign
 struct RPC_IMPORT_CONTEXT_P {
     LookupContext: RPC_NS_HANDLE;

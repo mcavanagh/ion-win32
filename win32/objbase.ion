@@ -1,15 +1,10 @@
-#foreign(header = "<objbase.h>")
-
 @foreign
-enum tagCOINIT {
+enum COINIT {
     COINIT_MULTITHREADED = 0,
     COINIT_APARTMENTTHREADED = 2,
     COINIT_DISABLE_OLE1DDE = 4,
     COINIT_SPEED_OVER_MEMORY = 8,
 }
-
-@foreign
-typedef COINIT = tagCOINIT;
 
 @foreign
 func CoBuildVersion(): DWORD;
@@ -33,15 +28,12 @@ func CoRegisterInitializeSpy(pSpy: IInitializeSpy*, puliCookie: ULARGE_INTEGER*)
 func CoRevokeInitializeSpy(uliCookie: ULARGE_INTEGER): HRESULT;
 
 @foreign
-enum tagCOMSD {
+enum COMSD {
     SD_LAUNCHPERMISSIONS = 0,
     SD_ACCESSPERMISSIONS = 1,
     SD_LAUNCHRESTRICTIONS = 2,
     SD_ACCESSRESTRICTIONS = 3,
 }
-
-@foreign
-typedef COMSD = tagCOMSD;
 
 @foreign
 func CoGetSystemSecurityPermissions(comSDType: COMSD, ppSD: PSECURITY_DESCRIPTOR*): HRESULT;

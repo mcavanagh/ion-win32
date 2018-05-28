@@ -1,5 +1,3 @@
-#foreign(header = "<oleidl.h>")
-
 @foreign
 typedef LPOLEADVISEHOLDER = IOleAdviseHolder*;
 
@@ -45,13 +43,10 @@ struct IOleCache {
 typedef LPOLECACHE2 = IOleCache2*;
 
 @foreign
-enum tagDISCARDCACHE {
+enum DISCARDCACHE {
     DISCARDCACHE_SAVEIFDIRTY = 0,
     DISCARDCACHE_NOSAVE = 1,
 }
-
-@foreign
-typedef DISCARDCACHE = tagDISCARDCACHE;
 
 @foreign
 struct IOleCache2Vtbl {
@@ -154,7 +149,7 @@ struct IOleClientSite {
 typedef LPOLEOBJECT = IOleObject*;
 
 @foreign
-enum tagOLEGETMONIKER {
+enum OLEGETMONIKER {
     OLEGETMONIKER_ONLYIFTHERE = 1,
     OLEGETMONIKER_FORCEASSIGN = 2,
     OLEGETMONIKER_UNASSIGN = 3,
@@ -162,30 +157,21 @@ enum tagOLEGETMONIKER {
 }
 
 @foreign
-typedef OLEGETMONIKER = tagOLEGETMONIKER;
-
-@foreign
-enum tagOLEWHICHMK {
+enum OLEWHICHMK {
     OLEWHICHMK_CONTAINER = 1,
     OLEWHICHMK_OBJREL = 2,
     OLEWHICHMK_OBJFULL = 3,
 }
 
 @foreign
-typedef OLEWHICHMK = tagOLEWHICHMK;
-
-@foreign
-enum tagUSERCLASSTYPE {
+enum USERCLASSTYPE {
     USERCLASSTYPE_FULL = 1,
     USERCLASSTYPE_SHORT = 2,
     USERCLASSTYPE_APPNAME = 3,
 }
 
 @foreign
-typedef USERCLASSTYPE = tagUSERCLASSTYPE;
-
-@foreign
-enum tagOLEMISC {
+enum OLEMISC {
     OLEMISC_RECOMPOSEONRESIZE = 1,
     OLEMISC_ONLYICONIC = 2,
     OLEMISC_INSERTNOTREPLACE = 4,
@@ -211,17 +197,11 @@ enum tagOLEMISC {
 }
 
 @foreign
-typedef OLEMISC = tagOLEMISC;
-
-@foreign
-enum tagOLECLOSE {
+enum OLECLOSE {
     OLECLOSE_SAVEIFDIRTY = 0,
     OLECLOSE_NOSAVE = 1,
     OLECLOSE_PROMPTSAVE = 2,
 }
-
-@foreign
-typedef OLECLOSE = tagOLECLOSE;
 
 @foreign
 struct IOleObjectVtbl {
@@ -257,7 +237,7 @@ struct IOleObject {
 }
 
 @foreign
-enum tagOLERENDER {
+enum OLERENDER {
     OLERENDER_NONE = 0,
     OLERENDER_DRAW = 1,
     OLERENDER_FORMAT = 2,
@@ -265,13 +245,10 @@ enum tagOLERENDER {
 }
 
 @foreign
-typedef OLERENDER = tagOLERENDER;
-
-@foreign
 typedef LPOLERENDER = OLERENDER*;
 
 @foreign
-struct tagOBJECTDESCRIPTOR {
+struct OBJECTDESCRIPTOR {
     cbSize: ULONG;
     clsid: CLSID;
     dwDrawAspect: DWORD;
@@ -283,22 +260,19 @@ struct tagOBJECTDESCRIPTOR {
 }
 
 @foreign
-typedef OBJECTDESCRIPTOR = tagOBJECTDESCRIPTOR;
+typedef POBJECTDESCRIPTOR = OBJECTDESCRIPTOR*;
 
 @foreign
-typedef POBJECTDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+typedef LPOBJECTDESCRIPTOR = OBJECTDESCRIPTOR*;
 
 @foreign
-typedef LPOBJECTDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+typedef LINKSRCDESCRIPTOR = OBJECTDESCRIPTOR;
 
 @foreign
-typedef LINKSRCDESCRIPTOR = tagOBJECTDESCRIPTOR;
+typedef PLINKSRCDESCRIPTOR = OBJECTDESCRIPTOR*;
 
 @foreign
-typedef PLINKSRCDESCRIPTOR = tagOBJECTDESCRIPTOR*;
-
-@foreign
-typedef LPLINKSRCDESCRIPTOR = tagOBJECTDESCRIPTOR*;
+typedef LPLINKSRCDESCRIPTOR = OBJECTDESCRIPTOR*;
 
 @foreign
 typedef LPOLEWINDOW = IOleWindow*;
@@ -321,13 +295,10 @@ struct IOleWindow {
 typedef LPOLELINK = IOleLink*;
 
 @foreign
-enum tagOLEUPDATE {
+enum OLEUPDATE {
     OLEUPDATE_ALWAYS = 1,
     OLEUPDATE_ONCALL = 3,
 }
-
-@foreign
-typedef OLEUPDATE = tagOLEUPDATE;
 
 @foreign
 typedef LPOLEUPDATE = OLEUPDATE*;
@@ -336,12 +307,9 @@ typedef LPOLEUPDATE = OLEUPDATE*;
 typedef POLEUPDATE = OLEUPDATE*;
 
 @foreign
-enum tagOLELINKBIND {
+enum OLELINKBIND {
     OLELINKBIND_EVENIFCLASSDIFF = 1,
 }
-
-@foreign
-typedef OLELINKBIND = tagOLELINKBIND;
 
 @foreign
 struct IOleLinkVtbl {
@@ -370,26 +338,20 @@ struct IOleLink {
 typedef LPOLEITEMCONTAINER = IOleItemContainer*;
 
 @foreign
-enum tagBINDSPEED {
+enum BINDSPEED {
     BINDSPEED_INDEFINITE = 1,
     BINDSPEED_MODERATE = 2,
     BINDSPEED_IMMEDIATE = 3,
 }
 
 @foreign
-typedef BINDSPEED = tagBINDSPEED;
-
-@foreign
-enum tagOLECONTF {
+enum OLECONTF {
     OLECONTF_EMBEDDINGS = 1,
     OLECONTF_LINKS = 2,
     OLECONTF_OTHERS = 4,
     OLECONTF_ONLYUSER = 8,
     OLECONTF_ONLYIFRUNNING = 16,
 }
-
-@foreign
-typedef OLECONTF = tagOLECONTF;
 
 @foreign
 struct IOleItemContainerVtbl {
@@ -477,7 +439,7 @@ func IOleInPlaceActiveObject_RemoteResizeBorder_Stub(This: IRpcStubBuffer*, _pRp
 typedef LPOLEINPLACEFRAME = IOleInPlaceFrame*;
 
 @foreign
-struct tagOIFI {
+struct OLEINPLACEFRAMEINFO {
     cb: UINT;
     fMDIApp: BOOL;
     hwndFrame: HWND;
@@ -486,21 +448,15 @@ struct tagOIFI {
 }
 
 @foreign
-typedef OLEINPLACEFRAMEINFO = tagOIFI;
+typedef LPOLEINPLACEFRAMEINFO = OLEINPLACEFRAMEINFO*;
 
 @foreign
-typedef LPOLEINPLACEFRAMEINFO = tagOIFI*;
-
-@foreign
-struct tagOleMenuGroupWidths {
+struct OLEMENUGROUPWIDTHS {
     width: LONG[6];
 }
 
 @foreign
-typedef OLEMENUGROUPWIDTHS = tagOleMenuGroupWidths;
-
-@foreign
-typedef LPOLEMENUGROUPWIDTHS = tagOleMenuGroupWidths*;
+typedef LPOLEMENUGROUPWIDTHS = OLEMENUGROUPWIDTHS*;
 
 @foreign
 typedef HOLEMENU = HGLOBAL;
@@ -725,7 +681,7 @@ struct IEnterpriseDropTarget {
 typedef LPENUMOLEVERB = IEnumOLEVERB*;
 
 @foreign
-struct tagOLEVERB {
+struct OLEVERB {
     lVerb: LONG;
     lpszVerbName: LPOLESTR;
     fuFlags: DWORD;
@@ -733,19 +689,13 @@ struct tagOLEVERB {
 }
 
 @foreign
-typedef OLEVERB = tagOLEVERB;
+typedef LPOLEVERB = OLEVERB*;
 
 @foreign
-typedef LPOLEVERB = tagOLEVERB*;
-
-@foreign
-enum tagOLEVERBATTRIB {
+enum OLEVERBATTRIB {
     OLEVERBATTRIB_NEVERDIRTIES = 1,
     OLEVERBATTRIB_ONCONTAINERMENU = 2,
 }
-
-@foreign
-typedef OLEVERBATTRIB = tagOLEVERBATTRIB;
 
 @foreign
 struct IEnumOLEVERBVtbl {

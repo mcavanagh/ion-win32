@@ -1,5 +1,3 @@
-#foreign(header = "<consoleapi.h>")
-
 @foreign
 func AllocConsole(): BOOL;
 

@@ -1,12 +1,7 @@
-#foreign(header = "<combaseapi.h>")
-
 @foreign
-enum tagCOINITBASE {
+enum COINITBASE {
     COINITBASE_MULTITHREADED = 0,
 }
-
-@foreign
-typedef COINITBASE = tagCOINITBASE;
 
 @foreign
 func CoGetMalloc(dwMemContext: DWORD, ppMalloc: LPMALLOC*): HRESULT;
@@ -42,17 +37,14 @@ func CoGetDefaultContext(aptType: APTTYPE, riid: IID* const, ppv: void**): HRESU
 func CoGetApartmentType(pAptType: APTTYPE*, pAptQualifier: APTTYPEQUALIFIER*): HRESULT;
 
 @foreign
-struct tagServerInformation {
+struct ServerInformation {
     dwServerPid: DWORD;
     dwServerTid: DWORD;
     ui64ServerAddress: UINT64;
 }
 
 @foreign
-typedef ServerInformation = tagServerInformation;
-
-@foreign
-typedef PServerInformation = tagServerInformation*;
+typedef PServerInformation = ServerInformation*;
 
 @foreign
 func CoDecodeProxy(dwClientPid: DWORD, ui64ProxyAddress: UINT64, pServerInformation: PServerInformation): HRESULT;
@@ -138,13 +130,10 @@ func CoGetStandardMarshal(riid: IID* const, pUnk: LPUNKNOWN, dwDestContext: DWOR
 func CoGetStdMarshalEx(pUnkOuter: LPUNKNOWN, smexflags: DWORD, ppUnkInner: LPUNKNOWN*): HRESULT;
 
 @foreign
-enum tagSTDMSHLFLAGS {
+enum STDMSHLFLAGS {
     SMEXF_SERVER = 1,
     SMEXF_HANDLER = 2,
 }
-
-@foreign
-typedef STDMSHLFLAGS = tagSTDMSHLFLAGS;
 
 @foreign
 func CoIsHandlerConnected(pUnk: LPUNKNOWN): BOOL;
@@ -264,7 +253,7 @@ func FreePropVariantArray(cVariants: ULONG, rgvars: PROPVARIANT*): HRESULT;
 func CoWaitForMultipleHandles(dwFlags: DWORD, dwTimeout: DWORD, cHandles: ULONG, pHandles: LPHANDLE, lpdwindex: LPDWORD): HRESULT;
 
 @foreign
-enum tagCOWAIT_FLAGS {
+enum COWAIT_FLAGS {
     COWAIT_DEFAULT = 0,
     COWAIT_WAITALL = 1,
     COWAIT_ALERTABLE = 2,
@@ -272,9 +261,6 @@ enum tagCOWAIT_FLAGS {
     COWAIT_DISPATCH_CALLS = 8,
     COWAIT_DISPATCH_WINDOW_MESSAGES = 16,
 }
-
-@foreign
-typedef COWAIT_FLAGS = tagCOWAIT_FLAGS;
 
 @foreign
 enum CWMO_FLAGS {

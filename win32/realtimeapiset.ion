@@ -1,5 +1,3 @@
-#foreign(header = "<realtimeapiset.h>")
-
 @foreign
 func QueryThreadCycleTime(ThreadHandle: HANDLE, CycleTime: PULONG64): BOOL;
 

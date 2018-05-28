@@ -1,5 +1,3 @@
-#foreign(header = "<ioapiset.h>")
-
 @foreign
 func CreateIoCompletionPort(FileHandle: HANDLE, ExistingCompletionPort: HANDLE, CompletionKey: ULONG_PTR, NumberOfConcurrentThreads: DWORD): HANDLE;
 

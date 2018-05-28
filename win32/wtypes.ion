@@ -1,17 +1,12 @@
-#foreign(header = "<wtypes.h>")
-
 @foreign
-struct tagRemHGLOBAL {
+struct RemHGLOBAL {
     fNullHGlobal: LONG;
     cbData: ULONG;
     data: byte[1];
 }
 
 @foreign
-typedef RemHGLOBAL = tagRemHGLOBAL;
-
-@foreign
-struct tagRemHMETAFILEPICT {
+struct RemHMETAFILEPICT {
     mm: LONG;
     xExt: LONG;
     yExt: LONG;
@@ -20,46 +15,31 @@ struct tagRemHMETAFILEPICT {
 }
 
 @foreign
-typedef RemHMETAFILEPICT = tagRemHMETAFILEPICT;
-
-@foreign
-struct tagRemHENHMETAFILE {
+struct RemHENHMETAFILE {
     cbData: ULONG;
     data: byte[1];
 }
 
 @foreign
-typedef RemHENHMETAFILE = tagRemHENHMETAFILE;
-
-@foreign
-struct tagRemHBITMAP {
+struct RemHBITMAP {
     cbData: ULONG;
     data: byte[1];
 }
 
 @foreign
-typedef RemHBITMAP = tagRemHBITMAP;
-
-@foreign
-struct tagRemHPALETTE {
+struct RemHPALETTE {
     cbData: ULONG;
     data: byte[1];
 }
 
 @foreign
-typedef RemHPALETTE = tagRemHPALETTE;
-
-@foreign
-struct tagRemBRUSH {
+struct RemHBRUSH {
     cbData: ULONG;
     data: byte[1];
 }
 
 @foreign
-typedef RemHBRUSH = tagRemBRUSH;
-
-@foreign
-enum tagDVASPECT {
+enum DVASPECT {
     DVASPECT_CONTENT = 1,
     DVASPECT_THUMBNAIL = 2,
     DVASPECT_ICON = 4,
@@ -67,10 +47,7 @@ enum tagDVASPECT {
 }
 
 @foreign
-typedef DVASPECT = tagDVASPECT;
-
-@foreign
-enum tagSTGC {
+enum STGC {
     STGC_DEFAULT = 0,
     STGC_OVERWRITE = 1,
     STGC_ONLYIFCURRENT = 2,
@@ -79,27 +56,18 @@ enum tagSTGC {
 }
 
 @foreign
-typedef STGC = tagSTGC;
-
-@foreign
-enum tagSTGMOVE {
+enum STGMOVE {
     STGMOVE_MOVE = 0,
     STGMOVE_COPY = 1,
     STGMOVE_SHALLOWCOPY = 2,
 }
 
 @foreign
-typedef STGMOVE = tagSTGMOVE;
-
-@foreign
-enum tagSTATFLAG {
+enum STATFLAG {
     STATFLAG_DEFAULT = 0,
     STATFLAG_NONAME = 1,
     STATFLAG_NOOPEN = 2,
 }
-
-@foreign
-typedef STATFLAG = tagSTATFLAG;
 
 @foreign
 typedef HCONTEXT = void*;
@@ -111,13 +79,10 @@ union __MIDL_IWinTypes_0001 {
 }
 
 @foreign
-struct _userCLIPFORMAT {
+struct userCLIPFORMAT {
     fContext: LONG;
     u: __MIDL_IWinTypes_0001;
 }
-
-@foreign
-typedef userCLIPFORMAT = _userCLIPFORMAT;
 
 @foreign
 typedef wireCLIPFORMAT = userCLIPFORMAT*;
@@ -129,7 +94,7 @@ typedef CLIPFORMAT = WORD;
 @PROBLEM Nested struct def at line 412, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wtypes.h
 
 @foreign
-struct _GDI_NONREMOTE {
+struct GDI_NONREMOTE {
     fContext: LONG;
     u: __MIDL_IWinTypes_0002;
 }
@@ -149,13 +114,10 @@ union __MIDL_IWinTypes_0003 {
 }
 
 @foreign
-struct _userHGLOBAL {
+struct userHGLOBAL {
     fContext: LONG;
     u: __MIDL_IWinTypes_0003;
 }
-
-@foreign
-typedef userHGLOBAL = _userHGLOBAL;
 
 @foreign
 typedef wireHGLOBAL = userHGLOBAL*;
@@ -177,15 +139,12 @@ struct _userHMETAFILE {
 typedef userHMETAFILE = _userHMETAFILE;
 
 @foreign
-struct _remoteMETAFILEPICT {
+struct remoteMETAFILEPICT {
     mm: LONG;
     xExt: LONG;
     yExt: LONG;
     hMF: userHMETAFILE*;
 }
-
-@foreign
-typedef remoteMETAFILEPICT = _remoteMETAFILEPICT;
 
 union __MIDL_IWinTypes_0005 {
     hInproc: LONG;
@@ -194,13 +153,10 @@ union __MIDL_IWinTypes_0005 {
 }
 
 @foreign
-struct _userHMETAFILEPICT {
+struct userHMETAFILEPICT {
     fContext: LONG;
     u: __MIDL_IWinTypes_0005;
 }
-
-@foreign
-typedef userHMETAFILEPICT = _userHMETAFILEPICT;
 
 @foreign
 union __MIDL_IWinTypes_0006 {
@@ -210,16 +166,13 @@ union __MIDL_IWinTypes_0006 {
 }
 
 @foreign
-struct _userHENHMETAFILE {
+struct userHENHMETAFILE {
     fContext: LONG;
     u: __MIDL_IWinTypes_0006;
 }
 
 @foreign
-typedef userHENHMETAFILE = _userHENHMETAFILE;
-
-@foreign
-struct _userBITMAP {
+struct userBITMAP {
     bmType: LONG;
     bmWidth: LONG;
     bmHeight: LONG;
@@ -231,9 +184,6 @@ struct _userBITMAP {
 }
 
 @foreign
-typedef userBITMAP = _userBITMAP;
-
-@foreign
 union __MIDL_IWinTypes_0007 {
     hInproc: LONG;
     hRemote: userBITMAP*;
@@ -241,13 +191,10 @@ union __MIDL_IWinTypes_0007 {
 }
 
 @foreign
-struct _userHBITMAP {
+struct userHBITMAP {
     fContext: LONG;
     u: __MIDL_IWinTypes_0007;
 }
-
-@foreign
-typedef userHBITMAP = _userHBITMAP;
 
 @foreign
 union __MIDL_IWinTypes_0008 {
@@ -257,13 +204,10 @@ union __MIDL_IWinTypes_0008 {
 }
 
 @foreign
-struct _userHPALETTE {
+struct userHPALETTE {
     fContext: LONG;
     u: __MIDL_IWinTypes_0008;
 }
-
-@foreign
-typedef userHPALETTE = _userHPALETTE;
 
 @foreign
 union __MIDL_IWinTypes_0009 {
@@ -272,13 +216,10 @@ union __MIDL_IWinTypes_0009 {
 }
 
 @foreign
-struct _RemotableHandle {
+struct RemotableHandle {
     fContext: LONG;
     u: __MIDL_IWinTypes_0009;
 }
-
-@foreign
-typedef RemotableHandle = _RemotableHandle;
 
 @foreign
 typedef wireHWND = RemotableHandle*;
@@ -334,55 +275,49 @@ renamed member 'int64' to 'int64_' as 'int64' is a reserved keyword in Ion
 */
 
 @foreign
-struct tagCY___inner {
+struct CY___inner {
     Lo: ULONG;
     Hi: LONG;
 }
 
 @foreign
-union tagCY {
-    s: tagCY___inner;
+union CY {
+    s: CY___inner;
     int64_: LONGLONG;
 }
-
-@foreign
-typedef CY = tagCY;
 
 @foreign
 typedef LPCY = CY*;
 
 @foreign
-struct tagDEC___inner_s1 {
+struct DECIMAL___inner_s1 {
     scale, sign: BYTE;
 }
 
 @foreign
-struct tagDEC___inner_s2 {
+struct DECIMAL___inner_s2 {
     Lo32, Mid32: ULONG;
 }
 
 @foreign
-union tagDEC___inner_u1 {
-    s: tagDEC___inner_s1;
+union DECIMAL___inner_u1 {
+    s: DECIMAL___inner_s1;
     signscale: USHORT;
 }
 
 @foreign
-union tagDEC___inner_u2 {
-    s: tagDEC___inner_s2;
+union DECIMAL___inner_u2 {
+    s: DECIMAL___inner_s2;
     Lo64: ULONGLONG;
 }
 
 @foreign
-struct tagDEC {
+struct DECIMAL {
     wReserved: USHORT;
     u: tagDEC___inner_u1;
     Hi32: ULONG;
     u2: tagDEC___inner_u2;
 }
-
-@foreign
-typedef DECIMAL = tagDEC;
 
 @foreign
 typedef LPDECIMAL = DECIMAL*;
@@ -400,26 +335,20 @@ typedef LPBSTR = BSTR*;
 typedef VARIANT_BOOL = short;
 
 @foreign
-struct tagBSTRBLOB {
+struct BSTRBLOB {
     cbSize: ULONG;
     pData: BYTE*;
 }
 
 @foreign
-typedef BSTRBLOB = tagBSTRBLOB;
+typedef LPBSTRBLOB = BSTRBLOB*;
 
 @foreign
-typedef LPBSTRBLOB = tagBSTRBLOB*;
-
-@foreign
-struct tagCLIPDATA {
+struct CLIPDATA {
     cbSize: ULONG;
     ulClipFmt: LONG;
     pClipData: BYTE*;
 }
-
-@foreign
-typedef CLIPDATA = tagCLIPDATA;
 
 @foreign
 typedef VARTYPE = ushort;
@@ -484,16 +413,13 @@ enum VARENUM {
 typedef PROPID = ULONG;
 
 @foreign
-struct _tagpropertykey {
+struct PROPERTYKEY {
     fmtid: GUID;
     pid: DWORD;
 }
 
 @foreign
-typedef PROPERTYKEY = _tagpropertykey;
-
-@foreign
-struct tagCSPLATFORM {
+struct CSPLATFORM {
     dwPlatformId: DWORD;
     dwVersionHi: DWORD;
     dwVersionLo: DWORD;
@@ -501,10 +427,7 @@ struct tagCSPLATFORM {
 }
 
 @foreign
-typedef CSPLATFORM = tagCSPLATFORM;
-
-@foreign
-struct tagQUERYCONTEXT {
+struct QUERYCONTEXT {
     dwContext: DWORD;
     Platform: CSPLATFORM;
     Locale: LCID;
@@ -513,10 +436,7 @@ struct tagQUERYCONTEXT {
 }
 
 @foreign
-typedef QUERYCONTEXT = tagQUERYCONTEXT;
-
-@foreign
-enum tagTYSPEC {
+enum TYSPEC {
     TYSPEC_CLSID = 0,
     TYSPEC_FILEEXT = 1,
     TYSPEC_MIMETYPE = 2,
@@ -525,9 +445,6 @@ enum tagTYSPEC {
     TYSPEC_PACKAGENAME = 5,
     TYSPEC_OBJECTID = 6,
 }
-
-@foreign
-typedef TYSPEC = tagTYSPEC;
 
 @foreign
 struct __MIDL___MIDL_itf_wtypes_0000_0001_0005___inner_s1 {

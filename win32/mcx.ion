@@ -1,7 +1,5 @@
-#foreign(header = "<mcx.h>")
-
 @foreign
-struct _MODEMDEVCAPS {
+struct MODEMDEVCAPS {
     dwActualSize: DWORD;
     dwRequiredSize: DWORD;
     dwDevSpecificOffset: DWORD;
@@ -25,16 +23,13 @@ struct _MODEMDEVCAPS {
 }
 
 @foreign
-typedef MODEMDEVCAPS = _MODEMDEVCAPS;
+typedef PMODEMDEVCAPS = MODEMDEVCAPS*;
 
 @foreign
-typedef PMODEMDEVCAPS = _MODEMDEVCAPS*;
+typedef LPMODEMDEVCAPS = MODEMDEVCAPS*;
 
 @foreign
-typedef LPMODEMDEVCAPS = _MODEMDEVCAPS*;
-
-@foreign
-struct _MODEMSETTINGS {
+struct MODEMSETTINGS {
     dwActualSize: DWORD;
     dwRequiredSize: DWORD;
     dwDevSpecificOffset: DWORD;
@@ -50,11 +45,8 @@ struct _MODEMSETTINGS {
 }
 
 @foreign
-typedef MODEMSETTINGS = _MODEMSETTINGS;
+typedef PMODEMSETTINGS = MODEMSETTINGS*;
 
 @foreign
-typedef PMODEMSETTINGS = _MODEMSETTINGS*;
-
-@foreign
-typedef LPMODEMSETTINGS = _MODEMSETTINGS*;
+typedef LPMODEMSETTINGS = MODEMSETTINGS*;
 

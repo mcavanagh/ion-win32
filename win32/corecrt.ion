@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt.h>")
-
 @foreign
 typedef __crt_bool = int;
 

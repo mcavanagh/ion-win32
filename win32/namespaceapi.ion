@@ -1,5 +1,3 @@
-#foreign(header = "<namespaceapi.h>")
-
 @foreign
 func CreatePrivateNamespaceW(lpPrivateNamespaceAttributes: LPSECURITY_ATTRIBUTES, lpBoundaryDescriptor: LPVOID, lpAliasPrefix: LPCWSTR): HANDLE;
 

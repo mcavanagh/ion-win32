@@ -1,5 +1,3 @@
-#foreign(header = "<processtopologyapi.h>")
-
 @foreign
 func GetProcessGroupAffinity(hProcess: HANDLE, GroupCount: PUSHORT, GroupArray: PUSHORT): BOOL;
 

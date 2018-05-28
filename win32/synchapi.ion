@@ -1,5 +1,3 @@
-#foreign(header = "<synchapi.h>")
-
 @foreign
 typedef SRWLOCK = RTL_SRWLOCK;
 

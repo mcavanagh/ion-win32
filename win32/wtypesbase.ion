@@ -1,5 +1,3 @@
-#foreign(header = "<wtypesbase.h>")
-
 @foreign
 typedef OLECHAR = WCHAR;
 
@@ -13,7 +11,7 @@ typedef LPCOLESTR = OLECHAR*;
 typedef DOUBLE = double;
 
 @foreign
-struct _COAUTHIDENTITY {
+struct COAUTHIDENTITY {
     User: USHORT*;
     UserLength: ULONG;
     Domain: USHORT*;
@@ -24,10 +22,7 @@ struct _COAUTHIDENTITY {
 }
 
 @foreign
-typedef COAUTHIDENTITY = _COAUTHIDENTITY;
-
-@foreign
-struct _COAUTHINFO {
+struct COAUTHINFO {
     dwAuthnSvc: DWORD;
     dwAuthzSvc: DWORD;
     pwszServerPrincName: LPWSTR;
@@ -38,16 +33,13 @@ struct _COAUTHINFO {
 }
 
 @foreign
-typedef COAUTHINFO = _COAUTHINFO;
-
-@foreign
 typedef SCODE = LONG;
 
 @foreign
 typedef PSCODE = SCODE*;
 
 @foreign
-enum tagMEMCTX {
+enum MEMCTX {
     MEMCTX_SAME = -2,
     MEMCTX_UNKNOWN = -1,
     MEMCTX_TASK = 1,
@@ -56,10 +48,7 @@ enum tagMEMCTX {
 }
 
 @foreign
-typedef MEMCTX = tagMEMCTX;
-
-@foreign
-enum tagCLSCTX {
+enum CLSCTX {
     CLSCTX_INPROC_SERVER = 1,
     CLSCTX_INPROC_HANDLER = 2,
     CLSCTX_LOCAL_SERVER = 4,
@@ -90,10 +79,7 @@ enum tagCLSCTX {
 }
 
 @foreign
-typedef CLSCTX = tagCLSCTX;
-
-@foreign
-enum tagMSHLFLAGS {
+enum MSHLFLAGS {
     MSHLFLAGS_NORMAL = 0,
     MSHLFLAGS_TABLESTRONG = 1,
     MSHLFLAGS_TABLEWEAK = 2,
@@ -105,10 +91,7 @@ enum tagMSHLFLAGS {
 }
 
 @foreign
-typedef MSHLFLAGS = tagMSHLFLAGS;
-
-@foreign
-enum tagMSHCTX {
+enum MSHCTX {
     MSHCTX_LOCAL = 0,
     MSHCTX_NOSHAREDMEM = 1,
     MSHCTX_DIFFERENTMACHINE = 2,
@@ -117,115 +100,82 @@ enum tagMSHCTX {
 }
 
 @foreign
-typedef MSHCTX = tagMSHCTX;
-
-@foreign
-struct _BYTE_BLOB {
+struct BYTE_BLOB {
     clSize: ULONG;
     abData: byte[1];
 }
-
-@foreign
-typedef BYTE_BLOB = _BYTE_BLOB;
 
 @foreign
 typedef UP_BYTE_BLOB = BYTE_BLOB*;
 
 @foreign
-struct _WORD_BLOB {
+struct WORD_BLOB {
     clSize: ULONG;
     asData: ushort[1];
 }
 
 @foreign
-typedef WORD_BLOB = _WORD_BLOB;
-
-@foreign
 typedef UP_WORD_BLOB = WORD_BLOB*;
 
 @foreign
-struct _DWORD_BLOB {
+struct DWORD_BLOB {
     clSize: ULONG;
     alData: ULONG[1];
 }
 
 @foreign
-typedef DWORD_BLOB = _DWORD_BLOB;
-
-@foreign
 typedef UP_DWORD_BLOB = DWORD_BLOB*;
 
 @foreign
-struct _FLAGGED_BYTE_BLOB {
+struct FLAGGED_BYTE_BLOB {
     fFlags: ULONG;
     clSize: ULONG;
     abData: byte[1];
 }
 
 @foreign
-typedef FLAGGED_BYTE_BLOB = _FLAGGED_BYTE_BLOB;
-
-@foreign
 typedef UP_FLAGGED_BYTE_BLOB = FLAGGED_BYTE_BLOB*;
 
 @foreign
-struct _FLAGGED_WORD_BLOB {
+struct FLAGGED_WORD_BLOB {
     fFlags: ULONG;
     clSize: ULONG;
     asData: ushort[1];
 }
 
 @foreign
-typedef FLAGGED_WORD_BLOB = _FLAGGED_WORD_BLOB;
-
-@foreign
 typedef UP_FLAGGED_WORD_BLOB = FLAGGED_WORD_BLOB*;
 
 @foreign
-struct _BYTE_SIZEDARR {
+struct BYTE_SIZEDARR {
     clSize: ULONG;
     pData: byte*;
 }
 
 @foreign
-typedef BYTE_SIZEDARR = _BYTE_SIZEDARR;
-
-@foreign
-struct _SHORT_SIZEDARR {
+struct WORD_SIZEDARR {
     clSize: ULONG;
     pData: ushort*;
 }
 
 @foreign
-typedef WORD_SIZEDARR = _SHORT_SIZEDARR;
-
-@foreign
-struct _LONG_SIZEDARR {
+struct DWORD_SIZEDARR {
     clSize: ULONG;
     pData: ULONG*;
 }
 
 @foreign
-typedef DWORD_SIZEDARR = _LONG_SIZEDARR;
-
-@foreign
-struct _HYPER_SIZEDARR {
+struct HYPER_SIZEDARR {
     clSize: ULONG;
     pData: llong*;
 }
 
 @foreign
-typedef HYPER_SIZEDARR = _HYPER_SIZEDARR;
-
-@foreign
-struct tagBLOB {
+struct BLOB {
     cbSize: ULONG;
     pBlobData: BYTE*;
 }
 
 @foreign
-typedef BLOB = tagBLOB;
-
-@foreign
-typedef LPBLOB = tagBLOB*;
+typedef LPBLOB = BLOB*;
 

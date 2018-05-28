@@ -1,5 +1,5 @@
 @foreign
-struct tagVS_FIXEDFILEINFO {
+struct VS_FIXEDFILEINFO {
     dwSignature: DWORD;
     dwStrucVersion: DWORD;
     dwFileVersionMS: DWORD;
@@ -14,7 +14,4 @@ struct tagVS_FIXEDFILEINFO {
     dwFileDateMS: DWORD;
     dwFileDateLS: DWORD;
 }
-
-@foreign
-typedef VS_FIXEDFILEINFO = tagVS_FIXEDFILEINFO;
 

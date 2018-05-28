@@ -1,5 +1,3 @@
-#foreign(header = "<fibersapi.h>")
-
 @foreign
 func FlsAlloc(lpCallback: PFLS_CALLBACK_FUNCTION): DWORD;
 

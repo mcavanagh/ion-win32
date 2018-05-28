@@ -1,5 +1,3 @@
-#foreign(header = "<rpcdce.h>")
-
 @foreign
 typedef RPC_CSTR = uchar*;
 
@@ -19,66 +17,48 @@ typedef handle_t = RPC_BINDING_HANDLE;
 typedef UUID = GUID;
 
 @foreign
-struct _RPC_BINDING_VECTOR {
+struct RPC_BINDING_VECTOR {
     Count: ulong;
     BindingH: RPC_BINDING_HANDLE[1];
 }
 
 @foreign
-typedef RPC_BINDING_VECTOR = _RPC_BINDING_VECTOR;
-
-@foreign
-struct _UUID_VECTOR {
+struct UUID_VECTOR {
     Count: ulong;
     Uuid: UUID*[1];
 }
 
 @foreign
-typedef UUID_VECTOR = _UUID_VECTOR;
-
-@foreign
 typedef RPC_IF_HANDLE = void*;
 
 @foreign
-struct _RPC_IF_ID {
+struct RPC_IF_ID {
     Uuid: UUID;
     VersMajor: ushort;
     VersMinor: ushort;
 }
 
 @foreign
-typedef RPC_IF_ID = _RPC_IF_ID;
-
-@foreign
-struct _RPC_PROTSEQ_VECTORA {
+struct RPC_PROTSEQ_VECTORA {
     Count: uint;
     Protseq: uchar*[1];
 }
 
 @foreign
-typedef RPC_PROTSEQ_VECTORA = _RPC_PROTSEQ_VECTORA;
-
-@foreign
-struct _RPC_PROTSEQ_VECTORW {
+struct RPC_PROTSEQ_VECTORW {
     Count: uint;
     Protseq: ushort*[1];
 }
 
 @foreign
-typedef RPC_PROTSEQ_VECTORW = _RPC_PROTSEQ_VECTORW;
-
-@foreign
-struct _RPC_POLICY {
+struct RPC_POLICY {
     Length: uint;
     EndpointFlags: ulong;
     NICFlags: ulong;
 }
 
 @foreign
-typedef RPC_POLICY = _RPC_POLICY;
-
-@foreign
-typedef PRPC_POLICY = _RPC_POLICY*;
+typedef PRPC_POLICY = RPC_POLICY*;
 
 @foreign
 typedef RPC_OBJECT_INQ_FN = func(ObjectUuid: UUID*, TypeUuid: UUID*, Status: RPC_STATUS*);
@@ -390,7 +370,7 @@ typedef RPC_AUTH_IDENTITY_HANDLE = void*;
 typedef RPC_AUTHZ_HANDLE = void*;
 
 @foreign
-struct _RPC_SECURITY_QOS {
+struct RPC_SECURITY_QOS {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
@@ -398,13 +378,10 @@ struct _RPC_SECURITY_QOS {
 }
 
 @foreign
-typedef RPC_SECURITY_QOS = _RPC_SECURITY_QOS;
+typedef PRPC_SECURITY_QOS = RPC_SECURITY_QOS*;
 
 @foreign
-typedef PRPC_SECURITY_QOS = _RPC_SECURITY_QOS*;
-
-@foreign
-struct _SEC_WINNT_AUTH_IDENTITY_W {
+struct SEC_WINNT_AUTH_IDENTITY_W {
     User: ushort*;
     UserLength: ulong;
     Domain: ushort*;
@@ -415,13 +392,10 @@ struct _SEC_WINNT_AUTH_IDENTITY_W {
 }
 
 @foreign
-typedef SEC_WINNT_AUTH_IDENTITY_W = _SEC_WINNT_AUTH_IDENTITY_W;
+typedef PSEC_WINNT_AUTH_IDENTITY_W = SEC_WINNT_AUTH_IDENTITY_W*;
 
 @foreign
-typedef PSEC_WINNT_AUTH_IDENTITY_W = _SEC_WINNT_AUTH_IDENTITY_W*;
-
-@foreign
-struct _SEC_WINNT_AUTH_IDENTITY_A {
+struct SEC_WINNT_AUTH_IDENTITY_A {
     User: uchar*;
     UserLength: ulong;
     Domain: uchar*;
@@ -432,13 +406,10 @@ struct _SEC_WINNT_AUTH_IDENTITY_A {
 }
 
 @foreign
-typedef SEC_WINNT_AUTH_IDENTITY_A = _SEC_WINNT_AUTH_IDENTITY_A;
+typedef PSEC_WINNT_AUTH_IDENTITY_A = SEC_WINNT_AUTH_IDENTITY_A*;
 
 @foreign
-typedef PSEC_WINNT_AUTH_IDENTITY_A = _SEC_WINNT_AUTH_IDENTITY_A*;
-
-@foreign
-struct _RPC_HTTP_TRANSPORT_CREDENTIALS_W {
+struct RPC_HTTP_TRANSPORT_CREDENTIALS_W {
     TransportCredentials: SEC_WINNT_AUTH_IDENTITY_W*;
     Flags: ulong;
     AuthenticationTarget: ulong;
@@ -448,13 +419,10 @@ struct _RPC_HTTP_TRANSPORT_CREDENTIALS_W {
 }
 
 @foreign
-typedef RPC_HTTP_TRANSPORT_CREDENTIALS_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_W;
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_W = RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 
 @foreign
-typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
-
-@foreign
-struct _RPC_HTTP_TRANSPORT_CREDENTIALS_A {
+struct RPC_HTTP_TRANSPORT_CREDENTIALS_A {
     TransportCredentials: SEC_WINNT_AUTH_IDENTITY_A*;
     Flags: ulong;
     AuthenticationTarget: ulong;
@@ -464,13 +432,10 @@ struct _RPC_HTTP_TRANSPORT_CREDENTIALS_A {
 }
 
 @foreign
-typedef RPC_HTTP_TRANSPORT_CREDENTIALS_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_A;
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_A = RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 
 @foreign
-typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
-
-@foreign
-struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W {
+struct RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W {
     TransportCredentials: SEC_WINNT_AUTH_IDENTITY_W*;
     Flags: ulong;
     AuthenticationTarget: ulong;
@@ -483,13 +448,10 @@ struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W {
 }
 
 @foreign
-typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W;
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V2_W = RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W*;
 
 @foreign
-typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V2_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W*;
-
-@foreign
-struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A {
+struct RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A {
     TransportCredentials: SEC_WINNT_AUTH_IDENTITY_A*;
     Flags: ulong;
     AuthenticationTarget: ulong;
@@ -502,13 +464,10 @@ struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A {
 }
 
 @foreign
-typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A;
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V2_A = RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A*;
 
 @foreign
-typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V2_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A*;
-
-@foreign
-struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W {
+struct RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W {
     TransportCredentials: RPC_AUTH_IDENTITY_HANDLE;
     Flags: ulong;
     AuthenticationTarget: ulong;
@@ -521,13 +480,10 @@ struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W {
 }
 
 @foreign
-typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W;
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_W = RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W*;
 
 @foreign
-typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_W = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W*;
-
-@foreign
-struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A {
+struct RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A {
     TransportCredentials: RPC_AUTH_IDENTITY_HANDLE;
     Flags: ulong;
     AuthenticationTarget: ulong;
@@ -540,197 +496,170 @@ struct _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A {
 }
 
 @foreign
-typedef RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A;
+typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A*;
 
 @foreign
-typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = _RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A*;
-
-@foreign
-union _RPC_SECURITY_QOS_V2_W___inner {
+union RPC_SECURITY_QOS_V2_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V2_W {
+struct RPC_SECURITY_QOS_V2_W {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V2_W___inner;
+    u: RPC_SECURITY_QOS_V2_W___inner;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V2_W = _RPC_SECURITY_QOS_V2_W;
+typedef PRPC_SECURITY_QOS_V2_W = RPC_SECURITY_QOS_V2_W*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V2_W = _RPC_SECURITY_QOS_V2_W*;
-
-@foreign
-union _RPC_SECURITY_QOS_V2_A___inner {
+union RPC_SECURITY_QOS_V2_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V2_A {
+struct RPC_SECURITY_QOS_V2_A {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V2_A___inner;
+    u: RPC_SECURITY_QOS_V2_A___inner;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V2_A = _RPC_SECURITY_QOS_V2_A;
+typedef PRPC_SECURITY_QOS_V2_A = RPC_SECURITY_QOS_V2_A*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V2_A = _RPC_SECURITY_QOS_V2_A*;
-
-@foreign
-union _RPC_SECURITY_QOS_V3_W___inner {
+union RPC_SECURITY_QOS_V3_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V3_W {
+struct RPC_SECURITY_QOS_V3_W {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V3_W___inner;
+    u: RPC_SECURITY_QOS_V3_W___inner;
     Sid: void*;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V3_W = _RPC_SECURITY_QOS_V3_W;
+typedef PRPC_SECURITY_QOS_V3_W = RPC_SECURITY_QOS_V3_W*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V3_W = _RPC_SECURITY_QOS_V3_W*;
-
-@foreign
-union _RPC_SECURITY_QOS_V3_A___inner {
+union RPC_SECURITY_QOS_V3_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V3_A {
+struct RPC_SECURITY_QOS_V3_A {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V3_A___inner;
+    u: RPC_SECURITY_QOS_V3_A___inner;
     Sid: void*;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V3_A = _RPC_SECURITY_QOS_V3_A;
+typedef PRPC_SECURITY_QOS_V3_A = RPC_SECURITY_QOS_V3_A*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V3_A = _RPC_SECURITY_QOS_V3_A*;
-
-@foreign
-union _RPC_SECURITY_QOS_V4_W___inner {
+union RPC_SECURITY_QOS_V4_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V4_W {
+struct RPC_SECURITY_QOS_V4_W {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V4_W___inner;
+    u: RPC_SECURITY_QOS_V4_W___inner;
     Sid: void*;
     EffectiveOnly: uint;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V4_W = _RPC_SECURITY_QOS_V4_W;
+typedef PRPC_SECURITY_QOS_V4_W = RPC_SECURITY_QOS_V4_W*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V4_W = _RPC_SECURITY_QOS_V4_W*;
-
-@foreign
-union _RPC_SECURITY_QOS_V4_A___inner {
+union RPC_SECURITY_QOS_V4_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V4_A {
+struct RPC_SECURITY_QOS_V4_A {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V4_A;
+    u: RPC_SECURITY_QOS_V4_A;
     Sid: void*;
     EffectiveOnly: uint;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V4_A = _RPC_SECURITY_QOS_V4_A;
+typedef PRPC_SECURITY_QOS_V4_A = RPC_SECURITY_QOS_V4_A*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V4_A = _RPC_SECURITY_QOS_V4_A*;
-
-@foreign
-union _RPC_SECURITY_QOS_V5_W___inner {
+union RPC_SECURITY_QOS_V5_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
 @foreign
-struct _RPC_SECURITY_QOS_V5_W {
+struct RPC_SECURITY_QOS_V5_W {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V5_W___inner;
+    u: RPC_SECURITY_QOS_V5_W___inner;
     Sid: void*;
     EffectiveOnly: uint;
     ServerSecurityDescriptor: void*;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V5_W = _RPC_SECURITY_QOS_V5_W;
+typedef PRPC_SECURITY_QOS_V5_W = RPC_SECURITY_QOS_V5_W*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V5_W = _RPC_SECURITY_QOS_V5_W*;
-
-@foreign
-union _RPC_SECURITY_QOS_V5_A___inner {
+union RPC_SECURITY_QOS_V5_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
 
 @foreign
-struct _RPC_SECURITY_QOS_V5_A {
+struct RPC_SECURITY_QOS_V5_A {
     Version: ulong;
     Capabilities: ulong;
     IdentityTracking: ulong;
     ImpersonationType: ulong;
     AdditionalSecurityInfoType: ulong;
-    u: _RPC_SECURITY_QOS_V5_A___inner;
+    u: RPC_SECURITY_QOS_V5_A___inner;
     Sid: void*;
     EffectiveOnly: uint;
     ServerSecurityDescriptor: void*;
 }
 
 @foreign
-typedef RPC_SECURITY_QOS_V5_A = _RPC_SECURITY_QOS_V5_A;
+typedef PRPC_SECURITY_QOS_V5_A = RPC_SECURITY_QOS_V5_A*;
 
 @foreign
-typedef PRPC_SECURITY_QOS_V5_A = _RPC_SECURITY_QOS_V5_A*;
-
-@foreign
-union _RPC_BINDING_HANDLE_TEMPLATE_V1_W___inner {
+union RPC_BINDING_HANDLE_TEMPLATE_V1_W___inner {
     Reserved: uchar;
 }
 
 @foreign
-struct _RPC_BINDING_HANDLE_TEMPLATE_V1_W {
+struct RPC_BINDING_HANDLE_TEMPLATE_V1_W {
     Version: ulong;
     Flags: ulong;
     ProtocolSequence: ulong;
@@ -741,35 +670,29 @@ struct _RPC_BINDING_HANDLE_TEMPLATE_V1_W {
 }
 
 @foreign
-typedef RPC_BINDING_HANDLE_TEMPLATE_V1_W = _RPC_BINDING_HANDLE_TEMPLATE_V1_W;
+typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_W = RPC_BINDING_HANDLE_TEMPLATE_V1_W*;
 
 @foreign
-typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_W = _RPC_BINDING_HANDLE_TEMPLATE_V1_W*;
-
-@foreign
-union _RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner {
+union RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner {
     Reserved: uchar;
 }
 
 @foreign
-struct _RPC_BINDING_HANDLE_TEMPLATE_V1_A {
+struct RPC_BINDING_HANDLE_TEMPLATE_V1_A {
     Version: ulong;
     Flags: ulong;
     ProtocolSequence: ulong;
     NetworkAddress: uchar*;
     StringEndpoint: uchar*;
-    u1: _RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner;
+    u1: RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner;
     ObjectUuid: UUID;
 }
 
 @foreign
-typedef RPC_BINDING_HANDLE_TEMPLATE_V1_A = _RPC_BINDING_HANDLE_TEMPLATE_V1_A;
+typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_A = RPC_BINDING_HANDLE_TEMPLATE_V1_A*;
 
 @foreign
-typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_A = _RPC_BINDING_HANDLE_TEMPLATE_V1_A*;
-
-@foreign
-struct _RPC_BINDING_HANDLE_SECURITY_V1_W {
+struct RPC_BINDING_HANDLE_SECURITY_V1_W {
     Version: ulong;
     ServerPrincName: ushort*;
     AuthnLevel: ulong;
@@ -779,13 +702,10 @@ struct _RPC_BINDING_HANDLE_SECURITY_V1_W {
 }
 
 @foreign
-typedef RPC_BINDING_HANDLE_SECURITY_V1_W = _RPC_BINDING_HANDLE_SECURITY_V1_W;
+typedef PRPC_BINDING_HANDLE_SECURITY_V1_W = RPC_BINDING_HANDLE_SECURITY_V1_W*;
 
 @foreign
-typedef PRPC_BINDING_HANDLE_SECURITY_V1_W = _RPC_BINDING_HANDLE_SECURITY_V1_W*;
-
-@foreign
-struct _RPC_BINDING_HANDLE_SECURITY_V1_A {
+struct RPC_BINDING_HANDLE_SECURITY_V1_A {
     Version: ulong;
     ServerPrincName: uchar*;
     AuthnLevel: ulong;
@@ -795,13 +715,10 @@ struct _RPC_BINDING_HANDLE_SECURITY_V1_A {
 }
 
 @foreign
-typedef RPC_BINDING_HANDLE_SECURITY_V1_A = _RPC_BINDING_HANDLE_SECURITY_V1_A;
+typedef PRPC_BINDING_HANDLE_SECURITY_V1_A = RPC_BINDING_HANDLE_SECURITY_V1_A*;
 
 @foreign
-typedef PRPC_BINDING_HANDLE_SECURITY_V1_A = _RPC_BINDING_HANDLE_SECURITY_V1_A*;
-
-@foreign
-struct _RPC_BINDING_HANDLE_OPTIONS_V1 {
+struct RPC_BINDING_HANDLE_OPTIONS_V1 {
     Version: ulong;
     Flags: ulong;
     ComTimeout: ulong;
@@ -809,10 +726,7 @@ struct _RPC_BINDING_HANDLE_OPTIONS_V1 {
 }
 
 @foreign
-typedef RPC_BINDING_HANDLE_OPTIONS_V1 = _RPC_BINDING_HANDLE_OPTIONS_V1;
-
-@foreign
-typedef PRPC_BINDING_HANDLE_OPTIONS_V1 = _RPC_BINDING_HANDLE_OPTIONS_V1*;
+typedef PRPC_BINDING_HANDLE_OPTIONS_V1 = RPC_BINDING_HANDLE_OPTIONS_V1*;
 
 @foreign
 func RpcBindingCreateA(Template: RPC_BINDING_HANDLE_TEMPLATE_V1_A*, Security: RPC_BINDING_HANDLE_SECURITY_V1_A*, Options: RPC_BINDING_HANDLE_OPTIONS_V1*, Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
@@ -830,16 +744,13 @@ func RpcBindingGetTrainingContextHandle(Binding: RPC_BINDING_HANDLE, ContextHand
 func RpcServerInqBindingHandle(Binding: RPC_BINDING_HANDLE*): RPC_STATUS;
 
 @foreign
-enum _RPC_HTTP_REDIRECTOR_STAGE {
+enum RPC_HTTP_REDIRECTOR_STAGE {
     RPCHTTP_RS_REDIRECT = 1,
     RPCHTTP_RS_ACCESS_1,
     RPCHTTP_RS_SESSION,
     RPCHTTP_RS_ACCESS_2,
     RPCHTTP_RS_INTERFACE,
 }
-
-@foreign
-typedef RPC_HTTP_REDIRECTOR_STAGE = _RPC_HTTP_REDIRECTOR_STAGE;
 
 @foreign
 typedef RPC_NEW_HTTP_PROXY_CHANNEL = func(RedirectorStage: RPC_HTTP_REDIRECTOR_STAGE, ServerName: RPC_WSTR, ServerPort: RPC_WSTR, RemoteUser: RPC_WSTR, AuthType: RPC_WSTR, ResourceUuid: void*, SessionId: void*, Interface: void*, Reserved: void*, Flags: ulong, NewServerName: RPC_WSTR*, NewServerPort: RPC_WSTR*): RPC_STATUS;

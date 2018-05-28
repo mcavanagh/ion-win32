@@ -1,5 +1,3 @@
-#foreign(header = "<handleapi.h>")
-
 @foreign const INVALID_HANDLE_VALUE = HANDLE(LONG_PTR(-1));
 
 @foreign

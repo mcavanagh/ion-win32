@@ -1,7 +1,5 @@
-#foreign(header = "<errhandlingapi.h>")
-
 @foreign
-typedef PTOP_LEVEL_EXCEPTION_FILTER = func(ExceptionInfo: _EXCEPTION_POINTERS*): LONG;
+typedef PTOP_LEVEL_EXCEPTION_FILTER = func(ExceptionInfo: EXCEPTION_POINTERS*): LONG;
 
 @foreign
 typedef LPTOP_LEVEL_EXCEPTION_FILTER = PTOP_LEVEL_EXCEPTION_FILTER;
@@ -10,7 +8,7 @@ typedef LPTOP_LEVEL_EXCEPTION_FILTER = PTOP_LEVEL_EXCEPTION_FILTER;
 func RaiseException(dwExceptionCode: DWORD, dwExceptionFlags: DWORD, nNumberOfArguments: DWORD, lpArguments: ULONG_PTR*);
 
 @foreign
-func UnhandledExceptionFilter(ExceptionInfo: _EXCEPTION_POINTERS*): LONG;
+func UnhandledExceptionFilter(ExceptionInfo: EXCEPTION_POINTERS*): LONG;
 
 @foreign
 func SetUnhandledExceptionFilter(lpTopLevelExceptionFilter: LPTOP_LEVEL_EXCEPTION_FILTER): LPTOP_LEVEL_EXCEPTION_FILTER;

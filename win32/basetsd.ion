@@ -1,5 +1,3 @@
-#foreign(header = "<basetsd.h>")
-
 @foreign
 typedef INT8 = schar;
 

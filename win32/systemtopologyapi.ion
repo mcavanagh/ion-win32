@@ -1,5 +1,3 @@
-#foreign(header = "<systemtopologyapi.h>")
-
 @foreign
 func GetNumaHighestNodeNumber(HighestNodeNumber: PULONG): BOOL;
 

@@ -1,7 +1,5 @@
-#foreign(header = "<processthreadsapi.h>")
-
 @foreign
-struct _PROCESS_INFORMATION {
+struct PROCESS_INFORMATION {
     hProcess: HANDLE;
     hThread: HANDLE;
     dwProcessId: DWORD;
@@ -9,16 +7,13 @@ struct _PROCESS_INFORMATION {
 }
 
 @foreign
-typedef PROCESS_INFORMATION = _PROCESS_INFORMATION;
+typedef PPROCESS_INFORMATION = PROCESS_INFORMATION*;
 
 @foreign
-typedef PPROCESS_INFORMATION = _PROCESS_INFORMATION*;
+typedef LPPROCESS_INFORMATION = PROCESS_INFORMATION*;
 
 @foreign
-typedef LPPROCESS_INFORMATION = _PROCESS_INFORMATION*;
-
-@foreign
-struct _STARTUPINFOA {
+struct STARTUPINFOA {
     cb: DWORD;
     lpReserved: LPSTR;
     lpDesktop: LPSTR;
@@ -40,13 +35,10 @@ struct _STARTUPINFOA {
 }
 
 @foreign
-typedef STARTUPINFOA = _STARTUPINFOA;
+typedef LPSTARTUPINFOA = STARTUPINFOA*;
 
 @foreign
-typedef LPSTARTUPINFOA = _STARTUPINFOA*;
-
-@foreign
-struct _STARTUPINFOW {
+struct STARTUPINFOW {
     cb: DWORD;
     lpReserved: LPWSTR;
     lpDesktop: LPWSTR;
@@ -68,10 +60,7 @@ struct _STARTUPINFOW {
 }
 
 @foreign
-typedef STARTUPINFOW = _STARTUPINFOW;
-
-@foreign
-typedef LPSTARTUPINFOW = _STARTUPINFOW*;
+typedef LPSTARTUPINFOW = STARTUPINFOW*;
 
 @foreign
 typedef STARTUPINFO = STARTUPINFOA;
@@ -290,7 +279,7 @@ func GetThreadIOPendingFlag(hThread: HANDLE, lpIOIsPending: PBOOL): BOOL;
 func GetSystemTimes(lpIdleTime: PFILETIME, lpKernelTime: PFILETIME, lpUserTime: PFILETIME): BOOL;
 
 @foreign
-enum _THREAD_INFORMATION_CLASS {
+enum THREAD_INFORMATION_CLASS {
     ThreadMemoryPriority,
     ThreadAbsoluteCpuPriority,
     ThreadDynamicCodePolicy,
@@ -299,18 +288,12 @@ enum _THREAD_INFORMATION_CLASS {
 }
 
 @foreign
-typedef THREAD_INFORMATION_CLASS = _THREAD_INFORMATION_CLASS;
-
-@foreign
-struct _MEMORY_PRIORITY_INFORMATION {
+struct MEMORY_PRIORITY_INFORMATION {
     MemoryPriority: ULONG;
 }
 
 @foreign
-typedef MEMORY_PRIORITY_INFORMATION = _MEMORY_PRIORITY_INFORMATION;
-
-@foreign
-typedef PMEMORY_PRIORITY_INFORMATION = _MEMORY_PRIORITY_INFORMATION*;
+typedef PMEMORY_PRIORITY_INFORMATION = MEMORY_PRIORITY_INFORMATION*;
 
 @foreign
 func GetThreadInformation(hThread: HANDLE, ThreadInformationClass: THREAD_INFORMATION_CLASS, ThreadInformation: LPVOID, ThreadInformationSize: DWORD): BOOL;
@@ -319,14 +302,11 @@ func GetThreadInformation(hThread: HANDLE, ThreadInformationClass: THREAD_INFORM
 func SetThreadInformation(hThread: HANDLE, ThreadInformationClass: THREAD_INFORMATION_CLASS, ThreadInformation: LPVOID, ThreadInformationSize: DWORD): BOOL;
 
 @foreign
-struct _THREAD_POWER_THROTTLING_STATE {
+struct THREAD_POWER_THROTTLING_STATE {
     Version: ULONG;
     ControlMask: ULONG;
     StateMask: ULONG;
 }
-
-@foreign
-typedef THREAD_POWER_THROTTLING_STATE = _THREAD_POWER_THROTTLING_STATE;
 
 @foreign
 func IsProcessCritical(hProcess: HANDLE, Critical: PBOOL): BOOL;
@@ -341,7 +321,7 @@ func QueryProtectedPolicy(PolicyGuid: LPCGUID, PolicyValue: PULONG_PTR): BOOL;
 func SetThreadIdealProcessor(hThread: HANDLE, dwIdealProcessor: DWORD): DWORD;
 
 @foreign
-enum _PROCESS_INFORMATION_CLASS {
+enum PROCESS_INFORMATION_CLASS {
     ProcessMemoryPriority,
     ProcessMemoryExhaustionInfo,
     ProcessAppMemoryInfo,
@@ -354,10 +334,7 @@ enum _PROCESS_INFORMATION_CLASS {
 }
 
 @foreign
-typedef PROCESS_INFORMATION_CLASS = _PROCESS_INFORMATION_CLASS;
-
-@foreign
-struct _APP_MEMORY_INFORMATION {
+struct APP_MEMORY_INFORMATION {
     AvailableCommit: ULONG64;
     PrivateCommitUsage: ULONG64;
     PeakPrivateCommitUsage: ULONG64;
@@ -365,25 +342,19 @@ struct _APP_MEMORY_INFORMATION {
 }
 
 @foreign
-typedef APP_MEMORY_INFORMATION = _APP_MEMORY_INFORMATION;
+typedef PAPP_MEMORY_INFORMATION = APP_MEMORY_INFORMATION*;
 
 @foreign
-typedef PAPP_MEMORY_INFORMATION = _APP_MEMORY_INFORMATION*;
-
-@foreign
-enum _PROCESS_MEMORY_EXHAUSTION_TYPE {
+enum PROCESS_MEMORY_EXHAUSTION_TYPE {
     PMETypeFailFastOnCommitFailure,
     PMETypeMax,
 }
 
 @foreign
-typedef PROCESS_MEMORY_EXHAUSTION_TYPE = _PROCESS_MEMORY_EXHAUSTION_TYPE;
+typedef PPROCESS_MEMORY_EXHAUSTION_TYPE = PROCESS_MEMORY_EXHAUSTION_TYPE*;
 
 @foreign
-typedef PPROCESS_MEMORY_EXHAUSTION_TYPE = _PROCESS_MEMORY_EXHAUSTION_TYPE*;
-
-@foreign
-struct _PROCESS_MEMORY_EXHAUSTION_INFO {
+struct PROCESS_MEMORY_EXHAUSTION_INFO {
     Version: USHORT;
     Reserved: USHORT;
     Type: PROCESS_MEMORY_EXHAUSTION_TYPE;
@@ -391,23 +362,17 @@ struct _PROCESS_MEMORY_EXHAUSTION_INFO {
 }
 
 @foreign
-typedef PROCESS_MEMORY_EXHAUSTION_INFO = _PROCESS_MEMORY_EXHAUSTION_INFO;
+typedef PPROCESS_MEMORY_EXHAUSTION_INFO = PROCESS_MEMORY_EXHAUSTION_INFO*;
 
 @foreign
-typedef PPROCESS_MEMORY_EXHAUSTION_INFO = _PROCESS_MEMORY_EXHAUSTION_INFO*;
-
-@foreign
-struct _PROCESS_POWER_THROTTLING_STATE {
+struct PROCESS_POWER_THROTTLING_STATE {
     Version: ULONG;
     ControlMask: ULONG;
     StateMask: ULONG;
 }
 
 @foreign
-typedef PROCESS_POWER_THROTTLING_STATE = _PROCESS_POWER_THROTTLING_STATE;
-
-@foreign
-typedef PPROCESS_POWER_THROTTLING_STATE = _PROCESS_POWER_THROTTLING_STATE*;
+typedef PPROCESS_POWER_THROTTLING_STATE = PROCESS_POWER_THROTTLING_STATE*;
 
 @foreign
 struct PROCESS_PROTECTION_LEVEL_INFORMATION {

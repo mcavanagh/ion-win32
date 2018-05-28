@@ -1,28 +1,20 @@
-#foreign(header = "<rpcdcep.h>")
-
 @foreign
-struct _RPC_VERSION {
+struct RPC_VERSION {
     MajorVersion: ushort;
     MinorVersion: ushort;
 }
 
 @foreign
-typedef RPC_VERSION = _RPC_VERSION;
-
-@foreign
-struct _RPC_SYNTAX_IDENTIFIER {
+struct RPC_SYNTAX_IDENTIFIER {
     SyntaxGUID: GUID;
     SyntaxVersion: RPC_VERSION;
 }
 
 @foreign
-typedef RPC_SYNTAX_IDENTIFIER = _RPC_SYNTAX_IDENTIFIER;
+typedef PRPC_SYNTAX_IDENTIFIER = RPC_SYNTAX_IDENTIFIER*;
 
 @foreign
-typedef PRPC_SYNTAX_IDENTIFIER = _RPC_SYNTAX_IDENTIFIER*;
-
-@foreign
-struct _RPC_MESSAGE {
+struct RPC_MESSAGE {
     Handle: RPC_BINDING_HANDLE;
     DataRepresentation: ulong;
     Buffer: void*;
@@ -37,10 +29,7 @@ struct _RPC_MESSAGE {
 }
 
 @foreign
-typedef RPC_MESSAGE = _RPC_MESSAGE;
-
-@foreign
-typedef PRPC_MESSAGE = _RPC_MESSAGE*;
+typedef PRPC_MESSAGE = RPC_MESSAGE*;
 
 @foreign
 typedef RPC_FORWARD_FUNCTION = func(InterfaceId: UUID*, InterfaceVersion: RPC_VERSION*, ObjectId: UUID*, Rpcpro: uchar*, ppDestEndpoint: void**): RPC_STATUS;
@@ -69,19 +58,16 @@ struct RPC_DISPATCH_TABLE {
 typedef PRPC_DISPATCH_TABLE = RPC_DISPATCH_TABLE;
 
 @foreign
-struct _RPC_PROTSEQ_ENDPOINT {
+struct RPC_PROTSEQ_ENDPOINT {
     RpcProtocolSequence: uchar*;
     Endpoint: uchar*;
 }
 
 @foreign
-typedef RPC_PROTSEQ_ENDPOINT = _RPC_PROTSEQ_ENDPOINT;
+typedef PRPC_PROTSEQ_ENDPOINT = RPC_PROTSEQ_ENDPOINT*;
 
 @foreign
-typedef PRPC_PROTSEQ_ENDPOINT = _RPC_PROTSEQ_ENDPOINT*;
-
-@foreign
-struct _RPC_SERVER_INTERFACE {
+struct RPC_SERVER_INTERFACE {
     Length: uint;
     InterfaceId: RPC_SYNTAX_IDENTIFIER;
     TransferSyntax: RPC_SYNTAX_IDENTIFIER;
@@ -94,13 +80,10 @@ struct _RPC_SERVER_INTERFACE {
 }
 
 @foreign
-typedef RPC_SERVER_INTERFACE = _RPC_SERVER_INTERFACE;
+typedef PRPC_SERVER_INTERFACE = RPC_SERVER_INTERFACE*;
 
 @foreign
-typedef PRPC_SERVER_INTERFACE = _RPC_SERVER_INTERFACE*;
-
-@foreign
-struct _RPC_CLIENT_INTERFACE {
+struct RPC_CLIENT_INTERFACE {
     Length: uint;
     InterfaceId: RPC_SYNTAX_IDENTIFIER;
     TransferSyntax: RPC_SYNTAX_IDENTIFIER;
@@ -113,10 +96,7 @@ struct _RPC_CLIENT_INTERFACE {
 }
 
 @foreign
-typedef RPC_CLIENT_INTERFACE = _RPC_CLIENT_INTERFACE;
-
-@foreign
-typedef PRPC_CLIENT_INTERFACE = _RPC_CLIENT_INTERFACE*;
+typedef PRPC_CLIENT_INTERFACE = RPC_CLIENT_INTERFACE*;
 
 @foreign
 func I_RpcNegotiateTransferSyntax(Message: RPC_MESSAGE*): RPC_STATUS;
@@ -182,13 +162,10 @@ func I_RpcPauseExecution(Milliseconds: ulong);
 func I_RpcGetExtendedError(): RPC_STATUS;
 
 @foreign
-enum _LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION {
+enum LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION {
     MarshalDirectionMarshal,
     MarshalDirectionUnmarshal,
 }
-
-@foreign
-typedef LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION = _LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION;
 
 @foreign
 func I_RpcSystemHandleTypeSpecificWork(Handle: void*, ActualType: uchar, IdlType: uchar, MarshalDirection: LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION): RPC_STATUS;
@@ -227,17 +204,14 @@ func I_RpcBindingToStaticStringBindingW(Binding: RPC_BINDING_HANDLE, StringBindi
 func I_RpcBindingInqSecurityContext(Binding: RPC_BINDING_HANDLE, SecurityContextHandle: void**): RPC_STATUS;
 
 @foreign
-struct _RPC_SEC_CONTEXT_KEY_INFO {
+struct RPC_SEC_CONTEXT_KEY_INFO {
     EncryptAlgorithm: ulong;
     KeySize: ulong;
     SignatureAlgorithm: ulong;
 }
 
 @foreign
-typedef RPC_SEC_CONTEXT_KEY_INFO = _RPC_SEC_CONTEXT_KEY_INFO;
-
-@foreign
-typedef PRPC_SEC_CONTEXT_KEY_INFO = _RPC_SEC_CONTEXT_KEY_INFO*;
+typedef PRPC_SEC_CONTEXT_KEY_INFO = RPC_SEC_CONTEXT_KEY_INFO*;
 
 @foreign
 func I_RpcBindingInqSecurityContextKeyInfo(Binding: RPC_BINDING_HANDLE, KeyInfo: void*): RPC_STATUS;
@@ -300,14 +274,11 @@ func I_RpcServerCheckClientRestriction(Context: RPC_BINDING_HANDLE): RPC_STATUS;
 func I_RpcBindingInqTransportType(Binding: RPC_BINDING_HANDLE, Type: uint*): RPC_STATUS;
 
 @foreign
-struct _RPC_TRANSFER_SYNTAX {
+struct RPC_TRANSFER_SYNTAX {
     Uuid: UUID;
     VersMajor: ushort;
     VersMinor: ushort;
 }
-
-@foreign
-typedef RPC_TRANSFER_SYNTAX = _RPC_TRANSFER_SYNTAX;
 
 @foreign
 func I_RpcIfInqTransferSyntaxes(RpcIfHandle: RPC_IF_HANDLE, TransferSyntaxes: RPC_TRANSFER_SYNTAX*, TransferSyntaxSize: uint, TransferSyntaxCount: uint*): RPC_STATUS;
@@ -403,16 +374,13 @@ func I_RpcServerInqTransportType(Type: uint*): RPC_STATUS;
 func I_RpcMapWin32Status(Status: RPC_STATUS): long;
 
 @foreign
-struct _RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR {
+struct RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR {
     BufferSize: ulong;
     Buffer: char*;
 }
 
 @foreign
-typedef RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR = _RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR;
-
-@foreign
-struct _RDR_CALLOUT_STATE {
+struct RDR_CALLOUT_STATE {
     LastError: RPC_STATUS;
     LastEEInfo: void*;
     LastCalledStage: RPC_HTTP_REDIRECTOR_STAGE;
@@ -428,9 +396,6 @@ struct _RDR_CALLOUT_STATE {
     Interface: RPC_SYNTAX_IDENTIFIER;
     CertContext: void*;
 }
-
-@foreign
-typedef RDR_CALLOUT_STATE = _RDR_CALLOUT_STATE;
 
 @foreign
 typedef I_RpcProxyIsValidMachineFn = func(Machine: RPC_WSTR, DotMachine: RPC_WSTR, PortNumber: ulong): RPC_STATUS;
@@ -454,7 +419,7 @@ typedef I_RpcProxyGetClientSessionAndResourceUUID = func(Context: void*, Session
 typedef I_RpcProxyFilterIfFn = func(Context: void*, IfUuid: UUID*, IfMajorVersion: ushort, fAllow: int*): RPC_STATUS;
 
 @foreign
-enum RpcProxyPerfCounters {
+enum RpcPerfCounters {
     RpcCurrentUniqueUser = 1,
     RpcBackEndConnectionAttempts,
     RpcBackEndConnectionFailed,
@@ -470,16 +435,13 @@ enum RpcProxyPerfCounters {
 }
 
 @foreign
-typedef RpcPerfCounters = RpcProxyPerfCounters;
-
-@foreign
 typedef I_RpcProxyUpdatePerfCounterFn = func(Counter: RpcPerfCounters, ModifyTrend: int, Size: ulong);
 
 @foreign
 typedef I_RpcProxyUpdatePerfCounterBackendServerFn = func(MachineName: ushort*, IsConnectEvent: int);
 
 @foreign
-struct tagI_RpcProxyCallbackInterface {
+struct I_RpcProxyCallbackInterface {
     IsValidMachineFn: I_RpcProxyIsValidMachineFn;
     GetClientAddressFn: I_RpcProxyGetClientAddressFn;
     GetConnectionTimeoutFn: I_RpcProxyGetConnectionTimeoutFn;
@@ -490,9 +452,6 @@ struct tagI_RpcProxyCallbackInterface {
     RpcProxyUpdatePerfCounterFn: I_RpcProxyUpdatePerfCounterFn;
     RpcProxyUpdatePerfCounterBackendServerFn: I_RpcProxyUpdatePerfCounterBackendServerFn;
 }
-
-@foreign
-typedef I_RpcProxyCallbackInterface = tagI_RpcProxyCallbackInterface;
 
 @foreign
 func I_RpcProxyNewConnection(ConnectionType: ulong, ServerAddress: ushort*, ServerPort: ushort*, MinConnTimeout: ushort*, ConnectionParameter: void*, CallOutState: RDR_CALLOUT_STATE*, ProxyCallbackInterface: I_RpcProxyCallbackInterface*): RPC_STATUS;

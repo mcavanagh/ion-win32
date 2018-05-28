@@ -1,5 +1,3 @@
-#foreign(header = "<namedpipeapi.h>")
-
 @foreign
 func CreatePipe(hReadPipe: PHANDLE, hWritePipe: PHANDLE, lpPipeAttributes: LPSECURITY_ATTRIBUTES, nSize: DWORD): BOOL;
 

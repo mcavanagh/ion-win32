@@ -1,5 +1,3 @@
-#foreign(header = "<stringapiset.h>")
-
 @foreign
 func CompareStringEx(lpLocaleName: LPCWSTR, dwCmpFlags: DWORD, lpString1: LPCWCH, cchCount1: int, lpString2: LPCWCH, cchCount2: int, lpVersionInformation: LPNLSVERSIONINFO, lpReserved: LPVOID, lParam: LPARAM): int;
 

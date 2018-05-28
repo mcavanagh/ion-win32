@@ -1,5 +1,3 @@
-#foreign(header = "<unknwn.h>")
-
 @foreign
 typedef LPUNKNOWN = IUnknown*;
 

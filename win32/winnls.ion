@@ -1,5 +1,3 @@
-#foreign(header = "<winnls.h>")
-
 @foreign
 typedef LGRPID = DWORD;
 
@@ -13,20 +11,17 @@ typedef CALTYPE = DWORD;
 typedef CALID = DWORD;
 
 @foreign
-struct _cpinfo {
+struct CPINFO {
     MaxCharSize: UINT;
     DefaultChar: BYTE[2];
     LeadByte: BYTE[12];
 }
 
 @foreign
-typedef CPINFO = _cpinfo;
+typedef LPCPINFO = CPINFO*;
 
 @foreign
-typedef LPCPINFO = _cpinfo*;
-
-@foreign
-struct _cpinfoexA {
+struct CPINFOEXA {
     MaxCharSize: UINT;
     DefaultChar: BYTE[2];
     LeadByte: BYTE[12];
@@ -36,13 +31,10 @@ struct _cpinfoexA {
 }
 
 @foreign
-typedef CPINFOEXA = _cpinfoexA;
+typedef LPCPINFOEXA = CPINFOEXA*;
 
 @foreign
-typedef LPCPINFOEXA = _cpinfoexA*;
-
-@foreign
-struct _cpinfoexW {
+struct CPINFOEXW {
     MaxCharSize: UINT;
     DefaultChar: BYTE[2];
     LeadByte: BYTE[12];
@@ -52,10 +44,7 @@ struct _cpinfoexW {
 }
 
 @foreign
-typedef CPINFOEXW = _cpinfoexW;
-
-@foreign
-typedef LPCPINFOEXW = _cpinfoexW*;
+typedef LPCPINFOEXW = CPINFOEXW*;
 
 @foreign
 typedef CPINFOEX = CPINFOEXA;
@@ -64,7 +53,7 @@ typedef CPINFOEX = CPINFOEXA;
 typedef LPCPINFOEX = LPCPINFOEXA;
 
 @foreign
-struct _numberfmtA {
+struct NUMBERFMTA {
     NumDigits: UINT;
     LeadingZero: UINT;
     Grouping: UINT;
@@ -74,13 +63,10 @@ struct _numberfmtA {
 }
 
 @foreign
-typedef NUMBERFMTA = _numberfmtA;
+typedef LPNUMBERFMTA = NUMBERFMTA*;
 
 @foreign
-typedef LPNUMBERFMTA = _numberfmtA*;
-
-@foreign
-struct _numberfmtW {
+struct NUMBERFMTW {
     NumDigits: UINT;
     LeadingZero: UINT;
     Grouping: UINT;
@@ -90,10 +76,7 @@ struct _numberfmtW {
 }
 
 @foreign
-typedef NUMBERFMTW = _numberfmtW;
-
-@foreign
-typedef LPNUMBERFMTW = _numberfmtW*;
+typedef LPNUMBERFMTW = NUMBERFMTW*;
 
 @foreign
 typedef NUMBERFMT = NUMBERFMTA;
@@ -102,7 +85,7 @@ typedef NUMBERFMT = NUMBERFMTA;
 typedef LPNUMBERFMT = LPNUMBERFMTA;
 
 @foreign
-struct _currencyfmtA {
+struct CURRENCYFMTA {
     NumDigits: UINT;
     LeadingZero: UINT;
     Grouping: UINT;
@@ -114,13 +97,10 @@ struct _currencyfmtA {
 }
 
 @foreign
-typedef CURRENCYFMTA = _currencyfmtA;
+typedef LPCURRENCYFMTA = CURRENCYFMTA*;
 
 @foreign
-typedef LPCURRENCYFMTA = _currencyfmtA*;
-
-@foreign
-struct _currencyfmtW {
+struct CURRENCYFMTW {
     NumDigits: UINT;
     LeadingZero: UINT;
     Grouping: UINT;
@@ -132,10 +112,7 @@ struct _currencyfmtW {
 }
 
 @foreign
-typedef CURRENCYFMTW = _currencyfmtW;
-
-@foreign
-typedef LPCURRENCYFMTW = _currencyfmtW*;
+typedef LPCURRENCYFMTW = CURRENCYFMTW*;
 
 @foreign
 typedef CURRENCYFMT = CURRENCYFMTA;
@@ -152,7 +129,7 @@ enum SYSNLS_FUNCTION {
 typedef NLS_FUNCTION = DWORD;
 
 @foreign
-struct _nlsversioninfo {
+struct NLSVERSIONINFO {
     dwNLSVersionInfoSize: DWORD;
     dwNLSVersion: DWORD;
     dwDefinedVersion: DWORD;
@@ -161,13 +138,10 @@ struct _nlsversioninfo {
 }
 
 @foreign
-typedef NLSVERSIONINFO = _nlsversioninfo;
+typedef LPNLSVERSIONINFO = NLSVERSIONINFO*;
 
 @foreign
-typedef LPNLSVERSIONINFO = _nlsversioninfo*;
-
-@foreign
-struct _nlsversioninfoex {
+struct NLSVERSIONINFOEX {
     dwNLSVersionInfoSize: DWORD;
     dwNLSVersion: DWORD;
     dwDefinedVersion: DWORD;
@@ -176,10 +150,7 @@ struct _nlsversioninfoex {
 }
 
 @foreign
-typedef NLSVERSIONINFOEX = _nlsversioninfoex;
-
-@foreign
-typedef LPNLSVERSIONINFOEX = _nlsversioninfoex*;
+typedef LPNLSVERSIONINFOEX = NLSVERSIONINFOEX*;
 
 @foreign
 typedef GEOTYPE = DWORD;
@@ -220,16 +191,13 @@ enum SYSGEOCLASS {
 }
 
 @foreign
-enum _NORM_FORM {
+enum NORM_FORM {
     NormalizationOther = 0,
     NormalizationC = 1,
     NormalizationD = 2,
     NormalizationKC = 5,
     NormalizationKD = 6,
 }
-
-@foreign
-typedef NORM_FORM = _NORM_FORM;
 
 @foreign
 typedef LANGUAGEGROUP_ENUMPROCA = func(arg0: LGRPID, arg1: LPSTR, arg2: LPSTR, arg3: DWORD, arg4: LONG_PTR): BOOL;
@@ -298,7 +266,7 @@ typedef GEO_ENUMPROC = func(arg0: GEOID): BOOL;
 typedef GEO_ENUMNAMEPROC = func(arg0: PWSTR, arg1: LPARAM): BOOL;
 
 @foreign
-struct _FILEMUIINFO {
+struct FILEMUIINFO {
     dwSize: DWORD;
     dwVersion: DWORD;
     dwFileType: DWORD;
@@ -315,10 +283,7 @@ struct _FILEMUIINFO {
 }
 
 @foreign
-typedef FILEMUIINFO = _FILEMUIINFO;
-
-@foreign
-typedef PFILEMUIINFO = _FILEMUIINFO*;
+typedef PFILEMUIINFO = FILEMUIINFO*;
 
 @foreign
 func IsValidCodePage(CodePage: UINT): BOOL;

@@ -1,17 +1,12 @@
-#foreign(header = "<libloaderapi.h>")
-
 @foreign
-struct tagENUMUILANG {
+struct ENUMUILANG {
     NumOfEnumUILang: ULONG;
     SizeOfEnumUIBuffer: ULONG;
     pEnumUIBuffer: LANGID*;
 }
 
 @foreign
-typedef ENUMUILANG = tagENUMUILANG;
-
-@foreign
-typedef PENUMUILANG = tagENUMUILANG*;
+typedef PENUMUILANG = ENUMUILANG*;
 
 @foreign
 typedef ENUMRESLANGPROCA = func(hModule: HMODULE, lpType: LPCSTR, lpName: LPCSTR, wLanguage: WORD, lParam: LONG_PTR): BOOL;

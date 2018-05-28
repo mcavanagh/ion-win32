@@ -1,5 +1,3 @@
-#foreign(header = "<processenv.h>")
-
 @foreign
 func SetEnvironmentStringsW(NewEnvironment: LPWCH): BOOL;
 

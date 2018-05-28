@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt_malloc.h>")
-
 @foreign
 func _calloc_base(_Count: usize, _Size: usize): void*;
 

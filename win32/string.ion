@@ -1,5 +1,3 @@
-#foreign(header = "<string.h>")
-
 @foreign
 func strcat_s(_Destination: char*, _SizeInBytes: rsize_t, _Source: char const*): errno_t;
 
@@ -139,11 +137,9 @@ func strset(_String: char*, _Value: int): char*;
 func strupr(_String: char*): char*;
 
 @foreign
-struct _OBJECTID {
+struct OBJECTID {
     Lineage: GUID;
     Uniquifier: DWORD;
 }
 
-@foreign
-typedef OBJECTID = _OBJECTID;
 

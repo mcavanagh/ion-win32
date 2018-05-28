@@ -1,13 +1,8 @@
-#foreign(header = "<shtypes.h>")
-
 @foreign
-struct _SHITEMID {
+struct SHITEMID {
     cb: USHORT;
     abID: BYTE[1];
 }
-
-@foreign
-typedef SHITEMID = _SHITEMID;
 
 @foreign
 typedef LPSHITEMID = SHITEMID*;
@@ -16,12 +11,9 @@ typedef LPSHITEMID = SHITEMID*;
 typedef LPCSHITEMID = SHITEMID*;
 
 @foreign
-struct _ITEMIDLIST {
+struct ITEMIDLIST {
     mkid: SHITEMID;
 }
-
-@foreign
-typedef ITEMIDLIST = _ITEMIDLIST;
 
 @foreign
 typedef ITEMIDLIST_RELATIVE = ITEMIDLIST;
@@ -42,49 +34,40 @@ typedef LPITEMIDLIST = ITEMIDLIST*;
 typedef LPCITEMIDLIST = ITEMIDLIST*;
 
 @foreign
-enum tagSTRRET_TYPE {
+enum STRRET_TYPE {
     STRRET_WSTR = 0,
     STRRET_OFFSET = 1,
     STRRET_CSTR = 2,
 }
 
 @foreign
-typedef STRRET_TYPE = tagSTRRET_TYPE;
-
-@foreign
-union _STRRET___inner {
+union STRRET___inner {
     pOleStr: LPWSTR;
     uOffset: UINT;
     cStr: char[260];
 }
 
 @foreign
-struct _STRRET {
+struct STRRET {
     uType: UINT;
-    u: _STRRET___inner;
+    u: STRRET___inner;
 }
-
-@foreign
-typedef STRRET = _STRRET;
 
 @foreign
 typedef LPSTRRET = STRRET*;
 
 @foreign
-struct _SHELLDETAILS {
+struct SHELLDETAILS {
     fmt: int;
     cxChar: int;
     str: STRRET;
 }
 
 @foreign
-typedef SHELLDETAILS = _SHELLDETAILS;
+typedef LPSHELLDETAILS = SHELLDETAILS*;
 
 @foreign
-typedef LPSHELLDETAILS = _SHELLDETAILS*;
-
-@foreign
-enum tagPERCEIVED {
+enum PERCEIVED {
     PERCEIVED_TYPE_FIRST = -3,
     PERCEIVED_TYPE_CUSTOM = -3,
     PERCEIVED_TYPE_UNSPECIFIED = -2,
@@ -104,19 +87,13 @@ enum tagPERCEIVED {
 }
 
 @foreign
-typedef PERCEIVED = tagPERCEIVED;
-
-@foreign
 typedef PERCEIVEDFLAG = DWORD;
 
 @foreign
-struct _COMDLG_FILTERSPEC {
+struct COMDLG_FILTERSPEC {
     pszName: LPCWSTR;
     pszSpec: LPCWSTR;
 }
-
-@foreign
-typedef COMDLG_FILTERSPEC = _COMDLG_FILTERSPEC;
 
 @foreign
 typedef KNOWNFOLDERID = GUID;
@@ -134,7 +111,7 @@ typedef TASKOWNERID = GUID;
 typedef ELEMENTID = GUID;
 
 @foreign
-enum tagSHCOLSTATE {
+enum SHCOLSTATE {
     SHCOLSTATE_DEFAULT = 0,
     SHCOLSTATE_TYPE_STR = 1,
     SHCOLSTATE_TYPE_INT = 2,
@@ -156,9 +133,6 @@ enum tagSHCOLSTATE {
     SHCOLSTATE_BATCHREAD = 131072,
     SHCOLSTATE_NO_GROUPBY = 262144,
 }
-
-@foreign
-typedef SHCOLSTATE = tagSHCOLSTATE;
 
 @foreign
 typedef SHCOLSTATEF = DWORD;

@@ -1,5 +1,3 @@
-#foreign(header = "<profileapi.h>")
-
 @foreign
 func QueryPerformanceCounter(lpPerformanceCount: LARGE_INTEGER*): BOOL;
 

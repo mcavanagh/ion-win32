@@ -1,15 +1,10 @@
-#foreign(header = "<guiddef.h>")
-
 @foreign
-struct _GUID {
+struct GUID {
     Data1: ulong;
     Data2: ushort;
     Data3: ushort;
     Data4: uchar[8];
 }
-
-@foreign
-typedef GUID = _GUID;
 
 @foreign
 typedef LPGUID = GUID*;
@@ -34,4 +29,3 @@ typedef FMTID = GUID;
 
 @foreign
 typedef LPFMTID = FMTID*;
-

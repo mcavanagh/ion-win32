@@ -1,8 +1,0 @@
-#foreign(header = "<vadefs.h>")
-
-@foreign
-typedef uintptr_t = ullong;
-
-@foreign
-func __va_start(arg0: va_list*, ...);
-

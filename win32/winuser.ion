@@ -1,5 +1,3 @@
-#foreign(header = "<winuser.h>")
-
 @foreign
 typedef HDWP = HANDLE;
 
@@ -115,28 +113,22 @@ func wsprintf(arg0: LPSTR, arg1: LPCSTR, ...): int;
 func wsprintfW(arg0: LPWSTR, arg1: LPCWSTR, ...): int;
 
 @foreign
-struct tagCBT_CREATEWNDA {
+struct CBT_CREATEWNDA {
     lpcs: tagCREATESTRUCTA*;
     hwndInsertAfter: HWND;
 }
 
 @foreign
-typedef CBT_CREATEWNDA = tagCBT_CREATEWNDA;
+typedef LPCBT_CREATEWNDA = CBT_CREATEWNDA*;
 
 @foreign
-typedef LPCBT_CREATEWNDA = tagCBT_CREATEWNDA*;
-
-@foreign
-struct tagCBT_CREATEWNDW {
+struct CBT_CREATEWNDW {
     lpcs: tagCREATESTRUCTW*;
     hwndInsertAfter: HWND;
 }
 
 @foreign
-typedef CBT_CREATEWNDW = tagCBT_CREATEWNDW;
-
-@foreign
-typedef LPCBT_CREATEWNDW = tagCBT_CREATEWNDW*;
+typedef LPCBT_CREATEWNDW = CBT_CREATEWNDW*;
 
 @foreign
 typedef CBT_CREATEWND = CBT_CREATEWNDA;
@@ -145,28 +137,22 @@ typedef CBT_CREATEWND = CBT_CREATEWNDA;
 typedef LPCBT_CREATEWND = LPCBT_CREATEWNDA;
 
 @foreign
-struct tagCBTACTIVATESTRUCT {
+struct CBTACTIVATESTRUCT {
     fMouse: BOOL;
     hWndActive: HWND;
 }
 
 @foreign
-typedef CBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT;
+typedef LPCBTACTIVATESTRUCT = CBTACTIVATESTRUCT*;
 
 @foreign
-typedef LPCBTACTIVATESTRUCT = tagCBTACTIVATESTRUCT*;
-
-@foreign
-struct tagWTSSESSION_NOTIFICATION {
+struct WTSSESSION_NOTIFICATION {
     cbSize: DWORD;
     dwSessionId: DWORD;
 }
 
 @foreign
-typedef WTSSESSION_NOTIFICATION = tagWTSSESSION_NOTIFICATION;
-
-@foreign
-typedef PWTSSESSION_NOTIFICATION = tagWTSSESSION_NOTIFICATION*;
+typedef PWTSSESSION_NOTIFICATION = WTSSESSION_NOTIFICATION*;
 
 @foreign
 struct SHELLHOOKINFO {
@@ -178,7 +164,7 @@ struct SHELLHOOKINFO {
 typedef LPSHELLHOOKINFO = SHELLHOOKINFO;
 
 @foreign
-struct tagEVENTMSG {
+struct EVENTMSG {
     message: UINT;
     paramL: UINT;
     paramH: UINT;
@@ -187,28 +173,25 @@ struct tagEVENTMSG {
 }
 
 @foreign
-typedef EVENTMSG = tagEVENTMSG;
+typedef PEVENTMSGMSG = EVENTMSG*;
 
 @foreign
-typedef PEVENTMSGMSG = tagEVENTMSG*;
+typedef NPEVENTMSGMSG = EVENTMSG*;
 
 @foreign
-typedef NPEVENTMSGMSG = tagEVENTMSG*;
+typedef LPEVENTMSGMSG = EVENTMSG*;
 
 @foreign
-typedef LPEVENTMSGMSG = tagEVENTMSG*;
+typedef PEVENTMSG = EVENTMSG*;
 
 @foreign
-typedef PEVENTMSG = tagEVENTMSG*;
+typedef NPEVENTMSG = EVENTMSG*;
 
 @foreign
-typedef NPEVENTMSG = tagEVENTMSG*;
+typedef LPEVENTMSG = EVENTMSG*;
 
 @foreign
-typedef LPEVENTMSG = tagEVENTMSG*;
-
-@foreign
-struct tagCWPSTRUCT {
+struct CWPSTRUCT {
     lParam: LPARAM;
     wParam: WPARAM;
     message: UINT;
@@ -216,19 +199,16 @@ struct tagCWPSTRUCT {
 }
 
 @foreign
-typedef CWPSTRUCT = tagCWPSTRUCT;
+typedef PCWPSTRUCT = CWPSTRUCT*;
 
 @foreign
-typedef PCWPSTRUCT = tagCWPSTRUCT*;
+typedef NPCWPSTRUCT = CWPSTRUCT*;
 
 @foreign
-typedef NPCWPSTRUCT = tagCWPSTRUCT*;
+typedef LPCWPSTRUCT = CWPSTRUCT*;
 
 @foreign
-typedef LPCWPSTRUCT = tagCWPSTRUCT*;
-
-@foreign
-struct tagCWPRETSTRUCT {
+struct CWPRETSTRUCT {
     lResult: LRESULT;
     lParam: LPARAM;
     wParam: WPARAM;
@@ -237,19 +217,16 @@ struct tagCWPRETSTRUCT {
 }
 
 @foreign
-typedef CWPRETSTRUCT = tagCWPRETSTRUCT;
+typedef PCWPRETSTRUCT = CWPRETSTRUCT*;
 
 @foreign
-typedef PCWPRETSTRUCT = tagCWPRETSTRUCT*;
+typedef NPCWPRETSTRUCT = CWPRETSTRUCT*;
 
 @foreign
-typedef NPCWPRETSTRUCT = tagCWPRETSTRUCT*;
+typedef LPCWPRETSTRUCT = CWPRETSTRUCT*;
 
 @foreign
-typedef LPCWPRETSTRUCT = tagCWPRETSTRUCT*;
-
-@foreign
-struct tagKBDLLHOOKSTRUCT {
+struct KBDLLHOOKSTRUCT {
     vkCode: DWORD;
     scanCode: DWORD;
     flags: DWORD;
@@ -258,16 +235,13 @@ struct tagKBDLLHOOKSTRUCT {
 }
 
 @foreign
-typedef KBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT;
+typedef LPKBDLLHOOKSTRUCT = KBDLLHOOKSTRUCT*;
 
 @foreign
-typedef LPKBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT*;
+typedef PKBDLLHOOKSTRUCT = KBDLLHOOKSTRUCT*;
 
 @foreign
-typedef PKBDLLHOOKSTRUCT = tagKBDLLHOOKSTRUCT*;
-
-@foreign
-struct tagMSLLHOOKSTRUCT {
+struct MSLLHOOKSTRUCT {
     pt: POINT;
     mouseData: DWORD;
     flags: DWORD;
@@ -276,16 +250,13 @@ struct tagMSLLHOOKSTRUCT {
 }
 
 @foreign
-typedef MSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT;
+typedef LPMSLLHOOKSTRUCT = MSLLHOOKSTRUCT*;
 
 @foreign
-typedef LPMSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT*;
+typedef PMSLLHOOKSTRUCT = MSLLHOOKSTRUCT*;
 
 @foreign
-typedef PMSLLHOOKSTRUCT = tagMSLLHOOKSTRUCT*;
-
-@foreign
-struct tagDEBUGHOOKINFO {
+struct DEBUGHOOKINFO {
     idThread: DWORD;
     idThreadInstaller: DWORD;
     lParam: LPARAM;
@@ -294,19 +265,16 @@ struct tagDEBUGHOOKINFO {
 }
 
 @foreign
-typedef DEBUGHOOKINFO = tagDEBUGHOOKINFO;
+typedef PDEBUGHOOKINFO = DEBUGHOOKINFO*;
 
 @foreign
-typedef PDEBUGHOOKINFO = tagDEBUGHOOKINFO*;
+typedef NPDEBUGHOOKINFO = DEBUGHOOKINFO*;
 
 @foreign
-typedef NPDEBUGHOOKINFO = tagDEBUGHOOKINFO*;
+typedef LPDEBUGHOOKINFO = DEBUGHOOKINFO*;
 
 @foreign
-typedef LPDEBUGHOOKINFO = tagDEBUGHOOKINFO*;
-
-@foreign
-struct tagMOUSEHOOKSTRUCT {
+struct MOUSEHOOKSTRUCT {
     pt: POINT;
     hwnd: HWND;
     wHitTestCode: UINT;
@@ -314,31 +282,25 @@ struct tagMOUSEHOOKSTRUCT {
 }
 
 @foreign
-typedef MOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT;
+typedef LPMOUSEHOOKSTRUCT = MOUSEHOOKSTRUCT*;
 
 @foreign
-typedef LPMOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT*;
+typedef PMOUSEHOOKSTRUCT = MOUSEHOOKSTRUCT*;
 
 @foreign
-typedef PMOUSEHOOKSTRUCT = tagMOUSEHOOKSTRUCT*;
-
-@foreign
-struct tagMOUSEHOOKSTRUCTEX {
+struct MOUSEHOOKSTRUCTEX {
     s: MOUSEHOOKSTRUCT;
     mouseData: DWORD;
 }
 
 @foreign
-typedef MOUSEHOOKSTRUCTEX = tagMOUSEHOOKSTRUCTEX;
+typedef LPMOUSEHOOKSTRUCTEX = MOUSEHOOKSTRUCTEX*;
 
 @foreign
-typedef LPMOUSEHOOKSTRUCTEX = tagMOUSEHOOKSTRUCTEX*;
+typedef PMOUSEHOOKSTRUCTEX = MOUSEHOOKSTRUCTEX*;
 
 @foreign
-typedef PMOUSEHOOKSTRUCTEX = tagMOUSEHOOKSTRUCTEX*;
-
-@foreign
-struct tagHARDWAREHOOKSTRUCT {
+struct HARDWAREHOOKSTRUCT {
     hwnd: HWND;
     message: UINT;
     wParam: WPARAM;
@@ -346,13 +308,10 @@ struct tagHARDWAREHOOKSTRUCT {
 }
 
 @foreign
-typedef HARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT;
+typedef LPHARDWAREHOOKSTRUCT = HARDWAREHOOKSTRUCT*;
 
 @foreign
-typedef LPHARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT*;
-
-@foreign
-typedef PHARDWAREHOOKSTRUCT = tagHARDWAREHOOKSTRUCT*;
+typedef PHARDWAREHOOKSTRUCT = HARDWAREHOOKSTRUCT*;
 
 @foreign
 func LoadKeyboardLayoutA(pwszKLID: LPCSTR, Flags: UINT): HKL;
@@ -388,7 +347,7 @@ func GetKeyboardLayoutList(nBuff: int, lpList: HKL*): int;
 func GetKeyboardLayout(idThread: DWORD): HKL;
 
 @foreign
-struct tagMOUSEMOVEPOINT {
+struct MOUSEMOVEPOINT {
     x: int;
     y: int;
     time: DWORD;
@@ -396,13 +355,10 @@ struct tagMOUSEMOVEPOINT {
 }
 
 @foreign
-typedef MOUSEMOVEPOINT = tagMOUSEMOVEPOINT;
+typedef PMOUSEMOVEPOINT = MOUSEMOVEPOINT*;
 
 @foreign
-typedef PMOUSEMOVEPOINT = tagMOUSEMOVEPOINT*;
-
-@foreign
-typedef LPMOUSEMOVEPOINT = tagMOUSEMOVEPOINT*;
+typedef LPMOUSEMOVEPOINT = MOUSEMOVEPOINT*;
 
 @foreign
 func GetMouseMovePointsEx(cbSize: UINT, lppt: LPMOUSEMOVEPOINT, lpptBuf: LPMOUSEMOVEPOINT, nBufPoints: int, resolution: DWORD): int;
@@ -504,17 +460,14 @@ func SetUserObjectSecurity(hObj: HANDLE, pSIRequested: PSECURITY_INFORMATION, pS
 func GetUserObjectSecurity(hObj: HANDLE, pSIRequested: PSECURITY_INFORMATION, pSID: PSECURITY_DESCRIPTOR, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
 
 @foreign
-struct tagUSEROBJECTFLAGS {
+struct USEROBJECTFLAGS {
     fInherit: BOOL;
     fReserved: BOOL;
     dwFlags: DWORD;
 }
 
 @foreign
-typedef USEROBJECTFLAGS = tagUSEROBJECTFLAGS;
-
-@foreign
-typedef PUSEROBJECTFLAGS = tagUSEROBJECTFLAGS*;
+typedef PUSEROBJECTFLAGS = USEROBJECTFLAGS*;
 
 @foreign
 func GetUserObjectInformationA(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD, lpnLengthNeeded: LPDWORD): BOOL;
@@ -535,7 +488,7 @@ func SetUserObjectInformation(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength:
 func SetUserObjectInformationW(hObj: HANDLE, nIndex: int, pvInfo: PVOID, nLength: DWORD): BOOL;
 
 @foreign
-struct tagWNDCLASSEXA {
+struct WNDCLASSEXA {
     cbSize: UINT;
     style: UINT;
     lpfnWndProc: WNDPROC;
@@ -551,19 +504,16 @@ struct tagWNDCLASSEXA {
 }
 
 @foreign
-typedef WNDCLASSEXA = tagWNDCLASSEXA;
+typedef PWNDCLASSEXA = WNDCLASSEXA*;
 
 @foreign
-typedef PWNDCLASSEXA = tagWNDCLASSEXA*;
+typedef NPWNDCLASSEXA = WNDCLASSEXA*;
 
 @foreign
-typedef NPWNDCLASSEXA = tagWNDCLASSEXA*;
+typedef LPWNDCLASSEXA = WNDCLASSEXA*;
 
 @foreign
-typedef LPWNDCLASSEXA = tagWNDCLASSEXA*;
-
-@foreign
-struct tagWNDCLASSEXW {
+struct WNDCLASSEXW {
     cbSize: UINT;
     style: UINT;
     lpfnWndProc: WNDPROC;
@@ -579,16 +529,13 @@ struct tagWNDCLASSEXW {
 }
 
 @foreign
-typedef WNDCLASSEXW = tagWNDCLASSEXW;
+typedef PWNDCLASSEXW = WNDCLASSEXW*;
 
 @foreign
-typedef PWNDCLASSEXW = tagWNDCLASSEXW*;
+typedef NPWNDCLASSEXW = WNDCLASSEXW*;
 
 @foreign
-typedef NPWNDCLASSEXW = tagWNDCLASSEXW*;
-
-@foreign
-typedef LPWNDCLASSEXW = tagWNDCLASSEXW*;
+typedef LPWNDCLASSEXW = WNDCLASSEXW*;
 
 @foreign
 typedef WNDCLASSEX = WNDCLASSEXA;
@@ -603,7 +550,7 @@ typedef NPWNDCLASSEX = NPWNDCLASSEXA;
 typedef LPWNDCLASSEX = LPWNDCLASSEXA;
 
 @foreign
-struct tagWNDCLASSA {
+struct WNDCLASSA {
     style: UINT;
     lpfnWndProc: WNDPROC;
     cbClsExtra: int;
@@ -617,19 +564,16 @@ struct tagWNDCLASSA {
 }
 
 @foreign
-typedef WNDCLASSA = tagWNDCLASSA;
+typedef PWNDCLASSA = WNDCLASSA*;
 
 @foreign
-typedef PWNDCLASSA = tagWNDCLASSA*;
+typedef NPWNDCLASSA = WNDCLASSA*;
 
 @foreign
-typedef NPWNDCLASSA = tagWNDCLASSA*;
+typedef LPWNDCLASSA = WNDCLASSA*;
 
 @foreign
-typedef LPWNDCLASSA = tagWNDCLASSA*;
-
-@foreign
-struct tagWNDCLASSW {
+struct WNDCLASSW {
     style: UINT;
     lpfnWndProc: WNDPROC;
     cbClsExtra: int;
@@ -643,16 +587,13 @@ struct tagWNDCLASSW {
 }
 
 @foreign
-typedef WNDCLASSW = tagWNDCLASSW;
+typedef PWNDCLASSW = WNDCLASSW*;
 
 @foreign
-typedef PWNDCLASSW = tagWNDCLASSW*;
+typedef NPWNDCLASSW = WNDCLASSW*;
 
 @foreign
-typedef NPWNDCLASSW = tagWNDCLASSW*;
-
-@foreign
-typedef LPWNDCLASSW = tagWNDCLASSW*;
+typedef LPWNDCLASSW = WNDCLASSW*;
 
 @foreign
 typedef WNDCLASS = WNDCLASSA;
@@ -673,7 +614,7 @@ func IsHungAppWindow(hwnd: HWND): BOOL;
 func DisableProcessWindowsGhosting();
 
 @foreign
-struct tagMSG {
+struct MSG {
     hwnd: HWND;
     message: UINT;
     wParam: WPARAM;
@@ -683,19 +624,16 @@ struct tagMSG {
 }
 
 @foreign
-typedef MSG = tagMSG;
+typedef PMSG = MSG*;
 
 @foreign
-typedef PMSG = tagMSG*;
+typedef NPMSG = MSG*;
 
 @foreign
-typedef NPMSG = tagMSG*;
+typedef LPMSG = MSG*;
 
 @foreign
-typedef LPMSG = tagMSG*;
-
-@foreign
-struct tagMINMAXINFO {
+struct MINMAXINFO {
     ptReserved: POINT;
     ptMaxSize: POINT;
     ptMaxPosition: POINT;
@@ -704,42 +642,33 @@ struct tagMINMAXINFO {
 }
 
 @foreign
-typedef MINMAXINFO = tagMINMAXINFO;
+typedef PMINMAXINFO = MINMAXINFO*;
 
 @foreign
-typedef PMINMAXINFO = tagMINMAXINFO*;
+typedef LPMINMAXINFO = MINMAXINFO*;
 
 @foreign
-typedef LPMINMAXINFO = tagMINMAXINFO*;
-
-@foreign
-struct tagCOPYDATASTRUCT {
+struct COPYDATASTRUCT {
     dwData: ULONG_PTR;
     cbData: DWORD;
     lpData: PVOID;
 }
 
 @foreign
-typedef COPYDATASTRUCT = tagCOPYDATASTRUCT;
+typedef PCOPYDATASTRUCT = COPYDATASTRUCT*;
 
 @foreign
-typedef PCOPYDATASTRUCT = tagCOPYDATASTRUCT*;
-
-@foreign
-struct tagMDINEXTMENU {
+struct MDINEXTMENU {
     hmenuIn: HMENU;
     hmenuNext: HMENU;
     hwndNext: HWND;
 }
 
 @foreign
-typedef MDINEXTMENU = tagMDINEXTMENU;
+typedef PMDINEXTMENU = MDINEXTMENU*;
 
 @foreign
-typedef PMDINEXTMENU = tagMDINEXTMENU*;
-
-@foreign
-typedef LPMDINEXTMENU = tagMDINEXTMENU*;
+typedef LPMDINEXTMENU = MDINEXTMENU*;
 
 @foreign
 struct POWERBROADCAST_SETTING {
@@ -761,7 +690,7 @@ func RegisterWindowMessage(lpString: LPCSTR): UINT;
 func RegisterWindowMessageW(lpString: LPCWSTR): UINT;
 
 @foreign
-struct tagWINDOWPOS {
+struct WINDOWPOS {
     hwnd: HWND;
     hwndInsertAfter: HWND;
     x: int;
@@ -772,28 +701,22 @@ struct tagWINDOWPOS {
 }
 
 @foreign
-typedef WINDOWPOS = tagWINDOWPOS;
+typedef LPWINDOWPOS = WINDOWPOS*;
 
 @foreign
-typedef LPWINDOWPOS = tagWINDOWPOS*;
+typedef PWINDOWPOS = WINDOWPOS*;
 
 @foreign
-typedef PWINDOWPOS = tagWINDOWPOS*;
-
-@foreign
-struct tagNCCALCSIZE_PARAMS {
+struct NCCALCSIZE_PARAMS {
     rgrc: RECT[3];
     lppos: PWINDOWPOS;
 }
 
 @foreign
-typedef NCCALCSIZE_PARAMS = tagNCCALCSIZE_PARAMS;
+typedef LPNCCALCSIZE_PARAMS = NCCALCSIZE_PARAMS*;
 
 @foreign
-typedef LPNCCALCSIZE_PARAMS = tagNCCALCSIZE_PARAMS*;
-
-@foreign
-struct tagTRACKMOUSEEVENT {
+struct TRACKMOUSEEVENT {
     cbSize: DWORD;
     dwFlags: DWORD;
     hwndTrack: HWND;
@@ -801,10 +724,7 @@ struct tagTRACKMOUSEEVENT {
 }
 
 @foreign
-typedef TRACKMOUSEEVENT = tagTRACKMOUSEEVENT;
-
-@foreign
-typedef LPTRACKMOUSEEVENT = tagTRACKMOUSEEVENT*;
+typedef LPTRACKMOUSEEVENT = TRACKMOUSEEVENT*;
 
 @foreign
 func TrackMouseEvent(lpEventTrack: LPTRACKMOUSEEVENT): BOOL;
@@ -822,20 +742,17 @@ func DrawCaption(hwnd: HWND, hdc: HDC, lprect: RECT*, flags: UINT): BOOL;
 func DrawAnimatedRects(hwnd: HWND, idAni: int, lprcFrom: RECT*, lprcTo: RECT*): BOOL;
 
 @foreign
-struct tagACCEL {
+struct ACCEL {
     fVirt: BYTE;
     key: WORD;
     cmd: WORD;
 }
 
 @foreign
-typedef ACCEL = tagACCEL;
+typedef LPACCEL = ACCEL*;
 
 @foreign
-typedef LPACCEL = tagACCEL*;
-
-@foreign
-struct tagPAINTSTRUCT {
+struct PAINTSTRUCT {
     hdc: HDC;
     fErase: BOOL;
     rcPaint: RECT;
@@ -845,19 +762,16 @@ struct tagPAINTSTRUCT {
 }
 
 @foreign
-typedef PAINTSTRUCT = tagPAINTSTRUCT;
+typedef PPAINTSTRUCT = PAINTSTRUCT*;
 
 @foreign
-typedef PPAINTSTRUCT = tagPAINTSTRUCT*;
+typedef NPPAINTSTRUCT = PAINTSTRUCT*;
 
 @foreign
-typedef NPPAINTSTRUCT = tagPAINTSTRUCT*;
+typedef LPPAINTSTRUCT = PAINTSTRUCT*;
 
 @foreign
-typedef LPPAINTSTRUCT = tagPAINTSTRUCT*;
-
-@foreign
-struct tagCREATESTRUCTA {
+struct CREATESTRUCTA {
     lpCreateParams: LPVOID;
     hInstance: HINSTANCE;
     hMenu: HMENU;
@@ -873,13 +787,10 @@ struct tagCREATESTRUCTA {
 }
 
 @foreign
-typedef CREATESTRUCTA = tagCREATESTRUCTA;
+typedef LPCREATESTRUCTA = CREATESTRUCTA*;
 
 @foreign
-typedef LPCREATESTRUCTA = tagCREATESTRUCTA*;
-
-@foreign
-struct tagCREATESTRUCTW {
+struct CREATESTRUCTW {
     lpCreateParams: LPVOID;
     hInstance: HINSTANCE;
     hMenu: HMENU;
@@ -895,10 +806,7 @@ struct tagCREATESTRUCTW {
 }
 
 @foreign
-typedef CREATESTRUCTW = tagCREATESTRUCTW;
-
-@foreign
-typedef LPCREATESTRUCTW = tagCREATESTRUCTW*;
+typedef LPCREATESTRUCTW = CREATESTRUCTW*;
 
 @foreign
 typedef CREATESTRUCT = CREATESTRUCTA;
@@ -907,7 +815,7 @@ typedef CREATESTRUCT = CREATESTRUCTA;
 typedef LPCREATESTRUCT = LPCREATESTRUCTA;
 
 @foreign
-struct tagWINDOWPLACEMENT {
+struct WINDOWPLACEMENT {
     length: UINT;
     flags: UINT;
     showCmd: UINT;
@@ -917,41 +825,32 @@ struct tagWINDOWPLACEMENT {
 }
 
 @foreign
-typedef WINDOWPLACEMENT = tagWINDOWPLACEMENT;
-
-@foreign
 typedef PWINDOWPLACEMENT = WINDOWPLACEMENT*;
 
 @foreign
 typedef LPWINDOWPLACEMENT = WINDOWPLACEMENT*;
 
 @foreign
-struct tagNMHDR {
+struct NMHDR {
     hwndFrom: HWND;
     idFrom: UINT_PTR;
     code: UINT;
 }
 
 @foreign
-typedef NMHDR = tagNMHDR;
-
-@foreign
 typedef LPNMHDR = NMHDR*;
 
 @foreign
-struct tagSTYLESTRUCT {
+struct STYLESTRUCT {
     styleOld: DWORD;
     styleNew: DWORD;
 }
 
 @foreign
-typedef STYLESTRUCT = tagSTYLESTRUCT;
+typedef LPSTYLESTRUCT = STYLESTRUCT*;
 
 @foreign
-typedef LPSTYLESTRUCT = tagSTYLESTRUCT*;
-
-@foreign
-struct tagMEASUREITEMSTRUCT {
+struct MEASUREITEMSTRUCT {
     CtlType: UINT;
     CtlID: UINT;
     itemID: UINT;
@@ -961,16 +860,13 @@ struct tagMEASUREITEMSTRUCT {
 }
 
 @foreign
-typedef MEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT;
+typedef PMEASUREITEMSTRUCT = MEASUREITEMSTRUCT*;
 
 @foreign
-typedef PMEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT*;
+typedef LPMEASUREITEMSTRUCT = MEASUREITEMSTRUCT*;
 
 @foreign
-typedef LPMEASUREITEMSTRUCT = tagMEASUREITEMSTRUCT*;
-
-@foreign
-struct tagDRAWITEMSTRUCT {
+struct DRAWITEMSTRUCT {
     CtlType: UINT;
     CtlID: UINT;
     itemID: UINT;
@@ -983,16 +879,13 @@ struct tagDRAWITEMSTRUCT {
 }
 
 @foreign
-typedef DRAWITEMSTRUCT = tagDRAWITEMSTRUCT;
+typedef PDRAWITEMSTRUCT = DRAWITEMSTRUCT*;
 
 @foreign
-typedef PDRAWITEMSTRUCT = tagDRAWITEMSTRUCT*;
+typedef LPDRAWITEMSTRUCT = DRAWITEMSTRUCT*;
 
 @foreign
-typedef LPDRAWITEMSTRUCT = tagDRAWITEMSTRUCT*;
-
-@foreign
-struct tagDELETEITEMSTRUCT {
+struct DELETEITEMSTRUCT {
     CtlType: UINT;
     CtlID: UINT;
     itemID: UINT;
@@ -1001,16 +894,13 @@ struct tagDELETEITEMSTRUCT {
 }
 
 @foreign
-typedef DELETEITEMSTRUCT = tagDELETEITEMSTRUCT;
+typedef PDELETEITEMSTRUCT = DELETEITEMSTRUCT*;
 
 @foreign
-typedef PDELETEITEMSTRUCT = tagDELETEITEMSTRUCT*;
+typedef LPDELETEITEMSTRUCT = DELETEITEMSTRUCT*;
 
 @foreign
-typedef LPDELETEITEMSTRUCT = tagDELETEITEMSTRUCT*;
-
-@foreign
-struct tagCOMPAREITEMSTRUCT {
+struct COMPAREITEMSTRUCT {
     CtlType: UINT;
     CtlID: UINT;
     hwndItem: HWND;
@@ -1022,13 +912,10 @@ struct tagCOMPAREITEMSTRUCT {
 }
 
 @foreign
-typedef COMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT;
+typedef PCOMPAREITEMSTRUCT = COMPAREITEMSTRUCT*;
 
 @foreign
-typedef PCOMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT*;
-
-@foreign
-typedef LPCOMPAREITEMSTRUCT = tagCOMPAREITEMSTRUCT*;
+typedef LPCOMPAREITEMSTRUCT = COMPAREITEMSTRUCT*;
 
 @foreign
 func GetMessageA(lpMsg: LPMSG, hWnd: HWND, wMsgFilterMin: UINT, wMsgFilterMax: UINT): BOOL;
@@ -1336,7 +1223,7 @@ func AnimateWindow(hWnd: HWND, dwTime: DWORD, dwFlags: DWORD): BOOL;
 func UpdateLayeredWindow(hWnd: HWND, hdcDst: HDC, pptDst: POINT*, psize: SIZE*, hdcSrc: HDC, pptSrc: POINT*, crKey: COLORREF, pblend: BLENDFUNCTION*, dwFlags: DWORD): BOOL;
 
 @foreign
-struct tagUPDATELAYEREDWINDOWINFO {
+struct UPDATELAYEREDWINDOWINFO {
     cbSize: DWORD;
     hdcDst: HDC;
     pptDst: POINT*;
@@ -1350,10 +1237,7 @@ struct tagUPDATELAYEREDWINDOWINFO {
 }
 
 @foreign
-typedef UPDATELAYEREDWINDOWINFO = tagUPDATELAYEREDWINDOWINFO;
-
-@foreign
-typedef PUPDATELAYEREDWINDOWINFO = tagUPDATELAYEREDWINDOWINFO*;
+typedef PUPDATELAYEREDWINDOWINFO = UPDATELAYEREDWINDOWINFO*;
 
 @foreign
 func UpdateLayeredWindowIndirect(hWnd: HWND, pULWInfo: UPDATELAYEREDWINDOWINFO*): BOOL;
@@ -1915,7 +1799,7 @@ func keybd_event(bVk: BYTE, bScan: BYTE, dwFlags: DWORD, dwExtraInfo: ULONG_PTR)
 func mouse_event(dwFlags: DWORD, dx: DWORD, dy: DWORD, dwData: DWORD, dwExtraInfo: ULONG_PTR);
 
 @foreign
-struct tagMOUSEINPUT {
+struct MOUSEINPUT {
     dx: LONG;
     dy: LONG;
     mouseData: DWORD;
@@ -1925,16 +1809,13 @@ struct tagMOUSEINPUT {
 }
 
 @foreign
-typedef MOUSEINPUT = tagMOUSEINPUT;
+typedef PMOUSEINPUT = MOUSEINPUT*;
 
 @foreign
-typedef PMOUSEINPUT = tagMOUSEINPUT*;
+typedef LPMOUSEINPUT = MOUSEINPUT*;
 
 @foreign
-typedef LPMOUSEINPUT = tagMOUSEINPUT*;
-
-@foreign
-struct tagKEYBDINPUT {
+struct KEYBDINPUT {
     wVk: WORD;
     wScan: WORD;
     dwFlags: DWORD;
@@ -1943,32 +1824,26 @@ struct tagKEYBDINPUT {
 }
 
 @foreign
-typedef KEYBDINPUT = tagKEYBDINPUT;
+typedef PKEYBDINPUT = KEYBDINPUT*;
 
 @foreign
-typedef PKEYBDINPUT = tagKEYBDINPUT*;
+typedef LPKEYBDINPUT = KEYBDINPUT*;
 
 @foreign
-typedef LPKEYBDINPUT = tagKEYBDINPUT*;
-
-@foreign
-struct tagHARDWAREINPUT {
+struct HARDWAREINPUT {
     uMsg: DWORD;
     wParamL: WORD;
     wParamH: WORD;
 }
 
 @foreign
-typedef HARDWAREINPUT = tagHARDWAREINPUT;
+typedef PHARDWAREINPUT = HARDWAREINPUT*;
 
 @foreign
-typedef PHARDWAREINPUT = tagHARDWAREINPUT*;
+typedef LPHARDWAREINPUT = HARDWAREINPUT*;
 
 @foreign
-typedef LPHARDWAREINPUT = tagHARDWAREINPUT*;
-
-@foreign
-union tagINPUT___inner {
+union INPUT___inner {
     mi: MOUSEINPUT;
     ki: KEYBDINPUT;
     hi: HARDWAREINPUT;
@@ -1976,19 +1851,16 @@ union tagINPUT___inner {
 
 
 @foreign
-struct tagINPUT {
+struct INPUT {
     type: DWORD;
-    u: tagINPUT___inner;
+    u: INPUT___inner;
 }
 
 @foreign
-typedef INPUT = tagINPUT;
+typedef PINPUT = INPUT*;
 
 @foreign
-typedef PINPUT = tagINPUT*;
-
-@foreign
-typedef LPINPUT = tagINPUT*;
+typedef LPINPUT = INPUT*;
 
 @foreign
 func SendInput(cInputs: UINT, pInputs: LPINPUT, cbSize: int): UINT;
@@ -2002,7 +1874,7 @@ struct HTOUCHINPUT__ {
 typedef HTOUCHINPUT = HTOUCHINPUT__*;
 
 @foreign
-struct tagTOUCHINPUT {
+struct TOUCHINPUT {
     x: LONG;
     y: LONG;
     hSource: HANDLE;
@@ -2016,10 +1888,7 @@ struct tagTOUCHINPUT {
 }
 
 @foreign
-typedef TOUCHINPUT = tagTOUCHINPUT;
-
-@foreign
-typedef PTOUCHINPUT = tagTOUCHINPUT*;
+typedef PTOUCHINPUT = TOUCHINPUT*;
 
 @foreign
 typedef PCTOUCHINPUT = TOUCHINPUT*;
@@ -2055,7 +1924,7 @@ typedef POINTER_INPUT_TYPE = DWORD;
 typedef POINTER_FLAGS = UINT32;
 
 @foreign
-enum tagPOINTER_BUTTON_CHANGE_TYPE {
+enum POINTER_BUTTON_CHANGE_TYPE {
     POINTER_CHANGE_NONE,
     POINTER_CHANGE_FIRSTBUTTON_DOWN,
     POINTER_CHANGE_FIRSTBUTTON_UP,
@@ -2070,10 +1939,7 @@ enum tagPOINTER_BUTTON_CHANGE_TYPE {
 }
 
 @foreign
-typedef POINTER_BUTTON_CHANGE_TYPE = tagPOINTER_BUTTON_CHANGE_TYPE;
-
-@foreign
-struct tagPOINTER_INFO {
+struct POINTER_INFO {
     pointerType: POINTER_INPUT_TYPE;
     pointerId: UINT32;
     frameId: UINT32;
@@ -2093,16 +1959,13 @@ struct tagPOINTER_INFO {
 }
 
 @foreign
-typedef POINTER_INFO = tagPOINTER_INFO;
-
-@foreign
 typedef TOUCH_FLAGS = UINT32;
 
 @foreign
 typedef TOUCH_MASK = UINT32;
 
 @foreign
-struct tagPOINTER_TOUCH_INFO {
+struct POINTER_TOUCH_INFO {
     pointerInfo: POINTER_INFO;
     touchFlags: TOUCH_FLAGS;
     touchMask: TOUCH_MASK;
@@ -2113,16 +1976,13 @@ struct tagPOINTER_TOUCH_INFO {
 }
 
 @foreign
-typedef POINTER_TOUCH_INFO = tagPOINTER_TOUCH_INFO;
-
-@foreign
 typedef PEN_FLAGS = UINT32;
 
 @foreign
 typedef PEN_MASK = UINT32;
 
 @foreign
-struct tagPOINTER_PEN_INFO {
+struct POINTER_PEN_INFO {
     pointerInfo: POINTER_INFO;
     penFlags: PEN_FLAGS;
     penMask: PEN_MASK;
@@ -2133,16 +1993,13 @@ struct tagPOINTER_PEN_INFO {
 }
 
 @foreign
-typedef POINTER_PEN_INFO = tagPOINTER_PEN_INFO;
-
-@foreign
 func InitializeTouchInjection(maxCount: UINT32, dwMode: DWORD): BOOL;
 
 @foreign
 func InjectTouchInput(count: UINT32, contacts: POINTER_TOUCH_INFO*): BOOL;
 
 @foreign
-struct tagUSAGE_PROPERTIES {
+struct USAGE_PROPERTIES {
     level: USHORT;
     page: USHORT;
     usage: USHORT;
@@ -2156,31 +2013,25 @@ struct tagUSAGE_PROPERTIES {
 }
 
 @foreign
-typedef USAGE_PROPERTIES = tagUSAGE_PROPERTIES;
+typedef PUSAGE_PROPERTIES = USAGE_PROPERTIES*;
 
 @foreign
-typedef PUSAGE_PROPERTIES = tagUSAGE_PROPERTIES*;
-
-@foreign
-union tagPOINTER_TYPE_INFO___inner {
+union POINTER_TYPE_INFO___inner {
     touchInfo: POINTER_TOUCH_INFO;
     penInfo: POINTER_PEN_INFO;
 }
 
 @foreign
-struct tagPOINTER_TYPE_INFO {
+struct POINTER_TYPE_INFO {
     type: POINTER_INPUT_TYPE;
-    u: tagPOINTER_TYPE_INFO___inner;
+    u: POINTER_TYPE_INFO___inner;
 }
 
 @foreign
-typedef POINTER_TYPE_INFO = tagPOINTER_TYPE_INFO;
+typedef PPOINTER_TYPE_INFO = POINTER_TYPE_INFO*;
 
 @foreign
-typedef PPOINTER_TYPE_INFO = tagPOINTER_TYPE_INFO*;
-
-@foreign
-struct tagINPUT_INJECTION_VALUE {
+struct INPUT_INJECTION_VALUE {
     page: USHORT;
     usage: USHORT;
     value: INT32;
@@ -2188,10 +2039,7 @@ struct tagINPUT_INJECTION_VALUE {
 }
 
 @foreign
-typedef INPUT_INJECTION_VALUE = tagINPUT_INJECTION_VALUE;
-
-@foreign
-typedef PINPUT_INJECTION_VALUE = tagINPUT_INJECTION_VALUE*;
+typedef PINPUT_INJECTION_VALUE = INPUT_INJECTION_VALUE*;
 
 @foreign
 func GetPointerType(pointerId: UINT32, pointerType: POINTER_INPUT_TYPE*): BOOL;
@@ -2263,19 +2111,16 @@ func EnableMouseInPointerForThread(): BOOL;
 func RegisterTouchHitTestingWindow(hwnd: HWND, value: ULONG): BOOL;
 
 @foreign
-struct tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION {
+struct TOUCH_HIT_TESTING_PROXIMITY_EVALUATION {
     score: UINT16;
     adjustedPoint: POINT;
 }
 
 @foreign
-typedef TOUCH_HIT_TESTING_PROXIMITY_EVALUATION = tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION;
+typedef PTOUCH_HIT_TESTING_PROXIMITY_EVALUATION = TOUCH_HIT_TESTING_PROXIMITY_EVALUATION*;
 
 @foreign
-typedef PTOUCH_HIT_TESTING_PROXIMITY_EVALUATION = tagTOUCH_HIT_TESTING_PROXIMITY_EVALUATION*;
-
-@foreign
-struct tagTOUCH_HIT_TESTING_INPUT {
+struct TOUCH_HIT_TESTING_INPUT {
     pointerId: UINT32;
     point: POINT;
     boundingBox: RECT;
@@ -2284,10 +2129,7 @@ struct tagTOUCH_HIT_TESTING_INPUT {
 }
 
 @foreign
-typedef TOUCH_HIT_TESTING_INPUT = tagTOUCH_HIT_TESTING_INPUT;
-
-@foreign
-typedef PTOUCH_HIT_TESTING_INPUT = tagTOUCH_HIT_TESTING_INPUT*;
+typedef PTOUCH_HIT_TESTING_INPUT = TOUCH_HIT_TESTING_INPUT*;
 
 @foreign
 func EvaluateProximityToRect(controlBoundingBox: RECT*, pHitTestingInput: TOUCH_HIT_TESTING_INPUT*, pProximityEval: TOUCH_HIT_TESTING_PROXIMITY_EVALUATION*): BOOL;
@@ -2299,7 +2141,7 @@ func EvaluateProximityToPolygon(numVertices: UINT32, controlPolygon: POINT*, pHi
 func PackTouchHitTestingProximityEvaluation(pHitTestingInput: TOUCH_HIT_TESTING_INPUT*, pProximityEval: TOUCH_HIT_TESTING_PROXIMITY_EVALUATION*): LRESULT;
 
 @foreign
-enum tagFEEDBACK_TYPE {
+enum FEEDBACK_TYPE {
     FEEDBACK_MAX = -1,
     FEEDBACK_TOUCH_CONTACTVISUALIZATION = 1,
     FEEDBACK_PEN_BARRELVISUALIZATION = 2,
@@ -2315,16 +2157,13 @@ enum tagFEEDBACK_TYPE {
 }
 
 @foreign
-typedef FEEDBACK_TYPE = tagFEEDBACK_TYPE;
-
-@foreign
 func GetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWORD, pSize: UINT32*, config: void*): BOOL;
 
 @foreign
 func SetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWORD, size: UINT32, configuration: void const*): BOOL;
 
 @foreign
-struct tagINPUT_TRANSFORM___inner_s1 {
+struct INPUT_TRANSFORM___inner_s1 {
     _11, _12, _13, _14: float;
     _21, _22, _23, _24: float;
     _31, _32, _33, _34: float;
@@ -2332,33 +2171,27 @@ struct tagINPUT_TRANSFORM___inner_s1 {
 }
 
 @foreign
-union tagINPUT_TRANSFORM___inner_u1 {
-    s: tagINPUT_TRANSFORM___inner_s1;
+union INPUT_TRANSFORM___inner_u1 {
+    s: INPUT_TRANSFORM___inner_s1;
     m: float[4][4];
 }
 
 @foreign
-struct tagINPUT_TRANSFORM {
-    u: tagINPUT_TRANSFORM___inner_u1;
+struct INPUT_TRANSFORM {
+    u: INPUT_TRANSFORM___inner_u1;
 }
-
-@foreign
-typedef INPUT_TRANSFORM = tagINPUT_TRANSFORM;
 
 @foreign
 func GetPointerInputTransform(pointerId: UINT32, historyCount: UINT32, inputTransform: INPUT_TRANSFORM*): BOOL;
 
 @foreign
-struct tagLASTINPUTINFO {
+struct LASTINPUTINFO {
     cbSize: UINT;
     dwTime: DWORD;
 }
 
 @foreign
-typedef LASTINPUTINFO = tagLASTINPUTINFO;
-
-@foreign
-typedef PLASTINPUTINFO = tagLASTINPUTINFO*;
+typedef PLASTINPUTINFO = LASTINPUTINFO*;
 
 @foreign
 func GetLastInputInfo(plii: PLASTINPUTINFO): BOOL;
@@ -2586,13 +2419,10 @@ func GetMenuCheckMarkDimensions(): LONG;
 func TrackPopupMenu(hMenu: HMENU, uFlags: UINT, x: int, y: int, nReserved: int, hWnd: HWND, prcRect: RECT*): BOOL;
 
 @foreign
-struct tagTPMPARAMS {
+struct TPMPARAMS {
     cbSize: UINT;
     rcExclude: RECT;
 }
-
-@foreign
-typedef TPMPARAMS = tagTPMPARAMS;
 
 @foreign
 typedef LPTPMPARAMS = TPMPARAMS*;
@@ -2604,7 +2434,7 @@ func TrackPopupMenuEx(hMenu: HMENU, uFlags: UINT, x: int, y: int, hwnd: HWND, lp
 func CalculatePopupWindowPosition(anchorPoint: POINT*, windowSize: SIZE*, flags: UINT, excludeRect: RECT*, popupWindowPosition: RECT*): BOOL;
 
 @foreign
-struct tagMENUINFO {
+struct MENUINFO {
     cbSize: DWORD;
     fMask: DWORD;
     dwStyle: DWORD;
@@ -2615,10 +2445,7 @@ struct tagMENUINFO {
 }
 
 @foreign
-typedef MENUINFO = tagMENUINFO;
-
-@foreign
-typedef LPMENUINFO = tagMENUINFO*;
+typedef LPMENUINFO = MENUINFO*;
 
 @foreign
 typedef LPCMENUINFO = MENUINFO*;
@@ -2633,7 +2460,7 @@ func SetMenuInfo(arg0: HMENU, arg1: LPCMENUINFO): BOOL;
 func EndMenu(): BOOL;
 
 @foreign
-struct tagMENUGETOBJECTINFO {
+struct MENUGETOBJECTINFO {
     dwFlags: DWORD;
     uPos: UINT;
     hmenu: HMENU;
@@ -2642,13 +2469,10 @@ struct tagMENUGETOBJECTINFO {
 }
 
 @foreign
-typedef MENUGETOBJECTINFO = tagMENUGETOBJECTINFO;
+typedef PMENUGETOBJECTINFO = MENUGETOBJECTINFO*;
 
 @foreign
-typedef PMENUGETOBJECTINFO = tagMENUGETOBJECTINFO*;
-
-@foreign
-struct tagMENUITEMINFOA {
+struct MENUITEMINFOA {
     cbSize: UINT;
     fMask: UINT;
     fType: UINT;
@@ -2664,13 +2488,10 @@ struct tagMENUITEMINFOA {
 }
 
 @foreign
-typedef MENUITEMINFOA = tagMENUITEMINFOA;
+typedef LPMENUITEMINFOA = MENUITEMINFOA*;
 
 @foreign
-typedef LPMENUITEMINFOA = tagMENUITEMINFOA*;
-
-@foreign
-struct tagMENUITEMINFOW {
+struct MENUITEMINFOW {
     cbSize: UINT;
     fMask: UINT;
     fType: UINT;
@@ -2686,10 +2507,7 @@ struct tagMENUITEMINFOW {
 }
 
 @foreign
-typedef MENUITEMINFOW = tagMENUITEMINFOW;
-
-@foreign
-typedef LPMENUITEMINFOW = tagMENUITEMINFOW*;
+typedef LPMENUITEMINFOW = MENUITEMINFOW*;
 
 @foreign
 typedef MENUITEMINFO = MENUITEMINFOA;
@@ -2746,7 +2564,7 @@ func GetMenuItemRect(hWnd: HWND, hMenu: HMENU, uItem: UINT, lprcItem: LPRECT): B
 func MenuItemFromPoint(hWnd: HWND, hMenu: HMENU, ptScreen: POINT): int;
 
 @foreign
-struct tagDROPSTRUCT {
+struct DROPSTRUCT {
     hwndSource: HWND;
     hwndSink: HWND;
     wFmt: DWORD;
@@ -2756,13 +2574,10 @@ struct tagDROPSTRUCT {
 }
 
 @foreign
-typedef DROPSTRUCT = tagDROPSTRUCT;
+typedef PDROPSTRUCT = DROPSTRUCT*;
 
 @foreign
-typedef PDROPSTRUCT = tagDROPSTRUCT*;
-
-@foreign
-typedef LPDROPSTRUCT = tagDROPSTRUCT*;
+typedef LPDROPSTRUCT = DROPSTRUCT*;
 
 @foreign
 func DragObject(hwndParent: HWND, hwndFrom: HWND, fmt: UINT, data: ULONG_PTR, hcur: HCURSOR): DWORD;
@@ -2774,7 +2589,7 @@ func DragDetect(hwnd: HWND, pt: POINT): BOOL;
 func DrawIcon(hDC: HDC, X: int, Y: int, hIcon: HICON): BOOL;
 
 @foreign
-struct tagDRAWTEXTPARAMS {
+struct DRAWTEXTPARAMS {
     cbSize: UINT;
     iTabLength: int;
     iLeftMargin: int;
@@ -2783,10 +2598,7 @@ struct tagDRAWTEXTPARAMS {
 }
 
 @foreign
-typedef DRAWTEXTPARAMS = tagDRAWTEXTPARAMS;
-
-@foreign
-typedef LPDRAWTEXTPARAMS = tagDRAWTEXTPARAMS*;
+typedef LPDRAWTEXTPARAMS = DRAWTEXTPARAMS*;
 
 @foreign
 func DrawTextA(hdc: HDC, lpchText: LPCSTR, cchText: int, lprc: LPRECT, format: UINT): int;
@@ -3038,7 +2850,7 @@ func AdjustWindowRectEx(lpRect: LPRECT, dwStyle: DWORD, bMenu: BOOL, dwExStyle: 
 func AdjustWindowRectExForDpi(lpRect: LPRECT, dwStyle: DWORD, bMenu: BOOL, dwExStyle: DWORD, dpi: UINT): BOOL;
 
 @foreign
-struct tagHELPINFO {
+struct HELPINFO {
     cbSize: UINT;
     iContextType: int;
     iCtrlId: int;
@@ -3048,10 +2860,7 @@ struct tagHELPINFO {
 }
 
 @foreign
-typedef HELPINFO = tagHELPINFO;
-
-@foreign
-typedef LPHELPINFO = tagHELPINFO*;
+typedef LPHELPINFO = HELPINFO*;
 
 @foreign
 func SetWindowContextHelpId(arg0: HWND, arg1: DWORD): BOOL;
@@ -3087,7 +2896,7 @@ func MessageBoxExW(hWnd: HWND, lpText: LPCWSTR, lpCaption: LPCWSTR, uType: UINT,
 typedef MSGBOXCALLBACK = func(lpHelpInfo: LPHELPINFO);
 
 @foreign
-struct tagMSGBOXPARAMSA {
+struct MSGBOXPARAMSA {
     cbSize: UINT;
     hwndOwner: HWND;
     hInstance: HINSTANCE;
@@ -3101,16 +2910,13 @@ struct tagMSGBOXPARAMSA {
 }
 
 @foreign
-typedef MSGBOXPARAMSA = tagMSGBOXPARAMSA;
+typedef PMSGBOXPARAMSA = MSGBOXPARAMSA*;
 
 @foreign
-typedef PMSGBOXPARAMSA = tagMSGBOXPARAMSA*;
+typedef LPMSGBOXPARAMSA = MSGBOXPARAMSA*;
 
 @foreign
-typedef LPMSGBOXPARAMSA = tagMSGBOXPARAMSA*;
-
-@foreign
-struct tagMSGBOXPARAMSW {
+struct MSGBOXPARAMSW {
     cbSize: UINT;
     hwndOwner: HWND;
     hInstance: HINSTANCE;
@@ -3124,13 +2930,10 @@ struct tagMSGBOXPARAMSW {
 }
 
 @foreign
-typedef MSGBOXPARAMSW = tagMSGBOXPARAMSW;
+typedef PMSGBOXPARAMSW = MSGBOXPARAMSW*;
 
 @foreign
-typedef PMSGBOXPARAMSW = tagMSGBOXPARAMSW*;
-
-@foreign
-typedef LPMSGBOXPARAMSW = tagMSGBOXPARAMSW*;
+typedef LPMSGBOXPARAMSW = MSGBOXPARAMSW*;
 
 @foreign
 typedef MSGBOXPARAMS = MSGBOXPARAMSA;
@@ -3536,16 +3339,13 @@ func DestroyCursor(hCursor: HCURSOR): BOOL;
 func SetSystemCursor(hcur: HCURSOR, id: DWORD): BOOL;
 
 @foreign
-struct _ICONINFO {
+struct ICONINFO {
     fIcon: BOOL;
     xHotspot: DWORD;
     yHotspot: DWORD;
     hbmMask: HBITMAP;
     hbmColor: HBITMAP;
 }
-
-@foreign
-typedef ICONINFO = _ICONINFO;
 
 @foreign
 typedef PICONINFO = ICONINFO*;
@@ -3587,7 +3387,7 @@ func CreateIconFromResource(presbits: PBYTE, dwResSize: DWORD, fIcon: BOOL, dwVe
 func CreateIconFromResourceEx(presbits: PBYTE, dwResSize: DWORD, fIcon: BOOL, dwVer: DWORD, cxDesired: int, cyDesired: int, Flags: UINT): HICON;
 
 @foreign
-struct tagCURSORSHAPE {
+struct CURSORSHAPE {
     xHotSpot: int;
     yHotSpot: int;
     cx: int;
@@ -3598,10 +3398,7 @@ struct tagCURSORSHAPE {
 }
 
 @foreign
-typedef CURSORSHAPE = tagCURSORSHAPE;
-
-@foreign
-typedef LPCURSORSHAPE = tagCURSORSHAPE*;
+typedef LPCURSORSHAPE = CURSORSHAPE*;
 
 @foreign
 func LoadImageA(hInst: HINSTANCE, name: LPCSTR, type: UINT, cx: int, cy: int, fuLoad: UINT): HANDLE;
@@ -3628,7 +3425,7 @@ func CopyIcon(hIcon: HICON): HICON;
 func GetIconInfo(hIcon: HICON, piconinfo: PICONINFO): BOOL;
 
 @foreign
-struct _ICONINFOEXA {
+struct ICONINFOEXA {
     cbSize: DWORD;
     fIcon: BOOL;
     xHotspot: DWORD;
@@ -3641,13 +3438,10 @@ struct _ICONINFOEXA {
 }
 
 @foreign
-typedef ICONINFOEXA = _ICONINFOEXA;
+typedef PICONINFOEXA = ICONINFOEXA*;
 
 @foreign
-typedef PICONINFOEXA = _ICONINFOEXA*;
-
-@foreign
-struct _ICONINFOEXW {
+struct ICONINFOEXW {
     cbSize: DWORD;
     fIcon: BOOL;
     xHotspot: DWORD;
@@ -3660,10 +3454,7 @@ struct _ICONINFOEXW {
 }
 
 @foreign
-typedef ICONINFOEXW = _ICONINFOEXW;
-
-@foreign
-typedef PICONINFOEXW = _ICONINFOEXW*;
+typedef PICONINFOEXW = ICONINFOEXW*;
 
 @foreign
 typedef ICONINFOEX = ICONINFOEXA;
@@ -3735,7 +3526,7 @@ func DlgDirSelectComboBoxEx(hwndDlg: HWND, lpString: LPSTR, cchOut: int, idCombo
 func DlgDirSelectComboBoxExW(hwndDlg: HWND, lpString: LPWSTR, cchOut: int, idComboBox: int): BOOL;
 
 @foreign
-struct tagSCROLLINFO {
+struct SCROLLINFO {
     cbSize: UINT;
     fMask: UINT;
     nMin: int;
@@ -3746,10 +3537,7 @@ struct tagSCROLLINFO {
 }
 
 @foreign
-typedef SCROLLINFO = tagSCROLLINFO;
-
-@foreign
-typedef LPSCROLLINFO = tagSCROLLINFO*;
+typedef LPSCROLLINFO = SCROLLINFO*;
 
 @foreign
 typedef LPCSCROLLINFO = SCROLLINFO*;
@@ -3761,7 +3549,7 @@ func SetScrollInfo(hwnd: HWND, nBar: int, lpsi: LPCSCROLLINFO, redraw: BOOL): in
 func GetScrollInfo(hwnd: HWND, nBar: int, lpsi: LPSCROLLINFO): BOOL;
 
 @foreign
-struct tagMDICREATESTRUCTA {
+struct MDICREATESTRUCTA {
     szClass: LPCSTR;
     szTitle: LPCSTR;
     hOwner: HANDLE;
@@ -3774,13 +3562,10 @@ struct tagMDICREATESTRUCTA {
 }
 
 @foreign
-typedef MDICREATESTRUCTA = tagMDICREATESTRUCTA;
+typedef LPMDICREATESTRUCTA = MDICREATESTRUCTA*;
 
 @foreign
-typedef LPMDICREATESTRUCTA = tagMDICREATESTRUCTA*;
-
-@foreign
-struct tagMDICREATESTRUCTW {
+struct MDICREATESTRUCTW {
     szClass: LPCWSTR;
     szTitle: LPCWSTR;
     hOwner: HANDLE;
@@ -3793,10 +3578,7 @@ struct tagMDICREATESTRUCTW {
 }
 
 @foreign
-typedef MDICREATESTRUCTW = tagMDICREATESTRUCTW;
-
-@foreign
-typedef LPMDICREATESTRUCTW = tagMDICREATESTRUCTW*;
+typedef LPMDICREATESTRUCTW = MDICREATESTRUCTW*;
 
 @foreign
 typedef MDICREATESTRUCT = MDICREATESTRUCTA;
@@ -3805,16 +3587,13 @@ typedef MDICREATESTRUCT = MDICREATESTRUCTA;
 typedef LPMDICREATESTRUCT = LPMDICREATESTRUCTA;
 
 @foreign
-struct tagCLIENTCREATESTRUCT {
+struct CLIENTCREATESTRUCT {
     hWindowMenu: HANDLE;
     idFirstChild: UINT;
 }
 
 @foreign
-typedef CLIENTCREATESTRUCT = tagCLIENTCREATESTRUCT;
-
-@foreign
-typedef LPCLIENTCREATESTRUCT = tagCLIENTCREATESTRUCT*;
+typedef LPCLIENTCREATESTRUCT = CLIENTCREATESTRUCT*;
 
 @foreign
 func DefFrameProcA(hWnd: HWND, hWndMDIClient: HWND, uMsg: UINT, wParam: WPARAM, lParam: LPARAM): LRESULT;
@@ -3859,36 +3638,30 @@ func CascadeWindows(hwndParent: HWND, wHow: UINT, lpRect: RECT*, cKids: UINT, lp
 typedef HELPPOLY = DWORD;
 
 @foreign
-struct tagMULTIKEYHELPA {
+struct MULTIKEYHELPA {
     mkSize: DWORD;
     mkKeylist: CHAR;
     szKeyphrase: CHAR[1];
 }
 
 @foreign
-typedef MULTIKEYHELPA = tagMULTIKEYHELPA;
+typedef PMULTIKEYHELPA = MULTIKEYHELPA*;
 
 @foreign
-typedef PMULTIKEYHELPA = tagMULTIKEYHELPA*;
+typedef LPMULTIKEYHELPA = MULTIKEYHELPA*;
 
 @foreign
-typedef LPMULTIKEYHELPA = tagMULTIKEYHELPA*;
-
-@foreign
-struct tagMULTIKEYHELPW {
+struct MULTIKEYHELPW {
     mkSize: DWORD;
     mkKeylist: WCHAR;
     szKeyphrase: WCHAR[1];
 }
 
 @foreign
-typedef MULTIKEYHELPW = tagMULTIKEYHELPW;
+typedef PMULTIKEYHELPW = MULTIKEYHELPW*;
 
 @foreign
-typedef PMULTIKEYHELPW = tagMULTIKEYHELPW*;
-
-@foreign
-typedef LPMULTIKEYHELPW = tagMULTIKEYHELPW*;
+typedef LPMULTIKEYHELPW = MULTIKEYHELPW*;
 
 @foreign
 typedef MULTIKEYHELP = MULTIKEYHELPA;
@@ -3900,7 +3673,7 @@ typedef PMULTIKEYHELP = PMULTIKEYHELPA;
 typedef LPMULTIKEYHELP = LPMULTIKEYHELPA;
 
 @foreign
-struct tagHELPWININFOA {
+struct HELPWININFOA {
     wStructSize: int;
     x: int;
     y: int;
@@ -3911,16 +3684,13 @@ struct tagHELPWININFOA {
 }
 
 @foreign
-typedef HELPWININFOA = tagHELPWININFOA;
+typedef PHELPWININFOA = HELPWININFOA*;
 
 @foreign
-typedef PHELPWININFOA = tagHELPWININFOA*;
+typedef LPHELPWININFOA = HELPWININFOA*;
 
 @foreign
-typedef LPHELPWININFOA = tagHELPWININFOA*;
-
-@foreign
-struct tagHELPWININFOW {
+struct HELPWININFOW {
     wStructSize: int;
     x: int;
     y: int;
@@ -3931,13 +3701,10 @@ struct tagHELPWININFOW {
 }
 
 @foreign
-typedef HELPWININFOW = tagHELPWININFOW;
+typedef PHELPWININFOW = HELPWININFOW*;
 
 @foreign
-typedef PHELPWININFOW = tagHELPWININFOW*;
-
-@foreign
-typedef LPHELPWININFOW = tagHELPWININFOW*;
+typedef LPHELPWININFOW = HELPWININFOW*;
 
 @foreign
 typedef HELPWININFO = HELPWININFOA;
@@ -3961,7 +3728,7 @@ func WinHelpW(hWndMain: HWND, lpszHelp: LPCWSTR, uCommand: UINT, dwData: ULONG_P
 func GetGuiResources(hProcess: HANDLE, uiFlags: DWORD): DWORD;
 
 @foreign
-struct tagTouchPredictionParameters {
+struct TOUCHPREDICTIONPARAMETERS {
     cbSize: UINT;
     dwLatency: UINT;
     dwSampleTime: UINT;
@@ -3969,13 +3736,10 @@ struct tagTouchPredictionParameters {
 }
 
 @foreign
-typedef TOUCHPREDICTIONPARAMETERS = tagTouchPredictionParameters;
+typedef PTOUCHPREDICTIONPARAMETERS = TOUCHPREDICTIONPARAMETERS*;
 
 @foreign
-typedef PTOUCHPREDICTIONPARAMETERS = tagTouchPredictionParameters*;
-
-@foreign
-struct tagNONCLIENTMETRICSA {
+struct NONCLIENTMETRICSA {
     cbSize: UINT;
     iBorderWidth: int;
     iScrollWidth: int;
@@ -3995,16 +3759,13 @@ struct tagNONCLIENTMETRICSA {
 }
 
 @foreign
-typedef NONCLIENTMETRICSA = tagNONCLIENTMETRICSA;
+typedef PNONCLIENTMETRICSA = NONCLIENTMETRICSA*;
 
 @foreign
-typedef PNONCLIENTMETRICSA = tagNONCLIENTMETRICSA*;
+typedef LPNONCLIENTMETRICSA = NONCLIENTMETRICSA*;
 
 @foreign
-typedef LPNONCLIENTMETRICSA = tagNONCLIENTMETRICSA*;
-
-@foreign
-struct tagNONCLIENTMETRICSW {
+struct NONCLIENTMETRICSW {
     cbSize: UINT;
     iBorderWidth: int;
     iScrollWidth: int;
@@ -4024,13 +3785,10 @@ struct tagNONCLIENTMETRICSW {
 }
 
 @foreign
-typedef NONCLIENTMETRICSW = tagNONCLIENTMETRICSW;
+typedef PNONCLIENTMETRICSW = NONCLIENTMETRICSW*;
 
 @foreign
-typedef PNONCLIENTMETRICSW = tagNONCLIENTMETRICSW*;
-
-@foreign
-typedef LPNONCLIENTMETRICSW = tagNONCLIENTMETRICSW*;
+typedef LPNONCLIENTMETRICSW = NONCLIENTMETRICSW*;
 
 @foreign
 typedef NONCLIENTMETRICS = NONCLIENTMETRICSA;
@@ -4042,7 +3800,7 @@ typedef PNONCLIENTMETRICS = PNONCLIENTMETRICSA;
 typedef LPNONCLIENTMETRICS = LPNONCLIENTMETRICSA;
 
 @foreign
-struct tagMINIMIZEDMETRICS {
+struct MINIMIZEDMETRICS {
     cbSize: UINT;
     iWidth: int;
     iHorzGap: int;
@@ -4051,16 +3809,13 @@ struct tagMINIMIZEDMETRICS {
 }
 
 @foreign
-typedef MINIMIZEDMETRICS = tagMINIMIZEDMETRICS;
+typedef PMINIMIZEDMETRICS = MINIMIZEDMETRICS*;
 
 @foreign
-typedef PMINIMIZEDMETRICS = tagMINIMIZEDMETRICS*;
+typedef LPMINIMIZEDMETRICS = MINIMIZEDMETRICS*;
 
 @foreign
-typedef LPMINIMIZEDMETRICS = tagMINIMIZEDMETRICS*;
-
-@foreign
-struct tagICONMETRICSA {
+struct ICONMETRICSA {
     cbSize: UINT;
     iHorzSpacing: int;
     iVertSpacing: int;
@@ -4069,16 +3824,13 @@ struct tagICONMETRICSA {
 }
 
 @foreign
-typedef ICONMETRICSA = tagICONMETRICSA;
+typedef PICONMETRICSA = ICONMETRICSA*;
 
 @foreign
-typedef PICONMETRICSA = tagICONMETRICSA*;
+typedef LPICONMETRICSA = ICONMETRICSA*;
 
 @foreign
-typedef LPICONMETRICSA = tagICONMETRICSA*;
-
-@foreign
-struct tagICONMETRICSW {
+struct ICONMETRICSW {
     cbSize: UINT;
     iHorzSpacing: int;
     iVertSpacing: int;
@@ -4087,13 +3839,10 @@ struct tagICONMETRICSW {
 }
 
 @foreign
-typedef ICONMETRICSW = tagICONMETRICSW;
+typedef PICONMETRICSW = ICONMETRICSW*;
 
 @foreign
-typedef PICONMETRICSW = tagICONMETRICSW*;
-
-@foreign
-typedef LPICONMETRICSW = tagICONMETRICSW*;
+typedef LPICONMETRICSW = ICONMETRICSW*;
 
 @foreign
 typedef ICONMETRICS = ICONMETRICSA;
@@ -4105,19 +3854,16 @@ typedef PICONMETRICS = PICONMETRICSA;
 typedef LPICONMETRICS = LPICONMETRICSA;
 
 @foreign
-struct tagANIMATIONINFO {
+struct ANIMATIONINFO {
     cbSize: UINT;
     iMinAnimate: int;
 }
 
 @foreign
-typedef ANIMATIONINFO = tagANIMATIONINFO;
+typedef LPANIMATIONINFO = ANIMATIONINFO*;
 
 @foreign
-typedef LPANIMATIONINFO = tagANIMATIONINFO*;
-
-@foreign
-struct tagSERIALKEYSA {
+struct SERIALKEYSA {
     cbSize: UINT;
     dwFlags: DWORD;
     lpszActivePort: LPSTR;
@@ -4128,13 +3874,10 @@ struct tagSERIALKEYSA {
 }
 
 @foreign
-typedef SERIALKEYSA = tagSERIALKEYSA;
+typedef LPSERIALKEYSA = SERIALKEYSA*;
 
 @foreign
-typedef LPSERIALKEYSA = tagSERIALKEYSA*;
-
-@foreign
-struct tagSERIALKEYSW {
+struct SERIALKEYSW {
     cbSize: UINT;
     dwFlags: DWORD;
     lpszActivePort: LPWSTR;
@@ -4145,10 +3888,7 @@ struct tagSERIALKEYSW {
 }
 
 @foreign
-typedef SERIALKEYSW = tagSERIALKEYSW;
-
-@foreign
-typedef LPSERIALKEYSW = tagSERIALKEYSW*;
+typedef LPSERIALKEYSW = SERIALKEYSW*;
 
 @foreign
 typedef SERIALKEYS = SERIALKEYSA;
@@ -4157,30 +3897,24 @@ typedef SERIALKEYS = SERIALKEYSA;
 typedef LPSERIALKEYS = LPSERIALKEYSA;
 
 @foreign
-struct tagHIGHCONTRASTA {
+struct HIGHCONTRASTA {
     cbSize: UINT;
     dwFlags: DWORD;
     lpszDefaultScheme: LPSTR;
 }
 
 @foreign
-typedef HIGHCONTRASTA = tagHIGHCONTRASTA;
+typedef LPHIGHCONTRASTA = HIGHCONTRASTA*;
 
 @foreign
-typedef LPHIGHCONTRASTA = tagHIGHCONTRASTA*;
-
-@foreign
-struct tagHIGHCONTRASTW {
+struct HIGHCONTRASTW {
     cbSize: UINT;
     dwFlags: DWORD;
     lpszDefaultScheme: LPWSTR;
 }
 
 @foreign
-typedef HIGHCONTRASTW = tagHIGHCONTRASTW;
-
-@foreign
-typedef LPHIGHCONTRASTW = tagHIGHCONTRASTW*;
+typedef LPHIGHCONTRASTW = HIGHCONTRASTW*;
 
 @foreign
 typedef HIGHCONTRAST = HIGHCONTRASTA;
@@ -4261,7 +3995,7 @@ func SystemParametersInfoW(uiAction: UINT, uiParam: UINT, pvParam: PVOID, fWinIn
 func SystemParametersInfoForDpi(uiAction: UINT, uiParam: UINT, pvParam: PVOID, fWinIni: UINT, dpi: UINT): BOOL;
 
 @foreign
-struct tagFILTERKEYS {
+struct FILTERKEYS {
     cbSize: UINT;
     dwFlags: DWORD;
     iWaitMSec: DWORD;
@@ -4271,25 +4005,19 @@ struct tagFILTERKEYS {
 }
 
 @foreign
-typedef FILTERKEYS = tagFILTERKEYS;
+typedef LPFILTERKEYS = FILTERKEYS*;
 
 @foreign
-typedef LPFILTERKEYS = tagFILTERKEYS*;
-
-@foreign
-struct tagSTICKYKEYS {
+struct STICKYKEYS {
     cbSize: UINT;
     dwFlags: DWORD;
 }
 
 @foreign
-typedef STICKYKEYS = tagSTICKYKEYS;
+typedef LPSTICKYKEYS = STICKYKEYS*;
 
 @foreign
-typedef LPSTICKYKEYS = tagSTICKYKEYS*;
-
-@foreign
-struct tagMOUSEKEYS {
+struct MOUSEKEYS {
     cbSize: UINT;
     dwFlags: DWORD;
     iMaxSpeed: DWORD;
@@ -4300,26 +4028,20 @@ struct tagMOUSEKEYS {
 }
 
 @foreign
-typedef MOUSEKEYS = tagMOUSEKEYS;
+typedef LPMOUSEKEYS = MOUSEKEYS*;
 
 @foreign
-typedef LPMOUSEKEYS = tagMOUSEKEYS*;
-
-@foreign
-struct tagACCESSTIMEOUT {
+struct ACCESSTIMEOUT {
     cbSize: UINT;
     dwFlags: DWORD;
     iTimeOutMSec: DWORD;
 }
 
 @foreign
-typedef ACCESSTIMEOUT = tagACCESSTIMEOUT;
+typedef LPACCESSTIMEOUT = ACCESSTIMEOUT*;
 
 @foreign
-typedef LPACCESSTIMEOUT = tagACCESSTIMEOUT*;
-
-@foreign
-struct tagSOUNDSENTRYA {
+struct SOUNDSENTRYA {
     cbSize: UINT;
     dwFlags: DWORD;
     iFSTextEffect: DWORD;
@@ -4335,13 +4057,10 @@ struct tagSOUNDSENTRYA {
 }
 
 @foreign
-typedef SOUNDSENTRYA = tagSOUNDSENTRYA;
+typedef LPSOUNDSENTRYA = SOUNDSENTRYA*;
 
 @foreign
-typedef LPSOUNDSENTRYA = tagSOUNDSENTRYA*;
-
-@foreign
-struct tagSOUNDSENTRYW {
+struct SOUNDSENTRYW {
     cbSize: UINT;
     dwFlags: DWORD;
     iFSTextEffect: DWORD;
@@ -4357,10 +4076,7 @@ struct tagSOUNDSENTRYW {
 }
 
 @foreign
-typedef SOUNDSENTRYW = tagSOUNDSENTRYW;
-
-@foreign
-typedef LPSOUNDSENTRYW = tagSOUNDSENTRYW*;
+typedef LPSOUNDSENTRYW = SOUNDSENTRYW*;
 
 @foreign
 typedef SOUNDSENTRY = SOUNDSENTRYA;
@@ -4372,29 +4088,23 @@ typedef LPSOUNDSENTRY = LPSOUNDSENTRYA;
 func SoundSentry(): BOOL;
 
 @foreign
-struct tagTOGGLEKEYS {
+struct TOGGLEKEYS {
     cbSize: UINT;
     dwFlags: DWORD;
 }
 
 @foreign
-typedef TOGGLEKEYS = tagTOGGLEKEYS;
+typedef LPTOGGLEKEYS = TOGGLEKEYS*;
 
 @foreign
-typedef LPTOGGLEKEYS = tagTOGGLEKEYS*;
-
-@foreign
-struct tagAUDIODESCRIPTION {
+struct AUDIODESCRIPTION {
     cbSize: UINT;
     Enabled: BOOL;
     Locale: LCID;
 }
 
 @foreign
-typedef AUDIODESCRIPTION = tagAUDIODESCRIPTION;
-
-@foreign
-typedef LPAUDIODESCRIPTION = tagAUDIODESCRIPTION*;
+typedef LPAUDIODESCRIPTION = AUDIODESCRIPTION*;
 
 @foreign
 func SetDebugErrorLevel(dwLevel: DWORD);
@@ -4418,7 +4128,7 @@ func MonitorFromRect(lprc: LPCRECT, dwFlags: DWORD): HMONITOR;
 func MonitorFromWindow(hwnd: HWND, dwFlags: DWORD): HMONITOR;
 
 @foreign
-struct tagMONITORINFO {
+struct MONITORINFO {
     cbSize: DWORD;
     rcMonitor: RECT;
     rcWork: RECT;
@@ -4426,34 +4136,25 @@ struct tagMONITORINFO {
 }
 
 @foreign
-typedef MONITORINFO = tagMONITORINFO;
+typedef LPMONITORINFO = MONITORINFO*;
 
 @foreign
-typedef LPMONITORINFO = tagMONITORINFO*;
-
-@foreign
-struct tagMONITORINFOEXA {
+struct MONITORINFOEXA {
     s: MONITORINFO;
     szDevice: CHAR[32];
 }
 
 @foreign
-typedef MONITORINFOEXA = tagMONITORINFOEXA;
+typedef LPMONITORINFOEXA = MONITORINFOEXA*;
 
 @foreign
-typedef LPMONITORINFOEXA = tagMONITORINFOEXA*;
-
-@foreign
-struct tagMONITORINFOEXW {
+struct MONITORINFOEXW {
     s: MONITORINFO;
     szDevice: WCHAR[32];
 }
 
 @foreign
-typedef MONITORINFOEXW = tagMONITORINFOEXW;
-
-@foreign
-typedef LPMONITORINFOEXW = tagMONITORINFOEXW*;
+typedef LPMONITORINFOEXW = MONITORINFOEXW*;
 
 @foreign
 typedef MONITORINFOEX = MONITORINFOEXA;
@@ -4492,7 +4193,7 @@ func IsWinEventHookInstalled(event: DWORD): BOOL;
 func UnhookWinEvent(hWinEventHook: HWINEVENTHOOK): BOOL;
 
 @foreign
-struct tagGUITHREADINFO {
+struct GUITHREADINFO {
     cbSize: DWORD;
     flags: DWORD;
     hwndActive: HWND;
@@ -4505,13 +4206,10 @@ struct tagGUITHREADINFO {
 }
 
 @foreign
-typedef GUITHREADINFO = tagGUITHREADINFO;
+typedef PGUITHREADINFO = GUITHREADINFO*;
 
 @foreign
-typedef PGUITHREADINFO = tagGUITHREADINFO*;
-
-@foreign
-typedef LPGUITHREADINFO = tagGUITHREADINFO*;
+typedef LPGUITHREADINFO = GUITHREADINFO*;
 
 @foreign
 func GetGUIThreadInfo(idThread: DWORD, pgui: PGUITHREADINFO): BOOL;
@@ -4568,7 +4266,7 @@ func GetWindowModuleFileName(hwnd: HWND, pszFileName: LPSTR, cchFileNameMax: UIN
 func GetWindowModuleFileNameW(hwnd: HWND, pszFileName: LPWSTR, cchFileNameMax: UINT): UINT;
 
 @foreign
-struct tagCURSORINFO {
+struct CURSORINFO {
     cbSize: DWORD;
     flags: DWORD;
     hCursor: HCURSOR;
@@ -4576,19 +4274,16 @@ struct tagCURSORINFO {
 }
 
 @foreign
-typedef CURSORINFO = tagCURSORINFO;
+typedef PCURSORINFO = CURSORINFO*;
 
 @foreign
-typedef PCURSORINFO = tagCURSORINFO*;
-
-@foreign
-typedef LPCURSORINFO = tagCURSORINFO*;
+typedef LPCURSORINFO = CURSORINFO*;
 
 @foreign
 func GetCursorInfo(pci: PCURSORINFO): BOOL;
 
 @foreign
-struct tagWINDOWINFO {
+struct WINDOWINFO {
     cbSize: DWORD;
     rcWindow: RECT;
     rcClient: RECT;
@@ -4602,38 +4297,32 @@ struct tagWINDOWINFO {
 }
 
 @foreign
-typedef WINDOWINFO = tagWINDOWINFO;
+typedef PWINDOWINFO = WINDOWINFO*;
 
 @foreign
-typedef PWINDOWINFO = tagWINDOWINFO*;
-
-@foreign
-typedef LPWINDOWINFO = tagWINDOWINFO*;
+typedef LPWINDOWINFO = WINDOWINFO*;
 
 @foreign
 func GetWindowInfo(hwnd: HWND, pwi: PWINDOWINFO): BOOL;
 
 @foreign
-struct tagTITLEBARINFO {
+struct TITLEBARINFO {
     cbSize: DWORD;
     rcTitleBar: RECT;
     rgstate: DWORD[6];
 }
 
 @foreign
-typedef TITLEBARINFO = tagTITLEBARINFO;
+typedef PTITLEBARINFO = TITLEBARINFO*;
 
 @foreign
-typedef PTITLEBARINFO = tagTITLEBARINFO*;
-
-@foreign
-typedef LPTITLEBARINFO = tagTITLEBARINFO*;
+typedef LPTITLEBARINFO = TITLEBARINFO*;
 
 @foreign
 func GetTitleBarInfo(hwnd: HWND, pti: PTITLEBARINFO): BOOL;
 
 @foreign
-struct tagTITLEBARINFOEX {
+struct TITLEBARINFOEX {
     cbSize: DWORD;
     rcTitleBar: RECT;
     rgstate: DWORD[6];
@@ -4641,16 +4330,13 @@ struct tagTITLEBARINFOEX {
 }
 
 @foreign
-typedef TITLEBARINFOEX = tagTITLEBARINFOEX;
+typedef PTITLEBARINFOEX = TITLEBARINFOEX*;
 
 @foreign
-typedef PTITLEBARINFOEX = tagTITLEBARINFOEX*;
+typedef LPTITLEBARINFOEX = TITLEBARINFOEX*;
 
 @foreign
-typedef LPTITLEBARINFOEX = tagTITLEBARINFOEX*;
-
-@foreign
-struct tagMENUBARINFO {
+struct MENUBARINFO {
     cbSize: DWORD;
     rcBar: RECT;
     hMenu: HMENU;
@@ -4660,19 +4346,16 @@ struct tagMENUBARINFO {
 }
 
 @foreign
-typedef MENUBARINFO = tagMENUBARINFO;
+typedef PMENUBARINFO = MENUBARINFO*;
 
 @foreign
-typedef PMENUBARINFO = tagMENUBARINFO*;
-
-@foreign
-typedef LPMENUBARINFO = tagMENUBARINFO*;
+typedef LPMENUBARINFO = MENUBARINFO*;
 
 @foreign
 func GetMenuBarInfo(hwnd: HWND, idObject: LONG, idItem: LONG, pmbi: PMENUBARINFO): BOOL;
 
 @foreign
-struct tagSCROLLBARINFO {
+struct SCROLLBARINFO {
     cbSize: DWORD;
     rcScrollBar: RECT;
     dxyLineButton: int;
@@ -4683,19 +4366,16 @@ struct tagSCROLLBARINFO {
 }
 
 @foreign
-typedef SCROLLBARINFO = tagSCROLLBARINFO;
+typedef PSCROLLBARINFO = SCROLLBARINFO*;
 
 @foreign
-typedef PSCROLLBARINFO = tagSCROLLBARINFO*;
-
-@foreign
-typedef LPSCROLLBARINFO = tagSCROLLBARINFO*;
+typedef LPSCROLLBARINFO = SCROLLBARINFO*;
 
 @foreign
 func GetScrollBarInfo(hwnd: HWND, idObject: LONG, psbi: PSCROLLBARINFO): BOOL;
 
 @foreign
-struct tagCOMBOBOXINFO {
+struct COMBOBOXINFO {
     cbSize: DWORD;
     rcItem: RECT;
     rcButton: RECT;
@@ -4706,13 +4386,10 @@ struct tagCOMBOBOXINFO {
 }
 
 @foreign
-typedef COMBOBOXINFO = tagCOMBOBOXINFO;
+typedef PCOMBOBOXINFO = COMBOBOXINFO*;
 
 @foreign
-typedef PCOMBOBOXINFO = tagCOMBOBOXINFO*;
-
-@foreign
-typedef LPCOMBOBOXINFO = tagCOMBOBOXINFO*;
+typedef LPCOMBOBOXINFO = COMBOBOXINFO*;
 
 @foreign
 func GetComboBoxInfo(hwndCombo: HWND, pcbi: PCOMBOBOXINFO): BOOL;
@@ -4733,7 +4410,7 @@ func RealGetWindowClass(hwnd: HWND, ptszClassName: LPSTR, cchClassNameMax: UINT)
 func RealGetWindowClassW(hwnd: HWND, ptszClassName: LPWSTR, cchClassNameMax: UINT): UINT;
 
 @foreign
-struct tagALTTABINFO {
+struct ALTTABINFO {
     cbSize: DWORD;
     cItems: int;
     cColumns: int;
@@ -4746,13 +4423,10 @@ struct tagALTTABINFO {
 }
 
 @foreign
-typedef ALTTABINFO = tagALTTABINFO;
+typedef PALTTABINFO = ALTTABINFO*;
 
 @foreign
-typedef PALTTABINFO = tagALTTABINFO*;
-
-@foreign
-typedef LPALTTABINFO = tagALTTABINFO*;
+typedef LPALTTABINFO = ALTTABINFO*;
 
 @foreign
 func GetAltTabInfoA(hwnd: HWND, iItem: int, pati: PALTTABINFO, pszItemText: LPSTR, cchItemText: UINT): BOOL;
@@ -4781,7 +4455,7 @@ struct HRAWINPUT__ {
 typedef HRAWINPUT = HRAWINPUT__*;
 
 @foreign
-struct tagRAWINPUTHEADER {
+struct RAWINPUTHEADER {
     dwType: DWORD;
     dwSize: DWORD;
     hDevice: HANDLE;
@@ -4789,30 +4463,27 @@ struct tagRAWINPUTHEADER {
 }
 
 @foreign
-typedef RAWINPUTHEADER = tagRAWINPUTHEADER;
+typedef PRAWINPUTHEADER = RAWINPUTHEADER*;
 
 @foreign
-typedef PRAWINPUTHEADER = tagRAWINPUTHEADER*;
+typedef LPRAWINPUTHEADER = RAWINPUTHEADER*;
 
 @foreign
-typedef LPRAWINPUTHEADER = tagRAWINPUTHEADER*;
-
-@foreign
-struct tagRAWMOUSE___inner_s1 {
+struct RAWMOUSE___inner_s1 {
     usButtonFlags: USHORT;
     usButtonData: USHORT;
 }
 
 @foreign
-union tagRAWMOUSE___inner_u1 {
+union RAWMOUSE___inner_u1 {
     ulButtons: ULONG;
-    s: tagRAWMOUSE___inner_s1;
+    s: RAWMOUSE___inner_s1;
 }
 
 @foreign
-struct tagRAWMOUSE {
+struct RAWMOUSE {
     usFlags: USHORT;
-    u: tagRAWMOUSE___inner_u1;
+    u: RAWMOUSE___inner_u1;
     ulRawButtons: ULONG;
     lLastX: LONG;
     lLastY: LONG;
@@ -4820,16 +4491,13 @@ struct tagRAWMOUSE {
 }
 
 @foreign
-typedef RAWMOUSE = tagRAWMOUSE;
+typedef PRAWMOUSE = RAWMOUSE*;
 
 @foreign
-typedef PRAWMOUSE = tagRAWMOUSE*;
+typedef LPRAWMOUSE = RAWMOUSE*;
 
 @foreign
-typedef LPRAWMOUSE = tagRAWMOUSE*;
-
-@foreign
-struct tagRAWKEYBOARD {
+struct RAWKEYBOARD {
     MakeCode: USHORT;
     Flags: USHORT;
     Reserved: USHORT;
@@ -4839,57 +4507,48 @@ struct tagRAWKEYBOARD {
 }
 
 @foreign
-typedef RAWKEYBOARD = tagRAWKEYBOARD;
+typedef PRAWKEYBOARD = RAWKEYBOARD*;
 
 @foreign
-typedef PRAWKEYBOARD = tagRAWKEYBOARD*;
+typedef LPRAWKEYBOARD = RAWKEYBOARD*;
 
 @foreign
-typedef LPRAWKEYBOARD = tagRAWKEYBOARD*;
-
-@foreign
-struct tagRAWHID {
+struct RAWHID {
     dwSizeHid: DWORD;
     dwCount: DWORD;
     bRawData: BYTE[1];
 }
 
 @foreign
-typedef RAWHID = tagRAWHID;
+typedef PRAWHID = RAWHID*;
 
 @foreign
-typedef PRAWHID = tagRAWHID*;
+typedef LPRAWHID = RAWHID*;
 
 @foreign
-typedef LPRAWHID = tagRAWHID*;
-
-@foreign
-union tagRAWINPUT___inner {
+union RAWINPUT___inner {
     mouse: RAWMOUSE;
     keyboard: RAWKEYBOARD;
     hid: RAWHID;
 }
 
 @foreign
-struct tagRAWINPUT {
+struct RAWINPUT {
     header: RAWINPUTHEADER;
-    data: tagRAWINPUT___inner;
+    data: RAWINPUT___inner;
 }
 
 @foreign
-typedef RAWINPUT = tagRAWINPUT;
+typedef PRAWINPUT = RAWINPUT*;
 
 @foreign
-typedef PRAWINPUT = tagRAWINPUT*;
-
-@foreign
-typedef LPRAWINPUT = tagRAWINPUT*;
+typedef LPRAWINPUT = RAWINPUT*;
 
 @foreign
 func GetRawInputData(hRawInput: HRAWINPUT, uiCommand: UINT, pData: LPVOID, pcbSize: PUINT, cbSizeHeader: UINT): UINT;
 
 @foreign
-struct tagRID_DEVICE_INFO_MOUSE {
+struct RID_DEVICE_INFO_MOUSE {
     dwId: DWORD;
     dwNumberOfButtons: DWORD;
     dwSampleRate: DWORD;
@@ -4897,13 +4556,10 @@ struct tagRID_DEVICE_INFO_MOUSE {
 }
 
 @foreign
-typedef RID_DEVICE_INFO_MOUSE = tagRID_DEVICE_INFO_MOUSE;
+typedef PRID_DEVICE_INFO_MOUSE = RID_DEVICE_INFO_MOUSE*;
 
 @foreign
-typedef PRID_DEVICE_INFO_MOUSE = tagRID_DEVICE_INFO_MOUSE*;
-
-@foreign
-struct tagRID_DEVICE_INFO_KEYBOARD {
+struct RID_DEVICE_INFO_KEYBOARD {
     dwType: DWORD;
     dwSubType: DWORD;
     dwKeyboardMode: DWORD;
@@ -4913,13 +4569,10 @@ struct tagRID_DEVICE_INFO_KEYBOARD {
 }
 
 @foreign
-typedef RID_DEVICE_INFO_KEYBOARD = tagRID_DEVICE_INFO_KEYBOARD;
+typedef PRID_DEVICE_INFO_KEYBOARD = RID_DEVICE_INFO_KEYBOARD*;
 
 @foreign
-typedef PRID_DEVICE_INFO_KEYBOARD = tagRID_DEVICE_INFO_KEYBOARD*;
-
-@foreign
-struct tagRID_DEVICE_INFO_HID {
+struct RID_DEVICE_INFO_HID {
     dwVendorId: DWORD;
     dwProductId: DWORD;
     dwVersionNumber: DWORD;
@@ -4928,33 +4581,27 @@ struct tagRID_DEVICE_INFO_HID {
 }
 
 @foreign
-typedef RID_DEVICE_INFO_HID = tagRID_DEVICE_INFO_HID;
+typedef PRID_DEVICE_INFO_HID = RID_DEVICE_INFO_HID*;
 
 @foreign
-typedef PRID_DEVICE_INFO_HID = tagRID_DEVICE_INFO_HID*;
-
-@foreign
-union tagRID_DEVICE_INFO___inner {
+union RID_DEVICE_INFO___inner {
     mouse: RID_DEVICE_INFO_MOUSE;
     keyboard: RID_DEVICE_INFO_KEYBOARD;
     hid: RID_DEVICE_INFO_HID;
 }
 
 @foreign
-struct tagRID_DEVICE_INFO {
+struct RID_DEVICE_INFO {
     cbSize: DWORD;
     dwType: DWORD;
-    u: tagRID_DEVICE_INFO___inner;
+    u: RID_DEVICE_INFO___inner;
 }
 
 @foreign
-typedef RID_DEVICE_INFO = tagRID_DEVICE_INFO;
+typedef PRID_DEVICE_INFO = RID_DEVICE_INFO*;
 
 @foreign
-typedef PRID_DEVICE_INFO = tagRID_DEVICE_INFO*;
-
-@foreign
-typedef LPRID_DEVICE_INFO = tagRID_DEVICE_INFO*;
+typedef LPRID_DEVICE_INFO = RID_DEVICE_INFO*;
 
 @foreign
 func GetRawInputDeviceInfoA(hDevice: HANDLE, uiCommand: UINT, pData: LPVOID, pcbSize: PUINT): UINT;
@@ -4969,7 +4616,7 @@ func GetRawInputDeviceInfoW(hDevice: HANDLE, uiCommand: UINT, pData: LPVOID, pcb
 func GetRawInputBuffer(pData: PRAWINPUT, pcbSize: PUINT, cbSizeHeader: UINT): UINT;
 
 @foreign
-struct tagRAWINPUTDEVICE {
+struct RAWINPUTDEVICE {
     usUsagePage: USHORT;
     usUsage: USHORT;
     dwFlags: DWORD;
@@ -4977,13 +4624,10 @@ struct tagRAWINPUTDEVICE {
 }
 
 @foreign
-typedef RAWINPUTDEVICE = tagRAWINPUTDEVICE;
+typedef PRAWINPUTDEVICE = RAWINPUTDEVICE*;
 
 @foreign
-typedef PRAWINPUTDEVICE = tagRAWINPUTDEVICE*;
-
-@foreign
-typedef LPRAWINPUTDEVICE = tagRAWINPUTDEVICE*;
+typedef LPRAWINPUTDEVICE = RAWINPUTDEVICE*;
 
 @foreign
 typedef PCRAWINPUTDEVICE = RAWINPUTDEVICE*;
@@ -4995,16 +4639,13 @@ func RegisterRawInputDevices(pRawInputDevices: PCRAWINPUTDEVICE, uiNumDevices: U
 func GetRegisteredRawInputDevices(pRawInputDevices: PRAWINPUTDEVICE, puiNumDevices: PUINT, cbSize: UINT): UINT;
 
 @foreign
-struct tagRAWINPUTDEVICELIST {
+struct RAWINPUTDEVICELIST {
     hDevice: HANDLE;
     dwType: DWORD;
 }
 
 @foreign
-typedef RAWINPUTDEVICELIST = tagRAWINPUTDEVICELIST;
-
-@foreign
-typedef PRAWINPUTDEVICELIST = tagRAWINPUTDEVICELIST*;
+typedef PRAWINPUTDEVICELIST = RAWINPUTDEVICELIST*;
 
 @foreign
 func GetRawInputDeviceList(pRawInputDeviceList: PRAWINPUTDEVICELIST, puiNumDevices: PUINT, cbSize: UINT): UINT;
@@ -5013,7 +4654,7 @@ func GetRawInputDeviceList(pRawInputDeviceList: PRAWINPUTDEVICELIST, puiNumDevic
 func DefRawInputProc(paRawInput: PRAWINPUT*, nInput: INT, cbSizeHeader: UINT): LRESULT;
 
 @foreign
-enum tagPOINTER_DEVICE_TYPE {
+enum POINTER_DEVICE_TYPE {
     POINTER_DEVICE_TYPE_MAX = -1,
     POINTER_DEVICE_TYPE_INTEGRATED_PEN = 1,
     POINTER_DEVICE_TYPE_EXTERNAL_PEN = 2,
@@ -5022,10 +4663,7 @@ enum tagPOINTER_DEVICE_TYPE {
 }
 
 @foreign
-typedef POINTER_DEVICE_TYPE = tagPOINTER_DEVICE_TYPE;
-
-@foreign
-struct tagPOINTER_DEVICE_INFO {
+struct POINTER_DEVICE_INFO {
     displayOrientation: DWORD;
     device: HANDLE;
     pointerDeviceType: POINTER_DEVICE_TYPE;
@@ -5036,10 +4674,7 @@ struct tagPOINTER_DEVICE_INFO {
 }
 
 @foreign
-typedef POINTER_DEVICE_INFO = tagPOINTER_DEVICE_INFO;
-
-@foreign
-struct tagPOINTER_DEVICE_PROPERTY {
+struct POINTER_DEVICE_PROPERTY {
     logicalMin: INT32;
     logicalMax: INT32;
     physicalMin: INT32;
@@ -5051,10 +4686,7 @@ struct tagPOINTER_DEVICE_PROPERTY {
 }
 
 @foreign
-typedef POINTER_DEVICE_PROPERTY = tagPOINTER_DEVICE_PROPERTY;
-
-@foreign
-enum tagPOINTER_DEVICE_CURSOR_TYPE {
+enum POINTER_DEVICE_CURSOR_TYPE {
     POINTER_DEVICE_CURSOR_TYPE_MAX = -1,
     POINTER_DEVICE_CURSOR_TYPE_UNKNOWN = 0,
     POINTER_DEVICE_CURSOR_TYPE_TIP = 1,
@@ -5062,16 +4694,10 @@ enum tagPOINTER_DEVICE_CURSOR_TYPE {
 }
 
 @foreign
-typedef POINTER_DEVICE_CURSOR_TYPE = tagPOINTER_DEVICE_CURSOR_TYPE;
-
-@foreign
-struct tagPOINTER_DEVICE_CURSOR_INFO {
+struct POINTER_DEVICE_CURSOR_INFO {
     cursorId: UINT32;
     cursor: POINTER_DEVICE_CURSOR_TYPE;
 }
-
-@foreign
-typedef POINTER_DEVICE_CURSOR_INFO = tagPOINTER_DEVICE_CURSOR_INFO;
 
 @foreign
 func GetPointerDevices(deviceCount: UINT32*, pointerDevices: POINTER_DEVICE_INFO*): BOOL;
@@ -5098,16 +4724,13 @@ func GetRawPointerDeviceData(pointerId: UINT32, historyCount: UINT32, properties
 func ChangeWindowMessageFilter(message: UINT, dwFlag: DWORD): BOOL;
 
 @foreign
-struct tagCHANGEFILTERSTRUCT {
+struct CHANGEFILTERSTRUCT {
     cbSize: DWORD;
     ExtStatus: DWORD;
 }
 
 @foreign
-typedef CHANGEFILTERSTRUCT = tagCHANGEFILTERSTRUCT;
-
-@foreign
-typedef PCHANGEFILTERSTRUCT = tagCHANGEFILTERSTRUCT*;
+typedef PCHANGEFILTERSTRUCT = CHANGEFILTERSTRUCT*;
 
 @foreign
 func ChangeWindowMessageFilterEx(hwnd: HWND, message: UINT, action: DWORD, pChangeFilterStruct: PCHANGEFILTERSTRUCT): BOOL;
@@ -5121,7 +4744,7 @@ struct HGESTUREINFO__ {
 typedef HGESTUREINFO = HGESTUREINFO__*;
 
 @foreign
-struct tagGESTUREINFO {
+struct GESTUREINFO {
     cbSize: UINT;
     dwFlags: DWORD;
     dwID: DWORD;
@@ -5134,16 +4757,13 @@ struct tagGESTUREINFO {
 }
 
 @foreign
-typedef GESTUREINFO = tagGESTUREINFO;
-
-@foreign
-typedef PGESTUREINFO = tagGESTUREINFO*;
+typedef PGESTUREINFO = GESTUREINFO*;
 
 @foreign
 typedef PCGESTUREINFO = GESTUREINFO*;
 
 @foreign
-struct tagGESTURENOTIFYSTRUCT {
+struct GESTURENOTIFYSTRUCT {
     cbSize: UINT;
     dwFlags: DWORD;
     hwndTarget: HWND;
@@ -5152,10 +4772,7 @@ struct tagGESTURENOTIFYSTRUCT {
 }
 
 @foreign
-typedef GESTURENOTIFYSTRUCT = tagGESTURENOTIFYSTRUCT;
-
-@foreign
-typedef PGESTURENOTIFYSTRUCT = tagGESTURENOTIFYSTRUCT*;
+typedef PGESTURENOTIFYSTRUCT = GESTURENOTIFYSTRUCT*;
 
 @foreign
 func GetGestureInfo(hGestureInfo: HGESTUREINFO, pGestureInfo: PGESTUREINFO): BOOL;
@@ -5167,17 +4784,14 @@ func GetGestureExtraArgs(hGestureInfo: HGESTUREINFO, cbExtraArgs: UINT, pExtraAr
 func CloseGestureInfoHandle(hGestureInfo: HGESTUREINFO): BOOL;
 
 @foreign
-struct tagGESTURECONFIG {
+struct GESTURECONFIG {
     dwID: DWORD;
     dwWant: DWORD;
     dwBlock: DWORD;
 }
 
 @foreign
-typedef GESTURECONFIG = tagGESTURECONFIG;
-
-@foreign
-typedef PGESTURECONFIG = tagGESTURECONFIG*;
+typedef PGESTURECONFIG = GESTURECONFIG*;
 
 @foreign
 func SetGestureConfig(hwnd: HWND, dwReserved: DWORD, cIDs: UINT, pGestureConfig: PGESTURECONFIG, cbSize: UINT): BOOL;
@@ -5195,7 +4809,7 @@ func ShutdownBlockReasonQuery(hWnd: HWND, pwszBuff: LPWSTR, pcchBuff: DWORD*): B
 func ShutdownBlockReasonDestroy(hWnd: HWND): BOOL;
 
 @foreign
-enum tagINPUT_MESSAGE_DEVICE_TYPE {
+enum INPUT_MESSAGE_DEVICE_TYPE {
     IMDT_UNAVAILABLE = 0,
     IMDT_KEYBOARD = 1,
     IMDT_MOUSE = 2,
@@ -5205,10 +4819,7 @@ enum tagINPUT_MESSAGE_DEVICE_TYPE {
 }
 
 @foreign
-typedef INPUT_MESSAGE_DEVICE_TYPE = tagINPUT_MESSAGE_DEVICE_TYPE;
-
-@foreign
-enum tagINPUT_MESSAGE_ORIGIN_ID {
+enum INPUT_MESSAGE_ORIGIN_ID {
     IMO_UNAVAILABLE = 0,
     IMO_HARDWARE = 1,
     IMO_INJECTED = 2,
@@ -5216,16 +4827,10 @@ enum tagINPUT_MESSAGE_ORIGIN_ID {
 }
 
 @foreign
-typedef INPUT_MESSAGE_ORIGIN_ID = tagINPUT_MESSAGE_ORIGIN_ID;
-
-@foreign
-struct tagINPUT_MESSAGE_SOURCE {
+struct INPUT_MESSAGE_SOURCE {
     deviceType: INPUT_MESSAGE_DEVICE_TYPE;
     originId: INPUT_MESSAGE_ORIGIN_ID;
 }
-
-@foreign
-typedef INPUT_MESSAGE_SOURCE = tagINPUT_MESSAGE_SOURCE;
 
 @foreign
 func GetCurrentInputMessageSource(inputMessageSource: INPUT_MESSAGE_SOURCE*): BOOL;
@@ -5234,7 +4839,7 @@ func GetCurrentInputMessageSource(inputMessageSource: INPUT_MESSAGE_SOURCE*): BO
 func GetCIMSSM(inputMessageSource: INPUT_MESSAGE_SOURCE*): BOOL;
 
 @foreign
-enum tagAR_STATE {
+enum AR_STATE {
     AR_ENABLED = 0,
     AR_DISABLED = 1,
     AR_SUPPRESSED = 2,
@@ -5247,10 +4852,7 @@ enum tagAR_STATE {
 }
 
 @foreign
-typedef AR_STATE = tagAR_STATE;
-
-@foreign
-typedef PAR_STATE = tagAR_STATE*;
+typedef PAR_STATE = AR_STATE*;
 
 @foreign
 enum ORIENTATION_PREFERENCE {
@@ -5278,4 +4880,3 @@ func IsImmersiveProcess(hProcess: HANDLE): BOOL;
 
 @foreign
 func SetProcessRestrictionExemption(fEnableExemption: BOOL): BOOL;
-

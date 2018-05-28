@@ -1,15 +1,10 @@
-#foreign(header = "<objidl.h>")
-
 @foreign
-struct _COSERVERINFO {
+struct COSERVERINFO {
     dwReserved1: DWORD;
     pwszName: LPWSTR;
     pAuthInfo: COAUTHINFO*;
     dwReserved2: DWORD;
 }
-
-@foreign
-typedef COSERVERINFO = _COSERVERINFO;
 
 @foreign
 typedef LPMARSHAL = IMarshal*;
@@ -57,7 +52,7 @@ struct IAgileObject {
 }
 
 @foreign
-enum tagACTIVATIONTYPE {
+enum ACTIVATIONTYPE {
     ACTIVATIONTYPE_UNCATEGORIZED = 0,
     ACTIVATIONTYPE_FROM_MONIKER = 1,
     ACTIVATIONTYPE_FROM_DATA = 2,
@@ -65,9 +60,6 @@ enum tagACTIVATIONTYPE {
     ACTIVATIONTYPE_FROM_STREAM = 8,
     ACTIVATIONTYPE_FROM_FILE = 16,
 }
-
-@foreign
-typedef ACTIVATIONTYPE = tagACTIVATIONTYPE;
 
 @foreign
 struct IActivationFilterVtbl {
@@ -144,14 +136,11 @@ struct IStdMarshalInfo {
 typedef LPEXTERNALCONNECTION = IExternalConnection*;
 
 @foreign
-enum tagEXTCONN {
+enum EXTCONN {
     EXTCONN_STRONG = 1,
     EXTCONN_WEAK = 2,
     EXTCONN_CALLABLE = 4,
 }
-
-@foreign
-typedef EXTCONN = tagEXTCONN;
 
 @foreign
 struct IExternalConnectionVtbl {
@@ -171,14 +160,11 @@ struct IExternalConnection {
 typedef LPMULTIQI = IMultiQI*;
 
 @foreign
-struct tagMULTI_QI {
+struct MULTI_QI {
     pIID: IID*;
     pItf: IUnknown*;
     hr: HRESULT;
 }
-
-@foreign
-typedef MULTI_QI = tagMULTI_QI;
 
 @foreign
 struct IMultiQIVtbl {
@@ -300,7 +286,7 @@ func ISequentialStream_RemoteWrite_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffe
 typedef LPSTREAM = IStream*;
 
 @foreign
-struct tagSTATSTG {
+struct STATSTG {
     pwcsName: LPOLESTR;
     type: DWORD;
     cbSize: ULARGE_INTEGER;
@@ -315,10 +301,7 @@ struct tagSTATSTG {
 }
 
 @foreign
-typedef STATSTG = tagSTATSTG;
-
-@foreign
-enum tagSTGTY {
+enum STGTY {
     STGTY_STORAGE = 1,
     STGTY_STREAM = 2,
     STGTY_LOCKBYTES = 3,
@@ -326,27 +309,18 @@ enum tagSTGTY {
 }
 
 @foreign
-typedef STGTY = tagSTGTY;
-
-@foreign
-enum tagSTREAM_SEEK {
+enum STREAM_SEEK {
     STREAM_SEEK_SET = 0,
     STREAM_SEEK_CUR = 1,
     STREAM_SEEK_END = 2,
 }
 
 @foreign
-typedef STREAM_SEEK = tagSTREAM_SEEK;
-
-@foreign
-enum tagLOCKTYPE {
+enum LOCKTYPE {
     LOCK_WRITE = 1,
     LOCK_EXCLUSIVE = 2,
     LOCK_ONLYONCE = 4,
 }
-
-@foreign
-typedef LOCKTYPE = tagLOCKTYPE;
 
 @foreign
 struct IStreamVtbl {
@@ -387,7 +361,7 @@ func IStream_RemoteCopyTo_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRpcCh
 typedef RPCOLEDATAREP = ULONG;
 
 @foreign
-struct tagRPCOLEMESSAGE {
+struct RPCOLEMESSAGE {
     reserved1: void*;
     dataRepresentation: RPCOLEDATAREP;
     Buffer: void*;
@@ -396,9 +370,6 @@ struct tagRPCOLEMESSAGE {
     reserved2: void*[5];
     rpcFlags: ULONG;
 }
-
-@foreign
-typedef RPCOLEMESSAGE = tagRPCOLEMESSAGE;
 
 @foreign
 typedef PRPCOLEMESSAGE = RPCOLEMESSAGE*;
@@ -573,7 +544,7 @@ struct IChannelHook {
 }
 
 @foreign
-struct tagSOLE_AUTHENTICATION_SERVICE {
+struct SOLE_AUTHENTICATION_SERVICE {
     dwAuthnSvc: DWORD;
     dwAuthzSvc: DWORD;
     pPrincipalName: OLECHAR*;
@@ -581,13 +552,10 @@ struct tagSOLE_AUTHENTICATION_SERVICE {
 }
 
 @foreign
-typedef SOLE_AUTHENTICATION_SERVICE = tagSOLE_AUTHENTICATION_SERVICE;
-
-@foreign
 typedef PSOLE_AUTHENTICATION_SERVICE = SOLE_AUTHENTICATION_SERVICE*;
 
 @foreign
-enum tagEOLE_AUTHENTICATION_CAPABILITIES {
+enum EOLE_AUTHENTICATION_CAPABILITIES {
     EOAC_NONE = 0,
     EOAC_MUTUAL_AUTH = 1,
     EOAC_SECURE_REFS = 2,
@@ -607,32 +575,23 @@ enum tagEOLE_AUTHENTICATION_CAPABILITIES {
 }
 
 @foreign
-typedef EOLE_AUTHENTICATION_CAPABILITIES = tagEOLE_AUTHENTICATION_CAPABILITIES;
-
-@foreign
-struct tagSOLE_AUTHENTICATION_INFO {
+struct SOLE_AUTHENTICATION_INFO {
     dwAuthnSvc: DWORD;
     dwAuthzSvc: DWORD;
     pAuthInfo: void*;
 }
 
 @foreign
-typedef SOLE_AUTHENTICATION_INFO = tagSOLE_AUTHENTICATION_INFO;
+typedef PSOLE_AUTHENTICATION_INFO = SOLE_AUTHENTICATION_INFO*;
 
 @foreign
-typedef PSOLE_AUTHENTICATION_INFO = tagSOLE_AUTHENTICATION_INFO*;
-
-@foreign
-struct tagSOLE_AUTHENTICATION_LIST {
+struct SOLE_AUTHENTICATION_LIST {
     cAuthInfo: DWORD;
     aAuthInfo: SOLE_AUTHENTICATION_INFO*;
 }
 
 @foreign
-typedef SOLE_AUTHENTICATION_LIST = tagSOLE_AUTHENTICATION_LIST;
-
-@foreign
-typedef PSOLE_AUTHENTICATION_LIST = tagSOLE_AUTHENTICATION_LIST*;
+typedef PSOLE_AUTHENTICATION_LIST = SOLE_AUTHENTICATION_LIST*;
 
 @foreign
 struct IClientSecurityVtbl {
@@ -666,7 +625,7 @@ struct IServerSecurity {
 }
 
 @foreign
-enum tagRPCOPT_PROPERTIES {
+enum RPCOPT_PROPERTIES {
     COMBND_RPCTIMEOUT = 1,
     COMBND_SERVER_LOCALITY = 2,
     COMBND_RESERVED1 = 4,
@@ -676,17 +635,11 @@ enum tagRPCOPT_PROPERTIES {
 }
 
 @foreign
-typedef RPCOPT_PROPERTIES = tagRPCOPT_PROPERTIES;
-
-@foreign
-enum tagRPCOPT_SERVER_LOCALITY_VALUES {
+enum RPCOPT_SERVER_LOCALITY_VALUES {
     SERVER_LOCALITY_PROCESS_LOCAL = 0,
     SERVER_LOCALITY_MACHINE_LOCAL = 1,
     SERVER_LOCALITY_REMOTE = 2,
 }
-
-@foreign
-typedef RPCOPT_SERVER_LOCALITY_VALUES = tagRPCOPT_SERVER_LOCALITY_VALUES;
 
 @foreign
 struct IRpcOptionsVtbl {
@@ -703,7 +656,7 @@ struct IRpcOptions {
 }
 
 @foreign
-enum tagGLOBALOPT_PROPERTIES {
+enum GLOBALOPT_PROPERTIES {
     COMGLB_EXCEPTION_HANDLING = 1,
     COMGLB_APPID = 2,
     COMGLB_RPC_THREADPOOL_SETTING = 3,
@@ -713,10 +666,7 @@ enum tagGLOBALOPT_PROPERTIES {
 }
 
 @foreign
-typedef GLOBALOPT_PROPERTIES = tagGLOBALOPT_PROPERTIES;
-
-@foreign
-enum tagGLOBALOPT_EH_VALUES {
+enum GLOBALOPT_EH_VALUES {
     COMGLB_EXCEPTION_HANDLE = 0,
     COMGLB_EXCEPTION_DONOT_HANDLE = 1,
     COMGLB_EXCEPTION_DONOT_HANDLE_FATAL = 1,
@@ -724,19 +674,13 @@ enum tagGLOBALOPT_EH_VALUES {
 }
 
 @foreign
-typedef GLOBALOPT_EH_VALUES = tagGLOBALOPT_EH_VALUES;
-
-@foreign
-enum tagGLOBALOPT_RPCTP_VALUES {
+enum GLOBALOPT_RPCTP_VALUES {
     COMGLB_RPC_THREADPOOL_SETTING_DEFAULT_POOL = 0,
     COMGLB_RPC_THREADPOOL_SETTING_PRIVATE_POOL = 1,
 }
 
 @foreign
-typedef GLOBALOPT_RPCTP_VALUES = tagGLOBALOPT_RPCTP_VALUES;
-
-@foreign
-enum tagGLOBALOPT_RO_FLAGS {
+enum GLOBALOPT_RO_FLAGS {
     COMGLB_STA_MODALLOOP_REMOVE_TOUCH_MESSAGES = 1,
     COMGLB_STA_MODALLOOP_SHARED_QUEUE_REMOVE_INPUT_MESSAGES = 2,
     COMGLB_STA_MODALLOOP_SHARED_QUEUE_DONOT_REMOVE_INPUT_MESSAGES = 4,
@@ -751,17 +695,11 @@ enum tagGLOBALOPT_RO_FLAGS {
 }
 
 @foreign
-typedef GLOBALOPT_RO_FLAGS = tagGLOBALOPT_RO_FLAGS;
-
-@foreign
-enum tagGLOBALOPT_UNMARSHALING_POLICY_VALUES {
+enum GLOBALOPT_UNMARSHALING_POLICY_VALUES {
     COMGLB_UNMARSHALING_POLICY_NORMAL = 0,
     COMGLB_UNMARSHALING_POLICY_STRONG = 1,
     COMGLB_UNMARSHALING_POLICY_HYBRID = 2,
 }
-
-@foreign
-typedef GLOBALOPT_UNMARSHALING_POLICY_VALUES = tagGLOBALOPT_UNMARSHALING_POLICY_VALUES;
 
 @foreign
 struct IGlobalOptionsVtbl {
@@ -902,14 +840,11 @@ struct ICancelMethodCalls {
 }
 
 @foreign
-enum tagDCOM_CALL_STATE {
+enum DCOM_CALL_STATE {
     DCOM_NONE = 0,
     DCOM_CALL_COMPLETE = 1,
     DCOM_CALL_CANCELED = 2,
 }
-
-@foreign
-typedef DCOM_CALL_STATE = tagDCOM_CALL_STATE;
 
 @foreign
 struct IAsyncManagerVtbl {
@@ -1105,7 +1040,7 @@ struct AsyncIPipeDouble {
 }
 
 @foreign
-enum _APTTYPEQUALIFIER {
+enum APTTYPEQUALIFIER {
     APTTYPEQUALIFIER_NONE = 0,
     APTTYPEQUALIFIER_IMPLICIT_MTA = 1,
     APTTYPEQUALIFIER_NA_ON_MTA = 2,
@@ -1116,10 +1051,7 @@ enum _APTTYPEQUALIFIER {
 }
 
 @foreign
-typedef APTTYPEQUALIFIER = _APTTYPEQUALIFIER;
-
-@foreign
-enum _APTTYPE {
+enum APTTYPE {
     APTTYPE_CURRENT = -1,
     APTTYPE_STA = 0,
     APTTYPE_MTA = 1,
@@ -1128,16 +1060,10 @@ enum _APTTYPE {
 }
 
 @foreign
-typedef APTTYPE = _APTTYPE;
-
-@foreign
-enum _THDTYPE {
+enum THDTYPE {
     THDTYPE_BLOCKMESSAGES = 0,
     THDTYPE_PROCESSMESSAGES = 1,
 }
-
-@foreign
-typedef THDTYPE = _THDTYPE;
 
 @foreign
 typedef APARTMENTID = DWORD;
@@ -1268,7 +1194,7 @@ typedef LPBC = IBindCtx*;
 typedef LPBINDCTX = IBindCtx*;
 
 @foreign
-struct tagBIND_OPTS {
+struct BIND_OPTS {
     cbStruct: DWORD;
     grfFlags: DWORD;
     grfMode: DWORD;
@@ -1276,13 +1202,10 @@ struct tagBIND_OPTS {
 }
 
 @foreign
-typedef BIND_OPTS = tagBIND_OPTS;
+typedef LPBIND_OPTS = BIND_OPTS*;
 
 @foreign
-typedef LPBIND_OPTS = tagBIND_OPTS*;
-
-@foreign
-struct tagBIND_OPTS2 {
+struct BIND_OPTS2 {
     cbStruct: DWORD;
     grfFlags: DWORD;
     grfMode: DWORD;
@@ -1294,13 +1217,10 @@ struct tagBIND_OPTS2 {
 }
 
 @foreign
-typedef BIND_OPTS2 = tagBIND_OPTS2;
+typedef LPBIND_OPTS2 = BIND_OPTS2*;
 
 @foreign
-typedef LPBIND_OPTS2 = tagBIND_OPTS2*;
-
-@foreign
-struct tagBIND_OPTS3 {
+struct BIND_OPTS3 {
     cbStruct: DWORD;
     grfFlags: DWORD;
     grfMode: DWORD;
@@ -1313,19 +1233,13 @@ struct tagBIND_OPTS3 {
 }
 
 @foreign
-typedef BIND_OPTS3 = tagBIND_OPTS3;
+typedef LPBIND_OPTS3 = BIND_OPTS3*;
 
 @foreign
-typedef LPBIND_OPTS3 = tagBIND_OPTS3*;
-
-@foreign
-enum tagBIND_FLAGS {
+enum BIND_FLAGS {
     BIND_MAYBOTHERUSER = 1,
     BIND_JUSTTESTEXISTENCE = 2,
 }
-
-@foreign
-typedef BIND_FLAGS = tagBIND_FLAGS;
 
 @foreign
 struct IBindCtxVtbl {
@@ -1474,7 +1388,7 @@ struct IPersistStream {
 typedef LPMONIKER = IMoniker*;
 
 @foreign
-enum tagMKSYS {
+enum MKSYS {
     MKSYS_NONE = 0,
     MKSYS_GENERICCOMPOSITE = 1,
     MKSYS_FILEMONIKER = 2,
@@ -1488,18 +1402,12 @@ enum tagMKSYS {
 }
 
 @foreign
-typedef MKSYS = tagMKSYS;
-
-@foreign
-enum tagMKREDUCE {
+enum MKRREDUCE {
     MKRREDUCE_ALL = 0,
     MKRREDUCE_THROUGHUSER = 65536,
     MKRREDUCE_TOUSER = 131072,
     MKRREDUCE_ONE = 196608,
 }
-
-@foreign
-typedef MKRREDUCE = tagMKREDUCE;
 
 @foreign
 struct IMonikerVtbl {
@@ -1587,14 +1495,11 @@ func IEnumSTATSTG_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IRp
 typedef LPSTORAGE = IStorage*;
 
 @foreign
-struct tagRemSNB {
+struct RemSNB {
     ulCntStr: ULONG;
     ulCntChar: ULONG;
     rgString: OLECHAR[1];
 }
-
-@foreign
-typedef RemSNB = tagRemSNB;
 
 @foreign
 typedef wireSNB = RemSNB*;
@@ -1728,7 +1633,7 @@ func ILockBytes_RemoteWriteAt_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: IR
 typedef LPENUMFORMATETC = IEnumFORMATETC*;
 
 @foreign
-struct tagDVTARGETDEVICE {
+struct DVTARGETDEVICE {
     tdSize: DWORD;
     tdDriverNameOffset: WORD;
     tdDeviceNameOffset: WORD;
@@ -1738,13 +1643,10 @@ struct tagDVTARGETDEVICE {
 }
 
 @foreign
-typedef DVTARGETDEVICE = tagDVTARGETDEVICE;
-
-@foreign
 typedef LPCLIPFORMAT = CLIPFORMAT*;
 
 @foreign
-struct tagFORMATETC {
+struct FORMATETC {
     cfFormat: CLIPFORMAT;
     ptd: DVTARGETDEVICE*;
     dwAspect: DWORD;
@@ -1753,10 +1655,7 @@ struct tagFORMATETC {
 }
 
 @foreign
-typedef FORMATETC = tagFORMATETC;
-
-@foreign
-typedef LPFORMATETC = tagFORMATETC*;
+typedef LPFORMATETC = FORMATETC*;
 
 @foreign
 struct IEnumFORMATETCVtbl {
@@ -1784,7 +1683,7 @@ func IEnumFORMATETC_RemoteNext_Stub(This: IRpcStubBuffer*, _pRpcChannelBuffer: I
 typedef LPENUMSTATDATA = IEnumSTATDATA*;
 
 @foreign
-enum tagADVF {
+enum ADVF {
     ADVF_NODATA = 1,
     ADVF_PRIMEFIRST = 2,
     ADVF_ONLYONCE = 4,
@@ -1795,18 +1694,12 @@ enum tagADVF {
 }
 
 @foreign
-typedef ADVF = tagADVF;
-
-@foreign
-struct tagSTATDATA {
+struct STATDATA {
     formatetc: FORMATETC;
     advf: DWORD;
     pAdvSink: IAdviseSink*;
     dwConnection: DWORD;
 }
-
-@foreign
-typedef STATDATA = tagSTATDATA;
 
 @foreign
 typedef LPSTATDATA = STATDATA*;
@@ -1853,7 +1746,7 @@ struct IRootStorage {
 typedef LPADVISESINK = IAdviseSink*;
 
 @foreign
-enum tagTYMED {
+enum TYMED {
     TYMED_NULL = 0,
     TYMED_HGLOBAL = 1,
     TYMED_FILE = 2,
@@ -1865,10 +1758,7 @@ enum tagTYMED {
 }
 
 @foreign
-typedef TYMED = tagTYMED;
-
-@foreign
-struct tagRemSTGMEDIUM {
+struct RemSTGMEDIUM {
     tymed: DWORD;
     dwHandleType: DWORD;
     pData: ULONG;
@@ -1878,11 +1768,7 @@ struct tagRemSTGMEDIUM {
 }
 
 @foreign
-typedef RemSTGMEDIUM = tagRemSTGMEDIUM;
-
-
-@foreign
-union tagSTDMEDIUM___inner {
+union uSTDMEDIUM___inner {
     hBitmap: HBITMAP;
     hMetaFilePict: HMETAFILEPICT;
     hEnhMetaFile: HENHMETAFILE;
@@ -1893,14 +1779,12 @@ union tagSTDMEDIUM___inner {
 }
 
 @foreign
-struct tagSTGMEDIUM {
+struct uSTGMEDIUM {
     tymed: DWORD;
-    u: tagSTGMEDIUM___inner;
+    u: uSTGMEDIUM___inner;
     pUnkForRelease: IUnknown*;
 }
 
-@foreign
-typedef uSTGMEDIUM = tagSTGMEDIUM;
 
 @foreign
 union __MIDL_IAdviseSink_0002 {
@@ -1910,7 +1794,7 @@ union __MIDL_IAdviseSink_0002 {
 }
 
 @foreign
-struct _GDI_OBJECT {
+struct GDI_OBJECT {
     ObjectType: DWORD;
     u: __MIDL_IAdviseSink_0002;
 }
@@ -1934,13 +1818,10 @@ struct _STGMEDIUM_UNION {
 
 
 @foreign
-struct _userSTGMEDIUM {
+struct userSTGMEDIUM {
     u: _STGMEDIUM_UNION;
     pUnkForRelease: IUnknown*;
 }
-
-@foreign
-typedef userSTGMEDIUM = _userSTGMEDIUM;
 
 @foreign
 typedef wireSTGMEDIUM = userSTGMEDIUM*;
@@ -1958,27 +1839,21 @@ typedef ASYNC_STGMEDIUM = STGMEDIUM;
 typedef LPSTGMEDIUM = STGMEDIUM*;
 
 @foreign
-struct _userFLAG_STGMEDIUM {
+struct userFLAG_STGMEDIUM {
     ContextFlags: LONG;
     fPassOwnership: LONG;
     Stgmed: userSTGMEDIUM;
 }
 
 @foreign
-typedef userFLAG_STGMEDIUM = _userFLAG_STGMEDIUM;
-
-@foreign
 typedef wireFLAG_STGMEDIUM = userFLAG_STGMEDIUM*;
 
 @foreign
-struct _FLAG_STGMEDIUM {
+struct FLAG_STGMEDIUM {
     ContextFlags: LONG;
     fPassOwnership: LONG;
     Stgmed: STGMEDIUM;
 }
-
-@foreign
-typedef FLAG_STGMEDIUM = _FLAG_STGMEDIUM;
 
 @foreign
 struct IAdviseSinkVtbl {
@@ -2176,13 +2051,10 @@ func AsyncIAdviseSink2_Finish_RemoteOnLinkSrcChange_Stub(This: IRpcStubBuffer*, 
 typedef LPDATAOBJECT = IDataObject*;
 
 @foreign
-enum tagDATADIR {
+enum DATADIR {
     DATADIR_GET = 1,
     DATADIR_SET = 2,
 }
-
-@foreign
-typedef DATADIR = tagDATADIR;
 
 @foreign
 struct IDataObjectVtbl {
@@ -2246,7 +2118,7 @@ struct IDataAdviseHolder {
 typedef LPMESSAGEFILTER = IMessageFilter*;
 
 @foreign
-enum tagCALLTYPE {
+enum CALLTYPE {
     CALLTYPE_TOPLEVEL = 1,
     CALLTYPE_NESTED = 2,
     CALLTYPE_ASYNC = 3,
@@ -2255,49 +2127,34 @@ enum tagCALLTYPE {
 }
 
 @foreign
-typedef CALLTYPE = tagCALLTYPE;
-
-@foreign
-enum tagSERVERCALL {
+enum SERVERCALL {
     SERVERCALL_ISHANDLED = 0,
     SERVERCALL_REJECTED = 1,
     SERVERCALL_RETRYLATER = 2,
 }
 
 @foreign
-typedef SERVERCALL = tagSERVERCALL;
-
-@foreign
-enum tagPENDINGTYPE {
+enum PENDINGTYPE {
     PENDINGTYPE_TOPLEVEL = 1,
     PENDINGTYPE_NESTED = 2,
 }
 
 @foreign
-typedef PENDINGTYPE = tagPENDINGTYPE;
-
-@foreign
-enum tagPENDINGMSG {
+enum PENDINGMSG {
     PENDINGMSG_CANCELCALL = 0,
     PENDINGMSG_WAITNOPROCESS = 1,
     PENDINGMSG_WAITDEFPROCESS = 2,
 }
 
 @foreign
-typedef PENDINGMSG = tagPENDINGMSG;
-
-@foreign
-struct tagINTERFACEINFO {
+struct INTERFACEINFO {
     pUnk: IUnknown*;
     iid: IID;
     wMethod: WORD;
 }
 
 @foreign
-typedef INTERFACEINFO = tagINTERFACEINFO;
-
-@foreign
-typedef LPINTERFACEINFO = tagINTERFACEINFO*;
+typedef LPINTERFACEINFO = INTERFACEINFO*;
 
 @foreign
 struct IMessageFilterVtbl {
@@ -2369,15 +2226,12 @@ struct IProgressNotify {
 }
 
 @foreign
-struct tagStorageLayout {
+struct StorageLayout {
     LayoutType: DWORD;
     pwcsElementName: OLECHAR*;
     cOffset: LARGE_INTEGER;
     cBytes: LARGE_INTEGER;
 }
-
-@foreign
-typedef StorageLayout = tagStorageLayout;
 
 @foreign
 struct ILayoutStorageVtbl {
@@ -2506,22 +2360,16 @@ struct IDummyHICONIncluder {
 }
 
 @foreign
-enum tagApplicationType {
+enum ApplicationType {
     ServerApplication = 0,
     LibraryApplication = 1,
 }
 
 @foreign
-typedef ApplicationType = tagApplicationType;
-
-@foreign
-enum tagShutdownType {
+enum ShutdownType {
     IdleShutdown = 0,
     ForcedShutdown = 1,
 }
-
-@foreign
-typedef ShutdownType = tagShutdownType;
 
 @foreign
 struct IProcessLockVtbl {

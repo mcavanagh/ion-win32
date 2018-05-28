@@ -1,5 +1,3 @@
-#foreign(header = "<servprov.h>")
-
 @foreign
 typedef LPSERVICEPROVIDER = IServiceProvider*;
 

@@ -1,5 +1,3 @@
-#foreign(header = "<rpc.h>")
-
 @foreign
 typedef I_RPC_HANDLE = void*;
 

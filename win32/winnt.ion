@@ -1,5 +1,3 @@
-#foreign(header = "<winnt.h>")
-
 @foreign const LANG_NEUTRAL   = 0x00;
 @foreign const LANG_INVARIANT = 0x7f;
 
@@ -383,30 +381,24 @@ typedef PSHORT = SHORT*;
 typedef PLONG = LONG*;
 
 @foreign
-struct _PROCESSOR_NUMBER {
+struct PROCESSOR_NUMBER {
     Group: WORD;
     Number: BYTE;
     Reserved: BYTE;
 }
 
 @foreign
-typedef PROCESSOR_NUMBER = _PROCESSOR_NUMBER;
+typedef PPROCESSOR_NUMBER = PROCESSOR_NUMBER*;
 
 @foreign
-typedef PPROCESSOR_NUMBER = _PROCESSOR_NUMBER*;
-
-@foreign
-struct _GROUP_AFFINITY {
+struct GROUP_AFFINITY {
     Mask: KAFFINITY;
     Group: WORD;
     Reserved: WORD[3];
 }
 
 @foreign
-typedef GROUP_AFFINITY = _GROUP_AFFINITY;
-
-@foreign
-typedef PGROUP_AFFINITY = _GROUP_AFFINITY*;
+typedef PGROUP_AFFINITY = GROUP_AFFINITY*;
 
 @foreign
 typedef HANDLE = void*;
@@ -448,13 +440,10 @@ enum COMPARTMENT_ID {
 typedef PCOMPARTMENT_ID = COMPARTMENT_ID;
 
 @foreign
-struct _FLOAT128 {
+struct FLOAT128 {
     LowPart: llong;
     HighPart: llong;
 }
-
-@foreign
-typedef FLOAT128 = _FLOAT128;
 
 @foreign
 typedef PFLOAT128 = FLOAT128*;
@@ -475,39 +464,33 @@ typedef PULONGLONG = ULONGLONG*;
 typedef USN = LONGLONG;
 
 @foreign
-struct _LARGE_INTEGER___inner_s {
+struct LARGE_INTEGER___inner_s {
     LowPart: DWORD;
     HighPart: LONG;
 }
 
 @foreign
-union _LARGE_INTEGER {
-    s: _LARGE_INTEGER___inner_s;
-    u: _LARGE_INTEGER___inner_s;
+union LARGE_INTEGER {
+    s: LARGE_INTEGER___inner_s;
+    u: LARGE_INTEGER___inner_s;
     QuadPart: LONGLONG;
 }
-
-@foreign
-typedef LARGE_INTEGER = _LARGE_INTEGER;
 
 @foreign
 typedef PLARGE_INTEGER = LARGE_INTEGER*;
 
 @foreign
-struct _ULARGE_INTEGER___inner_s {
+struct ULARGE_INTEGER___inner_s {
     LowPart: DWORD;
     HighPart: DWORD;
 }
 
 @foreign
-union _ULARGE_INTEGER {
-    s: _ULARGE_INTEGER___inner_s;
-    u: _ULARGE_INTEGER___inner_s;
+union ULARGE_INTEGER {
+    s: ULARGE_INTEGER___inner_s;
+    u: ULARGE_INTEGER___inner_s;
     QuadPart: ULONGLONG;
 }
-
-@foreign
-typedef ULARGE_INTEGER = _ULARGE_INTEGER;
 
 @foreign
 typedef PULARGE_INTEGER = ULARGE_INTEGER*;
@@ -525,16 +508,13 @@ typedef RTL_REFERENCE_COUNT32 = LONG;
 typedef PRTL_REFERENCE_COUNT32 = LONG*;
 
 @foreign
-struct _LUID {
+struct LUID {
     LowPart: DWORD;
     HighPart: LONG;
 }
 
 @foreign
-typedef LUID = _LUID;
-
-@foreign
-typedef PLUID = _LUID*;
+typedef PLUID = LUID*;
 
 @foreign
 typedef DWORDLONG = ULONGLONG;
@@ -573,30 +553,24 @@ typedef BOOLEAN = BYTE;
 typedef PBOOLEAN = BOOLEAN*;
 
 @foreign
-struct _LIST_ENTRY {
+struct LIST_ENTRY {
     Flink: _LIST_ENTRY*;
     Blink: _LIST_ENTRY*;
 }
 
 @foreign
-typedef LIST_ENTRY = _LIST_ENTRY;
+typedef PLIST_ENTRY = LIST_ENTRY*;
 
 @foreign
-typedef PLIST_ENTRY = _LIST_ENTRY*;
+typedef PRLIST_ENTRY = LIST_ENTRY*;
 
 @foreign
-typedef PRLIST_ENTRY = _LIST_ENTRY*;
-
-@foreign
-struct _SINGLE_LIST_ENTRY {
+struct SINGLE_LIST_ENTRY {
     Next: _SINGLE_LIST_ENTRY*;
 }
 
 @foreign
-typedef SINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY;
-
-@foreign
-typedef PSINGLE_LIST_ENTRY = _SINGLE_LIST_ENTRY*;
+typedef PSINGLE_LIST_ENTRY = SINGLE_LIST_ENTRY*;
 
 @foreign
 struct LIST_ENTRY32 {
@@ -617,7 +591,7 @@ struct LIST_ENTRY64 {
 typedef PLIST_ENTRY64 = LIST_ENTRY64*;
 
 @foreign
-typedef EXCEPTION_ROUTINE = func(ExceptionRecord: _EXCEPTION_RECORD*, EstablisherFrame: PVOID, ContextRecord: _CONTEXT*, DispatcherContext: PVOID): EXCEPTION_DISPOSITION;
+typedef EXCEPTION_ROUTINE = func(ExceptionRecord: _EXCEPTION_RECORD*, EstablisherFrame: PVOID, ContextRecord: CONTEXT*, DispatcherContext: PVOID): EXCEPTION_DISPOSITION;
 
 @foreign
 typedef PEXCEPTION_ROUTINE = EXCEPTION_ROUTINE*;
@@ -629,19 +603,16 @@ typedef KSPIN_LOCK = ULONG_PTR;
 typedef PKSPIN_LOCK = KSPIN_LOCK*;
 
 @foreign
-struct _M128A {
+struct M128A {
     Low: ULONGLONG;
     High: LONGLONG;
 }
 
 @foreign
-typedef M128A = _M128A;
+typedef PM128A = M128A*;
 
 @foreign
-typedef PM128A = _M128A*;
-
-@foreign
-struct _XSAVE_FORMAT {
+struct XSAVE_FORMAT {
     ControlWord: WORD;
     StatusWord: WORD;
     TagWord: BYTE;
@@ -661,38 +632,29 @@ struct _XSAVE_FORMAT {
 }
 
 @foreign
-typedef XSAVE_FORMAT = _XSAVE_FORMAT;
+typedef PXSAVE_FORMAT = XSAVE_FORMAT*;
 
 @foreign
-typedef PXSAVE_FORMAT = _XSAVE_FORMAT*;
-
-@foreign
-struct _XSAVE_AREA_HEADER {
+struct XSAVE_AREA_HEADER {
     Mask: DWORD64;
     CompactionMask: DWORD64;
     Reserved2: DWORD64[6];
 }
 
 @foreign
-typedef XSAVE_AREA_HEADER = _XSAVE_AREA_HEADER;
+typedef PXSAVE_AREA_HEADER = XSAVE_AREA_HEADER*;
 
 @foreign
-typedef PXSAVE_AREA_HEADER = _XSAVE_AREA_HEADER*;
-
-@foreign
-struct _XSAVE_AREA {
+struct XSAVE_AREA {
     LegacyState: XSAVE_FORMAT;
     Header: XSAVE_AREA_HEADER;
 }
 
 @foreign
-typedef XSAVE_AREA = _XSAVE_AREA;
+typedef PXSAVE_AREA = XSAVE_AREA*;
 
 @foreign
-typedef PXSAVE_AREA = _XSAVE_AREA*;
-
-@foreign
-struct _XSTATE_CONTEXT {
+struct XSTATE_CONTEXT {
     Mask: DWORD64;
     Length: DWORD;
     Reserved1: DWORD;
@@ -701,22 +663,16 @@ struct _XSTATE_CONTEXT {
 }
 
 @foreign
-typedef XSTATE_CONTEXT = _XSTATE_CONTEXT;
+typedef PXSTATE_CONTEXT = XSTATE_CONTEXT*;
 
 @foreign
-typedef PXSTATE_CONTEXT = _XSTATE_CONTEXT*;
-
-@foreign
-struct _SCOPE_TABLE_AMD64 {
+struct SCOPE_TABLE_AMD64 {
     Count: DWORD;
     ScopeRecord: (null)[1];
 }
 
 @foreign
-typedef SCOPE_TABLE_AMD64 = _SCOPE_TABLE_AMD64;
-
-@foreign
-typedef PSCOPE_TABLE_AMD64 = _SCOPE_TABLE_AMD64*;
+typedef PSCOPE_TABLE_AMD64 = SCOPE_TABLE_AMD64*;
 
 @foreign
 func _bittest(Base: LONG*, Offset: LONG): BOOLEAN;
@@ -1007,7 +963,7 @@ typedef XMM_SAVE_AREA32 = XSAVE_FORMAT;
 typedef PXMM_SAVE_AREA32 = XSAVE_FORMAT*;
 
 @foreign
-struct _CONTEXT___inner_s {
+struct CONTEXT___inner_s {
     Header: M128A[2];
     Legacy: M128A[8];
     Xmm0: M128A;
@@ -1029,13 +985,13 @@ struct _CONTEXT___inner_s {
 }
 
 @foreign
-union _CONTEXT___inner_u {
+union CONTEXT___inner_u {
     FltSave: XMM_SAVE_AREA32;
-    s: _CONTEXT___inner_s;
+    s: CONTEXT___inner_s;
 }
 
 @foreign
-struct _CONTEXT {
+struct CONTEXT {
     P1Home: DWORD64;
     P2Home: DWORD64;
     P3Home: DWORD64;
@@ -1074,7 +1030,7 @@ struct _CONTEXT {
     R14: DWORD64;
     R15: DWORD64;
     Rip: DWORD64;
-    u: _CONTEXT___inner_u;
+    u: CONTEXT___inner_u;
     VectorRegister: M128A[26];
     VectorControl: DWORD64;
     DebugControl: DWORD64;
@@ -1085,10 +1041,7 @@ struct _CONTEXT {
 }
 
 @foreign
-typedef CONTEXT = _CONTEXT;
-
-@foreign
-typedef PCONTEXT = _CONTEXT*;
+typedef PCONTEXT = CONTEXT*;
 
 @foreign
 typedef RUNTIME_FUNCTION = _IMAGE_RUNTIME_FUNCTION_ENTRY;
@@ -1103,19 +1056,16 @@ typedef SCOPE_TABLE = SCOPE_TABLE_AMD64;
 typedef PSCOPE_TABLE = SCOPE_TABLE_AMD64*;
 
 @foreign
-struct _UNWIND_HISTORY_TABLE_ENTRY {
+struct UNWIND_HISTORY_TABLE_ENTRY {
     ImageBase: DWORD64;
     FunctionEntry: PRUNTIME_FUNCTION;
 }
 
 @foreign
-typedef UNWIND_HISTORY_TABLE_ENTRY = _UNWIND_HISTORY_TABLE_ENTRY;
+typedef PUNWIND_HISTORY_TABLE_ENTRY = UNWIND_HISTORY_TABLE_ENTRY*;
 
 @foreign
-typedef PUNWIND_HISTORY_TABLE_ENTRY = _UNWIND_HISTORY_TABLE_ENTRY*;
-
-@foreign
-struct _UNWIND_HISTORY_TABLE {
+struct UNWIND_HISTORY_TABLE {
     Count: DWORD;
     LocalHint: BYTE;
     GlobalHint: BYTE;
@@ -1127,10 +1077,7 @@ struct _UNWIND_HISTORY_TABLE {
 }
 
 @foreign
-typedef UNWIND_HISTORY_TABLE = _UNWIND_HISTORY_TABLE;
-
-@foreign
-typedef PUNWIND_HISTORY_TABLE = _UNWIND_HISTORY_TABLE*;
+typedef PUNWIND_HISTORY_TABLE = UNWIND_HISTORY_TABLE*;
 
 @foreign
 typedef GET_RUNTIME_FUNCTION_CALLBACK = func(ControlPc: DWORD64, Context: PVOID): PRUNTIME_FUNCTION;
@@ -1145,7 +1092,7 @@ typedef OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = func(Process: HANDLE, TableAddr
 typedef POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = OUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK*;
 
 @foreign
-struct _DISPATCHER_CONTEXT {
+struct DISPATCHER_CONTEXT {
     ControlPc: DWORD64;
     ImageBase: DWORD64;
     FunctionEntry: PRUNTIME_FUNCTION;
@@ -1160,19 +1107,16 @@ struct _DISPATCHER_CONTEXT {
 }
 
 @foreign
-typedef DISPATCHER_CONTEXT = _DISPATCHER_CONTEXT;
+typedef PDISPATCHER_CONTEXT = DISPATCHER_CONTEXT*;
 
 @foreign
-typedef PDISPATCHER_CONTEXT = _DISPATCHER_CONTEXT*;
-
-@foreign
-typedef PEXCEPTION_FILTER = func(ExceptionPointers: _EXCEPTION_POINTERS*, EstablisherFrame: PVOID): LONG;
+typedef PEXCEPTION_FILTER = func(ExceptionPointers: EXCEPTION_POINTERS*, EstablisherFrame: PVOID): LONG;
 
 @foreign
 typedef PTERMINATION_HANDLER = func(_abnormal_termination: BOOLEAN, EstablisherFrame: PVOID);
 
 @foreign
-struct _KNONVOLATILE_CONTEXT_POINTERS___inner_s1 {
+struct KNONVOLATILE_CONTEXT_POINTERS___inner_s1 {
     Xmm0: PM128A;
     Xmm1: PM128A;
     Xmm2: PM128A;
@@ -1192,7 +1136,7 @@ struct _KNONVOLATILE_CONTEXT_POINTERS___inner_s1 {
 }
 
 @foreign
-struct _KNONVOLATILE_CONTEXT_POINTERS___inner_s2 {
+struct KNONVOLATILE_CONTEXT_POINTERS___inner_s2 {
     Rax: PDWORD64;
     Rcx: PDWORD64;
     Rdx: PDWORD64;
@@ -1212,55 +1156,62 @@ struct _KNONVOLATILE_CONTEXT_POINTERS___inner_s2 {
 }
 
 @foreign
-union _KNONVOLATILE_CONTEXT_POINTERS___inner_u1 {
+union KNONVOLATILE_CONTEXT_POINTERS___inner_u1 {
     FloatingContext: PM128A[16];
-    s: _KNONVOLATILE_CONTEXT_POINTERS___inner_s1;
+    s: KNONVOLATILE_CONTEXT_POINTERS___inner_s1;
 }
 
 @foreign
-union _KNONVOLATILE_CONTEXT_POINTERS___inner_u2 {
+union KNONVOLATILE_CONTEXT_POINTERS___inner_u2 {
     IntegerContext: PDWORD64[16];
-    s: _KNONVOLATILE_CONTEXT_POINTERS___inner_s2;
+    s: KNONVOLATILE_CONTEXT_POINTERS___inner_s2;
 }
 
 @foreign
-struct _KNONVOLATILE_CONTEXT_POINTERS {
-    u: _KNONVOLATILE_CONTEXT_POINTERS___inner_u1;
-    u2: _KNONVOLATILE_CONTEXT_POINTERS___inner_u2;
+struct KNONVOLATILE_CONTEXT_POINTERS {
+    u: KNONVOLATILE_CONTEXT_POINTERS___inner_u1;
+    u2: KNONVOLATILE_CONTEXT_POINTERS___inner_u2;
 }
 
 @foreign
-typedef KNONVOLATILE_CONTEXT_POINTERS = _KNONVOLATILE_CONTEXT_POINTERS;
+typedef PKNONVOLATILE_CONTEXT_POINTERS = KNONVOLATILE_CONTEXT_POINTERS*;
 
 @foreign
-typedef PKNONVOLATILE_CONTEXT_POINTERS = _KNONVOLATILE_CONTEXT_POINTERS*;
+struct SCOPE_TABLE_ARM___inner {
+    BeginAddress: DWORD;
+    EndAddress: DWORD;
+    HandlerAddress: DWORD;
+    JumpTarget: DWORD;
+}
 
 @foreign
-struct _SCOPE_TABLE_ARM {
+struct SCOPE_TABLE_ARM {
     Count: DWORD;
-    ScopeRecord: (null)[1];
+    ScopeRecord: SCOPE_TABLE_ARM___inner[1];
 }
 
 @foreign
-typedef SCOPE_TABLE_ARM = _SCOPE_TABLE_ARM;
+typedef PSCOPE_TABLE_ARM = SCOPE_TABLE_ARM*;
 
 @foreign
-typedef PSCOPE_TABLE_ARM = _SCOPE_TABLE_ARM*;
+struct SCOPE_TABLE_ARM64___inner {
+    BeginAddress: DWORD;
+    EndAddress: DWORD;
+    HandlerAddress: DWORD;
+    JumpTarget: DWORD;
+}
 
 @foreign
-struct _SCOPE_TABLE_ARM64 {
+struct SCOPE_TABLE_ARM64 {
     Count: DWORD;
-    ScopeRecord: (null)[1];
+    ScopeRecord: SCOPE_TABLE_ARM64___inner[1];
 }
 
 @foreign
-typedef SCOPE_TABLE_ARM64 = _SCOPE_TABLE_ARM64;
+typedef PSCOPE_TABLE_ARM64 = SCOPE_TABLE_ARM64*;
 
 @foreign
-typedef PSCOPE_TABLE_ARM64 = _SCOPE_TABLE_ARM64*;
-
-@foreign
-struct _KNONVOLATILE_CONTEXT_POINTERS_ARM64 {
+struct KNONVOLATILE_CONTEXT_POINTERS_ARM64 {
     X19: PDWORD64;
     X20: PDWORD64;
     X21: PDWORD64;
@@ -1284,26 +1235,20 @@ struct _KNONVOLATILE_CONTEXT_POINTERS_ARM64 {
 }
 
 @foreign
-typedef KNONVOLATILE_CONTEXT_POINTERS_ARM64 = _KNONVOLATILE_CONTEXT_POINTERS_ARM64;
-
-@foreign
-typedef PKNONVOLATILE_CONTEXT_POINTERS_ARM64 = _KNONVOLATILE_CONTEXT_POINTERS_ARM64*;
+typedef PKNONVOLATILE_CONTEXT_POINTERS_ARM64 = KNONVOLATILE_CONTEXT_POINTERS_ARM64*;
 
 @foreign
 func __int2c();
 
 // @PROBLEM bitfields
 @foreign
-struct _LDT_ENTRY;
+struct LDT_ENTRY;
 
 @foreign
-typedef LDT_ENTRY = _LDT_ENTRY;
+typedef PLDT_ENTRY = LDT_ENTRY*;
 
 @foreign
-typedef PLDT_ENTRY = _LDT_ENTRY*;
-
-@foreign
-struct _WOW64_FLOATING_SAVE_AREA {
+struct WOW64_FLOATING_SAVE_AREA {
     ControlWord: DWORD;
     StatusWord: DWORD;
     TagWord: DWORD;
@@ -1316,13 +1261,10 @@ struct _WOW64_FLOATING_SAVE_AREA {
 }
 
 @foreign
-typedef WOW64_FLOATING_SAVE_AREA = _WOW64_FLOATING_SAVE_AREA;
-
-@foreign
 typedef PWOW64_FLOATING_SAVE_AREA = WOW64_FLOATING_SAVE_AREA*;
 
 @foreign
-struct _WOW64_CONTEXT {
+struct WOW64_CONTEXT {
     ContextFlags: DWORD;
     Dr0: DWORD;
     Dr1: DWORD;
@@ -1351,32 +1293,26 @@ struct _WOW64_CONTEXT {
 }
 
 @foreign
-typedef WOW64_CONTEXT = _WOW64_CONTEXT;
-
-@foreign
 typedef PWOW64_CONTEXT = WOW64_CONTEXT*;
 
 // @PROBLEM bitfields
 @foreign
-struct _WOW64_LDT_ENTRY;
+struct WOW64_LDT_ENTRY;
 
 @foreign
-typedef PWOW64_LDT_ENTRY = _WOW64_LDT_ENTRY*;
+typedef PWOW64_LDT_ENTRY = WOW64_LDT_ENTRY*;
 
 @foreign
-struct _WOW64_DESCRIPTOR_TABLE_ENTRY {
+struct WOW64_DESCRIPTOR_TABLE_ENTRY {
     Selector: DWORD;
     Descriptor: WOW64_LDT_ENTRY;
 }
 
 @foreign
-typedef WOW64_DESCRIPTOR_TABLE_ENTRY = _WOW64_DESCRIPTOR_TABLE_ENTRY;
+typedef PWOW64_DESCRIPTOR_TABLE_ENTRY = WOW64_DESCRIPTOR_TABLE_ENTRY*;
 
 @foreign
-typedef PWOW64_DESCRIPTOR_TABLE_ENTRY = _WOW64_DESCRIPTOR_TABLE_ENTRY*;
-
-@foreign
-struct _EXCEPTION_RECORD {
+struct EXCEPTION_RECORD {
     ExceptionCode: DWORD;
     ExceptionFlags: DWORD;
     ExceptionRecord: _EXCEPTION_RECORD*;
@@ -1386,13 +1322,13 @@ struct _EXCEPTION_RECORD {
 }
 
 @foreign
-typedef EXCEPTION_RECORD = _EXCEPTION_RECORD;
+typedef _EXCEPTION_RECORD = EXCEPTION_RECORD;
 
 @foreign
 typedef PEXCEPTION_RECORD = EXCEPTION_RECORD*;
 
 @foreign
-struct _EXCEPTION_RECORD32 {
+struct EXCEPTION_RECORD32 {
     ExceptionCode: DWORD;
     ExceptionFlags: DWORD;
     ExceptionRecord: DWORD;
@@ -1402,13 +1338,10 @@ struct _EXCEPTION_RECORD32 {
 }
 
 @foreign
-typedef EXCEPTION_RECORD32 = _EXCEPTION_RECORD32;
+typedef PEXCEPTION_RECORD32 = EXCEPTION_RECORD32*;
 
 @foreign
-typedef PEXCEPTION_RECORD32 = _EXCEPTION_RECORD32*;
-
-@foreign
-struct _EXCEPTION_RECORD64 {
+struct EXCEPTION_RECORD64 {
     ExceptionCode: DWORD;
     ExceptionFlags: DWORD;
     ExceptionRecord: DWORD64;
@@ -1419,22 +1352,16 @@ struct _EXCEPTION_RECORD64 {
 }
 
 @foreign
-typedef EXCEPTION_RECORD64 = _EXCEPTION_RECORD64;
+typedef PEXCEPTION_RECORD64 = EXCEPTION_RECORD64*;
 
 @foreign
-typedef PEXCEPTION_RECORD64 = _EXCEPTION_RECORD64*;
-
-@foreign
-struct _EXCEPTION_POINTERS {
+struct EXCEPTION_POINTERS {
     ExceptionRecord: PEXCEPTION_RECORD;
     ContextRecord: PCONTEXT;
 }
 
 @foreign
-typedef EXCEPTION_POINTERS = _EXCEPTION_POINTERS;
-
-@foreign
-typedef PEXCEPTION_POINTERS = _EXCEPTION_POINTERS*;
+typedef PEXCEPTION_POINTERS = EXCEPTION_POINTERS*;
 
 @foreign
 typedef PACCESS_TOKEN = PVOID;
@@ -1455,7 +1382,7 @@ typedef ACCESS_MASK = DWORD;
 typedef PACCESS_MASK = ACCESS_MASK*;
 
 @foreign
-struct _GENERIC_MAPPING {
+struct GENERIC_MAPPING {
     GenericRead: ACCESS_MASK;
     GenericWrite: ACCESS_MASK;
     GenericExecute: ACCESS_MASK;
@@ -1463,22 +1390,16 @@ struct _GENERIC_MAPPING {
 }
 
 @foreign
-typedef GENERIC_MAPPING = _GENERIC_MAPPING;
-
-@foreign
 typedef PGENERIC_MAPPING = GENERIC_MAPPING*;
 
 @foreign
-struct _LUID_AND_ATTRIBUTES {
+struct LUID_AND_ATTRIBUTES {
     Luid: LUID;
     Attributes: DWORD;
 }
 
 @foreign
-typedef LUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES;
-
-@foreign
-typedef PLUID_AND_ATTRIBUTES = _LUID_AND_ATTRIBUTES*;
+typedef PLUID_AND_ATTRIBUTES = LUID_AND_ATTRIBUTES*;
 
 @foreign
 typedef LUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES[1];
@@ -1487,18 +1408,15 @@ typedef LUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES[1];
 typedef PLUID_AND_ATTRIBUTES_ARRAY = LUID_AND_ATTRIBUTES_ARRAY*;
 
 @foreign
-struct _SID_IDENTIFIER_AUTHORITY {
+struct SID_IDENTIFIER_AUTHORITY {
     Value: BYTE[6];
 }
 
 @foreign
-typedef SID_IDENTIFIER_AUTHORITY = _SID_IDENTIFIER_AUTHORITY;
+typedef PSID_IDENTIFIER_AUTHORITY = SID_IDENTIFIER_AUTHORITY*;
 
 @foreign
-typedef PSID_IDENTIFIER_AUTHORITY = _SID_IDENTIFIER_AUTHORITY*;
-
-@foreign
-struct _SID {
+struct SID {
     Revision: BYTE;
     SubAuthorityCount: BYTE;
     IdentifierAuthority: SID_IDENTIFIER_AUTHORITY;
@@ -1506,25 +1424,19 @@ struct _SID {
 }
 
 @foreign
-typedef SID = _SID;
+typedef PISID = SID*;
 
 @foreign
-typedef PISID = _SID*;
-
-@foreign
-union _SE_SID {
+union SE_SID {
     Sid: SID;
     Buffer: BYTE[68];
 }
 
 @foreign
-typedef SE_SID = _SE_SID;
+typedef PSE_SID = SE_SID*;
 
 @foreign
-typedef PSE_SID = _SE_SID*;
-
-@foreign
-enum _SID_NAME_USE {
+enum SID_NAME_USE {
     SidTypeUser = 1,
     SidTypeGroup,
     SidTypeDomain,
@@ -1539,22 +1451,16 @@ enum _SID_NAME_USE {
 }
 
 @foreign
-typedef SID_NAME_USE = _SID_NAME_USE;
+typedef PSID_NAME_USE = SID_NAME_USE*;
 
 @foreign
-typedef PSID_NAME_USE = _SID_NAME_USE*;
-
-@foreign
-struct _SID_AND_ATTRIBUTES {
+struct SID_AND_ATTRIBUTES {
     Sid: PSID;
     Attributes: DWORD;
 }
 
 @foreign
-typedef SID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES;
-
-@foreign
-typedef PSID_AND_ATTRIBUTES = _SID_AND_ATTRIBUTES*;
+typedef PSID_AND_ATTRIBUTES = SID_AND_ATTRIBUTES*;
 
 @foreign
 typedef SID_AND_ATTRIBUTES_ARRAY = SID_AND_ATTRIBUTES[1];
@@ -1569,17 +1475,14 @@ typedef SID_HASH_ENTRY = ULONG_PTR;
 typedef PSID_HASH_ENTRY = ULONG_PTR*;
 
 @foreign
-struct _SID_AND_ATTRIBUTES_HASH {
+struct SID_AND_ATTRIBUTES_HASH {
     SidCount: DWORD;
     SidAttr: PSID_AND_ATTRIBUTES;
     Hash: SID_HASH_ENTRY[32];
 }
 
 @foreign
-typedef SID_AND_ATTRIBUTES_HASH = _SID_AND_ATTRIBUTES_HASH;
-
-@foreign
-typedef PSID_AND_ATTRIBUTES_HASH = _SID_AND_ATTRIBUTES_HASH*;
+typedef PSID_AND_ATTRIBUTES_HASH = SID_AND_ATTRIBUTES_HASH*;
 
 @foreign
 enum WELL_KNOWN_SID_TYPE {
@@ -1705,7 +1608,7 @@ enum WELL_KNOWN_SID_TYPE {
 }
 
 @foreign
-struct _ACL {
+struct ACL {
     AclRevision: BYTE;
     Sbz1: BYTE;
     AclSize: WORD;
@@ -1714,143 +1617,110 @@ struct _ACL {
 }
 
 @foreign
-typedef ACL = _ACL;
-
-@foreign
 typedef PACL = ACL*;
 
 @foreign
-struct _ACE_HEADER {
+struct ACE_HEADER {
     AceType: BYTE;
     AceFlags: BYTE;
     AceSize: WORD;
 }
 
 @foreign
-typedef ACE_HEADER = _ACE_HEADER;
-
-@foreign
 typedef PACE_HEADER = ACE_HEADER*;
 
 @foreign
-struct _ACCESS_ALLOWED_ACE {
+struct ACCESS_ALLOWED_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
-
-@foreign
-typedef ACCESS_ALLOWED_ACE = _ACCESS_ALLOWED_ACE;
 
 @foreign
 typedef PACCESS_ALLOWED_ACE = ACCESS_ALLOWED_ACE*;
 
 @foreign
-struct _ACCESS_DENIED_ACE {
+struct ACCESS_DENIED_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
-
-@foreign
-typedef ACCESS_DENIED_ACE = _ACCESS_DENIED_ACE;
 
 @foreign
 typedef PACCESS_DENIED_ACE = ACCESS_DENIED_ACE*;
 
 @foreign
-struct _SYSTEM_AUDIT_ACE {
+struct SYSTEM_AUDIT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
-
-@foreign
-typedef SYSTEM_AUDIT_ACE = _SYSTEM_AUDIT_ACE;
 
 @foreign
 typedef PSYSTEM_AUDIT_ACE = SYSTEM_AUDIT_ACE*;
 
 @foreign
-struct _SYSTEM_ALARM_ACE {
+struct SYSTEM_ALARM_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
-
-@foreign
-typedef SYSTEM_ALARM_ACE = _SYSTEM_ALARM_ACE;
 
 @foreign
 typedef PSYSTEM_ALARM_ACE = SYSTEM_ALARM_ACE*;
 
 @foreign
-struct _SYSTEM_RESOURCE_ATTRIBUTE_ACE {
+struct SYSTEM_RESOURCE_ATTRIBUTE_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_RESOURCE_ATTRIBUTE_ACE = _SYSTEM_RESOURCE_ATTRIBUTE_ACE;
+typedef PSYSTEM_RESOURCE_ATTRIBUTE_ACE = SYSTEM_RESOURCE_ATTRIBUTE_ACE*;
 
 @foreign
-typedef PSYSTEM_RESOURCE_ATTRIBUTE_ACE = _SYSTEM_RESOURCE_ATTRIBUTE_ACE*;
-
-@foreign
-struct _SYSTEM_SCOPED_POLICY_ID_ACE {
+struct SYSTEM_SCOPED_POLICY_ID_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_SCOPED_POLICY_ID_ACE = _SYSTEM_SCOPED_POLICY_ID_ACE;
+typedef PSYSTEM_SCOPED_POLICY_ID_ACE = SYSTEM_SCOPED_POLICY_ID_ACE*;
 
 @foreign
-typedef PSYSTEM_SCOPED_POLICY_ID_ACE = _SYSTEM_SCOPED_POLICY_ID_ACE*;
-
-@foreign
-struct _SYSTEM_MANDATORY_LABEL_ACE {
+struct SYSTEM_MANDATORY_LABEL_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_MANDATORY_LABEL_ACE = _SYSTEM_MANDATORY_LABEL_ACE;
+typedef PSYSTEM_MANDATORY_LABEL_ACE = SYSTEM_MANDATORY_LABEL_ACE*;
 
 @foreign
-typedef PSYSTEM_MANDATORY_LABEL_ACE = _SYSTEM_MANDATORY_LABEL_ACE*;
-
-@foreign
-struct _SYSTEM_PROCESS_TRUST_LABEL_ACE {
+struct SYSTEM_PROCESS_TRUST_LABEL_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_PROCESS_TRUST_LABEL_ACE = _SYSTEM_PROCESS_TRUST_LABEL_ACE;
+typedef PSYSTEM_PROCESS_TRUST_LABEL_ACE = SYSTEM_PROCESS_TRUST_LABEL_ACE*;
 
 @foreign
-typedef PSYSTEM_PROCESS_TRUST_LABEL_ACE = _SYSTEM_PROCESS_TRUST_LABEL_ACE*;
-
-@foreign
-struct _SYSTEM_ACCESS_FILTER_ACE {
+struct SYSTEM_ACCESS_FILTER_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_ACCESS_FILTER_ACE = _SYSTEM_ACCESS_FILTER_ACE;
+typedef PSYSTEM_ACCESS_FILTER_ACE = SYSTEM_ACCESS_FILTER_ACE*;
 
 @foreign
-typedef PSYSTEM_ACCESS_FILTER_ACE = _SYSTEM_ACCESS_FILTER_ACE*;
-
-@foreign
-struct _ACCESS_ALLOWED_OBJECT_ACE {
+struct ACCESS_ALLOWED_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -1860,13 +1730,10 @@ struct _ACCESS_ALLOWED_OBJECT_ACE {
 }
 
 @foreign
-typedef ACCESS_ALLOWED_OBJECT_ACE = _ACCESS_ALLOWED_OBJECT_ACE;
+typedef PACCESS_ALLOWED_OBJECT_ACE = ACCESS_ALLOWED_OBJECT_ACE*;
 
 @foreign
-typedef PACCESS_ALLOWED_OBJECT_ACE = _ACCESS_ALLOWED_OBJECT_ACE*;
-
-@foreign
-struct _ACCESS_DENIED_OBJECT_ACE {
+struct ACCESS_DENIED_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -1876,13 +1743,10 @@ struct _ACCESS_DENIED_OBJECT_ACE {
 }
 
 @foreign
-typedef ACCESS_DENIED_OBJECT_ACE = _ACCESS_DENIED_OBJECT_ACE;
+typedef PACCESS_DENIED_OBJECT_ACE = ACCESS_DENIED_OBJECT_ACE*;
 
 @foreign
-typedef PACCESS_DENIED_OBJECT_ACE = _ACCESS_DENIED_OBJECT_ACE*;
-
-@foreign
-struct _SYSTEM_AUDIT_OBJECT_ACE {
+struct SYSTEM_AUDIT_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -1892,13 +1756,10 @@ struct _SYSTEM_AUDIT_OBJECT_ACE {
 }
 
 @foreign
-typedef SYSTEM_AUDIT_OBJECT_ACE = _SYSTEM_AUDIT_OBJECT_ACE;
+typedef PSYSTEM_AUDIT_OBJECT_ACE = SYSTEM_AUDIT_OBJECT_ACE*;
 
 @foreign
-typedef PSYSTEM_AUDIT_OBJECT_ACE = _SYSTEM_AUDIT_OBJECT_ACE*;
-
-@foreign
-struct _SYSTEM_ALARM_OBJECT_ACE {
+struct SYSTEM_ALARM_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -1908,65 +1769,50 @@ struct _SYSTEM_ALARM_OBJECT_ACE {
 }
 
 @foreign
-typedef SYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE;
+typedef PSYSTEM_ALARM_OBJECT_ACE = SYSTEM_ALARM_OBJECT_ACE*;
 
 @foreign
-typedef PSYSTEM_ALARM_OBJECT_ACE = _SYSTEM_ALARM_OBJECT_ACE*;
-
-@foreign
-struct _ACCESS_ALLOWED_CALLBACK_ACE {
+struct ACCESS_ALLOWED_CALLBACK_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef ACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE;
+typedef PACCESS_ALLOWED_CALLBACK_ACE = ACCESS_ALLOWED_CALLBACK_ACE*;
 
 @foreign
-typedef PACCESS_ALLOWED_CALLBACK_ACE = _ACCESS_ALLOWED_CALLBACK_ACE*;
-
-@foreign
-struct _ACCESS_DENIED_CALLBACK_ACE {
+struct ACCESS_DENIED_CALLBACK_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef ACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE;
+typedef PACCESS_DENIED_CALLBACK_ACE = ACCESS_DENIED_CALLBACK_ACE*;
 
 @foreign
-typedef PACCESS_DENIED_CALLBACK_ACE = _ACCESS_DENIED_CALLBACK_ACE*;
-
-@foreign
-struct _SYSTEM_AUDIT_CALLBACK_ACE {
+struct SYSTEM_AUDIT_CALLBACK_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_AUDIT_CALLBACK_ACE = _SYSTEM_AUDIT_CALLBACK_ACE;
+typedef PSYSTEM_AUDIT_CALLBACK_ACE = SYSTEM_AUDIT_CALLBACK_ACE*;
 
 @foreign
-typedef PSYSTEM_AUDIT_CALLBACK_ACE = _SYSTEM_AUDIT_CALLBACK_ACE*;
-
-@foreign
-struct _SYSTEM_ALARM_CALLBACK_ACE {
+struct SYSTEM_ALARM_CALLBACK_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     SidStart: DWORD;
 }
 
 @foreign
-typedef SYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE;
+typedef PSYSTEM_ALARM_CALLBACK_ACE = SYSTEM_ALARM_CALLBACK_ACE*;
 
 @foreign
-typedef PSYSTEM_ALARM_CALLBACK_ACE = _SYSTEM_ALARM_CALLBACK_ACE*;
-
-@foreign
-struct _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE {
+struct ACCESS_ALLOWED_CALLBACK_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -1976,13 +1822,10 @@ struct _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE {
 }
 
 @foreign
-typedef ACCESS_ALLOWED_CALLBACK_OBJECT_ACE = _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE;
+typedef PACCESS_ALLOWED_CALLBACK_OBJECT_ACE = ACCESS_ALLOWED_CALLBACK_OBJECT_ACE*;
 
 @foreign
-typedef PACCESS_ALLOWED_CALLBACK_OBJECT_ACE = _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE*;
-
-@foreign
-struct _ACCESS_DENIED_CALLBACK_OBJECT_ACE {
+struct ACCESS_DENIED_CALLBACK_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -1992,13 +1835,10 @@ struct _ACCESS_DENIED_CALLBACK_OBJECT_ACE {
 }
 
 @foreign
-typedef ACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE;
+typedef PACCESS_DENIED_CALLBACK_OBJECT_ACE = ACCESS_DENIED_CALLBACK_OBJECT_ACE*;
 
 @foreign
-typedef PACCESS_DENIED_CALLBACK_OBJECT_ACE = _ACCESS_DENIED_CALLBACK_OBJECT_ACE*;
-
-@foreign
-struct _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE {
+struct SYSTEM_AUDIT_CALLBACK_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -2008,13 +1848,10 @@ struct _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE {
 }
 
 @foreign
-typedef SYSTEM_AUDIT_CALLBACK_OBJECT_ACE = _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE;
+typedef PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE = SYSTEM_AUDIT_CALLBACK_OBJECT_ACE*;
 
 @foreign
-typedef PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE = _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE*;
-
-@foreign
-struct _SYSTEM_ALARM_CALLBACK_OBJECT_ACE {
+struct SYSTEM_ALARM_CALLBACK_OBJECT_ACE {
     Header: ACE_HEADER;
     Mask: ACCESS_MASK;
     Flags: DWORD;
@@ -2024,40 +1861,28 @@ struct _SYSTEM_ALARM_CALLBACK_OBJECT_ACE {
 }
 
 @foreign
-typedef SYSTEM_ALARM_CALLBACK_OBJECT_ACE = _SYSTEM_ALARM_CALLBACK_OBJECT_ACE;
+typedef PSYSTEM_ALARM_CALLBACK_OBJECT_ACE = SYSTEM_ALARM_CALLBACK_OBJECT_ACE*;
 
 @foreign
-typedef PSYSTEM_ALARM_CALLBACK_OBJECT_ACE = _SYSTEM_ALARM_CALLBACK_OBJECT_ACE*;
-
-@foreign
-enum _ACL_INFORMATION_CLASS {
+enum ACL_INFORMATION_CLASS {
     AclRevisionInformation = 1,
     AclSizeInformation,
 }
 
 @foreign
-typedef ACL_INFORMATION_CLASS = _ACL_INFORMATION_CLASS;
-
-@foreign
-struct _ACL_REVISION_INFORMATION {
+struct ACL_REVISION_INFORMATION {
     AclRevision: DWORD;
 }
-
-@foreign
-typedef ACL_REVISION_INFORMATION = _ACL_REVISION_INFORMATION;
 
 @foreign
 typedef PACL_REVISION_INFORMATION = ACL_REVISION_INFORMATION*;
 
 @foreign
-struct _ACL_SIZE_INFORMATION {
+struct ACL_SIZE_INFORMATION {
     AceCount: DWORD;
     AclBytesInUse: DWORD;
     AclBytesFree: DWORD;
 }
-
-@foreign
-typedef ACL_SIZE_INFORMATION = _ACL_SIZE_INFORMATION;
 
 @foreign
 typedef PACL_SIZE_INFORMATION = ACL_SIZE_INFORMATION*;
@@ -2069,7 +1894,7 @@ typedef SECURITY_DESCRIPTOR_CONTROL = WORD;
 typedef PSECURITY_DESCRIPTOR_CONTROL = WORD*;
 
 @foreign
-struct _SECURITY_DESCRIPTOR_RELATIVE {
+struct SECURITY_DESCRIPTOR_RELATIVE {
     Revision: BYTE;
     Sbz1: BYTE;
     Control: SECURITY_DESCRIPTOR_CONTROL;
@@ -2080,13 +1905,10 @@ struct _SECURITY_DESCRIPTOR_RELATIVE {
 }
 
 @foreign
-typedef SECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE;
+typedef PISECURITY_DESCRIPTOR_RELATIVE = SECURITY_DESCRIPTOR_RELATIVE*;
 
 @foreign
-typedef PISECURITY_DESCRIPTOR_RELATIVE = _SECURITY_DESCRIPTOR_RELATIVE*;
-
-@foreign
-struct _SECURITY_DESCRIPTOR {
+struct SECURITY_DESCRIPTOR {
     Revision: BYTE;
     Sbz1: BYTE;
     Control: SECURITY_DESCRIPTOR_CONTROL;
@@ -2097,63 +1919,48 @@ struct _SECURITY_DESCRIPTOR {
 }
 
 @foreign
-typedef SECURITY_DESCRIPTOR = _SECURITY_DESCRIPTOR;
+typedef PISECURITY_DESCRIPTOR = SECURITY_DESCRIPTOR*;
 
 @foreign
-typedef PISECURITY_DESCRIPTOR = _SECURITY_DESCRIPTOR*;
-
-@foreign
-struct _SECURITY_OBJECT_AI_PARAMS {
+struct SECURITY_OBJECT_AI_PARAMS {
     Size: DWORD;
     ConstraintMask: DWORD;
 }
 
 @foreign
-typedef SECURITY_OBJECT_AI_PARAMS = _SECURITY_OBJECT_AI_PARAMS;
+typedef PSECURITY_OBJECT_AI_PARAMS = SECURITY_OBJECT_AI_PARAMS*;
 
 @foreign
-typedef PSECURITY_OBJECT_AI_PARAMS = _SECURITY_OBJECT_AI_PARAMS*;
-
-@foreign
-struct _OBJECT_TYPE_LIST {
+struct OBJECT_TYPE_LIST {
     Level: WORD;
     Sbz: WORD;
     ObjectType: GUID*;
 }
 
 @foreign
-typedef OBJECT_TYPE_LIST = _OBJECT_TYPE_LIST;
+typedef POBJECT_TYPE_LIST = OBJECT_TYPE_LIST*;
 
 @foreign
-typedef POBJECT_TYPE_LIST = _OBJECT_TYPE_LIST*;
-
-@foreign
-enum _AUDIT_EVENT_TYPE {
+enum AUDIT_EVENT_TYPE {
     AuditEventObjectAccess,
     AuditEventDirectoryServiceAccess,
 }
 
 @foreign
-typedef AUDIT_EVENT_TYPE = _AUDIT_EVENT_TYPE;
+typedef PAUDIT_EVENT_TYPE = AUDIT_EVENT_TYPE*;
 
 @foreign
-typedef PAUDIT_EVENT_TYPE = _AUDIT_EVENT_TYPE*;
-
-@foreign
-struct _PRIVILEGE_SET {
+struct PRIVILEGE_SET {
     PrivilegeCount: DWORD;
     Control: DWORD;
     Privilege: LUID_AND_ATTRIBUTES[1];
 }
 
 @foreign
-typedef PRIVILEGE_SET = _PRIVILEGE_SET;
+typedef PPRIVILEGE_SET = PRIVILEGE_SET*;
 
 @foreign
-typedef PPRIVILEGE_SET = _PRIVILEGE_SET*;
-
-@foreign
-enum _ACCESS_REASON_TYPE {
+enum ACCESS_REASON_TYPE {
     AccessReasonNone = 0,
     AccessReasonAllowedAce = 65536,
     AccessReasonDeniedAce = 131072,
@@ -2175,37 +1982,28 @@ enum _ACCESS_REASON_TYPE {
 }
 
 @foreign
-typedef ACCESS_REASON_TYPE = _ACCESS_REASON_TYPE;
-
-@foreign
 typedef ACCESS_REASON = DWORD;
 
 @foreign
-struct _ACCESS_REASONS {
+struct ACCESS_REASONS {
     Data: ACCESS_REASON[32];
 }
 
 @foreign
-typedef ACCESS_REASONS = _ACCESS_REASONS;
+typedef PACCESS_REASONS = ACCESS_REASONS*;
 
 @foreign
-typedef PACCESS_REASONS = _ACCESS_REASONS*;
-
-@foreign
-struct _SE_SECURITY_DESCRIPTOR {
+struct SE_SECURITY_DESCRIPTOR {
     Size: DWORD;
     Flags: DWORD;
     SecurityDescriptor: PSECURITY_DESCRIPTOR;
 }
 
 @foreign
-typedef SE_SECURITY_DESCRIPTOR = _SE_SECURITY_DESCRIPTOR;
+typedef PSE_SECURITY_DESCRIPTOR = SE_SECURITY_DESCRIPTOR*;
 
 @foreign
-typedef PSE_SECURITY_DESCRIPTOR = _SE_SECURITY_DESCRIPTOR*;
-
-@foreign
-struct _SE_ACCESS_REQUEST {
+struct SE_ACCESS_REQUEST {
     Size: DWORD;
     SeSecurityDescriptor: PSE_SECURITY_DESCRIPTOR;
     DesiredAccess: ACCESS_MASK;
@@ -2217,13 +2015,10 @@ struct _SE_ACCESS_REQUEST {
 }
 
 @foreign
-typedef SE_ACCESS_REQUEST = _SE_ACCESS_REQUEST;
+typedef PSE_ACCESS_REQUEST = SE_ACCESS_REQUEST*;
 
 @foreign
-typedef PSE_ACCESS_REQUEST = _SE_ACCESS_REQUEST*;
-
-@foreign
-struct _SE_ACCESS_REPLY {
+struct SE_ACCESS_REPLY {
     Size: DWORD;
     ResultListCount: DWORD;
     GrantedAccess: PACCESS_MASK;
@@ -2233,13 +2028,10 @@ struct _SE_ACCESS_REPLY {
 }
 
 @foreign
-typedef SE_ACCESS_REPLY = _SE_ACCESS_REPLY;
+typedef PSE_ACCESS_REPLY = SE_ACCESS_REPLY*;
 
 @foreign
-typedef PSE_ACCESS_REPLY = _SE_ACCESS_REPLY*;
-
-@foreign
-enum _SECURITY_IMPERSONATION_LEVEL {
+enum SECURITY_IMPERSONATION_LEVEL {
     SecurityAnonymous,
     SecurityIdentification,
     SecurityImpersonation,
@@ -2247,38 +2039,29 @@ enum _SECURITY_IMPERSONATION_LEVEL {
 }
 
 @foreign
-typedef SECURITY_IMPERSONATION_LEVEL = _SECURITY_IMPERSONATION_LEVEL;
+typedef PSECURITY_IMPERSONATION_LEVEL = SECURITY_IMPERSONATION_LEVEL*;
 
 @foreign
-typedef PSECURITY_IMPERSONATION_LEVEL = _SECURITY_IMPERSONATION_LEVEL*;
-
-@foreign
-enum _TOKEN_TYPE {
+enum TOKEN_TYPE {
     TokenPrimary = 1,
     TokenImpersonation,
 }
 
 @foreign
-typedef TOKEN_TYPE = _TOKEN_TYPE;
-
-@foreign
 typedef PTOKEN_TYPE = TOKEN_TYPE*;
 
 @foreign
-enum _TOKEN_ELEVATION_TYPE {
+enum TOKEN_ELEVATION_TYPE {
     TokenElevationTypeDefault = 1,
     TokenElevationTypeFull,
     TokenElevationTypeLimited,
 }
 
 @foreign
-typedef TOKEN_ELEVATION_TYPE = _TOKEN_ELEVATION_TYPE;
+typedef PTOKEN_ELEVATION_TYPE = TOKEN_ELEVATION_TYPE*;
 
 @foreign
-typedef PTOKEN_ELEVATION_TYPE = _TOKEN_ELEVATION_TYPE*;
-
-@foreign
-enum _TOKEN_INFORMATION_CLASS {
+enum TOKEN_INFORMATION_CLASS {
     TokenUser = 1,
     TokenGroups,
     TokenPrivileges,
@@ -2328,21 +2111,15 @@ enum _TOKEN_INFORMATION_CLASS {
 }
 
 @foreign
-typedef TOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS;
+typedef PTOKEN_INFORMATION_CLASS = TOKEN_INFORMATION_CLASS*;
 
 @foreign
-typedef PTOKEN_INFORMATION_CLASS = _TOKEN_INFORMATION_CLASS*;
-
-@foreign
-struct _TOKEN_USER {
+struct TOKEN_USER {
     User: SID_AND_ATTRIBUTES;
 }
 
 @foreign
-typedef TOKEN_USER = _TOKEN_USER;
-
-@foreign
-typedef PTOKEN_USER = _TOKEN_USER*;
+typedef PTOKEN_USER = TOKEN_USER*;
 
 @foreign
 union _SE_TOKEN_USER___inner_u1 {
@@ -2369,86 +2146,65 @@ typedef SE_TOKEN_USER = _SE_TOKEN_USER;
 typedef PSE_TOKEN_USER = _SE_TOKEN_USER;
 
 @foreign
-struct _TOKEN_GROUPS {
+struct TOKEN_GROUPS {
     GroupCount: DWORD;
     Groups: SID_AND_ATTRIBUTES[1];
 }
 
 @foreign
-typedef TOKEN_GROUPS = _TOKEN_GROUPS;
+typedef PTOKEN_GROUPS = TOKEN_GROUPS*;
 
 @foreign
-typedef PTOKEN_GROUPS = _TOKEN_GROUPS*;
-
-@foreign
-struct _TOKEN_PRIVILEGES {
+struct TOKEN_PRIVILEGES {
     PrivilegeCount: DWORD;
     Privileges: LUID_AND_ATTRIBUTES[1];
 }
 
 @foreign
-typedef TOKEN_PRIVILEGES = _TOKEN_PRIVILEGES;
+typedef PTOKEN_PRIVILEGES = TOKEN_PRIVILEGES*;
 
 @foreign
-typedef PTOKEN_PRIVILEGES = _TOKEN_PRIVILEGES*;
-
-@foreign
-struct _TOKEN_OWNER {
+struct TOKEN_OWNER {
     Owner: PSID;
 }
 
 @foreign
-typedef TOKEN_OWNER = _TOKEN_OWNER;
+typedef PTOKEN_OWNER = TOKEN_OWNER*;
 
 @foreign
-typedef PTOKEN_OWNER = _TOKEN_OWNER*;
-
-@foreign
-struct _TOKEN_PRIMARY_GROUP {
+struct TOKEN_PRIMARY_GROUP {
     PrimaryGroup: PSID;
 }
 
 @foreign
-typedef TOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP;
+typedef PTOKEN_PRIMARY_GROUP = TOKEN_PRIMARY_GROUP*;
 
 @foreign
-typedef PTOKEN_PRIMARY_GROUP = _TOKEN_PRIMARY_GROUP*;
-
-@foreign
-struct _TOKEN_DEFAULT_DACL {
+struct TOKEN_DEFAULT_DACL {
     DefaultDacl: PACL;
 }
 
 @foreign
-typedef TOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL;
+typedef PTOKEN_DEFAULT_DACL = TOKEN_DEFAULT_DACL*;
 
 @foreign
-typedef PTOKEN_DEFAULT_DACL = _TOKEN_DEFAULT_DACL*;
-
-@foreign
-struct _TOKEN_USER_CLAIMS {
+struct TOKEN_USER_CLAIMS {
     UserClaims: PCLAIMS_BLOB;
 }
 
 @foreign
-typedef TOKEN_USER_CLAIMS = _TOKEN_USER_CLAIMS;
+typedef PTOKEN_USER_CLAIMS = TOKEN_USER_CLAIMS*;
 
 @foreign
-typedef PTOKEN_USER_CLAIMS = _TOKEN_USER_CLAIMS*;
-
-@foreign
-struct _TOKEN_DEVICE_CLAIMS {
+struct TOKEN_DEVICE_CLAIMS {
     DeviceClaims: PCLAIMS_BLOB;
 }
 
 @foreign
-typedef TOKEN_DEVICE_CLAIMS = _TOKEN_DEVICE_CLAIMS;
+typedef PTOKEN_DEVICE_CLAIMS = TOKEN_DEVICE_CLAIMS*;
 
 @foreign
-typedef PTOKEN_DEVICE_CLAIMS = _TOKEN_DEVICE_CLAIMS*;
-
-@foreign
-struct _TOKEN_GROUPS_AND_PRIVILEGES {
+struct TOKEN_GROUPS_AND_PRIVILEGES {
     SidCount: DWORD;
     SidLength: DWORD;
     Sids: PSID_AND_ATTRIBUTES;
@@ -2462,60 +2218,45 @@ struct _TOKEN_GROUPS_AND_PRIVILEGES {
 }
 
 @foreign
-typedef TOKEN_GROUPS_AND_PRIVILEGES = _TOKEN_GROUPS_AND_PRIVILEGES;
+typedef PTOKEN_GROUPS_AND_PRIVILEGES = TOKEN_GROUPS_AND_PRIVILEGES*;
 
 @foreign
-typedef PTOKEN_GROUPS_AND_PRIVILEGES = _TOKEN_GROUPS_AND_PRIVILEGES*;
-
-@foreign
-struct _TOKEN_LINKED_TOKEN {
+struct TOKEN_LINKED_TOKEN {
     LinkedToken: HANDLE;
 }
 
 @foreign
-typedef TOKEN_LINKED_TOKEN = _TOKEN_LINKED_TOKEN;
+typedef PTOKEN_LINKED_TOKEN = TOKEN_LINKED_TOKEN*;
 
 @foreign
-typedef PTOKEN_LINKED_TOKEN = _TOKEN_LINKED_TOKEN*;
-
-@foreign
-struct _TOKEN_ELEVATION {
+struct TOKEN_ELEVATION {
     TokenIsElevated: DWORD;
 }
 
 @foreign
-typedef TOKEN_ELEVATION = _TOKEN_ELEVATION;
+typedef PTOKEN_ELEVATION = TOKEN_ELEVATION*;
 
 @foreign
-typedef PTOKEN_ELEVATION = _TOKEN_ELEVATION*;
-
-@foreign
-struct _TOKEN_MANDATORY_LABEL {
+struct TOKEN_MANDATORY_LABEL {
     Label: SID_AND_ATTRIBUTES;
 }
 
 @foreign
-typedef TOKEN_MANDATORY_LABEL = _TOKEN_MANDATORY_LABEL;
+typedef PTOKEN_MANDATORY_LABEL = TOKEN_MANDATORY_LABEL*;
 
 @foreign
-typedef PTOKEN_MANDATORY_LABEL = _TOKEN_MANDATORY_LABEL*;
-
-@foreign
-struct _TOKEN_MANDATORY_POLICY {
+struct TOKEN_MANDATORY_POLICY {
     Policy: DWORD;
 }
 
 @foreign
-typedef TOKEN_MANDATORY_POLICY = _TOKEN_MANDATORY_POLICY;
-
-@foreign
-typedef PTOKEN_MANDATORY_POLICY = _TOKEN_MANDATORY_POLICY*;
+typedef PTOKEN_MANDATORY_POLICY = TOKEN_MANDATORY_POLICY*;
 
 @foreign
 typedef PSECURITY_ATTRIBUTES_OPAQUE = PVOID;
 
 @foreign
-struct _TOKEN_ACCESS_INFORMATION {
+struct TOKEN_ACCESS_INFORMATION {
     SidHash: PSID_AND_ATTRIBUTES_HASH;
     RestrictedSidHash: PSID_AND_ATTRIBUTES_HASH;
     Privileges: PTOKEN_PRIVILEGES;
@@ -2532,36 +2273,27 @@ struct _TOKEN_ACCESS_INFORMATION {
 }
 
 @foreign
-typedef TOKEN_ACCESS_INFORMATION = _TOKEN_ACCESS_INFORMATION;
+typedef PTOKEN_ACCESS_INFORMATION = TOKEN_ACCESS_INFORMATION*;
 
 @foreign
-typedef PTOKEN_ACCESS_INFORMATION = _TOKEN_ACCESS_INFORMATION*;
-
-@foreign
-struct _TOKEN_AUDIT_POLICY {
+struct TOKEN_AUDIT_POLICY {
     PerUserPolicy: BYTE[30];
 }
 
 @foreign
-typedef TOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY;
+typedef PTOKEN_AUDIT_POLICY = TOKEN_AUDIT_POLICY*;
 
 @foreign
-typedef PTOKEN_AUDIT_POLICY = _TOKEN_AUDIT_POLICY*;
-
-@foreign
-struct _TOKEN_SOURCE {
+struct TOKEN_SOURCE {
     SourceName: CHAR[8];
     SourceIdentifier: LUID;
 }
 
 @foreign
-typedef TOKEN_SOURCE = _TOKEN_SOURCE;
+typedef PTOKEN_SOURCE = TOKEN_SOURCE*;
 
 @foreign
-typedef PTOKEN_SOURCE = _TOKEN_SOURCE*;
-
-@foreign
-struct _TOKEN_STATISTICS {
+struct TOKEN_STATISTICS {
     TokenId: LUID;
     AuthenticationId: LUID;
     ExpirationTime: LARGE_INTEGER;
@@ -2575,13 +2307,10 @@ struct _TOKEN_STATISTICS {
 }
 
 @foreign
-typedef TOKEN_STATISTICS = _TOKEN_STATISTICS;
+typedef PTOKEN_STATISTICS = TOKEN_STATISTICS*;
 
 @foreign
-typedef PTOKEN_STATISTICS = _TOKEN_STATISTICS*;
-
-@foreign
-struct _TOKEN_CONTROL {
+struct TOKEN_CONTROL {
     TokenId: LUID;
     AuthenticationId: LUID;
     ModifiedId: LUID;
@@ -2589,24 +2318,18 @@ struct _TOKEN_CONTROL {
 }
 
 @foreign
-typedef TOKEN_CONTROL = _TOKEN_CONTROL;
+typedef PTOKEN_CONTROL = TOKEN_CONTROL*;
 
 @foreign
-typedef PTOKEN_CONTROL = _TOKEN_CONTROL*;
-
-@foreign
-struct _TOKEN_ORIGIN {
+struct TOKEN_ORIGIN {
     OriginatingLogonSession: LUID;
 }
 
 @foreign
-typedef TOKEN_ORIGIN = _TOKEN_ORIGIN;
+typedef PTOKEN_ORIGIN = TOKEN_ORIGIN*;
 
 @foreign
-typedef PTOKEN_ORIGIN = _TOKEN_ORIGIN*;
-
-@foreign
-enum _MANDATORY_LEVEL {
+enum MANDATORY_LEVEL {
     MandatoryLevelUntrusted = 0,
     MandatoryLevelLow,
     MandatoryLevelMedium,
@@ -2617,71 +2340,53 @@ enum _MANDATORY_LEVEL {
 }
 
 @foreign
-typedef MANDATORY_LEVEL = _MANDATORY_LEVEL;
+typedef PMANDATORY_LEVEL = MANDATORY_LEVEL*;
 
 @foreign
-typedef PMANDATORY_LEVEL = _MANDATORY_LEVEL*;
-
-@foreign
-struct _TOKEN_APPCONTAINER_INFORMATION {
+struct TOKEN_APPCONTAINER_INFORMATION {
     TokenAppContainer: PSID;
 }
 
 @foreign
-typedef TOKEN_APPCONTAINER_INFORMATION = _TOKEN_APPCONTAINER_INFORMATION;
+typedef PTOKEN_APPCONTAINER_INFORMATION = TOKEN_APPCONTAINER_INFORMATION*;
 
 @foreign
-typedef PTOKEN_APPCONTAINER_INFORMATION = _TOKEN_APPCONTAINER_INFORMATION*;
-
-@foreign
-struct _TOKEN_SID_INFORMATION {
+struct TOKEN_SID_INFORMATION {
     Sid: PSID;
 }
 
 @foreign
-typedef TOKEN_SID_INFORMATION = _TOKEN_SID_INFORMATION;
+typedef PTOKEN_SID_INFORMATION = TOKEN_SID_INFORMATION*;
 
 @foreign
-typedef PTOKEN_SID_INFORMATION = _TOKEN_SID_INFORMATION*;
-
-@foreign
-struct _TOKEN_BNO_ISOLATION_INFORMATION {
+struct TOKEN_BNO_ISOLATION_INFORMATION {
     IsolationPrefix: PWSTR;
     IsolationEnabled: BOOLEAN;
 }
 
 @foreign
-typedef TOKEN_BNO_ISOLATION_INFORMATION = _TOKEN_BNO_ISOLATION_INFORMATION;
+typedef PTOKEN_BNO_ISOLATION_INFORMATION = TOKEN_BNO_ISOLATION_INFORMATION*;
 
 @foreign
-typedef PTOKEN_BNO_ISOLATION_INFORMATION = _TOKEN_BNO_ISOLATION_INFORMATION*;
-
-@foreign
-struct _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE {
+struct CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE {
     Version: DWORD64;
     Name: PWSTR;
 }
 
 @foreign
-typedef CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE;
+typedef PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE*;
 
 @foreign
-typedef PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = _CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE*;
-
-@foreign
-struct _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE {
+struct CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE {
     pValue: PVOID;
     ValueLength: DWORD;
 }
 
 @foreign
-typedef CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE;
+typedef PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE*;
 
 @foreign
-typedef PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = _CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE*;
-
-@foreign
-union _CLAIM_SECURITY_ATTRIBUTE_V1___inner {
+union CLAIM_SECURITY_ATTRIBUTE_V1___inner {
     pInt64: PLONG64;
     pUint64: PDWORD64;
     ppString: PWSTR*;
@@ -2690,23 +2395,20 @@ union _CLAIM_SECURITY_ATTRIBUTE_V1___inner {
 }
 
 @foreign
-struct _CLAIM_SECURITY_ATTRIBUTE_V1 {
+struct CLAIM_SECURITY_ATTRIBUTE_V1 {
     Name: PWSTR;
     ValueType: WORD;
     Reserved: WORD;
     Flags: DWORD;
     ValueCount: DWORD;
-    Values: _CLAIM_SECURITY_ATTRIBUTE_V1___inner;
+    Values: CLAIM_SECURITY_ATTRIBUTE_V1___inner;
 }
 
 @foreign
-typedef CLAIM_SECURITY_ATTRIBUTE_V1 = _CLAIM_SECURITY_ATTRIBUTE_V1;
+typedef PCLAIM_SECURITY_ATTRIBUTE_V1 = CLAIM_SECURITY_ATTRIBUTE_V1*;
 
 @foreign
-typedef PCLAIM_SECURITY_ATTRIBUTE_V1 = _CLAIM_SECURITY_ATTRIBUTE_V1*;
-
-@foreign
-union _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner {
+union CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner {
     pInt64: DWORD[1];
     pUint64: DWORD[1];
     ppString: DWORD[1];
@@ -2715,39 +2417,33 @@ union _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner {
 }
 
 @foreign
-struct _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 {
+struct CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 {
     Name: DWORD;
     ValueType: WORD;
     Reserved: WORD;
     Flags: DWORD;
     ValueCount: DWORD;
-    Values: _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner;
+    Values: CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner;
 }
 
 @foreign
-typedef CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1;
+typedef PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1*;
 
 @foreign
-typedef PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = _CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1*;
-
-@foreign
-union _CLAIM_SECURITY_ATTRIBUTES_INFORMATION___inner {
+union CLAIM_SECURITY_ATTRIBUTES_INFORMATION___inner {
     pAttributeV1: PCLAIM_SECURITY_ATTRIBUTE_V1;
 }
 
 @foreign
-struct _CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
+struct CLAIM_SECURITY_ATTRIBUTES_INFORMATION {
     Version: WORD;
     Reserved: WORD;
     AttributeCount: DWORD;
-    Attribute: (null);
+    Attribute: CLAIM_SECURITY_ATTRIBUTES_INFORMATION___inner;
 }
 
 @foreign
-typedef CLAIM_SECURITY_ATTRIBUTES_INFORMATION = _CLAIM_SECURITY_ATTRIBUTES_INFORMATION;
-
-@foreign
-typedef PCLAIM_SECURITY_ATTRIBUTES_INFORMATION = _CLAIM_SECURITY_ATTRIBUTES_INFORMATION*;
+typedef PCLAIM_SECURITY_ATTRIBUTES_INFORMATION = CLAIM_SECURITY_ATTRIBUTES_INFORMATION*;
 
 @foreign
 typedef SECURITY_CONTEXT_TRACKING_MODE = BOOLEAN;
@@ -2764,13 +2460,18 @@ struct _SECURITY_QUALITY_OF_SERVICE {
 }
 
 @foreign
-typedef SECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE;
+struct SECURITY_QUALITY_OF_SERVICE {
+    Length: DWORD;
+    ImpersonationLevel: SECURITY_IMPERSONATION_LEVEL;
+    ContextTrackingMode: SECURITY_CONTEXT_TRACKING_MODE;
+    EffectiveOnly: BOOLEAN;
+}
 
 @foreign
-typedef PSECURITY_QUALITY_OF_SERVICE = _SECURITY_QUALITY_OF_SERVICE*;
+typedef PSECURITY_QUALITY_OF_SERVICE = SECURITY_QUALITY_OF_SERVICE*;
 
 @foreign
-struct _SE_IMPERSONATION_STATE {
+struct SE_IMPERSONATION_STATE {
     Token: PACCESS_TOKEN;
     CopyOnOpen: BOOLEAN;
     EffectiveOnly: BOOLEAN;
@@ -2778,10 +2479,7 @@ struct _SE_IMPERSONATION_STATE {
 }
 
 @foreign
-typedef SE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE;
-
-@foreign
-typedef PSE_IMPERSONATION_STATE = _SE_IMPERSONATION_STATE*;
+typedef PSE_IMPERSONATION_STATE = SE_IMPERSONATION_STATE*;
 
 @foreign
 typedef SECURITY_INFORMATION = DWORD;
@@ -2796,7 +2494,7 @@ typedef SE_SIGNING_LEVEL = BYTE;
 typedef PSE_SIGNING_LEVEL = BYTE*;
 
 @foreign
-enum _SE_IMAGE_SIGNATURE_TYPE {
+enum SE_IMAGE_SIGNATURE_TYPE {
     SeImageSignatureNone = 0,
     SeImageSignatureEmbedded,
     SeImageSignatureCache,
@@ -2807,23 +2505,17 @@ enum _SE_IMAGE_SIGNATURE_TYPE {
 }
 
 @foreign
-typedef SE_IMAGE_SIGNATURE_TYPE = _SE_IMAGE_SIGNATURE_TYPE;
+typedef PSE_IMAGE_SIGNATURE_TYPE = SE_IMAGE_SIGNATURE_TYPE*;
 
 @foreign
-typedef PSE_IMAGE_SIGNATURE_TYPE = _SE_IMAGE_SIGNATURE_TYPE*;
-
-@foreign
-enum _SE_LEARNING_MODE_DATA_TYPE {
+enum SE_LEARNING_MODE_DATA_TYPE {
     SeLearningModeInvalidType = 0,
     SeLearningModeSettings,
     SeLearningModeMax,
 }
 
 @foreign
-typedef SE_LEARNING_MODE_DATA_TYPE = _SE_LEARNING_MODE_DATA_TYPE;
-
-@foreign
-struct _SECURITY_CAPABILITIES {
+struct SECURITY_CAPABILITIES {
     AppContainerSid: PSID;
     Capabilities: PSID_AND_ATTRIBUTES;
     CapabilityCount: DWORD;
@@ -2831,123 +2523,102 @@ struct _SECURITY_CAPABILITIES {
 }
 
 @foreign
-typedef SECURITY_CAPABILITIES = _SECURITY_CAPABILITIES;
+typedef PSECURITY_CAPABILITIES = SECURITY_CAPABILITIES*;
 
 @foreign
-typedef PSECURITY_CAPABILITIES = _SECURITY_CAPABILITIES*;
+typedef LPSECURITY_CAPABILITIES = SECURITY_CAPABILITIES*;
 
 @foreign
-typedef LPSECURITY_CAPABILITIES = _SECURITY_CAPABILITIES*;
-
-@foreign
-struct _JOB_SET_ARRAY {
+struct JOB_SET_ARRAY {
     JobHandle: HANDLE;
     MemberLevel: DWORD;
     Flags: DWORD;
 }
 
 @foreign
-typedef JOB_SET_ARRAY = _JOB_SET_ARRAY;
+typedef PJOB_SET_ARRAY = JOB_SET_ARRAY*;
 
 @foreign
-typedef PJOB_SET_ARRAY = _JOB_SET_ARRAY*;
-
-@foreign
-struct _EXCEPTION_REGISTRATION_RECORD {
+struct EXCEPTION_REGISTRATION_RECORD {
     Next: _EXCEPTION_REGISTRATION_RECORD*;
     Handler: PEXCEPTION_ROUTINE;
 }
 
 @foreign
-typedef EXCEPTION_REGISTRATION_RECORD = _EXCEPTION_REGISTRATION_RECORD;
-
-@foreign
 typedef PEXCEPTION_REGISTRATION_RECORD = EXCEPTION_REGISTRATION_RECORD*;
 
 @foreign
-union _NT_TIB___inner {
+union NT_TIB___inner {
     FiberData: PVOID;
     Version: DWORD;
 }
 
 @foreign
-struct _NT_TIB {
-    ExceptionList: _EXCEPTION_REGISTRATION_RECORD*;
+struct NT_TIB {
+    ExceptionList: EXCEPTION_REGISTRATION_RECORD*;
     StackBase: PVOID;
     StackLimit: PVOID;
     SubSystemTib: PVOID;
-    u: _NT_TIB___inner;
+    u: NT_TIB___inner;
     ArbitraryUserPointer: PVOID;
     Self: _NT_TIB*;
 }
 
 @foreign
-typedef NT_TIB = _NT_TIB;
+typedef PNT_TIB = NT_TIB*;
 
 @foreign
-typedef PNT_TIB = _NT_TIB*;
-
-@foreign
-union _NT_TIB32___inner {
+union NT_TIB32___inner {
     FiberData: DWORD;
     Version: DWORD;
 }
 
 @foreign
-struct _NT_TIB32 {
+struct NT_TIB32 {
     ExceptionList: DWORD;
     StackBase: DWORD;
     StackLimit: DWORD;
     SubSystemTib: DWORD;
-    u: _NT_TIB32___inner;
+    u: NT_TIB32___inner;
     ArbitraryUserPointer: DWORD;
     Self: DWORD;
 }
 
 @foreign
-typedef NT_TIB32 = _NT_TIB32;
+typedef PNT_TIB32 = NT_TIB32*;
 
 @foreign
-typedef PNT_TIB32 = _NT_TIB32*;
-
-@foreign
-union _NT_TIB64___inner {
+union NT_TIB64___inner {
     FiberData: DWORD64;
     Version: DWORD;
 }
 
 @foreign
-struct _NT_TIB64 {
+struct NT_TIB64 {
     ExceptionList: DWORD64;
     StackBase: DWORD64;
     StackLimit: DWORD64;
     SubSystemTib: DWORD64;
-    u: _NT_TIB64___inner;
+    u: NT_TIB64___inner;
     ArbitraryUserPointer: DWORD64;
     Self: DWORD64;
 }
 
 @foreign
-typedef NT_TIB64 = _NT_TIB64;
+typedef PNT_TIB64 = NT_TIB64*;
 
 @foreign
-typedef PNT_TIB64 = _NT_TIB64*;
-
-@foreign
-struct _UMS_CREATE_THREAD_ATTRIBUTES {
+struct UMS_CREATE_THREAD_ATTRIBUTES {
     UmsVersion: DWORD;
     UmsContext: PVOID;
     UmsCompletionList: PVOID;
 }
 
 @foreign
-typedef UMS_CREATE_THREAD_ATTRIBUTES = _UMS_CREATE_THREAD_ATTRIBUTES;
+typedef PUMS_CREATE_THREAD_ATTRIBUTES = UMS_CREATE_THREAD_ATTRIBUTES*;
 
 @foreign
-typedef PUMS_CREATE_THREAD_ATTRIBUTES = _UMS_CREATE_THREAD_ATTRIBUTES*;
-
-@foreign
-struct _WOW64_ARCHITECTURE_INFORMATION {
+struct WOW64_ARCHITECTURE_INFORMATION {
     Machine: DWORD;
     KernelMode: DWORD;
     UserMode: DWORD;
@@ -2957,10 +2628,7 @@ struct _WOW64_ARCHITECTURE_INFORMATION {
 }
 
 @foreign
-typedef WOW64_ARCHITECTURE_INFORMATION = _WOW64_ARCHITECTURE_INFORMATION;
-
-@foreign
-struct _QUOTA_LIMITS {
+struct QUOTA_LIMITS {
     PagedPoolLimit: SIZE_T;
     NonPagedPoolLimit: SIZE_T;
     MinimumWorkingSetSize: SIZE_T;
@@ -2970,23 +2638,17 @@ struct _QUOTA_LIMITS {
 }
 
 @foreign
-typedef QUOTA_LIMITS = _QUOTA_LIMITS;
-
-@foreign
-typedef PQUOTA_LIMITS = _QUOTA_LIMITS*;
+typedef PQUOTA_LIMITS = QUOTA_LIMITS*;
 
 // @PROBLEM bitfields
 @foreign
-struct _RATE_QUOTA_LIMIT;
+struct RATE_QUOTA_LIMIT;
 
 @foreign
-typedef RATE_QUOTA_LIMIT = _RATE_QUOTA_LIMIT;
+typedef PRATE_QUOTA_LIMIT = RATE_QUOTA_LIMIT*;
 
 @foreign
-typedef PRATE_QUOTA_LIMIT = _RATE_QUOTA_LIMIT*;
-
-@foreign
-struct _QUOTA_LIMITS_EX {
+struct QUOTA_LIMITS_EX {
     PagedPoolLimit: SIZE_T;
     NonPagedPoolLimit: SIZE_T;
     MinimumWorkingSetSize: SIZE_T;
@@ -3002,13 +2664,10 @@ struct _QUOTA_LIMITS_EX {
 }
 
 @foreign
-typedef QUOTA_LIMITS_EX = _QUOTA_LIMITS_EX;
+typedef PQUOTA_LIMITS_EX = QUOTA_LIMITS_EX*;
 
 @foreign
-typedef PQUOTA_LIMITS_EX = _QUOTA_LIMITS_EX*;
-
-@foreign
-struct _IO_COUNTERS {
+struct IO_COUNTERS {
     ReadOperationCount: ULONGLONG;
     WriteOperationCount: ULONGLONG;
     OtherOperationCount: ULONGLONG;
@@ -3018,25 +2677,19 @@ struct _IO_COUNTERS {
 }
 
 @foreign
-typedef IO_COUNTERS = _IO_COUNTERS;
-
-@foreign
 typedef PIO_COUNTERS = IO_COUNTERS*;
 
 @foreign
-enum _HARDWARE_COUNTER_TYPE {
+enum HARDWARE_COUNTER_TYPE {
     PMCCounter,
     MaxHardwareCounterType,
 }
 
 @foreign
-typedef HARDWARE_COUNTER_TYPE = _HARDWARE_COUNTER_TYPE;
+typedef PHARDWARE_COUNTER_TYPE = HARDWARE_COUNTER_TYPE*;
 
 @foreign
-typedef PHARDWARE_COUNTER_TYPE = _HARDWARE_COUNTER_TYPE*;
-
-@foreign
-enum _PROCESS_MITIGATION_POLICY {
+enum PROCESS_MITIGATION_POLICY {
     ProcessDEPPolicy,
     ProcessASLRPolicy,
     ProcessDynamicCodePolicy,
@@ -3055,153 +2708,111 @@ enum _PROCESS_MITIGATION_POLICY {
 }
 
 @foreign
-typedef PROCESS_MITIGATION_POLICY = _PROCESS_MITIGATION_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_POLICY = _PROCESS_MITIGATION_POLICY*;
+typedef PPROCESS_MITIGATION_POLICY = PROCESS_MITIGATION_POLICY*;
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_ASLR_POLICY;
+struct PROCESS_MITIGATION_ASLR_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_ASLR_POLICY = _PROCESS_MITIGATION_ASLR_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_ASLR_POLICY = _PROCESS_MITIGATION_ASLR_POLICY*;
+typedef PPROCESS_MITIGATION_ASLR_POLICY = PROCESS_MITIGATION_ASLR_POLICY*;
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_DEP_POLICY;
+struct PROCESS_MITIGATION_DEP_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_DEP_POLICY = _PROCESS_MITIGATION_DEP_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_DEP_POLICY = _PROCESS_MITIGATION_DEP_POLICY*;
+typedef PPROCESS_MITIGATION_DEP_POLICY = PROCESS_MITIGATION_DEP_POLICY*;
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY;
+struct PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY*;
+typedef PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY;
+struct PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY*;
+typedef PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = PROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY;
+struct PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = _PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY*;
+typedef PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = PROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY;
+struct PROCESS_MITIGATION_DYNAMIC_CODE_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_DYNAMIC_CODE_POLICY = _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY = _PROCESS_MITIGATION_DYNAMIC_CODE_POLICY*;
+typedef PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY = PROCESS_MITIGATION_DYNAMIC_CODE_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY;
+struct PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = _PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY*;
+typedef PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = PROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY;
+struct PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = _PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY*;
+typedef PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = PROCESS_MITIGATION_BINARY_SIGNATURE_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_FONT_DISABLE_POLICY;
+struct PROCESS_MITIGATION_FONT_DISABLE_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_FONT_DISABLE_POLICY = _PROCESS_MITIGATION_FONT_DISABLE_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_FONT_DISABLE_POLICY = _PROCESS_MITIGATION_FONT_DISABLE_POLICY*;
+typedef PPROCESS_MITIGATION_FONT_DISABLE_POLICY = PROCESS_MITIGATION_FONT_DISABLE_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_IMAGE_LOAD_POLICY;
+struct PROCESS_MITIGATION_IMAGE_LOAD_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_IMAGE_LOAD_POLICY = _PROCESS_MITIGATION_IMAGE_LOAD_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_IMAGE_LOAD_POLICY = _PROCESS_MITIGATION_IMAGE_LOAD_POLICY*;
+typedef PPROCESS_MITIGATION_IMAGE_LOAD_POLICY = PROCESS_MITIGATION_IMAGE_LOAD_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY;
+struct PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = _PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY*;
+typedef PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = PROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY;
+struct PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY;
-
-@foreign
-typedef PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY*;
+typedef PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY*;
 
 
 // @PROBLEM: bitfields
 @foreign
-struct _PROCESS_MITIGATION_CHILD_PROCESS_POLICY;
+struct PROCESS_MITIGATION_CHILD_PROCESS_POLICY;
 
 @foreign
-typedef PROCESS_MITIGATION_CHILD_PROCESS_POLICY = _PROCESS_MITIGATION_CHILD_PROCESS_POLICY;
+typedef PPROCESS_MITIGATION_CHILD_PROCESS_POLICY = PROCESS_MITIGATION_CHILD_PROCESS_POLICY*;
 
 @foreign
-typedef PPROCESS_MITIGATION_CHILD_PROCESS_POLICY = _PROCESS_MITIGATION_CHILD_PROCESS_POLICY*;
-
-@foreign
-struct _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION {
+struct JOBOBJECT_BASIC_ACCOUNTING_INFORMATION {
     TotalUserTime: LARGE_INTEGER;
     TotalKernelTime: LARGE_INTEGER;
     ThisPeriodTotalUserTime: LARGE_INTEGER;
@@ -3213,13 +2824,10 @@ struct _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION {
 }
 
 @foreign
-typedef JOBOBJECT_BASIC_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION;
+typedef PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = JOBOBJECT_BASIC_ACCOUNTING_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_ACCOUNTING_INFORMATION*;
-
-@foreign
-struct _JOBOBJECT_BASIC_LIMIT_INFORMATION {
+struct JOBOBJECT_BASIC_LIMIT_INFORMATION {
     PerProcessUserTimeLimit: LARGE_INTEGER;
     PerJobUserTimeLimit: LARGE_INTEGER;
     LimitFlags: DWORD;
@@ -3232,13 +2840,10 @@ struct _JOBOBJECT_BASIC_LIMIT_INFORMATION {
 }
 
 @foreign
-typedef JOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION;
+typedef PJOBOBJECT_BASIC_LIMIT_INFORMATION = JOBOBJECT_BASIC_LIMIT_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_BASIC_LIMIT_INFORMATION = _JOBOBJECT_BASIC_LIMIT_INFORMATION*;
-
-@foreign
-struct _JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
+struct JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
     BasicLimitInformation: JOBOBJECT_BASIC_LIMIT_INFORMATION;
     IoInfo: IO_COUNTERS;
     ProcessMemoryLimit: SIZE_T;
@@ -3248,37 +2853,28 @@ struct _JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
 }
 
 @foreign
-typedef JOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION;
+typedef PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = JOBOBJECT_EXTENDED_LIMIT_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = _JOBOBJECT_EXTENDED_LIMIT_INFORMATION*;
-
-@foreign
-struct _JOBOBJECT_BASIC_PROCESS_ID_LIST {
+struct JOBOBJECT_BASIC_PROCESS_ID_LIST {
     NumberOfAssignedProcesses: DWORD;
     NumberOfProcessIdsInList: DWORD;
     ProcessIdList: ULONG_PTR[1];
 }
 
 @foreign
-typedef JOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST;
+typedef PJOBOBJECT_BASIC_PROCESS_ID_LIST = JOBOBJECT_BASIC_PROCESS_ID_LIST*;
 
 @foreign
-typedef PJOBOBJECT_BASIC_PROCESS_ID_LIST = _JOBOBJECT_BASIC_PROCESS_ID_LIST*;
-
-@foreign
-struct _JOBOBJECT_BASIC_UI_RESTRICTIONS {
+struct JOBOBJECT_BASIC_UI_RESTRICTIONS {
     UIRestrictionsClass: DWORD;
 }
 
 @foreign
-typedef JOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS;
+typedef PJOBOBJECT_BASIC_UI_RESTRICTIONS = JOBOBJECT_BASIC_UI_RESTRICTIONS*;
 
 @foreign
-typedef PJOBOBJECT_BASIC_UI_RESTRICTIONS = _JOBOBJECT_BASIC_UI_RESTRICTIONS*;
-
-@foreign
-struct _JOBOBJECT_SECURITY_LIMIT_INFORMATION {
+struct JOBOBJECT_SECURITY_LIMIT_INFORMATION {
     SecurityLimitFlags: DWORD;
     JobToken: HANDLE;
     SidsToDisable: PTOKEN_GROUPS;
@@ -3287,85 +2883,64 @@ struct _JOBOBJECT_SECURITY_LIMIT_INFORMATION {
 }
 
 @foreign
-typedef JOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION;
+typedef PJOBOBJECT_SECURITY_LIMIT_INFORMATION = JOBOBJECT_SECURITY_LIMIT_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_SECURITY_LIMIT_INFORMATION = _JOBOBJECT_SECURITY_LIMIT_INFORMATION*;
-
-@foreign
-struct _JOBOBJECT_END_OF_JOB_TIME_INFORMATION {
+struct JOBOBJECT_END_OF_JOB_TIME_INFORMATION {
     EndOfJobTimeAction: DWORD;
 }
 
 @foreign
-typedef JOBOBJECT_END_OF_JOB_TIME_INFORMATION = _JOBOBJECT_END_OF_JOB_TIME_INFORMATION;
+typedef PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = JOBOBJECT_END_OF_JOB_TIME_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = _JOBOBJECT_END_OF_JOB_TIME_INFORMATION*;
-
-@foreign
-struct _JOBOBJECT_ASSOCIATE_COMPLETION_PORT {
+struct JOBOBJECT_ASSOCIATE_COMPLETION_PORT {
     CompletionKey: PVOID;
     CompletionPort: HANDLE;
 }
 
 @foreign
-typedef JOBOBJECT_ASSOCIATE_COMPLETION_PORT = _JOBOBJECT_ASSOCIATE_COMPLETION_PORT;
+typedef PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = JOBOBJECT_ASSOCIATE_COMPLETION_PORT*;
 
 @foreign
-typedef PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = _JOBOBJECT_ASSOCIATE_COMPLETION_PORT*;
-
-@foreign
-struct _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION {
+struct JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION {
     BasicInfo: JOBOBJECT_BASIC_ACCOUNTING_INFORMATION;
     IoInfo: IO_COUNTERS;
 }
 
 @foreign
-typedef JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION;
+typedef PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = _JOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION*;
-
-@foreign
-struct _JOBOBJECT_JOBSET_INFORMATION {
+struct JOBOBJECT_JOBSET_INFORMATION {
     MemberLevel: DWORD;
 }
 
 @foreign
-typedef JOBOBJECT_JOBSET_INFORMATION = _JOBOBJECT_JOBSET_INFORMATION;
+typedef PJOBOBJECT_JOBSET_INFORMATION = JOBOBJECT_JOBSET_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_JOBSET_INFORMATION = _JOBOBJECT_JOBSET_INFORMATION*;
-
-@foreign
-enum _JOBOBJECT_RATE_CONTROL_TOLERANCE {
+enum JOBOBJECT_RATE_CONTROL_TOLERANCE {
     ToleranceLow = 1,
     ToleranceMedium,
     ToleranceHigh,
 }
 
 @foreign
-typedef JOBOBJECT_RATE_CONTROL_TOLERANCE = _JOBOBJECT_RATE_CONTROL_TOLERANCE;
+typedef PJOBOBJECT_RATE_CONTROL_TOLERANCE = JOBOBJECT_RATE_CONTROL_TOLERANCE*;
 
 @foreign
-typedef PJOBOBJECT_RATE_CONTROL_TOLERANCE = _JOBOBJECT_RATE_CONTROL_TOLERANCE*;
-
-@foreign
-enum _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL {
+enum JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL {
     ToleranceIntervalShort = 1,
     ToleranceIntervalMedium,
     ToleranceIntervalLong,
 }
 
 @foreign
-typedef JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL;
+typedef PJOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL*;
 
 @foreign
-typedef PJOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = _JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL*;
-
-@foreign
-struct _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION {
+struct JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION {
     IoReadBytesLimit: DWORD64;
     IoWriteBytesLimit: DWORD64;
     PerJobUserTimeLimit: LARGE_INTEGER;
@@ -3376,10 +2951,7 @@ struct _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION {
 }
 
 @foreign
-typedef JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION;
-
-@foreign
-typedef PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = _JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION*;
+typedef PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION*;
 
 /*
 @PROBLEM Nested struct def at line 11776, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
@@ -3402,7 +2974,7 @@ struct JOBOBJECT_NOTIFICATION_LIMIT_INFORMATION_2 {
 */
 
 @foreign
-struct _JOBOBJECT_LIMIT_VIOLATION_INFORMATION {
+struct JOBOBJECT_LIMIT_VIOLATION_INFORMATION {
     LimitFlags: DWORD;
     ViolationLimitFlags: DWORD;
     IoReadBytes: DWORD64;
@@ -3418,10 +2990,7 @@ struct _JOBOBJECT_LIMIT_VIOLATION_INFORMATION {
 }
 
 @foreign
-typedef JOBOBJECT_LIMIT_VIOLATION_INFORMATION = _JOBOBJECT_LIMIT_VIOLATION_INFORMATION;
-
-@foreign
-typedef PJOBOBJECT_LIMIT_VIOLATION_INFORMATION = _JOBOBJECT_LIMIT_VIOLATION_INFORMATION*;
+typedef PJOBOBJECT_LIMIT_VIOLATION_INFORMATION = JOBOBJECT_LIMIT_VIOLATION_INFORMATION*;
 
 /*
 @PROBLEM Nested struct def at line 11820, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
@@ -3449,29 +3018,26 @@ struct JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 {
 */
 
 @foreign
-struct _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_s1 {
+struct JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_s1 {
     MinRate: WORD;
     MaxRate: WORD;
 }
 
 @foreign
-union _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_u1 {
+union JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_u1 {
     CpuRate: DWORD;
     Weight: DWORD;
-    s: _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_s1;
+    s: JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_s1;
 }
 
 @foreign
-struct _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION {
+struct JOBOBJECT_CPU_RATE_CONTROL_INFORMATION {
     ControlFlags: DWORD;
-    u: _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_u1;
+    u: JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_u1;
 }
 
 @foreign
-typedef JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION;
-
-@foreign
-typedef PJOBOBJECT_CPU_RATE_CONTROL_INFORMATION = _JOBOBJECT_CPU_RATE_CONTROL_INFORMATION*;
+typedef PJOBOBJECT_CPU_RATE_CONTROL_INFORMATION = JOBOBJECT_CPU_RATE_CONTROL_INFORMATION*;
 
 @foreign
 enum JOB_OBJECT_NET_RATE_CONTROL_FLAGS {
@@ -3560,7 +3126,7 @@ enum JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS {
 }
 
 @foreign
-struct _JOBOBJECT_IO_ATTRIBUTION_STATS {
+struct JOBOBJECT_IO_ATTRIBUTION_STATS {
     IoCount: ULONG_PTR;
     TotalNonOverlappedQueueTime: ULONGLONG;
     TotalNonOverlappedServiceTime: ULONGLONG;
@@ -3568,26 +3134,20 @@ struct _JOBOBJECT_IO_ATTRIBUTION_STATS {
 }
 
 @foreign
-typedef JOBOBJECT_IO_ATTRIBUTION_STATS = _JOBOBJECT_IO_ATTRIBUTION_STATS;
+typedef PJOBOBJECT_IO_ATTRIBUTION_STATS = JOBOBJECT_IO_ATTRIBUTION_STATS*;
 
 @foreign
-typedef PJOBOBJECT_IO_ATTRIBUTION_STATS = _JOBOBJECT_IO_ATTRIBUTION_STATS*;
-
-@foreign
-struct _JOBOBJECT_IO_ATTRIBUTION_INFORMATION {
+struct JOBOBJECT_IO_ATTRIBUTION_INFORMATION {
     ControlFlags: DWORD;
     ReadStats: JOBOBJECT_IO_ATTRIBUTION_STATS;
     WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS;
 }
 
 @foreign
-typedef JOBOBJECT_IO_ATTRIBUTION_INFORMATION = _JOBOBJECT_IO_ATTRIBUTION_INFORMATION;
+typedef PJOBOBJECT_IO_ATTRIBUTION_INFORMATION = JOBOBJECT_IO_ATTRIBUTION_INFORMATION*;
 
 @foreign
-typedef PJOBOBJECT_IO_ATTRIBUTION_INFORMATION = _JOBOBJECT_IO_ATTRIBUTION_INFORMATION*;
-
-@foreign
-enum _JOBOBJECTINFOCLASS {
+enum JOBOBJECTINFOCLASS {
     JobObjectBasicAccountingInformation = 1,
     JobObjectBasicLimitInformation,
     JobObjectBasicProcessIdList,
@@ -3639,10 +3199,7 @@ enum _JOBOBJECTINFOCLASS {
 }
 
 @foreign
-typedef JOBOBJECTINFOCLASS = _JOBOBJECTINFOCLASS;
-
-@foreign
-struct _SILOOBJECT_BASIC_INFORMATION {
+struct SILOOBJECT_BASIC_INFORMATION {
     SiloId: DWORD;
     SiloParentId: DWORD;
     NumberOfProcesses: DWORD;
@@ -3651,13 +3208,10 @@ struct _SILOOBJECT_BASIC_INFORMATION {
 }
 
 @foreign
-typedef SILOOBJECT_BASIC_INFORMATION = _SILOOBJECT_BASIC_INFORMATION;
+typedef PSILOOBJECT_BASIC_INFORMATION = SILOOBJECT_BASIC_INFORMATION*;
 
 @foreign
-typedef PSILOOBJECT_BASIC_INFORMATION = _SILOOBJECT_BASIC_INFORMATION*;
-
-@foreign
-enum _SERVERSILO_STATE {
+enum SERVERSILO_STATE {
     SERVERSILO_INITING = 0,
     SERVERSILO_STARTED,
     SERVERSILO_SHUTTING_DOWN,
@@ -3666,26 +3220,20 @@ enum _SERVERSILO_STATE {
 }
 
 @foreign
-typedef SERVERSILO_STATE = _SERVERSILO_STATE;
+typedef PSERVERSILO_STATE = SERVERSILO_STATE*;
 
 @foreign
-typedef PSERVERSILO_STATE = _SERVERSILO_STATE*;
-
-@foreign
-struct _SERVERSILO_BASIC_INFORMATION {
+struct SERVERSILO_BASIC_INFORMATION {
     ServiceSessionId: DWORD;
     State: SERVERSILO_STATE;
     ExitStatus: DWORD;
 }
 
 @foreign
-typedef SERVERSILO_BASIC_INFORMATION = _SERVERSILO_BASIC_INFORMATION;
+typedef PSERVERSILO_BASIC_INFORMATION = SERVERSILO_BASIC_INFORMATION*;
 
 @foreign
-typedef PSERVERSILO_BASIC_INFORMATION = _SERVERSILO_BASIC_INFORMATION*;
-
-@foreign
-enum _FIRMWARE_TYPE {
+enum FIRMWARE_TYPE {
     FirmwareTypeUnknown,
     FirmwareTypeBios,
     FirmwareTypeUefi,
@@ -3693,13 +3241,10 @@ enum _FIRMWARE_TYPE {
 }
 
 @foreign
-typedef FIRMWARE_TYPE = _FIRMWARE_TYPE;
+typedef PFIRMWARE_TYPE = FIRMWARE_TYPE*;
 
 @foreign
-typedef PFIRMWARE_TYPE = _FIRMWARE_TYPE*;
-
-@foreign
-enum _LOGICAL_PROCESSOR_RELATIONSHIP {
+enum LOGICAL_PROCESSOR_RELATIONSHIP {
     RelationProcessorCore,
     RelationNumaNode,
     RelationCache,
@@ -3709,10 +3254,7 @@ enum _LOGICAL_PROCESSOR_RELATIONSHIP {
 }
 
 @foreign
-typedef LOGICAL_PROCESSOR_RELATIONSHIP = _LOGICAL_PROCESSOR_RELATIONSHIP;
-
-@foreign
-enum _PROCESSOR_CACHE_TYPE {
+enum PROCESSOR_CACHE_TYPE {
     CacheUnified,
     CacheInstruction,
     CacheData,
@@ -3720,10 +3262,7 @@ enum _PROCESSOR_CACHE_TYPE {
 }
 
 @foreign
-typedef PROCESSOR_CACHE_TYPE = _PROCESSOR_CACHE_TYPE;
-
-@foreign
-struct _CACHE_DESCRIPTOR {
+struct CACHE_DESCRIPTOR {
     Level: BYTE;
     Associativity: BYTE;
     LineSize: WORD;
@@ -3732,44 +3271,38 @@ struct _CACHE_DESCRIPTOR {
 }
 
 @foreign
-typedef CACHE_DESCRIPTOR = _CACHE_DESCRIPTOR;
+typedef PCACHE_DESCRIPTOR = CACHE_DESCRIPTOR*;
 
 @foreign
-typedef PCACHE_DESCRIPTOR = _CACHE_DESCRIPTOR*;
-
-@foreign
-struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1 {
+struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1 {
     Flags: BYTE;
 }
 
 @foreign
-struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2 {
+struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2 {
     NodeNumber: DWORD;
 }
 
 @foreign
-union _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u {
-    ProcessorCore: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1;
-    NumaNode: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2;
+union SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u {
+    ProcessorCore: SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1;
+    NumaNode: SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2;
     Cache: CACHE_DESCRIPTOR;
     Reserved: ULONGLONG[2];
 }
 
 @foreign
-struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
+struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
     ProcessorMask: ULONG_PTR;
     Relationship: LOGICAL_PROCESSOR_RELATIONSHIP;
-    u: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u;
+    u: SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u;
 }
 
 @foreign
-typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION;
+typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = SYSTEM_LOGICAL_PROCESSOR_INFORMATION*;
 
 @foreign
-typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION*;
-
-@foreign
-struct _PROCESSOR_RELATIONSHIP {
+struct PROCESSOR_RELATIONSHIP {
     Flags: BYTE;
     EfficiencyClass: BYTE;
     Reserved: BYTE[20];
@@ -3778,26 +3311,20 @@ struct _PROCESSOR_RELATIONSHIP {
 }
 
 @foreign
-typedef PROCESSOR_RELATIONSHIP = _PROCESSOR_RELATIONSHIP;
+typedef PPROCESSOR_RELATIONSHIP = PROCESSOR_RELATIONSHIP*;
 
 @foreign
-typedef PPROCESSOR_RELATIONSHIP = _PROCESSOR_RELATIONSHIP*;
-
-@foreign
-struct _NUMA_NODE_RELATIONSHIP {
+struct NUMA_NODE_RELATIONSHIP {
     NodeNumber: DWORD;
     Reserved: BYTE[20];
     GroupMask: GROUP_AFFINITY;
 }
 
 @foreign
-typedef NUMA_NODE_RELATIONSHIP = _NUMA_NODE_RELATIONSHIP;
+typedef PNUMA_NODE_RELATIONSHIP = NUMA_NODE_RELATIONSHIP*;
 
 @foreign
-typedef PNUMA_NODE_RELATIONSHIP = _NUMA_NODE_RELATIONSHIP*;
-
-@foreign
-struct _CACHE_RELATIONSHIP {
+struct CACHE_RELATIONSHIP {
     Level: BYTE;
     Associativity: BYTE;
     LineSize: WORD;
@@ -3808,13 +3335,10 @@ struct _CACHE_RELATIONSHIP {
 }
 
 @foreign
-typedef CACHE_RELATIONSHIP = _CACHE_RELATIONSHIP;
+typedef PCACHE_RELATIONSHIP = CACHE_RELATIONSHIP*;
 
 @foreign
-typedef PCACHE_RELATIONSHIP = _CACHE_RELATIONSHIP*;
-
-@foreign
-struct _PROCESSOR_GROUP_INFO {
+struct PROCESSOR_GROUP_INFO {
     MaximumProcessorCount: BYTE;
     ActiveProcessorCount: BYTE;
     Reserved: BYTE[38];
@@ -3822,13 +3346,10 @@ struct _PROCESSOR_GROUP_INFO {
 }
 
 @foreign
-typedef PROCESSOR_GROUP_INFO = _PROCESSOR_GROUP_INFO;
+typedef PPROCESSOR_GROUP_INFO = PROCESSOR_GROUP_INFO*;
 
 @foreign
-typedef PPROCESSOR_GROUP_INFO = _PROCESSOR_GROUP_INFO*;
-
-@foreign
-struct _GROUP_RELATIONSHIP {
+struct GROUP_RELATIONSHIP {
     MaximumGroupCount: WORD;
     ActiveGroupCount: WORD;
     Reserved: BYTE[20];
@@ -3836,13 +3357,10 @@ struct _GROUP_RELATIONSHIP {
 }
 
 @foreign
-typedef GROUP_RELATIONSHIP = _GROUP_RELATIONSHIP;
+typedef PGROUP_RELATIONSHIP = GROUP_RELATIONSHIP*;
 
 @foreign
-typedef PGROUP_RELATIONSHIP = _GROUP_RELATIONSHIP*;
-
-@foreign
-union _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner {
+union SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner {
     Processor: PROCESSOR_RELATIONSHIP;
     NumaNode: NUMA_NODE_RELATIONSHIP;
     Cache: CACHE_RELATIONSHIP;
@@ -3850,74 +3368,57 @@ union _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner {
 }
 
 @foreign
-struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
+struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
     Relationship: LOGICAL_PROCESSOR_RELATIONSHIP;
     Size: DWORD;
-    u: _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner;
+    u: SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner;
 }
 
 @foreign
-typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
+typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX*;
 
 @foreign
-typedef PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX*;
-
-@foreign
-enum _CPU_SET_INFORMATION_TYPE {
+enum CPU_SET_INFORMATION_TYPE {
     CpuSetInformation,
 }
 
 @foreign
-typedef CPU_SET_INFORMATION_TYPE = _CPU_SET_INFORMATION_TYPE;
+typedef PCPU_SET_INFORMATION_TYPE = CPU_SET_INFORMATION_TYPE*;
+
+// @PROBLEM bitfields
+@foreign
+struct SYSTEM_CPU_SET_INFORMATION;
 
 @foreign
-typedef PCPU_SET_INFORMATION_TYPE = _CPU_SET_INFORMATION_TYPE*;
-
-// _SYSTEM_CPU_SET_INFORMATION contains bitfields
-@foreign
-struct _SYSTEM_CPU_SET_INFORMATION;
+typedef PSYSTEM_CPU_SET_INFORMATION = SYSTEM_CPU_SET_INFORMATION*;
 
 @foreign
-typedef SYSTEM_CPU_SET_INFORMATION = _SYSTEM_CPU_SET_INFORMATION;
-
-@foreign
-typedef PSYSTEM_CPU_SET_INFORMATION = _SYSTEM_CPU_SET_INFORMATION*;
-
-@foreign
-struct _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION {
+struct SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION {
     CycleTime: DWORD64;
 }
 
 @foreign
-typedef SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION;
+typedef PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION*;
 
 @foreign
-typedef PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = _SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION*;
-
-@foreign
-struct _XSTATE_FEATURE {
+struct XSTATE_FEATURE {
     Offset: DWORD;
     Size: DWORD;
 }
 
-@foreign
-typedef XSTATE_FEATURE = _XSTATE_FEATURE;
 
 @foreign
-typedef PXSTATE_FEATURE = _XSTATE_FEATURE*;
+typedef PXSTATE_FEATURE = XSTATE_FEATURE*;
 
 // @PROBLEM bitfields
 @foreign
-struct _XSTATE_CONFIGURATION;
+struct XSTATE_CONFIGURATION;
 
 @foreign
-typedef XSTATE_CONFIGURATION = _XSTATE_CONFIGURATION;
+typedef PXSTATE_CONFIGURATION = XSTATE_CONFIGURATION*;
 
 @foreign
-typedef PXSTATE_CONFIGURATION = _XSTATE_CONFIGURATION*;
-
-@foreign
-struct _MEMORY_BASIC_INFORMATION {
+struct MEMORY_BASIC_INFORMATION {
     BaseAddress: PVOID;
     AllocationBase: PVOID;
     AllocationProtect: DWORD;
@@ -3928,13 +3429,10 @@ struct _MEMORY_BASIC_INFORMATION {
 }
 
 @foreign
-typedef MEMORY_BASIC_INFORMATION = _MEMORY_BASIC_INFORMATION;
+typedef PMEMORY_BASIC_INFORMATION = MEMORY_BASIC_INFORMATION*;
 
 @foreign
-typedef PMEMORY_BASIC_INFORMATION = _MEMORY_BASIC_INFORMATION*;
-
-@foreign
-struct _MEMORY_BASIC_INFORMATION32 {
+struct MEMORY_BASIC_INFORMATION32 {
     BaseAddress: DWORD;
     AllocationBase: DWORD;
     AllocationProtect: DWORD;
@@ -3945,13 +3443,10 @@ struct _MEMORY_BASIC_INFORMATION32 {
 }
 
 @foreign
-typedef MEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32;
+typedef PMEMORY_BASIC_INFORMATION32 = MEMORY_BASIC_INFORMATION32*;
 
 @foreign
-typedef PMEMORY_BASIC_INFORMATION32 = _MEMORY_BASIC_INFORMATION32*;
-
-@foreign
-struct _MEMORY_BASIC_INFORMATION64 {
+struct MEMORY_BASIC_INFORMATION64 {
     BaseAddress: ULONGLONG;
     AllocationBase: ULONGLONG;
     AllocationProtect: DWORD;
@@ -3964,36 +3459,27 @@ struct _MEMORY_BASIC_INFORMATION64 {
 }
 
 @foreign
-typedef MEMORY_BASIC_INFORMATION64 = _MEMORY_BASIC_INFORMATION64;
+typedef PMEMORY_BASIC_INFORMATION64 = MEMORY_BASIC_INFORMATION64*;
 
 @foreign
-typedef PMEMORY_BASIC_INFORMATION64 = _MEMORY_BASIC_INFORMATION64*;
-
-@foreign
-struct _CFG_CALL_TARGET_INFO {
+struct CFG_CALL_TARGET_INFO {
     Offset: ULONG_PTR;
     Flags: ULONG_PTR;
 }
 
 @foreign
-typedef CFG_CALL_TARGET_INFO = _CFG_CALL_TARGET_INFO;
+typedef PCFG_CALL_TARGET_INFO = CFG_CALL_TARGET_INFO*;
 
 @foreign
-typedef PCFG_CALL_TARGET_INFO = _CFG_CALL_TARGET_INFO*;
-
-@foreign
-struct _ENCLAVE_CREATE_INFO_SGX {
+struct ENCLAVE_CREATE_INFO_SGX {
     Secs: BYTE[4096];
 }
 
 @foreign
-typedef ENCLAVE_CREATE_INFO_SGX = _ENCLAVE_CREATE_INFO_SGX;
+typedef PENCLAVE_CREATE_INFO_SGX = ENCLAVE_CREATE_INFO_SGX*;
 
 @foreign
-typedef PENCLAVE_CREATE_INFO_SGX = _ENCLAVE_CREATE_INFO_SGX*;
-
-@foreign
-struct _ENCLAVE_INIT_INFO_SGX {
+struct ENCLAVE_INIT_INFO_SGX {
     SigStruct: BYTE[1808];
     Reserved1: BYTE[240];
     EInitToken: BYTE[304];
@@ -4001,34 +3487,25 @@ struct _ENCLAVE_INIT_INFO_SGX {
 }
 
 @foreign
-typedef ENCLAVE_INIT_INFO_SGX = _ENCLAVE_INIT_INFO_SGX;
+typedef PENCLAVE_INIT_INFO_SGX = ENCLAVE_INIT_INFO_SGX*;
 
 @foreign
-typedef PENCLAVE_INIT_INFO_SGX = _ENCLAVE_INIT_INFO_SGX*;
-
-@foreign
-struct _ENCLAVE_CREATE_INFO_VBS {
+struct ENCLAVE_CREATE_INFO_VBS {
     Flags: DWORD;
     OwnerID: BYTE[32];
 }
 
 @foreign
-typedef ENCLAVE_CREATE_INFO_VBS = _ENCLAVE_CREATE_INFO_VBS;
+typedef PENCLAVE_CREATE_INFO_VBS = ENCLAVE_CREATE_INFO_VBS*;
 
 @foreign
-typedef PENCLAVE_CREATE_INFO_VBS = _ENCLAVE_CREATE_INFO_VBS*;
-
-@foreign
-struct _ENCLAVE_INIT_INFO_VBS {
+struct ENCLAVE_INIT_INFO_VBS {
     Length: DWORD;
     ThreadCount: DWORD;
 }
 
 @foreign
-typedef ENCLAVE_INIT_INFO_VBS = _ENCLAVE_INIT_INFO_VBS;
-
-@foreign
-typedef PENCLAVE_INIT_INFO_VBS = _ENCLAVE_INIT_INFO_VBS*;
+typedef PENCLAVE_INIT_INFO_VBS = ENCLAVE_INIT_INFO_VBS*;
 
 @foreign
 typedef ENCLAVE_TARGET_FUNCTION = func(arg0: PVOID): PVOID;
@@ -4040,18 +3517,15 @@ typedef PENCLAVE_TARGET_FUNCTION = ENCLAVE_TARGET_FUNCTION*;
 typedef LPENCLAVE_TARGET_FUNCTION = PENCLAVE_TARGET_FUNCTION;
 
 @foreign
-struct _FILE_ID_128 {
+struct FILE_ID_128 {
     Identifier: BYTE[16];
 }
 
 @foreign
-typedef FILE_ID_128 = _FILE_ID_128;
+typedef PFILE_ID_128 = FILE_ID_128*;
 
 @foreign
-typedef PFILE_ID_128 = _FILE_ID_128*;
-
-@foreign
-struct _FILE_NOTIFY_INFORMATION {
+struct FILE_NOTIFY_INFORMATION {
     NextEntryOffset: DWORD;
     Action: DWORD;
     FileNameLength: DWORD;
@@ -4059,13 +3533,10 @@ struct _FILE_NOTIFY_INFORMATION {
 }
 
 @foreign
-typedef FILE_NOTIFY_INFORMATION = _FILE_NOTIFY_INFORMATION;
+typedef PFILE_NOTIFY_INFORMATION = FILE_NOTIFY_INFORMATION*;
 
 @foreign
-typedef PFILE_NOTIFY_INFORMATION = _FILE_NOTIFY_INFORMATION*;
-
-@foreign
-struct _FILE_NOTIFY_EXTENDED_INFORMATION {
+struct FILE_NOTIFY_EXTENDED_INFORMATION {
     NextEntryOffset: DWORD;
     Action: DWORD;
     CreationTime: LARGE_INTEGER;
@@ -4083,45 +3554,36 @@ struct _FILE_NOTIFY_EXTENDED_INFORMATION {
 }
 
 @foreign
-typedef FILE_NOTIFY_EXTENDED_INFORMATION = _FILE_NOTIFY_EXTENDED_INFORMATION;
+typedef PFILE_NOTIFY_EXTENDED_INFORMATION = FILE_NOTIFY_EXTENDED_INFORMATION*;
 
 @foreign
-typedef PFILE_NOTIFY_EXTENDED_INFORMATION = _FILE_NOTIFY_EXTENDED_INFORMATION*;
-
-@foreign
-union _FILE_SEGMENT_ELEMENT {
+union FILE_SEGMENT_ELEMENT {
     Buffer: PVOID64;
     Alignment: ULONGLONG;
 }
 
 @foreign
-typedef FILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT;
+typedef PFILE_SEGMENT_ELEMENT = FILE_SEGMENT_ELEMENT*;
 
 @foreign
-typedef PFILE_SEGMENT_ELEMENT = _FILE_SEGMENT_ELEMENT*;
-
-@foreign
-struct _REPARSE_GUID_DATA_BUFFER___inner {
+struct REPARSE_GUID_DATA_BUFFER___inner {
     DataBuffer: BYTE[1];
 }
 
 @foreign
-struct _REPARSE_GUID_DATA_BUFFER {
+struct REPARSE_GUID_DATA_BUFFER {
     ReparseTag: DWORD;
     ReparseDataLength: WORD;
     Reserved: WORD;
     ReparseGuid: GUID;
-    GenericReparseBuffer: _REPARSE_GUID_DATA_BUFFER___inner;
+    GenericReparseBuffer: REPARSE_GUID_DATA_BUFFER___inner;
 }
 
 @foreign
-typedef REPARSE_GUID_DATA_BUFFER = _REPARSE_GUID_DATA_BUFFER;
+typedef PREPARSE_GUID_DATA_BUFFER = REPARSE_GUID_DATA_BUFFER*;
 
 @foreign
-typedef PREPARSE_GUID_DATA_BUFFER = _REPARSE_GUID_DATA_BUFFER*;
-
-@foreign
-struct _SCRUB_DATA_INPUT {
+struct SCRUB_DATA_INPUT {
     Size: DWORD;
     Flags: DWORD;
     MaximumIos: DWORD;
@@ -4131,25 +3593,19 @@ struct _SCRUB_DATA_INPUT {
 }
 
 @foreign
-typedef SCRUB_DATA_INPUT = _SCRUB_DATA_INPUT;
+typedef PSCRUB_DATA_INPUT = SCRUB_DATA_INPUT*;
 
 @foreign
-typedef PSCRUB_DATA_INPUT = _SCRUB_DATA_INPUT*;
-
-@foreign
-struct _SCRUB_PARITY_EXTENT {
+struct SCRUB_PARITY_EXTENT {
     Offset: LONGLONG;
     Length: ULONGLONG;
 }
 
 @foreign
-typedef SCRUB_PARITY_EXTENT = _SCRUB_PARITY_EXTENT;
+typedef PSCRUB_PARITY_EXTENT = SCRUB_PARITY_EXTENT*;
 
 @foreign
-typedef PSCRUB_PARITY_EXTENT = _SCRUB_PARITY_EXTENT*;
-
-@foreign
-struct _SCRUB_PARITY_EXTENT_DATA {
+struct SCRUB_PARITY_EXTENT_DATA {
     Size: WORD;
     Flags: WORD;
     NumberOfParityExtents: WORD;
@@ -4158,13 +3614,10 @@ struct _SCRUB_PARITY_EXTENT_DATA {
 }
 
 @foreign
-typedef SCRUB_PARITY_EXTENT_DATA = _SCRUB_PARITY_EXTENT_DATA;
+typedef PSCRUB_PARITY_EXTENT_DATA = SCRUB_PARITY_EXTENT_DATA*;
 
 @foreign
-typedef PSCRUB_PARITY_EXTENT_DATA = _SCRUB_PARITY_EXTENT_DATA*;
-
-@foreign
-struct _SCRUB_DATA_OUTPUT {
+struct SCRUB_DATA_OUTPUT {
     Size: DWORD;
     Flags: DWORD;
     Status: DWORD;
@@ -4180,13 +3633,10 @@ struct _SCRUB_DATA_OUTPUT {
 }
 
 @foreign
-typedef SCRUB_DATA_OUTPUT = _SCRUB_DATA_OUTPUT;
+typedef PSCRUB_DATA_OUTPUT = SCRUB_DATA_OUTPUT*;
 
 @foreign
-typedef PSCRUB_DATA_OUTPUT = _SCRUB_DATA_OUTPUT*;
-
-@foreign
-enum _SharedVirtualDiskSupportType {
+enum SharedVirtualDiskSupportType {
     SharedVirtualDisksUnsupported = 0,
     SharedVirtualDisksSupported = 1,
     SharedVirtualDiskSnapshotsSupported = 3,
@@ -4194,44 +3644,32 @@ enum _SharedVirtualDiskSupportType {
 }
 
 @foreign
-typedef SharedVirtualDiskSupportType = _SharedVirtualDiskSupportType;
-
-@foreign
-enum _SharedVirtualDiskHandleState {
+enum SharedVirtualDiskHandleState {
     SharedVirtualDiskHandleStateNone = 0,
     SharedVirtualDiskHandleStateFileShared = 1,
     SharedVirtualDiskHandleStateHandleShared = 3,
 }
 
 @foreign
-typedef SharedVirtualDiskHandleState = _SharedVirtualDiskHandleState;
-
-@foreign
-struct _SHARED_VIRTUAL_DISK_SUPPORT {
+struct SHARED_VIRTUAL_DISK_SUPPORT {
     SharedVirtualDiskSupport: SharedVirtualDiskSupportType;
     HandleState: SharedVirtualDiskHandleState;
 }
 
 @foreign
-typedef SHARED_VIRTUAL_DISK_SUPPORT = _SHARED_VIRTUAL_DISK_SUPPORT;
+typedef PSHARED_VIRTUAL_DISK_SUPPORT = SHARED_VIRTUAL_DISK_SUPPORT*;
 
 @foreign
-typedef PSHARED_VIRTUAL_DISK_SUPPORT = _SHARED_VIRTUAL_DISK_SUPPORT*;
-
-@foreign
-struct _NETWORK_APP_INSTANCE_EA {
+struct NETWORK_APP_INSTANCE_EA {
     AppInstanceID: GUID;
     CsvFlags: DWORD;
 }
 
 @foreign
-typedef NETWORK_APP_INSTANCE_EA = _NETWORK_APP_INSTANCE_EA;
+typedef PNETWORK_APP_INSTANCE_EA = NETWORK_APP_INSTANCE_EA*;
 
 @foreign
-typedef PNETWORK_APP_INSTANCE_EA = _NETWORK_APP_INSTANCE_EA*;
-
-@foreign
-enum _SYSTEM_POWER_STATE {
+enum SYSTEM_POWER_STATE {
     PowerSystemUnspecified = 0,
     PowerSystemWorking = 1,
     PowerSystemSleeping1 = 2,
@@ -4243,10 +3681,7 @@ enum _SYSTEM_POWER_STATE {
 }
 
 @foreign
-typedef SYSTEM_POWER_STATE = _SYSTEM_POWER_STATE;
-
-@foreign
-typedef PSYSTEM_POWER_STATE = _SYSTEM_POWER_STATE*;
+typedef PSYSTEM_POWER_STATE = SYSTEM_POWER_STATE*;
 
 @foreign
 enum POWER_ACTION {
@@ -4265,7 +3700,7 @@ enum POWER_ACTION {
 typedef PPOWER_ACTION = POWER_ACTION;
 
 @foreign
-enum _DEVICE_POWER_STATE {
+enum DEVICE_POWER_STATE {
     PowerDeviceUnspecified = 0,
     PowerDeviceD0,
     PowerDeviceD1,
@@ -4275,26 +3710,20 @@ enum _DEVICE_POWER_STATE {
 }
 
 @foreign
-typedef DEVICE_POWER_STATE = _DEVICE_POWER_STATE;
+typedef PDEVICE_POWER_STATE = DEVICE_POWER_STATE*;
 
 @foreign
-typedef PDEVICE_POWER_STATE = _DEVICE_POWER_STATE*;
-
-@foreign
-enum _MONITOR_DISPLAY_STATE {
+enum MONITOR_DISPLAY_STATE {
     PowerMonitorOff = 0,
     PowerMonitorOn,
     PowerMonitorDim,
 }
 
 @foreign
-typedef MONITOR_DISPLAY_STATE = _MONITOR_DISPLAY_STATE;
+typedef PMONITOR_DISPLAY_STATE = MONITOR_DISPLAY_STATE*;
 
 @foreign
-typedef PMONITOR_DISPLAY_STATE = _MONITOR_DISPLAY_STATE*;
-
-@foreign
-enum _USER_ACTIVITY_PRESENCE {
+enum USER_ACTIVITY_PRESENCE {
     PowerUserPresent = 0,
     PowerUserNotPresent,
     PowerUserInactive,
@@ -4303,10 +3732,7 @@ enum _USER_ACTIVITY_PRESENCE {
 }
 
 @foreign
-typedef USER_ACTIVITY_PRESENCE = _USER_ACTIVITY_PRESENCE;
-
-@foreign
-typedef PUSER_ACTIVITY_PRESENCE = _USER_ACTIVITY_PRESENCE*;
+typedef PUSER_ACTIVITY_PRESENCE = USER_ACTIVITY_PRESENCE*;
 
 @foreign
 typedef EXECUTION_STATE = DWORD;
@@ -4321,7 +3747,7 @@ enum LATENCY_TIME {
 }
 
 @foreign
-enum _POWER_REQUEST_TYPE {
+enum POWER_REQUEST_TYPE {
     PowerRequestDisplayRequired,
     PowerRequestSystemRequired,
     PowerRequestAwayModeRequired,
@@ -4329,13 +3755,10 @@ enum _POWER_REQUEST_TYPE {
 }
 
 @foreign
-typedef POWER_REQUEST_TYPE = _POWER_REQUEST_TYPE;
+typedef PPOWER_REQUEST_TYPE = POWER_REQUEST_TYPE*;
 
 @foreign
-typedef PPOWER_REQUEST_TYPE = _POWER_REQUEST_TYPE*;
-
-@foreign
-struct CM_Power_Data_s {
+struct CM_POWER_DATA {
     PD_Size: DWORD;
     PD_MostRecentPowerState: DEVICE_POWER_STATE;
     PD_Capabilities: DWORD;
@@ -4347,10 +3770,7 @@ struct CM_Power_Data_s {
 }
 
 @foreign
-typedef CM_POWER_DATA = CM_Power_Data_s;
-
-@foreign
-typedef PCM_POWER_DATA = CM_Power_Data_s*;
+typedef PCM_POWER_DATA = CM_POWER_DATA*;
 
 @foreign
 enum POWER_INFORMATION_LEVEL {
@@ -4463,76 +3883,58 @@ enum POWER_USER_PRESENCE_TYPE {
 typedef PPOWER_USER_PRESENCE_TYPE = POWER_USER_PRESENCE_TYPE;
 
 @foreign
-struct _POWER_USER_PRESENCE {
+struct POWER_USER_PRESENCE {
     UserPresence: POWER_USER_PRESENCE_TYPE;
 }
 
 @foreign
-typedef POWER_USER_PRESENCE = _POWER_USER_PRESENCE;
+typedef PPOWER_USER_PRESENCE = POWER_USER_PRESENCE*;
 
 @foreign
-typedef PPOWER_USER_PRESENCE = _POWER_USER_PRESENCE*;
-
-@foreign
-struct _POWER_SESSION_CONNECT {
+struct POWER_SESSION_CONNECT {
     Connected: BOOLEAN;
     Console: BOOLEAN;
 }
 
 @foreign
-typedef POWER_SESSION_CONNECT = _POWER_SESSION_CONNECT;
+typedef PPOWER_SESSION_CONNECT = POWER_SESSION_CONNECT*;
 
 @foreign
-typedef PPOWER_SESSION_CONNECT = _POWER_SESSION_CONNECT*;
-
-@foreign
-struct _POWER_SESSION_TIMEOUTS {
+struct POWER_SESSION_TIMEOUTS {
     InputTimeout: DWORD;
     DisplayTimeout: DWORD;
 }
 
 @foreign
-typedef POWER_SESSION_TIMEOUTS = _POWER_SESSION_TIMEOUTS;
+typedef PPOWER_SESSION_TIMEOUTS = POWER_SESSION_TIMEOUTS*;
 
 @foreign
-typedef PPOWER_SESSION_TIMEOUTS = _POWER_SESSION_TIMEOUTS*;
-
-@foreign
-struct _POWER_SESSION_RIT_STATE {
+struct POWER_SESSION_RIT_STATE {
     Active: BOOLEAN;
     LastInputTime: DWORD;
 }
 
 @foreign
-typedef POWER_SESSION_RIT_STATE = _POWER_SESSION_RIT_STATE;
+typedef PPOWER_SESSION_RIT_STATE = POWER_SESSION_RIT_STATE*;
 
 @foreign
-typedef PPOWER_SESSION_RIT_STATE = _POWER_SESSION_RIT_STATE*;
-
-@foreign
-struct _POWER_SESSION_WINLOGON {
+struct POWER_SESSION_WINLOGON {
     SessionId: DWORD;
     Console: BOOLEAN;
     Locked: BOOLEAN;
 }
 
 @foreign
-typedef POWER_SESSION_WINLOGON = _POWER_SESSION_WINLOGON;
+typedef PPOWER_SESSION_WINLOGON = POWER_SESSION_WINLOGON*;
 
 @foreign
-typedef PPOWER_SESSION_WINLOGON = _POWER_SESSION_WINLOGON*;
-
-@foreign
-struct _POWER_IDLE_RESILIENCY {
+struct POWER_IDLE_RESILIENCY {
     CoalescingTimeout: DWORD;
     IdleResiliencyPeriod: DWORD;
 }
 
 @foreign
-typedef POWER_IDLE_RESILIENCY = _POWER_IDLE_RESILIENCY;
-
-@foreign
-typedef PPOWER_IDLE_RESILIENCY = _POWER_IDLE_RESILIENCY*;
+typedef PPOWER_IDLE_RESILIENCY = POWER_IDLE_RESILIENCY*;
 
 @foreign
 enum POWER_MONITOR_REQUEST_REASON {
@@ -4584,39 +3986,30 @@ enum POWER_MONITOR_REQUEST_REASON {
 }
 
 @foreign
-enum _POWER_MONITOR_REQUEST_TYPE {
+enum POWER_MONITOR_REQUEST_TYPE {
     MonitorRequestTypeOff,
     MonitorRequestTypeOnAndPresent,
     MonitorRequestTypeToggleOn,
 }
 
 @foreign
-typedef POWER_MONITOR_REQUEST_TYPE = _POWER_MONITOR_REQUEST_TYPE;
-
-@foreign
-struct _POWER_MONITOR_INVOCATION {
+struct POWER_MONITOR_INVOCATION {
     Console: BOOLEAN;
     RequestReason: POWER_MONITOR_REQUEST_REASON;
 }
 
 @foreign
-typedef POWER_MONITOR_INVOCATION = _POWER_MONITOR_INVOCATION;
+typedef PPOWER_MONITOR_INVOCATION = POWER_MONITOR_INVOCATION*;
 
 @foreign
-typedef PPOWER_MONITOR_INVOCATION = _POWER_MONITOR_INVOCATION*;
-
-@foreign
-struct _RESUME_PERFORMANCE {
+struct RESUME_PERFORMANCE {
     PostTimeMs: DWORD;
     TotalResumeTimeMs: ULONGLONG;
     ResumeCompleteTimestamp: ULONGLONG;
 }
 
 @foreign
-typedef RESUME_PERFORMANCE = _RESUME_PERFORMANCE;
-
-@foreign
-typedef PRESUME_PERFORMANCE = _RESUME_PERFORMANCE*;
+typedef PRESUME_PERFORMANCE = RESUME_PERFORMANCE*;
 
 @foreign
 enum SYSTEM_POWER_CONDITION {
@@ -4647,20 +4040,17 @@ struct NOTIFY_USER_POWER_SETTING {
 typedef PNOTIFY_USER_POWER_SETTING = NOTIFY_USER_POWER_SETTING;
 
 @foreign
-struct _APPLICATIONLAUNCH_SETTING_VALUE {
+struct APPLICATIONLAUNCH_SETTING_VALUE {
     ActivationTime: LARGE_INTEGER;
     Flags: DWORD;
     ButtonInstanceID: DWORD;
 }
 
 @foreign
-typedef APPLICATIONLAUNCH_SETTING_VALUE = _APPLICATIONLAUNCH_SETTING_VALUE;
+typedef PAPPLICATIONLAUNCH_SETTING_VALUE = APPLICATIONLAUNCH_SETTING_VALUE*;
 
 @foreign
-typedef PAPPLICATIONLAUNCH_SETTING_VALUE = _APPLICATIONLAUNCH_SETTING_VALUE*;
-
-@foreign
-enum _POWER_PLATFORM_ROLE {
+enum POWER_PLATFORM_ROLE {
     PlatformRoleUnspecified = 0,
     PlatformRoleDesktop,
     PlatformRoleMobile,
@@ -4674,21 +4064,15 @@ enum _POWER_PLATFORM_ROLE {
 }
 
 @foreign
-typedef POWER_PLATFORM_ROLE = _POWER_PLATFORM_ROLE;
+typedef PPOWER_PLATFORM_ROLE = POWER_PLATFORM_ROLE*;
 
 @foreign
-typedef PPOWER_PLATFORM_ROLE = _POWER_PLATFORM_ROLE*;
-
-@foreign
-struct _POWER_PLATFORM_INFORMATION {
+struct POWER_PLATFORM_INFORMATION {
     AoAc: BOOLEAN;
 }
 
 @foreign
-typedef POWER_PLATFORM_INFORMATION = _POWER_PLATFORM_INFORMATION;
-
-@foreign
-typedef PPOWER_PLATFORM_INFORMATION = _POWER_PLATFORM_INFORMATION*;
+typedef PPOWER_PLATFORM_INFORMATION = POWER_PLATFORM_INFORMATION*;
 
 @foreign
 struct BATTERY_REPORTING_SCALE {
@@ -4967,7 +4351,7 @@ struct SYSTEM_POWER_LEVEL {
 typedef PSYSTEM_POWER_LEVEL = SYSTEM_POWER_LEVEL;
 
 @foreign
-struct _SYSTEM_POWER_POLICY {
+struct SYSTEM_POWER_POLICY {
     Revision: DWORD;
     PowerButton: POWER_ACTION_POLICY;
     SleepButton: POWER_ACTION_POLICY;
@@ -4999,10 +4383,7 @@ struct _SYSTEM_POWER_POLICY {
 }
 
 @foreign
-typedef SYSTEM_POWER_POLICY = _SYSTEM_POWER_POLICY;
-
-@foreign
-typedef PSYSTEM_POWER_POLICY = _SYSTEM_POWER_POLICY*;
+typedef PSYSTEM_POWER_POLICY = SYSTEM_POWER_POLICY*;
 
 @foreign
 struct PROCESSOR_IDLESTATE_INFO {
@@ -5023,7 +4404,7 @@ struct PROCESSOR_IDLESTATE_POLICY;
 typedef PPROCESSOR_IDLESTATE_POLICY = PROCESSOR_IDLESTATE_POLICY;
 
 @foreign
-struct _PROCESSOR_POWER_POLICY_INFO {
+struct PROCESSOR_POWER_POLICY_INFO {
     TimeCheck: DWORD;
     DemoteLimit: DWORD;
     PromoteLimit: DWORD;
@@ -5036,13 +4417,10 @@ struct _PROCESSOR_POWER_POLICY_INFO {
 }
 
 @foreign
-typedef PROCESSOR_POWER_POLICY_INFO = _PROCESSOR_POWER_POLICY_INFO;
+typedef PPROCESSOR_POWER_POLICY_INFO = PROCESSOR_POWER_POLICY_INFO*;
 
 @foreign
-typedef PPROCESSOR_POWER_POLICY_INFO = _PROCESSOR_POWER_POLICY_INFO*;
-
-@foreign
-struct _PROCESSOR_POWER_POLICY {
+struct PROCESSOR_POWER_POLICY {
     Revision: DWORD;
     DynamicThrottle: BYTE;
     Spare: BYTE[3];
@@ -5053,10 +4431,7 @@ struct _PROCESSOR_POWER_POLICY {
 }
 
 @foreign
-typedef PROCESSOR_POWER_POLICY = _PROCESSOR_POWER_POLICY;
-
-@foreign
-typedef PPROCESSOR_POWER_POLICY = _PROCESSOR_POWER_POLICY*;
+typedef PPROCESSOR_POWER_POLICY = PROCESSOR_POWER_POLICY*;
 
 // @PROBLEM bitfields
 @foreign
@@ -5066,7 +4441,7 @@ struct PROCESSOR_PERFSTATE_POLICY;
 typedef PPROCESSOR_PERFSTATE_POLICY = PROCESSOR_PERFSTATE_POLICY;
 
 @foreign
-struct _ADMINISTRATOR_POWER_POLICY {
+struct ADMINISTRATOR_POWER_POLICY {
     MinSleep: SYSTEM_POWER_STATE;
     MaxSleep: SYSTEM_POWER_STATE;
     MinVideoTimeout: DWORD;
@@ -5076,13 +4451,10 @@ struct _ADMINISTRATOR_POWER_POLICY {
 }
 
 @foreign
-typedef ADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY;
+typedef PADMINISTRATOR_POWER_POLICY = ADMINISTRATOR_POWER_POLICY*;
 
 @foreign
-typedef PADMINISTRATOR_POWER_POLICY = _ADMINISTRATOR_POWER_POLICY*;
-
-@foreign
-enum _HIBERFILE_BUCKET_SIZE {
+enum HIBERFILE_BUCKET_SIZE {
     HiberFileBucket1GB = 0,
     HiberFileBucket2GB,
     HiberFileBucket4GB,
@@ -5094,22 +4466,16 @@ enum _HIBERFILE_BUCKET_SIZE {
 }
 
 @foreign
-typedef HIBERFILE_BUCKET_SIZE = _HIBERFILE_BUCKET_SIZE;
+typedef PHIBERFILE_BUCKET_SIZE = HIBERFILE_BUCKET_SIZE*;
 
 @foreign
-typedef PHIBERFILE_BUCKET_SIZE = _HIBERFILE_BUCKET_SIZE*;
-
-@foreign
-struct _HIBERFILE_BUCKET {
+struct HIBERFILE_BUCKET {
     MaxPhysicalMemory: DWORD64;
     PhysicalMemoryPercent: DWORD[3];
 }
 
 @foreign
-typedef HIBERFILE_BUCKET = _HIBERFILE_BUCKET;
-
-@foreign
-typedef PHIBERFILE_BUCKET = _HIBERFILE_BUCKET*;
+typedef PHIBERFILE_BUCKET = HIBERFILE_BUCKET*;
 
 @foreign
 struct SYSTEM_POWER_CAPABILITIES {
@@ -5171,7 +4537,7 @@ struct SYSTEM_BATTERY_STATE {
 typedef PSYSTEM_BATTERY_STATE = SYSTEM_BATTERY_STATE;
 
 @foreign
-struct _IMAGE_DOS_HEADER {
+struct IMAGE_DOS_HEADER {
     e_magic: WORD;
     e_cblp: WORD;
     e_cp: WORD;
@@ -5194,13 +4560,10 @@ struct _IMAGE_DOS_HEADER {
 }
 
 @foreign
-typedef IMAGE_DOS_HEADER = _IMAGE_DOS_HEADER;
+typedef PIMAGE_DOS_HEADER = IMAGE_DOS_HEADER*;
 
 @foreign
-typedef PIMAGE_DOS_HEADER = _IMAGE_DOS_HEADER*;
-
-@foreign
-struct _IMAGE_OS2_HEADER {
+struct IMAGE_OS2_HEADER {
     ne_magic: WORD;
     ne_ver: CHAR;
     ne_rev: CHAR;
@@ -5234,13 +4597,10 @@ struct _IMAGE_OS2_HEADER {
 }
 
 @foreign
-typedef IMAGE_OS2_HEADER = _IMAGE_OS2_HEADER;
+typedef PIMAGE_OS2_HEADER = IMAGE_OS2_HEADER*;
 
 @foreign
-typedef PIMAGE_OS2_HEADER = _IMAGE_OS2_HEADER*;
-
-@foreign
-struct _IMAGE_VXD_HEADER {
+struct IMAGE_VXD_HEADER {
     e32_magic: WORD;
     e32_border: BYTE;
     e32_worder: BYTE;
@@ -5295,13 +4655,10 @@ struct _IMAGE_VXD_HEADER {
 }
 
 @foreign
-typedef IMAGE_VXD_HEADER = _IMAGE_VXD_HEADER;
+typedef PIMAGE_VXD_HEADER = IMAGE_VXD_HEADER*;
 
 @foreign
-typedef PIMAGE_VXD_HEADER = _IMAGE_VXD_HEADER*;
-
-@foreign
-struct _IMAGE_FILE_HEADER {
+struct IMAGE_FILE_HEADER {
     Machine: WORD;
     NumberOfSections: WORD;
     TimeDateStamp: DWORD;
@@ -5312,25 +4669,19 @@ struct _IMAGE_FILE_HEADER {
 }
 
 @foreign
-typedef IMAGE_FILE_HEADER = _IMAGE_FILE_HEADER;
+typedef PIMAGE_FILE_HEADER = IMAGE_FILE_HEADER*;
 
 @foreign
-typedef PIMAGE_FILE_HEADER = _IMAGE_FILE_HEADER*;
-
-@foreign
-struct _IMAGE_DATA_DIRECTORY {
+struct IMAGE_DATA_DIRECTORY {
     VirtualAddress: DWORD;
     Size: DWORD;
 }
 
 @foreign
-typedef IMAGE_DATA_DIRECTORY = _IMAGE_DATA_DIRECTORY;
+typedef PIMAGE_DATA_DIRECTORY = IMAGE_DATA_DIRECTORY*;
 
 @foreign
-typedef PIMAGE_DATA_DIRECTORY = _IMAGE_DATA_DIRECTORY*;
-
-@foreign
-struct _IMAGE_OPTIONAL_HEADER {
+struct IMAGE_OPTIONAL_HEADER32 {
     Magic: WORD;
     MajorLinkerVersion: BYTE;
     MinorLinkerVersion: BYTE;
@@ -5365,13 +4716,10 @@ struct _IMAGE_OPTIONAL_HEADER {
 }
 
 @foreign
-typedef IMAGE_OPTIONAL_HEADER32 = _IMAGE_OPTIONAL_HEADER;
+typedef PIMAGE_OPTIONAL_HEADER32 = IMAGE_OPTIONAL_HEADER32*;
 
 @foreign
-typedef PIMAGE_OPTIONAL_HEADER32 = _IMAGE_OPTIONAL_HEADER*;
-
-@foreign
-struct _IMAGE_ROM_OPTIONAL_HEADER {
+struct IMAGE_ROM_OPTIONAL_HEADER {
     Magic: WORD;
     MajorLinkerVersion: BYTE;
     MinorLinkerVersion: BYTE;
@@ -5388,13 +4736,10 @@ struct _IMAGE_ROM_OPTIONAL_HEADER {
 }
 
 @foreign
-typedef IMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER;
+typedef PIMAGE_ROM_OPTIONAL_HEADER = IMAGE_ROM_OPTIONAL_HEADER*;
 
 @foreign
-typedef PIMAGE_ROM_OPTIONAL_HEADER = _IMAGE_ROM_OPTIONAL_HEADER*;
-
-@foreign
-struct _IMAGE_OPTIONAL_HEADER64 {
+struct IMAGE_OPTIONAL_HEADER64 {
     Magic: WORD;
     MajorLinkerVersion: BYTE;
     MinorLinkerVersion: BYTE;
@@ -5428,10 +4773,7 @@ struct _IMAGE_OPTIONAL_HEADER64 {
 }
 
 @foreign
-typedef IMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64;
-
-@foreign
-typedef PIMAGE_OPTIONAL_HEADER64 = _IMAGE_OPTIONAL_HEADER64*;
+typedef PIMAGE_OPTIONAL_HEADER64 = IMAGE_OPTIONAL_HEADER64*;
 
 @foreign
 typedef IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER64;
@@ -5440,42 +4782,33 @@ typedef IMAGE_OPTIONAL_HEADER = IMAGE_OPTIONAL_HEADER64;
 typedef PIMAGE_OPTIONAL_HEADER = PIMAGE_OPTIONAL_HEADER64;
 
 @foreign
-struct _IMAGE_NT_HEADERS64 {
+struct IMAGE_NT_HEADERS64 {
     Signature: DWORD;
     FileHeader: IMAGE_FILE_HEADER;
     OptionalHeader: IMAGE_OPTIONAL_HEADER64;
 }
 
 @foreign
-typedef IMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64;
+typedef PIMAGE_NT_HEADERS64 = IMAGE_NT_HEADERS64*;
 
 @foreign
-typedef PIMAGE_NT_HEADERS64 = _IMAGE_NT_HEADERS64*;
-
-@foreign
-struct _IMAGE_NT_HEADERS {
+struct IMAGE_NT_HEADERS32 {
     Signature: DWORD;
     FileHeader: IMAGE_FILE_HEADER;
     OptionalHeader: IMAGE_OPTIONAL_HEADER32;
 }
 
 @foreign
-typedef IMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS;
+typedef PIMAGE_NT_HEADERS32 = IMAGE_NT_HEADERS32*;
 
 @foreign
-typedef PIMAGE_NT_HEADERS32 = _IMAGE_NT_HEADERS*;
-
-@foreign
-struct _IMAGE_ROM_HEADERS {
+struct IMAGE_ROM_HEADERS {
     FileHeader: IMAGE_FILE_HEADER;
     OptionalHeader: IMAGE_ROM_OPTIONAL_HEADER;
 }
 
 @foreign
-typedef IMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS;
-
-@foreign
-typedef PIMAGE_ROM_HEADERS = _IMAGE_ROM_HEADERS*;
+typedef PIMAGE_ROM_HEADERS = IMAGE_ROM_HEADERS*;
 
 @foreign
 typedef IMAGE_NT_HEADERS = IMAGE_NT_HEADERS64;
@@ -5526,15 +4859,15 @@ struct ANON_OBJECT_HEADER_BIGOBJ {
 }
 
 @foreign
-union _IMAGE_SECTION_HEADER___inner {
+union IMAGE_SECTION_HEADER___inner {
     PhysicalAddress: DWORD;
     VirtualSize: DWORD;
 }
 
 @foreign
-struct _IMAGE_SECTION_HEADER {
+struct IMAGE_SECTION_HEADER {
     Name: BYTE[8];
-    Misc: _IMAGE_SECTION_HEADER___inner;
+    Misc: IMAGE_SECTION_HEADER___inner;
     VirtualAddress: DWORD;
     SizeOfRawData: DWORD;
     PointerToRawData: DWORD;
@@ -5546,27 +4879,24 @@ struct _IMAGE_SECTION_HEADER {
 }
 
 @foreign
-typedef IMAGE_SECTION_HEADER = _IMAGE_SECTION_HEADER;
+typedef PIMAGE_SECTION_HEADER = IMAGE_SECTION_HEADER*;
 
 @foreign
-typedef PIMAGE_SECTION_HEADER = _IMAGE_SECTION_HEADER*;
-
-@foreign
-struct _IMAGE_SYMBOL___inner_s1 {
+struct IMAGE_SYMBOL___inner_s1 {
     Short: DWORD;
     Long: DWORD;
 }
 
 @foreign
-union _IMAGE_SYMBOL___inner_u1 {
+union IMAGE_SYMBOL___inner_u1 {
     ShortName: BYTE[8];
-    Name: _IMAGE_SYMBOL___inner_s1;
+    Name: IMAGE_SYMBOL___inner_s1;
     LongName: DWORD[2];
 }
 
 @foreign
-struct _IMAGE_SYMBOL {
-    N: _IMAGE_SYMBOL___inner_u1;
+struct IMAGE_SYMBOL {
+    N: IMAGE_SYMBOL___inner_u1;
     Value: DWORD;
     SectionNumber: SHORT;
     Type: WORD;
@@ -5575,37 +4905,31 @@ struct _IMAGE_SYMBOL {
 }
 
 @foreign
-typedef IMAGE_SYMBOL = _IMAGE_SYMBOL;
-
-@foreign
 typedef PIMAGE_SYMBOL = IMAGE_SYMBOL*;
 
 @foreign
-struct _IMAGE_SYMBOL_EX___inner_s1 {
+struct IMAGE_SYMBOL_EX___inner_s1 {
     Short: DWORD;
     Long: DWORD;
 }
 
 @foreign
-union _IMAGE_SYMBOL_EX___inner_u1 {
+union IMAGE_SYMBOL_EX___inner_u1 {
     ShortName: BYTE[8];
-    Name: _IMAGE_SYMBOL_EX___inner_s1;
+    Name: IMAGE_SYMBOL_EX___inner_s1;
     LongName: DWORD[2];
 }
 
 
 @foreign
-struct _IMAGE_SYMBOL_EX {
-    N: _IMAGE_SYMBOL_EX___inner_u1;
+struct IMAGE_SYMBOL_EX {
+    N: IMAGE_SYMBOL_EX___inner_u1;
     Value: DWORD;
     SectionNumber: LONG;
     Type: WORD;
     StorageClass: BYTE;
     NumberOfAuxSymbols: BYTE;
 }
-
-@foreign
-typedef IMAGE_SYMBOL_EX = _IMAGE_SYMBOL_EX;
 
 @foreign
 typedef PIMAGE_SYMBOL_EX = IMAGE_SYMBOL_EX*;
@@ -5622,49 +4946,49 @@ struct IMAGE_AUX_SYMBOL_TOKEN_DEF {
 typedef PIMAGE_AUX_SYMBOL_TOKEN_DEF = IMAGE_AUX_SYMBOL_TOKEN_DEF*;
 
 @foreign
-struct _IMAGE_AUX_SYMBOL___inner_s2 {
+struct IMAGE_AUX_SYMBOL___inner_s2 {
     Linenumber: WORD;
     Size: WORD;
 }
 
 @foreign
-union _IMAGE_AUX_SYMBOL___inner_u1 {
-    LnSz: _IMAGE_AUX_SYMBOL___inner_s2;
+union IMAGE_AUX_SYMBOL___inner_u1 {
+    LnSz: IMAGE_AUX_SYMBOL___inner_s2;
     TotalSize: DWORD;
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL___inner_s3 {
+struct IMAGE_AUX_SYMBOL___inner_s3 {
     PointerToLinenumber: DWORD;
     PointerToNextFunction: DWORD;
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL___inner_s4 {
+struct IMAGE_AUX_SYMBOL___inner_s4 {
     Dimension: WORD[4];
 }
 
 @foreign
-union _IMAGE_AUX_SYMBOL___inner_u2 {
-    Function: _IMAGE_AUX_SYMBOL___inner_s3;
-    Array: _IMAGE_AUX_SYMBOL___inner_s4;
+union IMAGE_AUX_SYMBOL___inner_u2 {
+    Function: IMAGE_AUX_SYMBOL___inner_s3;
+    Array: IMAGE_AUX_SYMBOL___inner_s4;
 }
 
 @foreign 
-struct _IMAGE_AUX_SYMBOL___inner_s1 {
+struct IMAGE_AUX_SYMBOL___inner_s1 {
     TagIndex: DWORD;
-    Misc: _IMAGE_AUX_SYMBOL___inner_u1;
-    FcnAry: _IMAGE_AUX_SYMBOL___inner_u2;
+    Misc: IMAGE_AUX_SYMBOL___inner_u1;
+    FcnAry: IMAGE_AUX_SYMBOL___inner_u2;
     TvIndex: WORD;
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL___inner_s5 {
+struct IMAGE_AUX_SYMBOL___inner_s5 {
     Name: BYTE[18];
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL___inner_s6 {
+struct IMAGE_AUX_SYMBOL___inner_s6 {
     Length: DWORD;
     NumberOfRelocations: WORD;
     NumberOfLinenumbers: WORD;
@@ -5676,40 +5000,37 @@ struct _IMAGE_AUX_SYMBOL___inner_s6 {
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL___inner_s7 {
+struct IMAGE_AUX_SYMBOL___inner_s7 {
     crc: DWORD;
     rgbReserved: BYTE[14];
 }
 
 @foreign
-union _IMAGE_AUX_SYMBOL {
-    Sym: _IMAGE_AUX_SYMBOL___inner_s1;
-    File: _IMAGE_AUX_SYMBOL___inner_s5;
-    Section: _IMAGE_AUX_SYMBOL___inner_s6;
+union IMAGE_AUX_SYMBOL {
+    Sym: IMAGE_AUX_SYMBOL___inner_s1;
+    File: IMAGE_AUX_SYMBOL___inner_s5;
+    Section: IMAGE_AUX_SYMBOL___inner_s6;
     TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF;
-    CRC: _IMAGE_AUX_SYMBOL___inner_s7;
+    CRC: IMAGE_AUX_SYMBOL___inner_s7;
 }
-
-@foreign
-typedef IMAGE_AUX_SYMBOL = _IMAGE_AUX_SYMBOL;
 
 @foreign
 typedef PIMAGE_AUX_SYMBOL = IMAGE_AUX_SYMBOL*;
 
 @foreign
-struct _IMAGE_AUX_SYMBOL_EX___inner_s1 {
+struct IMAGE_AUX_SYMBOL_EX___inner_s1 {
     WeakDefaultSymIndex: DWORD;
     WeakSearchType: DWORD;
     rgbReserved: BYTE[12];
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL_EX___inner_s2 {
+struct IMAGE_AUX_SYMBOL_EX___inner_s2 {
     Name: BYTE[sizeof(IMAGE_SYMBOL_EX)];
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL_EX___inner_s3 {
+struct IMAGE_AUX_SYMBOL_EX___inner_s3 {
     Length: DWORD;
     NumberOfRelocations: WORD;
     NumberOfLinenumbers: WORD;
@@ -5722,28 +5043,25 @@ struct _IMAGE_AUX_SYMBOL_EX___inner_s3 {
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL_EX___inner_s4 {
+struct IMAGE_AUX_SYMBOL_EX___inner_s4 {
     TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF;
     rgbReserved: BYTE[2];
 }
 
 @foreign
-struct _IMAGE_AUX_SYMBOL_EX___inner_s5 {
+struct IMAGE_AUX_SYMBOL_EX___inner_s5 {
     crc: DWORD;
     rgbReserved: BYTE[16];
 }
 
 @foreign
-union _IMAGE_AUX_SYMBOL_EX {
-    Sym: _IMAGE_AUX_SYMBOL_EX___inner_s1;
-    File: _IMAGE_AUX_SYMBOL_EX___inner_s2;
-    Section: _IMAGE_AUX_SYMBOL_EX___inner_s3;
-    s: _IMAGE_AUX_SYMBOL_EX___inner_s4;
-    CRC: _IMAGE_AUX_SYMBOL_EX___inner_s5;
+union IMAGE_AUX_SYMBOL_EX {
+    Sym: IMAGE_AUX_SYMBOL_EX___inner_s1;
+    File: IMAGE_AUX_SYMBOL_EX___inner_s2;
+    Section: IMAGE_AUX_SYMBOL_EX___inner_s3;
+    s: IMAGE_AUX_SYMBOL_EX___inner_s4;
+    CRC: IMAGE_AUX_SYMBOL_EX___inner_s5;
 }
-
-@foreign
-typedef IMAGE_AUX_SYMBOL_EX = _IMAGE_AUX_SYMBOL_EX;
 
 @foreign
 typedef PIMAGE_AUX_SYMBOL_EX = IMAGE_AUX_SYMBOL_EX*;
@@ -5754,56 +5072,47 @@ enum IMAGE_AUX_SYMBOL_TYPE {
 }
 
 @foreign
-union _IMAGE_RELOCATION___inner {
+union IMAGE_RELOCATION___inner {
     VirtualAddress: DWORD;
     RelocCount: DWORD;
 }
 
 @foreign
-struct _IMAGE_RELOCATION {
-    u: _IMAGE_RELOCATION___inner;
+struct IMAGE_RELOCATION {
+    u: IMAGE_RELOCATION___inner;
     SymbolTableIndex: DWORD;
     Type: WORD;
 }
 
 @foreign
-typedef IMAGE_RELOCATION = _IMAGE_RELOCATION;
-
-@foreign
 typedef PIMAGE_RELOCATION = IMAGE_RELOCATION*;
 
 @foreign
-union _IMAGE_LINENUMBER___inner {
+union IMAGE_LINENUMBER___inner {
     SymbolTableIndex: DWORD;
     VirtualAddress: DWORD;
 }
 
 @foreign
-struct _IMAGE_LINENUMBER {
-    Type: _IMAGE_LINENUMBER___inner;
+struct IMAGE_LINENUMBER {
+    Type: IMAGE_LINENUMBER___inner;
     Linenumber: WORD;
 }
-
-@foreign
-typedef IMAGE_LINENUMBER = _IMAGE_LINENUMBER;
 
 @foreign
 typedef PIMAGE_LINENUMBER = IMAGE_LINENUMBER*;
 
 @foreign
-struct _IMAGE_BASE_RELOCATION {
+struct IMAGE_BASE_RELOCATION {
     VirtualAddress: DWORD;
     SizeOfBlock: DWORD;
 }
 
 @foreign
-typedef IMAGE_BASE_RELOCATION = _IMAGE_BASE_RELOCATION;
-
-@foreign
 typedef PIMAGE_BASE_RELOCATION = IMAGE_BASE_RELOCATION*;
 
 @foreign
-struct _IMAGE_ARCHIVE_MEMBER_HEADER {
+struct IMAGE_ARCHIVE_MEMBER_HEADER {
     Name: BYTE[16];
     Date: BYTE[12];
     UserID: BYTE[6];
@@ -5814,13 +5123,10 @@ struct _IMAGE_ARCHIVE_MEMBER_HEADER {
 }
 
 @foreign
-typedef IMAGE_ARCHIVE_MEMBER_HEADER = _IMAGE_ARCHIVE_MEMBER_HEADER;
+typedef PIMAGE_ARCHIVE_MEMBER_HEADER = IMAGE_ARCHIVE_MEMBER_HEADER*;
 
 @foreign
-typedef PIMAGE_ARCHIVE_MEMBER_HEADER = _IMAGE_ARCHIVE_MEMBER_HEADER*;
-
-@foreign
-struct _IMAGE_EXPORT_DIRECTORY {
+struct IMAGE_EXPORT_DIRECTORY {
     Characteristics: DWORD;
     TimeDateStamp: DWORD;
     MajorVersion: WORD;
@@ -5835,25 +5141,19 @@ struct _IMAGE_EXPORT_DIRECTORY {
 }
 
 @foreign
-typedef IMAGE_EXPORT_DIRECTORY = _IMAGE_EXPORT_DIRECTORY;
+typedef PIMAGE_EXPORT_DIRECTORY = IMAGE_EXPORT_DIRECTORY*;
 
 @foreign
-typedef PIMAGE_EXPORT_DIRECTORY = _IMAGE_EXPORT_DIRECTORY*;
-
-@foreign
-struct _IMAGE_IMPORT_BY_NAME {
+struct IMAGE_IMPORT_BY_NAME {
     Hint: WORD;
     Name: CHAR[1];
 }
 
 @foreign
-typedef IMAGE_IMPORT_BY_NAME = _IMAGE_IMPORT_BY_NAME;
+typedef PIMAGE_IMPORT_BY_NAME = IMAGE_IMPORT_BY_NAME*;
 
 @foreign
-typedef PIMAGE_IMPORT_BY_NAME = _IMAGE_IMPORT_BY_NAME*;
-
-@foreign
-union _IMAGE_THUNK_DATA64___inner {
+union IMAGE_THUNK_DATA64___inner {
     ForwarderString: ULONGLONG;
     Function: ULONGLONG;
     Ordinal: ULONGLONG;
@@ -5861,18 +5161,15 @@ union _IMAGE_THUNK_DATA64___inner {
 }
 
 @foreign
-struct _IMAGE_THUNK_DATA64 {
-    u1: _IMAGE_THUNK_DATA64___inner;
+struct IMAGE_THUNK_DATA64 {
+    u1: IMAGE_THUNK_DATA64___inner;
 }
-
-@foreign
-typedef IMAGE_THUNK_DATA64 = _IMAGE_THUNK_DATA64;
 
 @foreign
 typedef PIMAGE_THUNK_DATA64 = IMAGE_THUNK_DATA64*;
 
 @foreign
-union _IMAGE_THUNK_DATA32___inner {
+union IMAGE_THUNK_DATA32___inner {
     ForwarderString: DWORD;
     Function: DWORD;
     Ordinal: DWORD;
@@ -5881,12 +5178,9 @@ union _IMAGE_THUNK_DATA32___inner {
 
 
 @foreign
-struct _IMAGE_THUNK_DATA32 {
-    u1: _IMAGE_THUNK_DATA32___inner;
+struct IMAGE_THUNK_DATA32 {
+    u1: IMAGE_THUNK_DATA32___inner;
 }
-
-@foreign
-typedef IMAGE_THUNK_DATA32 = _IMAGE_THUNK_DATA32;
 
 @foreign
 typedef PIMAGE_THUNK_DATA32 = IMAGE_THUNK_DATA32*;
@@ -5896,20 +5190,14 @@ typedef PIMAGE_TLS_CALLBACK = func(DllHandle: PVOID, Reason: DWORD, Reserved: PV
 
 // @PROBLEM bitfields
 @foreign
-struct _IMAGE_TLS_DIRECTORY64;
-
-@foreign
-typedef IMAGE_TLS_DIRECTORY64 = _IMAGE_TLS_DIRECTORY64;
+struct IMAGE_TLS_DIRECTORY64;
 
 @foreign
 typedef PIMAGE_TLS_DIRECTORY64 = IMAGE_TLS_DIRECTORY64*;
 
 // @PROBLEM bitfields
 @foreign
-struct _IMAGE_TLS_DIRECTORY32;
-
-@foreign
-typedef IMAGE_TLS_DIRECTORY32 = _IMAGE_TLS_DIRECTORY32;
+struct IMAGE_TLS_DIRECTORY32;
 
 @foreign
 typedef PIMAGE_TLS_DIRECTORY32 = IMAGE_TLS_DIRECTORY32*;
@@ -5927,14 +5215,14 @@ typedef IMAGE_TLS_DIRECTORY = IMAGE_TLS_DIRECTORY64;
 typedef PIMAGE_TLS_DIRECTORY = PIMAGE_TLS_DIRECTORY64;
 
 @foreign
-union _IMAGE_IMPORT_DESCRIPTOR___inner {
+union IMAGE_IMPORT_DESCRIPTOR___inner {
     Characteristics: DWORD;
     OriginalFirstThunk: DWORD;
 }
 
 @foreign
-struct _IMAGE_IMPORT_DESCRIPTOR {
-    u: _IMAGE_IMPORT_DESCRIPTOR___inner;
+struct IMAGE_IMPORT_DESCRIPTOR {
+    u: IMAGE_IMPORT_DESCRIPTOR___inner;
     TimeDateStamp: DWORD;
     ForwarderChain: DWORD;
     Name: DWORD;
@@ -5942,52 +5230,40 @@ struct _IMAGE_IMPORT_DESCRIPTOR {
 }
 
 @foreign
-typedef IMAGE_IMPORT_DESCRIPTOR = _IMAGE_IMPORT_DESCRIPTOR;
-
-@foreign
 typedef PIMAGE_IMPORT_DESCRIPTOR = IMAGE_IMPORT_DESCRIPTOR*;
 
 @foreign
-struct _IMAGE_BOUND_IMPORT_DESCRIPTOR {
+struct IMAGE_BOUND_IMPORT_DESCRIPTOR {
     TimeDateStamp: DWORD;
     OffsetModuleName: WORD;
     NumberOfModuleForwarderRefs: WORD;
 }
 
 @foreign
-typedef IMAGE_BOUND_IMPORT_DESCRIPTOR = _IMAGE_BOUND_IMPORT_DESCRIPTOR;
+typedef PIMAGE_BOUND_IMPORT_DESCRIPTOR = IMAGE_BOUND_IMPORT_DESCRIPTOR*;
 
 @foreign
-typedef PIMAGE_BOUND_IMPORT_DESCRIPTOR = _IMAGE_BOUND_IMPORT_DESCRIPTOR*;
-
-@foreign
-struct _IMAGE_BOUND_FORWARDER_REF {
+struct IMAGE_BOUND_FORWARDER_REF {
     TimeDateStamp: DWORD;
     OffsetModuleName: WORD;
     Reserved: WORD;
 }
 
 @foreign
-typedef IMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF;
-
-@foreign
-typedef PIMAGE_BOUND_FORWARDER_REF = _IMAGE_BOUND_FORWARDER_REF*;
+typedef PIMAGE_BOUND_FORWARDER_REF = IMAGE_BOUND_FORWARDER_REF*;
 
 // @PROBLEM bitfields
 @foreign
-struct _IMAGE_DELAYLOAD_DESCRIPTOR;
+struct IMAGE_DELAYLOAD_DESCRIPTOR;
 
 @foreign
-typedef IMAGE_DELAYLOAD_DESCRIPTOR = _IMAGE_DELAYLOAD_DESCRIPTOR;
-
-@foreign
-typedef PIMAGE_DELAYLOAD_DESCRIPTOR = _IMAGE_DELAYLOAD_DESCRIPTOR*;
+typedef PIMAGE_DELAYLOAD_DESCRIPTOR = IMAGE_DELAYLOAD_DESCRIPTOR*;
 
 @foreign
 typedef PCIMAGE_DELAYLOAD_DESCRIPTOR = IMAGE_DELAYLOAD_DESCRIPTOR*;
 
 @foreign
-struct _IMAGE_RESOURCE_DIRECTORY {
+struct IMAGE_RESOURCE_DIRECTORY {
     Characteristics: DWORD;
     TimeDateStamp: DWORD;
     MajorVersion: WORD;
@@ -5997,47 +5273,35 @@ struct _IMAGE_RESOURCE_DIRECTORY {
 }
 
 @foreign
-typedef IMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY;
-
-@foreign
-typedef PIMAGE_RESOURCE_DIRECTORY = _IMAGE_RESOURCE_DIRECTORY*;
+typedef PIMAGE_RESOURCE_DIRECTORY = IMAGE_RESOURCE_DIRECTORY*;
 
 // @PROBLEM bitfields
 @foreign
-struct _IMAGE_RESOURCE_DIRECTORY_ENTRY;
+struct IMAGE_RESOURCE_DIRECTORY_ENTRY;
 
 @foreign
-typedef IMAGE_RESOURCE_DIRECTORY_ENTRY = _IMAGE_RESOURCE_DIRECTORY_ENTRY;
+typedef PIMAGE_RESOURCE_DIRECTORY_ENTRY = IMAGE_RESOURCE_DIRECTORY_ENTRY*;
 
 @foreign
-typedef PIMAGE_RESOURCE_DIRECTORY_ENTRY = _IMAGE_RESOURCE_DIRECTORY_ENTRY*;
-
-@foreign
-struct _IMAGE_RESOURCE_DIRECTORY_STRING {
+struct IMAGE_RESOURCE_DIRECTORY_STRING {
     Length: WORD;
     NameString: CHAR[1];
 }
 
 @foreign
-typedef IMAGE_RESOURCE_DIRECTORY_STRING = _IMAGE_RESOURCE_DIRECTORY_STRING;
+typedef PIMAGE_RESOURCE_DIRECTORY_STRING = IMAGE_RESOURCE_DIRECTORY_STRING*;
 
 @foreign
-typedef PIMAGE_RESOURCE_DIRECTORY_STRING = _IMAGE_RESOURCE_DIRECTORY_STRING*;
-
-@foreign
-struct _IMAGE_RESOURCE_DIR_STRING_U {
+struct IMAGE_RESOURCE_DIR_STRING_U {
     Length: WORD;
     NameString: WCHAR[1];
 }
 
 @foreign
-typedef IMAGE_RESOURCE_DIR_STRING_U = _IMAGE_RESOURCE_DIR_STRING_U;
+typedef PIMAGE_RESOURCE_DIR_STRING_U = IMAGE_RESOURCE_DIR_STRING_U*;
 
 @foreign
-typedef PIMAGE_RESOURCE_DIR_STRING_U = _IMAGE_RESOURCE_DIR_STRING_U*;
-
-@foreign
-struct _IMAGE_RESOURCE_DATA_ENTRY {
+struct IMAGE_RESOURCE_DATA_ENTRY {
     OffsetToData: DWORD;
     Size: DWORD;
     CodePage: DWORD;
@@ -6045,13 +5309,10 @@ struct _IMAGE_RESOURCE_DATA_ENTRY {
 }
 
 @foreign
-typedef IMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY;
+typedef PIMAGE_RESOURCE_DATA_ENTRY = IMAGE_RESOURCE_DATA_ENTRY*;
 
 @foreign
-typedef PIMAGE_RESOURCE_DATA_ENTRY = _IMAGE_RESOURCE_DATA_ENTRY*;
-
-@foreign
-struct _IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
+struct IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
     Flags: WORD;
     Catalog: WORD;
     CatalogOffset: DWORD;
@@ -6059,49 +5320,37 @@ struct _IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
 }
 
 @foreign
-typedef IMAGE_LOAD_CONFIG_CODE_INTEGRITY = _IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
+typedef PIMAGE_LOAD_CONFIG_CODE_INTEGRITY = IMAGE_LOAD_CONFIG_CODE_INTEGRITY*;
 
 @foreign
-typedef PIMAGE_LOAD_CONFIG_CODE_INTEGRITY = _IMAGE_LOAD_CONFIG_CODE_INTEGRITY*;
-
-@foreign
-struct _IMAGE_DYNAMIC_RELOCATION_TABLE {
+struct IMAGE_DYNAMIC_RELOCATION_TABLE {
     Version: DWORD;
     Size: DWORD;
 }
 
 @foreign
-typedef IMAGE_DYNAMIC_RELOCATION_TABLE = _IMAGE_DYNAMIC_RELOCATION_TABLE;
+typedef PIMAGE_DYNAMIC_RELOCATION_TABLE = IMAGE_DYNAMIC_RELOCATION_TABLE*;
 
 @foreign
-typedef PIMAGE_DYNAMIC_RELOCATION_TABLE = _IMAGE_DYNAMIC_RELOCATION_TABLE*;
-
-@foreign
-struct _IMAGE_DYNAMIC_RELOCATION32 {
+struct IMAGE_DYNAMIC_RELOCATION32 {
     Symbol: DWORD;
     BaseRelocSize: DWORD;
 }
 
 @foreign
-typedef IMAGE_DYNAMIC_RELOCATION32 = _IMAGE_DYNAMIC_RELOCATION32;
+typedef PIMAGE_DYNAMIC_RELOCATION32 = IMAGE_DYNAMIC_RELOCATION32*;
 
 @foreign
-typedef PIMAGE_DYNAMIC_RELOCATION32 = _IMAGE_DYNAMIC_RELOCATION32*;
-
-@foreign
-struct _IMAGE_DYNAMIC_RELOCATION64 {
+struct IMAGE_DYNAMIC_RELOCATION64 {
     Symbol: ULONGLONG;
     BaseRelocSize: DWORD;
 }
 
 @foreign
-typedef IMAGE_DYNAMIC_RELOCATION64 = _IMAGE_DYNAMIC_RELOCATION64;
+typedef PIMAGE_DYNAMIC_RELOCATION64 = IMAGE_DYNAMIC_RELOCATION64*;
 
 @foreign
-typedef PIMAGE_DYNAMIC_RELOCATION64 = _IMAGE_DYNAMIC_RELOCATION64*;
-
-@foreign
-struct _IMAGE_DYNAMIC_RELOCATION32_V2 {
+struct IMAGE_DYNAMIC_RELOCATION32_V2 {
     HeaderSize: DWORD;
     FixupInfoSize: DWORD;
     Symbol: DWORD;
@@ -6110,13 +5359,10 @@ struct _IMAGE_DYNAMIC_RELOCATION32_V2 {
 }
 
 @foreign
-typedef IMAGE_DYNAMIC_RELOCATION32_V2 = _IMAGE_DYNAMIC_RELOCATION32_V2;
+typedef PIMAGE_DYNAMIC_RELOCATION32_V2 = IMAGE_DYNAMIC_RELOCATION32_V2*;
 
 @foreign
-typedef PIMAGE_DYNAMIC_RELOCATION32_V2 = _IMAGE_DYNAMIC_RELOCATION32_V2*;
-
-@foreign
-struct _IMAGE_DYNAMIC_RELOCATION64_V2 {
+struct IMAGE_DYNAMIC_RELOCATION64_V2 {
     HeaderSize: DWORD;
     FixupInfoSize: DWORD;
     Symbol: ULONGLONG;
@@ -6125,10 +5371,7 @@ struct _IMAGE_DYNAMIC_RELOCATION64_V2 {
 }
 
 @foreign
-typedef IMAGE_DYNAMIC_RELOCATION64_V2 = _IMAGE_DYNAMIC_RELOCATION64_V2;
-
-@foreign
-typedef PIMAGE_DYNAMIC_RELOCATION64_V2 = _IMAGE_DYNAMIC_RELOCATION64_V2*;
+typedef PIMAGE_DYNAMIC_RELOCATION64_V2 = IMAGE_DYNAMIC_RELOCATION64_V2*;
 
 @foreign
 typedef IMAGE_DYNAMIC_RELOCATION = IMAGE_DYNAMIC_RELOCATION64;
@@ -6143,18 +5386,15 @@ typedef IMAGE_DYNAMIC_RELOCATION_V2 = IMAGE_DYNAMIC_RELOCATION64_V2;
 typedef PIMAGE_DYNAMIC_RELOCATION_V2 = PIMAGE_DYNAMIC_RELOCATION64_V2;
 
 @foreign
-struct _IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER {
+struct IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER {
     PrologueByteCount: BYTE;
 }
-
-@foreign
-typedef IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = _IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER;
 
 @foreign
 typedef PIMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER*;
 
 @foreign
-struct _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER {
+struct IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER {
     EpilogueCount: DWORD;
     EpilogueByteCount: BYTE;
     BranchDescriptorElementSize: BYTE;
@@ -6162,13 +5402,10 @@ struct _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER {
 }
 
 @foreign
-typedef IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = _IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER;
-
-@foreign
 typedef PIMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER*;
 
 @foreign
-struct _IMAGE_LOAD_CONFIG_DIRECTORY32 {
+struct IMAGE_LOAD_CONFIG_DIRECTORY32 {
     Size: DWORD;
     TimeDateStamp: DWORD;
     MajorVersion: WORD;
@@ -6213,13 +5450,10 @@ struct _IMAGE_LOAD_CONFIG_DIRECTORY32 {
 }
 
 @foreign
-typedef IMAGE_LOAD_CONFIG_DIRECTORY32 = _IMAGE_LOAD_CONFIG_DIRECTORY32;
+typedef PIMAGE_LOAD_CONFIG_DIRECTORY32 = IMAGE_LOAD_CONFIG_DIRECTORY32*;
 
 @foreign
-typedef PIMAGE_LOAD_CONFIG_DIRECTORY32 = _IMAGE_LOAD_CONFIG_DIRECTORY32*;
-
-@foreign
-struct _IMAGE_LOAD_CONFIG_DIRECTORY64 {
+struct IMAGE_LOAD_CONFIG_DIRECTORY64 {
     Size: DWORD;
     TimeDateStamp: DWORD;
     MajorVersion: WORD;
@@ -6264,10 +5498,7 @@ struct _IMAGE_LOAD_CONFIG_DIRECTORY64 {
 }
 
 @foreign
-typedef IMAGE_LOAD_CONFIG_DIRECTORY64 = _IMAGE_LOAD_CONFIG_DIRECTORY64;
-
-@foreign
-typedef PIMAGE_LOAD_CONFIG_DIRECTORY64 = _IMAGE_LOAD_CONFIG_DIRECTORY64*;
+typedef PIMAGE_LOAD_CONFIG_DIRECTORY64 = IMAGE_LOAD_CONFIG_DIRECTORY64*;
 
 @foreign
 typedef IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY64;
@@ -6276,7 +5507,7 @@ typedef IMAGE_LOAD_CONFIG_DIRECTORY = IMAGE_LOAD_CONFIG_DIRECTORY64;
 typedef PIMAGE_LOAD_CONFIG_DIRECTORY = PIMAGE_LOAD_CONFIG_DIRECTORY64;
 
 @foreign
-struct _IMAGE_HOT_PATCH_INFO {
+struct IMAGE_HOT_PATCH_INFO {
     Version: DWORD;
     Size: DWORD;
     SequenceNumber: DWORD;
@@ -6286,13 +5517,10 @@ struct _IMAGE_HOT_PATCH_INFO {
 }
 
 @foreign
-typedef IMAGE_HOT_PATCH_INFO = _IMAGE_HOT_PATCH_INFO;
+typedef PIMAGE_HOT_PATCH_INFO = IMAGE_HOT_PATCH_INFO*;
 
 @foreign
-typedef PIMAGE_HOT_PATCH_INFO = _IMAGE_HOT_PATCH_INFO*;
-
-@foreign
-struct _IMAGE_HOT_PATCH_BASE {
+struct IMAGE_HOT_PATCH_BASE {
     SequenceNumber: DWORD;
     Flags: DWORD;
     OriginalTimeDateStamp: DWORD;
@@ -6304,25 +5532,19 @@ struct _IMAGE_HOT_PATCH_BASE {
 }
 
 @foreign
-typedef IMAGE_HOT_PATCH_BASE = _IMAGE_HOT_PATCH_BASE;
+typedef PIMAGE_HOT_PATCH_BASE = IMAGE_HOT_PATCH_BASE*;
 
 @foreign
-typedef PIMAGE_HOT_PATCH_BASE = _IMAGE_HOT_PATCH_BASE*;
-
-@foreign
-struct _IMAGE_HOT_PATCH_HASHES {
+struct IMAGE_HOT_PATCH_HASHES {
     SHA256: BYTE[32];
     SHA1: BYTE[20];
 }
 
 @foreign
-typedef IMAGE_HOT_PATCH_HASHES = _IMAGE_HOT_PATCH_HASHES;
+typedef PIMAGE_HOT_PATCH_HASHES = IMAGE_HOT_PATCH_HASHES*;
 
 @foreign
-typedef PIMAGE_HOT_PATCH_HASHES = _IMAGE_HOT_PATCH_HASHES*;
-
-@foreign
-struct _IMAGE_CE_RUNTIME_FUNCTION_ENTRY {
+struct IMAGE_CE_RUNTIME_FUNCTION_ENTRY {
     FuncStart: DWORD;
     PrologLen: DWORD;
     FuncLen: DWORD;
@@ -6331,33 +5553,24 @@ struct _IMAGE_CE_RUNTIME_FUNCTION_ENTRY {
 }
 
 @foreign
-typedef IMAGE_CE_RUNTIME_FUNCTION_ENTRY = _IMAGE_CE_RUNTIME_FUNCTION_ENTRY;
-
-@foreign
-typedef PIMAGE_CE_RUNTIME_FUNCTION_ENTRY = _IMAGE_CE_RUNTIME_FUNCTION_ENTRY*;
+typedef PIMAGE_CE_RUNTIME_FUNCTION_ENTRY = IMAGE_CE_RUNTIME_FUNCTION_ENTRY*;
 
 // @PROBLEM bitfields
 @foreign
-struct _IMAGE_ARM_RUNTIME_FUNCTION_ENTRY;
+struct IMAGE_ARM_RUNTIME_FUNCTION_ENTRY;
 
 @foreign
-typedef IMAGE_ARM_RUNTIME_FUNCTION_ENTRY = _IMAGE_ARM_RUNTIME_FUNCTION_ENTRY;
-
-@foreign
-typedef PIMAGE_ARM_RUNTIME_FUNCTION_ENTRY = _IMAGE_ARM_RUNTIME_FUNCTION_ENTRY*;
+typedef PIMAGE_ARM_RUNTIME_FUNCTION_ENTRY = IMAGE_ARM_RUNTIME_FUNCTION_ENTRY*;
 
 // @PROBLEM bitfields
 @foreign
-struct _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
+struct IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
 
 @foreign
-typedef IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
+typedef PIMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY*;
 
 @foreign
-typedef PIMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY*;
-
-@foreign
-struct _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY {
+struct IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY {
     BeginAddress: ULONGLONG;
     EndAddress: ULONGLONG;
     ExceptionHandler: ULONGLONG;
@@ -6366,13 +5579,10 @@ struct _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY {
 }
 
 @foreign
-typedef IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY;
+typedef PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY*;
 
 @foreign
-typedef PIMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY*;
-
-@foreign
-struct _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
+struct IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
     BeginAddress: DWORD;
     EndAddress: DWORD;
     ExceptionHandler: DWORD;
@@ -6381,10 +5591,7 @@ struct _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
 }
 
 @foreign
-typedef IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY;
-
-@foreign
-typedef PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = _IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY*;
+typedef PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY*;
 
 @foreign
 union _IMAGE_RUNTIME_FUNCTION_ENTRY___inner {
@@ -6415,7 +5622,7 @@ typedef IMAGE_RUNTIME_FUNCTION_ENTRY = _IMAGE_RUNTIME_FUNCTION_ENTRY;
 typedef PIMAGE_RUNTIME_FUNCTION_ENTRY = _PIMAGE_RUNTIME_FUNCTION_ENTRY;
 
 @foreign
-struct _IMAGE_ENCLAVE_CONFIG32 {
+struct IMAGE_ENCLAVE_CONFIG32 {
     Size: DWORD;
     MinimumRequiredConfigSize: DWORD;
     PolicyFlags: DWORD;
@@ -6432,13 +5639,10 @@ struct _IMAGE_ENCLAVE_CONFIG32 {
 }
 
 @foreign
-typedef IMAGE_ENCLAVE_CONFIG32 = _IMAGE_ENCLAVE_CONFIG32;
+typedef PIMAGE_ENCLAVE_CONFIG32 = IMAGE_ENCLAVE_CONFIG32*;
 
 @foreign
-typedef PIMAGE_ENCLAVE_CONFIG32 = _IMAGE_ENCLAVE_CONFIG32*;
-
-@foreign
-struct _IMAGE_ENCLAVE_CONFIG64 {
+struct IMAGE_ENCLAVE_CONFIG64 {
     Size: DWORD;
     MinimumRequiredConfigSize: DWORD;
     PolicyFlags: DWORD;
@@ -6455,10 +5659,7 @@ struct _IMAGE_ENCLAVE_CONFIG64 {
 }
 
 @foreign
-typedef IMAGE_ENCLAVE_CONFIG64 = _IMAGE_ENCLAVE_CONFIG64;
-
-@foreign
-typedef PIMAGE_ENCLAVE_CONFIG64 = _IMAGE_ENCLAVE_CONFIG64*;
+typedef PIMAGE_ENCLAVE_CONFIG64 = IMAGE_ENCLAVE_CONFIG64*;
 
 @foreign
 typedef IMAGE_ENCLAVE_CONFIG = IMAGE_ENCLAVE_CONFIG64;
@@ -6467,7 +5668,7 @@ typedef IMAGE_ENCLAVE_CONFIG = IMAGE_ENCLAVE_CONFIG64;
 typedef PIMAGE_ENCLAVE_CONFIG = PIMAGE_ENCLAVE_CONFIG64;
 
 @foreign
-struct _IMAGE_ENCLAVE_IMPORT {
+struct IMAGE_ENCLAVE_IMPORT {
     MatchType: DWORD;
     MinimumSecurityVersion: DWORD;
     UniqueOrAuthorID: BYTE[32];
@@ -6478,13 +5679,10 @@ struct _IMAGE_ENCLAVE_IMPORT {
 }
 
 @foreign
-typedef IMAGE_ENCLAVE_IMPORT = _IMAGE_ENCLAVE_IMPORT;
+typedef PIMAGE_ENCLAVE_IMPORT = IMAGE_ENCLAVE_IMPORT*;
 
 @foreign
-typedef PIMAGE_ENCLAVE_IMPORT = _IMAGE_ENCLAVE_IMPORT*;
-
-@foreign
-struct _IMAGE_DEBUG_DIRECTORY {
+struct IMAGE_DEBUG_DIRECTORY {
     Characteristics: DWORD;
     TimeDateStamp: DWORD;
     MajorVersion: WORD;
@@ -6496,13 +5694,10 @@ struct _IMAGE_DEBUG_DIRECTORY {
 }
 
 @foreign
-typedef IMAGE_DEBUG_DIRECTORY = _IMAGE_DEBUG_DIRECTORY;
+typedef PIMAGE_DEBUG_DIRECTORY = IMAGE_DEBUG_DIRECTORY*;
 
 @foreign
-typedef PIMAGE_DEBUG_DIRECTORY = _IMAGE_DEBUG_DIRECTORY*;
-
-@foreign
-struct _IMAGE_COFF_SYMBOLS_HEADER {
+struct IMAGE_COFF_SYMBOLS_HEADER {
     NumberOfSymbols: DWORD;
     LvaToFirstSymbol: DWORD;
     NumberOfLinenumbers: DWORD;
@@ -6514,13 +5709,10 @@ struct _IMAGE_COFF_SYMBOLS_HEADER {
 }
 
 @foreign
-typedef IMAGE_COFF_SYMBOLS_HEADER = _IMAGE_COFF_SYMBOLS_HEADER;
+typedef PIMAGE_COFF_SYMBOLS_HEADER = IMAGE_COFF_SYMBOLS_HEADER*;
 
 @foreign
-typedef PIMAGE_COFF_SYMBOLS_HEADER = _IMAGE_COFF_SYMBOLS_HEADER*;
-
-@foreign
-struct _FPO_DATA {
+struct FPO_DATA {
     ulOffStart: DWORD;
     cbProcSize: DWORD;
     cdwLocals: DWORD;
@@ -6534,13 +5726,10 @@ struct _FPO_DATA {
 }
 
 @foreign
-typedef FPO_DATA = _FPO_DATA;
+typedef PFPO_DATA = FPO_DATA*;
 
 @foreign
-typedef PFPO_DATA = _FPO_DATA*;
-
-@foreign
-struct _IMAGE_DEBUG_MISC {
+struct IMAGE_DEBUG_MISC {
     DataType: DWORD;
     Length: DWORD;
     Unicode: BOOLEAN;
@@ -6549,45 +5738,36 @@ struct _IMAGE_DEBUG_MISC {
 }
 
 @foreign
-typedef IMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC;
+typedef PIMAGE_DEBUG_MISC = IMAGE_DEBUG_MISC*;
 
 @foreign
-typedef PIMAGE_DEBUG_MISC = _IMAGE_DEBUG_MISC*;
-
-@foreign
-struct _IMAGE_FUNCTION_ENTRY {
+struct IMAGE_FUNCTION_ENTRY {
     StartingAddress: DWORD;
     EndingAddress: DWORD;
     EndOfPrologue: DWORD;
 }
 
 @foreign
-typedef IMAGE_FUNCTION_ENTRY = _IMAGE_FUNCTION_ENTRY;
+typedef PIMAGE_FUNCTION_ENTRY = IMAGE_FUNCTION_ENTRY*;
 
 @foreign
-typedef PIMAGE_FUNCTION_ENTRY = _IMAGE_FUNCTION_ENTRY*;
-
-@foreign
-union _IMAGE_FUNCTION_ENTRY64___inner {
+union IMAGE_FUNCTION_ENTRY64___inner {
     EndOfPrologue: ULONGLONG;
     UnwindInfoAddress: ULONGLONG;
 }
 
 @foreign
-struct _IMAGE_FUNCTION_ENTRY64 {
+struct IMAGE_FUNCTION_ENTRY64 {
     StartingAddress: ULONGLONG;
     EndingAddress: ULONGLONG;
-    u: _IMAGE_FUNCTION_ENTRY64___inner;
+    u: IMAGE_FUNCTION_ENTRY64___inner;
 }
 
 @foreign
-typedef IMAGE_FUNCTION_ENTRY64 = _IMAGE_FUNCTION_ENTRY64;
+typedef PIMAGE_FUNCTION_ENTRY64 = IMAGE_FUNCTION_ENTRY64*;
 
 @foreign
-typedef PIMAGE_FUNCTION_ENTRY64 = _IMAGE_FUNCTION_ENTRY64*;
-
-@foreign
-struct _IMAGE_SEPARATE_DEBUG_HEADER {
+struct IMAGE_SEPARATE_DEBUG_HEADER {
     Signature: WORD;
     Flags: WORD;
     Machine: WORD;
@@ -6604,13 +5784,10 @@ struct _IMAGE_SEPARATE_DEBUG_HEADER {
 }
 
 @foreign
-typedef IMAGE_SEPARATE_DEBUG_HEADER = _IMAGE_SEPARATE_DEBUG_HEADER;
+typedef PIMAGE_SEPARATE_DEBUG_HEADER = IMAGE_SEPARATE_DEBUG_HEADER*;
 
 @foreign
-typedef PIMAGE_SEPARATE_DEBUG_HEADER = _IMAGE_SEPARATE_DEBUG_HEADER*;
-
-@foreign
-struct _NON_PAGED_DEBUG_INFO {
+struct NON_PAGED_DEBUG_INFO {
     Signature: WORD;
     Flags: WORD;
     Size: DWORD;
@@ -6623,22 +5800,16 @@ struct _NON_PAGED_DEBUG_INFO {
 }
 
 @foreign
-typedef NON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO;
+typedef PNON_PAGED_DEBUG_INFO = NON_PAGED_DEBUG_INFO*;
 
 @foreign
-typedef PNON_PAGED_DEBUG_INFO = _NON_PAGED_DEBUG_INFO*;
-
-@foreign
-struct _ImageArchitectureEntry {
+struct IMAGE_ARCHITECTURE_ENTRY {
     FixupInstRVA: DWORD;
     NewInst: DWORD;
 }
 
 @foreign
-typedef IMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry;
-
-@foreign
-typedef PIMAGE_ARCHITECTURE_ENTRY = _ImageArchitectureEntry*;
+typedef PIMAGE_ARCHITECTURE_ENTRY = IMAGE_ARCHITECTURE_ENTRY*;
 
 /*
 @PROBLEM Nested struct def at line 18344, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
@@ -6774,24 +5945,19 @@ func RtlPcToFileHeader(PcValue: PVOID, BaseOfImage: PVOID*): PVOID;
 func RtlCompareMemory(Source1: void const*, Source2: void const*, Length: SIZE_T): SIZE_T;
 
 @foreign
-struct _SLIST_ENTRY {
+struct SLIST_ENTRY {
     Next: _SLIST_ENTRY*;
 }
 
 @foreign
-typedef SLIST_ENTRY = _SLIST_ENTRY;
+typedef PSLIST_ENTRY = SLIST_ENTRY*;
+
+// @PROBLEM bitfields
+@foreign
+struct SLIST_HEADER;
 
 @foreign
-typedef PSLIST_ENTRY = _SLIST_ENTRY*;
-
-@foreign
-struct _SLIST_HEADER;
-
-@foreign
-typedef SLIST_HEADER = _SLIST_HEADER;
-
-@foreign
-typedef PSLIST_HEADER = _SLIST_HEADER*;
+typedef PSLIST_HEADER = SLIST_HEADER*;
 
 @foreign
 func RtlInitializeSListHead(ListHead: PSLIST_HEADER);
@@ -6815,18 +5981,15 @@ func RtlInterlockedFlushSList(ListHead: PSLIST_HEADER): PSLIST_ENTRY;
 func RtlQueryDepthSList(ListHead: PSLIST_HEADER): WORD;
 
 @foreign
-union _RTL_RUN_ONCE {
+union RTL_RUN_ONCE {
     Ptr: PVOID;
 }
 
 @foreign
-typedef RTL_RUN_ONCE = _RTL_RUN_ONCE;
+typedef PRTL_RUN_ONCE = RTL_RUN_ONCE*;
 
 @foreign
-typedef PRTL_RUN_ONCE = _RTL_RUN_ONCE*;
-
-@foreign
-struct _RTL_BARRIER {
+struct RTL_BARRIER {
     Reserved1: DWORD;
     Reserved2: DWORD;
     Reserved3: ULONG_PTR[2];
@@ -6835,54 +5998,42 @@ struct _RTL_BARRIER {
 }
 
 @foreign
-typedef RTL_BARRIER = _RTL_BARRIER;
-
-@foreign
-typedef PRTL_BARRIER = _RTL_BARRIER*;
+typedef PRTL_BARRIER = RTL_BARRIER*;
 
 @foreign
 func __fastfail(Code: uint);
 
 @foreign
-struct _MESSAGE_RESOURCE_ENTRY {
+struct MESSAGE_RESOURCE_ENTRY {
     Length: WORD;
     Flags: WORD;
     Text: BYTE[1];
 }
 
 @foreign
-typedef MESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY;
+typedef PMESSAGE_RESOURCE_ENTRY = MESSAGE_RESOURCE_ENTRY*;
 
 @foreign
-typedef PMESSAGE_RESOURCE_ENTRY = _MESSAGE_RESOURCE_ENTRY*;
-
-@foreign
-struct _MESSAGE_RESOURCE_BLOCK {
+struct MESSAGE_RESOURCE_BLOCK {
     LowId: DWORD;
     HighId: DWORD;
     OffsetToEntries: DWORD;
 }
 
 @foreign
-typedef MESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK;
+typedef PMESSAGE_RESOURCE_BLOCK = MESSAGE_RESOURCE_BLOCK*;
 
 @foreign
-typedef PMESSAGE_RESOURCE_BLOCK = _MESSAGE_RESOURCE_BLOCK*;
-
-@foreign
-struct _MESSAGE_RESOURCE_DATA {
+struct MESSAGE_RESOURCE_DATA {
     NumberOfBlocks: DWORD;
     Blocks: MESSAGE_RESOURCE_BLOCK[1];
 }
 
 @foreign
-typedef MESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA;
+typedef PMESSAGE_RESOURCE_DATA = MESSAGE_RESOURCE_DATA*;
 
 @foreign
-typedef PMESSAGE_RESOURCE_DATA = _MESSAGE_RESOURCE_DATA*;
-
-@foreign
-struct _OSVERSIONINFOA {
+struct OSVERSIONINFOA {
     dwOSVersionInfoSize: DWORD;
     dwMajorVersion: DWORD;
     dwMinorVersion: DWORD;
@@ -6892,16 +6043,13 @@ struct _OSVERSIONINFOA {
 }
 
 @foreign
-typedef OSVERSIONINFOA = _OSVERSIONINFOA;
+typedef POSVERSIONINFOA = OSVERSIONINFOA*;
 
 @foreign
-typedef POSVERSIONINFOA = _OSVERSIONINFOA*;
+typedef LPOSVERSIONINFOA = OSVERSIONINFOA*;
 
 @foreign
-typedef LPOSVERSIONINFOA = _OSVERSIONINFOA*;
-
-@foreign
-struct _OSVERSIONINFOW {
+struct OSVERSIONINFOW {
     dwOSVersionInfoSize: DWORD;
     dwMajorVersion: DWORD;
     dwMinorVersion: DWORD;
@@ -6911,19 +6059,16 @@ struct _OSVERSIONINFOW {
 }
 
 @foreign
-typedef OSVERSIONINFOW = _OSVERSIONINFOW;
+typedef POSVERSIONINFOW = OSVERSIONINFOW*;
 
 @foreign
-typedef POSVERSIONINFOW = _OSVERSIONINFOW*;
+typedef LPOSVERSIONINFOW = OSVERSIONINFOW*;
 
 @foreign
-typedef LPOSVERSIONINFOW = _OSVERSIONINFOW*;
+typedef RTL_OSVERSIONINFOW = OSVERSIONINFOW;
 
 @foreign
-typedef RTL_OSVERSIONINFOW = _OSVERSIONINFOW;
-
-@foreign
-typedef PRTL_OSVERSIONINFOW = _OSVERSIONINFOW*;
+typedef PRTL_OSVERSIONINFOW = OSVERSIONINFOW*;
 
 @foreign
 typedef OSVERSIONINFO = OSVERSIONINFOA;
@@ -6935,7 +6080,7 @@ typedef POSVERSIONINFO = POSVERSIONINFOA;
 typedef LPOSVERSIONINFO = LPOSVERSIONINFOA;
 
 @foreign
-struct _OSVERSIONINFOEXA {
+struct OSVERSIONINFOEXA {
     dwOSVersionInfoSize: DWORD;
     dwMajorVersion: DWORD;
     dwMinorVersion: DWORD;
@@ -6950,16 +6095,13 @@ struct _OSVERSIONINFOEXA {
 }
 
 @foreign
-typedef OSVERSIONINFOEXA = _OSVERSIONINFOEXA;
+typedef POSVERSIONINFOEXA = OSVERSIONINFOEXA*;
 
 @foreign
-typedef POSVERSIONINFOEXA = _OSVERSIONINFOEXA*;
+typedef LPOSVERSIONINFOEXA = OSVERSIONINFOEXA*;
 
 @foreign
-typedef LPOSVERSIONINFOEXA = _OSVERSIONINFOEXA*;
-
-@foreign
-struct _OSVERSIONINFOEXW {
+struct OSVERSIONINFOEXW {
     dwOSVersionInfoSize: DWORD;
     dwMajorVersion: DWORD;
     dwMinorVersion: DWORD;
@@ -6974,19 +6116,16 @@ struct _OSVERSIONINFOEXW {
 }
 
 @foreign
-typedef OSVERSIONINFOEXW = _OSVERSIONINFOEXW;
+typedef POSVERSIONINFOEXW = OSVERSIONINFOEXW*;
 
 @foreign
-typedef POSVERSIONINFOEXW = _OSVERSIONINFOEXW*;
+typedef LPOSVERSIONINFOEXW = OSVERSIONINFOEXW*;
 
 @foreign
-typedef LPOSVERSIONINFOEXW = _OSVERSIONINFOEXW*;
+typedef RTL_OSVERSIONINFOEXW = OSVERSIONINFOEXW;
 
 @foreign
-typedef RTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW;
-
-@foreign
-typedef PRTL_OSVERSIONINFOEXW = _OSVERSIONINFOEXW*;
+typedef PRTL_OSVERSIONINFOEXW = OSVERSIONINFOEXW*;
 
 @foreign
 typedef OSVERSIONINFOEX = OSVERSIONINFOEXA;
@@ -7004,7 +6143,7 @@ func VerSetConditionMask(ConditionMask: ULONGLONG, TypeMask: DWORD, Condition: B
 func RtlGetProductInfo(OSMajorVersion: DWORD, OSMinorVersion: DWORD, SpMajorVersion: DWORD, SpMinorVersion: DWORD, ReturnedProductType: PDWORD): BOOLEAN;
 
 @foreign
-enum _RTL_UMS_THREAD_INFO_CLASS {
+enum RTL_UMS_THREAD_INFO_CLASS {
     UmsThreadInvalidInfoClass = 0,
     UmsThreadUserContext,
     UmsThreadPriority,
@@ -7016,23 +6155,17 @@ enum _RTL_UMS_THREAD_INFO_CLASS {
 }
 
 @foreign
-typedef RTL_UMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS;
+typedef PRTL_UMS_THREAD_INFO_CLASS = RTL_UMS_THREAD_INFO_CLASS*;
 
 @foreign
-typedef PRTL_UMS_THREAD_INFO_CLASS = _RTL_UMS_THREAD_INFO_CLASS*;
-
-@foreign
-enum _RTL_UMS_SCHEDULER_REASON {
+enum RTL_UMS_SCHEDULER_REASON {
     UmsSchedulerStartup = 0,
     UmsSchedulerThreadBlocked,
     UmsSchedulerThreadYield,
 }
 
 @foreign
-typedef RTL_UMS_SCHEDULER_REASON = _RTL_UMS_SCHEDULER_REASON;
-
-@foreign
-typedef PRTL_UMS_SCHEDULER_REASON = _RTL_UMS_SCHEDULER_REASON*;
+typedef PRTL_UMS_SCHEDULER_REASON = RTL_UMS_SCHEDULER_REASON*;
 
 @foreign
 typedef RTL_UMS_SCHEDULER_ENTRY_POINT = func(Reason: RTL_UMS_SCHEDULER_REASON, ActivationPayload: ULONG_PTR, SchedulerParam: PVOID);
@@ -7047,28 +6180,22 @@ func RtlCrc32(Buffer: void const*, Size: usize, InitialCrc: DWORD): DWORD;
 func RtlCrc64(Buffer: void const*, Size: usize, InitialCrc: ULONGLONG): ULONGLONG;
 
 @foreign
-enum _OS_DEPLOYEMENT_STATE_VALUES {
+enum OS_DEPLOYEMENT_STATE_VALUES {
     OS_DEPLOYMENT_STANDARD = 1,
     OS_DEPLOYMENT_COMPACT,
 }
 
 @foreign
-typedef OS_DEPLOYEMENT_STATE_VALUES = _OS_DEPLOYEMENT_STATE_VALUES;
-
-@foreign
 func RtlOsDeploymentState(Flags: DWORD): OS_DEPLOYEMENT_STATE_VALUES;
 
 @foreign
-struct _NV_MEMORY_RANGE {
+struct NV_MEMORY_RANGE {
     BaseAddress: void*;
     Length: SIZE_T;
 }
 
 @foreign
-typedef NV_MEMORY_RANGE = _NV_MEMORY_RANGE;
-
-@foreign
-typedef PNV_MEMORY_RANGE = _NV_MEMORY_RANGE*;
+typedef PNV_MEMORY_RANGE = NV_MEMORY_RANGE*;
 
 @foreign
 func RtlGetNonVolatileToken(NvBuffer: PVOID, Size: SIZE_T, NvToken: PVOID*): DWORD;
@@ -7110,7 +6237,7 @@ func RtlExtendCorrelationVector(CorrelationVector: PCORRELATION_VECTOR): DWORD;
 func RtlValidateCorrelationVector(Vector: PCORRELATION_VECTOR): DWORD;
 
 @foreign
-enum _IMAGE_POLICY_ENTRY_TYPE {
+enum IMAGE_POLICY_ENTRY_TYPE {
     ImagePolicyEntryTypeNone = 0,
     ImagePolicyEntryTypeBool,
     ImagePolicyEntryTypeInt8,
@@ -7127,10 +6254,7 @@ enum _IMAGE_POLICY_ENTRY_TYPE {
 }
 
 @foreign
-typedef IMAGE_POLICY_ENTRY_TYPE = _IMAGE_POLICY_ENTRY_TYPE;
-
-@foreign
-enum _IMAGE_POLICY_ID {
+enum IMAGE_POLICY_ID {
     ImagePolicyIdNone = 0,
     ImagePolicyIdEtw,
     ImagePolicyIdDebug,
@@ -7147,10 +6271,7 @@ enum _IMAGE_POLICY_ID {
 }
 
 @foreign
-typedef IMAGE_POLICY_ID = _IMAGE_POLICY_ID;
-
-@foreign
-union _IMAGE_POLICY_ENTRY___inner {
+union IMAGE_POLICY_ENTRY___inner {
     None: void const*;
     BoolValue: BOOLEAN;
     Int8Value: INT8;
@@ -7166,20 +6287,17 @@ union _IMAGE_POLICY_ENTRY___inner {
 }
 
 @foreign
-struct _IMAGE_POLICY_ENTRY {
+struct IMAGE_POLICY_ENTRY {
     Type: IMAGE_POLICY_ENTRY_TYPE;
     PolicyId: IMAGE_POLICY_ID;
-    u: _IMAGE_POLICY_ENTRY___inner;
+    u: IMAGE_POLICY_ENTRY___inner;
 }
-
-@foreign
-typedef IMAGE_POLICY_ENTRY = _IMAGE_POLICY_ENTRY;
 
 @foreign
 typedef PCIMAGE_POLICY_ENTRY = IMAGE_POLICY_ENTRY const*;
 
 @foreign
-struct _IMAGE_POLICY_METADATA {
+struct IMAGE_POLICY_METADATA {
     Version: BYTE;
     Reserved0: BYTE[7];
     ApplicationId: ULONGLONG;
@@ -7187,13 +6305,10 @@ struct _IMAGE_POLICY_METADATA {
 }
 
 @foreign
-typedef IMAGE_POLICY_METADATA = _IMAGE_POLICY_METADATA;
-
-@foreign
 typedef PCIMAGE_POLICY_METADATA = IMAGE_POLICY_METADATA*;
 
 @foreign
-struct _RTL_CRITICAL_SECTION_DEBUG {
+struct RTL_CRITICAL_SECTION_DEBUG {
     Type: WORD;
     CreatorBackTraceIndex: WORD;
     CriticalSection: _RTL_CRITICAL_SECTION*;
@@ -7206,19 +6321,16 @@ struct _RTL_CRITICAL_SECTION_DEBUG {
 }
 
 @foreign
-typedef RTL_CRITICAL_SECTION_DEBUG = _RTL_CRITICAL_SECTION_DEBUG;
+typedef PRTL_CRITICAL_SECTION_DEBUG = RTL_CRITICAL_SECTION_DEBUG*;
 
 @foreign
-typedef PRTL_CRITICAL_SECTION_DEBUG = _RTL_CRITICAL_SECTION_DEBUG*;
+typedef RTL_RESOURCE_DEBUG = RTL_CRITICAL_SECTION_DEBUG;
 
 @foreign
-typedef RTL_RESOURCE_DEBUG = _RTL_CRITICAL_SECTION_DEBUG;
+typedef PRTL_RESOURCE_DEBUG = RTL_CRITICAL_SECTION_DEBUG*;
 
 @foreign
-typedef PRTL_RESOURCE_DEBUG = _RTL_CRITICAL_SECTION_DEBUG*;
-
-@foreign
-struct _RTL_CRITICAL_SECTION {
+struct RTL_CRITICAL_SECTION {
     DebugInfo: PRTL_CRITICAL_SECTION_DEBUG;
     LockCount: LONG;
     RecursionCount: LONG;
@@ -7228,60 +6340,45 @@ struct _RTL_CRITICAL_SECTION {
 }
 
 @foreign
-typedef RTL_CRITICAL_SECTION = _RTL_CRITICAL_SECTION;
+typedef PRTL_CRITICAL_SECTION = RTL_CRITICAL_SECTION*;
 
 @foreign
-typedef PRTL_CRITICAL_SECTION = _RTL_CRITICAL_SECTION*;
-
-@foreign
-struct _RTL_SRWLOCK {
+struct RTL_SRWLOCK {
     Ptr: PVOID;
 }
 
 @foreign
-typedef RTL_SRWLOCK = _RTL_SRWLOCK;
+typedef PRTL_SRWLOCK = RTL_SRWLOCK*;
 
 @foreign
-typedef PRTL_SRWLOCK = _RTL_SRWLOCK*;
-
-@foreign
-struct _RTL_CONDITION_VARIABLE {
+struct RTL_CONDITION_VARIABLE {
     Ptr: PVOID;
 }
 
 @foreign
-typedef RTL_CONDITION_VARIABLE = _RTL_CONDITION_VARIABLE;
-
-@foreign
-typedef PRTL_CONDITION_VARIABLE = _RTL_CONDITION_VARIABLE*;
+typedef PRTL_CONDITION_VARIABLE = RTL_CONDITION_VARIABLE*;
 
 @foreign
 typedef PAPCFUNC = func(Parameter: ULONG_PTR);
 
 @foreign
-typedef PVECTORED_EXCEPTION_HANDLER = func(ExceptionInfo: _EXCEPTION_POINTERS*): LONG;
+typedef PVECTORED_EXCEPTION_HANDLER = func(ExceptionInfo: EXCEPTION_POINTERS*): LONG;
 
 @foreign
-enum _HEAP_INFORMATION_CLASS {
+enum HEAP_INFORMATION_CLASS {
     HeapCompatibilityInformation = 0,
     HeapEnableTerminationOnCorruption = 1,
     HeapOptimizeResources = 3,
 }
 
 @foreign
-typedef HEAP_INFORMATION_CLASS = _HEAP_INFORMATION_CLASS;
-
-@foreign
-struct _HEAP_OPTIMIZE_RESOURCES_INFORMATION {
+struct HEAP_OPTIMIZE_RESOURCES_INFORMATION {
     Version: DWORD;
     Flags: DWORD;
 }
 
 @foreign
-typedef HEAP_OPTIMIZE_RESOURCES_INFORMATION = _HEAP_OPTIMIZE_RESOURCES_INFORMATION;
-
-@foreign
-typedef PHEAP_OPTIMIZE_RESOURCES_INFORMATION = _HEAP_OPTIMIZE_RESOURCES_INFORMATION*;
+typedef PHEAP_OPTIMIZE_RESOURCES_INFORMATION = HEAP_OPTIMIZE_RESOURCES_INFORMATION*;
 
 @foreign
 typedef WAITORTIMERCALLBACKFUNC = func(arg0: PVOID, arg1: BOOLEAN);
@@ -7302,7 +6399,7 @@ typedef PFLS_CALLBACK_FUNCTION = func(lpFlsData: PVOID);
 typedef PSECURE_MEMORY_CACHE_CALLBACK = func(Addr: PVOID, Range: SIZE_T): BOOLEAN;
 
 @foreign
-enum _ACTIVATION_CONTEXT_INFO_CLASS {
+enum ACTIVATION_CONTEXT_INFO_CLASS {
     ActivationContextBasicInformation = 1,
     ActivationContextDetailedInformation = 2,
     AssemblyDetailedInformationInActivationContxt = 3,
@@ -7316,25 +6413,19 @@ enum _ACTIVATION_CONTEXT_INFO_CLASS {
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_INFO_CLASS = _ACTIVATION_CONTEXT_INFO_CLASS;
-
-@foreign
-struct _ACTIVATION_CONTEXT_QUERY_INDEX {
+struct ACTIVATION_CONTEXT_QUERY_INDEX {
     ulAssemblyIndex: DWORD;
     ulFileIndexInAssembly: DWORD;
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX;
+typedef PACTIVATION_CONTEXT_QUERY_INDEX = ACTIVATION_CONTEXT_QUERY_INDEX*;
 
 @foreign
-typedef PACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX*;
+typedef PCACTIVATION_CONTEXT_QUERY_INDEX = ACTIVATION_CONTEXT_QUERY_INDEX*;
 
 @foreign
-typedef PCACTIVATION_CONTEXT_QUERY_INDEX = _ACTIVATION_CONTEXT_QUERY_INDEX const*;
-
-@foreign
-struct _ASSEMBLY_FILE_DETAILED_INFORMATION {
+struct ASSEMBLY_FILE_DETAILED_INFORMATION {
     ulFlags: DWORD;
     ulFilenameLength: DWORD;
     ulPathLength: DWORD;
@@ -7343,16 +6434,13 @@ struct _ASSEMBLY_FILE_DETAILED_INFORMATION {
 }
 
 @foreign
-typedef ASSEMBLY_FILE_DETAILED_INFORMATION = _ASSEMBLY_FILE_DETAILED_INFORMATION;
-
-@foreign
-typedef PASSEMBLY_FILE_DETAILED_INFORMATION = _ASSEMBLY_FILE_DETAILED_INFORMATION*;
+typedef PASSEMBLY_FILE_DETAILED_INFORMATION = ASSEMBLY_FILE_DETAILED_INFORMATION*;
 
 @foreign
 typedef PCASSEMBLY_FILE_DETAILED_INFORMATION = ASSEMBLY_FILE_DETAILED_INFORMATION*;
 
 @foreign
-struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
+struct ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
     ulFlags: DWORD;
     ulEncodedAssemblyIdentityLength: DWORD;
     ulManifestPathType: DWORD;
@@ -7375,13 +6463,10 @@ struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION;
+typedef PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION*;
 
 @foreign
-typedef PACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION*;
-
-@foreign
-typedef PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION const*;
+typedef PCACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION = ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION*;
 
 @foreign
 enum ACTCTX_REQUESTED_RUN_LEVEL {
@@ -7393,20 +6478,17 @@ enum ACTCTX_REQUESTED_RUN_LEVEL {
 }
 
 @foreign
-struct _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION {
+struct ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION {
     ulFlags: DWORD;
     RunLevel: ACTCTX_REQUESTED_RUN_LEVEL;
     UiAccess: DWORD;
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION;
+typedef PACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION*;
 
 @foreign
-typedef PACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION*;
-
-@foreign
-typedef PCACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = _ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION const*;
+typedef PCACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION = ACTIVATION_CONTEXT_RUN_LEVEL_INFORMATION*;
 
 @foreign
 enum ACTCTX_COMPATIBILITY_ELEMENT_TYPE {
@@ -7416,49 +6498,40 @@ enum ACTCTX_COMPATIBILITY_ELEMENT_TYPE {
 }
 
 @foreign
-struct _COMPATIBILITY_CONTEXT_ELEMENT {
+struct COMPATIBILITY_CONTEXT_ELEMENT {
     Id: GUID;
     Type: ACTCTX_COMPATIBILITY_ELEMENT_TYPE;
 }
 
 @foreign
-typedef COMPATIBILITY_CONTEXT_ELEMENT = _COMPATIBILITY_CONTEXT_ELEMENT;
+typedef PCOMPATIBILITY_CONTEXT_ELEMENT = COMPATIBILITY_CONTEXT_ELEMENT*;
 
 @foreign
-typedef PCOMPATIBILITY_CONTEXT_ELEMENT = _COMPATIBILITY_CONTEXT_ELEMENT*;
+typedef PCCOMPATIBILITY_CONTEXT_ELEMENT = COMPATIBILITY_CONTEXT_ELEMENT*;
 
 @foreign
-typedef PCCOMPATIBILITY_CONTEXT_ELEMENT = _COMPATIBILITY_CONTEXT_ELEMENT const*;
-
-@foreign
-struct _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
+struct ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
     ElementCount: DWORD;
-    Elements: COMPATIBILITY_CONTEXT_ELEMENT[1];
+    Elements: COMPATIBILITY_CONTEXT_ELEMENT[];
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION;
+typedef PACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION*;
 
 @foreign
-typedef PACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION*;
+typedef PCACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION*;
 
 @foreign
-typedef PCACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION = _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION const*;
-
-@foreign
-struct _SUPPORTED_OS_INFO {
+struct SUPPORTED_OS_INFO {
     MajorVersion: WORD;
     MinorVersion: WORD;
 }
 
 @foreign
-typedef SUPPORTED_OS_INFO = _SUPPORTED_OS_INFO;
+typedef PSUPPORTED_OS_INFO = SUPPORTED_OS_INFO*;
 
 @foreign
-typedef PSUPPORTED_OS_INFO = _SUPPORTED_OS_INFO*;
-
-@foreign
-struct _ACTIVATION_CONTEXT_DETAILED_INFORMATION {
+struct ACTIVATION_CONTEXT_DETAILED_INFORMATION {
     dwFlags: DWORD;
     ulFormatVersion: DWORD;
     ulAssemblyCount: DWORD;
@@ -7474,29 +6547,23 @@ struct _ACTIVATION_CONTEXT_DETAILED_INFORMATION {
 }
 
 @foreign
-typedef ACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION;
+typedef PACTIVATION_CONTEXT_DETAILED_INFORMATION = ACTIVATION_CONTEXT_DETAILED_INFORMATION*;
 
 @foreign
-typedef PACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION*;
+typedef PCACTIVATION_CONTEXT_DETAILED_INFORMATION = ACTIVATION_CONTEXT_DETAILED_INFORMATION*;
 
 @foreign
-typedef PCACTIVATION_CONTEXT_DETAILED_INFORMATION = _ACTIVATION_CONTEXT_DETAILED_INFORMATION const*;
-
-@foreign
-struct _HARDWARE_COUNTER_DATA {
+struct HARDWARE_COUNTER_DATA {
     Type: HARDWARE_COUNTER_TYPE;
     Reserved: DWORD;
     Value: DWORD64;
 }
 
 @foreign
-typedef HARDWARE_COUNTER_DATA = _HARDWARE_COUNTER_DATA;
+typedef PHARDWARE_COUNTER_DATA = HARDWARE_COUNTER_DATA*;
 
 @foreign
-typedef PHARDWARE_COUNTER_DATA = _HARDWARE_COUNTER_DATA*;
-
-@foreign
-struct _PERFORMANCE_DATA {
+struct PERFORMANCE_DATA {
     Size: WORD;
     Version: BYTE;
     HwCountersCount: BYTE;
@@ -7509,10 +6576,7 @@ struct _PERFORMANCE_DATA {
 }
 
 @foreign
-typedef PERFORMANCE_DATA = _PERFORMANCE_DATA;
-
-@foreign
-typedef PPERFORMANCE_DATA = _PERFORMANCE_DATA*;
+typedef PPERFORMANCE_DATA = PERFORMANCE_DATA*;
 
 @foreign
 func RtlGetDeviceFamilyInfoEnum(pullUAPInfo: ULONGLONG*, pulDeviceFamily: DWORD*, pulDeviceForm: DWORD*);
@@ -7524,7 +6588,7 @@ func RtlConvertDeviceFamilyInfoToString(pulDeviceFamilyBufferSize: PDWORD, pulDe
 func RtlSwitchedVVI(VersionInfo: PRTL_OSVERSIONINFOEXW, TypeMask: DWORD, ConditionMask: ULONGLONG): DWORD;
 
 @foreign
-struct _EVENTLOGRECORD {
+struct EVENTLOGRECORD {
     Length: DWORD;
     Reserved: DWORD;
     RecordNumber: DWORD;
@@ -7544,10 +6608,7 @@ struct _EVENTLOGRECORD {
 }
 
 @foreign
-typedef EVENTLOGRECORD = _EVENTLOGRECORD;
-
-@foreign
-typedef PEVENTLOGRECORD = _EVENTLOGRECORD*;
+typedef PEVENTLOGRECORD = EVENTLOGRECORD*;
 
 @foreign
 typedef EVENTSFORLOGFILE = _EVENTSFORLOGFILE;
@@ -7577,7 +6638,7 @@ struct _PACKEDEVENTINFO {
 }
 
 @foreign
-enum _CM_SERVICE_NODE_TYPE {
+enum SERVICE_NODE_TYPE {
     DriverType = 1,
     FileSystemType = 2,
     AdapterType = 4,
@@ -7587,10 +6648,7 @@ enum _CM_SERVICE_NODE_TYPE {
 }
 
 @foreign
-typedef SERVICE_NODE_TYPE = _CM_SERVICE_NODE_TYPE;
-
-@foreign
-enum _CM_SERVICE_LOAD_TYPE {
+enum SERVICE_LOAD_TYPE {
     BootLoad = 0,
     SystemLoad = 1,
     AutoLoad = 2,
@@ -7599,10 +6657,7 @@ enum _CM_SERVICE_LOAD_TYPE {
 }
 
 @foreign
-typedef SERVICE_LOAD_TYPE = _CM_SERVICE_LOAD_TYPE;
-
-@foreign
-enum _CM_ERROR_CONTROL_TYPE {
+enum SERVICE_ERROR_TYPE {
     IgnoreError = 0,
     NormalError = 1,
     SevereError = 2,
@@ -7610,60 +6665,45 @@ enum _CM_ERROR_CONTROL_TYPE {
 }
 
 @foreign
-typedef SERVICE_ERROR_TYPE = _CM_ERROR_CONTROL_TYPE;
-
-@foreign
-struct _TAPE_ERASE {
+struct TAPE_ERASE {
     Type: DWORD;
     Immediate: BOOLEAN;
 }
 
 @foreign
-typedef TAPE_ERASE = _TAPE_ERASE;
+typedef PTAPE_ERASE = TAPE_ERASE*;
 
 @foreign
-typedef PTAPE_ERASE = _TAPE_ERASE*;
-
-@foreign
-struct _TAPE_PREPARE {
+struct TAPE_PREPARE {
     Operation: DWORD;
     Immediate: BOOLEAN;
 }
 
 @foreign
-typedef TAPE_PREPARE = _TAPE_PREPARE;
+typedef PTAPE_PREPARE = TAPE_PREPARE*;
 
 @foreign
-typedef PTAPE_PREPARE = _TAPE_PREPARE*;
-
-@foreign
-struct _TAPE_WRITE_MARKS {
+struct TAPE_WRITE_MARKS {
     Type: DWORD;
     Count: DWORD;
     Immediate: BOOLEAN;
 }
 
 @foreign
-typedef TAPE_WRITE_MARKS = _TAPE_WRITE_MARKS;
+typedef PTAPE_WRITE_MARKS = TAPE_WRITE_MARKS*;
 
 @foreign
-typedef PTAPE_WRITE_MARKS = _TAPE_WRITE_MARKS*;
-
-@foreign
-struct _TAPE_GET_POSITION {
+struct TAPE_GET_POSITION {
     Type: DWORD;
     Partition: DWORD;
     Offset: LARGE_INTEGER;
 }
 
 @foreign
-typedef TAPE_GET_POSITION = _TAPE_GET_POSITION;
+typedef PTAPE_GET_POSITION = TAPE_GET_POSITION*;
 
 @foreign
-typedef PTAPE_GET_POSITION = _TAPE_GET_POSITION*;
-
-@foreign
-struct _TAPE_SET_POSITION {
+struct TAPE_SET_POSITION {
     Method: DWORD;
     Partition: DWORD;
     Offset: LARGE_INTEGER;
@@ -7671,13 +6711,10 @@ struct _TAPE_SET_POSITION {
 }
 
 @foreign
-typedef TAPE_SET_POSITION = _TAPE_SET_POSITION;
+typedef PTAPE_SET_POSITION = TAPE_SET_POSITION*;
 
 @foreign
-typedef PTAPE_SET_POSITION = _TAPE_SET_POSITION*;
-
-@foreign
-struct _TAPE_GET_DRIVE_PARAMETERS {
+struct TAPE_GET_DRIVE_PARAMETERS {
     ECC: BOOLEAN;
     Compression: BOOLEAN;
     DataPadding: BOOLEAN;
@@ -7692,13 +6729,10 @@ struct _TAPE_GET_DRIVE_PARAMETERS {
 }
 
 @foreign
-typedef TAPE_GET_DRIVE_PARAMETERS = _TAPE_GET_DRIVE_PARAMETERS;
+typedef PTAPE_GET_DRIVE_PARAMETERS = TAPE_GET_DRIVE_PARAMETERS*;
 
 @foreign
-typedef PTAPE_GET_DRIVE_PARAMETERS = _TAPE_GET_DRIVE_PARAMETERS*;
-
-@foreign
-struct _TAPE_SET_DRIVE_PARAMETERS {
+struct TAPE_SET_DRIVE_PARAMETERS {
     ECC: BOOLEAN;
     Compression: BOOLEAN;
     DataPadding: BOOLEAN;
@@ -7707,13 +6741,10 @@ struct _TAPE_SET_DRIVE_PARAMETERS {
 }
 
 @foreign
-typedef TAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS;
+typedef PTAPE_SET_DRIVE_PARAMETERS = TAPE_SET_DRIVE_PARAMETERS*;
 
 @foreign
-typedef PTAPE_SET_DRIVE_PARAMETERS = _TAPE_SET_DRIVE_PARAMETERS*;
-
-@foreign
-struct _TAPE_GET_MEDIA_PARAMETERS {
+struct TAPE_GET_MEDIA_PARAMETERS {
     Capacity: LARGE_INTEGER;
     Remaining: LARGE_INTEGER;
     BlockSize: DWORD;
@@ -7722,50 +6753,38 @@ struct _TAPE_GET_MEDIA_PARAMETERS {
 }
 
 @foreign
-typedef TAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS;
+typedef PTAPE_GET_MEDIA_PARAMETERS = TAPE_GET_MEDIA_PARAMETERS*;
 
 @foreign
-typedef PTAPE_GET_MEDIA_PARAMETERS = _TAPE_GET_MEDIA_PARAMETERS*;
-
-@foreign
-struct _TAPE_SET_MEDIA_PARAMETERS {
+struct TAPE_SET_MEDIA_PARAMETERS {
     BlockSize: DWORD;
 }
 
 @foreign
-typedef TAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS;
+typedef PTAPE_SET_MEDIA_PARAMETERS = TAPE_SET_MEDIA_PARAMETERS*;
 
 @foreign
-typedef PTAPE_SET_MEDIA_PARAMETERS = _TAPE_SET_MEDIA_PARAMETERS*;
-
-@foreign
-struct _TAPE_CREATE_PARTITION {
+struct TAPE_CREATE_PARTITION {
     Method: DWORD;
     Count: DWORD;
     Size: DWORD;
 }
 
 @foreign
-typedef TAPE_CREATE_PARTITION = _TAPE_CREATE_PARTITION;
+typedef PTAPE_CREATE_PARTITION = TAPE_CREATE_PARTITION*;
 
 @foreign
-typedef PTAPE_CREATE_PARTITION = _TAPE_CREATE_PARTITION*;
-
-@foreign
-struct _TAPE_WMI_OPERATIONS {
+struct TAPE_WMI_OPERATIONS {
     Method: DWORD;
     DataBufferSize: DWORD;
     DataBuffer: PVOID;
 }
 
 @foreign
-typedef TAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS;
+typedef PTAPE_WMI_OPERATIONS = TAPE_WMI_OPERATIONS*;
 
 @foreign
-typedef PTAPE_WMI_OPERATIONS = _TAPE_WMI_OPERATIONS*;
-
-@foreign
-enum _TAPE_DRIVE_PROBLEM_TYPE {
+enum TAPE_DRIVE_PROBLEM_TYPE {
     TapeDriveProblemNone,
     TapeDriveReadWriteWarning,
     TapeDriveReadWriteError,
@@ -7783,100 +6802,73 @@ enum _TAPE_DRIVE_PROBLEM_TYPE {
 }
 
 @foreign
-typedef TAPE_DRIVE_PROBLEM_TYPE = _TAPE_DRIVE_PROBLEM_TYPE;
-
-@foreign
-enum _TRANSACTION_OUTCOME {
+enum TRANSACTION_OUTCOME {
     TransactionOutcomeUndetermined = 1,
     TransactionOutcomeCommitted,
     TransactionOutcomeAborted,
 }
 
 @foreign
-typedef TRANSACTION_OUTCOME = _TRANSACTION_OUTCOME;
-
-@foreign
-enum _TRANSACTION_STATE {
+enum TRANSACTION_STATE {
     TransactionStateNormal = 1,
     TransactionStateIndoubt,
     TransactionStateCommittedNotify,
 }
 
 @foreign
-typedef TRANSACTION_STATE = _TRANSACTION_STATE;
-
-@foreign
-struct _TRANSACTION_BASIC_INFORMATION {
+struct TRANSACTION_BASIC_INFORMATION {
     TransactionId: GUID;
     State: DWORD;
     Outcome: DWORD;
 }
 
 @foreign
-typedef TRANSACTION_BASIC_INFORMATION = _TRANSACTION_BASIC_INFORMATION;
+typedef PTRANSACTION_BASIC_INFORMATION = TRANSACTION_BASIC_INFORMATION*;
 
 @foreign
-typedef PTRANSACTION_BASIC_INFORMATION = _TRANSACTION_BASIC_INFORMATION*;
-
-@foreign
-struct _TRANSACTIONMANAGER_BASIC_INFORMATION {
+struct TRANSACTIONMANAGER_BASIC_INFORMATION {
     TmIdentity: GUID;
     VirtualClock: LARGE_INTEGER;
 }
 
 @foreign
-typedef TRANSACTIONMANAGER_BASIC_INFORMATION = _TRANSACTIONMANAGER_BASIC_INFORMATION;
+typedef PTRANSACTIONMANAGER_BASIC_INFORMATION = TRANSACTIONMANAGER_BASIC_INFORMATION*;
 
 @foreign
-typedef PTRANSACTIONMANAGER_BASIC_INFORMATION = _TRANSACTIONMANAGER_BASIC_INFORMATION*;
-
-@foreign
-struct _TRANSACTIONMANAGER_LOG_INFORMATION {
+struct TRANSACTIONMANAGER_LOG_INFORMATION {
     LogIdentity: GUID;
 }
 
 @foreign
-typedef TRANSACTIONMANAGER_LOG_INFORMATION = _TRANSACTIONMANAGER_LOG_INFORMATION;
+typedef PTRANSACTIONMANAGER_LOG_INFORMATION = TRANSACTIONMANAGER_LOG_INFORMATION*;
 
 @foreign
-typedef PTRANSACTIONMANAGER_LOG_INFORMATION = _TRANSACTIONMANAGER_LOG_INFORMATION*;
-
-@foreign
-struct _TRANSACTIONMANAGER_LOGPATH_INFORMATION {
+struct TRANSACTIONMANAGER_LOGPATH_INFORMATION {
     LogPathLength: DWORD;
     LogPath: WCHAR[1];
 }
 
 @foreign
-typedef TRANSACTIONMANAGER_LOGPATH_INFORMATION = _TRANSACTIONMANAGER_LOGPATH_INFORMATION;
+typedef PTRANSACTIONMANAGER_LOGPATH_INFORMATION = TRANSACTIONMANAGER_LOGPATH_INFORMATION*;
 
 @foreign
-typedef PTRANSACTIONMANAGER_LOGPATH_INFORMATION = _TRANSACTIONMANAGER_LOGPATH_INFORMATION*;
-
-@foreign
-struct _TRANSACTIONMANAGER_RECOVERY_INFORMATION {
+struct TRANSACTIONMANAGER_RECOVERY_INFORMATION {
     LastRecoveredLsn: ULONGLONG;
 }
 
 @foreign
-typedef TRANSACTIONMANAGER_RECOVERY_INFORMATION = _TRANSACTIONMANAGER_RECOVERY_INFORMATION;
+typedef PTRANSACTIONMANAGER_RECOVERY_INFORMATION = TRANSACTIONMANAGER_RECOVERY_INFORMATION*;
 
 @foreign
-typedef PTRANSACTIONMANAGER_RECOVERY_INFORMATION = _TRANSACTIONMANAGER_RECOVERY_INFORMATION*;
-
-@foreign
-struct _TRANSACTIONMANAGER_OLDEST_INFORMATION {
+struct TRANSACTIONMANAGER_OLDEST_INFORMATION {
     OldestTransactionGuid: GUID;
 }
 
 @foreign
-typedef TRANSACTIONMANAGER_OLDEST_INFORMATION = _TRANSACTIONMANAGER_OLDEST_INFORMATION;
+typedef PTRANSACTIONMANAGER_OLDEST_INFORMATION = TRANSACTIONMANAGER_OLDEST_INFORMATION*;
 
 @foreign
-typedef PTRANSACTIONMANAGER_OLDEST_INFORMATION = _TRANSACTIONMANAGER_OLDEST_INFORMATION*;
-
-@foreign
-struct _TRANSACTION_PROPERTIES_INFORMATION {
+struct TRANSACTION_PROPERTIES_INFORMATION {
     IsolationLevel: DWORD;
     IsolationFlags: DWORD;
     Timeout: LARGE_INTEGER;
@@ -7886,84 +6878,63 @@ struct _TRANSACTION_PROPERTIES_INFORMATION {
 }
 
 @foreign
-typedef TRANSACTION_PROPERTIES_INFORMATION = _TRANSACTION_PROPERTIES_INFORMATION;
+typedef PTRANSACTION_PROPERTIES_INFORMATION = TRANSACTION_PROPERTIES_INFORMATION*;
 
 @foreign
-typedef PTRANSACTION_PROPERTIES_INFORMATION = _TRANSACTION_PROPERTIES_INFORMATION*;
-
-@foreign
-struct _TRANSACTION_BIND_INFORMATION {
+struct TRANSACTION_BIND_INFORMATION {
     TmHandle: HANDLE;
 }
 
 @foreign
-typedef TRANSACTION_BIND_INFORMATION = _TRANSACTION_BIND_INFORMATION;
+typedef PTRANSACTION_BIND_INFORMATION = TRANSACTION_BIND_INFORMATION*;
 
 @foreign
-typedef PTRANSACTION_BIND_INFORMATION = _TRANSACTION_BIND_INFORMATION*;
-
-@foreign
-struct _TRANSACTION_ENLISTMENT_PAIR {
+struct TRANSACTION_ENLISTMENT_PAIR {
     EnlistmentId: GUID;
     ResourceManagerId: GUID;
 }
 
 @foreign
-typedef TRANSACTION_ENLISTMENT_PAIR = _TRANSACTION_ENLISTMENT_PAIR;
+typedef PTRANSACTION_ENLISTMENT_PAIR = TRANSACTION_ENLISTMENT_PAIR*;
 
 @foreign
-typedef PTRANSACTION_ENLISTMENT_PAIR = _TRANSACTION_ENLISTMENT_PAIR*;
-
-@foreign
-struct _TRANSACTION_ENLISTMENTS_INFORMATION {
+struct TRANSACTION_ENLISTMENTS_INFORMATION {
     NumberOfEnlistments: DWORD;
     EnlistmentPair: TRANSACTION_ENLISTMENT_PAIR[1];
 }
 
 @foreign
-typedef TRANSACTION_ENLISTMENTS_INFORMATION = _TRANSACTION_ENLISTMENTS_INFORMATION;
+typedef PTRANSACTION_ENLISTMENTS_INFORMATION = TRANSACTION_ENLISTMENTS_INFORMATION*;
 
 @foreign
-typedef PTRANSACTION_ENLISTMENTS_INFORMATION = _TRANSACTION_ENLISTMENTS_INFORMATION*;
-
-@foreign
-struct _TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION {
+struct TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION {
     SuperiorEnlistmentPair: TRANSACTION_ENLISTMENT_PAIR;
 }
 
 @foreign
-typedef TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = _TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION;
+typedef PTRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION*;
 
 @foreign
-typedef PTRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION = _TRANSACTION_SUPERIOR_ENLISTMENT_INFORMATION*;
-
-@foreign
-struct _RESOURCEMANAGER_BASIC_INFORMATION {
+struct RESOURCEMANAGER_BASIC_INFORMATION {
     ResourceManagerId: GUID;
     DescriptionLength: DWORD;
     Description: WCHAR[1];
 }
 
 @foreign
-typedef RESOURCEMANAGER_BASIC_INFORMATION = _RESOURCEMANAGER_BASIC_INFORMATION;
+typedef PRESOURCEMANAGER_BASIC_INFORMATION = RESOURCEMANAGER_BASIC_INFORMATION*;
 
 @foreign
-typedef PRESOURCEMANAGER_BASIC_INFORMATION = _RESOURCEMANAGER_BASIC_INFORMATION*;
-
-@foreign
-struct _RESOURCEMANAGER_COMPLETION_INFORMATION {
+struct RESOURCEMANAGER_COMPLETION_INFORMATION {
     IoCompletionPortHandle: HANDLE;
     CompletionKey: ULONG_PTR;
 }
 
 @foreign
-typedef RESOURCEMANAGER_COMPLETION_INFORMATION = _RESOURCEMANAGER_COMPLETION_INFORMATION;
+typedef PRESOURCEMANAGER_COMPLETION_INFORMATION = RESOURCEMANAGER_COMPLETION_INFORMATION*;
 
 @foreign
-typedef PRESOURCEMANAGER_COMPLETION_INFORMATION = _RESOURCEMANAGER_COMPLETION_INFORMATION*;
-
-@foreign
-enum _TRANSACTION_INFORMATION_CLASS {
+enum TRANSACTION_INFORMATION_CLASS {
     TransactionBasicInformation,
     TransactionPropertiesInformation,
     TransactionEnlistmentInformation,
@@ -7973,10 +6944,7 @@ enum _TRANSACTION_INFORMATION_CLASS {
 }
 
 @foreign
-typedef TRANSACTION_INFORMATION_CLASS = _TRANSACTION_INFORMATION_CLASS;
-
-@foreign
-enum _TRANSACTIONMANAGER_INFORMATION_CLASS {
+enum TRANSACTIONMANAGER_INFORMATION_CLASS {
     TransactionManagerBasicInformation,
     TransactionManagerLogInformation,
     TransactionManagerLogPathInformation,
@@ -7986,78 +6954,57 @@ enum _TRANSACTIONMANAGER_INFORMATION_CLASS {
 }
 
 @foreign
-typedef TRANSACTIONMANAGER_INFORMATION_CLASS = _TRANSACTIONMANAGER_INFORMATION_CLASS;
-
-@foreign
-enum _RESOURCEMANAGER_INFORMATION_CLASS {
+enum RESOURCEMANAGER_INFORMATION_CLASS {
     ResourceManagerBasicInformation,
     ResourceManagerCompletionInformation,
 }
 
 @foreign
-typedef RESOURCEMANAGER_INFORMATION_CLASS = _RESOURCEMANAGER_INFORMATION_CLASS;
-
-@foreign
-struct _ENLISTMENT_BASIC_INFORMATION {
+struct ENLISTMENT_BASIC_INFORMATION {
     EnlistmentId: GUID;
     TransactionId: GUID;
     ResourceManagerId: GUID;
 }
 
 @foreign
-typedef ENLISTMENT_BASIC_INFORMATION = _ENLISTMENT_BASIC_INFORMATION;
+typedef PENLISTMENT_BASIC_INFORMATION = ENLISTMENT_BASIC_INFORMATION*;
 
 @foreign
-typedef PENLISTMENT_BASIC_INFORMATION = _ENLISTMENT_BASIC_INFORMATION*;
-
-@foreign
-struct _ENLISTMENT_CRM_INFORMATION {
+struct ENLISTMENT_CRM_INFORMATION {
     CrmTransactionManagerId: GUID;
     CrmResourceManagerId: GUID;
     CrmEnlistmentId: GUID;
 }
 
 @foreign
-typedef ENLISTMENT_CRM_INFORMATION = _ENLISTMENT_CRM_INFORMATION;
+typedef PENLISTMENT_CRM_INFORMATION = ENLISTMENT_CRM_INFORMATION*;
 
 @foreign
-typedef PENLISTMENT_CRM_INFORMATION = _ENLISTMENT_CRM_INFORMATION*;
-
-@foreign
-enum _ENLISTMENT_INFORMATION_CLASS {
+enum ENLISTMENT_INFORMATION_CLASS {
     EnlistmentBasicInformation,
     EnlistmentRecoveryInformation,
     EnlistmentCrmInformation,
 }
 
 @foreign
-typedef ENLISTMENT_INFORMATION_CLASS = _ENLISTMENT_INFORMATION_CLASS;
-
-@foreign
-struct _TRANSACTION_LIST_ENTRY {
+struct TRANSACTION_LIST_ENTRY {
     UOW: UOW;
 }
 
 @foreign
-typedef TRANSACTION_LIST_ENTRY = _TRANSACTION_LIST_ENTRY;
+typedef PTRANSACTION_LIST_ENTRY = TRANSACTION_LIST_ENTRY*;
 
 @foreign
-typedef PTRANSACTION_LIST_ENTRY = _TRANSACTION_LIST_ENTRY*;
-
-@foreign
-struct _TRANSACTION_LIST_INFORMATION {
+struct TRANSACTION_LIST_INFORMATION {
     NumberOfTransactions: DWORD;
     TransactionInformation: TRANSACTION_LIST_ENTRY[1];
 }
 
 @foreign
-typedef TRANSACTION_LIST_INFORMATION = _TRANSACTION_LIST_INFORMATION;
+typedef PTRANSACTION_LIST_INFORMATION = TRANSACTION_LIST_INFORMATION*;
 
 @foreign
-typedef PTRANSACTION_LIST_INFORMATION = _TRANSACTION_LIST_INFORMATION*;
-
-@foreign
-enum _KTMOBJECT_TYPE {
+enum KTMOBJECT_TYPE {
     KTMOBJECT_TRANSACTION,
     KTMOBJECT_TRANSACTION_MANAGER,
     KTMOBJECT_RESOURCE_MANAGER,
@@ -8066,23 +7013,17 @@ enum _KTMOBJECT_TYPE {
 }
 
 @foreign
-typedef KTMOBJECT_TYPE = _KTMOBJECT_TYPE;
+typedef PKTMOBJECT_TYPE = KTMOBJECT_TYPE*;
 
 @foreign
-typedef PKTMOBJECT_TYPE = _KTMOBJECT_TYPE*;
-
-@foreign
-struct _KTMOBJECT_CURSOR {
+struct KTMOBJECT_CURSOR {
     LastQuery: GUID;
     ObjectIdCount: DWORD;
     ObjectIds: GUID[1];
 }
 
 @foreign
-typedef KTMOBJECT_CURSOR = _KTMOBJECT_CURSOR;
-
-@foreign
-typedef PKTMOBJECT_CURSOR = _KTMOBJECT_CURSOR*;
+typedef PKTMOBJECT_CURSOR = KTMOBJECT_CURSOR*;
 
 @foreign
 typedef TP_VERSION = DWORD;
@@ -8106,7 +7047,7 @@ typedef TP_POOL = _TP_POOL;
 typedef PTP_POOL = _TP_POOL*;
 
 @foreign
-enum _TP_CALLBACK_PRIORITY {
+enum TP_CALLBACK_PRIORITY {
     TP_CALLBACK_PRIORITY_HIGH,
     TP_CALLBACK_PRIORITY_NORMAL,
     TP_CALLBACK_PRIORITY_LOW,
@@ -8115,19 +7056,13 @@ enum _TP_CALLBACK_PRIORITY {
 }
 
 @foreign
-typedef TP_CALLBACK_PRIORITY = _TP_CALLBACK_PRIORITY;
-
-@foreign
-struct _TP_POOL_STACK_INFORMATION {
+struct TP_POOL_STACK_INFORMATION {
     StackReserve: SIZE_T;
     StackCommit: SIZE_T;
 }
 
 @foreign
-typedef TP_POOL_STACK_INFORMATION = _TP_POOL_STACK_INFORMATION;
-
-@foreign
-typedef PTP_POOL_STACK_INFORMATION = _TP_POOL_STACK_INFORMATION*;
+typedef PTP_POOL_STACK_INFORMATION = TP_POOL_STACK_INFORMATION*;
 
 @foreign
 typedef TP_CLEANUP_GROUP = _TP_CLEANUP_GROUP;

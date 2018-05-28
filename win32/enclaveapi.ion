@@ -1,5 +1,3 @@
-#foreign(header = "<enclaveapi.h>")
-
 @foreign
 func IsEnclaveTypeSupported(flEnclaveType: DWORD): BOOL;
 

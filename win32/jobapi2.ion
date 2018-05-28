@@ -1,5 +1,3 @@
-#foreign(header = "<jobapi2.h>")
-
 @foreign
 struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
     MaxIops: LONG64;

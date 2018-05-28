@@ -1,217 +1,146 @@
-#foreign(header = "<propidlbase.h>")
-
 @foreign
-struct tagVersionedStream {
+struct VERSIONEDSTREAM {
     guidVersion: GUID;
     pStream: IStream*;
 }
 
 @foreign
-typedef VERSIONEDSTREAM = tagVersionedStream;
-
-@foreign
-typedef LPVERSIONEDSTREAM = tagVersionedStream*;
+typedef LPVERSIONEDSTREAM = VERSIONEDSTREAM*;
 
 @foreign
 typedef PROPVARIANT = tagPROPVARIANT;
 
 @foreign
-struct tagCAC {
+struct CAC {
     cElems: ULONG;
     pElems: CHAR*;
 }
 
 @foreign
-typedef CAC = tagCAC;
-
-@foreign
-struct tagCAUB {
+struct CAUB {
     cElems: ULONG;
     pElems: UCHAR*;
 }
 
 @foreign
-typedef CAUB = tagCAUB;
-
-@foreign
-struct tagCAI {
+struct CAI {
     cElems: ULONG;
     pElems: SHORT*;
 }
 
 @foreign
-typedef CAI = tagCAI;
-
-@foreign
-struct tagCAUI {
+struct CAUI {
     cElems: ULONG;
     pElems: USHORT*;
 }
 
 @foreign
-typedef CAUI = tagCAUI;
-
-@foreign
-struct tagCAL {
+struct CAL {
     cElems: ULONG;
     pElems: LONG*;
 }
 
 @foreign
-typedef CAL = tagCAL;
-
-@foreign
-struct tagCAUL {
+struct CAUL {
     cElems: ULONG;
     pElems: ULONG*;
 }
 
 @foreign
-typedef CAUL = tagCAUL;
-
-@foreign
-struct tagCAFLT {
+struct CAFLT {
     cElems: ULONG;
     pElems: FLOAT*;
 }
 
 @foreign
-typedef CAFLT = tagCAFLT;
-
-@foreign
-struct tagCADBL {
+struct CADBL {
     cElems: ULONG;
     pElems: DOUBLE*;
 }
 
 @foreign
-typedef CADBL = tagCADBL;
-
-@foreign
-struct tagCACY {
+struct CACY {
     cElems: ULONG;
     pElems: CY*;
 }
 
 @foreign
-typedef CACY = tagCACY;
-
-@foreign
-struct tagCADATE {
+struct CADATE {
     cElems: ULONG;
     pElems: DATE*;
 }
 
 @foreign
-typedef CADATE = tagCADATE;
-
-@foreign
-struct tagCABSTR {
+struct CABSTR {
     cElems: ULONG;
     pElems: BSTR*;
 }
 
 @foreign
-typedef CABSTR = tagCABSTR;
-
-@foreign
-struct tagCABSTRBLOB {
+struct CABSTRBLOB {
     cElems: ULONG;
     pElems: BSTRBLOB*;
 }
 
 @foreign
-typedef CABSTRBLOB = tagCABSTRBLOB;
-
-@foreign
-struct tagCABOOL {
+struct CABOOL {
     cElems: ULONG;
     pElems: VARIANT_BOOL*;
 }
 
 @foreign
-typedef CABOOL = tagCABOOL;
-
-@foreign
-struct tagCASCODE {
+struct CASCODE {
     cElems: ULONG;
     pElems: SCODE*;
 }
 
 @foreign
-typedef CASCODE = tagCASCODE;
-
-@foreign
-struct tagCAPROPVARIANT {
+struct CAPROPVARIANT {
     cElems: ULONG;
     pElems: PROPVARIANT*;
 }
 
 @foreign
-typedef CAPROPVARIANT = tagCAPROPVARIANT;
-
-@foreign
-struct tagCAH {
+struct CAH {
     cElems: ULONG;
     pElems: LARGE_INTEGER*;
 }
 
 @foreign
-typedef CAH = tagCAH;
-
-@foreign
-struct tagCAUH {
+struct CAUH {
     cElems: ULONG;
     pElems: ULARGE_INTEGER*;
 }
 
 @foreign
-typedef CAUH = tagCAUH;
-
-@foreign
-struct tagCALPSTR {
+struct CALPSTR {
     cElems: ULONG;
     pElems: LPSTR*;
 }
 
 @foreign
-typedef CALPSTR = tagCALPSTR;
-
-@foreign
-struct tagCALPWSTR {
+struct CALPWSTR {
     cElems: ULONG;
     pElems: LPWSTR*;
 }
 
 @foreign
-typedef CALPWSTR = tagCALPWSTR;
-
-@foreign
-struct tagCAFILETIME {
+struct CAFILETIME {
     cElems: ULONG;
     pElems: FILETIME*;
 }
 
 @foreign
-typedef CAFILETIME = tagCAFILETIME;
-
-@foreign
-struct tagCACLIPDATA {
+struct CACLIPDATA {
     cElems: ULONG;
     pElems: CLIPDATA*;
 }
 
 @foreign
-typedef CACLIPDATA = tagCACLIPDATA;
-
-@foreign
-struct tagCACLSID {
+struct CACLSID {
     cElems: ULONG;
     pElems: CLSID*;
 }
-
-@foreign
-typedef CACLSID = tagCACLSID;
 
 @foreign
 typedef PROPVAR_PAD1 = WORD;
@@ -221,6 +150,7 @@ typedef PROPVAR_PAD2 = WORD;
 
 @foreign
 typedef PROPVAR_PAD3 = WORD;
+
 
 @foreign struct tagPROPVARIANT;
 
@@ -240,30 +170,21 @@ typedef LPPROPVARIANT = tagPROPVARIANT*;
 @PROBLEM Nested struct def at line 441, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\propidlbase.h
 
 @foreign
-struct tagPROPSPEC {
+struct PROPSPEC {
     ulKind: ULONG;
     u: (null);
 }
 */
 
-/*
-@PROBLEM Nested struct def at line 441, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\propidlbase.h
-
-tagPROPSPEC
-*/
-
 @foreign
-struct tagSTATPROPSTG {
+struct STATPROPSTG {
     lpwstrName: LPOLESTR;
     propid: PROPID;
     vt: VARTYPE;
 }
 
 @foreign
-typedef STATPROPSTG = tagSTATPROPSTG;
-
-@foreign
-struct tagSTATPROPSETSTG {
+struct STATPROPSETSTG {
     fmtid: FMTID;
     clsid: CLSID;
     grfFlags: DWORD;
@@ -272,9 +193,6 @@ struct tagSTATPROPSETSTG {
     atime: FILETIME;
     dwOSVersion: DWORD;
 }
-
-@foreign
-typedef STATPROPSETSTG = tagSTATPROPSETSTG;
 
 @foreign
 struct IPropertyStorageVtbl {

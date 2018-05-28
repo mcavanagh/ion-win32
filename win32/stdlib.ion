@@ -1,5 +1,3 @@
-#foreign(header = "<stdlib.h>")
-
 @foreign
 func _exit(_Code: int);
 
@@ -354,7 +352,7 @@ func putenv(_EnvString: char const*): int;
 func onexit(_Func: _onexit_t): _onexit_t;
 
 @foreign
-enum tagREGCLS {
+enum REGCLS {
     REGCLS_SINGLEUSE = 0,
     REGCLS_MULTIPLEUSE = 1,
     REGCLS_MULTI_SEPARATE = 2,
@@ -362,7 +360,4 @@ enum tagREGCLS {
     REGCLS_SURROGATE = 8,
     REGCLS_AGILE = 16,
 }
-
-@foreign
-typedef REGCLS = tagREGCLS;
 

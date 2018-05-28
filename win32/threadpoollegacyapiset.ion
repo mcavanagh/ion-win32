@@ -1,5 +1,3 @@
-#foreign(header = "<threadpoollegacyapiset.h>")
-
 @foreign
 func QueueUserWorkItem(Function: LPTHREAD_START_ROUTINE, Context: PVOID, Flags: ULONG): BOOL;
 

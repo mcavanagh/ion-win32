@@ -1,5 +1,3 @@
-#foreign(header = "<imm.h>")
-
 @foreign
 struct HIMC__ {
     unused: int;
@@ -23,26 +21,23 @@ typedef LPHKL = HKL*;
 typedef LPUINT = UINT*;
 
 @foreign
-struct tagCOMPOSITIONFORM {
+struct COMPOSITIONFORM {
     dwStyle: DWORD;
     ptCurrentPos: POINT;
     rcArea: RECT;
 }
 
 @foreign
-typedef COMPOSITIONFORM = tagCOMPOSITIONFORM;
+typedef PCOMPOSITIONFORM = COMPOSITIONFORM*;
 
 @foreign
-typedef PCOMPOSITIONFORM = tagCOMPOSITIONFORM*;
+typedef NPCOMPOSITIONFORM = COMPOSITIONFORM*;
 
 @foreign
-typedef NPCOMPOSITIONFORM = tagCOMPOSITIONFORM*;
+typedef LPCOMPOSITIONFORM = COMPOSITIONFORM*;
 
 @foreign
-typedef LPCOMPOSITIONFORM = tagCOMPOSITIONFORM*;
-
-@foreign
-struct tagCANDIDATEFORM {
+struct CANDIDATEFORM {
     dwIndex: DWORD;
     dwStyle: DWORD;
     ptCurrentPos: POINT;
@@ -50,19 +45,16 @@ struct tagCANDIDATEFORM {
 }
 
 @foreign
-typedef CANDIDATEFORM = tagCANDIDATEFORM;
+typedef PCANDIDATEFORM = CANDIDATEFORM*;
 
 @foreign
-typedef PCANDIDATEFORM = tagCANDIDATEFORM*;
+typedef NPCANDIDATEFORM = CANDIDATEFORM*;
 
 @foreign
-typedef NPCANDIDATEFORM = tagCANDIDATEFORM*;
+typedef LPCANDIDATEFORM = CANDIDATEFORM*;
 
 @foreign
-typedef LPCANDIDATEFORM = tagCANDIDATEFORM*;
-
-@foreign
-struct tagCANDIDATELIST {
+struct CANDIDATELIST {
     dwSize: DWORD;
     dwStyle: DWORD;
     dwCount: DWORD;
@@ -73,52 +65,43 @@ struct tagCANDIDATELIST {
 }
 
 @foreign
-typedef CANDIDATELIST = tagCANDIDATELIST;
+typedef PCANDIDATELIST = CANDIDATELIST*;
 
 @foreign
-typedef PCANDIDATELIST = tagCANDIDATELIST*;
+typedef NPCANDIDATELIST = CANDIDATELIST*;
 
 @foreign
-typedef NPCANDIDATELIST = tagCANDIDATELIST*;
+typedef LPCANDIDATELIST = CANDIDATELIST*;
 
 @foreign
-typedef LPCANDIDATELIST = tagCANDIDATELIST*;
-
-@foreign
-struct tagREGISTERWORDA {
+struct REGISTERWORDA {
     lpReading: LPSTR;
     lpWord: LPSTR;
 }
 
 @foreign
-typedef REGISTERWORDA = tagREGISTERWORDA;
+typedef PREGISTERWORDA = REGISTERWORDA*;
 
 @foreign
-typedef PREGISTERWORDA = tagREGISTERWORDA*;
+typedef NPREGISTERWORDA = REGISTERWORDA*;
 
 @foreign
-typedef NPREGISTERWORDA = tagREGISTERWORDA*;
+typedef LPREGISTERWORDA = REGISTERWORDA*;
 
 @foreign
-typedef LPREGISTERWORDA = tagREGISTERWORDA*;
-
-@foreign
-struct tagREGISTERWORDW {
+struct REGISTERWORDW {
     lpReading: LPWSTR;
     lpWord: LPWSTR;
 }
 
 @foreign
-typedef REGISTERWORDW = tagREGISTERWORDW;
+typedef PREGISTERWORDW = REGISTERWORDW*;
 
 @foreign
-typedef PREGISTERWORDW = tagREGISTERWORDW*;
+typedef NPREGISTERWORDW = REGISTERWORDW*;
 
 @foreign
-typedef NPREGISTERWORDW = tagREGISTERWORDW*;
-
-@foreign
-typedef LPREGISTERWORDW = tagREGISTERWORDW*;
+typedef LPREGISTERWORDW = REGISTERWORDW*;
 
 @foreign
 typedef REGISTERWORD = REGISTERWORDA;
@@ -133,7 +116,7 @@ typedef NPREGISTERWORD = NPREGISTERWORDA;
 typedef LPREGISTERWORD = LPREGISTERWORDA;
 
 @foreign
-struct tagRECONVERTSTRING {
+struct RECONVERTSTRING {
     dwSize: DWORD;
     dwVersion: DWORD;
     dwStrLen: DWORD;
@@ -145,52 +128,43 @@ struct tagRECONVERTSTRING {
 }
 
 @foreign
-typedef RECONVERTSTRING = tagRECONVERTSTRING;
+typedef PRECONVERTSTRING = RECONVERTSTRING*;
 
 @foreign
-typedef PRECONVERTSTRING = tagRECONVERTSTRING*;
+typedef NPRECONVERTSTRING = RECONVERTSTRING*;
 
 @foreign
-typedef NPRECONVERTSTRING = tagRECONVERTSTRING*;
+typedef LPRECONVERTSTRING = RECONVERTSTRING*;
 
 @foreign
-typedef LPRECONVERTSTRING = tagRECONVERTSTRING*;
-
-@foreign
-struct tagSTYLEBUFA {
+struct STYLEBUFA {
     dwStyle: DWORD;
     szDescription: CHAR[32];
 }
 
 @foreign
-typedef STYLEBUFA = tagSTYLEBUFA;
+typedef PSTYLEBUFA = STYLEBUFA*;
 
 @foreign
-typedef PSTYLEBUFA = tagSTYLEBUFA*;
+typedef NPSTYLEBUFA = STYLEBUFA*;
 
 @foreign
-typedef NPSTYLEBUFA = tagSTYLEBUFA*;
+typedef LPSTYLEBUFA = STYLEBUFA*;
 
 @foreign
-typedef LPSTYLEBUFA = tagSTYLEBUFA*;
-
-@foreign
-struct tagSTYLEBUFW {
+struct STYLEBUFW {
     dwStyle: DWORD;
     szDescription: WCHAR[32];
 }
 
 @foreign
-typedef STYLEBUFW = tagSTYLEBUFW;
+typedef PSTYLEBUFW = STYLEBUFW*;
 
 @foreign
-typedef PSTYLEBUFW = tagSTYLEBUFW*;
+typedef NPSTYLEBUFW = STYLEBUFW*;
 
 @foreign
-typedef NPSTYLEBUFW = tagSTYLEBUFW*;
-
-@foreign
-typedef LPSTYLEBUFW = tagSTYLEBUFW*;
+typedef LPSTYLEBUFW = STYLEBUFW*;
 
 @foreign
 typedef STYLEBUF = STYLEBUFA;
@@ -205,7 +179,7 @@ typedef NPSTYLEBUF = NPSTYLEBUFA;
 typedef LPSTYLEBUF = LPSTYLEBUFA;
 
 @foreign
-struct tagIMEMENUITEMINFOA {
+struct IMEMENUITEMINFOA {
     cbSize: UINT;
     fType: UINT;
     fState: UINT;
@@ -218,19 +192,16 @@ struct tagIMEMENUITEMINFOA {
 }
 
 @foreign
-typedef IMEMENUITEMINFOA = tagIMEMENUITEMINFOA;
+typedef PIMEMENUITEMINFOA = IMEMENUITEMINFOA*;
 
 @foreign
-typedef PIMEMENUITEMINFOA = tagIMEMENUITEMINFOA*;
+typedef NPIMEMENUITEMINFOA = IMEMENUITEMINFOA*;
 
 @foreign
-typedef NPIMEMENUITEMINFOA = tagIMEMENUITEMINFOA*;
+typedef LPIMEMENUITEMINFOA = IMEMENUITEMINFOA*;
 
 @foreign
-typedef LPIMEMENUITEMINFOA = tagIMEMENUITEMINFOA*;
-
-@foreign
-struct tagIMEMENUITEMINFOW {
+struct IMEMENUITEMINFOW {
     cbSize: UINT;
     fType: UINT;
     fState: UINT;
@@ -243,16 +214,13 @@ struct tagIMEMENUITEMINFOW {
 }
 
 @foreign
-typedef IMEMENUITEMINFOW = tagIMEMENUITEMINFOW;
+typedef PIMEMENUITEMINFOW = IMEMENUITEMINFOW*;
 
 @foreign
-typedef PIMEMENUITEMINFOW = tagIMEMENUITEMINFOW*;
+typedef NPIMEMENUITEMINFOW = IMEMENUITEMINFOW*;
 
 @foreign
-typedef NPIMEMENUITEMINFOW = tagIMEMENUITEMINFOW*;
-
-@foreign
-typedef LPIMEMENUITEMINFOW = tagIMEMENUITEMINFOW*;
+typedef LPIMEMENUITEMINFOW = IMEMENUITEMINFOW*;
 
 @foreign
 typedef IMEMENUITEMINFO = IMEMENUITEMINFOA;
@@ -267,7 +235,7 @@ typedef NPIMEMENUITEMINFO = NPIMEMENUITEMINFOA;
 typedef LPIMEMENUITEMINFO = LPIMEMENUITEMINFOA;
 
 @foreign
-struct tagIMECHARPOSITION {
+struct IMECHARPOSITION {
     dwSize: DWORD;
     dwCharPos: DWORD;
     pt: POINT;
@@ -276,16 +244,13 @@ struct tagIMECHARPOSITION {
 }
 
 @foreign
-typedef IMECHARPOSITION = tagIMECHARPOSITION;
+typedef PIMECHARPOSITION = IMECHARPOSITION*;
 
 @foreign
-typedef PIMECHARPOSITION = tagIMECHARPOSITION*;
+typedef NPIMECHARPOSITION = IMECHARPOSITION*;
 
 @foreign
-typedef NPIMECHARPOSITION = tagIMECHARPOSITION*;
-
-@foreign
-typedef LPIMECHARPOSITION = tagIMECHARPOSITION*;
+typedef LPIMECHARPOSITION = IMECHARPOSITION*;
 
 @foreign
 typedef IMCENUMPROC = func(arg0: HIMC, arg1: LPARAM): BOOL;
@@ -544,4 +509,3 @@ func ImmDisableTextFrameService(idThread: DWORD): BOOL;
 
 @foreign
 func ImmDisableLegacyIME(): BOOL;
-

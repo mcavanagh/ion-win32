@@ -1,5 +1,3 @@
-#foreign(header = "<propidl.h>")
-
 @foreign
 enum PIDMSI_STATUS_VALUE {
     PIDMSI_STATUS_NORMAL = 0,
@@ -15,13 +13,10 @@ enum PIDMSI_STATUS_VALUE {
 }
 
 @foreign
-struct tagSERIALIZEDPROPERTYVALUE {
+struct SERIALIZEDPROPERTYVALUE {
     dwType: DWORD;
     rgb: BYTE[1];
 }
-
-@foreign
-typedef SERIALIZEDPROPERTYVALUE = tagSERIALIZEDPROPERTYVALUE;
 
 @foreign
 func StgConvertVariantToProperty(pvar: PROPVARIANT*, CodePage: USHORT, pprop: SERIALIZEDPROPERTYVALUE*, pcb: ULONG*, pid: PROPID, fReserved: BOOLEAN, pcIndirect: ULONG*): SERIALIZEDPROPERTYVALUE*;
