@@ -42,11 +42,12 @@ typedef PVALUE = PVALUEA;
 @foreign
 typedef PPVALUE = PPVALUEA;
 
-@foreign
-typedef QUERYHANDLER = func(keycontext: LPVOID, val_list: PVALCONTEXT, num_vals: DWORD, outputbuffer: LPVOID, total_outlen: DWORD*, input_blen: DWORD): DWORD;
+// @PROBLEM PVALCONTEXT is typedef to tag-namespaced struct
+//@foreign
+//typedef QUERYHANDLER = func(keycontext: LPVOID, val_list: PVALCONTEXT, num_vals: DWORD, outputbuffer: LPVOID, total_outlen: DWORD*, input_blen: DWORD): DWORD;
 
-@foreign
-typedef PQUERYHANDLER = QUERYHANDLER*;
+//@foreign
+//typedef PQUERYHANDLER = QUERYHANDLER*;
 
 @foreign
 struct REG_PROVIDER {

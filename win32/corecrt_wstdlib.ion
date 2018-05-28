@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt_wstdlib.h>")
-
 @foreign
 func _itow(_Value: int, _Buffer: wchar*, _Radix: int): wchar*;
 

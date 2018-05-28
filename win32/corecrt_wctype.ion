@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt_wctype.h>")
-
 @foreign
 func __pwctype_func(): wctype_t*;
 

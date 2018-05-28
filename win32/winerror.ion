@@ -1,5 +1,3 @@
-#foreign(header = "<winerror.h>")
-
 @foreign const ERROR_SUCCESS =                     0L;
 @foreign const NO_ERROR =  0L;
 @foreign const SEC_E_OK =                          HRESULT(0x00000000L);

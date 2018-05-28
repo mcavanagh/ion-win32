@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt_search.h>")
-
 @foreign
 typedef _CoreCrtNonSecureSearchSortCompareFunction = func(arg0: void const*, arg1: void const*): int;
 

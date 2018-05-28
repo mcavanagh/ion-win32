@@ -1,5 +1,3 @@
-#foreign(header = "<corecrt_wstring.h>")
-
 @foreign
 func wcscpy_s(_Destination: wchar*, _SizeInWords: rsize_t, _Source: wchar*): errno_t;
 

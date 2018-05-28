@@ -1,5 +1,3 @@
-#foreign(header = "<datetimeapi.h>")
-
 @foreign
 func GetDateFormatA(Locale: LCID, dwFlags: DWORD, lpDate: SYSTEMTIME*, lpFormat: LPCSTR, lpDateStr: LPSTR, cchDate: int): int;
 
