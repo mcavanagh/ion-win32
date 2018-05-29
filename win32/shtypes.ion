@@ -40,7 +40,6 @@ enum STRRET_TYPE {
     STRRET_CSTR = 2,
 }
 
-@foreign
 union STRRET___inner {
     pOleStr: LPWSTR;
     uOffset: UINT;

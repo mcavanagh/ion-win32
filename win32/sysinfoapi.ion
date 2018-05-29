@@ -1,13 +1,11 @@
-@foreign
 struct SYSTEM_INFO___inner_s1 {
     wProcessorArchitecture: WORD;
     wReserved: WORD;
 }
 
-@foreign
 union SYSTEM_INFO___inner_u1 {
     dwOemId: DWORD;
-    s: _SYSTEM_INFO___inner_s1;
+    s: SYSTEM_INFO___inner_s1;
 }
 
 @foreign

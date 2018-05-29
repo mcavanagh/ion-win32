@@ -1842,7 +1842,6 @@ typedef PHARDWAREINPUT = HARDWAREINPUT*;
 @foreign
 typedef LPHARDWAREINPUT = HARDWAREINPUT*;
 
-@foreign
 union INPUT___inner {
     mi: MOUSEINPUT;
     ki: KEYBDINPUT;
@@ -2015,7 +2014,6 @@ struct USAGE_PROPERTIES {
 @foreign
 typedef PUSAGE_PROPERTIES = USAGE_PROPERTIES*;
 
-@foreign
 union POINTER_TYPE_INFO___inner {
     touchInfo: POINTER_TOUCH_INFO;
     penInfo: POINTER_PEN_INFO;
@@ -2162,7 +2160,6 @@ func GetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWOR
 @foreign
 func SetWindowFeedbackSetting(hwnd: HWND, feedback: FEEDBACK_TYPE, dwFlags: DWORD, size: UINT32, configuration: void const*): BOOL;
 
-@foreign
 struct INPUT_TRANSFORM___inner_s1 {
     _11, _12, _13, _14: float;
     _21, _22, _23, _24: float;
@@ -2170,7 +2167,6 @@ struct INPUT_TRANSFORM___inner_s1 {
     _41, _42, _43, _44: float;
 }
 
-@foreign
 union INPUT_TRANSFORM___inner_u1 {
     s: INPUT_TRANSFORM___inner_s1;
     m: float[4][4];
@@ -4468,13 +4464,11 @@ typedef PRAWINPUTHEADER = RAWINPUTHEADER*;
 @foreign
 typedef LPRAWINPUTHEADER = RAWINPUTHEADER*;
 
-@foreign
 struct RAWMOUSE___inner_s1 {
     usButtonFlags: USHORT;
     usButtonData: USHORT;
 }
 
-@foreign
 union RAWMOUSE___inner_u1 {
     ulButtons: ULONG;
     s: RAWMOUSE___inner_s1;
@@ -4525,7 +4519,6 @@ typedef PRAWHID = RAWHID*;
 @foreign
 typedef LPRAWHID = RAWHID*;
 
-@foreign
 union RAWINPUT___inner {
     mouse: RAWMOUSE;
     keyboard: RAWKEYBOARD;
@@ -4583,7 +4576,6 @@ struct RID_DEVICE_INFO_HID {
 @foreign
 typedef PRID_DEVICE_INFO_HID = RID_DEVICE_INFO_HID*;
 
-@foreign
 union RID_DEVICE_INFO___inner {
     mouse: RID_DEVICE_INFO_MOUSE;
     keyboard: RID_DEVICE_INFO_KEYBOARD;

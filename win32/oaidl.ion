@@ -104,7 +104,6 @@ struct SAFEARRAY {
 @foreign
 typedef LPSAFEARRAY = SAFEARRAY*;
 
-@foreign
 union tagVARIANT___inner_u {
     __VARIANT_NAME_2: __tagVARIANT;
     decVal: DECIMAL;
@@ -125,7 +124,6 @@ struct __tagVARIANT {
     __VARIANT_NAME_3: __tagVARIANT___inner_u;
 }
 
-@foreign
 union __tagVARIANT___inner_u {
     llVal: LONGLONG;
     lVal: LONG;
@@ -134,7 +132,6 @@ union __tagVARIANT___inner_u {
     fltVal: FLOAT;
     dblVal: DOUBLE;
     boolVal: VARIANT_BOOL;
-    bool: _VARIANT_BOOL;
     scode: SCODE;
     cyVal: CY;
     date: DATE;
@@ -149,7 +146,6 @@ union __tagVARIANT___inner_u {
     pfltVal: FLOAT*;
     pdblVal: DOUBLE*;
     pboolVal: VARIANT_BOOL*;
-    pbool: _VARIANT_BOOL*;
     pscode: SCODE*;
     pcyVal: CY*;
     pdate: DATE*;
@@ -200,7 +196,6 @@ struct _wireBRECORD {
     pRecord: byte*;
 }
 
-@foreign
 union _wireVARIANT___inner {
     llVal: LONGLONG;
     lVal: LONG;
@@ -326,7 +321,6 @@ struct IDLDESC {
 @foreign
 typedef LPIDLDESC = IDLDESC*;
 
-@foreign
 union ELEMDESC___inner {
     idldesc: IDLDESC;
     paramdesc: PARAMDESC;
@@ -449,7 +443,6 @@ enum VARKIND {
     VAR_DISPATCH = 3,
 }
 
-@foreign
 union VARDESC___inner {
     oInst: ULONG;
     lpvarValue: VARIANT*;

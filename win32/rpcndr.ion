@@ -337,7 +337,6 @@ struct NDR_EXPR_DESC {
     pFormatExpr: PFORMAT_STRING;
 }
 
-@foreign
 union MIDL_STUB_DESC___inner {
     pAutoHandle: handle_t*;
     pPrimitiveHandle: handle_t*;
@@ -1078,7 +1077,6 @@ struct NDR_USER_MARSHAL_INFO_LEVEL1 {
     Reserved: ULONG_PTR[5];
 }
 
-@foreign
 union NDR_USER_MARSHAL_INFO___inner {
     Level1: NDR_USER_MARSHAL_INFO_LEVEL1;
 }

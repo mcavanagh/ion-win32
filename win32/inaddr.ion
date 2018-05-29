@@ -1,14 +1,11 @@
-@foreign
 struct in_addr___inner_s1 {
 	s_b1, s_b2, s_b3, s_b4: UCHAR;
 }
 
-@foreign
 struct in_addr___inner_s2 {
 	s_w1, s_w2: USHORT;
 }
 
-@foreign
 union in_addr___inner_u {
 	S_un_b: in_addr___inner_s1;
 	S_un_w: in_addr___inner_s2;

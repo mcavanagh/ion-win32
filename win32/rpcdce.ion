@@ -498,7 +498,6 @@ struct RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A {
 @foreign
 typedef PRPC_HTTP_TRANSPORT_CREDENTIALS_V3_A = RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A*;
 
-@foreign
 union RPC_SECURITY_QOS_V2_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
@@ -516,7 +515,6 @@ struct RPC_SECURITY_QOS_V2_W {
 @foreign
 typedef PRPC_SECURITY_QOS_V2_W = RPC_SECURITY_QOS_V2_W*;
 
-@foreign
 union RPC_SECURITY_QOS_V2_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
@@ -534,7 +532,6 @@ struct RPC_SECURITY_QOS_V2_A {
 @foreign
 typedef PRPC_SECURITY_QOS_V2_A = RPC_SECURITY_QOS_V2_A*;
 
-@foreign
 union RPC_SECURITY_QOS_V3_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
@@ -553,7 +550,6 @@ struct RPC_SECURITY_QOS_V3_W {
 @foreign
 typedef PRPC_SECURITY_QOS_V3_W = RPC_SECURITY_QOS_V3_W*;
 
-@foreign
 union RPC_SECURITY_QOS_V3_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
@@ -572,7 +568,6 @@ struct RPC_SECURITY_QOS_V3_A {
 @foreign
 typedef PRPC_SECURITY_QOS_V3_A = RPC_SECURITY_QOS_V3_A*;
 
-@foreign
 union RPC_SECURITY_QOS_V4_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
@@ -592,7 +587,6 @@ struct RPC_SECURITY_QOS_V4_W {
 @foreign
 typedef PRPC_SECURITY_QOS_V4_W = RPC_SECURITY_QOS_V4_W*;
 
-@foreign
 union RPC_SECURITY_QOS_V4_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
@@ -612,7 +606,6 @@ struct RPC_SECURITY_QOS_V4_A {
 @foreign
 typedef PRPC_SECURITY_QOS_V4_A = RPC_SECURITY_QOS_V4_A*;
 
-@foreign
 union RPC_SECURITY_QOS_V5_W___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_W*;
 }
@@ -632,7 +625,6 @@ struct RPC_SECURITY_QOS_V5_W {
 @foreign
 typedef PRPC_SECURITY_QOS_V5_W = RPC_SECURITY_QOS_V5_W*;
 
-@foreign
 union RPC_SECURITY_QOS_V5_A___inner {
     HttpCredentials: RPC_HTTP_TRANSPORT_CREDENTIALS_A*;
 }
@@ -653,7 +645,6 @@ struct RPC_SECURITY_QOS_V5_A {
 @foreign
 typedef PRPC_SECURITY_QOS_V5_A = RPC_SECURITY_QOS_V5_A*;
 
-@foreign
 union RPC_BINDING_HANDLE_TEMPLATE_V1_W___inner {
     Reserved: uchar;
 }
@@ -672,7 +663,6 @@ struct RPC_BINDING_HANDLE_TEMPLATE_V1_W {
 @foreign
 typedef PRPC_BINDING_HANDLE_TEMPLATE_V1_W = RPC_BINDING_HANDLE_TEMPLATE_V1_W*;
 
-@foreign
 union RPC_BINDING_HANDLE_TEMPLATE_V1_A___inner {
     Reserved: uchar;
 }

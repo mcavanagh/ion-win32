@@ -99,7 +99,6 @@ struct RPC_EE_INFO_PARAM {
 }
 */
 
-@foreign
 union RPC_EXTENDED_ERROR_INFO___inner {
     SystemTime: SYSTEMTIME;
     FileTime: FILETIME;

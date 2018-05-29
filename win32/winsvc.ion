@@ -3,13 +3,11 @@ struct SERVICE_TRIGGER_CUSTOM_STATE_ID {
     Data: DWORD[2];
 }
 
-@foreign
 struct SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_s1 {
     DataOffset: DWORD;
     Data: BYTE[1];
 }
 
-@foreign
 union SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_u1 {
     CustomStateId: SERVICE_TRIGGER_CUSTOM_STATE_ID;
     s: SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM___inner_s1;

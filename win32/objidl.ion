@@ -1767,7 +1767,6 @@ struct RemSTGMEDIUM {
     data: byte[1];
 }
 
-@foreign
 union uSTDMEDIUM___inner {
     hBitmap: HBITMAP;
     hMetaFilePict: HMETAFILEPICT;

@@ -1396,7 +1396,6 @@ enum COPYFILE2_COPY_PHASE {
     COPYFILE2_PHASE_MAX,
 }
 
-@foreign
 struct COPYFILE2_MESSAGE___inner_s1 {
     dwStreamNumber: DWORD;
     dwReserved: DWORD;
@@ -1408,7 +1407,6 @@ struct COPYFILE2_MESSAGE___inner_s1 {
     uliTotalFileSize: ULARGE_INTEGER;
 }
 
-@foreign
 struct COPYFILE2_MESSAGE___inner_s2 {
     dwStreamNumber: DWORD;
     dwFlags: DWORD;
@@ -1422,7 +1420,6 @@ struct COPYFILE2_MESSAGE___inner_s2 {
     uliTotalBytesTransferred: ULARGE_INTEGER;
 }
 
-@foreign
 struct COPYFILE2_MESSAGE___inner_s3 {
     dwStreamNumber: DWORD;
     dwReserved: DWORD;
@@ -1432,7 +1429,6 @@ struct COPYFILE2_MESSAGE___inner_s3 {
     uliTotalFileSize: ULARGE_INTEGER;
 }
 
-@foreign
 struct COPYFILE2_MESSAGE___inner_s4 {
     dwStreamNumber: DWORD;
     dwReserved: DWORD;
@@ -1444,12 +1440,10 @@ struct COPYFILE2_MESSAGE___inner_s4 {
     uliTotalBytesTransferred: ULARGE_INTEGER;
 }
 
-@foreign
 struct COPYFILE2_MESSAGE___inner_s5 {
     dwReserved: DWORD;
 }
 
-@foreign
 struct COPYFILE2_MESSAGE___inner_s6 {
     CopyPhase: COPYFILE2_COPY_PHASE;
     dwStreamNumber: DWORD;
@@ -1462,7 +1456,6 @@ struct COPYFILE2_MESSAGE___inner_s6 {
     uliTotalBytesTransferred: ULARGE_INTEGER;
 }
 
-@foreign
 union COPYFILE2_MESSAGE___inner_u {
     ChunkStarted: COPYFILE2_MESSAGE___inner_s1;
     ChunkFinished: COPYFILE2_MESSAGE___inner_s2;
@@ -2370,7 +2363,6 @@ struct FILE_NAME_INFO {
 @foreign
 typedef PFILE_NAME_INFO = FILE_NAME_INFO*;
 
-@foreign
 union FILE_RENAME_INFO___inner {
     ReplaceIfExists: BOOLEAN;
     Flags: DWORD;
@@ -2562,29 +2554,24 @@ struct FILE_ID_EXTD_DIR_INFO {
 @foreign
 typedef PFILE_ID_EXTD_DIR_INFO = FILE_ID_EXTD_DIR_INFO*;
 
-@foreign
 struct FILE_REMOTE_PROTOCOL_INFO___inner_s1 {
     Reserved: ULONG[8];
 }
 
-@foreign
 struct FILE_REMOTE_PROTOCOL_INFO___inner_s3 {
     Capabilities: ULONG;
 }
 
-@foreign
 struct FILE_REMOTE_PROTOCOL_INFO___inner_s4 {
     Capabilities: ULONG;
     CachingFlags: ULONG;
 }
 
-@foreign
 struct FILE_REMOTE_PROTOCOL_INFO___inner_s2 {
     Server: FILE_REMOTE_PROTOCOL_INFO___inner_s3;
     Share: FILE_REMOTE_PROTOCOL_INFO___inner_s4;
 }
 
-@foreign
 union FILE_REMOTE_PROTOCOL_INFO___inner_u {
     Smb2: FILE_REMOTE_PROTOCOL_INFO___inner_s2;
     Reserved: ULONG[16];
@@ -2621,7 +2608,6 @@ enum FILE_ID_TYPE {
 @foreign
 typedef PFILE_ID_TYPE = FILE_ID_TYPE*;
 
-@foreign
 union FILE_ID_DESCRIPTOR___inner {
     FileId: LARGE_INTEGER;
     ObjectId: GUID;

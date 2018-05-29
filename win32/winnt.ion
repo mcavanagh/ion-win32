@@ -463,7 +463,6 @@ typedef PULONGLONG = ULONGLONG*;
 @foreign
 typedef USN = LONGLONG;
 
-@foreign
 struct LARGE_INTEGER___inner_s {
     LowPart: DWORD;
     HighPart: LONG;
@@ -479,7 +478,6 @@ union LARGE_INTEGER {
 @foreign
 typedef PLARGE_INTEGER = LARGE_INTEGER*;
 
-@foreign
 struct ULARGE_INTEGER___inner_s {
     LowPart: DWORD;
     HighPart: DWORD;
@@ -962,7 +960,6 @@ typedef XMM_SAVE_AREA32 = XSAVE_FORMAT;
 @foreign
 typedef PXMM_SAVE_AREA32 = XSAVE_FORMAT*;
 
-@foreign
 struct CONTEXT___inner_s {
     Header: M128A[2];
     Legacy: M128A[8];
@@ -984,7 +981,6 @@ struct CONTEXT___inner_s {
     Xmm15: M128A;
 }
 
-@foreign
 union CONTEXT___inner_u {
     FltSave: XMM_SAVE_AREA32;
     s: CONTEXT___inner_s;
@@ -1115,7 +1111,6 @@ typedef PEXCEPTION_FILTER = func(ExceptionPointers: EXCEPTION_POINTERS*, Establi
 @foreign
 typedef PTERMINATION_HANDLER = func(_abnormal_termination: BOOLEAN, EstablisherFrame: PVOID);
 
-@foreign
 struct KNONVOLATILE_CONTEXT_POINTERS___inner_s1 {
     Xmm0: PM128A;
     Xmm1: PM128A;
@@ -1135,7 +1130,6 @@ struct KNONVOLATILE_CONTEXT_POINTERS___inner_s1 {
     Xmm15: PM128A;
 }
 
-@foreign
 struct KNONVOLATILE_CONTEXT_POINTERS___inner_s2 {
     Rax: PDWORD64;
     Rcx: PDWORD64;
@@ -1155,13 +1149,11 @@ struct KNONVOLATILE_CONTEXT_POINTERS___inner_s2 {
     R15: PDWORD64;
 }
 
-@foreign
 union KNONVOLATILE_CONTEXT_POINTERS___inner_u1 {
     FloatingContext: PM128A[16];
     s: KNONVOLATILE_CONTEXT_POINTERS___inner_s1;
 }
 
-@foreign
 union KNONVOLATILE_CONTEXT_POINTERS___inner_u2 {
     IntegerContext: PDWORD64[16];
     s: KNONVOLATILE_CONTEXT_POINTERS___inner_s2;
@@ -1176,7 +1168,6 @@ struct KNONVOLATILE_CONTEXT_POINTERS {
 @foreign
 typedef PKNONVOLATILE_CONTEXT_POINTERS = KNONVOLATILE_CONTEXT_POINTERS*;
 
-@foreign
 struct SCOPE_TABLE_ARM___inner {
     BeginAddress: DWORD;
     EndAddress: DWORD;
@@ -1193,7 +1184,6 @@ struct SCOPE_TABLE_ARM {
 @foreign
 typedef PSCOPE_TABLE_ARM = SCOPE_TABLE_ARM*;
 
-@foreign
 struct SCOPE_TABLE_ARM64___inner {
     BeginAddress: DWORD;
     EndAddress: DWORD;
@@ -2121,13 +2111,11 @@ struct TOKEN_USER {
 @foreign
 typedef PTOKEN_USER = TOKEN_USER*;
 
-@foreign
 union _SE_TOKEN_USER___inner_u1 {
     TokenUser: TOKEN_USER;
     User: SID_AND_ATTRIBUTES;
 }
 
-@foreign
 union _SE_TOKEN_USER___inner_u2 {
     Sid: SID;
     Buffer: BYTE[68];
@@ -2385,7 +2373,6 @@ struct CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE {
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE*;
 
-@foreign
 union CLAIM_SECURITY_ATTRIBUTE_V1___inner {
     pInt64: PLONG64;
     pUint64: PDWORD64;
@@ -2407,7 +2394,6 @@ struct CLAIM_SECURITY_ATTRIBUTE_V1 {
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_V1 = CLAIM_SECURITY_ATTRIBUTE_V1*;
 
-@foreign
 union CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1___inner {
     pInt64: DWORD[1];
     pUint64: DWORD[1];
@@ -2429,7 +2415,6 @@ struct CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 {
 @foreign
 typedef PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1*;
 
-@foreign
 union CLAIM_SECURITY_ATTRIBUTES_INFORMATION___inner {
     pAttributeV1: PCLAIM_SECURITY_ATTRIBUTE_V1;
 }
@@ -2547,7 +2532,6 @@ struct EXCEPTION_REGISTRATION_RECORD {
 @foreign
 typedef PEXCEPTION_REGISTRATION_RECORD = EXCEPTION_REGISTRATION_RECORD*;
 
-@foreign
 union NT_TIB___inner {
     FiberData: PVOID;
     Version: DWORD;
@@ -2567,7 +2551,6 @@ struct NT_TIB {
 @foreign
 typedef PNT_TIB = NT_TIB*;
 
-@foreign
 union NT_TIB32___inner {
     FiberData: DWORD;
     Version: DWORD;
@@ -2587,7 +2570,6 @@ struct NT_TIB32 {
 @foreign
 typedef PNT_TIB32 = NT_TIB32*;
 
-@foreign
 union NT_TIB64___inner {
     FiberData: DWORD64;
     Version: DWORD;
@@ -3017,13 +2999,11 @@ struct JOBOBJECT_LIMIT_VIOLATION_INFORMATION_2 {
 }
 */
 
-@foreign
 struct JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_s1 {
     MinRate: WORD;
     MaxRate: WORD;
 }
 
-@foreign
 union JOBOBJECT_CPU_RATE_CONTROL_INFORMATION___inner_u1 {
     CpuRate: DWORD;
     Weight: DWORD;
@@ -3273,17 +3253,14 @@ struct CACHE_DESCRIPTOR {
 @foreign
 typedef PCACHE_DESCRIPTOR = CACHE_DESCRIPTOR*;
 
-@foreign
 struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1 {
     Flags: BYTE;
 }
 
-@foreign
 struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2 {
     NodeNumber: DWORD;
 }
 
-@foreign
 union SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_u {
     ProcessorCore: SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s1;
     NumaNode: SYSTEM_LOGICAL_PROCESSOR_INFORMATION___inner_s2;
@@ -3359,7 +3336,6 @@ struct GROUP_RELATIONSHIP {
 @foreign
 typedef PGROUP_RELATIONSHIP = GROUP_RELATIONSHIP*;
 
-@foreign
 union SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX___inner {
     Processor: PROCESSOR_RELATIONSHIP;
     NumaNode: NUMA_NODE_RELATIONSHIP;
@@ -3565,7 +3541,6 @@ union FILE_SEGMENT_ELEMENT {
 @foreign
 typedef PFILE_SEGMENT_ELEMENT = FILE_SEGMENT_ELEMENT*;
 
-@foreign
 struct REPARSE_GUID_DATA_BUFFER___inner {
     DataBuffer: BYTE[1];
 }
@@ -4858,7 +4833,6 @@ struct ANON_OBJECT_HEADER_BIGOBJ {
     NumberOfSymbols: DWORD;
 }
 
-@foreign
 union IMAGE_SECTION_HEADER___inner {
     PhysicalAddress: DWORD;
     VirtualSize: DWORD;
@@ -4881,13 +4855,11 @@ struct IMAGE_SECTION_HEADER {
 @foreign
 typedef PIMAGE_SECTION_HEADER = IMAGE_SECTION_HEADER*;
 
-@foreign
 struct IMAGE_SYMBOL___inner_s1 {
     Short: DWORD;
     Long: DWORD;
 }
 
-@foreign
 union IMAGE_SYMBOL___inner_u1 {
     ShortName: BYTE[8];
     Name: IMAGE_SYMBOL___inner_s1;
@@ -4907,13 +4879,11 @@ struct IMAGE_SYMBOL {
 @foreign
 typedef PIMAGE_SYMBOL = IMAGE_SYMBOL*;
 
-@foreign
 struct IMAGE_SYMBOL_EX___inner_s1 {
     Short: DWORD;
     Long: DWORD;
 }
 
-@foreign
 union IMAGE_SYMBOL_EX___inner_u1 {
     ShortName: BYTE[8];
     Name: IMAGE_SYMBOL_EX___inner_s1;
@@ -4945,30 +4915,25 @@ struct IMAGE_AUX_SYMBOL_TOKEN_DEF {
 @foreign
 typedef PIMAGE_AUX_SYMBOL_TOKEN_DEF = IMAGE_AUX_SYMBOL_TOKEN_DEF*;
 
-@foreign
 struct IMAGE_AUX_SYMBOL___inner_s2 {
     Linenumber: WORD;
     Size: WORD;
 }
 
-@foreign
 union IMAGE_AUX_SYMBOL___inner_u1 {
     LnSz: IMAGE_AUX_SYMBOL___inner_s2;
     TotalSize: DWORD;
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL___inner_s3 {
     PointerToLinenumber: DWORD;
     PointerToNextFunction: DWORD;
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL___inner_s4 {
     Dimension: WORD[4];
 }
 
-@foreign
 union IMAGE_AUX_SYMBOL___inner_u2 {
     Function: IMAGE_AUX_SYMBOL___inner_s3;
     Array: IMAGE_AUX_SYMBOL___inner_s4;
@@ -4982,12 +4947,10 @@ struct IMAGE_AUX_SYMBOL___inner_s1 {
     TvIndex: WORD;
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL___inner_s5 {
     Name: BYTE[18];
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL___inner_s6 {
     Length: DWORD;
     NumberOfRelocations: WORD;
@@ -4999,7 +4962,6 @@ struct IMAGE_AUX_SYMBOL___inner_s6 {
     HighNumber: SHORT;
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL___inner_s7 {
     crc: DWORD;
     rgbReserved: BYTE[14];
@@ -5017,19 +4979,16 @@ union IMAGE_AUX_SYMBOL {
 @foreign
 typedef PIMAGE_AUX_SYMBOL = IMAGE_AUX_SYMBOL*;
 
-@foreign
 struct IMAGE_AUX_SYMBOL_EX___inner_s1 {
     WeakDefaultSymIndex: DWORD;
     WeakSearchType: DWORD;
     rgbReserved: BYTE[12];
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL_EX___inner_s2 {
     Name: BYTE[sizeof(IMAGE_SYMBOL_EX)];
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL_EX___inner_s3 {
     Length: DWORD;
     NumberOfRelocations: WORD;
@@ -5042,13 +5001,11 @@ struct IMAGE_AUX_SYMBOL_EX___inner_s3 {
     rgbReserved: BYTE[2];
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL_EX___inner_s4 {
     TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF;
     rgbReserved: BYTE[2];
 }
 
-@foreign
 struct IMAGE_AUX_SYMBOL_EX___inner_s5 {
     crc: DWORD;
     rgbReserved: BYTE[16];
@@ -5071,7 +5028,6 @@ enum IMAGE_AUX_SYMBOL_TYPE {
     IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = 1,
 }
 
-@foreign
 union IMAGE_RELOCATION___inner {
     VirtualAddress: DWORD;
     RelocCount: DWORD;
@@ -5087,7 +5043,6 @@ struct IMAGE_RELOCATION {
 @foreign
 typedef PIMAGE_RELOCATION = IMAGE_RELOCATION*;
 
-@foreign
 union IMAGE_LINENUMBER___inner {
     SymbolTableIndex: DWORD;
     VirtualAddress: DWORD;
@@ -5152,7 +5107,6 @@ struct IMAGE_IMPORT_BY_NAME {
 @foreign
 typedef PIMAGE_IMPORT_BY_NAME = IMAGE_IMPORT_BY_NAME*;
 
-@foreign
 union IMAGE_THUNK_DATA64___inner {
     ForwarderString: ULONGLONG;
     Function: ULONGLONG;
@@ -5168,7 +5122,6 @@ struct IMAGE_THUNK_DATA64 {
 @foreign
 typedef PIMAGE_THUNK_DATA64 = IMAGE_THUNK_DATA64*;
 
-@foreign
 union IMAGE_THUNK_DATA32___inner {
     ForwarderString: DWORD;
     Function: DWORD;
@@ -5214,7 +5167,6 @@ typedef IMAGE_TLS_DIRECTORY = IMAGE_TLS_DIRECTORY64;
 @foreign
 typedef PIMAGE_TLS_DIRECTORY = PIMAGE_TLS_DIRECTORY64;
 
-@foreign
 union IMAGE_IMPORT_DESCRIPTOR___inner {
     Characteristics: DWORD;
     OriginalFirstThunk: DWORD;
@@ -5593,7 +5545,6 @@ struct IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY {
 @foreign
 typedef PIMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY*;
 
-@foreign
 union _IMAGE_RUNTIME_FUNCTION_ENTRY___inner {
     UnwindInfoAddress: DWORD;
     UnwindData: DWORD;
@@ -5750,7 +5701,6 @@ struct IMAGE_FUNCTION_ENTRY {
 @foreign
 typedef PIMAGE_FUNCTION_ENTRY = IMAGE_FUNCTION_ENTRY*;
 
-@foreign
 union IMAGE_FUNCTION_ENTRY64___inner {
     EndOfPrologue: ULONGLONG;
     UnwindInfoAddress: ULONGLONG;
@@ -5874,7 +5824,6 @@ enum ReplacesCorHdrNumericDefines {
     COMIMAGE_FLAGS_32BITPREFERRED = 131072,
 }
 
-@foreign
 union IMAGE_COR20_HEADER___inner {
     EntryPointToken: DWORD;
     EntryPointRVA: DWORD;
@@ -6270,7 +6219,6 @@ enum IMAGE_POLICY_ID {
     ImagePolicyIdMaximum,
 }
 
-@foreign
 union IMAGE_POLICY_ENTRY___inner {
     None: void const*;
     BoolValue: BOOLEAN;

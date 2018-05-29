@@ -980,7 +980,6 @@ typedef NPEXTLOGFONT = NPEXTLOGFONTA;
 @foreign
 typedef LPEXTLOGFONT = LPEXTLOGFONTA;
 
-@foreign
 struct DEVMODEA___inner_s1 {
     dmOrientation: short;
     dmPaperSize: short;
@@ -992,20 +991,17 @@ struct DEVMODEA___inner_s1 {
     dmPrintQuality: short;
 }
 
-@foreign
 struct DEVMODEA___inner_s2 {
     dmPosition: POINTL;
     dmDisplayOrientation: DWORD;
     dmDisplayFixedOutput: DWORD;
 }
 
-@foreign
 union DEVMODEA___inner_u1 {
     s: DEVMODEA___inner_s1;
     s2: DEVMODEA___inner_s2;
 }
 
-@foreign
 union DEVMODEA___inner_u2 {
     dmDisplayFlags: DWORD;
     dmNup: DWORD;
@@ -1051,7 +1047,6 @@ typedef NPDEVMODEA = DEVMODEA*;
 @foreign
 typedef LPDEVMODEA = DEVMODEA*;
 
-@foreign
 struct DEVMODEW___inner_s1 {
     dmOrientation: short;
     dmPaperSize: short;
@@ -1063,20 +1058,17 @@ struct DEVMODEW___inner_s1 {
     dmPrintQuality: short;
 }
 
-@foreign
 struct DEVMODEW___inner_s2 {
     dmPosition: POINTL;
     dmDisplayOrientation: DWORD;
     dmDisplayFixedOutput: DWORD;
 }
 
-@foreign
 union DEVMODEW___inner_u1 {
     s: DEVMODEW___inner_s1;
     s2: DEVMODEW___inner_s2;
 }
 
-@foreign
 union DEVMODEW___inner_u2 {
     dmDisplayFlags: DWORD;
     dmNup: DWORD;
@@ -1220,9 +1212,19 @@ struct DISPLAYCONFIG_2DREGION {
     cy: UINT32;
 }
 
-/*
-@PROBLEM Nested struct def at line 2841, C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
+struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO___inner_u1 {
+    AdditionalSignalInfo: DISPLAYCONFIG_VIDEO_SIGNAL_INFO___inner_s1;
+    videoStandard: UINT32;
+}
 
+// @PROBLEM: bitfields
+struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO___inner_s1 {
+    videoStandard: UINT32;
+    vSyncFreqDivider: UINT32;
+    reserved: UINT32;
+}
+
+// @PROBLEM: bitfields
 @foreign
 struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO {
     pixelRate: UINT64;
@@ -1230,10 +1232,10 @@ struct DISPLAYCONFIG_VIDEO_SIGNAL_INFO {
     vSyncFreq: DISPLAYCONFIG_RATIONAL;
     activeSize: DISPLAYCONFIG_2DREGION;
     totalSize: DISPLAYCONFIG_2DREGION;
-    u: (null);
+    u: DISPLAYCONFIG_VIDEO_SIGNAL_INFO___inner_u1;
     scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING;
 }
-*/
+
 
 @foreign
 enum DISPLAYCONFIG_SCALING {
@@ -1293,7 +1295,6 @@ struct DISPLAYCONFIG_DESKTOP_IMAGE_INFO {
     DesktopImageClip: RECTL;
 }
 
-@foreign
 union DISPLAYCONFIG_MODE_INFO___inner {
     targetMode: DISPLAYCONFIG_TARGET_MODE;
     sourceMode: DISPLAYCONFIG_SOURCE_MODE;
