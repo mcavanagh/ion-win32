@@ -27,6 +27,15 @@
 @foreign const MENU_EVENT                = 0x0008;
 @foreign const FOCUS_EVENT               = 0x0010;
 
+@foreign const FOREGROUND_BLUE      = 0x0001;
+@foreign const FOREGROUND_GREEN     = 0x0002;
+@foreign const FOREGROUND_RED       = 0x0004;
+@foreign const FOREGROUND_INTENSITY = 0x0008;
+@foreign const BACKGROUND_BLUE      = 0x0010;
+@foreign const BACKGROUND_GREEN     = 0x0020;
+@foreign const BACKGROUND_RED       = 0x0040;
+@foreign const BACKGROUND_INTENSITY = 0x0080;
+
 @foreign const COMMON_LVB_LEADING_BYTE    = 0x0100;
 @foreign const COMMON_LVB_TRAILING_BYTE   = 0x0200;
 @foreign const COMMON_LVB_GRID_HORIZONTAL = 0x0400;
